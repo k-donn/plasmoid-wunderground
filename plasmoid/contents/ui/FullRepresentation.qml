@@ -6,7 +6,6 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/format-data.js" as FormatData
 
 Item {
-
     ShowConfigBtn {
         id: configBtn
 

@@ -10,4 +10,4 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 find_package(KF5Plasma REQUIRED)
 
 # Add installation target ("make install")
-plasma_install_package(plasmoid.org.kde.wunderground)
+plasma_install_package(plasmoid com.github.k-donn.plasmoid-wunderground)

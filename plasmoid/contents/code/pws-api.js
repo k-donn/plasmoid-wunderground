@@ -4,7 +4,7 @@ function getWeatherData() {
 	req.open(
 		"GET",
 		"https://api.weather.com/v2/pws/observations/current?stationId=" +
-			stationID +
+		stationID +
 			"&format=json&units=e&apiKey=676566f10f134df1a566f10f13edf108&numericPrecision=decimal",
 		true
 	);
@@ -22,10 +22,11 @@ function getWeatherData() {
 				weatherData = res["observations"][0];
 				showData = true;
 			} else if (req.status == 204) {
-				weatherData = 204;
+				printDebug("Station not found")
 			} else {
 				weatherData = null;
-				printDebug("Request failed: " + req.statusText);
+				showData = false;
+				printDebug("Request failed: " + req.responseText);
 			}
 		}
 	};

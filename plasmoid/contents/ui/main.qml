@@ -33,19 +33,10 @@ Item {
         onTriggered: updateWeatherData()
     }
 
-    PlasmaCore.IconItem {
-        source: "weather"
-
-        width: parent.width
-        height: parent.height
+    Plasmoid.fullRepresentation: FullRepresentation { 
+        Layout.minimumWidth: 480
+        Layout.minimumHeight: 320
     }
+    Plasmoid.compactRepresentation: CompactRepresentation { }
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-
-    Plasmoid.fullRepresentation: FullRepresentation {
-        Layout.minimumWidth: label.implicitWidth
-        Layout.minimumHeight: label.implicitHeight
-        Layout.preferredWidth: 475
-        Layout.preferredHeight: 310
-    }
 }

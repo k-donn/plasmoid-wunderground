@@ -8,4 +8,5 @@ Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.
 
 ## TODO
 
--   [ ] Add compact representation for tray and fullRepresentation for desktop
+-   [ ] Add error message and station name validation
+-   [ ] Add tooltip info
