@@ -4,8 +4,8 @@ A Plasma 5 widget for showing data from Wunderground [Personal Weather Stations]
 
 ## Running
 
-Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)) to the config by right clicking on the widget.
+Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)) to the applet by clicking `Configure Wunderground`
 
 ## TODO
 
--   [ ] Require configuration before loading
+-   [ ] Add compact representation for tray and fullRepresentation for desktop
