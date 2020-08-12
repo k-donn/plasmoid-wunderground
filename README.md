@@ -9,4 +9,3 @@ Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.
 ## TODO
 
 -   [ ] Add error message and station name validation
--   [ ] Add tooltip info
