@@ -72,7 +72,6 @@ Item {
         onTriggered: updateWeatherData()
     }
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: FullRepresentation { 
         Layout.minimumWidth: 480
         Layout.minimumHeight: 320
