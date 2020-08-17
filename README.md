@@ -8,4 +8,6 @@ Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.
 
 ## TODO
 
--   [ ] Add error message and station name validation
+-   [ ] Simplify states for errors and loading
+-   [ ] Geographic station name searching
+-   [ ] Add GitHub action to upload to store.kde.org

@@ -22,18 +22,44 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
 
 Item {
-    ShowConfigBtn {
+    ConfigBtn {
         id: configBtn
 
         anchors.fill: parent
 
-        visible: !showData
+        visible: configActive
+    }
+
+    Item {
+        id: errorMsgs
+
+        anchors.fill: parent
+
+        PlasmaComponents.Label {
+            visible: errorStr != null
+            anchors.centerIn: parent
+            text: "Error: " + errorStr
+        }
+    }
+
+    Item {
+        id: loadingMsg
+
+        anchors.fill: parent
+
+        PlasmaComponents.Label {
+            visible: loadingData
+            anchors.centerIn: parent
+            text: "Loading data..."
+        }
     }
 
     Item {
         id: weatherInfo
 
-        visible: showData
+        // Show once data is fetched and
+        // don't show while switching stations
+        visible: showData && !loadingData
 
         anchors.fill: parent
 

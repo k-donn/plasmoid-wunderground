@@ -23,10 +23,14 @@ import "../code/utils.js" as FormatData
 import "../code/pws-api.js" as StationAPI
 
 Item {
+    property var errorStr: null
     property var weatherData: null
     property var tooltipSubText: ""
+
     property bool showData: false
+    property bool loadingData: false
     property bool configActive: true
+
     property string stationID: plasmoid.configuration.stationID
 
     function printDebug(msg) {
@@ -51,12 +55,16 @@ Item {
 
     onStationIDChanged: {
         printDebug("id changed")
+        // If the station ID is set, no need to show config btn
+        configActive = false;
+        loadingData = true;
+
         StationAPI.getWeatherData()
     }
 
     onWeatherDataChanged: {
         printDebug("weather data changed")
-        if (weatherData != null) {
+        if (errorStr == null) {
             updateTooltipSubText()
         }
     }

@@ -17,6 +17,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
+import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 
 Item {
@@ -25,10 +26,11 @@ Item {
     }
 
     Button {
-        visible: configActive
         anchors.centerIn: parent
         text: "Configure Wunderground"
         icon.name: "settings"
         onClicked: showSettings()
     }
+
+
 }

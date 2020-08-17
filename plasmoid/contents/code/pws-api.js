@@ -15,12 +15,14 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 function getWeatherData() {
+	errorStr = null;
+
 	var req = new XMLHttpRequest();
 
 	req.open(
 		"GET",
 		"https://api.weather.com/v2/pws/observations/current?stationId=" +
-		stationID +
+			stationID +
 			"&format=json&units=e&apiKey=676566f10f134df1a566f10f13edf108&numericPrecision=decimal",
 		true
 	);
@@ -28,7 +30,12 @@ function getWeatherData() {
 	req.setRequestHeader("Accept-Encoding", "gzip");
 
 	req.onerror = function () {
-		printDebug("Request couldn't be sent" + req.statusText);
+		errorStr = "Request couldn't be sent" + req.statusText;
+
+		weatherData = null;
+		showData = false;
+
+		printDebug(errorStr);
 	};
 
 	req.onreadystatechange = function () {
@@ -36,16 +43,36 @@ function getWeatherData() {
 			if (req.status == 200) {
 				var res = JSON.parse(req.responseText);
 				weatherData = res["observations"][0];
+
+				loadingData = false;
 				showData = true;
-			} else if (req.status == 204) {
-				printDebug("Station not found")
+				errorStr = null;
+
+				printDebug("Got new data");
 			} else {
-				weatherData = null;
-				showData = false;
-				printDebug("Request failed: " + req.responseText);
+				setErrorState();
+				if (req.status == 204) {
+					errorStr = "Station not found";
+
+					printDebug(errorStr);
+				} else {
+					errorStr = "Request failed: " + req.responseText;
+
+					printDebug(errorStr);
+				}
 			}
 		}
 	};
 
 	req.send();
+}
+
+/**
+ * Set variables to show errorStr
+ */
+function setErrorState() {
+	weatherData = null;
+	showData = false;
+	configActive = false;
+	loadingData = false;
 }
