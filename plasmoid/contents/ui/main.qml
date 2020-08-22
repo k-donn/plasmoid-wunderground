@@ -45,10 +45,10 @@ Item {
     function updateTooltipSubText() {
         var subText = ""
 
-        subText += "<font size='4' style='font-family: weathericons'>" + weatherData["imperial"]["temp"] + "°F</font><br />"
-        subText += "<font size='4' style='font-family: weathericons'>" + weatherData["imperial"]["windSpeed"] + " mph</font><br />"
+        subText += "<font size='4'>" + weatherData["imperial"]["temp"] + "°F</font><br />"
+        subText += "<font size='4'>" + weatherData["imperial"]["windSpeed"] + " mph</font><br />"
         subText += "<br />"
-        subText += "<font size='4' style='font-family: weathericons'>" + weatherData["obsTimeLocal"] + "</font>"
+        subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
         tooltipSubText = subText
     }
@@ -67,10 +67,6 @@ Item {
         if (errorStr == null) {
             updateTooltipSubText()
         }
-    }
-
-    FontLoader {
-        source: '../fonts/weathericons-regular-webfont-2.0.10.ttf'
     }
 
     Timer {

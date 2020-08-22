@@ -16,8 +16,10 @@
  */
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.4 as Kirigami
+import "../../code/pws-api.js" as StationAPI
 
 Item {
     id: stationConfig
@@ -30,9 +32,39 @@ Item {
             right: parent.right
         }
 
+        Kirigami.Heading {
+            text: "Enter Station"
+            level: 2
+        }
+
         TextField {
             id: stationID
             Kirigami.FormData.label: "Weatherstation ID:"
+        }
+
+        Kirigami.Heading {
+            text: "Get Nearest Station"
+            level: 2
+        }
+
+        Kirigami.Heading {
+            text: "Uses WGS84 geocode coordinates"
+            level: 5
+        }
+
+        NoApplyField {
+            configKey: "longitude"
+            Kirigami.FormData.label: "Longitude:"
+        }
+
+        NoApplyField {
+            configKey: "latitude"
+            Kirigami.FormData.label: "Latitude:"
+        }
+
+        Button {
+            text: "Find Station"
+            onClicked: StationAPI.getNearestStation()
         }
 
         PlasmaComponents.Label {

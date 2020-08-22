@@ -9,5 +9,3 @@ Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.
 ## TODO
 
 -   [ ] Simplify states for errors and loading
--   [ ] Geographic station name searching
--   [ ] Add GitHub action to upload to store.kde.org

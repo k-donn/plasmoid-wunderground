@@ -32,5 +32,4 @@ Item {
         onClicked: showSettings()
     }
 
-
 }

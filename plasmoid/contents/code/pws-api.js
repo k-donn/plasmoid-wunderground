@@ -19,13 +19,14 @@ function getWeatherData() {
 
 	var req = new XMLHttpRequest();
 
-	req.open(
-		"GET",
-		"https://api.weather.com/v2/pws/observations/current?stationId=" +
-			stationID +
-			"&format=json&units=e&apiKey=676566f10f134df1a566f10f13edf108&numericPrecision=decimal",
-		true
-	);
+	var url = "https://api.weather.com/v2/pws/observations/current";
+	url += "?stationId=" + stationID;
+	url += "&format=json";
+	url += "&units=e";
+	url += "&apiKey=676566f10f134df1a566f10f13edf108";
+	url += "&numericPrecision=decimal";
+
+	req.open("GET", url, true);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
 
@@ -60,6 +61,43 @@ function getWeatherData() {
 
 					printDebug(errorStr);
 				}
+			}
+		}
+	};
+
+	req.send();
+}
+
+function getNearestStation() {
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+	
+	var req = new XMLHttpRequest();
+	
+	var url = "https://api.weather.com/v3/location/near";
+	url += "?geocode=" + long + "," + lat;
+	url += "&product=pws";
+	url += "&format=json";
+	url += "&apiKey=676566f10f134df1a566f10f13edf108";
+	
+	console.log(url)
+
+	req.open("GET", url, true);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				var stations = res["location"]["stationId"];
+				if (stations.length > 0) {
+					var closest = stations[0];
+					stationID.text = closest;
+				}
+			} else {
+				console.log(req.responseText)
 			}
 		}
 	};
