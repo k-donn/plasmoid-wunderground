@@ -75,7 +75,7 @@ function getNearestStation() {
 	var req = new XMLHttpRequest();
 	
 	var url = "https://api.weather.com/v3/location/near";
-	url += "?geocode=" + long + "," + lat;
+	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
 	url += "&apiKey=676566f10f134df1a566f10f13edf108";

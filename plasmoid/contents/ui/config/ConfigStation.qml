@@ -16,6 +16,7 @@
  */
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
 import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.4 as Kirigami
@@ -27,20 +28,21 @@ Item {
     property alias cfg_stationID: stationID.text
 
     Kirigami.FormLayout {
-        anchors {
-            left: parent.left
-            right: parent.right
-        }
+        anchors.fill: parent
 
         Kirigami.Heading {
             text: "Enter Station"
             level: 2
         }
 
-        TextField {
+        ClearableField {
             id: stationID
+            placeholderText: "KGADACUL1"
+
             Kirigami.FormData.label: "Weatherstation ID:"
         }
+
+        Spacer {}
 
         Kirigami.Heading {
             text: "Get Nearest Station"
@@ -54,11 +56,15 @@ Item {
 
         NoApplyField {
             configKey: "longitude"
+            placeholderText: "-83.905502"
+
             Kirigami.FormData.label: "Longitude:"
         }
 
         NoApplyField {
             configKey: "latitude"
+            placeholderText: "34.0602"
+
             Kirigami.FormData.label: "Latitude:"
         }
 

@@ -33,6 +33,13 @@ Item {
 
     property string stationID: plasmoid.configuration.stationID
 
+    property Component fr: FullRepresentation { 
+        Layout.minimumWidth: 480
+        Layout.minimumHeight: 320
+    }
+
+    property Component cr: CompactRepresentation {}
+
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }
@@ -76,10 +83,7 @@ Item {
         onTriggered: updateWeatherData()
     }
 
-    Plasmoid.fullRepresentation: FullRepresentation { 
-        Layout.minimumWidth: 480
-        Layout.minimumHeight: 320
-    }
-    Plasmoid.compactRepresentation: CompactRepresentation { }
+    Plasmoid.fullRepresentation: fr
+    Plasmoid.compactRepresentation: cr
 
 }

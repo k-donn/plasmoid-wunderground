@@ -8,4 +8,6 @@ Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.
 
 ## TODO
 
--   [ ] Simplify states for errors and loading
+-   [ ] Simplify using variables to keep track of state
+-   [ ] Organize folders for ui
+-   [ ] Add Units config settings
