@@ -19,7 +19,7 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
-    property ConfigBtn btn : ConfigBtn {}
+    property ConfigBtn confBtn : ConfigBtn {}
 
     PlasmaCore.IconItem {
         source: "weather"
@@ -40,7 +40,7 @@ Item {
             interactive: true
             mainText: showData ? stationID : null
             subText: showData ? tooltipSubText : "Please Configure"
-            mainItem: showData ? null : btn
+            mainItem: showData ? null : confBtn
         }
     }
 }
