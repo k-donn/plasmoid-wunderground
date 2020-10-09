@@ -14,6 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
+/**
+ * Pull the most recent observation from the selected weather station.
+ *
+ * This handles setting errors and making the loading screen appear.
+ */
 function getWeatherData() {
 	errorStr = null;
 
@@ -92,6 +98,9 @@ function getWeatherData() {
 	req.send();
 }
 
+/**
+ * Find the nearest PWS with the choosen coordinates.
+ */
 function getNearestStation() {
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;

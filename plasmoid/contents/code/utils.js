@@ -14,6 +14,14 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
+/**
+ * Turn a 1-360° angle into the corresponding part on the compass.
+ *
+ * @param {number} deg Angle in degrees
+ *
+ * @returns {string} Cardinal direction
+ */
 function windDirToCard(deg) {
 	var directions = [
 		"N",
@@ -37,18 +45,51 @@ function windDirToCard(deg) {
 	return directions[Math.round((deg % 3600) / 255)];
 }
 
+/**
+ * Turn a Celcius temperature into a Fahrenheit one.
+ *
+ * @param {number} degC Temp in degrees Celcius
+ *
+ * @returns {number} Temp in degrees Fahrenheit
+ */
 function cToF(degC) {
 	return degC * 1.8 + 32;
 }
 
+/**
+ * Turn a Fahrenheit temperature into a Celcius one.
+ *
+ * @param {number} degF Temp in degrees Fahrenheit
+ *
+ * @returns {number} degC Temp in degrees Celcius
+ */
 function fToC(degF) {
 	return (degF - 32) / 1.8;
 }
 
+/**
+ * Turn a speed in km/h to m/h.
+ *
+ * @param {number} kmh Speed in Kilometers/Hour
+ *
+ * @returns {number} Speed in Miles/Hour
+ */
 function kmhToMph(kmh) {
 	return kmh * 0.6213711922;
 }
 
+/**
+ * Return what the air feels like with the given temperature.
+ *
+ * This converts everything into imperial units then runs the function
+ * on that data.
+ *
+ * @param {number} temp Temp in Celcius or Fahrenheit
+ * @param {number} relHumid Percent humidity
+ * @param {number} windSpeed Speed in km/h or m/h
+ *
+ * @returns {number} What the air feels like
+ */
 function feelsLike(temp, relHumid, windSpeed) {
 	let degF, windSpeedMph;
 	if (unitsChoice === 0) {
@@ -73,6 +114,15 @@ function feelsLike(temp, relHumid, windSpeed) {
 	}
 }
 
+/**
+ * Return what the air feels like in imperial units.
+ *
+ * @param {number} temp Temp in Fahrenheit
+ * @param {number} relHumid Percent humidity
+ * @param {number} windSpeed Speed in m/h
+ *
+ * @returns {number} What the air feels like in Fahrenheit
+ */
 function feelsLikeImperial(degF, relHumid, windSpeedMph) {
 	if (degF >= 80 && relHumid >= 40) {
 		return heatIndexF(degF, relHumid);
@@ -83,6 +133,14 @@ function feelsLikeImperial(degF, relHumid, windSpeedMph) {
 	}
 }
 
+/**
+ * Return how hot the air feels with humidity.
+ *
+ * @param {number} degF Temp in Fahrenheit
+ * @param {number} relHumid Percent humidity
+ *
+ * @returns {number} Temp in Fahrenheit
+ */
 function heatIndexF(degF, relHumid) {
 	var hIndex;
 
@@ -99,6 +157,14 @@ function heatIndexF(degF, relHumid) {
 	return hIndex.toFixed(1);
 }
 
+/**
+ * Return what the air feels like with wind blowing.
+ *
+ * @param {number} degF Temp in Fahrenheit
+ * @param {number} windSpeedMph Wind speed in m/h
+ *
+ * @returns {number} Temp in Fahrenheit
+ */
 function windChillF(degF, windSpeedMph) {
 	var newTemp =
 		35.74 +
@@ -108,6 +174,15 @@ function windChillF(degF, windSpeedMph) {
 	return newTemp.toFixed(1);
 }
 
+/**
+ * Return a color to match how hot it is.
+ *
+ * This determines what unit is passed and calls corresponding func.
+ *
+ * @param {number} temp Temp in Celcius or Fahrenheit
+ *
+ * @returns {string} Hex color code
+ */
 function heatColor(temp) {
 	if (unitsChoice === 1) {
 		return heatColorF(temp);
@@ -116,6 +191,15 @@ function heatColor(temp) {
 	}
 }
 
+/**
+ * Return a color to match how hot it is.
+ *
+ * Reds for hot, blues for cold
+ *
+ * @param {number} degC Temp in Celcius
+ *
+ * @returns {string} Hex color code
+ */
 function heatColorC(degC) {
 	return degC > 37.78
 		? "#9E1642"
@@ -138,6 +222,15 @@ function heatColorC(degC) {
 		: "#5E4FA2";
 }
 
+/**
+ * Return a color to match how hot it is.
+ *
+ * Reds for hot, blues for cold
+ *
+ * @param {number} degF Temp in Fahrenheit
+ *
+ * @returns {string} Hex color code
+ */
 function heatColorF(degF) {
 	return degF > 100
 		? "#9E1642"
@@ -159,6 +252,13 @@ function heatColorF(degF) {
 		? "#3288BD"
 		: "#5E4FA2";
 }
+
+/////////////////////////////////////////////////////////////////
+/// All of the following return what unit measures            ///
+/// that property for each system. (Metric, Imperial, and UK) ///
+/// The user can choose whether to prepend                    ///
+/// a space in front of the unit. (32°F or 32 °F)             ///
+/////////////////////////////////////////////////////////////////
 
 function currentTempUnit(prependSpace = true) {
 	var res = "";
