@@ -37,17 +37,53 @@ function windDirToCard(deg) {
 	return directions[Math.round((deg % 3600) / 255)];
 }
 
-function feelsLike(degF, relHumid, windSpeedMph) {
+function cToF(degC) {
+	return degC * 1.8 + 32;
+}
+
+function fToC(degF) {
+	return (degF - 32) / 1.8;
+}
+
+function kmhToMph(kmh) {
+	return kmh * 0.6213711922;
+}
+
+function feelsLike(temp, relHumid, windSpeed) {
+	let degF, windSpeedMph;
+	if (unitsChoice === 0) {
+		degF = cToF(temp);
+		windSpeedMph = kmhToMph(windSpeed);
+
+		let res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+
+		return fToC(res);
+	} else if (unitsChoice === 1) {
+		degF = temp;
+		windSpeedMph = windSpeed;
+
+		return feelsLikeImperial(degF, relHumid, windSpeedMph);
+	} else {
+		degF = cToF(temp);
+		windSpeedMph = windSpeed;
+
+		let res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+
+		return fToC(res);
+	}
+}
+
+function feelsLikeImperial(degF, relHumid, windSpeedMph) {
 	if (degF >= 80 && relHumid >= 40) {
-		return heatIndex(degF, relHumid);
+		return heatIndexF(degF, relHumid);
 	} else if (degF <= 50 && windSpeedMph >= 3) {
-		return windChill(degF, windSpeedMph);
+		return windChillF(degF, windSpeedMph);
 	} else {
 		return degF;
 	}
 }
 
-function heatIndex(degF, relHumid) {
+function heatIndexF(degF, relHumid) {
 	var hIndex;
 
 	hIndex =
@@ -63,7 +99,7 @@ function heatIndex(degF, relHumid) {
 	return hIndex.toFixed(1);
 }
 
-function windChill(degF, windSpeedMph) {
+function windChillF(degF, windSpeedMph) {
 	var newTemp =
 		35.74 +
 		0.6215 * degF -
@@ -72,7 +108,37 @@ function windChill(degF, windSpeedMph) {
 	return newTemp.toFixed(1);
 }
 
-function heatColor(degF) {
+function heatColor(temp) {
+	if (unitsChoice === 1) {
+		return heatColorF(temp);
+	} else {
+		return heatColorC(temp);
+	}
+}
+
+function heatColorC(degC) {
+	return degC > 37.78
+		? "#9E1642"
+		: degC > 32.2
+		? "#D53E4F"
+		: degC > 26.6
+		? "#F46D43"
+		: degC > 23.9
+		? "#FDAE61"
+		: degC > 21.1
+		? "#FEE08B"
+		: degC > 15.5
+		? "#E6F598"
+		: degC > 10
+		? "#ABDDA4"
+		: degC > 4.4
+		? "#66C2A5"
+		: degC > 0
+		? "#3288BD"
+		: "#5E4FA2";
+}
+
+function heatColorF(degF) {
 	return degF > 100
 		? "#9E1642"
 		: degF > 90
@@ -92,4 +158,62 @@ function heatColor(degF) {
 		: degF > 32
 		? "#3288BD"
 		: "#5E4FA2";
+}
+
+function currentTempUnit(prependSpace = true) {
+	var res = "";
+	if (unitsChoice === 1) {
+		res = "°F";
+	} else {
+		res = "°C";
+	}
+	return withSpace(res, prependSpace);
+}
+
+function currentSpeedUnit(prependSpace = true) {
+	var res = "";
+	if (unitsChoice === 0) {
+		res = "kmh";
+	} else {
+		res = "mph";
+	}
+	return withSpace(res, prependSpace);
+}
+
+function currentElevUnit(prependSpace = true) {
+	var res = "";
+	if (unitsChoice === 0) {
+		res = "m";
+	} else {
+		res = "ft";
+	}
+	return withSpace(res, prependSpace);
+}
+
+function currentPrecipUnit(prependSpace = true) {
+	var res = "";
+	if (unitsChoice === 0) {
+		res = "cm";
+	} else {
+		res = "in";
+	}
+	return withSpace(res, prependSpace);
+}
+
+function currentPresUnit(prependSpace = true) {
+	var res = "";
+	if (unitsChoice === 1) {
+		res = "inHG";
+	} else {
+		res = "hPa";
+	}
+	return withSpace(res, prependSpace);
+}
+
+function withSpace(str, withSpace) {
+	if (withSpace) {
+		return " " + str;
+	} else {
+		return str;
+	}
 }

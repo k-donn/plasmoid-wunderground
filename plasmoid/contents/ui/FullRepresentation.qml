@@ -74,12 +74,12 @@ Item {
 
             PlasmaComponents.Label {
                 id: temp
-                text: weatherData["imperial"]["temp"].toFixed(1) + "°F"
+                text: weatherData["details"]["temp"].toFixed(1) + Utils.currentTempUnit()
                 font {
                     bold: true
                     pointSize: 30
                 }
-                color: Utils.heatColor(weatherData["imperial"]["temp"])
+                color: Utils.heatColor(weatherData["details"]["temp"])
             }
             PlasmaComponents.Label {
                 id: windDir
@@ -96,7 +96,7 @@ Item {
 
             PlasmaComponents.Label {
                 id: feelsLike
-                text: "Feels like " + Utils.feelsLike(weatherData["imperial"]["temp"], weatherData["humidity"], weatherData["imperial"]["windSpeed"]) + "° F"
+                text: "Feels like " + Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]).toFixed(2) + Utils.currentTempUnit()
             }
             PlasmaComponents.Label {
                 id: windDirCard
@@ -104,7 +104,7 @@ Item {
             }
             PlasmaComponents.Label {
                 id: wind
-                text: weatherData["imperial"]["windSpeed"] + " / " + weatherData["imperial"]["windGust"] + " mph"
+                text: weatherData["details"]["windSpeed"] + " / " + weatherData["details"]["windGust"] + Utils.currentSpeedUnit()
             }
 
 
@@ -135,17 +135,17 @@ Item {
 
             PlasmaComponents.Label {
                 id: dew
-                text: weatherData["imperial"]["dewpt"] + "° F"
+                text: weatherData["details"]["dewpt"] + Utils.currentTempUnit()
                 font.pointSize: 10
             }
             PlasmaComponents.Label {
                 id: precipRate
-                text: weatherData["imperial"]["precipRate"] + " in/hr"
+                text: weatherData["details"]["precipRate"] + Utils.currentPrecipUnit() + "/hr"
                 font.pointSize: 10
             }
             PlasmaComponents.Label {
                 id: pressure
-                text: weatherData["imperial"]["pressure"].toFixed(2) + " inHG"
+                text: weatherData["details"]["pressure"].toFixed(2) + Utils.currentPresUnit()
                 font.pointSize: 10
             }
 
@@ -180,7 +180,7 @@ Item {
             }
             PlasmaComponents.Label {
                 id: precipAcc
-                text: weatherData["imperial"]["precipTotal"] + " in"
+                text: weatherData["details"]["precipTotal"] + Utils.currentPrecipUnit()
             }
             PlasmaComponents.Label {
                 id: uv
@@ -204,7 +204,7 @@ Item {
                 left: parent.left
                 bottom: parent.bottom
             }
-            text: weatherData["stationID"]
+            text: weatherData["stationID"] + "   " + weatherData["details"]["elev"] + Utils.currentElevUnit()
             verticalAlignment: Text.AlignBottom
         }
     }

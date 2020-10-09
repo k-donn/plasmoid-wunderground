@@ -19,7 +19,7 @@ import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
-import "../code/utils.js" as FormatData
+import "../code/utils.js" as Utils
 import "../code/pws-api.js" as StationAPI
 
 Item {
@@ -32,6 +32,7 @@ Item {
     property bool configActive: true
 
     property string stationID: plasmoid.configuration.stationID
+    property int unitsChoice: plasmoid.configuration.unitsChoice
 
     property Component fr: FullRepresentation { 
         Layout.minimumWidth: 480
@@ -46,18 +47,23 @@ Item {
 
     function updateWeatherData() {
         printDebug("getting new weather data")
+
         StationAPI.getWeatherData()
     }
 
     function updateTooltipSubText() {
         var subText = ""
 
-        subText += "<font size='4'>" + weatherData["imperial"]["temp"] + "°F</font><br />"
-        subText += "<font size='4'>" + weatherData["imperial"]["windSpeed"] + " mph</font><br />"
+        subText += "<font size='4'>" + weatherData["details"]["temp"] + Utils.currentTempUnit() + "</font><br />"
+        subText += "<font size='4'>" + weatherData["details"]["windSpeed"] + Utils.currentSpeedUnit() + "</font><br />"
         subText += "<br />"
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
         tooltipSubText = subText
+    }
+
+    onUnitsChoiceChanged: {
+        updateWeatherData()
     }
 
     onStationIDChanged: {
@@ -77,7 +83,7 @@ Item {
     }
 
     Timer {
-        interval: 5000
+        interval: 10 * 1000
         running: showData
         repeat: true
         onTriggered: updateWeatherData()

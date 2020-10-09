@@ -22,7 +22,15 @@ function getWeatherData() {
 	var url = "https://api.weather.com/v2/pws/observations/current";
 	url += "?stationId=" + stationID;
 	url += "&format=json";
-	url += "&units=e";
+
+	if (unitsChoice === 0) {
+		url += "&units=m";
+	} else if (unitsChoice === 1) {
+		url += "&units=e";
+	} else {
+		url += "&units=h";
+	}
+
 	url += "&apiKey=676566f10f134df1a566f10f13edf108";
 	url += "&numericPrecision=decimal";
 
@@ -42,8 +50,24 @@ function getWeatherData() {
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
+				var sectionName = "";
+				if (unitsChoice === 0) {
+					sectionName = "metric";
+				} else if (unitsChoice === 1) {
+					sectionName = "imperial";
+				} else {
+					sectionName = "uk_hybrid";
+				}
+
 				var res = JSON.parse(req.responseText);
-				weatherData = res["observations"][0];
+
+				var tmp = {};
+				var tmp = res["observations"][0];
+
+				var details = res["observations"][0][sectionName];
+				tmp["details"] = details;
+
+				weatherData = tmp;
 
 				loadingData = false;
 				showData = true;
@@ -71,16 +95,16 @@ function getWeatherData() {
 function getNearestStation() {
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;
-	
+
 	var req = new XMLHttpRequest();
-	
+
 	var url = "https://api.weather.com/v3/location/near";
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
 	url += "&apiKey=676566f10f134df1a566f10f13edf108";
-	
-	console.log(url)
+
+	console.log(url);
 
 	req.open("GET", url, true);
 
@@ -97,7 +121,7 @@ function getNearestStation() {
 					stationID.text = closest;
 				}
 			} else {
-				console.log(req.responseText)
+				console.log(req.responseText);
 			}
 		}
 	};
