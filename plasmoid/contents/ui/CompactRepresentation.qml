@@ -33,14 +33,13 @@ Item {
             }
         }
 
-
         PlasmaCore.ToolTipArea {
             anchors.fill: parent
             icon: "weather"
             interactive: true
-            mainText: showData ? stationID : null
-            subText: showData ? tooltipSubText : "Please Configure"
-            mainItem: showData ? null : confBtn
+            mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
+            subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
+            mainItem: appState == showCONFIG ? confBtn : null
         }
     }
 }

@@ -21,8 +21,6 @@
  * This handles setting errors and making the loading screen appear.
  */
 function getWeatherData() {
-	errorStr = null;
-
 	var req = new XMLHttpRequest();
 
 	var url = "https://api.weather.com/v2/pws/observations/current";
@@ -47,8 +45,7 @@ function getWeatherData() {
 	req.onerror = function () {
 		errorStr = "Request couldn't be sent" + req.statusText;
 
-		weatherData = null;
-		showData = false;
+		appState = showERROR;
 
 		printDebug(errorStr);
 	};
@@ -57,6 +54,7 @@ function getWeatherData() {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
 				var sectionName = "";
+
 				if (unitsChoice === 0) {
 					sectionName = "metric";
 				} else if (unitsChoice === 1) {
@@ -75,13 +73,10 @@ function getWeatherData() {
 
 				weatherData = tmp;
 
-				loadingData = false;
-				showData = true;
-				errorStr = null;
+				appState = showDATA;
 
 				printDebug("Got new data");
 			} else {
-				setErrorState();
 				if (req.status == 204) {
 					errorStr = "Station not found";
 
@@ -91,6 +86,8 @@ function getWeatherData() {
 
 					printDebug(errorStr);
 				}
+
+				appState = showERROR;
 			}
 		}
 	};
@@ -136,14 +133,4 @@ function getNearestStation() {
 	};
 
 	req.send();
-}
-
-/**
- * Set variables to show errorStr
- */
-function setErrorState() {
-	weatherData = null;
-	showData = false;
-	configActive = false;
-	loadingData = false;
 }

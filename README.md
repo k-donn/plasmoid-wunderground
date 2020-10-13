@@ -16,5 +16,7 @@ The data updates every 10 seconds.
 
 ## TODO
 
--   [ ] Add documentation for Utils and PWS API
--   [x] Add Units config settings
+-   [x] Use single variable for state
+-   [ ] Add monochrome icon for tray
+-   [ ] Add condition-based icon
+-   [ ] Add wind-barbs to show direction

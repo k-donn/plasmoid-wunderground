@@ -27,9 +27,12 @@ Item {
     property var weatherData: null
     property var tooltipSubText: ""
 
-    property bool showData: false
-    property bool loadingData: false
-    property bool configActive: true
+    property int appState: 1
+
+    property int showCONFIG: 1
+    property int showLOADING: 2
+    property int showERROR: 4
+    property int showDATA: 8
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
@@ -63,32 +66,41 @@ Item {
     }
 
     onUnitsChoiceChanged: {
+        printDebug("units changed")
+
+        // Show loading screen after units change
+        appState = showLOADING;
+
         updateWeatherData()
     }
 
     onStationIDChanged: {
         printDebug("id changed")
-        // If the station ID is set, no need to show config btn
-        configActive = false;
-        loadingData = true;
+
+        // Show loading screen after ID change
+        appState = showLOADING;
 
         StationAPI.getWeatherData()
     }
 
     onWeatherDataChanged: {
         printDebug("weather data changed")
-        if (errorStr == null) {
-            updateTooltipSubText()
-        }
+
+        updateTooltipSubText()
+    }
+
+    onAppStateChanged: {
+        printDebug("state is: " + appState)
     }
 
     Timer {
-        interval: 10 * 1000
-        running: showData
+        interval: 10 * 1100
+        running: appState == showDATA
         repeat: true
         onTriggered: updateWeatherData()
     }
 
+    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 

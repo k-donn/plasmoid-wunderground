@@ -20,16 +20,19 @@ import QtQuick.Controls 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 
-Item {
-    function showSettings() {
-        plasmoid.action("configure").trigger()
-    }
 
+ColumnLayout {
     Button {
-        anchors.centerIn: parent
+        function showSettings() {
+            plasmoid.action("configure").trigger()
+        }
+
+        Layout.preferredWidth: 200
+        Layout.preferredHeight: 30
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+
         text: "Configure Wunderground"
         icon.name: "settings"
         onClicked: showSettings()
     }
-
 }
