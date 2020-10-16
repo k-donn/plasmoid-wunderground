@@ -14,9 +14,19 @@ Also, input your coordinates and the widget will find the nearest station to you
 
 The data updates every 10 seconds.
 
+## Meta
+
+Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteocons/).
+
+By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/pyconic) on Twitter.
+
+Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, AppletIcon, and ClearableField.
+
 ## TODO
 
 -   [x] Use single variable for state
--   [ ] Add monochrome icon for tray
+-   [x] Add monochrome icon
 -   [ ] Add condition-based icon
+-   [ ] Refactor tooltip into a single item
+-   [ ] Refactor Units into their own settings page
 -   [ ] Add wind-barbs to show direction

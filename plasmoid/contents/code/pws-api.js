@@ -35,12 +35,13 @@ function getWeatherData() {
 		url += "&units=h";
 	}
 
-	url += "&apiKey=676566f10f134df1a566f10f13edf108";
+	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 	url += "&numericPrecision=decimal";
 
 	req.open("GET", url, true);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onerror = function () {
 		errorStr = "Request couldn't be sent" + req.statusText;

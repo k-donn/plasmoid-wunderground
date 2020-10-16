@@ -21,25 +21,33 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 Item {
     property ConfigBtn confBtn : ConfigBtn {}
 
-    PlasmaCore.IconItem {
-        source: "weather"
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        onClicked: {
+            plasmoid.expanded = !plasmoid.expanded
+        }
+    }
+
+    // I have modified the icons so that the id hint-apply-color-scheme is on the SVGs
+    // KDE docs: https://techbase.kde.org/Development/Tutorials/Plasma5/ThemeDetails#Using_system_colors
+    AppletIcon {
+        id: icon
+
+        source: "sun"
 
         anchors.fill: parent
 
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                plasmoid.expanded = !plasmoid.expanded
-            }
-        }
+        active: mouseArea.containsMouse
+    }
 
-        PlasmaCore.ToolTipArea {
-            anchors.fill: parent
-            icon: "weather"
-            interactive: true
-            mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
-            subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
-            mainItem: appState == showCONFIG ? confBtn : null
-        }
+    PlasmaCore.ToolTipArea {
+        id: toolTip
+        anchors.fill: parent
+        interactive: true
+        // Reafctor into a component like FullRep that has sub-components for each state
+        mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
+        subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
+        mainItem: appState == showCONFIG ? confBtn : null
     }
 }

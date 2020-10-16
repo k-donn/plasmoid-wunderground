@@ -37,7 +37,9 @@ Item {
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
 
-    property Component fr: FullRepresentation { 
+    property Component fr: FullRepresentation {
+        Layout.preferredWidth: 480
+        Layout.preferredHeight: 320
         Layout.minimumWidth: 480
         Layout.minimumHeight: 320
     }
@@ -94,13 +96,13 @@ Item {
     }
 
     Timer {
-        interval: 10 * 1100
+        interval: 10 * 1000
         running: appState == showDATA
         repeat: true
         onTriggered: updateWeatherData()
     }
 
-    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 
