@@ -28,5 +28,5 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, Applet
 -   [x] Add monochrome icon
 -   [ ] Add condition-based icon
 -   [ ] Refactor tooltip into a single item
--   [ ] Refactor Units into their own settings page
+-   [x] Refactor Units into their own settings page
 -   [ ] Add wind-barbs to show direction

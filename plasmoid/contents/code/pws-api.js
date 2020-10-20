@@ -109,7 +109,7 @@ function getNearestStation() {
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=676566f10f134df1a566f10f13edf108";
+	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 
 	console.log(url);
 

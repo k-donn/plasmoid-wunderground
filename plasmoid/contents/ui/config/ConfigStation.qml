@@ -26,7 +26,6 @@ Item {
     id: stationConfig
 
     property alias cfg_stationID: stationID.text
-    property alias cfg_unitsChoice: unitsChoice.currentIndex
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -74,22 +73,8 @@ Item {
             onClicked: StationAPI.getNearestStation()
         }
 
-        Spacer {}
-
-        Kirigami.Heading {
-            text: "Units"
-            level: 2
-        }
-
-        ComboBox {
-            id: unitsChoice
-
-            width: 100
-            model: ["Metric", "Imperial", "Hybrid (UK)"]
-        }
-
         PlasmaComponents.Label {
-            text: "Version 1.3.69"
+            text: "Version 1.3.1"
         }
     }
 
