@@ -23,6 +23,8 @@ import "../code/utils.js" as Utils
 import "../code/pws-api.js" as StationAPI
 
 Item {
+    id: root
+
     property var errorStr: null
     property var weatherData: null
     property var tooltipSubText: ""

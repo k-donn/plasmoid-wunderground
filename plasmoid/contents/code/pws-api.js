@@ -38,6 +38,8 @@ function getWeatherData() {
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 	url += "&numericPrecision=decimal";
 
+	printDebug(url);
+
 	req.open("GET", url, true);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
@@ -111,7 +113,7 @@ function getNearestStation() {
 	url += "&format=json";
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 
-	console.log(url);
+	printDebug(url);
 
 	req.open("GET", url, true);
 
@@ -128,7 +130,7 @@ function getNearestStation() {
 					stationID.text = closest;
 				}
 			} else {
-				console.log(req.responseText);
+				printDebug(req.responseText);
 			}
 		}
 	};

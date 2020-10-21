@@ -25,8 +25,9 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, Applet
 ## TODO
 
 -   [x] Use single variable for state
--   [x] Add monochrome icon
--   [ ] Add condition-based icon
+-   [x] Add monochrome icon for tray
+-   [x] Add condition-based icon
 -   [ ] Refactor tooltip into a single item
+-   [ ] Refactor CompactRep and AppletIcon
 -   [x] Refactor Units into their own settings page
 -   [ ] Add wind-barbs to show direction

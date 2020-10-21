@@ -17,9 +17,21 @@
 import QtQuick 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
+import "../code/utils.js" as Utils
 
 Item {
-    property ConfigBtn confBtn : ConfigBtn {}
+    property CenteredConfigBtn confBtn : CenteredConfigBtn {}
+    property var localWeatherData: weatherData
+
+    property bool inTray: (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
+
+    function printDebug(msg) {
+        console.log("[debug] " + msg)
+    }
+
+    onLocalWeatherDataChanged: {
+        Utils.getStatusIcon()
+    }
 
     MouseArea {
         id: mouseArea
@@ -29,25 +41,43 @@ Item {
         }
     }
 
-    // I have modified the icons so that the id hint-apply-color-scheme is on the SVGs
-    // KDE docs: https://techbase.kde.org/Development/Tutorials/Plasma5/ThemeDetails#Using_system_colors
-    AppletIcon {
-        id: icon
-
-        source: "sun"
-
-        anchors.fill: parent
-
-        active: mouseArea.containsMouse
-    }
-
     PlasmaCore.ToolTipArea {
         id: toolTip
-        anchors.fill: parent
         interactive: true
+        anchors.fill: parent
         // Reafctor into a component like FullRep that has sub-components for each state
         mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
         subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
         mainItem: appState == showCONFIG ? confBtn : null
     }
+
+    Item {
+        anchors.fill: parent
+
+        AppletIcon {
+            id: dyanmicIcon
+
+            anchors.fill: parent
+
+            source: "sun"
+
+            active: mouseArea.containsMouse
+
+            visible: !inTray
+        }
+
+        AppletIcon {
+            id: trayIcon
+
+            anchors.fill: parent
+
+            source: "sun"
+
+            active: mouseArea.containsMouse
+
+            visible: inTray
+        }
+    }
+
+
 }

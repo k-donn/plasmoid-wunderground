@@ -27,6 +27,10 @@ Item {
 
     property alias cfg_stationID: stationID.text
 
+    function printDebug(msg) {
+        console.log("[debug] " + msg)
+    }
+
     Kirigami.FormLayout {
         anchors.fill: parent
 
