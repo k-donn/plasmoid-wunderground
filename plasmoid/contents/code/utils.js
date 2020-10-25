@@ -288,7 +288,7 @@ function findIconCode(lat, long) {
 					code = res["daypart"][0]["iconCode"][1];
 				}
 
-				dyanmicIcon.source = code;
+				iconCode = code;
 			}
 		}
 	};

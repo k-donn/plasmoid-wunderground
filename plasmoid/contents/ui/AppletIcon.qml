@@ -22,7 +22,6 @@ Item {
 
     PlasmaCore.SvgItem {
         id: svgItem
-        anchors.centerIn: parent
         readonly property real minSize: Math.min(naturalSize.width, naturalSize.height)
         readonly property real widthRatio: naturalSize.width / svgItem.minSize
         readonly property real heightRatio: naturalSize.height / svgItem.minSize

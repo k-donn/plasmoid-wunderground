@@ -21,8 +21,6 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import "../code/utils.js" as Utils
 
 Item {
-    property CenteredConfigBtn confBtn : CenteredConfigBtn {}
-
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }
@@ -45,37 +43,10 @@ Item {
         mainItem: appState == showCONFIG ? confBtn : null
     }
 
-    Item {
+    AppletIcon {
+        id: trayIcon
         anchors.fill: parent
-
-        ColumnLayout {
-            width: parent.width
-            height: parent.height
-
-            AppletIcon {
-                id: dyanmicIcon
-                anchors.fill: parent
-                source: iconCode
-                active: mouseArea.containsMouse
-
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft
-            }
-
-            Text {
-                text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(false) : "––.–" + Utils.currentTempUnit(false)
-                horizontalAlignment: Text.AlignRight
-                color: "white"
-                font {
-                    bold: true
-                    pointSize: 40
-                    family: "Helvetica"
-                }
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignRight
-            }
-        }
+        source: iconCode
+        active: mouseArea.containsMouse
     }
-
-
 }

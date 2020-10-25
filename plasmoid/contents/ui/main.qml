@@ -25,9 +25,10 @@ import "../code/pws-api.js" as StationAPI
 Item {
     id: root
 
-    property var errorStr: null
     property var weatherData: null
-    property var tooltipSubText: ""
+    property string errorStr: null
+    property string tooltipSubText: null
+    property string iconCode: "sun"
 
     property int appState: 1
 
@@ -39,6 +40,8 @@ Item {
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
 
+    property bool inTray: false
+
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 480
         Layout.preferredHeight: 320
@@ -46,7 +49,18 @@ Item {
         Layout.minimumHeight: 320
     }
 
-    property Component cr: CompactRepresentation {}
+    property Component cr: CompactRepresentation {
+        Layout.preferredWidth: 250
+        Layout.preferredHeight: 75
+        Layout.minimumWidth: 240
+        Layout.minimumHeight: 60
+    }
+
+    property Component crTray: CompactRepresentationTray {
+        Layout.preferredWidth: 40
+        Layout.minimumWidth: 0
+        Layout.minimumHeight: 0
+    }
 
     function printDebug(msg) {
         console.log("[debug] " + msg)
@@ -91,10 +105,19 @@ Item {
         printDebug("weather data changed")
 
         updateTooltipSubText()
+        Utils.getStatusIcon()
     }
 
     onAppStateChanged: {
         printDebug("state is: " + appState)
+    }
+
+    Component.onCompleted: {
+        inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
+
+        if (inTray) {
+            Plasmoid.compactRepresentation = crTray
+        }
     }
 
     Timer {
@@ -104,7 +127,7 @@ Item {
         onTriggered: updateWeatherData()
     }
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 
