@@ -78,7 +78,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            text: "Version 1.3.1"
+            text: "Version 1.3.2"
         }
     }
 
