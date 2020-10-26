@@ -1,6 +1,5 @@
-// Version: 4
-
 import QtQuick 2.0
+import QtQuick.Layouts 1.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
@@ -12,12 +11,18 @@ Item {
     readonly property int minSize: Math.min(width, height)
     property bool smooth: true
 
-    PlasmaCore.IconItem {
-        anchors.fill: parent
-        visible: !appletIcon.usingPackageSvg
-        source: appletIcon.usingPackageSvg ? '' : appletIcon.source
-        active: appletIcon.active
-        smooth: appletIcon.smooth
+    ColumnLayout {
+        width: parent.width
+        height: parent.height
+
+        PlasmaCore.IconItem {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            visible: !appletIcon.usingPackageSvg
+            source: appletIcon.usingPackageSvg ? '' : appletIcon.source
+            active: appletIcon.active
+            smooth: appletIcon.smooth
+        }
     }
 
     PlasmaCore.SvgItem {

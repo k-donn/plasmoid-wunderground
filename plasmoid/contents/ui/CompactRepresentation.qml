@@ -45,35 +45,31 @@ Item {
         mainItem: appState == showCONFIG ? confBtn : null
     }
 
-    Item {
-        anchors.fill: parent
+    RowLayout {
+        width: parent.width
+        height: parent.height
 
-        ColumnLayout {
-            width: parent.width
-            height: parent.height
+        AppletIcon {
+            id: dyanmicIcon
+            source: iconCode
+            active: mouseArea.containsMouse
 
-            AppletIcon {
-                id: dyanmicIcon
-                anchors.fill: parent
-                source: iconCode
-                active: mouseArea.containsMouse
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
+        }
 
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignLeft
+        Text {
+            text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(false) : "––.–" + Utils.currentTempUnit(false)
+            horizontalAlignment: Text.AlignRight
+            color: "white"
+            font {
+                bold: true
+                pointSize: 17
+                family: "Helvetica"
             }
 
-            Text {
-                text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(false) : "––.–" + Utils.currentTempUnit(false)
-                horizontalAlignment: Text.AlignRight
-                color: "white"
-                font {
-                    bold: true
-                    pointSize: 40
-                    family: "Helvetica"
-                }
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignRight
-            }
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
         }
     }
 

@@ -29,6 +29,6 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, Applet
 -   [x] Add condition-based icon
 -   [x] Refactor Units into their own settings page
 -   [x] Refactor CompactRep to have text
--   [ ] Refactor AppletIcon not to use anchors
+-   [x] Refactor AppletIcon not to use anchors
 -   [ ] Refactor tooltip into a single item
 -   [ ] Add wind-barbs to show direction

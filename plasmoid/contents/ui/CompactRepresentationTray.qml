@@ -21,6 +21,8 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import "../code/utils.js" as Utils
 
 Item {
+    property CenteredConfigBtn confBtn : CenteredConfigBtn {}
+
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }

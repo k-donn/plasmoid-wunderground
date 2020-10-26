@@ -26,8 +26,8 @@ Item {
     id: root
 
     property var weatherData: null
-    property string errorStr: null
-    property string tooltipSubText: null
+    property string errorStr: ""
+    property string tooltipSubText: ""
     property string iconCode: "sun"
 
     property int appState: 1
@@ -50,17 +50,11 @@ Item {
     }
 
     property Component cr: CompactRepresentation {
-        Layout.preferredWidth: 250
-        Layout.preferredHeight: 75
-        Layout.minimumWidth: 240
-        Layout.minimumHeight: 60
+        Layout.minimumWidth: 110
+        Layout.preferredWidth: 110
     }
 
-    property Component crTray: CompactRepresentationTray {
-        Layout.preferredWidth: 40
-        Layout.minimumWidth: 0
-        Layout.minimumHeight: 0
-    }
+    property Component crTray: CompactRepresentationTray {}
 
     function printDebug(msg) {
         console.log("[debug] " + msg)
@@ -114,6 +108,10 @@ Item {
 
     Component.onCompleted: {
         inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
+
+        // TODO Maybe? Figure out how to use this
+        // plasmoid.configurationRequired = true
+        // plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
 
         if (inTray) {
             Plasmoid.compactRepresentation = crTray
