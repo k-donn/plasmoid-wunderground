@@ -35,12 +35,15 @@ function getWeatherData() {
 		url += "&units=h";
 	}
 
-	url += "&apiKey=676566f10f134df1a566f10f13edf108";
+	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 	url += "&numericPrecision=decimal";
+
+	printDebug(url);
 
 	req.open("GET", url, true);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onerror = function () {
 		errorStr = "Request couldn't be sent" + req.statusText;
@@ -108,9 +111,9 @@ function getNearestStation() {
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=676566f10f134df1a566f10f13edf108";
+	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 
-	console.log(url);
+	printDebug(url);
 
 	req.open("GET", url, true);
 
@@ -127,7 +130,7 @@ function getNearestStation() {
 					stationID.text = closest;
 				}
 			} else {
-				console.log(req.responseText);
+				printDebug(req.responseText);
 			}
 		}
 	};

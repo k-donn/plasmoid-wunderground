@@ -20,7 +20,7 @@ import QtQuick.Controls 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 
-
+// A component that centers a btn within all space it's given
 ColumnLayout {
     Button {
         function showSettings() {

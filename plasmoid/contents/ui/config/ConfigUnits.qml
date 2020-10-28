@@ -15,17 +15,26 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 import QtQuick 2.0
-import org.kde.plasma.configuration 2.0
+import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
+import org.kde.kirigami 2.4 as Kirigami
 
-ConfigModel {
-    ConfigCategory {
-        name: "Station"
-        icon: "flag"
-        source: "config/ConfigStation.qml"
+Item {
+    id: unitsConfig
+
+    property alias cfg_unitsChoice: unitsChoice.currentIndex
+
+    Kirigami.FormLayout {
+        anchors.fill: parent
+
+        ComboBox {
+            id: unitsChoice
+
+            width: 100
+            model: ["Metric", "Imperial", "Hybrid (UK)"]
+
+            Kirigami.FormData.label: "Choose:"
+        }
     }
-    ConfigCategory {
-        name: "Units"
-        icon: "configuration"
-        source: "config/ConfigUnits.qml"
-    }
+
 }

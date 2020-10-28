@@ -14,9 +14,21 @@ Also, input your coordinates and the widget will find the nearest station to you
 
 The data updates every 10 seconds.
 
+## Meta
+
+Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteocons/).
+
+By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/pyconic) on Twitter.
+
+Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and ClearableField.
+
 ## TODO
 
 -   [x] Use single variable for state
--   [ ] Add monochrome icon for tray
--   [ ] Add condition-based icon
+-   [x] Add condition-based icon
+-   [x] Refactor Units into their own settings page
+-   [x] Refactor CompactRep to have text
+-   [x] Add SVG theme rendering for icons
+-   [ ] Use Plasmoid.needsConfiguration property
 -   [ ] Add wind-barbs to show direction
+-   [ ] Add condition narrative "Expcect heavy..." and condition icon on FullRep

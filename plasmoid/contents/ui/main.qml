@@ -23,9 +23,12 @@ import "../code/utils.js" as Utils
 import "../code/pws-api.js" as StationAPI
 
 Item {
-    property var errorStr: null
+    id: root
+
     property var weatherData: null
-    property var tooltipSubText: ""
+    property string errorStr: ""
+    property string toolTipSubText: ""
+    property string iconCode: "36"
 
     property int appState: 1
 
@@ -37,12 +40,19 @@ Item {
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
 
-    property Component fr: FullRepresentation { 
+    property bool inTray: false
+
+    property Component fr: FullRepresentation {
+        Layout.preferredWidth: 480
+        Layout.preferredHeight: 320
         Layout.minimumWidth: 480
         Layout.minimumHeight: 320
     }
 
-    property Component cr: CompactRepresentation {}
+    property Component cr: CompactRepresentation {
+        Layout.minimumWidth: 110
+        Layout.preferredWidth: 110
+    }
 
     function printDebug(msg) {
         console.log("[debug] " + msg)
@@ -54,7 +64,7 @@ Item {
         StationAPI.getWeatherData()
     }
 
-    function updateTooltipSubText() {
+    function updatetoolTipSubText() {
         var subText = ""
 
         subText += "<font size='4'>" + weatherData["details"]["temp"] + Utils.currentTempUnit() + "</font><br />"
@@ -62,7 +72,7 @@ Item {
         subText += "<br />"
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
-        tooltipSubText = subText
+        toolTipSubText = subText
     }
 
     onUnitsChoiceChanged: {
@@ -86,19 +96,32 @@ Item {
     onWeatherDataChanged: {
         printDebug("weather data changed")
 
-        updateTooltipSubText()
+        updatetoolTipSubText()
+        Utils.getStatusIcon()
     }
 
     onAppStateChanged: {
         printDebug("state is: " + appState)
     }
 
+    Component.onCompleted: {
+        inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
+
+        // TODO Maybe? Figure out how to use this
+        // plasmoid.configurationRequired = true
+        // plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
+    }
+
     Timer {
-        interval: 10 * 1100
+        interval: 10 * 1000
         running: appState == showDATA
         repeat: true
         onTriggered: updateWeatherData()
     }
+
+    Plasmoid.toolTipTextFormat: Text.RichText
+    Plasmoid.toolTipMainText: appState == showDATA ? plasmoid.configuration.stationID : "Please Configure"
+    Plasmoid.toolTipSubText: toolTipSubText
 
     // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr

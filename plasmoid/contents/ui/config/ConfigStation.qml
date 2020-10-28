@@ -17,7 +17,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
-import org.kde.plasma.extras 2.0 as PlasmaExtras
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.4 as Kirigami
 import "../../code/pws-api.js" as StationAPI
@@ -26,7 +25,10 @@ Item {
     id: stationConfig
 
     property alias cfg_stationID: stationID.text
-    property alias cfg_unitsChoice: unitsChoice.currentIndex
+
+    function printDebug(msg) {
+        console.log("[debug] " + msg)
+    }
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -42,8 +44,6 @@ Item {
 
             Kirigami.FormData.label: "Weatherstation ID:"
         }
-
-        Spacer {}
 
         Kirigami.Heading {
             text: "Get Nearest Station"
@@ -74,22 +74,8 @@ Item {
             onClicked: StationAPI.getNearestStation()
         }
 
-        Spacer {}
-
-        Kirigami.Heading {
-            text: "Units"
-            level: 2
-        }
-
-        ComboBox {
-            id: unitsChoice
-
-            width: 100
-            model: ["Metric", "Imperial", "Hybrid (UK)"]
-        }
-
         PlasmaComponents.Label {
-            text: "Version 1.3.1"
+            text: "Version 2.0.0"
         }
     }
 

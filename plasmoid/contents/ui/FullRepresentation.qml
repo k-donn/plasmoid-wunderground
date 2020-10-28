@@ -22,17 +22,17 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
 
 Item {
-    Item {
+    function printDebug(msg) {
+        console.log("[debug] " + msg)
+    }
+
+    CenteredConfigBtn {
         id: configBtn
 
         visible: appState == showCONFIG
 
-        anchors.fill: parent
-
-        ConfigBtn {
-            height: parent.height
-            width: parent.width
-        }
+        height: parent.height
+        width: parent.width
     }
 
     Item {
