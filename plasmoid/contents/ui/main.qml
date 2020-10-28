@@ -28,7 +28,7 @@ Item {
     property var weatherData: null
     property string errorStr: ""
     property string toolTipSubText: ""
-    property string iconCode: "sun"
+    property string iconCode: "36"
 
     property int appState: 1
 

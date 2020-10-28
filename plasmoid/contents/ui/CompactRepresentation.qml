@@ -25,8 +25,6 @@ import "../code/utils.js" as Utils
 ColumnLayout {
     id: compactRoot
 
-    // property CenteredConfigBtn confBtn : CenteredConfigBtn {}
-
     readonly property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
     readonly property bool showTemperature: !inTray
 
@@ -59,11 +57,14 @@ ColumnLayout {
     Component {
         id: iconComponent
 
-        PlasmaCore.IconItem {
+        PlasmaCore.SvgItem {
             readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
 
-            source: plasmoid.file("", "icons/" + iconCode + ".svg")
-            active: compactMouseArea.containsMouse
+            svg: PlasmaCore.Svg {
+                id: svg
+                imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+            }
+
             // reset implicit size, so layout in free dimension does not stop at the default one
             implicitWidth: units.iconSizes.small
             implicitHeight: units.iconSizes.small
@@ -79,31 +80,8 @@ ColumnLayout {
         IconAndTextItem {
             vertical: compactRoot.vertical
             iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
-            active: compactMouseArea.containsMouse
             text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(): "--.-° X"
         }
     }
-
-
-    // PlasmaCore.ToolTipArea {
-    //     id: toolTip
-    //     interactive: true
-    //     anchors.fill: parent
-    //     // Refactor into a component like FullRep that has sub-components for each state
-    //     mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
-    //     subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
-    //     mainItem: appState == showCONFIG ? confBtn : null
-
-    //     MouseArea {
-    //         id: mouseArea
-    //         anchors.fill: parent
-
-    //         hoverEnabled: true
-
-    //         onClicked: {
-    //             plasmoid.expanded = !plasmoid.expanded
-    //         }
-    //     }
-    // }
 
 }

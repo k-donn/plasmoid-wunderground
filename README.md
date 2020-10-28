@@ -28,6 +28,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and Cl
 -   [x] Add condition-based icon
 -   [x] Refactor Units into their own settings page
 -   [x] Refactor CompactRep to have text
--   [ ] Add SVG theme rendering for icons
--   [ ] Add wind-barbs to show direction
+-   [x] Add SVG theme rendering for icons
 -   [ ] Use Plasmoid.needsConfiguration property
+-   [ ] Add wind-barbs to show direction
+-   [ ] Add condition narrative "Expcect heavy..." and condition icon on FullRep

@@ -25,10 +25,9 @@ import org.kde.plasma.components 3.0 as PlasmaComponents
 GridLayout {
     id: iconAndTextRoot
 
-    property alias iconSource: icon.source
+    property alias iconSource: svg.imagePath
     property alias text: label.text
     property bool vertical: false // too bad we cannot make this an enum
-    property alias active: icon.active
 
     readonly property int minimumIconSize: units.iconSizes.small
     readonly property int iconSize: iconAndTextRoot.vertical ? width : height
@@ -39,13 +38,17 @@ GridLayout {
     columnSpacing: 0
     rowSpacing: 0
 
-    PlasmaCore.IconItem {
+    PlasmaCore.SvgItem {
         id: icon
 
         readonly property int implicitMinimumIconSize: Math.max(iconSize, minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
+
+        svg: PlasmaCore.Svg {
+            id: svg
+        }
 
         Layout.fillWidth: iconAndTextRoot.vertical
         Layout.fillHeight: !iconAndTextRoot.vertical
