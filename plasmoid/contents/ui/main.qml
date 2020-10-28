@@ -27,7 +27,7 @@ Item {
 
     property var weatherData: null
     property string errorStr: ""
-    property string tooltipSubText: ""
+    property string toolTipSubText: ""
     property string iconCode: "sun"
 
     property int appState: 1
@@ -54,8 +54,6 @@ Item {
         Layout.preferredWidth: 110
     }
 
-    property Component crTray: CompactRepresentationTray {}
-
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }
@@ -66,7 +64,7 @@ Item {
         StationAPI.getWeatherData()
     }
 
-    function updateTooltipSubText() {
+    function updatetoolTipSubText() {
         var subText = ""
 
         subText += "<font size='4'>" + weatherData["details"]["temp"] + Utils.currentTempUnit() + "</font><br />"
@@ -74,7 +72,7 @@ Item {
         subText += "<br />"
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
-        tooltipSubText = subText
+        toolTipSubText = subText
     }
 
     onUnitsChoiceChanged: {
@@ -98,7 +96,7 @@ Item {
     onWeatherDataChanged: {
         printDebug("weather data changed")
 
-        updateTooltipSubText()
+        updatetoolTipSubText()
         Utils.getStatusIcon()
     }
 
@@ -112,10 +110,6 @@ Item {
         // TODO Maybe? Figure out how to use this
         // plasmoid.configurationRequired = true
         // plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
-
-        if (inTray) {
-            Plasmoid.compactRepresentation = crTray
-        }
     }
 
     Timer {
@@ -124,6 +118,10 @@ Item {
         repeat: true
         onTriggered: updateWeatherData()
     }
+
+    Plasmoid.toolTipTextFormat: Text.RichText
+    Plasmoid.toolTipMainText: appState == showDATA ? plasmoid.configuration.stationID : "Please Configure"
+    Plasmoid.toolTipSubText: toolTipSubText
 
     // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr

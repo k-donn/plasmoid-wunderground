@@ -14,64 +14,96 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
+import QtQuick 2.9
+
+import QtQuick.Layouts 1.3
+
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import "../code/utils.js" as Utils
 
-Item {
-    property CenteredConfigBtn confBtn : CenteredConfigBtn {}
+ColumnLayout {
+    id: compactRoot
+
+    // property CenteredConfigBtn confBtn : CenteredConfigBtn {}
+
+    readonly property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
+    readonly property bool showTemperature: !inTray
 
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }
 
-    MouseArea {
-        id: mouseArea
-        anchors.fill: parent
-        onClicked: {
-            plasmoid.expanded = !plasmoid.expanded
-        }
-    }
+    Loader {
+        id: loader
 
-    PlasmaCore.ToolTipArea {
-        id: toolTip
-        interactive: true
-        anchors.fill: parent
-        // Refactor into a component like FullRep that has sub-components for each state
-        mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
-        subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
-        mainItem: appState == showCONFIG ? confBtn : null
-    }
+        sourceComponent: showTemperature ? iconAndTextComponent : iconComponent
+        Layout.fillWidth: compactRoot.vertical
+        Layout.fillHeight: !compactRoot.vertical
+        Layout.minimumWidth: item.Layout.minimumWidth
+        Layout.minimumHeight: item.Layout.minimumHeight
 
-    RowLayout {
-        width: parent.width
-        height: parent.height
+        MouseArea {
+            id: compactMouseArea
+            anchors.fill: parent
 
-        AppletIcon {
-            id: dyanmicIcon
-            source: iconCode
-            active: mouseArea.containsMouse
+            hoverEnabled: true
 
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-        }
-
-        Text {
-            text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(false) : "––.–" + Utils.currentTempUnit(false)
-            horizontalAlignment: Text.AlignRight
-            color: "white"
-            font {
-                bold: true
-                pointSize: 17
-                family: "Helvetica"
+            onClicked: {
+                plasmoid.expanded = !plasmoid.expanded;
             }
+        }
+   }
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+
+    Component {
+        id: iconComponent
+
+        PlasmaCore.IconItem {
+            readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
+
+            source: plasmoid.file("", "icons/" + iconCode + ".svg")
+            active: compactMouseArea.containsMouse
+            // reset implicit size, so layout in free dimension does not stop at the default one
+            implicitWidth: units.iconSizes.small
+            implicitHeight: units.iconSizes.small
+            Layout.minimumWidth: compactRoot.vertical ? units.iconSizes.small : minIconSize
+            Layout.minimumHeight: compactRoot.vertical ? minIconSize : units.iconSizes.small
         }
     }
 
+
+    Component {
+        id: iconAndTextComponent
+
+        IconAndTextItem {
+            vertical: compactRoot.vertical
+            iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
+            active: compactMouseArea.containsMouse
+            text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(): "--.-° X"
+        }
+    }
+
+
+    // PlasmaCore.ToolTipArea {
+    //     id: toolTip
+    //     interactive: true
+    //     anchors.fill: parent
+    //     // Refactor into a component like FullRep that has sub-components for each state
+    //     mainText: appState == showDATA ? stationID : appState == showERROR ? errorStr : appState == showLOADING ? "Loading..." : null
+    //     subText: appState == showDATA ? tooltipSubText : appState == showERROR ? "Error" : null
+    //     mainItem: appState == showCONFIG ? confBtn : null
+
+    //     MouseArea {
+    //         id: mouseArea
+    //         anchors.fill: parent
+
+    //         hoverEnabled: true
+
+    //         onClicked: {
+    //             plasmoid.expanded = !plasmoid.expanded
+    //         }
+    //     }
+    // }
 
 }

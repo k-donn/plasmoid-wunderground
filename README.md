@@ -20,15 +20,14 @@ Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteo
 
 By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/pyconic) on Twitter.
 
-Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, AppletIcon, and ClearableField.
+Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and ClearableField.
 
 ## TODO
 
 -   [x] Use single variable for state
--   [x] Add monochrome icon for tray
 -   [x] Add condition-based icon
 -   [x] Refactor Units into their own settings page
 -   [x] Refactor CompactRep to have text
--   [x] Refactor AppletIcon not to use anchors
--   [ ] Refactor tooltip into a single item
+-   [ ] Add SVG theme rendering for icons
 -   [ ] Add wind-barbs to show direction
+-   [ ] Use Plasmoid.needsConfiguration property
