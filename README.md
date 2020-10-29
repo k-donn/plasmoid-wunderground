@@ -24,11 +24,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and Cl
 
 ## TODO
 
--   [x] Use single variable for state
--   [x] Add condition-based icon
--   [x] Refactor Units into their own settings page
--   [x] Refactor CompactRep to have text
--   [x] Add SVG theme rendering for icons
--   [ ] Use Plasmoid.needsConfiguration property
+-   [x] Use Plasmoid.needsConfiguration property
 -   [ ] Add wind-barbs to show direction
 -   [ ] Add condition narrative "Expcect heavy..." and condition icon on FullRep
+-   [ ] Refactor currentXUnit functions to accept values

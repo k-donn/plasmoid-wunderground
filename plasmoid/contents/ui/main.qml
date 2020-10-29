@@ -28,7 +28,7 @@ Item {
     property var weatherData: null
     property string errorStr: ""
     property string toolTipSubText: ""
-    property string iconCode: "36"
+    property string iconCode: "32"
 
     property int appState: 1
 
@@ -72,7 +72,7 @@ Item {
         subText += "<br />"
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
-        toolTipSubText = subText
+        toolTipSubText = subText;
     }
 
     onUnitsChoiceChanged: {
@@ -97,7 +97,8 @@ Item {
         printDebug("weather data changed")
 
         updatetoolTipSubText()
-        Utils.getStatusIcon()
+
+        Utils.findIconCode()
     }
 
     onAppStateChanged: {
@@ -107,9 +108,7 @@ Item {
     Component.onCompleted: {
         inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
 
-        // TODO Maybe? Figure out how to use this
-        // plasmoid.configurationRequired = true
-        // plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
+        plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
     }
 
     Timer {
@@ -120,10 +119,20 @@ Item {
     }
 
     Plasmoid.toolTipTextFormat: Text.RichText
-    Plasmoid.toolTipMainText: appState == showDATA ? plasmoid.configuration.stationID : "Please Configure"
+    Plasmoid.toolTipMainText: {
+        if (appState == showCONFIG) {
+            return "Please Configure";
+        } else if (appState == showDATA) {
+            return stationID;
+        } else if (appState == showLOADING) {
+            return "Loading...";
+        } else if (appState == showERROR) {
+            return "Error..."
+        }
+    }
     Plasmoid.toolTipSubText: toolTipSubText
 
-    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 

@@ -51,7 +51,7 @@ ColumnLayout {
                 plasmoid.expanded = !plasmoid.expanded;
             }
         }
-   }
+    }
 
 
     Component {

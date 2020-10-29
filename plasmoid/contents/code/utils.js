@@ -253,10 +253,13 @@ function heatColorF(degF) {
 		: "#5E4FA2";
 }
 
-function findIconCode(lat, long) {
+function findIconCode() {
 	let req = new XMLHttpRequest();
 
-	let url = "https://api.weather.com/v3/wx/forecast/daily/7day";
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+
+	let url = "https://api.weather.com/v3/wx/observations/current";
 
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
@@ -280,63 +283,7 @@ function findIconCode(lat, long) {
 			if (req.status == 200) {
 				var res = JSON.parse(req.responseText);
 
-				var code;
-
-				if (res["daypart"][0]["iconCode"][0] !== null) {
-					code = res["daypart"][0]["iconCode"][0];
-				} else {
-					code = res["daypart"][0]["iconCode"][1];
-				}
-
-				iconCode = code;
-			}
-		}
-	};
-
-	req.send();
-}
-
-function getStatusIcon() {
-	let req = new XMLHttpRequest();
-
-	// Even though the user can set these,
-	// we always request the current conditions and need lat/long
-	// to do that.
-	let lat, long;
-
-	let url = "https://api.weather.com/v2/pwsidentity";
-	url += "?stationId=" + stationID;
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
-	url += "&format=json";
-
-	if (unitsChoice === 0) {
-		url += "&units=m";
-	} else if (unitsChoice === 1) {
-		url += "&units=e";
-	} else {
-		url += "&units=h";
-	}
-
-	req.open("GET", url, true);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
-	req.onerror = function () {
-		printDebug(req.responseText);
-	};
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				lat = res["latitude"];
-				long = res["longitude"];
-
-				findIconCode(lat, long);
-			} else {
-				printDebug(req.responseText);
+				iconCode = res["iconCode"];
 			}
 		}
 	};
