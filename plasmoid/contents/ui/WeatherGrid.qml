@@ -29,7 +29,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: temp
-        text: weatherData["details"]["temp"].toFixed(1) + Utils.currentTempUnit()
+        text: Utils.currentTempUnit(weatherData["details"]["temp"].toFixed(1))
         font {
             bold: true
             pointSize: 30
@@ -51,7 +51,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: feelsLike
-        text: "Feels like " + Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]).toFixed(2) + Utils.currentTempUnit()
+        text: "Feels like " + Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]).toFixed(2))
     }
     PlasmaComponents.Label {
         id: windDirCard
@@ -59,7 +59,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: wind
-        text: weatherData["details"]["windSpeed"] + " / " + weatherData["details"]["windGust"] + Utils.currentSpeedUnit()
+        text: weatherData["details"]["windSpeed"] + " / " + Utils.currentSpeedUnit(weatherData["details"]["windGust"])
     }
 
 
@@ -90,17 +90,17 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: dew
-        text: weatherData["details"]["dewpt"] + Utils.currentTempUnit()
+        text: Utils.currentTempUnit(weatherData["details"]["dewpt"])
         font.pointSize: 10
     }
     PlasmaComponents.Label {
         id: precipRate
-        text: weatherData["details"]["precipRate"] + Utils.currentPrecipUnit() + "/hr"
+        text: Utils.currentPrecipUnit(weatherData["details"]["precipRate"]) + "/hr"
         font.pointSize: 10
     }
     PlasmaComponents.Label {
         id: pressure
-        text: weatherData["details"]["pressure"].toFixed(2) + Utils.currentPresUnit()
+        text: Utils.currentPresUnit(weatherData["details"]["pressure"].toFixed(2))
         font.pointSize: 10
     }
 
@@ -135,7 +135,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipAcc
-        text: weatherData["details"]["precipTotal"] + Utils.currentPrecipUnit()
+        text: Utils.currentPrecipUnit(weatherData["details"]["precipTotal"])
     }
     PlasmaComponents.Label {
         id: uv

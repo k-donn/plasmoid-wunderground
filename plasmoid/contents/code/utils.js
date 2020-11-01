@@ -284,7 +284,7 @@ function findIconCode() {
 				var res = JSON.parse(req.responseText);
 
 				iconCode = res["iconCode"];
-				conditionNarrative = res["wxPhraseLong"]
+				conditionNarrative = res["wxPhraseLong"];
 			}
 		}
 	};
@@ -299,60 +299,60 @@ function findIconCode() {
 /// a space in front of the unit. (32°F or 32 °F)             ///
 /////////////////////////////////////////////////////////////////
 
-function currentTempUnit(prependSpace = true) {
-	var res = "";
+function currentTempUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 1) {
-		res = "°F";
+		res += returnSpace(prependSpace) + "°F";
 	} else {
-		res = "°C";
+		res += returnSpace(prependSpace) + "°C";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentSpeedUnit(prependSpace = true) {
-	var res = "";
+function currentSpeedUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 0) {
-		res = "kmh";
+		res += returnSpace(prependSpace) + "kmh";
 	} else {
-		res = "mph";
+		res += returnSpace(prependSpace) + "mph";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentElevUnit(prependSpace = true) {
-	var res = "";
+function currentElevUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 0) {
-		res = "m";
+		res += returnSpace(prependSpace) + "m";
 	} else {
-		res = "ft";
+		res += returnSpace(prependSpace) + "ft";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentPrecipUnit(prependSpace = true) {
-	var res = "";
+function currentPrecipUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 1) {
-		res = "in";
+		res += returnSpace(prependSpace) + "in";
 	} else {
-		res = "cm";
+		res += returnSpace(prependSpace) + "cm";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentPresUnit(prependSpace = true) {
-	var res = "";
+function currentPresUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 1) {
-		res = "inHG";
+		res += returnSpace(prependSpace) + "inHG";
 	} else {
-		res = "hPa";
+		res += returnSpace(prependSpace) + "hPa";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function withSpace(str, withSpace) {
-	if (withSpace) {
-		return " " + str;
+function returnSpace(shouldReturnSpace) {
+	if (shouldReturnSpace) {
+		return " ";
 	} else {
-		return str;
+		return "";
 	}
 }

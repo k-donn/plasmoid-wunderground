@@ -69,8 +69,8 @@ Item {
     function updatetoolTipSubText() {
         var subText = ""
 
-        subText += "<font size='4'>" + weatherData["details"]["temp"] + Utils.currentTempUnit() + "</font><br />"
-        subText += "<font size='4'>" + weatherData["details"]["windSpeed"] + Utils.currentSpeedUnit() + "</font><br />"
+        subText += "<font size='4'>" + Utils.currentTempUnit(weatherData["details"]["temp"]) + "</font><br />"
+        subText += "<font size='4'>" + Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]) + "</font><br />"
         subText += "<br />"
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
@@ -134,7 +134,7 @@ Item {
     }
     Plasmoid.toolTipSubText: toolTipSubText
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 

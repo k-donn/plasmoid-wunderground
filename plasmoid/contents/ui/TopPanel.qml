@@ -40,7 +40,7 @@ RowLayout {
     }
 
     PlasmaComponents.Label {
-        id: currStation1
+        id: currStation
 
         text: conditionNarrative ? conditionNarrative : "loading..."
 
