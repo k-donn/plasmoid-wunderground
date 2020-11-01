@@ -27,7 +27,7 @@ GridLayout {
 
     property alias iconSource: svg.imagePath
     property alias text: label.text
-    property bool vertical: false // too bad we cannot make this an enum
+    property bool vertical: false
 
     readonly property int minimumIconSize: units.iconSizes.small
     readonly property int iconSize: iconAndTextRoot.vertical ? width : height

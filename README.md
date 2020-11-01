@@ -25,6 +25,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and Cl
 ## TODO
 
 -   [x] Use Plasmoid.needsConfiguration property
--   [ ] Add wind-barbs to show direction
--   [ ] Add condition narrative "Expcect heavy..." and condition icon on FullRep
+-   [x] Add condition narrative "Expcect heavy..." and condition icon on FullRep
 -   [ ] Refactor currentXUnit functions to accept values
+-   [ ] Add wind-barbs to show direction
+-   [ ] Add five-day forecast page

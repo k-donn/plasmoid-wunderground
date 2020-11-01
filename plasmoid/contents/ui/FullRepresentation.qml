@@ -21,224 +21,82 @@ import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
 
-Item {
+ColumnLayout {
+    id: fullRoot
+
+    height: parent.height
+    width: parent.width
+
+    spacing: 0
+
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }
 
-    CenteredConfigBtn {
+    ConfigBtn {
         id: configBtn
 
         visible: appState == showCONFIG
 
-        height: parent.height
-        width: parent.width
+        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     }
 
-    Item {
-        id: errorMsgs
+    PlasmaComponents.Label {
+        id: errorMsg
 
         visible: appState == showERROR
 
-        anchors.fill: parent
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
 
-        ColumnLayout {
-            height: parent.height
-            width: parent.width
+        text: "Error: " + errorStr
+        wrapMode: Text.WordWrap
 
-            PlasmaComponents.Label {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                text: "Error: " + errorStr
-                wrapMode: Text.WordWrap
-            }
-        }
+        Layout.fillWidth: true
+        Layout.fillHeight: true
     }
 
-    Item {
+    PlasmaComponents.Label {
         id: loadingMsg
 
         visible: appState == showLOADING
 
-        anchors.fill: parent
+        verticalAlignment: Text.AlignVCenter
+        horizontalAlignment: Text.AlignHCenter
 
-        ColumnLayout {
-            height: parent.height
-            width: parent.width
+        text: "Loading data..."
 
-            PlasmaComponents.Label {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                verticalAlignment: Text.AlignVCenter
-                horizontalAlignment: Text.AlignHCenter
-                text: "Loading data..."
-            }
-        }
-
+        Layout.fillWidth: true
+        Layout.fillHeight: true
     }
 
-    Item {
-        id: weatherInfo
+    TopPanel {
+        id: topPanel
 
-        // Show once data is fetched and
-        // don't show while switching stations
         visible: appState == showDATA
 
-        anchors.fill: parent
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignTop
+    }
 
-        ColumnLayout {
-            width: parent.width
-            height: parent.height
+    WeatherGrid {
+        id: weatherInfo
 
-            GridLayout {
-                id: grid
+        visible: appState == showDATA
 
-                columns: 3
-                rows: 4
+        // Because this is a Layout within a Layout, numerical width/height needed
+        Layout.preferredWidth: parent.width
+        Layout.preferredHeight: parent.height * 0.75
 
-                // Take up all the width and 3/4 the height
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: parent.height * 0.75
+        Layout.alignment: Qt.AlignTop
+    }
 
-                Layout.alignment: Qt.AlignTop
+    BottomPanel {
+        id: bottomPanel
 
-                PlasmaComponents.Label {
-                    id: temp
-                    text: weatherData["details"]["temp"].toFixed(1) + Utils.currentTempUnit()
-                    font {
-                        bold: true
-                        pointSize: 30
-                    }
-                    color: Utils.heatColor(weatherData["details"]["temp"])
-                }
-                PlasmaComponents.Label {
-                    id: windDir
-                    text: "Wind dir:" + weatherData["winddir"] + "°"
-                }
-                PlasmaComponents.Label {
-                    id: windLabel
-                    text: "WIND & GUST"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
+        visible: appState == showDATA
 
-                PlasmaComponents.Label {
-                    id: feelsLike
-                    text: "Feels like " + Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]).toFixed(2) + Utils.currentTempUnit()
-                }
-                PlasmaComponents.Label {
-                    id: windDirCard
-                    text: Utils.windDirToCard(weatherData["winddir"])
-                }
-                PlasmaComponents.Label {
-                    id: wind
-                    text: weatherData["details"]["windSpeed"] + " / " + weatherData["details"]["windGust"] + Utils.currentSpeedUnit()
-                }
-
-
-                PlasmaComponents.Label {
-                    id: dewLabel
-                    text: "DEWPOINT"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
-                PlasmaComponents.Label {
-                    id: precipRateLabel
-                    text: "PRECIP RATE"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
-                PlasmaComponents.Label {
-                    id: pressureLabel
-                    text: "PRESSURE"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
-
-                PlasmaComponents.Label {
-                    id: dew
-                    text: weatherData["details"]["dewpt"] + Utils.currentTempUnit()
-                    font.pointSize: 10
-                }
-                PlasmaComponents.Label {
-                    id: precipRate
-                    text: weatherData["details"]["precipRate"] + Utils.currentPrecipUnit() + "/hr"
-                    font.pointSize: 10
-                }
-                PlasmaComponents.Label {
-                    id: pressure
-                    text: weatherData["details"]["pressure"].toFixed(2) + Utils.currentPresUnit()
-                    font.pointSize: 10
-                }
-
-                PlasmaComponents.Label {
-                    id: humidityLabel
-                    text: "HUMIDITY"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
-                PlasmaComponents.Label {
-                    id: precipAccLabel
-                    text: "PRECIP ACCUM"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
-                PlasmaComponents.Label {
-                    id: uvLabel
-                    text: "UV"
-                    font {
-                        bold: true
-                        pointSize: 13
-                    }
-                }
-
-                PlasmaComponents.Label {
-                    id: humidity
-                    text: weatherData["humidity"] + "%"
-                }
-                PlasmaComponents.Label {
-                    id: precipAcc
-                    text: weatherData["details"]["precipTotal"] + Utils.currentPrecipUnit()
-                }
-                PlasmaComponents.Label {
-                    id: uv
-                    text: weatherData["uv"]
-                }
-            }
-
-            RowLayout {
-                Layout.preferredWidth: parent.width
-                Layout.alignment: Qt.AlignBottom
-
-                PlasmaComponents.Label {
-                    id: updatedAt
-                    Layout.fillWidth: true
-                    text: weatherData["obsTimeLocal"]
-                    verticalAlignment: Text.AlignBottom
-                }
-
-                PlasmaComponents.Label {
-                    id: currStation
-                    Layout.fillWidth: true
-                    text: weatherData["stationID"] + "   " + weatherData["details"]["elev"] + Utils.currentElevUnit()
-                    verticalAlignment: Text.AlignBottom
-                    horizontalAlignment: Text.AlignRight
-                }
-            }
-        }
+        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignBottom
     }
 }

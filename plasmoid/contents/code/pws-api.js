@@ -40,7 +40,7 @@ function getWeatherData() {
 
 	printDebug(url);
 
-	req.open("GET", url, true);
+	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
 	req.setRequestHeader("Origin", "https://www.wunderground.com");
@@ -119,7 +119,7 @@ function updateCoordinates() {
 		url += "&units=h";
 	}
 
-	req.open("GET", url, true);
+	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
 	req.setRequestHeader("Origin", "https://www.wunderground.com");
@@ -161,7 +161,7 @@ function getNearestStation() {
 
 	printDebug(url);
 
-	req.open("GET", url, true);
+	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
 

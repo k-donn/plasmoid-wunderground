@@ -29,13 +29,15 @@ Item {
     property string errorStr: ""
     property string toolTipSubText: ""
     property string iconCode: "32"
+    property string conditionNarrative: ""
 
-    property int appState: 1
 
     property int showCONFIG: 1
     property int showLOADING: 2
     property int showERROR: 4
     property int showDATA: 8
+
+    property int appState: showCONFIG
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice

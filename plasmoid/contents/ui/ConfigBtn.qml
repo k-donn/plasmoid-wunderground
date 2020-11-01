@@ -20,19 +20,12 @@ import QtQuick.Controls 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
 
-// A component that centers a btn within all space it's given
-ColumnLayout {
-    Button {
-        function showSettings() {
-            plasmoid.action("configure").trigger()
-        }
-
-        Layout.preferredWidth: 200
-        Layout.preferredHeight: 30
-        Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
-
-        text: "Configure Wunderground"
-        icon.name: "settings"
-        onClicked: showSettings()
+Button {
+    function showSettings() {
+        plasmoid.action("configure").trigger()
     }
+
+    text: "Configure Wunderground"
+    icon.name: "settings"
+    onClicked: showSettings()
 }

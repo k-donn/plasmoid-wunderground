@@ -284,6 +284,7 @@ function findIconCode() {
 				var res = JSON.parse(req.responseText);
 
 				iconCode = res["iconCode"];
+				conditionNarrative = res["wxPhraseLong"]
 			}
 		}
 	};
