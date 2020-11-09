@@ -30,7 +30,7 @@ ColumnLayout {
     spacing: 0
 
     function printDebug(msg) {
-        console.log("[debug] " + msg)
+        console.log("[debug] " + msg);
     }
 
     ConfigBtn {

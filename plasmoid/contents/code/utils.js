@@ -45,6 +45,35 @@ function windDirToCard(deg) {
 	return directions[Math.round((deg % 3600) / 255)];
 }
 
+function getWindBarb(windSpeed) {
+	var speedKts;
+	if (unitsChoice === 0) {
+		speedKts = kmhToKts(windSpeed);
+	} else {
+		speedKts = mphToKts(windSpeed);
+	}
+
+	printDebug(speedKts)
+
+	if (within(speedKts, 0, 2.9999)) {
+		return "0-2";
+	} else if (within(speedKts, 3, 7.9999)) {
+		return "3-7";
+	} else if (within(speedKts, 8, 12.9999)) {
+		return "8-12";
+	} else if (within(speedKts, 13, 17.9999)) {
+		return "13-17";
+	} else if (within(speedKts, 18, 22.9999)) {
+		return "18-22";
+	} else if (within(speedKts, 23, 27.9999)) {
+		return "23-27";
+	} else if (within(speedKts, 28, 32.9999)) {
+		return "28-32";
+	} else {
+        return "28-32";
+    }
+}
+
 /**
  * Turn a Celcius temperature into a Fahrenheit one.
  *
@@ -76,6 +105,26 @@ function fToC(degF) {
  */
 function kmhToMph(kmh) {
 	return kmh * 0.6213711922;
+}
+
+function mphToKts(mph) {
+	return mph * 0.8689758;
+}
+
+function kmhToKts(kmh) {
+	return kmh * 0.5399565;
+}
+
+function ktsToMph(kts) {
+	return kts / 0.8689758;
+}
+
+function ktsToKmh(kts) {
+	return kts / 0.5399565;
+}
+
+function within(value, low, high) {
+	return value >= low && value < high;
 }
 
 /**

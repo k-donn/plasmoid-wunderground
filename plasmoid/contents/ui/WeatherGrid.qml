@@ -18,6 +18,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
 import org.kde.plasma.plasmoid 2.0
+import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
 
@@ -36,9 +37,20 @@ GridLayout {
         }
         color: Utils.heatColor(weatherData["details"]["temp"])
     }
-    PlasmaComponents.Label {
-        id: windDir
-        text: "Wind dir:" + weatherData["winddir"] + "°"
+    PlasmaCore.SvgItem {
+        id: topPanelIcon
+
+        svg: PlasmaCore.Svg {
+            id: svg
+            imagePath: plasmoid.file("", "icons/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg")
+        }
+
+        rotation: weatherData["winddir"] - 270
+
+        Layout.minimumWidth: units.iconSizes.large
+        Layout.minimumHeight: units.iconSizes.large
+        Layout.preferredWidth: Layout.minimumWidth
+        Layout.preferredHeight: Layout.minimumHeight
     }
     PlasmaComponents.Label {
         id: windLabel
@@ -55,7 +67,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: windDirCard
-        text: Utils.windDirToCard(weatherData["winddir"])
+        text: "Wind from: " + Utils.windDirToCard(weatherData["winddir"])
     }
     PlasmaComponents.Label {
         id: wind
