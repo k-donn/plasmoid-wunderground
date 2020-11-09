@@ -22,13 +22,14 @@ By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/py
 
 Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and ClearableField.
 
+CompactRepresentation and IconAndTextItem are from `org.kde.plasma.weather`.
+
 ## TODO
 
--   [x] Use single variable for state
--   [x] Add condition-based icon
--   [x] Refactor Units into their own settings page
--   [x] Refactor CompactRep to have text
--   [x] Add SVG theme rendering for icons
--   [ ] Use Plasmoid.needsConfiguration property
--   [ ] Add wind-barbs to show direction
--   [ ] Add condition narrative "Expcect heavy..." and condition icon on FullRep
+-   [x] Use Plasmoid.needsConfiguration property
+-   [x] Add condition narrative "Expcect heavy..." and condition icon on FullRep
+-   [x] Refactor currentXUnit functions to accept values
+-   [x] Add wind-barbs to show direction
+-   [ ] Add five-day forecast page
+-   [ ] Use Wunderground Plasma Ion (when I finish it).
+-   [ ] Use i18n

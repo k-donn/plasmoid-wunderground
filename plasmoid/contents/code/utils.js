@@ -45,6 +45,35 @@ function windDirToCard(deg) {
 	return directions[Math.round((deg % 3600) / 255)];
 }
 
+function getWindBarb(windSpeed) {
+	var speedKts;
+	if (unitsChoice === 0) {
+		speedKts = kmhToKts(windSpeed);
+	} else {
+		speedKts = mphToKts(windSpeed);
+	}
+
+	printDebug(speedKts)
+
+	if (within(speedKts, 0, 2.9999)) {
+		return "0-2";
+	} else if (within(speedKts, 3, 7.9999)) {
+		return "3-7";
+	} else if (within(speedKts, 8, 12.9999)) {
+		return "8-12";
+	} else if (within(speedKts, 13, 17.9999)) {
+		return "13-17";
+	} else if (within(speedKts, 18, 22.9999)) {
+		return "18-22";
+	} else if (within(speedKts, 23, 27.9999)) {
+		return "23-27";
+	} else if (within(speedKts, 28, 32.9999)) {
+		return "28-32";
+	} else {
+        return "28-32";
+    }
+}
+
 /**
  * Turn a Celcius temperature into a Fahrenheit one.
  *
@@ -76,6 +105,26 @@ function fToC(degF) {
  */
 function kmhToMph(kmh) {
 	return kmh * 0.6213711922;
+}
+
+function mphToKts(mph) {
+	return mph * 0.8689758;
+}
+
+function kmhToKts(kmh) {
+	return kmh * 0.5399565;
+}
+
+function ktsToMph(kts) {
+	return kts / 0.8689758;
+}
+
+function ktsToKmh(kts) {
+	return kts / 0.5399565;
+}
+
+function within(value, low, high) {
+	return value >= low && value < high;
 }
 
 /**
@@ -253,10 +302,13 @@ function heatColorF(degF) {
 		: "#5E4FA2";
 }
 
-function findIconCode(lat, long) {
+function findIconCode() {
 	let req = new XMLHttpRequest();
 
-	let url = "https://api.weather.com/v3/wx/forecast/daily/7day";
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+
+	let url = "https://api.weather.com/v3/wx/observations/current";
 
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
@@ -280,63 +332,8 @@ function findIconCode(lat, long) {
 			if (req.status == 200) {
 				var res = JSON.parse(req.responseText);
 
-				var code;
-
-				if (res["daypart"][0]["iconCode"][0] !== null) {
-					code = res["daypart"][0]["iconCode"][0];
-				} else {
-					code = res["daypart"][0]["iconCode"][1];
-				}
-
-				iconCode = code;
-			}
-		}
-	};
-
-	req.send();
-}
-
-function getStatusIcon() {
-	let req = new XMLHttpRequest();
-
-	// Even though the user can set these,
-	// we always request the current conditions and need lat/long
-	// to do that.
-	let lat, long;
-
-	let url = "https://api.weather.com/v2/pwsidentity";
-	url += "?stationId=" + stationID;
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
-	url += "&format=json";
-
-	if (unitsChoice === 0) {
-		url += "&units=m";
-	} else if (unitsChoice === 1) {
-		url += "&units=e";
-	} else {
-		url += "&units=h";
-	}
-
-	req.open("GET", url, true);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
-	req.onerror = function () {
-		printDebug(req.responseText);
-	};
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				lat = res["latitude"];
-				long = res["longitude"];
-
-				findIconCode(lat, long);
-			} else {
-				printDebug(req.responseText);
+				iconCode = res["iconCode"];
+				conditionNarrative = res["wxPhraseLong"];
 			}
 		}
 	};
@@ -351,60 +348,60 @@ function getStatusIcon() {
 /// a space in front of the unit. (32°F or 32 °F)             ///
 /////////////////////////////////////////////////////////////////
 
-function currentTempUnit(prependSpace = true) {
-	var res = "";
+function currentTempUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 1) {
-		res = "°F";
+		res += returnSpace(prependSpace) + "°F";
 	} else {
-		res = "°C";
+		res += returnSpace(prependSpace) + "°C";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentSpeedUnit(prependSpace = true) {
-	var res = "";
+function currentSpeedUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 0) {
-		res = "kmh";
+		res += returnSpace(prependSpace) + "kmh";
 	} else {
-		res = "mph";
+		res += returnSpace(prependSpace) + "mph";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentElevUnit(prependSpace = true) {
-	var res = "";
+function currentElevUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 0) {
-		res = "m";
+		res += returnSpace(prependSpace) + "m";
 	} else {
-		res = "ft";
+		res += returnSpace(prependSpace) + "ft";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentPrecipUnit(prependSpace = true) {
-	var res = "";
+function currentPrecipUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 1) {
-		res = "in";
+		res += returnSpace(prependSpace) + "in";
 	} else {
-		res = "cm";
+		res += returnSpace(prependSpace) + "cm";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function currentPresUnit(prependSpace = true) {
-	var res = "";
+function currentPresUnit(value, prependSpace = true) {
+	var res = value;
 	if (unitsChoice === 1) {
-		res = "inHG";
+		res += returnSpace(prependSpace) + "inHG";
 	} else {
-		res = "hPa";
+		res += returnSpace(prependSpace) + "hPa";
 	}
-	return withSpace(res, prependSpace);
+	return res;
 }
 
-function withSpace(str, withSpace) {
-	if (withSpace) {
-		return " " + str;
+function returnSpace(shouldReturnSpace) {
+	if (shouldReturnSpace) {
+		return " ";
 	} else {
-		return str;
+		return "";
 	}
 }
