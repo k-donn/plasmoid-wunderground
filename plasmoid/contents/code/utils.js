@@ -53,8 +53,6 @@ function getWindBarb(windSpeed) {
 		speedKts = mphToKts(windSpeed);
 	}
 
-	printDebug(speedKts)
-
 	if (within(speedKts, 0, 2.9999)) {
 		return "0-2";
 	} else if (within(speedKts, 3, 7.9999)) {
@@ -70,8 +68,8 @@ function getWindBarb(windSpeed) {
 	} else if (within(speedKts, 28, 32.9999)) {
 		return "28-32";
 	} else {
-        return "28-32";
-    }
+		return "28-32";
+	}
 }
 
 /**
@@ -96,13 +94,6 @@ function fToC(degF) {
 	return (degF - 32) / 1.8;
 }
 
-/**
- * Turn a speed in km/h to m/h.
- *
- * @param {number} kmh Speed in Kilometers/Hour
- *
- * @returns {number} Speed in Miles/Hour
- */
 function kmhToMph(kmh) {
 	return kmh * 0.6213711922;
 }
@@ -123,6 +114,14 @@ function ktsToKmh(kts) {
 	return kts / 0.5399565;
 }
 
+/**
+ * Returns whether value is within the range of [low, high).
+ * Inclusive lower; exclusive upper
+ *
+ * @param {number} value Value to compare
+ * @param {number} low Lower bound
+ * @param {number} high Upper bound
+ */
 function within(value, low, high) {
 	return value >= low && value < high;
 }

@@ -76,9 +76,10 @@ function getWeatherData() {
 
 				weatherData = tmp;
 
-				appState = showDATA;
+				plasmoid.configuration.latitude = weatherData["lat"];
+				plasmoid.configuration.longitude = weatherData["lon"];
 
-				updateCoordinates();
+				appState = showDATA;
 
 				printDebug("Got new data");
 			} else {
@@ -93,50 +94,6 @@ function getWeatherData() {
 				}
 
 				appState = showERROR;
-			}
-		}
-	};
-
-	req.send();
-}
-
-/**
- * Set the lat and long in the config page for icon and other requests.
- */
-function updateCoordinates() {
-	let req = new XMLHttpRequest();
-
-	let url = "https://api.weather.com/v2/pwsidentity";
-	url += "?stationId=" + stationID;
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
-	url += "&format=json";
-
-	if (unitsChoice === 0) {
-		url += "&units=m";
-	} else if (unitsChoice === 1) {
-		url += "&units=e";
-	} else {
-		url += "&units=h";
-	}
-
-	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
-	req.onerror = function () {
-		printDebug(req.responseText);
-	};
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				plasmoid.configuration.latitude = res["latitude"];
-				plasmoid.configuration.longitude = res["longitude"];
-			} else {
-				printDebug(req.responseText);
 			}
 		}
 	};
