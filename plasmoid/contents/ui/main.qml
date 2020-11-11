@@ -29,7 +29,7 @@ Item {
     property var weatherData: null
     property string errorStr: ""
     property string toolTipSubText: ""
-    property string iconCode: "32"
+    property string iconCode: "32" // sunny
     property string conditionNarrative: ""
 
 

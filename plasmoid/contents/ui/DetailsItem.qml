@@ -24,7 +24,7 @@ import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
 
 GridLayout {
-    id: weatherGridRoot
+    id: detailsRoot
 
     columns: 3
     rows: 4

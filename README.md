@@ -26,10 +26,6 @@ CompactRepresentation and IconAndTextItem are from `org.kde.plasma.weather`.
 
 ## TODO
 
--   [x] Use Plasmoid.needsConfiguration property
--   [x] Add condition narrative "Expcect heavy..." and condition icon on FullRep
--   [x] Refactor currentXUnit functions to accept values
--   [x] Add wind-barbs to show direction
--   [ ] Add five-day forecast page
+-   [x] Add forecast page
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n
