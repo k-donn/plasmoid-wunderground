@@ -106,6 +106,8 @@ Item {
 
     onAppStateChanged: {
         printDebug("state is: " + appState)
+
+        updatetoolTipSubText()
     }
 
     Component.onCompleted: {
@@ -135,7 +137,7 @@ Item {
     }
     Plasmoid.toolTipSubText: toolTipSubText
 
-    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 

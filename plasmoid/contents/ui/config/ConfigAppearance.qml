@@ -16,23 +16,21 @@
  */
 
 import QtQuick 2.0
-import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick.Layouts 1.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import "../code/utils.js" as Utils
+import org.kde.kirigami 2.4 as Kirigami
 
-ColumnLayout {
-    id: forecastItemRoot
+Kirigami.FormLayout {
+    id: appearanceConfig
 
-    PlasmaComponents.Label {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+    property alias cfg_compactPointSize: compactPointSize.value
 
-        horizontalAlignment: Text.AlignHCenter
+    // TODO: find out about other options for int config.
+    // This does not allow you to enter direct numbers must use +/- btns.
+    SpinBox {
+        id: compactPointSize
 
-        text: "Coming Soon!"
+        Kirigami.FormData.label: "Compact Rep font size"
     }
 }

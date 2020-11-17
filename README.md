@@ -22,10 +22,15 @@ By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/py
 
 Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and ClearableField.
 
-CompactRepresentation and IconAndTextItem are from `org.kde.plasma.weather`.
+[CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
 ## TODO
 
 -   [x] Add forecast page
+-   [x] Allow for user to configure compact rep font size
+-   [ ] Allow for user to input 0px to dynamically calculate font size
+-   [ ] Allow for user to configure compact rep font weight
+-   [ ] Allow for user to configure compact rep font family
+-   [ ] Allow for user to configure compact rep icon size
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n

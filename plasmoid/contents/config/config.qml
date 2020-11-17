@@ -24,6 +24,11 @@ ConfigModel {
         source: "config/ConfigStation.qml"
     }
     ConfigCategory {
+        name: "Appearance"
+        icon: "preferences-desktop-color"
+        source: "config/ConfigAppearance.qml"
+    }
+    ConfigCategory {
         name: "Units"
         icon: "configuration"
         source: "config/ConfigUnits.qml"
