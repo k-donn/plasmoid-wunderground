@@ -70,7 +70,7 @@ ColumnLayout {
         IconAndTextItem {
             vertical: compactRoot.vertical
             iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
-            text: appState == showDATA ? weatherData["details"]["temp"] + Utils.currentTempUnit(): "--.-° X"
+            text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"]) : "---.-° X"
         }
     }
 

@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
@@ -79,16 +80,13 @@ ColumnLayout {
         Layout.alignment: Qt.AlignTop
     }
 
-    WeatherGrid {
-        id: weatherInfo
-
+    SwitchPanel {
         visible: appState == showDATA
 
-        // Because this is a Layout within a Layout, numerical width/height needed
-        Layout.preferredWidth: parent.width
-        Layout.preferredHeight: parent.height * 0.75
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
-        Layout.alignment: Qt.AlignTop
+        Layout.bottomMargin: units.smallSpacing
     }
 
     BottomPanel {

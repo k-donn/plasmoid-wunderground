@@ -18,15 +18,21 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.plasma.plasmoid 2.0
+import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
+import "../code/utils.js" as Utils
 
-Button {
-    function showSettings() {
-        plasmoid.action("configure").trigger()
+ColumnLayout {
+    id: forecastItemRoot
+
+    PlasmaComponents.Label {
+        Layout.fillWidth: true
+        Layout.fillHeight: true
+        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+        horizontalAlignment: Text.AlignHCenter
+
+        text: "Coming Soon!"
     }
-
-    text: "Configure Wunderground"
-    icon.name: "settings"
-    onClicked: showSettings()
 }

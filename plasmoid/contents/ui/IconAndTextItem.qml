@@ -8,6 +8,7 @@
 import QtQuick 2.9
 import QtQuick.Layouts 1.3
 
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents
 
@@ -16,8 +17,17 @@ GridLayout {
 
     property alias iconSource: svg.imagePath
     property alias text: label.text
-    property bool vertical: false
+    property alias paintWidth: sizeHelper.paintedWidth
+    property alias paintHeight: sizeHelper.paintedHeight
 
+    property bool vertical: false
+    property bool useUserHeight: userHeight > 0
+
+    property int userHeight: plasmoid.configuration.compactPointSize
+    property int targetHeight: useUserHeight ? userHeight : verticalFixedHeight
+
+    readonly property int verticalFixedHeight: 21 * units.devicePixelRatio
+    
     readonly property int minimumIconSize: units.iconSizes.small
     readonly property int iconSize: iconAndTextRoot.vertical ? width : height
 
@@ -26,6 +36,22 @@ GridLayout {
 
     columnSpacing: 0
     rowSpacing: 0
+
+    function printDebug(msg) {
+        console.log("[debug] " + msg)
+    }
+
+    onPaintWidthChanged: {
+        // TODO: use property binding or states inside of "text" instead of this?
+        text.Layout.minimumWidth = iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth
+        text.Layout.maximumWidth = iconAndTextRoot.vertical ? Infinity : text.Layout.minimumWidth
+
+        text.Layout.minimumHeight = iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0
+        text.Layout.maximumHeight = iconAndTextRoot.vertical ? text.Layout.minimumHeight : Infinity
+
+        // Loaded within scope of compactRoot; can access compactRoot properties!
+        compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth)
+    }
 
     PlasmaCore.SvgItem {
         id: icon
@@ -53,23 +79,23 @@ GridLayout {
 
         Layout.fillWidth: iconAndTextRoot.vertical
         Layout.fillHeight: !iconAndTextRoot.vertical
-        Layout.minimumWidth: iconAndTextRoot.vertical ? 0 : sizehelper.paintedWidth
+        Layout.minimumWidth: iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth
         Layout.maximumWidth: iconAndTextRoot.vertical ? Infinity : Layout.minimumWidth
 
-        Layout.minimumHeight: iconAndTextRoot.vertical ? sizehelper.paintedHeight : 0
+        Layout.minimumHeight: iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0
         Layout.maximumHeight: iconAndTextRoot.vertical ? Layout.minimumHeight : Infinity
 
         Text {
-            id: sizehelper
+            id: sizeHelper
 
             font {
                 family: label.font.family
                 weight: label.font.weight
                 italic: label.font.italic
-                pixelSize: iconAndTextRoot.vertical ? theme.mSize(theme.defaultFont).height * 2 : 1024 // random "big enough" size - this is used as a max pixelSize by the fontSizeMode
+                pixelSize: targetHeight
             }
-            minimumPixelSize: theme.mSize(theme.smallestFont).height / 2
-            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.VerticalFit
+            minimumPixelSize: 1
+            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -78,19 +104,18 @@ GridLayout {
                 leftMargin: units.smallSpacing
                 rightMargin: units.smallSpacing
             }
-            // These magic values are taken from the digital clock, so that the
-            // text sizes here are identical with various clock text sizes
+
+            smooth: true
+
             height: {
-                var textHeightScaleFactor = 0.7;
-                if (parent.height <= 26) {
-                    textHeightScaleFactor = 0.9;
-                }
-                return Math.min (parent.height * textHeightScaleFactor, 3 * theme.defaultFont.pixelSize);
+                var textHeightScaleFactor = 0.71;
+                return Math.min (targetHeight * textHeightScaleFactor, 3 * targetHeight);
             }
+
             visible: false
 
             // pattern to reserve some constant space TODO: improve and take formatting/i18n into account
-            text: "888.8° X"
+            text: "888.8 °X"
         }
 
         PlasmaComponents.Label {
@@ -98,17 +123,19 @@ GridLayout {
 
             font {
                 weight: Font.Normal
-                pixelSize: 1024
-                pointSize: 0 // we need to unset pointSize otherwise it breaks the Text.Fit size mode
+                pixelSize: targetHeight
+                pointSize: -1
             }
-            minimumPixelSize: theme.mSize(theme.smallestFont).height / 2
-            fontSizeMode: Text.Fit
+
+            minimumPixelSize: 1
+
+            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
             wrapMode: Text.NoWrap
 
-            height: 0
-            width: 0
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+            smooth: true
+
             anchors {
                 fill: parent
                 leftMargin: units.smallSpacing

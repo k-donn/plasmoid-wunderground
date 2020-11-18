@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.0
 import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
@@ -28,7 +29,7 @@ Item {
     property var weatherData: null
     property string errorStr: ""
     property string toolTipSubText: ""
-    property string iconCode: "32"
+    property string iconCode: "32" // sunny
     property string conditionNarrative: ""
 
 
@@ -105,6 +106,8 @@ Item {
 
     onAppStateChanged: {
         printDebug("state is: " + appState)
+
+        updatetoolTipSubText()
     }
 
     Component.onCompleted: {
@@ -134,7 +137,7 @@ Item {
     }
     Plasmoid.toolTipSubText: toolTipSubText
 
-    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 

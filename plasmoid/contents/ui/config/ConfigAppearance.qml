@@ -16,17 +16,21 @@
  */
 
 import QtQuick 2.0
-import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
+import QtQuick.Layouts 1.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.plasmoid 2.0
+import org.kde.kirigami 2.4 as Kirigami
 
-Button {
-    function showSettings() {
-        plasmoid.action("configure").trigger()
+Kirigami.FormLayout {
+    id: appearanceConfig
+
+    property alias cfg_compactPointSize: compactPointSize.value
+
+    // TODO: find out about other options for int config.
+    // This does not allow you to enter direct numbers must use +/- btns.
+    SpinBox {
+        id: compactPointSize
+
+        Kirigami.FormData.label: "Compact Rep font size"
     }
-
-    text: "Configure Wunderground"
-    icon.name: "settings"
-    onClicked: showSettings()
 }

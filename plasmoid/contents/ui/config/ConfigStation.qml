@@ -14,6 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
@@ -75,7 +76,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            text: "Version 2.1.0"
+            text: "Version 2.1.2"
         }
     }
 

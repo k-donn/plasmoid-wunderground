@@ -53,8 +53,6 @@ function getWindBarb(windSpeed) {
 		speedKts = mphToKts(windSpeed);
 	}
 
-	printDebug(speedKts)
-
 	if (within(speedKts, 0, 2.9999)) {
 		return "0-2";
 	} else if (within(speedKts, 3, 7.9999)) {
@@ -70,8 +68,8 @@ function getWindBarb(windSpeed) {
 	} else if (within(speedKts, 28, 32.9999)) {
 		return "28-32";
 	} else {
-        return "28-32";
-    }
+		return "28-32";
+	}
 }
 
 /**
@@ -96,13 +94,6 @@ function fToC(degF) {
 	return (degF - 32) / 1.8;
 }
 
-/**
- * Turn a speed in km/h to m/h.
- *
- * @param {number} kmh Speed in Kilometers/Hour
- *
- * @returns {number} Speed in Miles/Hour
- */
 function kmhToMph(kmh) {
 	return kmh * 0.6213711922;
 }
@@ -123,6 +114,14 @@ function ktsToKmh(kts) {
 	return kts / 0.5399565;
 }
 
+/**
+ * Returns whether value is within the range of [low, high).
+ * Inclusive lower; exclusive upper
+ *
+ * @param {number} value Value to compare
+ * @param {number} low Lower bound
+ * @param {number} high Upper bound
+ */
 function within(value, low, high) {
 	return value >= low && value < high;
 }
@@ -140,12 +139,12 @@ function within(value, low, high) {
  * @returns {number} What the air feels like
  */
 function feelsLike(temp, relHumid, windSpeed) {
-	let degF, windSpeedMph;
+	var degF, windSpeedMph;
 	if (unitsChoice === 0) {
 		degF = cToF(temp);
 		windSpeedMph = kmhToMph(windSpeed);
 
-		let res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
 		return fToC(res);
 	} else if (unitsChoice === 1) {
@@ -157,7 +156,7 @@ function feelsLike(temp, relHumid, windSpeed) {
 		degF = cToF(temp);
 		windSpeedMph = windSpeed;
 
-		let res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
 		return fToC(res);
 	}
@@ -303,12 +302,12 @@ function heatColorF(degF) {
 }
 
 function findIconCode() {
-	let req = new XMLHttpRequest();
+	var req = new XMLHttpRequest();
 
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;
 
-	let url = "https://api.weather.com/v3/wx/observations/current";
+	var url = "https://api.weather.com/v3/wx/observations/current";
 
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";

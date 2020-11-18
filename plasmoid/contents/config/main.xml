@@ -13,6 +13,11 @@
             <default>34.0602</default>
         </entry>
     </group>
+    <group name="Appearance">
+        <entry name="compactPointSize" type="Int">
+            <default>16</default>
+        </entry>
+    </group>
     <group name="Units">
         <entry name="unitsChoice" type="Int">
             <default>0</default>
