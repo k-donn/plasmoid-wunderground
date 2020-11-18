@@ -28,7 +28,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and Cl
 
 -   [x] Add forecast page
 -   [x] Allow for user to configure compact rep font size
--   [ ] Allow for user to input 0px to dynamically calculate font size
+-   [x] Allow for user to input 0px to dynamically calculate font size
 -   [ ] Allow for user to configure compact rep font weight
 -   [ ] Allow for user to configure compact rep font family
 -   [ ] Allow for user to configure compact rep icon size

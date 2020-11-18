@@ -17,11 +17,17 @@ GridLayout {
 
     property alias iconSource: svg.imagePath
     property alias text: label.text
-    property bool vertical: false
-
     property alias paintWidth: sizeHelper.paintedWidth
     property alias paintHeight: sizeHelper.paintedHeight
 
+    property bool vertical: false
+    property bool useUserHeight: userHeight > 0
+
+    property int userHeight: plasmoid.configuration.compactPointSize
+    property int targetHeight: useUserHeight ? userHeight : verticalFixedHeight
+
+    readonly property int verticalFixedHeight: 21 * units.devicePixelRatio
+    
     readonly property int minimumIconSize: units.iconSizes.small
     readonly property int iconSize: iconAndTextRoot.vertical ? width : height
 
@@ -86,10 +92,10 @@ GridLayout {
                 family: label.font.family
                 weight: label.font.weight
                 italic: label.font.italic
-                pixelSize: plasmoid.configuration.compactPointSize
+                pixelSize: targetHeight
             }
-            minimumPixelSize: theme.mSize(theme.smallestFont).height / 2
-            fontSizeMode: iconAndTextRoot.vertical ? Text.Fit : Text.FixedSize
+            minimumPixelSize: 1
+            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -98,13 +104,12 @@ GridLayout {
                 leftMargin: units.smallSpacing
                 rightMargin: units.smallSpacing
             }
-            
+
+            smooth: true
+
             height: {
-                var textHeightScaleFactor = 0.7;
-                if (parent.height <= 26) {
-                    textHeightScaleFactor = 0.9;
-                }
-                return Math.min (parent.height * textHeightScaleFactor, 3 * theme.defaultFont.pixelSize);
+                var textHeightScaleFactor = 0.71;
+                return Math.min (targetHeight * textHeightScaleFactor, 3 * targetHeight);
             }
 
             visible: false
@@ -118,18 +123,18 @@ GridLayout {
 
             font {
                 weight: Font.Normal
-                pixelSize: plasmoid.configuration.compactPointSize
+                pixelSize: targetHeight
+                pointSize: -1
             }
 
-            minimumPixelSize: theme.mSize(theme.smallestFont).height / 2
-            // If vertical, cap the max font size. Else, use user defined size even if crazy.
-            fontSizeMode: iconAndTextRoot.vertical ? Text.Fit : Text.FixedSize
+            minimumPixelSize: 1
+
+            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
             wrapMode: Text.NoWrap
 
-            height: 0
-            width: 0
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
+            smooth: true
 
             anchors {
                 fill: parent

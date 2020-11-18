@@ -139,12 +139,12 @@ function within(value, low, high) {
  * @returns {number} What the air feels like
  */
 function feelsLike(temp, relHumid, windSpeed) {
-	let degF, windSpeedMph;
+	var degF, windSpeedMph;
 	if (unitsChoice === 0) {
 		degF = cToF(temp);
 		windSpeedMph = kmhToMph(windSpeed);
 
-		let res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
 		return fToC(res);
 	} else if (unitsChoice === 1) {
@@ -156,7 +156,7 @@ function feelsLike(temp, relHumid, windSpeed) {
 		degF = cToF(temp);
 		windSpeedMph = windSpeed;
 
-		let res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
 		return fToC(res);
 	}
@@ -302,12 +302,12 @@ function heatColorF(degF) {
 }
 
 function findIconCode() {
-	let req = new XMLHttpRequest();
+	var req = new XMLHttpRequest();
 
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;
 
-	let url = "https://api.weather.com/v3/wx/observations/current";
+	var url = "https://api.weather.com/v3/wx/observations/current";
 
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
