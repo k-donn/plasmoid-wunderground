@@ -92,6 +92,7 @@ GridLayout {
                 family: label.font.family
                 weight: label.font.weight
                 italic: label.font.italic
+                underline: label.font.underline
                 pixelSize: targetHeight
             }
             minimumPixelSize: 1
@@ -122,7 +123,10 @@ GridLayout {
             id: label
 
             font {
-                weight: Font.Normal
+                family: plasmoid.configuration.compactFamily
+                weight: plasmoid.configuration.compactWeight ? Font.Bold : Font.Normal
+                italic: plasmoid.configuration.compactItalic
+                underline: plasmoid.configuration.compactUnderline
                 pixelSize: targetHeight
                 pointSize: -1
             }

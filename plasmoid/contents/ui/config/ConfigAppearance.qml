@@ -26,6 +26,14 @@ Kirigami.FormLayout {
 
     property alias cfg_compactPointSize: compactPointSize.value
 
+    ConfigFontFamily {
+        id: compactFontFamily
+
+        configKey: "compactFamily"
+
+        Kirigami.FormData.label: "Compact Rep font"
+    }
+
     // TODO: find out about other options for int config.
     // This does not allow you to enter direct numbers must use +/- btns.
     SpinBox {
@@ -33,4 +41,9 @@ Kirigami.FormLayout {
 
         Kirigami.FormData.label: "Compact Rep font size"
     }
+
+    ConfigTextFormat {
+        Kirigami.FormData.label: "Compact Rep font styles"
+    }
+
 }

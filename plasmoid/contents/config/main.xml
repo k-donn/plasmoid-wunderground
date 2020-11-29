@@ -15,7 +15,20 @@
     </group>
     <group name="Appearance">
         <entry name="compactPointSize" type="Int">
-            <default>16</default>
+            <default>0</default>
+        </entry>
+        <!-- If this is added, the font is distorted.
+        <entry name="compactFamily" type="String">
+            <default>Default</default>
+        </entry> -->
+        <entry name="compactWeight" type="Bool">
+            <default></default>
+        </entry>
+        <entry name="compactItalic" type="Bool">
+            <default></default>
+        </entry>
+        <entry name="compactUnderline" type="Bool">
+            <default></default>
         </entry>
     </group>
     <group name="Units">
