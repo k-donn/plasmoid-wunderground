@@ -21,6 +21,7 @@ import QtQuick.Controls 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
+import "lib"
 
 ColumnLayout {
     id: fullRoot

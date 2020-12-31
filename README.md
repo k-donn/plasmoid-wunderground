@@ -31,8 +31,8 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 -   [x] Allow for user to input 0px to dynamically calculate font size
 -   [x] Allow for user to configure compact rep font weight
 -   [x] Allow for user to configure compact rep font family
--   [ ] Allow for user to configure compact rep icon size
--   [ ] Refactor file structure
+-   [ ] Allow for user to configure compact rep icon size or change icon sizing problem (200 vs 512 px for some icons)
+-   [x] Refactor file structure
 -   [ ] Implement forecast page
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n

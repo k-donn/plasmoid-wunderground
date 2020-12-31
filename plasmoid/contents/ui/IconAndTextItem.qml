@@ -26,8 +26,10 @@ GridLayout {
     property int userHeight: plasmoid.configuration.compactPointSize
     property int targetHeight: useUserHeight ? userHeight : verticalFixedHeight
 
+    readonly property bool showTemperature: !inTray
+
     readonly property int verticalFixedHeight: 21 * units.devicePixelRatio
-    
+
     readonly property int minimumIconSize: units.iconSizes.small
     readonly property int iconSize: iconAndTextRoot.vertical ? width : height
 
@@ -39,6 +41,12 @@ GridLayout {
 
     function printDebug(msg) {
         console.log("[debug] " + msg)
+    }
+
+    Component.onCompleted: {
+        printDebug("////////////////////////////////////////")
+        printDebug(showTemperature)
+        printDebug("////////////////////////////////////////")
     }
 
     onPaintWidthChanged: {
@@ -56,7 +64,7 @@ GridLayout {
     PlasmaCore.SvgItem {
         id: icon
 
-        readonly property int implicitMinimumIconSize: Math.max(iconSize, minimumIconSize)
+        readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
@@ -75,7 +83,7 @@ GridLayout {
         id: text
 
         // Otherwise it takes up too much space while loading
-        visible: label.text.length > 0
+        visible: label.text.length > 0 && showTemperature
 
         Layout.fillWidth: iconAndTextRoot.vertical
         Layout.fillHeight: !iconAndTextRoot.vertical
@@ -121,6 +129,8 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: label
+
+            visible: showTemperature
 
             font {
                 family: plasmoid.configuration.compactFamily
