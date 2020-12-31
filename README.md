@@ -32,5 +32,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 -   [x] Allow for user to configure compact rep font weight
 -   [x] Allow for user to configure compact rep font family
 -   [ ] Allow for user to configure compact rep icon size
+-   [ ] Refactor file structure
+-   [ ] Implement forecast page
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n
