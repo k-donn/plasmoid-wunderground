@@ -20,7 +20,7 @@ Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteo
 
 By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/pyconic) on Twitter.
 
-Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and ClearableField.
+Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./plasmoid/contents/ui/config/NoApplyField.qml), and [ClearableField](./plasmoid/contents/ui/config/ClearableField.qml).
 
 [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
@@ -29,8 +29,10 @@ Big thanks to [Zren](https://github.com/Zren) for the files NoApplyField, and Cl
 -   [x] Add forecast page
 -   [x] Allow for user to configure compact rep font size
 -   [x] Allow for user to input 0px to dynamically calculate font size
--   [ ] Allow for user to configure compact rep font weight
--   [ ] Allow for user to configure compact rep font family
+-   [x] Allow for user to configure compact rep font weight
+-   [x] Allow for user to configure compact rep font family
 -   [ ] Allow for user to configure compact rep icon size
+-   [ ] Refactor file structure
+-   [ ] Implement forecast page
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n

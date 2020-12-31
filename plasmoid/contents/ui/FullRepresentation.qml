@@ -28,7 +28,7 @@ ColumnLayout {
     height: parent.height
     width: parent.width
 
-    spacing: 0
+    spacing: units.smallSpacing
 
     function printDebug(msg) {
         console.log("[debug] " + msg);
@@ -85,8 +85,6 @@ ColumnLayout {
 
         Layout.fillWidth: true
         Layout.fillHeight: true
-
-        Layout.bottomMargin: units.smallSpacing
     }
 
     BottomPanel {

@@ -347,7 +347,10 @@ function findIconCode() {
 /// a space in front of the unit. (32°F or 32 °F)             ///
 /////////////////////////////////////////////////////////////////
 
-function currentTempUnit(value, prependSpace = true) {
+function currentTempUnit(value, prependSpace) {
+	if (prependSpace === undefined) {
+		prependSpace = true;
+	}
 	var res = value;
 	if (unitsChoice === 1) {
 		res += returnSpace(prependSpace) + "°F";
@@ -357,7 +360,10 @@ function currentTempUnit(value, prependSpace = true) {
 	return res;
 }
 
-function currentSpeedUnit(value, prependSpace = true) {
+function currentSpeedUnit(value, prependSpace) {
+	if (prependSpace === undefined) {
+		prependSpace = true;
+	}
 	var res = value;
 	if (unitsChoice === 0) {
 		res += returnSpace(prependSpace) + "kmh";
@@ -367,7 +373,10 @@ function currentSpeedUnit(value, prependSpace = true) {
 	return res;
 }
 
-function currentElevUnit(value, prependSpace = true) {
+function currentElevUnit(value, prependSpace) {
+	if (prependSpace === undefined) {
+		prependSpace = true;
+	}
 	var res = value;
 	if (unitsChoice === 0) {
 		res += returnSpace(prependSpace) + "m";
@@ -377,7 +386,10 @@ function currentElevUnit(value, prependSpace = true) {
 	return res;
 }
 
-function currentPrecipUnit(value, prependSpace = true) {
+function currentPrecipUnit(value, prependSpace) {
+	if (prependSpace === undefined) {
+		prependSpace = true;
+	}
 	var res = value;
 	if (unitsChoice === 1) {
 		res += returnSpace(prependSpace) + "in";
@@ -387,7 +399,10 @@ function currentPrecipUnit(value, prependSpace = true) {
 	return res;
 }
 
-function currentPresUnit(value, prependSpace = true) {
+function currentPresUnit(value, prependSpace) {
+	if (prependSpace === undefined) {
+		prependSpace = true;
+	}
 	var res = value;
 	if (unitsChoice === 1) {
 		res += returnSpace(prependSpace) + "inHG";
