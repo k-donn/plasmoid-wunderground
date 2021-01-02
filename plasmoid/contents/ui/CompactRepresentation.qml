@@ -16,20 +16,19 @@ ColumnLayout {
     id: compactRoot
 
     readonly property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
-    readonly property bool showTemperature: !inTray
 
     function printDebug(msg) {
         console.log("[debug] " + msg)
     }
 
-    Loader {
-        id: loader
 
-        sourceComponent: showTemperature ? iconAndTextComponent : iconComponent
+    IconAndTextItem {
+        vertical: compactRoot.vertical
+        iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
+        text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"]) : "---.-° X"
+
         Layout.fillWidth: compactRoot.vertical
         Layout.fillHeight: !compactRoot.vertical
-        Layout.minimumWidth: item.Layout.minimumWidth
-        Layout.minimumHeight: item.Layout.minimumHeight
 
         MouseArea {
             id: compactMouseArea
@@ -44,34 +43,34 @@ ColumnLayout {
     }
 
 
-    Component {
-        id: iconComponent
+    // Component {
+    //     id: iconComponent
 
-        PlasmaCore.SvgItem {
-            readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
+    //     PlasmaCore.SvgItem {
+    //         readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
 
-            svg: PlasmaCore.Svg {
-                id: svg
-                imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
-            }
+    //         svg: PlasmaCore.Svg {
+    //             id: svg
+    //             imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+    //         }
 
-            // reset implicit size, so layout in free dimension does not stop at the default one
-            implicitWidth: units.iconSizes.small
-            implicitHeight: units.iconSizes.small
-            Layout.minimumWidth: compactRoot.vertical ? units.iconSizes.small : minIconSize
-            Layout.minimumHeight: compactRoot.vertical ? minIconSize : units.iconSizes.small
-        }
-    }
+    //         // reset implicit size, so layout in free dimension does not stop at the default one
+    //         implicitWidth: units.iconSizes.small
+    //         implicitHeight: units.iconSizes.small
+    //         Layout.minimumWidth: compactRoot.vertical ? units.iconSizes.small : minIconSize
+    //         Layout.minimumHeight: compactRoot.vertical ? minIconSize : units.iconSizes.small
+    //     }
+    // }
 
 
-    Component {
-        id: iconAndTextComponent
+    // Component {
+    //     id: iconAndTextComponent
 
-        IconAndTextItem {
-            vertical: compactRoot.vertical
-            iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
-            text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"]) : "---.-° X"
-        }
-    }
+    //     IconAndTextItem {
+    //         vertical: compactRoot.vertical
+    //         iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
+    //         text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"]) : "---.-° X"
+    //     }
+    // }
 
 }

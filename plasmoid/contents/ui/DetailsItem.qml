@@ -108,7 +108,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipRate
-        text: Utils.currentPrecipUnit(weatherData["details"]["precipRate"]) + "/hr"
+        text: Utils.currentPrecipUnit(weatherData["details"]["precipRate"], isRain) + "/hr"
         font.pointSize: 10
     }
     PlasmaComponents.Label {
@@ -148,7 +148,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipAcc
-        text: Utils.currentPrecipUnit(weatherData["details"]["precipTotal"])
+        text: Utils.currentPrecipUnit(weatherData["details"]["precipTotal"], isRain)
     }
     PlasmaComponents.Label {
         id: uv

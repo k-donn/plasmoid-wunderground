@@ -21,6 +21,7 @@ import QtQuick.Layouts 1.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.4 as Kirigami
 import "../../code/pws-api.js" as StationAPI
+import "../lib"
 
 Item {
     id: stationConfig
@@ -76,7 +77,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            text: "Version 2.2.0"
+            text: "Version 2.2.1"
         }
     }
 
