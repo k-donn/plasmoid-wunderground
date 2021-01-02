@@ -29,7 +29,7 @@ Item {
     property var weatherData: null
     property string errorStr: ""
     property string toolTipSubText: ""
-    property string iconCode: "11" // sunny
+    property string iconCode: "32" // 32 = sunny
     property string conditionNarrative: ""
 
 
@@ -44,6 +44,7 @@ Item {
     property int unitsChoice: plasmoid.configuration.unitsChoice
 
     property bool inTray: false
+    property bool isRain: true
 
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 480
@@ -137,7 +138,7 @@ Item {
     }
     Plasmoid.toolTipSubText: toolTipSubText
 
-    Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
+    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
     Plasmoid.fullRepresentation: fr
     Plasmoid.compactRepresentation: cr
 

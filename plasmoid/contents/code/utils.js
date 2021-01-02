@@ -333,6 +333,21 @@ function findIconCode() {
 
 				iconCode = res["iconCode"];
 				conditionNarrative = res["wxPhraseLong"];
+
+				// Determine if the precipitation is snow or rain
+				// All of these codes are for snow
+				if (
+					iconCode === 5 ||
+					iconCode === 13 ||
+					iconCode === 14 ||
+					iconCode === 15 ||
+					iconCode === 16 ||
+					iconCode === 42 ||
+					iconCode === 43 ||
+					iconCode === 46
+				) {
+					isRain = false;
+				}
 			}
 		}
 	};
@@ -386,15 +401,22 @@ function currentElevUnit(value, prependSpace) {
 	return res;
 }
 
-function currentPrecipUnit(value, prependSpace) {
+function currentPrecipUnit(value, isRain, prependSpace) {
 	if (prependSpace === undefined) {
 		prependSpace = true;
+	}
+	if (isRain === undefined) {
+		isRain = true;
 	}
 	var res = value;
 	if (unitsChoice === 1) {
 		res += returnSpace(prependSpace) + "in";
 	} else {
-		res += returnSpace(prependSpace) + "cm";
+		if (isRain) {
+			res += returnSpace(prependSpace) + "mm";
+		} else {
+			res += returnSpace(prependSpace) + "cm";
+		}
 	}
 	return res;
 }
