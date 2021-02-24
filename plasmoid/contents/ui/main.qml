@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,12 +27,13 @@ Item {
     id: root
 
     property var weatherData: null
+    property ListModel forecastModel: ListModel {}
     property string errorStr: ""
     property string toolTipSubText: ""
     property string iconCode: "32" // 32 = sunny
     property string conditionNarrative: ""
 
-
+    // TODO: add option for showFORECAST and showFORECASTERROR
     property int showCONFIG: 1
     property int showLOADING: 2
     property int showERROR: 4
@@ -44,13 +45,14 @@ Item {
     property int unitsChoice: plasmoid.configuration.unitsChoice
 
     property bool inTray: false
+    // Metric units change based on precipitation type
     property bool isRain: true
 
     property Component fr: FullRepresentation {
-        Layout.preferredWidth: 480
-        Layout.preferredHeight: 320
-        Layout.minimumWidth: 480
-        Layout.minimumHeight: 320
+        Layout.preferredWidth: 510
+        Layout.preferredHeight: 340
+        Layout.minimumWidth: 510
+        Layout.minimumHeight: 340
     }
 
     property Component cr: CompactRepresentation {
@@ -59,13 +61,26 @@ Item {
     }
 
     function printDebug(msg) {
-        console.log("[debug] " + msg)
+        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
     }
 
     function updateWeatherData() {
         printDebug("getting new weather data")
 
-        StationAPI.getWeatherData()
+        StationAPI.getCurrentData()
+        StationAPI.getForecastData()
+    }
+
+    function updateCurrentData() {
+        printDebug("getting new current data")
+
+        StationAPI.getCurrentData()
+    }
+
+    function updateForecastData() {
+        printDebug("getting new forecast data")
+
+        StationAPI.getForecastData()
     }
 
     function updatetoolTipSubText() {
@@ -85,7 +100,7 @@ Item {
         // Show loading screen after units change
         appState = showLOADING;
 
-        updateWeatherData()
+        updateWeatherData();
     }
 
     onStationIDChanged: {
@@ -94,9 +109,10 @@ Item {
         // Show loading screen after ID change
         appState = showLOADING;
 
-        StationAPI.getWeatherData()
+        updateWeatherData();
     }
 
+    // TODO: move this into pws-api.js?
     onWeatherDataChanged: {
         printDebug("weather data changed")
 
@@ -108,6 +124,8 @@ Item {
     onAppStateChanged: {
         printDebug("state is: " + appState)
 
+        // The state could now be an error, the tooltip displays the error
+
         updatetoolTipSubText()
     }
 
@@ -118,10 +136,17 @@ Item {
     }
 
     Timer {
-        interval: 10 * 1000
+        interval: plasmoid.configuration.refreshPeriod * 1000
         running: appState == showDATA
         repeat: true
-        onTriggered: updateWeatherData()
+        onTriggered: updateCurrentData()
+    }
+
+    Timer {
+        interval: 60 * 60 * 1000
+        running: appState == showDATA
+        repeat: true
+        onTriggered: updateForecastData()
     }
 
     Plasmoid.toolTipTextFormat: Text.RichText

@@ -16,38 +16,32 @@
  */
 
 import QtQuick 2.0
-import QtQuick.Layouts 1.0
 import QtQuick.Controls 2.0
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick.Layouts 1.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
-import "../code/utils.js" as Utils
+import org.kde.kirigami 2.4 as Kirigami
+import "../../code/pws-api.js" as StationAPI
+import "../lib"
 
-RowLayout {
-    id: topPanelRoot
+Item {
+    id: debugConfig
 
-    PlasmaCore.SvgItem {
-        id: topPanelIcon
+    property alias cfg_logConsole: logConsole.checked
 
-        svg: PlasmaCore.Svg {
-            id: svg
-            imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+    function printDebug(msg) {
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] " + msg)
         }
-
-        Layout.minimumWidth: units.iconSizes.large
-        Layout.minimumHeight: units.iconSizes.large
-        Layout.preferredWidth: Layout.minimumWidth
-        Layout.preferredHeight: Layout.minimumHeight
     }
 
-    PlasmaComponents.Label {
-        id: currStation
+    Kirigami.FormLayout {
+        anchors.fill: parent
 
-        text: conditionNarrative ? conditionNarrative : "loading..."
+        CheckBox {
+            id: logConsole
 
-        verticalAlignment: Text.AlignBottom
-        horizontalAlignment: Text.AlignRight
-
-        Layout.fillWidth: true
+            Kirigami.FormData.label: "Write to console.log:"
+        }
     }
+
 }

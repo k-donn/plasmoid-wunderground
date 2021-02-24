@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -38,6 +38,13 @@ Kirigami.FormLayout {
     // This does not allow you to enter direct numbers must use +/- btns.
     SpinBox {
         id: compactPointSize
+
+        from: 1
+        editable: true
+
+        validator: IntValidator {
+            bottom: refreshPeriod.from
+        }
 
         Kirigami.FormData.label: "Compact Rep font size"
     }

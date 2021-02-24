@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,9 +27,10 @@ Item {
     id: stationConfig
 
     property alias cfg_stationID: stationID.text
+    property alias cfg_refreshPeriod: refreshPeriod.value
 
     function printDebug(msg) {
-        console.log("[debug] " + msg)
+        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
     }
 
     Kirigami.FormLayout {
@@ -71,13 +72,26 @@ Item {
             Kirigami.FormData.label: "Latitude:"
         }
 
+        SpinBox {
+            id: refreshPeriod
+
+            from: 1
+            editable: true
+
+            validator: IntValidator {
+                bottom: refreshPeriod.from
+            }
+
+            Kirigami.FormData.label: "Refresh period (s):"
+        }
+
         Button {
             text: "Find Station"
             onClicked: StationAPI.getNearestStation()
         }
 
         PlasmaComponents.Label {
-            text: "Version 2.2.1"
+            text: "Version 2.3.0"
         }
     }
 

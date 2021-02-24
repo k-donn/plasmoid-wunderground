@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,16 +23,64 @@ import org.kde.plasma.core 2.0 as PlasmaCore
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import "../code/utils.js" as Utils
 
-ColumnLayout {
+RowLayout {
     id: forecastItemRoot
 
-    PlasmaComponents.Label {
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+    readonly property int preferredIconSize: units.iconSizes.large
 
-        horizontalAlignment: Text.AlignHCenter
+    Repeater {
+        id: repeater
 
-        text: "Coming Soon!"
+        model: forecastModel
+        ColumnLayout {
+            PlasmaComponents.Label {
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                text: date
+            }
+            PlasmaComponents.Label {
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                text: dayOfWeek
+            }
+            PlasmaComponents.Label {
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                text: dayShortDesc
+            }
+            PlasmaCore.SvgItem {
+                id: icon
+
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                Layout.preferredHeight: preferredIconSize
+                Layout.preferredWidth: preferredIconSize
+
+                svg: PlasmaCore.Svg {
+                    imagePath: plasmoid.file("", "icons/" + dayIconCode + ".svg")
+                }
+
+                PlasmaCore.ToolTipArea {
+                    id: tooltip
+
+                    mainText: dayLongDesc
+                    subText: "<font size='4'>" + "Feels like: " + Utils.currentTempUnit(dayFeels) + "<br/>Thunder: " + dayThunderDesc + "<br/>UV: " + dayUVDesc + "<br/>Snow: " + daySnowDesc + "<br/>Golf: " + dayGolfDesc + "</font>"
+
+                    interactive: true
+
+                    anchors.fill: parent
+                }
+            }
+            PlasmaComponents.Label {
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                text: Utils.currentTempUnit(dayHigh)
+            }
+            PlasmaComponents.Label {
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                text: Utils.currentTempUnit(dayLow)
+            }
+        }
     }
 }

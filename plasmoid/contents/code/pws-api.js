@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,7 +20,7 @@
  *
  * This handles setting errors and making the loading screen appear.
  */
-function getWeatherData() {
+function getCurrentData() {
 	var req = new XMLHttpRequest();
 
 	var url = "https://api.weather.com/v2/pws/observations/current";
@@ -79,9 +79,9 @@ function getWeatherData() {
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
 
-				appState = showDATA;
+				printDebug("Got new current data");
 
-				printDebug("Got new data");
+				appState = showDATA;
 			} else {
 				if (req.status == 204) {
 					errorStr = "Station not found";
@@ -92,6 +92,94 @@ function getWeatherData() {
 
 					printDebug(errorStr);
 				}
+
+				appState = showERROR;
+			}
+		}
+	};
+
+	req.send();
+}
+
+/**
+ * Fetch the forecast data and place it in the forecast data model.
+ */
+function getForecastData() {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v1/geocode";
+	url +=
+		"/" +
+		plasmoid.configuration.latitude +
+		"/" +
+		plasmoid.configuration.longitude;
+	url += "/forecast/daily/7day.json";
+	url += "?apiKey=6532d6454b8aa370768e63d6ba5a832e";
+	url += "&language=en-US";
+
+	if (unitsChoice === 0) {
+		url += "&units=m";
+	} else if (unitsChoice === 1) {
+		url += "&units=e";
+	} else {
+		url += "&units=h";
+	}
+
+	printDebug(url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				forecastModel.clear();
+
+				var res = JSON.parse(req.responseText);
+
+				var forecasts = res["forecasts"];
+
+				for (var period = 1; period < forecasts.length; period++) {
+					var forecast = forecasts[period];
+
+					var day = forecast["day"];
+					var night = forecast["night"];
+
+					var fullDateTime = forecast["fcst_valid_local"];
+					var date = parseInt(
+						fullDateTime.split("T")[0].split("-")[2]
+					);
+
+					var daySnowDesc =
+						day["snow_phrase"] === ""
+							? "No snow"
+							: day["snow_phrase"];
+
+					forecastModel.append({
+						date: date,
+						dayOfWeek: forecast["dow"],
+						dayIconCode: day["icon_code"],
+						dayHigh: forecast["max_temp"],
+						dayLow: forecast["min_temp"],
+						dayFeels: day["hi"],
+						dayShortDesc: day["phrase_12char"],
+						dayLongDesc: day["narrative"],
+						dayThunderDesc: day["thunder_enum_phrase"],
+						dayWindDesc: day["wind_phrase"],
+						dayUVDesc: day["uv_desc"],
+						daySnowDesc: daySnowDesc,
+						dayGolfDesc: day["golf_category"],
+					});
+				}
+
+				printDebug("Got new forecast data");
+
+				appState = showDATA;
+			} else {
+				errorStr = "Could not fetch forecast data";
+
+				printDebug(errorStr);
 
 				appState = showERROR;
 			}
