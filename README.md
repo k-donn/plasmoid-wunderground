@@ -12,7 +12,7 @@ Supply the name of the weatherstation (ie. [KGADACUL1](https://www.wunderground.
 
 Also, input your coordinates and the widget will find the nearest station to you!
 
-The data updates every 10 seconds.
+Some stations update at different rates so you can set the rate of refresh in config.
 
 ## Meta
 
@@ -26,14 +26,8 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 ## TODO
 
--   [x] Add forecast page
--   [x] Allow for user to configure compact rep font size
--   [x] Allow for user to input 0px to dynamically calculate font size
--   [x] Allow for user to configure compact rep font weight
--   [x] Allow for user to configure compact rep font family
--   [x] Refactor file structure
--   [ ] Implement forecast page (have seperate error page on forecast page)
+-   [ ] Have seperate error page for forecast errors
 -   [ ] Refactor icon finding and tooltip update logic (merge into findCurrentData?)
--   [ ] Allow for user to configure compact rep icon size or change icon sizing problem (200 vs 512 px for some icons)
+-   [ ] Allow for user to configure compact rep icon size or change icon sizing problem (200 vs 512 px for some icons) and use all meteocons
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n

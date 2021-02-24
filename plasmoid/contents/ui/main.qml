@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -61,7 +61,7 @@ Item {
     }
 
     function printDebug(msg) {
-        console.log("[debug] " + msg)
+        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
     }
 
     function updateWeatherData() {
@@ -136,7 +136,7 @@ Item {
     }
 
     Timer {
-        interval: 10 * 1000
+        interval: plasmoid.configuration.refreshPeriod * 1000
         running: appState == showDATA
         repeat: true
         onTriggered: updateCurrentData()

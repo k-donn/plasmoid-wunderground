@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -64,7 +64,7 @@ RowLayout {
                     id: tooltip
 
                     mainText: dayLongDesc
-                    subText: "<font size='4'>" + "<br/>Thunder: " + dayThunderDesc + "<br/>UV: " + dayUVDesc + "<br/>Snow: " + daySnowDesc + "<br/>Golf: " + dayGolfDesc + "</font>"
+                    subText: "<font size='4'>" + "Feels like: " + Utils.currentTempUnit(dayFeels) + "<br/>Thunder: " + dayThunderDesc + "<br/>UV: " + dayUVDesc + "<br/>Snow: " + daySnowDesc + "<br/>Golf: " + dayGolfDesc + "</font>"
 
                     interactive: true
 

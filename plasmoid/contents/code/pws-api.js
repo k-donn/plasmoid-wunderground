@@ -1,5 +1,5 @@
 /*
- * Copyright 2020  Kevin Donnelly
+ * Copyright 2021  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -160,8 +160,9 @@ function getForecastData() {
 						date: date,
 						dayOfWeek: forecast["dow"],
 						dayIconCode: day["icon_code"],
-						dayHigh: day["hi"],
-						dayLow: day["temp"],
+						dayHigh: forecast["max_temp"],
+						dayLow: forecast["min_temp"],
+						dayFeels: day["hi"],
 						dayShortDesc: day["phrase_12char"],
 						dayLongDesc: day["narrative"],
 						dayThunderDesc: day["thunder_enum_phrase"],

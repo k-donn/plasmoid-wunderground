@@ -40,7 +40,7 @@ GridLayout {
     rowSpacing: 0
 
     function printDebug(msg) {
-        console.log("[debug] " + msg)
+        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
     }
 
     Component.onCompleted: {
