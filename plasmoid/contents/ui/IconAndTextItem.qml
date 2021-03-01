@@ -40,13 +40,7 @@ GridLayout {
     rowSpacing: 0
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
-    }
-
-    Component.onCompleted: {
-        printDebug("////////////////////////////////////////")
-        printDebug(showTemperature)
-        printDebug("////////////////////////////////////////")
+        if (plasmoid.configuration.logConsole) {console.log("[debug] [IconText.qml] " + msg)}
     }
 
     onPaintWidthChanged: {

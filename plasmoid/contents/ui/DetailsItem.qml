@@ -31,7 +31,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: temp
-        text: Utils.currentTempUnit(weatherData["details"]["temp"].toFixed(1))
+        text: Utils.currentTempUnit(weatherData["details"]["temp"])
         font {
             bold: true
             pointSize: 30
@@ -64,7 +64,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: feelsLike
-        text: "Feels like " + Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]).toFixed(2))
+        text: "Feels like " + Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]))
     }
     PlasmaComponents.Label {
         id: windDirCard
@@ -113,7 +113,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: pressure
-        text: Utils.currentPresUnit(weatherData["details"]["pressure"].toFixed(2))
+        text: Utils.currentPresUnit(weatherData["details"]["pressure"])
         font.pointSize: 10
     }
 

@@ -38,7 +38,7 @@ function getCurrentData() {
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 	url += "&numericPrecision=decimal";
 
-	printDebug(url);
+	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
 
@@ -50,7 +50,7 @@ function getCurrentData() {
 
 		appState = showERROR;
 
-		printDebug(errorStr);
+		printDebug("[pws-api.js] " + errorStr);
 	};
 
 	req.onreadystatechange = function () {
@@ -79,18 +79,20 @@ function getCurrentData() {
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
 
-				printDebug("Got new current data");
+				printDebug("[pws-api.js] Got new current data");
+
+				findIconCode();
 
 				appState = showDATA;
 			} else {
 				if (req.status == 204) {
 					errorStr = "Station not found";
 
-					printDebug(errorStr);
+					printDebug("[pws-api.js] " + errorStr);
 				} else {
 					errorStr = "Request failed: " + req.responseText;
 
-					printDebug(errorStr);
+					printDebug("[pws-api.js] " + errorStr);
 				}
 
 				appState = showERROR;
@@ -125,7 +127,7 @@ function getForecastData() {
 		url += "&units=h";
 	}
 
-	printDebug(url);
+	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
 
@@ -173,13 +175,13 @@ function getForecastData() {
 					});
 				}
 
-				printDebug("Got new forecast data");
+				printDebug("[pws-api.js] Got new forecast data");
 
 				appState = showDATA;
 			} else {
 				errorStr = "Could not fetch forecast data";
 
-				printDebug(errorStr);
+				printDebug("[pws-api.js] " + errorStr);
 
 				appState = showERROR;
 			}
@@ -204,7 +206,7 @@ function getNearestStation() {
 	url += "&format=json";
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 
-	printDebug(url);
+	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
 
@@ -221,7 +223,62 @@ function getNearestStation() {
 					stationID.text = closest;
 				}
 			} else {
-				printDebug(req.responseText);
+				printDebug("[pws-api.js] " + req.responseText);
+			}
+		}
+	};
+
+	req.send();
+}
+
+
+function findIconCode() {
+	var req = new XMLHttpRequest();
+
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+
+	var url = "https://api.weather.com/v3/wx/observations/current";
+
+	url += "?geocode=" + lat + "," + long;
+	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
+	url += "&language=en-US";
+	url += "&units=e";
+	url += "&format=json";
+
+	req.open("GET", url, true);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onerror = function () {
+		printDebug("[pws-api.js] " + req.responseText);
+	};
+
+	printDebug("[pws-api.js] " + url);
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				iconCode = res["iconCode"];
+				conditionNarrative = res["wxPhraseLong"];
+
+				// Determine if the precipitation is snow or rain
+				// All of these codes are for snow
+				if (
+					iconCode === 5 ||
+					iconCode === 13 ||
+					iconCode === 14 ||
+					iconCode === 15 ||
+					iconCode === 16 ||
+					iconCode === 42 ||
+					iconCode === 43 ||
+					iconCode === 46
+				) {
+					isRain = false;
+				}
 			}
 		}
 	};

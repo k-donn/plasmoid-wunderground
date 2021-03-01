@@ -34,17 +34,10 @@ Kirigami.FormLayout {
         Kirigami.FormData.label: "Compact Rep font"
     }
 
-    // TODO: find out about other options for int config.
-    // This does not allow you to enter direct numbers must use +/- btns.
     SpinBox {
         id: compactPointSize
 
-        from: 1
         editable: true
-
-        validator: IntValidator {
-            bottom: refreshPeriod.from
-        }
 
         Kirigami.FormData.label: "Compact Rep font size"
     }

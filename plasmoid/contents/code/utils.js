@@ -139,33 +139,34 @@ function within(value, low, high) {
  * @returns {number} What the air feels like
  */
 function feelsLike(temp, relHumid, windSpeed) {
-	var degF, windSpeedMph;
+	var degF, windSpeedMph, finalRes;
 	if (unitsChoice === 0) {
 		degF = cToF(temp);
 		windSpeedMph = kmhToMph(windSpeed);
 
 		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
-		return fToC(res);
+		finalRes = fToC(res);
 	} else if (unitsChoice === 1) {
 		degF = temp;
 		windSpeedMph = windSpeed;
 
-		return feelsLikeImperial(degF, relHumid, windSpeedMph);
+		finalRes = feelsLikeImperial(degF, relHumid, windSpeedMph);
 	} else {
 		degF = cToF(temp);
 		windSpeedMph = windSpeed;
 
 		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
-		return fToC(res);
+		finalRes = fToC(res);
 	}
+	return finalRes.toFixed(2);
 }
 
 /**
  * Return what the air feels like in imperial units.
  *
- * @param {number} temp Temp in Fahrenheit
+ * @param {number} degF Temp in Fahrenheit
  * @param {number} relHumid Percent humidity
  * @param {number} windSpeed Speed in m/h
  *
@@ -202,7 +203,7 @@ function heatIndexF(degF, relHumid) {
 		1.22874 * Math.pow(10, -3) * degF * degF * relHumid +
 		8.5282 * Math.pow(10, -4) * degF * relHumid * relHumid -
 		1.99 * Math.pow(10, -6) * degF * degF * relHumid * relHumid;
-	return hIndex.toFixed(1);
+	return hIndex;
 }
 
 /**
@@ -219,7 +220,7 @@ function windChillF(degF, windSpeedMph) {
 		0.6215 * degF -
 		35.75 * Math.pow(windSpeedMph, 0.16) +
 		0.4275 * degF * Math.pow(windSpeedMph, 0.16);
-	return newTemp.toFixed(1);
+	return newTemp;
 }
 
 /**
@@ -301,59 +302,6 @@ function heatColorF(degF) {
 		: "#5E4FA2";
 }
 
-function findIconCode() {
-	var req = new XMLHttpRequest();
-
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
-
-	var url = "https://api.weather.com/v3/wx/observations/current";
-
-	url += "?geocode=" + lat + "," + long;
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
-	url += "&language=en-US";
-	url += "&units=e";
-	url += "&format=json";
-
-	req.open("GET", url, true);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
-	req.onerror = function () {
-		printDebug(req.responseText);
-	};
-
-	printDebug(url);
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				iconCode = res["iconCode"];
-				conditionNarrative = res["wxPhraseLong"];
-
-				// Determine if the precipitation is snow or rain
-				// All of these codes are for snow
-				if (
-					iconCode === 5 ||
-					iconCode === 13 ||
-					iconCode === 14 ||
-					iconCode === 15 ||
-					iconCode === 16 ||
-					iconCode === 42 ||
-					iconCode === 43 ||
-					iconCode === 46
-				) {
-					isRain = false;
-				}
-			}
-		}
-	};
-
-	req.send();
-}
 
 /////////////////////////////////////////////////////////////////
 /// All of the following return what unit measures            ///

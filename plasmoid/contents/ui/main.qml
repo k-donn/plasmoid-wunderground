@@ -61,50 +61,63 @@ Item {
     }
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
+        if (plasmoid.configuration.logConsole) {console.log("[debug] [main.qml] " + msg)}
+    }
+
+    function printDebugJSON(json) {
+        if (plasmoid.configuration.logConsole) {console.log("[debug] [main.qml] " + JSON.stringify(json))}
     }
 
     function updateWeatherData() {
-        printDebug("getting new weather data")
+        printDebug("Getting new weather data")
 
         StationAPI.getCurrentData()
         StationAPI.getForecastData()
+
+        updatetoolTipSubText()
     }
 
     function updateCurrentData() {
-        printDebug("getting new current data")
+        printDebug("Getting new current data")
 
         StationAPI.getCurrentData()
+
+        updatetoolTipSubText()
     }
 
     function updateForecastData() {
-        printDebug("getting new forecast data")
+        printDebug("Getting new forecast data")
 
         StationAPI.getForecastData()
+
+        updatetoolTipSubText()
     }
 
     function updatetoolTipSubText() {
         var subText = ""
 
-        subText += "<font size='4'>" + Utils.currentTempUnit(weatherData["details"]["temp"]) + "</font><br />"
-        subText += "<font size='4'>" + Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]) + "</font><br />"
-        subText += "<br />"
+        subText += "<font size='4'>Temp: " + Utils.currentTempUnit(weatherData["details"]["temp"]) + "</font><br />"
+        subText += "<font size='4'>Feels: " + Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"])) + "</font><br />"
+        subText += "<font size='4'>Wnd spd:" + Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]) + "</font><br />"
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
         toolTipSubText = subText;
     }
 
     onUnitsChoiceChanged: {
-        printDebug("units changed")
+        printDebug("Units changed")
 
-        // Show loading screen after units change
-        appState = showLOADING;
+        // A user could configure units but not station id. This would trigger improper request.
+        if (stationID != "") {
+            // Show loading screen after units change
+            appState = showLOADING;
 
-        updateWeatherData();
+            updateWeatherData();
+        }
     }
 
     onStationIDChanged: {
-        printDebug("id changed")
+        printDebug("Station ID changed")
 
         // Show loading screen after ID change
         appState = showLOADING;
@@ -112,20 +125,14 @@ Item {
         updateWeatherData();
     }
 
-    // TODO: move this into pws-api.js?
     onWeatherDataChanged: {
-        printDebug("weather data changed")
-
-        updatetoolTipSubText()
-
-        Utils.findIconCode()
+        printDebug("Weather data changed")
     }
 
     onAppStateChanged: {
-        printDebug("state is: " + appState)
+        printDebug("State is: " + appState)
 
         // The state could now be an error, the tooltip displays the error
-
         updatetoolTipSubText()
     }
 
@@ -133,18 +140,20 @@ Item {
         inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
 
         plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
+
+        plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground
     }
 
     Timer {
         interval: plasmoid.configuration.refreshPeriod * 1000
-        running: appState == showDATA
+        running: appState != showCONFIG
         repeat: true
         onTriggered: updateCurrentData()
     }
 
     Timer {
         interval: 60 * 60 * 1000
-        running: appState == showDATA
+        running: appState != showCONFIG
         repeat: true
         onTriggered: updateForecastData()
     }

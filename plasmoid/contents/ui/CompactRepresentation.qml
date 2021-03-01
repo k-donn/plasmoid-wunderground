@@ -18,7 +18,7 @@ ColumnLayout {
     readonly property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
+        if (plasmoid.configuration.logConsole) {console.log("[debug] [CompactRep.qml] " + msg)}
     }
 
 

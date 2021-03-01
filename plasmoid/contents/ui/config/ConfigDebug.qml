@@ -28,12 +28,6 @@ Item {
 
     property alias cfg_logConsole: logConsole.checked
 
-    function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {
-            console.log("[debug] " + msg)
-        }
-    }
-
     Kirigami.FormLayout {
         anchors.fill: parent
 
