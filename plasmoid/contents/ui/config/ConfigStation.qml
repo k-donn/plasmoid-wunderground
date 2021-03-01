@@ -30,7 +30,7 @@ Item {
     property alias cfg_refreshPeriod: refreshPeriod.value
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] " + msg)}
+        if (plasmoid.configuration.logConsole) {console.log("[debug] [ConfigStation.qml] " + msg)}
     }
 
     Kirigami.FormLayout {

@@ -35,7 +35,7 @@ ConfigModel {
     }
     ConfigCategory {
         name: "Debug"
-        icon: "configuration"
+        icon: "preferences-other"
         source: "config/ConfigDebug.qml"
     }
 }
