@@ -31,7 +31,6 @@ GridLayout {
     readonly property int verticalFixedHeight: 21 * units.devicePixelRatio
 
     readonly property int minimumIconSize: units.iconSizes.small
-    readonly property int iconSize: iconAndTextRoot.vertical ? width : height
 
     columns: iconAndTextRoot.vertical ? 1 : 2
     rows: iconAndTextRoot.vertical ? 2 : 1

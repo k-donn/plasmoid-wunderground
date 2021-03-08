@@ -1,33 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 17.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1"
-	xmlns="http://www.w3.org/2000/svg"
-	xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
-	<style id="current-color-scheme" />
-	<g id="freezing-rain">
-		<g id="hint-apply-color-scheme">
-			<g>
-				<path class="ColorScheme-Text" fill="currentColor" d="M113.2,129.6c-1-0.2-2,0.2-2.5,1l0,0l-34.8,53.7c-0.6,0.9-1.1,1.8-1.4,2.9c-1.6,5.4,2,11,8.1,12.4
-				c6,1.4,12.2-1.7,13.9-7.1h0l8.4-27.9c0,0,0-0.1,0-0.1l0,0l9.8-32.5l0-0.2l0,0C115,130.9,114.3,129.9,113.2,129.6z"/>
-				<path class="ColorScheme-Text" fill="currentColor" d="M146.5,125.5c0.4-0.9-0.2-1.9-1.2-2.2c-0.9-0.3-1.9,0-2.3,0.7h0l-19.4,24.8c-0.4,0.5-0.7,1-1,1.6
-				c-1.2,3,0.6,6.4,4,7.5c3.4,1.1,7-0.4,8.3-3.3h0l11.5-28.9L146.5,125.5L146.5,125.5z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   x="0px"
+   y="0px"
+   viewBox="0 0 240 240"
+   enable-background="new 0 0 200 200"
+   xml:space="preserve"
+   id="svg25"
+   sodipodi:docname="10.svg"
+   width="240"
+   height="240"><metadata
+   id="metadata31"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
+   id="defs29" /><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="640"
+   inkscape:window-height="480"
+   id="namedview27"
+   fit-margin-top="20"
+   fit-margin-left="20"
+   fit-margin-right="20"
+   fit-margin-bottom="20" />
+	<style
+   id="current-color-scheme" />
+	<g
+   id="freezing-rain"
+   transform="translate(20,20)">
+		<g
+   id="hint-apply-color-scheme">
+			<g
+   id="g7">
+				<path
+   class="ColorScheme-Text"
+   fill="currentColor"
+   d="m 113.2,129.6 c -1,-0.2 -2,0.2 -2.5,1 v 0 l -34.8,53.7 c -0.6,0.9 -1.1,1.8 -1.4,2.9 -1.6,5.4 2,11 8.1,12.4 6,1.4 12.2,-1.7 13.9,-7.1 v 0 l 8.4,-27.9 c 0,0 0,-0.1 0,-0.1 v 0 l 9.8,-32.5 v -0.2 0 c 0.3,-0.9 -0.4,-1.9 -1.5,-2.2 z"
+   id="path3" />
+				<path
+   class="ColorScheme-Text"
+   fill="currentColor"
+   d="m 146.5,125.5 c 0.4,-0.9 -0.2,-1.9 -1.2,-2.2 -0.9,-0.3 -1.9,0 -2.3,0.7 v 0 l -19.4,24.8 c -0.4,0.5 -0.7,1 -1,1.6 -1.2,3 0.6,6.4 4,7.5 3.4,1.1 7,-0.4 8.3,-3.3 v 0 l 11.5,-28.9 z"
+   id="path5" />
 			</g>
-			<g>
-				<g>
-					<path class="ColorScheme-Text" fill="currentColor" d="M66.9,158.3c-0.3,0-0.5,0-0.8-0.2c-1.1-0.4-1.6-1.7-1.1-2.7L80.4,119c0.4-1.1,1.7-1.6,2.7-1.1
-					c1.1,0.4,1.6,1.7,1.2,2.7L68.8,157C68.5,157.8,67.7,158.3,66.9,158.3z"/>
-					<path class="ColorScheme-Text" fill="currentColor" d="M60.2,143.9c-0.3,0-0.5,0-0.8-0.2c-1.1-0.4-1.6-1.7-1.1-2.7l7.6-18.3c0.4-1.1,1.7-1.6,2.7-1.1
-					c1.1,0.4,1.6,1.7,1.2,2.7l-7.6,18.3C61.8,143.4,61,143.9,60.2,143.9z"/>
-					<path class="ColorScheme-Text" fill="currentColor" d="M64,172.2c0,5.7-4.6,10.3-10.3,10.3c-5.7,0-10.3-4.6-10.3-10.3c0-5.7,4.6-10.3,10.3-10.3
-					S64,166.5,64,172.2z"/>
+			<g
+   id="g17">
+				<g
+   id="g15">
+					<path
+   class="ColorScheme-Text"
+   fill="currentColor"
+   d="m 66.9,158.3 c -0.3,0 -0.5,0 -0.8,-0.2 -1.1,-0.4 -1.6,-1.7 -1.1,-2.7 L 80.4,119 c 0.4,-1.1 1.7,-1.6 2.7,-1.1 1.1,0.4 1.6,1.7 1.2,2.7 L 68.8,157 c -0.3,0.8 -1.1,1.3 -1.9,1.3 z"
+   id="path9" />
+					<path
+   class="ColorScheme-Text"
+   fill="currentColor"
+   d="m 60.2,143.9 c -0.3,0 -0.5,0 -0.8,-0.2 -1.1,-0.4 -1.6,-1.7 -1.1,-2.7 l 7.6,-18.3 c 0.4,-1.1 1.7,-1.6 2.7,-1.1 1.1,0.4 1.6,1.7 1.2,2.7 l -7.6,18.3 c -0.4,0.8 -1.2,1.3 -2,1.3 z"
+   id="path11" />
+					<path
+   class="ColorScheme-Text"
+   fill="currentColor"
+   d="m 64,172.2 c 0,5.7 -4.6,10.3 -10.3,10.3 -5.7,0 -10.3,-4.6 -10.3,-10.3 0,-5.7 4.6,-10.3 10.3,-10.3 5.7,0 10.3,4.6 10.3,10.3 z"
+   id="path13" />
 				</g>
 			</g>
 		</g>
-		<g>
-			<path class="ColorScheme-Text" fill="currentColor" d="M197.9,67.2c-4.7-17.5-22.7-28-40.2-23.4c0,0-1.3,0.3-3.5,0.9c-5.6-20.8-24.6-36.2-47.2-36.2
-			c-24.5,0-44.8,18.1-48.3,41.6c-0.8-0.2-1.3-0.3-1.3-0.3c-14.8-3.8-30,5-33.9,19.8c-0.9,3.5-1.1,7-0.8,10.4c-7.4,2-12,3.2-12,3.2
-			c-7,1.9-11.1,9-9.2,16c1.6,6.1,7.3,10,13.4,9.7h150.3c0,0,6.2-0.3,9.4-1.1C192.1,102.9,202.6,84.8,197.9,67.2z"/>
+		<g
+   id="g22">
+			<path
+   class="ColorScheme-Text"
+   fill="currentColor"
+   d="m 197.9,67.2 c -4.7,-17.5 -22.7,-28 -40.2,-23.4 0,0 -1.3,0.3 -3.5,0.9 C 148.6,23.9 129.6,8.5 107,8.5 82.5,8.5 62.2,26.6 58.7,50.1 c -0.8,-0.2 -1.3,-0.3 -1.3,-0.3 -14.8,-3.8 -30,5 -33.9,19.8 -0.9,3.5 -1.1,7 -0.8,10.4 -7.4,2 -12,3.2 -12,3.2 -7,1.9 -11.1,9 -9.2,16 1.6,6.1 7.3,10 13.4,9.7 h 150.3 c 0,0 6.2,-0.3 9.4,-1.1 17.5,-4.9 28,-23 23.3,-40.6 z"
+   id="path20" />
 		</g>
 	</g>
 </svg>
