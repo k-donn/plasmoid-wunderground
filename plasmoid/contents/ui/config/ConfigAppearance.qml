@@ -39,7 +39,7 @@ Kirigami.FormLayout {
 
         editable: true
 
-        Kirigami.FormData.label: "Compact Rep font size"
+        Kirigami.FormData.label: "Compact Rep font size (0px=scale)"
     }
 
     ConfigTextFormat {
