@@ -105,6 +105,9 @@ function getCurrentData() {
 
 /**
  * Fetch the forecast data and place it in the forecast data model.
+ * 
+ * @todo Incorporate a bitmapped appState field so an error with forecasts 
+ * doesn't show an error screen for entire widget.
  */
 function getForecastData() {
 	var req = new XMLHttpRequest();
@@ -142,42 +145,60 @@ function getForecastData() {
 
 				var forecasts = res["forecasts"];
 
-				for (var period = 1; period < forecasts.length; period++) {
+				for (var period = 0; period < forecasts.length; period++) {
 					var forecast = forecasts[period];
 
 					var day = forecast["day"];
 					var night = forecast["night"];
+
+					var isDay = day !== undefined;
 
 					var fullDateTime = forecast["fcst_valid_local"];
 					var date = parseInt(
 						fullDateTime.split("T")[0].split("-")[2]
 					);
 
-					var daySnowDesc =
-						day["snow_phrase"] === ""
-							? "No snow"
-							: day["snow_phrase"];
+					var snowDesc = "";
+					if (isDay) {
+						snowDesc =
+							day["snow_phrase"] === ""
+								? "No snow"
+								: day["snow_phrase"];
+					} else {
+						snowDesc =
+							night["snow_phrase"] === ""
+								? "No snow"
+								: night["snow_phrase"];
+					}
 
 					forecastModel.append({
 						date: date,
-						dayOfWeek: forecast["dow"],
-						dayIconCode: day["icon_code"],
-						dayHigh: forecast["max_temp"],
-						dayLow: forecast["min_temp"],
-						dayFeels: day["hi"],
-						dayShortDesc: day["phrase_12char"],
-						dayLongDesc: day["narrative"],
-						dayThunderDesc: day["thunder_enum_phrase"],
-						dayWindDesc: day["wind_phrase"],
-						dayUVDesc: day["uv_desc"],
-						daySnowDesc: daySnowDesc,
-						dayGolfDesc: day["golf_category"],
+						dayOfWeek: isDay ? forecast["dow"] : "Tonight",
+						iconCode: isDay ? day["icon_code"] : night["icon_code"],
+						high: isDay ? forecast["max_temp"] : night["hi"],
+						low: forecast["min_temp"],
+						feelsLike: isDay ? day["hi"] : night["hi"],
+						shortDesc: isDay
+							? day["phrase_12char"]
+							: night["phrase_12char"],
+						longDesc: isDay ? day["narrative"] : night["narrative"],
+						thunderDesc: isDay
+							? day["thunder_enum_phrase"]
+							: night["thunder_enum_phrase"],
+						winDesc: isDay
+							? day["wind_phrase"]
+							: night["wind_phrase"],
+						UVDesc: isDay ? day["uv_desc"] : night["uv_desc"],
+						snowDesc: snowDesc,
+						golfDesc: isDay
+							? day["golf_category"]
+							: "Don't play golf at night.",
 					});
 				}
 
 				printDebug("[pws-api.js] Got new forecast data");
 
-				appState = showDATA;
+				showForecast = true;
 			} else {
 				errorStr = "Could not fetch forecast data";
 
@@ -230,7 +251,6 @@ function getNearestStation() {
 
 	req.send();
 }
-
 
 function findIconCode() {
 	var req = new XMLHttpRequest();

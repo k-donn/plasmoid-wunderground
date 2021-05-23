@@ -39,6 +39,8 @@ Item {
     property int showERROR: 4
     property int showDATA: 8
 
+    property bool showForecast: false
+
     property int appState: showCONFIG
 
     property string stationID: plasmoid.configuration.stationID
