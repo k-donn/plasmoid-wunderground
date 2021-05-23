@@ -41,6 +41,18 @@ RowLayout {
     }
 
     PlasmaComponents.Label {
+        id: tempOverview
+
+        text: showForecast ? "High: " + forecastModel.get(0).high + " Low: " + forecastModel.get(0).low : "loading..."
+
+        verticalAlignment: Text.AlignBottom
+        horizontalAlignment: Text.AlignHCenter
+
+        Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+    }
+
+    PlasmaComponents.Label {
         id: currStation
 
         text: conditionNarrative ? conditionNarrative : "loading..."
@@ -48,6 +60,6 @@ RowLayout {
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignRight
 
-        Layout.fillWidth: true
+        Layout.alignment: Qt.AlignRight
     }
 }

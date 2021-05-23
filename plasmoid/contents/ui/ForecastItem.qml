@@ -46,7 +46,7 @@ RowLayout {
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-                text: dayShortDesc
+                text: shortDesc
             }
             PlasmaCore.SvgItem {
                 id: icon
@@ -57,14 +57,14 @@ RowLayout {
                 Layout.preferredWidth: preferredIconSize
 
                 svg: PlasmaCore.Svg {
-                    imagePath: plasmoid.file("", "icons/" + dayIconCode + ".svg")
+                    imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
                 }
 
                 PlasmaCore.ToolTipArea {
                     id: tooltip
 
-                    mainText: dayLongDesc
-                    subText: "<font size='4'>" + "Feels like: " + Utils.currentTempUnit(dayFeels) + "<br/>Thunder: " + dayThunderDesc + "<br/>UV: " + dayUVDesc + "<br/>Snow: " + daySnowDesc + "<br/>Golf: " + dayGolfDesc + "</font>"
+                    mainText: longDesc
+                    subText: "<font size='4'>" + "Feels like: " + Utils.currentTempUnit(feelsLike) + "<br/>Thunder: " + thunderDesc + "<br/>UV: " + UVDesc + "<br/>Snow: " + snowDesc + "<br/>Golf: " + golfDesc + "</font>"
 
                     interactive: true
 
@@ -74,12 +74,12 @@ RowLayout {
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-                text: Utils.currentTempUnit(dayHigh)
+                text: Utils.currentTempUnit(high)
             }
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
-                text: Utils.currentTempUnit(dayLow)
+                text: Utils.currentTempUnit(low)
             }
         }
     }
