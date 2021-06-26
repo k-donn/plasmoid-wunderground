@@ -86,7 +86,7 @@ function getCurrentData() {
 				appState = showDATA;
 			} else {
 				if (req.status == 204) {
-					errorStr = "Station not found";
+					errorStr = "Station not found or station not active";
 
 					printDebug("[pws-api.js] " + errorStr);
 				} else {
