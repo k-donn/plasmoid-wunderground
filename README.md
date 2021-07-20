@@ -27,8 +27,10 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 ## TODO
 
+-   [ ] Version 3 updates
+
+## Parking lot
+
 -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
--   [x] Refactor icon finding and tooltip update logic (merge into findCurrentData?)
--   [x] Allow for user to configure compact rep icon size or change icon sizing problem (200 vs 512 px for some icons) and use all meteocons
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
 -   [ ] Use i18n

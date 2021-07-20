@@ -53,8 +53,6 @@ Item {
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 510
         Layout.preferredHeight: 340
-        Layout.minimumWidth: 510
-        Layout.minimumHeight: 340
     }
 
     property Component cr: CompactRepresentation {

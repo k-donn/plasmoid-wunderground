@@ -33,6 +33,15 @@
         <entry name="compactUnderline" type="Bool">
             <default></default>
         </entry>
+        <entry name="propHeadPointSize" type="Int">
+            <default>13</default>
+        </entry>
+        <entry name="propPointSize" type="Int">
+            <default>10</default>
+        </entry>
+        <entry name="tempPointSize" type="Int">
+            <default>30</default>
+        </entry>
     </group>
     <group name="Units">
         <entry name="unitsChoice" type="Int">
