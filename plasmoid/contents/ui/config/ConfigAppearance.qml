@@ -21,29 +21,74 @@ import QtQuick.Layouts 1.0
 import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.4 as Kirigami
 
-Kirigami.FormLayout {
+Item {
     id: appearanceConfig
 
     property alias cfg_compactPointSize: compactPointSize.value
+    property alias cfg_propHeadPointSize: propHeadPointSize.value
+    property alias cfg_propPointSize: propPointSize.value
+    property alias cfg_tempPointSize: tempPointSize.value
 
-    ConfigFontFamily {
-        id: compactFontFamily
+    Kirigami.FormLayout {
+        anchors.fill: parent
 
-        configKey: "compactFamily"
+        Kirigami.Heading {
+            Layout.fillWidth: true
+            level: 2
+            text: "Compact Representation"
+        }
 
-        Kirigami.FormData.label: "Compact Rep font"
+        ConfigFontFamily {
+            id: compactFontFamily
+
+            configKey: "compactFamily"
+
+            Kirigami.FormData.label: "Font"
+        }
+
+        SpinBox {
+            id: compactPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: "Font size (0px=scale)"
+        }
+
+        ConfigTextFormat {
+            Kirigami.FormData.label: "Font styles"
+        }
+
+        Kirigami.Separator {}
+
+        Kirigami.Heading {
+            Layout.fillWidth: true
+            level: 2
+            text: "Full Representation"
+        }
+
+        SpinBox {
+            id: propHeadPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: "Property header text size"
+        }
+
+        SpinBox {
+            id: propPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: "Property text size"
+        }
+
+        SpinBox {
+            id: tempPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: "Temperature text size"
+        }
+
     }
-
-    SpinBox {
-        id: compactPointSize
-
-        editable: true
-
-        Kirigami.FormData.label: "Compact Rep font size (0px=scale)"
-    }
-
-    ConfigTextFormat {
-        Kirigami.FormData.label: "Compact Rep font styles"
-    }
-
 }

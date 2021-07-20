@@ -48,6 +48,8 @@ Item {
             Kirigami.FormData.label: "Weatherstation ID:"
         }
 
+        Kirigami.Separator {}
+
         Kirigami.Heading {
             text: "Get Nearest Station"
             level: 2

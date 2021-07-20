@@ -105,8 +105,8 @@ function getCurrentData() {
 
 /**
  * Fetch the forecast data and place it in the forecast data model.
- * 
- * @todo Incorporate a bitmapped appState field so an error with forecasts 
+ *
+ * @todo Incorporate a bitmapped appState field so an error with forecasts
  * doesn't show an error screen for entire widget.
  */
 function getForecastData() {
@@ -263,10 +263,18 @@ function findIconCode() {
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
 	url += "&language=en-US";
-	url += "&units=e";
+
+	if (unitsChoice === 0) {
+		url += "&units=m";
+	} else if (unitsChoice === 1) {
+		url += "&units=e";
+	} else {
+		url += "&units=h";
+	}
+
 	url += "&format=json";
 
-	req.open("GET", url, true);
+	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
 	req.setRequestHeader("Origin", "https://www.wunderground.com");
