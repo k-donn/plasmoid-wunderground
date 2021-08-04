@@ -66,7 +66,7 @@ ColumnLayout {
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
 
-        text: "Loading data..."
+        text: i18n("Loading data...")
 
         Layout.fillWidth: true
         Layout.fillHeight: true

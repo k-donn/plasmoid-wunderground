@@ -34,7 +34,7 @@ Item {
         CheckBox {
             id: logConsole
 
-            Kirigami.FormData.label: "Write to console.log:"
+            Kirigami.FormData.label: i18n("Write to console.log:")
         }
     }
 

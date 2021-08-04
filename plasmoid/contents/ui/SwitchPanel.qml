@@ -32,13 +32,13 @@ ColumnLayout {
         PlasmaComponents.TabButton {
             id: detailsTabButton
 
-            text: "Weather Details"
+            text: i18n("Weather Details")
         }
 
         PlasmaComponents.TabButton {
             id: forecastTabButton
 
-            text: "Forecast"
+            text: i18n("Forecast")
         }
     }
 

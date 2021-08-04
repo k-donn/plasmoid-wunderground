@@ -25,13 +25,13 @@
             <default>Default</default>
         </entry> -->
         <entry name="compactWeight" type="Bool">
-            <default></default>
+            <default>false</default>
         </entry>
         <entry name="compactItalic" type="Bool">
-            <default></default>
+            <default>false</default>
         </entry>
         <entry name="compactUnderline" type="Bool">
-            <default></default>
+            <default>false</default>
         </entry>
         <entry name="propHeadPointSize" type="Int">
             <default>13</default>
@@ -50,7 +50,7 @@
     </group>
     <group name="Debug">
         <entry name="logConsole" type="Bool">
-            <default></default>
+            <default>false</default>
         </entry>
     </group>
 </kcfg>
