@@ -14,6 +14,12 @@ Also, input your coordinates and the widget will find the nearest station to you
 
 Some stations update at different rates so you can set the rate of refresh in config.
 
+## Translating
+
+Translations welcome!
+
+Follow the file in [plasmoid/translate](./plasmoid/translate) for directions.
+
 ## Meta
 
 Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteocons/).
@@ -21,7 +27,7 @@ Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteo
 By [@bluxart](https://twitter.com/bluxart) and [@pyconic](https://twitter.com/pyconic) on Twitter.
 If you are a graphic designer or simply know more about designing/using icons than me (I know little), feel free to contribute advice!
 
-Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./plasmoid/contents/ui/config/NoApplyField.qml), and [ClearableField](./plasmoid/contents/ui/config/ClearableField.qml).
+Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./plasmoid/contents/ui/config/NoApplyField.qml), [ClearableField](./plasmoid/contents/ui/config/ClearableField.qml), and the translation scripts.
 
 [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
@@ -33,4 +39,3 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
 -   [ ] Use Wunderground Plasma Ion (when I finish it).
--   [ ] Use i18n
