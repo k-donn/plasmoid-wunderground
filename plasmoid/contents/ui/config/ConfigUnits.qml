@@ -32,9 +32,9 @@ Item {
             id: unitsChoice
 
             width: 100
-            model: ["Metric", "Imperial", "Hybrid (UK)"]
+            model: [i18nc("The unit system", "Metric"), i18nc("The unit system", "Imperial"), i18nc("The unit system", "Hybrid (UK)")]
 
-            Kirigami.FormData.label: "Choose:"
+            Kirigami.FormData.label: i18n("Choose:")
         }
     }
 

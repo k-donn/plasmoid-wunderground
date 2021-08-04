@@ -37,7 +37,7 @@ Item {
         anchors.fill: parent
 
         Kirigami.Heading {
-            text: "Enter Station"
+            text: i18n("Enter Station")
             level: 2
         }
 
@@ -45,18 +45,18 @@ Item {
             id: stationID
             placeholderText: "KGADACUL1"
 
-            Kirigami.FormData.label: "Weatherstation ID:"
+            Kirigami.FormData.label: i18n("Weatherstation ID:")
         }
 
         Kirigami.Separator {}
 
         Kirigami.Heading {
-            text: "Get Nearest Station"
+            text: i18n("Get Nearest Station")
             level: 2
         }
 
         Kirigami.Heading {
-            text: "Uses WGS84 geocode coordinates"
+            text: i18n("Uses WGS84 geocode coordinates")
             level: 5
         }
 
@@ -64,14 +64,14 @@ Item {
             configKey: "longitude"
             placeholderText: "-83.905502"
 
-            Kirigami.FormData.label: "Longitude:"
+            Kirigami.FormData.label: i18n("Longitude:")
         }
 
         NoApplyField {
             configKey: "latitude"
             placeholderText: "34.0602"
 
-            Kirigami.FormData.label: "Latitude:"
+            Kirigami.FormData.label: i18n("Latitude:")
         }
 
         SpinBox {
@@ -84,16 +84,16 @@ Item {
                 bottom: refreshPeriod.from
             }
 
-            Kirigami.FormData.label: "Refresh period (s):"
+            Kirigami.FormData.label: i18n("Refresh period (s):")
         }
 
         Button {
-            text: "Find Station"
+            text: i18n("Find Station")
             onClicked: StationAPI.getNearestStation()
         }
 
         PlasmaComponents.Label {
-            text: "Version 2.3.5"
+            text: "Version 2.3.6"
         }
     }
 

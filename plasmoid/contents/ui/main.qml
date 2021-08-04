@@ -96,9 +96,9 @@ Item {
     function updatetoolTipSubText() {
         var subText = ""
 
-        subText += "<font size='4'>Temp: " + Utils.currentTempUnit(weatherData["details"]["temp"]) + "</font><br />"
-        subText += "<font size='4'>Feels: " + Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"])) + "</font><br />"
-        subText += "<font size='4'>Wnd spd:" + Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]) + "</font><br />"
+        subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(weatherData["details"]["temp"]))
+        subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"])))
+        subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]))
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
         toolTipSubText = subText;
@@ -139,7 +139,7 @@ Item {
     Component.onCompleted: {
         inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
 
-        plasmoid.configurationRequiredReason = "Set the weather station to pull data from."
+        plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.")
 
         plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground
     }
@@ -161,13 +161,13 @@ Item {
     Plasmoid.toolTipTextFormat: Text.RichText
     Plasmoid.toolTipMainText: {
         if (appState == showCONFIG) {
-            return "Please Configure";
+            return i18n("Please Configure");
         } else if (appState == showDATA) {
             return stationID;
         } else if (appState == showLOADING) {
-            return "Loading...";
+            return i18n("Loading...");
         } else if (appState == showERROR) {
-            return "Error..."
+            return i18n("Error...");
         }
     }
     Plasmoid.toolTipSubText: toolTipSubText

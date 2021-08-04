@@ -35,7 +35,7 @@ Item {
         Kirigami.Heading {
             Layout.fillWidth: true
             level: 2
-            text: "Compact Representation"
+            text: i18n("Compact Representation")
         }
 
         ConfigFontFamily {
@@ -43,7 +43,7 @@ Item {
 
             configKey: "compactFamily"
 
-            Kirigami.FormData.label: "Font"
+            Kirigami.FormData.label: i18n("Font")
         }
 
         SpinBox {
@@ -51,11 +51,11 @@ Item {
 
             editable: true
 
-            Kirigami.FormData.label: "Font size (0px=scale)"
+            Kirigami.FormData.label: i18n("Font size (0px=scale to widget)")
         }
 
         ConfigTextFormat {
-            Kirigami.FormData.label: "Font styles"
+            Kirigami.FormData.label: i18n("Font styles")
         }
 
         Kirigami.Separator {}
@@ -63,7 +63,7 @@ Item {
         Kirigami.Heading {
             Layout.fillWidth: true
             level: 2
-            text: "Full Representation"
+            text: i18n("Full Representation")
         }
 
         SpinBox {
@@ -71,7 +71,7 @@ Item {
 
             editable: true
 
-            Kirigami.FormData.label: "Property header text size"
+            Kirigami.FormData.label: i18n("Property header text size")
         }
 
         SpinBox {
@@ -79,7 +79,7 @@ Item {
 
             editable: true
 
-            Kirigami.FormData.label: "Property text size"
+            Kirigami.FormData.label: i18n("Property text size")
         }
 
         SpinBox {
@@ -87,7 +87,7 @@ Item {
 
             editable: true
 
-            Kirigami.FormData.label: "Temperature text size"
+            Kirigami.FormData.label: i18n("Temperature text size")
         }
 
     }
