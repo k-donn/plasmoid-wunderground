@@ -196,6 +196,11 @@ function getForecastData() {
 					});
 				}
 
+				// These are placed seperate from forecastModel since items part of ListModels
+				// cannot be property bound
+				currDayHigh = forecastModel.get(0).high;
+				currDayLow = forecastModel.get(0).low;
+
 				printDebug("[pws-api.js] Got new forecast data");
 
 				showForecast = true;
