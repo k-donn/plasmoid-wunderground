@@ -39,9 +39,15 @@ Item {
     property int showERROR: 4
     property int showDATA: 8
 
-    property bool showForecast: false
-
     property int appState: showCONFIG
+
+    // QML does not let you property bind items part of ListModels.
+    // The TopPanel shows the high/low values which are items part of forecastModel
+    // These are updated in pws-api.js to overcome that limitation
+    property int currDayHigh: null
+    property int currDayLow: null
+
+    property bool showForecast: false
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
@@ -51,7 +57,7 @@ Item {
     property bool isRain: true
 
     property Component fr: FullRepresentation {
-        Layout.preferredWidth: 510
+        Layout.preferredWidth: 600
         Layout.preferredHeight: 340
     }
 
