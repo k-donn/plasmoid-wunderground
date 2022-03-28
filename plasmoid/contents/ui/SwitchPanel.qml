@@ -47,7 +47,7 @@ ColumnLayout {
 
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
 
         clip: true
 
@@ -59,7 +59,7 @@ ColumnLayout {
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height * 0.75
 
-            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+            Layout.alignment: Qt.AlignCenter
         }
 
         ForecastItem {
@@ -68,7 +68,7 @@ ColumnLayout {
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height * 0.75
 
-            Layout.alignment: Qt.AlignTop
+            Layout.alignment: Qt.AlignCenter
         }
 
         onCurrentIndexChanged: {

@@ -84,6 +84,7 @@ ColumnLayout {
     SwitchPanel {
         visible: appState == showDATA
 
+        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         Layout.fillWidth: true
         Layout.fillHeight: true
     }
@@ -93,6 +94,7 @@ ColumnLayout {
 
         visible: appState == showDATA
 
+        Layout.topMargin: 15
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignBottom
     }

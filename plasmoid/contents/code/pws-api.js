@@ -145,6 +145,8 @@ function getForecastData() {
 
 				var forecasts = res["forecasts"];
 
+				dayInfo = extractGenericInfo(forecasts[0]);
+
 				for (var period = 0; period < forecasts.length; period++) {
 					var forecast = forecasts[period];
 
@@ -157,6 +159,16 @@ function getForecastData() {
 					var date = parseInt(
 						fullDateTime.split("T")[0].split("-")[2]
 					);
+
+					
+					if (period == 0)
+					{
+						if(!isDay) {
+							narrativeText = night["narrative"];
+						} else {
+							narrativeText = day["narrative"];
+						}
+					}
 
 					var snowDesc = "";
 					if (isDay) {
@@ -193,6 +205,8 @@ function getForecastData() {
 						golfDesc: isDay
 							? day["golf_category"]
 							: "Don't play golf at night.",
+						sunrise: extractTime(forecast["sunrise"]),
+						sunset: extractTime(forecast["sunset"]),
 					});
 				}
 
@@ -317,4 +331,28 @@ function findIconCode() {
 	};
 
 	req.send();
+}
+
+function extractGenericInfo(forecast) {
+	return {
+		"sunrise": extractTime(forecast["sunrise"]),
+		"sunset": extractTime(forecast["sunset"]),
+		"moonrise": extractTime(forecast["moonrise"]),
+		"moonset": extractTime(forecast["moonset"]),
+		"lunarPhase": forecast["lunar_phase"]
+	}
+}
+
+function extractTime(date) {
+	var date = new Date(date);
+
+	return addLeadingZeros(date.getHours()) + ":" + addLeadingZeros(date.getMinutes()) + ":" + addLeadingZeros(date.getSeconds());
+}
+
+function addLeadingZeros(integer) {
+	if (integer < 10) {
+		return "0" + integer;
+	} else {
+		return integer;
+	}
 }

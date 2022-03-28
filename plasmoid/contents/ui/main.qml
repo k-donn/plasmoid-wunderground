@@ -27,11 +27,14 @@ Item {
     id: root
 
     property var weatherData: null
+    property var dayInfo: null
+
     property ListModel forecastModel: ListModel {}
     property string errorStr: ""
     property string toolTipSubText: ""
     property string iconCode: "32" // 32 = sunny
     property string conditionNarrative: ""
+    property string narrativeText: ""
 
     // TODO: add option for showFORECAST and showFORECASTERROR
     property int showCONFIG: 1
@@ -58,7 +61,7 @@ Item {
 
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 600
-        Layout.preferredHeight: 340
+        Layout.preferredHeight: 370
     }
 
     property Component cr: CompactRepresentation {

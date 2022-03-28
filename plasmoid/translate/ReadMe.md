@@ -32,6 +32,6 @@ Or if you know how to make a pull request
 -   https://github.com/psifidotos/nowdock-plasmoid/tree/master/po
 -   https://github.com/kotelnik/plasma-applet-redshift-control/tree/master/translations
 
-| Locale   | Lines | % Done |
-| -------- | ----- | ------ |
-| Template | 45    |        |
+|  Locale  |  Lines  | % Done|
+|----------|---------|-------|
+| Template |      44 |       |
