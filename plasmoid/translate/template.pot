@@ -202,4 +202,4 @@ msgstr ""
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr ""
-msgstr ""
+

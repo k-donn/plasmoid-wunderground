@@ -61,7 +61,7 @@ Item {
 
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 600
-        Layout.preferredHeight: 370
+        Layout.preferredHeight: 530
     }
 
     property Component cr: CompactRepresentation {

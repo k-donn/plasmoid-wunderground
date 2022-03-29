@@ -205,8 +205,9 @@ function getForecastData() {
 						golfDesc: isDay
 							? day["golf_category"]
 							: "Don't play golf at night.",
-						sunrise: extractTime(forecast["sunrise"]),
-						sunset: extractTime(forecast["sunset"]),
+						sunrise: extractTime(forecast["sunrise"], true),
+						sunset: extractTime(forecast["sunset"], true),
+						fullForecast: forecast,
 					});
 				}
 
@@ -335,18 +336,23 @@ function findIconCode() {
 
 function extractGenericInfo(forecast) {
 	return {
-		"sunrise": extractTime(forecast["sunrise"]),
-		"sunset": extractTime(forecast["sunset"]),
-		"moonrise": extractTime(forecast["moonrise"]),
-		"moonset": extractTime(forecast["moonset"]),
+		"sunrise": extractTime(forecast["sunrise"], true),
+		"sunset": extractTime(forecast["sunset"], true),
+		"moonrise": extractTime(forecast["moonrise"], true),
+		"moonset": extractTime(forecast["moonset"], true),
 		"lunarPhase": forecast["lunar_phase"]
 	}
 }
 
-function extractTime(date) {
+function extractTime(date, includeSeconds) {
+	if(!date) {
+		return "n/a";
+	}
 	var date = new Date(date);
 
-	return addLeadingZeros(date.getHours()) + ":" + addLeadingZeros(date.getMinutes()) + ":" + addLeadingZeros(date.getSeconds());
+	var hhMM = addLeadingZeros(date.getHours()) + ":" + addLeadingZeros(date.getMinutes())
+
+	return  includeSeconds ? hhMM + ":" + addLeadingZeros(date.getSeconds()) : hhMM;
 }
 
 function addLeadingZeros(integer) {
