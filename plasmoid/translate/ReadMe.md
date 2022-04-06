@@ -8,7 +8,7 @@ Go to `~/.local/share/plasma/plasmoids/com.github.rliwoch.plasmoid-wunderground-
 
 ## New Translations
 
-1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/k-donn/plasmoid-wunderground/issues/new), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
+1. Fill out [`template.pot`](template.pot) with your translations then open a [new issue](https://github.com/rliwoch/plasmoid-wunderground-extended/issues/new/choose), name the file `spanish.txt`, attach the txt file to the issue (drag and drop).
 
 Or if you know how to make a pull request
 
