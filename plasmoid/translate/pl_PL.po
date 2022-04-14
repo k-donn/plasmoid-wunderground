@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground-extended\n"
 "Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extended\n"
-"POT-Creation-Date: 2022-04-06 18:08+0200\n"
+"POT-Creation-Date: 2022-04-14 18:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,6 +124,10 @@ msgstr "System hybrydowy (UK)"
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
 msgstr "Wybierz"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format:"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Feels like %1"

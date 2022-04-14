@@ -1,5 +1,6 @@
 /*
  * Copyright 2021  Kevin Donnelly
+ * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -93,7 +94,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            text: "Version 2.3.7"
+            text: "Version 0.3.0"
         }
     }
 

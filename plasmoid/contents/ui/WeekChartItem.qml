@@ -190,7 +190,7 @@ ColumnLayout{
 
 
                     text:
-                    "<b>" + dailyChartModel.get(Charts.AxisLabels.label).date + "</b>"
+                    "<b>" + Qt.formatDate(new Date(dailyChartModel.get(Charts.AxisLabels.label).date), plasmoid.configuration.dateFormatChoice) + "</b>"
                 }
                 source: Charts.ChartAxisSource {
                     chart: lineChart;
@@ -236,33 +236,22 @@ ColumnLayout{
 
             }
 
-            Rectangle {
-                id: legendId
+            PlasmaComponents.Label {
+                id: legendLabel
 
                 anchors {
                     top: xAxisLabels.bottom
                     horizontalCenter: lineChart.horizontalCenter
                 }
-                width: legendLabel.width * 1.25
-                height: legendLabel.height * 1
 
-                color: PlasmaCore.Theme.complementaryFocusColor
-                radius: 2
+                property var unitInterval: (currentLegendText === "precipitationRate" || currentLegendText === "snowPrecipitationRate" ? "/12h" : "")
 
-                PlasmaComponents.Label {
-                    id: legendLabel
-                    anchors.centerIn: parent
-
-                    property var unitInterval: (currentLegendText === "precipitationRate" || currentLegendText === "snowPrecipitationRate" ? "/12h" : "")
-
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-                    text: `${dictVals[currentLegendText].name} ${Utils.wrapInBrackets(dictVals[currentLegendText].unit, unitInterval)}`
-                    font {
-                        weight: Font.Bold
-                        pointSize: textSize.small
-                    }
+                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                text: `${dictVals[currentLegendText].name} ${Utils.wrapInBrackets(dictVals[currentLegendText].unit, unitInterval)}`
+                font {
+                    weight: Font.Bold
+                    pointSize: textSize.small
                 }
-
             }
 
             ListView {

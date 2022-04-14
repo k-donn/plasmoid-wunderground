@@ -1,5 +1,6 @@
 /*
  * Copyright 2021  Kevin Donnelly
+ * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,16 +19,21 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
 import QtQuick.Layouts 1.0
+import org.kde.plasma.components 2.0 as PlasmaComponents
 import org.kde.kirigami 2.4 as Kirigami
 
 Item {
     id: unitsConfig
 
     property alias cfg_unitsChoice: unitsChoice.currentIndex
+    property alias cfg_dateFormatChoice: dateFormatChoice.text
+    property alias cfg_timeFormatChoice: timeFormatChoice.text
+    
 
     Kirigami.FormLayout {
         anchors.fill: parent
 
+    
         ComboBox {
             id: unitsChoice
 
@@ -36,6 +42,28 @@ Item {
 
             Kirigami.FormData.label: i18n("Choose:")
         }
+    
+        TextField {
+            id: dateFormatChoice
+            placeholderText: "dd/MM"
+    
+            Kirigami.FormData.label: i18n("Date format:")
+        }
+    
+        TextField {
+            id: timeFormatChoice
+            placeholderText: "HH:mm"
+    
+            Kirigami.FormData.label: i18n("Date format:")
+        }
+        PlasmaComponents.Label {
+            id: examplesLabel
+
+            text: "Date/Time format examples: \n dd/MM -> 31/12\n MM/dd -> 12/31\n HH:mm -> 13:00\n h a -> 1 pm\n h:mm a -> 1:30 pm"
+            font {
+                pointSize: textSize.small
+            }
+        }        
     }
 
 }

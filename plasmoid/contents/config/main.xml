@@ -41,6 +41,12 @@
         <entry name="unitsChoice" type="Int">
             <default>0</default>
         </entry>
+        <entry name="dateFormatChoice" type="String">
+            <default>dd/MM</default>
+        </entry>
+        <entry name="timeFormatChoice" type="String">
+            <default>HH:mm</default>
+        </entry>            
     </group>
     <group name="Debug">
         <entry name="logConsole" type="Bool">

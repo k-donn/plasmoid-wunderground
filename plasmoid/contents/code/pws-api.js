@@ -453,8 +453,8 @@ function createHourlyDetailModel(forecasts){
 	forecasts.forEach(function (period) {
 		var date = new Date(period.fcst_valid_local);
 			var hourModel = {
-				date: addLeadingZeros(date.getDate()) + "/" + (addLeadingZeros(date.getMonth() + 1)),
-				time: date.getHours() +":00",
+				date: date, 
+				time: date, //todo remove
 				iconCode: period["icon_code"]
 			};
 		Object.values(modelTemplate).forEach(reading => {
@@ -496,13 +496,13 @@ function createDetailModel(forecastElem) {
 
 function createDailyChartModel(date, forecastDetailsModel, hasDay, nightIconCode, dayIconCode) {
 	var day = {
-		date: addLeadingZeros(date.getDate()) + "/" + (addLeadingZeros(date.getMonth() + 1)),
+		date: date,
 		time: "12:00",
 		iconCode: dayIconCode,
 		isDay: true
 	};
 	var night = {
-		date: addLeadingZeros(date.getDate()) + "/" + (addLeadingZeros(date.getMonth() + 1)),
+		date: date,
 		time: "00:00",
 		iconCode: nightIconCode,
 		isDay: false

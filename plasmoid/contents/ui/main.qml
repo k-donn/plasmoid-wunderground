@@ -39,8 +39,8 @@ Item {
     property var forecastDetailsModel: ListModel { }
     property var hourlyChartModel: ListModel {
         ListElement {
-                date: ""
-                time: ""
+                date: null
+                time: null
                 iconCode:100
                 temperature: 0
                 cloudCover: 0
@@ -56,7 +56,7 @@ Item {
         }
     property var dailyChartModel: ListModel {
         ListElement{
-                date: ""
+                date: null
                 iconCode:100
                 temperature: 0
                 cloudCover: 0
