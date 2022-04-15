@@ -46,7 +46,7 @@ Item {
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                 svg: PlasmaCore.Svg {
                 id: tooltipIcon
-                imagePath: iconCode !== null ? Utils.getIconForCodeAndStyle(iconCode, plasmoid.configuration.iconStyleChoice) : plasmoid.file("", "icons/wi-na.svg")
+                imagePath: iconCode !== null ? plasmoid.file("", Utils.getIconForCodeAndStyle(iconCode, plasmoid.configuration.iconStyleChoice)) : plasmoid.file("", "icons/wi-na.svg")
             }
 
             implicitWidth: units.iconSizes.medium
