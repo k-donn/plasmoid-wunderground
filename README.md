@@ -30,12 +30,12 @@ Translations welcome!
 
 Follow the file in [plasmoid/translate](./plasmoid/translate) for directions.
 
-## Meta
-
-Big thanks to Meteocons for the free [icons](https://www.alessioatzeni.com/meteocons/).
+## Thanks to
 
 - Kevin Donnelly (https://github.com/k-donn/plasmoid-wunderground) for his original project and work.
 - Erik Flowers for his great weather icons https://erikflowers.github.io/weather-icons/
+- Peter Schmalfeldt for colourful weather icons in SVG https://github.com/manifestinteractive/weather-underground-icons (MIT license)
+- Grabster for additional set of material-design-like icons in SVG https://github.com/Grabstertv/WeatherNowIcons (CC BY-SA 4.0 license)
 - Meteocons for additional weather icons (https://www.alessioatzeni.com/meteocons/)
 
 ## TODO
