@@ -27,6 +27,7 @@ Item {
 
     property alias cfg_compactPointSize: compactPointSize.value
     property alias cfg_propPointSize: propPointSize.value
+    property alias cfg_iconStyleChoice: iconStyleChoice.currentIndex
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -71,6 +72,30 @@ Item {
             editable: true
 
             Kirigami.FormData.label: i18n("Property text size")
+        }
+
+        Kirigami.Separator {}
+
+        Kirigami.Heading {
+            text: i18n("Icon styles")
+            level: 2
+        }
+
+        ComboBox {
+            id: iconStyleChoice
+
+            width: 100
+            model: [
+                i18nc("Icon style", "Legacy"), 
+                i18nc("Icon style", "WeatherUnderground - White with colour"), 
+                i18nc("Icon style", "WeatherUnderground - White"),
+                i18nc("Icon style", "WeatherUnderground - Black"),
+                i18nc("Icon style", "WeatherUnderground - Black with colour"),
+                i18nc("Icon style", "DEFAULT monochrome by Erik Flowers"), 
+                i18nc("Icon style", "WeatherNOW Colour")
+            ]
+
+            Kirigami.FormData.label: i18n("Select icon style:")
         }
 
     }

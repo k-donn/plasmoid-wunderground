@@ -221,17 +221,17 @@ ColumnLayout{
                 PlasmaCore.SvgItem {
                     property var weatherElement: dailyChartModel.get(Charts.AxisLabels.label)
 
-                    opacity: weatherElement.isDay ? 1 : 0.25
+                    opacity: weatherElement.isDay ? 1 : 0.4
                     id: xAxisLabelWeatherDayId
 
                     svg: PlasmaCore.Svg {
                         id: xAxisLabelWeatherDaySvg
-                        imagePath: plasmoid.file("", "icons/" + weatherElement.iconCode + ".svg")
+                        imagePath: plasmoid.file("", Utils.getIconForCodeAndStyle(weatherElement.iconCode, plasmoid.configuration.iconStyleChoice))
                     }
 
 
-                    width: units.iconSizes.smallMedium - 2
-                    height: units.iconSizes.smallMedium - 2
+                    width: units.iconSizes.smallMedium
+                    height: units.iconSizes.smallMedium
                 }
 
             }

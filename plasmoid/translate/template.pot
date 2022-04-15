@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground-extended\n"
 "Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extended\n"
-"POT-Creation-Date: 2022-04-14 18:06+0200\n"
+"POT-Creation-Date: 2022-04-15 13:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,6 +63,49 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property text size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon styles"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "Legacy"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - White with colour"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - White"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - Black"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - Black with colour"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "DEFAULT monochrome by Erik Flowers"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherNOW Colour"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Select icon style:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigDebug.qml
@@ -127,6 +170,10 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Date format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format:"
 msgstr ""
 
 #: ../contents/ui/DetailsItem.qml

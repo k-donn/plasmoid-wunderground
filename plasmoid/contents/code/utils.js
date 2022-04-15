@@ -446,3 +446,9 @@ function getValue(metricName, val, val2){
 function wrapInBrackets(unit, unitInterval) {
 	return unit !== "" ? `[${unit}${unitInterval}]`: unit
 }
+
+function getIconForCodeAndStyle(iconCode, styleId) {
+	var styleIdPath = `style${styleId + 1}Path`;
+	//console.log(`inbound icon code ${iconCode} and the path is: ${iconLookup[iconCode][styleIdPath]}`)
+	return iconLookup[iconCode][styleIdPath];
+}

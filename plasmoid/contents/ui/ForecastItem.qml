@@ -143,7 +143,7 @@ GridLayout{
                     Layout.preferredHeight: Layout.minimumHeight
 
                     svg: PlasmaCore.Svg {
-                        imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+                        imagePath: plasmoid.file("", Utils.getIconForCodeAndStyle(iconCode, plasmoid.configuration.iconStyleChoice))
                     }
                     MouseArea {
                         id: mouseArea

@@ -31,7 +31,7 @@ RowLayout {
 
         svg: PlasmaCore.Svg {
             id: svg
-            imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+            imagePath: plasmoid.file("", Utils.getIconForCodeAndStyle(iconCode, plasmoid.configuration.iconStyleChoice))
         }
 
         Layout.minimumWidth: units.iconSizes.large

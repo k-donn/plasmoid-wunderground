@@ -128,3 +128,5 @@ CTestTestfile.cmake
 _deps
 
 .kdev4/
+
+*.plasmoid

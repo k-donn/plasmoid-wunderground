@@ -429,9 +429,7 @@ function extractTime(date, includeSeconds) {
 	}
 	var date = new Date(date);
 
-	var hhMM = addLeadingZeros(date.getHours()) + ":" + addLeadingZeros(date.getMinutes())
-
-	return  includeSeconds ? hhMM + ":" + addLeadingZeros(date.getSeconds()) : hhMM;
+	return Qt.formatDateTime(new Date(date), plasmoid.configuration.timeFormatChoice)
 }
 
 function addLeadingZeros(integer) {
@@ -516,10 +514,18 @@ function createDailyChartModel(date, forecastDetailsModel, hasDay, nightIconCode
 		night[condition.name] = condition.nightVal;
 	});
 
-	if(hasDay){
+	//excluding today's day - as we have a 24h chart for that
+	if(hasDay && !isToday(date)){
 		printDebug("DAILY MODEL: " + JSON.stringify(day));
 		dailyChartModel.append(day);
 	}
 	printDebug("DAILY MODEL: " + JSON.stringify(night));
 	dailyChartModel.append(night);
+}
+
+function isToday(someDate) {
+	const today = new Date()
+	return someDate.getDate() == today.getDate() &&
+		   someDate.getMonth() == today.getMonth() &&
+		   someDate.getFullYear() == today.getFullYear();
 }

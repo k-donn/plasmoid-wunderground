@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground-extended\n"
 "Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extended\n"
-"POT-Creation-Date: 2022-04-14 18:06+0200\n"
+"POT-Creation-Date: 2022-04-15 13:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,49 @@ msgstr "Wygląd pełny"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property text size"
 msgstr "Rozmiar tekstu"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon styles"
+msgstr "Styl ikon"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "Legacy"
+msgstr "Starsza werjsa (monochromatyczne)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - White with colour"
+msgstr "Białe z kolorem (WeatherUnderground)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - White"
+msgstr "Białe (WeatherUnderground)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - Black"
+msgstr "Czarne (WeatherUnderground)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - Black with colour"
+msgstr "Czarne z kolorem (WeatherUnderground)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "DEFAULT monochrome by Erik Flowers"
+msgstr "DOMYŚlny monochromatyczny (Erik Flowers)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherNOW Colour"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Select icon style:"
+msgstr "Wybierz styl ikon:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
@@ -123,11 +166,15 @@ msgstr "System hybrydowy (UK)"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
-msgstr "Wybierz"
+msgstr "Wybierz jednostki:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Date format:"
-msgstr ""
+msgstr "Ustaw format daty"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format:"
+msgstr "Ustaw format czasu"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Feels like %1"

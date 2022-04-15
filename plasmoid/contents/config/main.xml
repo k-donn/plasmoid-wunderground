@@ -36,6 +36,9 @@
         <entry name="propPointSize" type="Int">
             <default>10</default>
         </entry>
+        <entry name="iconStyleChoice" type="Int">
+            <default>6</default>
+        </entry>
     </group>
     <group name="Units">
         <entry name="unitsChoice" type="Int">

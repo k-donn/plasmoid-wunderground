@@ -24,7 +24,7 @@ ColumnLayout {
 
     IconAndTextItem {
         vertical: compactRoot.vertical
-        iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
+        iconSource: plasmoid.file("", Utils.getIconForCodeAndStyle(iconCode, plasmoid.configuration.iconStyleChoice))
         text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"].toFixed(1)) : "---.-° X"
 
         Layout.fillWidth: compactRoot.vertical
@@ -41,36 +41,4 @@ ColumnLayout {
             }
         }
     }
-
-
-    // Component {
-    //     id: iconComponent
-
-    //     PlasmaCore.SvgItem {
-    //         readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
-
-    //         svg: PlasmaCore.Svg {
-    //             id: svg
-    //             imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
-    //         }
-
-    //         // reset implicit size, so layout in free dimension does not stop at the default one
-    //         implicitWidth: units.iconSizes.small
-    //         implicitHeight: units.iconSizes.small
-    //         Layout.minimumWidth: compactRoot.vertical ? units.iconSizes.small : minIconSize
-    //         Layout.minimumHeight: compactRoot.vertical ? minIconSize : units.iconSizes.small
-    //     }
-    // }
-
-
-    // Component {
-    //     id: iconAndTextComponent
-
-    //     IconAndTextItem {
-    //         vertical: compactRoot.vertical
-    //         iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
-    //         text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"]) : "---.-° X"
-    //     }
-    // }
-
 }

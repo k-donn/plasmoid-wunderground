@@ -54,7 +54,7 @@ Item {
             id: timeFormatChoice
             placeholderText: "HH:mm"
     
-            Kirigami.FormData.label: i18n("Date format:")
+            Kirigami.FormData.label: i18n("Time format:")
         }
         PlasmaComponents.Label {
             id: examplesLabel
