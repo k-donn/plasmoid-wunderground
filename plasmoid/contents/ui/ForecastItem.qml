@@ -393,15 +393,19 @@ GridLayout{
                         Layout.minimumHeight: units.iconSizes.medium
                         Layout.preferredWidth: Layout.minimumWidth
                         Layout.preferredHeight: Layout.minimumHeight
+                        
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                     }
                     PlasmaComponents.Label {
                         id: moonLabel
-                        horizontalAlignment: Text.AlignHCenter
+                            
                         text: forecastModel.get(itemEl).fullForecast.lunar_phase
                         font {
                             weight: Font.Bold
                             pointSize: textSize.small
                         }
+
+                        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                     }
 
                 }

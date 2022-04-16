@@ -397,9 +397,9 @@ function getMoonPhaseIcon(phaseName) {
 		"Waxing Crescent": "wi-moon-waxing-crescent-2.svg",
 		"First Quarter": "wi-moon-first-quarter.svg",
 		"Waxing Gibbous": "wi-moon-waxing-gibbous-2.svg",
-		"Full Moon": "wi-moon-full.svg",
+		"Full": "wi-moon-full.svg",
 		"Waning Gibbous": "wi-moon-waning-gibbous-2.svg",
-		"Third Quarter": "wi-moon-third-quarter.svg",
+		"Last Quarter": "wi-moon-third-quarter.svg",
 		"Waning Crescent": "wi-moon-waning-crescent-2.svg"
 	};
 

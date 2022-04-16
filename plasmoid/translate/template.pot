@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground-extended\n"
 "Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extended\n"
-"POT-Creation-Date: 2022-04-15 13:53+0200\n"
+"POT-Creation-Date: 2022-04-16 19:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,11 +50,19 @@ msgid "Font"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size (0 = default)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font size (0px=scale to widget)"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font styles"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Display narrative in taskbar"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
@@ -184,6 +192,10 @@ msgstr ""
 msgid "Loading data..."
 msgstr ""
 
+#: ../contents/ui/HorizontalCompactLayout.qml ../contents/ui/main.qml ../contents/ui/TopPanel.qml
+msgid "Loading..."
+msgstr ""
+
 #: ../contents/ui/main.qml
 msgid "All set"
 msgstr ""
@@ -242,10 +254,6 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Please Configure"
-msgstr ""
-
-#: ../contents/ui/main.qml ../contents/ui/TopPanel.qml
-msgid "Loading..."
 msgstr ""
 
 #: ../contents/ui/main.qml

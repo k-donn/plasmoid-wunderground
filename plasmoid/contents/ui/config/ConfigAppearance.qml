@@ -26,8 +26,10 @@ Item {
     id: appearanceConfig
 
     property alias cfg_compactPointSize: compactPointSize.value
+    property alias cfg_compactIconSize: compactIconSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_iconStyleChoice: iconStyleChoice.currentIndex
+    property alias cfg_compactShowConditions: compactShowConditions.checked
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -47,6 +49,14 @@ Item {
         }
 
         SpinBox {
+            id: compactIconSize
+
+            editable: true
+
+            Kirigami.FormData.label: i18n("Icon size (0 = default)")
+        }
+
+        SpinBox {
             id: compactPointSize
 
             editable: true
@@ -56,6 +66,11 @@ Item {
 
         ConfigTextFormat {
             Kirigami.FormData.label: i18n("Font styles")
+        }
+
+        CheckBox {
+            id: compactShowConditions
+            Kirigami.FormData.label: i18n("Display narrative in taskbar")
         }
 
         Kirigami.Separator {}

@@ -241,10 +241,7 @@ Item {
         Layout.preferredHeight: units.gridUnit * 12 *2.6
     }
 
-    property Component cr: CompactRepresentation {
-        Layout.minimumWidth: 110
-        Layout.preferredWidth: 110
-    }
+    property Component cr: CompactRepresentation {}
 
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {console.log("[debug] [main.qml] " + msg)}

@@ -44,7 +44,7 @@ Item {
 
         ClearableField {
             id: stationID
-            placeholderText: "KGADACUL1"
+            placeholderText: "IFRAUN2"
 
             Kirigami.FormData.label: i18n("Weatherstation ID:")
         }
@@ -94,7 +94,7 @@ Item {
         }
 
         PlasmaComponents.Label {
-            text: "Version 0.4.1"
+            text: "Version 0.5.0"
         }
     }
 

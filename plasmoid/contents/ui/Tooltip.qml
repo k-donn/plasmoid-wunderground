@@ -69,14 +69,14 @@ Item {
                 id: tempsub
                 Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
                 Layout.maximumWidth: preferredTextWidth
-                text: `${dictVals["temperature"].name}: <b>${flatWeatherData.temp}</b>`
+                text: `${dictVals["temperature"].name}: <b>${Utils.currentTempUnit(flatWeatherData.temp)}</b>`
                 opacity: 1
             }
             PlasmaComponents.Label {
                 id: feelsLikeSub
                 Layout.minimumWidth: Math.min(implicitWidth, preferredTextWidth)
                 Layout.maximumWidth: preferredTextWidth
-                text: i18n("Real feel") + ": " + Utils.feelsLike(flatWeatherData.temp, flatWeatherData.humidity, flatWeatherData.windSpeed)
+                text: i18n("Real feel") + ": " + Utils.currentTempUnit(Utils.feelsLike(flatWeatherData.temp, flatWeatherData.humidity, flatWeatherData.windSpeed))
                 opacity: 0.6
             }            
 
