@@ -1,0 +1,296 @@
+# Translation of plasmoid-wunderground-extended in LANGUAGE
+# Copyright (C) 2022
+# This file is distributed under the same license as the plasmoid-wunderground-extended package.
+#
+# Heimen Stoffels <vistausss@fastmail.com>, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: plasmoid-wunderground-extended\n"
+"Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extende"
+"d\n"
+"POT-Creation-Date: 2022-04-16 19:48+0200\n"
+"PO-Revision-Date: 2022-04-16 20:15+0200\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: Dutch <>\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 22.03.90\n"
+
+#: ../metadata.desktop
+msgid "Wunderground Extended"
+msgstr "Wunderground (uitgebreid)"
+
+#: ../metadata.desktop
+msgid "Wunderground PWS extended"
+msgstr "Wunderground PWS (uitgebreid)"
+
+#: ../contents/config/config.qml
+msgid "Station"
+msgstr "Weerstation"
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr "Vormgeving"
+
+#: ../contents/config/config.qml
+msgid "Units"
+msgstr "Eenheden"
+
+#: ../contents/config/config.qml
+msgid "Debug"
+msgstr "Foutopsporing"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Compact Representation"
+msgstr "Compacte indeling gebruiken"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Font"
+msgstr "Lettertype"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size (0 = default)"
+msgstr "Pictogramgrootte (0 = standaard)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Font size (0px=scale to widget)"
+msgstr "Tekstgrootte (0 px = afhankelijk van widgetafmetingen)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Font styles"
+msgstr "Lettertypestijlen"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Display narrative in taskbar"
+msgstr "Samenvatting tonen op taakbalk"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Full Representation"
+msgstr "Uitgebreide indeling gebruiken"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Property text size"
+msgstr "Tekstgrootte van items"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon styles"
+msgstr "Pictogramstijlen"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "Legacy"
+msgstr "Verouderd"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - White with colour"
+msgstr "WeatherUnderground - wit met kleur"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - White"
+msgstr "WeatherUnderground - wit"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - Black"
+msgstr "WeatherUnderground - zwart"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherUnderground - Black with colour"
+msgstr "WeatherUnderground - zwart met kleur"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "DEFAULT monochrome by Erik Flowers"
+msgstr "STANDAARD: monochrome (door Erik Flowers)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Icon style"
+msgid "WeatherNOW Colour"
+msgstr "WeatherNOW-kleur"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Select icon style:"
+msgstr "Kies een pictogramstijl:"
+
+#: ../contents/ui/config/ConfigDebug.qml
+msgid "Write to console.log:"
+msgstr "Wegschrijven naar console.log:"
+
+#: ../contents/ui/config/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Standaard"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Enter Station"
+msgstr "Voer de naam in van een weerstation"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Weatherstation ID:"
+msgstr "Weerstation-id:"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Get Nearest Station"
+msgstr "Dichtstbijzijnde station gebruiken"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Uses WGS84 geocode coordinates"
+msgstr "Hiervoor worden de WGS84-geocodecoördinaten gebruikt"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Longitude:"
+msgstr "Lengtegraad:"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Latitude:"
+msgstr "Breedtegraad:"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Refresh period (s):"
+msgstr "Periodiek bijwerken (in sec.):"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Find Station"
+msgstr "Weerstation zoeken"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgctxt "The unit system"
+msgid "Metric"
+msgstr "Metrisch"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgctxt "The unit system"
+msgid "Imperial"
+msgstr "Imperiaal"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgctxt "The unit system"
+msgid "Hybrid (UK)"
+msgstr "Hybride (VK)"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Choose:"
+msgstr "Kiezen:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format:"
+msgstr "Datumopmaak:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format:"
+msgstr "Tijdsopmaak:"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Feels like %1"
+msgstr "Gevoelstemperatuur: %1"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Loading data..."
+msgstr "Bezig met ophalen van gegevens…"
+
+#: ../contents/ui/HorizontalCompactLayout.qml ../contents/ui/main.qml ../contents/ui/TopPanel.qml
+msgid "Loading..."
+msgstr "Bezig met laden…"
+
+#: ../contents/ui/main.qml
+msgid "All set"
+msgstr "Alles is ingesteld"
+
+#: ../contents/ui/main.qml
+msgid "Temperature"
+msgstr "Temperatuur"
+
+#: ../contents/ui/main.qml
+msgid "UV Index"
+msgstr "UV-index"
+
+#: ../contents/ui/main.qml
+msgid "Pressure"
+msgstr "Luchtdruk"
+
+#: ../contents/ui/main.qml
+msgid "Cloud Cover"
+msgstr "Bewolking"
+
+#: ../contents/ui/main.qml
+msgid "Humidity"
+msgstr "Luchtvochtigheid"
+
+#: ../contents/ui/main.qml
+msgid "Precipitation Chance"
+msgstr "Kans op neerslag"
+
+#: ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr "Hoeveelheid neerslag"
+
+#: ../contents/ui/main.qml
+msgid "Snow Precipitation Rate"
+msgstr "Hoeveelheid sneeuw"
+
+#: ../contents/ui/main.qml
+msgid "Wind / Gust"
+msgstr "Windsnelheid"
+
+#: ../contents/ui/main.qml
+msgid "Precipitation Accumulation"
+msgstr "Neerslagaccumulatie"
+
+#: ../contents/ui/main.qml
+msgid "Dew Point"
+msgstr "Dauwpunt"
+
+#: ../contents/ui/main.qml
+msgid "Wind Direction"
+msgstr "Windrichting"
+
+#: ../contents/ui/main.qml
+msgid "Set the weather station to pull data from."
+msgstr "Kies het weerstation dat de gegevens moet leveren."
+
+#: ../contents/ui/main.qml
+msgid "Please Configure"
+msgstr "Instellen"
+
+#: ../contents/ui/main.qml
+msgid "Error..."
+msgstr "Foutmelding"
+
+#: ../contents/ui/main.qml
+msgid "Undefined Error..."
+msgstr "Onbekende foutmelding"
+
+#: ../contents/ui/main.qml
+msgctxt "Please put your language code here"
+msgid "en-US"
+msgstr "nl-NL"
+
+#: ../contents/ui/SwitchPanel.qml
+msgid "Weather Details"
+msgstr "Weerinformatie"
+
+#: ../contents/ui/SwitchPanel.qml
+msgid "Day Chart"
+msgstr "Daggrafiek"
+
+#: ../contents/ui/SwitchPanel.qml
+msgid "Forecast"
+msgstr "Weersvoorspelling"
+
+#: ../contents/ui/SwitchPanel.qml
+msgid "Week Chart"
+msgstr "Weekgrafiek"
+
+#: ../contents/ui/Tooltip.qml
+msgid "Real feel"
+msgstr "Gevoelstemperatuur"
+
+#: ../contents/ui/TopPanel.qml
+msgid "High: %1 Low: %2"
+msgstr "Hoog: %1 - Laag: %2"
