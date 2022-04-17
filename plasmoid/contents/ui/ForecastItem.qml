@@ -210,202 +210,323 @@ GridLayout{
             Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
 
 
-            GridLayout {
+            Item {
                 id: dateField
-                columns:4
-                rows: 2
-                columnSpacing: 10
-                rowSpacing: 5
-                flow: GridLayout.TopToBottom
+                
+                height: dateElement.height + 2 * units.smallSpacing
+                width: parent.width
 
-                PlasmaComponents.Label {
-                    id: dayLabel
-                    Layout.rowSpan: 2
-                    Layout.preferredWidth: plasmoid.configuration.propPointSize * 6
-                    font.pointSize: plasmoid.configuration.propPointSize * 3
-                    font.weight: Font.Light
-                    text: forecastScroller.dateString("dd")
-                    opacity: 0.6
+                Item {
+                    id: dateElement
+
+                    height: dayLabel.paintedHeight
+
+                    anchors {
+                        left: parent.left
+                        leftMargin: units.smallSpacing
+                        verticalCenter: parent.verticalCenter
+                    }
+                    PlasmaComponents.Label {
+                        id: dayLabel
+                        
+                        width: plasmoid.configuration.propPointSize * 6
+                        height: dayLabel.paintedHeight
+
+                        anchors {
+                            left: parent.left
+                        }
+
+                        font.pointSize: plasmoid.configuration.propPointSize * 3
+                        font.weight: Font.Light
+                        text: forecastScroller.dateString("dd")
+                        opacity: 0.6
+                    }
+    
+                    PlasmaExtras.Heading {
+                        id: dayHeading
+                        
+                        width: forecastScroller.width / 3 - dayLabel.width
+                        height: dayHeading.paintedHeight
+                        
+                        anchors {
+                            left: dayLabel.right
+                            top: dayLabel.top
+                            topMargin: units.smallSpacing
+                        }
+
+                        level: 1
+                        font.pointSize: plasmoid.configuration.propPointSize * 1.2
+                        elide: Text.ElideRight
+                        font.weight: Font.Bold
+                        text: Qt.locale(currentLocale).dayName(currentDate.getDay())
+                    }
+                    PlasmaComponents.Label {
+                        id: dateHeading
+                        
+                        width: forecastScroller.width / 3 - dayLabel.width
+                        height: dateHeading.paintedHeight
+
+                        anchors {
+                            left: dayLabel.right
+                            top: dayHeading.bottom
+                            topMargin: units.smallSpacing
+                        }
+
+                        font.pointSize: textSize.small
+                        elide: Text.ElideRight
+                        text: Qt.locale(currentLocale).standaloneMonthName(currentDate.getMonth()) + forecastScroller.dateString(" yyyy")
+                    }
                 }
 
-                PlasmaExtras.Heading {
-                    id: dayHeading
-                    Layout.preferredWidth: forecastScroller.width / 3 - dayLabel.width
-                    level: 1
-                    font.pointSize: plasmoid.configuration.propPointSize * 1.2
-                    elide: Text.ElideRight
-                    font.weight: Font.Bold
-                    text: Qt.locale(currentLocale).dayName(currentDate.getDay())
-                }
-                PlasmaComponents.Label {
-                    id: dateHeading
-                    Layout.preferredWidth: forecastScroller.width / 3 - dayLabel.width
-                    font.pointSize: textSize.small
 
-                    elide: Text.ElideRight
-                    text: Qt.locale(currentLocale).standaloneMonthName(currentDate.getMonth())
-                    + forecastScroller.dateString(" yyyy")
-                }
-
-                GridLayout {
+                Item {
                     id: sunMoonSetRiseGrid
-                    columns: 2
-                    rows: 2
 
-                    Layout.rowSpan: 2
-                    Layout.columnSpan: 1
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-
-                    columnSpacing: 0
-                    rowSpacing: 0
-
-                    Layout.preferredWidth: forecastScroller.width / 3
+                    width: forecastScroller.width / 3
+                    height: parent.height
+                    
+                    anchors {
+                        centerIn: parent
+                    }
 
 
-                    RowLayout {
-                        Layout.preferredWidth: parent.width / 2
+                    Item {
+                        id: sunRiseElement
+
+                        width: parent.width / 2
+                        height: sunRiseData.paintedHeight
+
+                        anchors {
+                            right: parent.horizontalCenter
+                            rightMargin: units.smallSpacing
+                            bottom: sunMoonSetRiseGrid.verticalCenter
+                            bottomMargin: units.smallSpacing
+                        }
 
                         PlasmaCore.SvgItem {
                             id: sunRiseIcon
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                            width: units.iconSizes.smallMedium
+                            height: units.iconSizes.smallMedium
+
+                            anchors {
+                                right: sunRiseData.left
+                                rightMargin: 2 * units.smallSpacing
+                                verticalCenter: parent.verticalCenter
+                            }
+
                             svg: PlasmaCore.Svg {
                                 id: sunRiseSvg
                                 imagePath: plasmoid.file("", "icons/fullRepresentation/wi-sunrise.svg")
                             }
-
-                            Layout.minimumWidth: units.iconSizes.smallMedium
-                            Layout.minimumHeight: units.iconSizes.smallMedium
-                            Layout.preferredWidth: Layout.minimumWidth
-                            Layout.preferredHeight: Layout.minimumHeight
                         }
 
                         PlasmaComponents.Label {
                             id: sunRiseData
-                            Layout.preferredWidth: parent.width / 2
-                            horizontalAlignment: Text.AlignHCenter
-                            text: Api.extractTime(forecastModel.get(itemEl).fullForecast.sunrise, false)
+
+                            width: parent.width / 2
+
+                            anchors {
+                                right: parent.right
+                                verticalCenter: parent.verticalCenter
+                            }
+
                             font {
                                 pointSize: textSize.small
                             }
+
+                            text: Api.extractTime(forecastModel.get(itemEl).fullForecast.sunrise, false)
                         }
                     }
-                    RowLayout {
-                        Layout.preferredWidth: parent.width / 2
+                    Item {
+                        id: sunSetElement
+
+                        width: parent.width / 2
+                        height: sunSetData.paintedHeight
+
+                        anchors {
+                            right: parent.horizontalCenter
+                            rightMargin: units.smallSpacing
+                            top: sunMoonSetRiseGrid.verticalCenter
+                            topMargin: units.smallSpacing
+                        }
 
                         PlasmaCore.SvgItem {
                             id: sunSetIcon
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                            
+                            width: units.iconSizes.smallMedium
+                            height: units.iconSizes.smallMedium
+
+                            anchors {
+                                right: sunSetData.left
+                                rightMargin: 2 * units.smallSpacing
+                                verticalCenter: parent.verticalCenter
+                            }
+
                             svg: PlasmaCore.Svg {
                                 id: sunSetSvg
                                 imagePath: plasmoid.file("", "icons/fullRepresentation/wi-sunset.svg")
                             }
-
-                            Layout.minimumWidth: units.iconSizes.smallMedium
-                            Layout.minimumHeight: units.iconSizes.smallMedium
-                            Layout.preferredWidth: Layout.minimumWidth
-                            Layout.preferredHeight: Layout.minimumHeight
                         }
 
                         PlasmaComponents.Label {
                             id: sunSetData
-                            Layout.preferredWidth: parent.width / 2
-                            horizontalAlignment: Text.AlignHCenter
+                            
+                            width: parent.width / 2
+                            height: sunSetData.paintedHeight
+                            
+                            anchors {
+                                right: parent.right
+                                verticalCenter: parent.verticalCenter
+                            }
+
+                            font {
+                                pointSize: textSize.small
+                            }
+
                             text: Api.extractTime(forecastModel.get(itemEl).fullForecast.sunset, false)
-                            font {
-                                //weight: Font.Bold
-                                pointSize: textSize.small
-                            }
                         }
                     }
-                    RowLayout {
-                        Layout.preferredWidth: parent.width / 2
+                    Item {
+                        id: moonSetElement
+                        
+                        width: parent.width / 2
+                        height: moonSetData.paintedHeight
 
-                        PlasmaCore.SvgItem {
-                            id: moonRiseIcon
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
-                            svg: PlasmaCore.Svg {
-                                id: moonRiseSvg
-                                imagePath: plasmoid.file("", "icons/fullRepresentation/wi-moonrise.svg")
-                            }
-
-                            Layout.minimumWidth: units.iconSizes.smallMedium
-                            Layout.minimumHeight: units.iconSizes.smallMedium
-                            Layout.preferredWidth: Layout.minimumWidth
-                            Layout.preferredHeight: Layout.minimumHeight
+                        anchors {
+                            left: parent.horizontalCenter
+                            leftMargin: units.smallSpacing
+                            bottom: sunMoonSetRiseGrid.verticalCenter
+                            bottomMargin: units.smallSpacing
                         }
-
-                        PlasmaComponents.Label {
-                            id: moonRiseData
-                            Layout.preferredWidth: parent.width / 2
-                            horizontalAlignment: Text.AlignHCenter
-                            text: Api.extractTime(forecastModel.get(itemEl).fullForecast.moonrise, false)
-                            font {
-                                pointSize: textSize.small
-                            }
-                        }
-                    }
-                    RowLayout {
-                        Layout.preferredWidth: parent.width / 2
 
                         PlasmaCore.SvgItem {
                             id: moonSetIcon
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+
+                            width: units.iconSizes.smallMedium
+                            height: units.iconSizes.smallMedium
+
+                            anchors {
+                                left: parent.left
+                                verticalCenter: parent.verticalCenter
+                            }
+
                             svg: PlasmaCore.Svg {
                                 id: moonSetSvg
                                 imagePath: plasmoid.file("", "icons/fullRepresentation/wi-moonset.svg")
                             }
-
-                            Layout.minimumWidth: units.iconSizes.smallMedium
-                            Layout.minimumHeight: units.iconSizes.smallMedium
-                            Layout.preferredWidth: Layout.minimumWidth
-                            Layout.preferredHeight: Layout.minimumHeight
                         }
 
                         PlasmaComponents.Label {
                             id: moonSetData
-                            Layout.preferredWidth: parent.width / 2
-                            horizontalAlignment: Text.AlignHCenter
-                            text: Api.extractTime(forecastModel.get(itemEl).fullForecast.moonset, false)
+
+                            width: parent.width / 2
+                            height: moonSetData.paintedHeight
+                            
+                            anchors {
+                                left: moonSetIcon.right
+                                leftMargin: 2 * units.smallSpacing
+                                verticalCenter: parent.verticalCenter
+                            }
+
                             font {
                                 pointSize: textSize.small
                             }
+                            text: Api.extractTime(forecastModel.get(itemEl).fullForecast.moonset, false)
+                        }
+                    }
+                    Item {
+                        id: moonRiseElement
+
+                        width: parent.width / 2
+                        height: moonRiseData.paintedHeight
+
+                        anchors {
+                            left: parent.horizontalCenter
+                            leftMargin: units.smallSpacing
+                            top: sunMoonSetRiseGrid.verticalCenter
+                            topMargin: units.smallSpacing
+                        }
+
+                        PlasmaCore.SvgItem {
+                            id: moonRiseIcon
+                            
+                            width: units.iconSizes.smallMedium
+                            height: units.iconSizes.smallMedium
+
+                            anchors {
+                                left: parent.left
+                                verticalCenter: parent.verticalCenter
+                            }
+
+                            svg: PlasmaCore.Svg {
+                                id: moonRiseSvg
+                                imagePath: plasmoid.file("", "icons/fullRepresentation/wi-moonrise.svg")
+                            }
+                        }
+
+                        PlasmaComponents.Label {
+                            id: moonRiseData
+
+                            width: parent.width / 2
+                            height: moonRiseData.paintedHeight
+                            
+                            anchors {
+                                left: moonRiseIcon.right
+                                leftMargin: 2 * units.smallSpacing
+                                verticalCenter: parent.verticalCenter
+                            }
+
+                            font {
+                                pointSize: textSize.small
+                            }
+                            text: Api.extractTime(forecastModel.get(itemEl).fullForecast.moonrise, false)
                         }
                     }
                 }
 
-                RowLayout{
+                Item{
                     id: moonRow
 
-                    Layout.preferredWidth: forecastScroller.width / 6 * 2
+                    width: forecastScroller.width / 6 * 2
+                    height: parent.height
 
-                    Layout.columnSpan: 1
-                    Layout.rowSpan: 2
-                    Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                    anchors {
+                        right: parent.right
+                        rightMargin: units.smallSpacing
+                    }
 
                     PlasmaCore.SvgItem {
                         id: moonIcon
-                        svg: PlasmaCore.Svg {
-                            id: moonSvg
-                            imagePath: plasmoid.file("", "icons/fullRepresentation/" + Utils.getMoonPhaseIcon(forecastModel.get(itemEl).fullForecast.lunar_phase))
+
+                        width: units.iconSizes.medium
+                        height: units.iconSizes.medium
+
+                        anchors {
+                            right: moonLabel.left
+                            rightMargin: units.smallSpacing
+                            verticalCenter: parent.verticalCenter
                         }
 
-                        Layout.minimumWidth: units.iconSizes.medium
-                        Layout.minimumHeight: units.iconSizes.medium
-                        Layout.preferredWidth: Layout.minimumWidth
-                        Layout.preferredHeight: Layout.minimumHeight
+                        svg: PlasmaCore.Svg {
+                            id: moonSvg
+                            imagePath: plasmoid.file("", "icons/fullRepresentation/" + Utils.getMoonPhaseIcon(forecastModel.get(itemEl).fullForecast.lunar_phase_code))
+                        }
+
                         
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                     }
                     PlasmaComponents.Label {
                         id: moonLabel
-                            
+                         
+                        anchors {
+                            right: parent.right
+                            verticalCenter: parent.verticalCenter
+                        }
                         text: forecastModel.get(itemEl).fullForecast.lunar_phase
                         font {
                             weight: Font.Bold
                             pointSize: textSize.small
                         }
-
-                        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                     }
 
                 }
@@ -507,8 +628,3 @@ GridLayout{
 
     }
 }
-
-
-
-
-

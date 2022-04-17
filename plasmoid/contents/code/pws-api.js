@@ -359,7 +359,7 @@ function findIconCode() {
 
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
-	url += "&language=en-US";
+	url += "&language=" + currentLocale;
 
 	if (unitsChoice === 0) {
 		url += "&units=m";
@@ -419,6 +419,7 @@ function extractGenericInfo(forecast) {
 		"sunset": extractTime(forecast["sunset"], true),
 		"moonrise": extractTime(forecast["moonrise"], true),
 		"moonset": extractTime(forecast["moonset"], true),
+		"lunarPhaseCode": forecast["lunar_phase_code"],
 		"lunarPhase": forecast["lunar_phase"]
 	}
 }

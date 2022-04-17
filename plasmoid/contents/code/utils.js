@@ -391,19 +391,19 @@ function returnSpace(shouldReturnSpace) {
 	}
 }
 
-function getMoonPhaseIcon(phaseName) {
+function getMoonPhaseIcon(phaseCode) {
 	var moonPhasesDict = {
-		"New Moon": "wi-moon-new.svg",
-		"Waxing Crescent": "wi-moon-waxing-crescent-2.svg",
-		"First Quarter": "wi-moon-first-quarter.svg",
-		"Waxing Gibbous": "wi-moon-waxing-gibbous-2.svg",
-		"Full": "wi-moon-full.svg",
-		"Waning Gibbous": "wi-moon-waning-gibbous-2.svg",
-		"Last Quarter": "wi-moon-third-quarter.svg",
-		"Waning Crescent": "wi-moon-waning-crescent-2.svg"
+		"N": "wi-moon-new.svg",
+		"WXC": "wi-moon-waxing-crescent-2.svg",
+		"FQ": "wi-moon-first-quarter.svg",
+		"WXG": "wi-moon-waxing-gibbous-2.svg",
+		"F": "wi-moon-full.svg",
+		"WNG": "wi-moon-waning-gibbous-2.svg",
+		"LQ": "wi-moon-third-quarter.svg",
+		"WNC": "wi-moon-waning-crescent-2.svg"
 	};
 
-	return moonPhasesDict[phaseName];
+	return moonPhasesDict[phaseCode];
 }
 
 function displayUnits(data, units, dataPointName) {
