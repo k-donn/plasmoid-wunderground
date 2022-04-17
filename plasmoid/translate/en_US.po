@@ -1,25 +1,25 @@
-# Translation of plasmoid-wunderground-extended in pl_PL
-# Copyright (C) 2022
-# This file is distributed under the same license as the plasmoid-wunderground-extended package.
+# Translation of plasmoid-wunderground in en_GB
+# Copyright (C) 2021
+# This file is distributed under the same license as the plasmoid-wunderground package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: plasmoid-wunderground-extended\n"
+"Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extended\n"
 "POT-Creation-Date: 2022-04-16 19:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Rafal (Raf) Liwoch <rafal.liwoch@gmail.com>\n"
-"Language-Team: POLISH <LL@li.org>\n"
-"Language: pl-PL\n"
+"Language-Team: ENGLISH (US) <LL@li.org>\n"
+"Language: en-US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../metadata.desktop
 msgid "Wunderground Extended"
-msgstr "Wunerground Extended"
+msgstr "Wunderground Extended"
 
 #: ../metadata.desktop
 msgid "Wunderground PWS extended"
@@ -27,268 +27,268 @@ msgstr "Wunderground PWS extended"
 
 #: ../contents/config/config.qml
 msgid "Station"
-msgstr "ID Stacji pogodowej"
+msgstr "Station ID"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
-msgstr "Wygląd"
+msgstr "Appearance"
 
 #: ../contents/config/config.qml
 msgid "Units"
-msgstr "Jednostki"
+msgstr "Units"
 
 #: ../contents/config/config.qml
 msgid "Debug"
-msgstr "Debugowanie"
+msgstr "Debug"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Compact Representation"
-msgstr "Wygląd kompaktowy"
+msgstr "Compact Representation"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font"
-msgstr "Czcionka"
+msgstr "Font"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon size (0 = default)"
-msgstr "Rozmiar ikony (0 = domyślny)"
+msgstr "Icon size (0 = default)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font size (0px=scale to widget)"
-msgstr "Rozmiar czcionki (0 = domyślny"
+msgstr "Font size (0 = default)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font styles"
-msgstr "Styl czcionki"
+msgstr "Font styles"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Display narrative in taskbar"
-msgstr "Wyświetl opis pogodowy na pasku"
+msgstr "Display narrative in taskbar"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
-msgstr "Wygląd pełny"
+msgstr "Full Representation"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property text size"
-msgstr "Rozmiar tekstu"
+msgstr "Base text size"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon styles"
-msgstr "Styl ikon"
+msgstr "Icon styles"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "Legacy"
-msgstr "Starsza werjsa (monochromatyczne)"
+msgstr "Legacy"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - White with colour"
-msgstr "Białe z kolorem (WeatherUnderground)"
+msgstr "WeatherUnderground - White with color"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - White"
-msgstr "Białe (WeatherUnderground)"
+msgstr "WeatherUnderground - White"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - Black"
-msgstr "Czarne (WeatherUnderground)"
+msgstr "WeatherUnderground - Black"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - Black with colour"
-msgstr "Czarne z kolorem (WeatherUnderground)"
+msgstr "WeatherUnderground - Black with color"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "DEFAULT monochrome by Erik Flowers"
-msgstr "DOMYŚlny monochromatyczny (Erik Flowers)"
+msgstr "DEFAULT monochrome by Erik Flowers"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherNOW Colour"
-msgstr "WeatherNOW kolorowe"
+msgstr "WeatherNOW Color"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Select icon style:"
-msgstr "Wybierz styl ikon:"
+msgstr "Select icon style:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
-msgstr "Zapisuj logi"
+msgstr "Write debug info to console"
 
 #: ../contents/ui/config/ConfigFontFamily.qml
 msgctxt "Use default font"
 msgid "Default"
-msgstr "Użyj domyślnej czcionki"
+msgstr "Use default font"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Enter Station"
-msgstr "Wprowadź ID stacji pogodowej"
+msgstr "Enter Station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Weatherstation ID:"
-msgstr "ID Stacji pogodowej"
+msgstr "Weatherstation ID:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Get Nearest Station"
-msgstr "Znajdź najbliższą stację pogodową"
+msgstr "Get Nearest Station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Uses WGS84 geocode coordinates"
-msgstr "Użyj koorydnatów wg. standardu WGS84"
+msgstr "Uses WGS84 geocode coordinates"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude:"
-msgstr "Długość geograficzna"
+msgstr "Longitude:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Latitude:"
-msgstr "Szerokość geograficzna"
+msgstr "Latitude"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
-msgstr "Odświeżanie co (s)"
+msgstr "Refresh period (s):"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
-msgstr "Znajdź stację"
+msgstr "Find Station"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Metric"
-msgstr "System metryczny"
+msgstr "Metric"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Imperial"
-msgstr "System imperialny"
+msgstr "Imperial"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
-msgstr "System hybrydowy (UK)"
+msgstr "Hybrid (UK)"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
-msgstr "Wybierz jednostki:"
+msgstr "Choose:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Date format:"
-msgstr "Ustaw format daty"
+msgstr "Date format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time format:"
-msgstr "Ustaw format czasu"
+msgstr "Time format:"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Feels like %1"
-msgstr "Temp. odczuwalna %1"
+msgstr "Feels like %1"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Loading data..."
-msgstr "Ładowanie danych..."
+msgstr "Loading data..."
 
 #: ../contents/ui/HorizontalCompactLayout.qml ../contents/ui/main.qml ../contents/ui/TopPanel.qml
 msgid "Loading..."
-msgstr "Ładowanie..."
+msgstr "Loading..."
 
 #: ../contents/ui/main.qml
 msgid "All set"
-msgstr "Plugin działa w porządku"
+msgstr "All set"
 
 #: ../contents/ui/main.qml
 msgid "Temperature"
-msgstr "Temperatura"
+msgstr "Temperature"
 
 #: ../contents/ui/main.qml
 msgid "UV Index"
-msgstr "Indeks UV"
+msgstr "UV Index"
 
 #: ../contents/ui/main.qml
 msgid "Pressure"
-msgstr "Ciśnienie"
+msgstr "Pressure"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
-msgstr "Zachmurzenie"
+msgstr "Cloud Cover"
 
 #: ../contents/ui/main.qml
 msgid "Humidity"
-msgstr "Wilgotność"
+msgstr "Humidity"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Chance"
-msgstr "Szansa na opady"
+msgstr "Precipitation Chance"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Rate"
-msgstr "Opady deszczu"
+msgstr "Precipitation Rate"
 
 #: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
-msgstr "Opady śniegu"
+msgstr "Snow Precipitation Rate"
 
 #: ../contents/ui/main.qml
 msgid "Wind / Gust"
-msgstr "Wiatr / Podmuchy"
+msgstr "Wind / Gust"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Accumulation"
-msgstr "Akumulacja opadów"
+msgstr "Precipitation Accumulation"
 
 #: ../contents/ui/main.qml
 msgid "Dew Point"
-msgstr "Punkt rosy"
+msgstr "Dew Point"
 
 #: ../contents/ui/main.qml
 msgid "Wind Direction"
-msgstr "Kierunek wiatru"
+msgstr "Wind Direction"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
-msgstr "Ustaw stację pogodową"
+msgstr "Set the weather station to pull data from."
 
 #: ../contents/ui/main.qml
 msgid "Please Configure"
-msgstr "Skonfiguruj plugin"
+msgstr "Please Configure"
 
 #: ../contents/ui/main.qml
 msgid "Error..."
-msgstr "Wystąpił błąd..."
+msgstr "Error..."
 
 #: ../contents/ui/main.qml
 msgid "Undefined Error..."
-msgstr "Nierozpoznany bląd..."
+msgstr "Undefined Error..."
 
 #: ../contents/ui/main.qml
 msgctxt "Please put your language code here"
 msgid "en-US"
-msgstr "pl-PL"
+msgstr "en-US"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Weather Details"
-msgstr "Szczegóły pogodowe"
+msgstr "Weather Details"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Day Chart"
-msgstr "Wykres (24h)"
+msgstr "Day Charts"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Forecast"
-msgstr "Prognoza pogody"
+msgstr "Forecast"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Week Chart"
-msgstr "Wykres (7d)"
+msgstr "Week Charts"
 
 #: ../contents/ui/Tooltip.qml
 msgid "Real feel"
-msgstr "Temp. odczuwalna"
+msgstr "Real feel"
 
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
-msgstr "Maks.: %1 | Min.: %2"
+msgstr "High: %1 Low: %2"

@@ -18,3 +18,12 @@ X-Plasma-NotificationArea=false
 X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
 X-Plasma-RemoteLocation=
+
+Name[en_GB]=Wunderground Extended
+Name[en_US]=Wunderground Extended
+Name[nl_NL]=Wunderground (uitgebreid)
+Name[pl_PL]=Wunerground Extended
+Comment[en_GB]=Wunderground PWS extended
+Comment[en_US]=Wunderground PWS extended
+Comment[nl_NL]=Wunderground PWS (uitgebreid)
+Comment[pl_PL]=Wunderground PWS extended

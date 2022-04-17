@@ -1,4 +1,4 @@
-# Translation of plasmoid-wunderground-extended in LANGUAGE
+# Translation of plasmoid-wunderground-extended in nl_NL
 # Copyright (C) 2022
 # This file is distributed under the same license as the plasmoid-wunderground-extended package.
 #
@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground-extended\n"
-"Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extende"
-"d\n"
+"Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-"
+"extended\n"
 "POT-Creation-Date: 2022-04-16 19:48+0200\n"
 "PO-Revision-Date: 2022-04-16 20:15+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
@@ -194,7 +194,8 @@ msgstr "Gevoelstemperatuur: %1"
 msgid "Loading data..."
 msgstr "Bezig met ophalen van gegevens…"
 
-#: ../contents/ui/HorizontalCompactLayout.qml ../contents/ui/main.qml ../contents/ui/TopPanel.qml
+#: ../contents/ui/HorizontalCompactLayout.qml ../contents/ui/main.qml
+#: ../contents/ui/TopPanel.qml
 msgid "Loading..."
 msgstr "Bezig met laden…"
 

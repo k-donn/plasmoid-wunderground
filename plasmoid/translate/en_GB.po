@@ -10,20 +10,20 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/rliwoch/plasmoid-wunderground-extended\n"
 "POT-Creation-Date: 2022-04-16 19:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Last-Translator: Rafal (Raf) Liwoch <rafal.liwoch@gmail.com>\n"
+"Language-Team: ENGLISH (GB) <LL@li.org>\n"
+"Language: en-GB\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../metadata.desktop
 msgid "Wunderground Extended"
-msgstr ""
+msgstr "Wunderground Extended"
 
 #: ../metadata.desktop
 msgid "Wunderground PWS extended"
-msgstr ""
+msgstr "Wunderground PWS extended"
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -51,11 +51,11 @@ msgstr "Font"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon size (0 = default)"
-msgstr ""
+msgstr "Icon size (0 = default)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font size (0px=scale to widget)"
-msgstr "Font size"
+msgstr "Font size (0 = default)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font styles"
@@ -63,7 +63,7 @@ msgstr "Font styles"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Display narrative in taskbar"
-msgstr ""
+msgstr "Display narrative in taskbar"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
@@ -75,46 +75,46 @@ msgstr "Base text size"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon styles"
-msgstr ""
+msgstr "Icon styles"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "Legacy"
-msgstr ""
+msgstr "Legacy"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - White with colour"
-msgstr ""
+msgstr "WeatherUnderground - White with colour"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - White"
-msgstr ""
+msgstr "WeatherUnderground - White"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - Black"
-msgstr ""
+msgstr "WeatherUnderground - Black"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherUnderground - Black with colour"
-msgstr ""
+msgstr "WeatherUnderground - Black with colour"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "DEFAULT monochrome by Erik Flowers"
-msgstr ""
+msgstr "DEFAULT monochrome by Erik Flowers"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Icon style"
 msgid "WeatherNOW Colour"
-msgstr ""
+msgstr "WeatherNOW Colour"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Select icon style:"
-msgstr ""
+msgstr "Select icon style:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
@@ -147,122 +147,122 @@ msgstr "Longitude:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Latitude:"
-msgstr ""
+msgstr "Latitude"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
-msgstr ""
+msgstr "Refresh period (s):"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
-msgstr ""
+msgstr "Find Station"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Metric"
-msgstr ""
+msgstr "Metric"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Imperial"
-msgstr ""
+msgstr "Imperial"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
-msgstr ""
+msgstr "Hybrid (UK)"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
-msgstr ""
+msgstr "Choose:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Date format:"
-msgstr ""
+msgstr "Date format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time format:"
-msgstr ""
+msgstr "Time format:"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Feels like %1"
-msgstr ""
+msgstr "Feels like %1"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Loading data..."
-msgstr ""
+msgstr "Loading data..."
 
 #: ../contents/ui/HorizontalCompactLayout.qml ../contents/ui/main.qml ../contents/ui/TopPanel.qml
 msgid "Loading..."
-msgstr ""
+msgstr "Loading..."
 
 #: ../contents/ui/main.qml
 msgid "All set"
-msgstr ""
+msgstr "All set"
 
 #: ../contents/ui/main.qml
 msgid "Temperature"
-msgstr ""
+msgstr "Temperature"
 
 #: ../contents/ui/main.qml
 msgid "UV Index"
-msgstr ""
+msgstr "UV Index"
 
 #: ../contents/ui/main.qml
 msgid "Pressure"
-msgstr ""
+msgstr "Pressure"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Cloud Cover"
 
 #: ../contents/ui/main.qml
 msgid "Humidity"
-msgstr ""
+msgstr "Humidity"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Chance"
-msgstr ""
+msgstr "Precipitation Chance"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Rate"
-msgstr ""
+msgstr "Precipitation Rate"
 
 #: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
-msgstr ""
+msgstr "Snow Precipitation Rate"
 
 #: ../contents/ui/main.qml
 msgid "Wind / Gust"
-msgstr ""
+msgstr "Wind / Gust"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Accumulation"
-msgstr ""
+msgstr "Precipitation Accumulation"
 
 #: ../contents/ui/main.qml
 msgid "Dew Point"
-msgstr ""
+msgstr "Dew Point"
 
 #: ../contents/ui/main.qml
 msgid "Wind Direction"
-msgstr ""
+msgstr "Wind Direction"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
-msgstr ""
+msgstr "Set the weather station to pull data from."
 
 #: ../contents/ui/main.qml
 msgid "Please Configure"
-msgstr ""
+msgstr "Please Configure"
 
 #: ../contents/ui/main.qml
 msgid "Error..."
-msgstr ""
+msgstr "Error..."
 
 #: ../contents/ui/main.qml
 msgid "Undefined Error..."
-msgstr ""
+msgstr "Undefined Error..."
 
 #: ../contents/ui/main.qml
 msgctxt "Please put your language code here"
@@ -271,24 +271,24 @@ msgstr "en-GB"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Weather Details"
-msgstr ""
+msgstr "Weather Details"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Day Chart"
-msgstr "24h Charts"
+msgstr "Day Charts"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Forecast"
-msgstr ""
+msgstr "Forecast"
 
 #: ../contents/ui/SwitchPanel.qml
 msgid "Week Chart"
-msgstr "7d Charts"
+msgstr "Week Charts"
 
 #: ../contents/ui/Tooltip.qml
 msgid "Real feel"
-msgstr ""
+msgstr "Real feel"
 
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
-msgstr ""
+msgstr "High: %1 Low: %2"
