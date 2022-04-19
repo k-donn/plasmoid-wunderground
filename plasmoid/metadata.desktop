@@ -20,4 +20,6 @@ X-Plasma-MainScript=ui/main.qml
 X-Plasma-RemoteLocation=
 
 Name[es_ES]=Wunderground
+Name[nl_NL]=Wunderground
 Comment[es_ES]=Visor de la estación meteorológica personal Wunderground
+Comment[nl_NL]=Wunderground - Bekijk je eigen weerstation

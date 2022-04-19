@@ -127,4 +127,6 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
+# KDE
 .kdev4/
+*.mo

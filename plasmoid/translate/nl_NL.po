@@ -1,4 +1,4 @@
-# Translation of plasmoid-wunderground in LANGUAGE
+# Translation of plasmoid-wunderground in nl_NL
 # Copyright (C) 2022
 # This file is distributed under the same license as the plasmoid-wunderground package.
 #
