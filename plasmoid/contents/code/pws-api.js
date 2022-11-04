@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+/** @type {string} */
+let API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
+
 /**
  * Pull the most recent observation from the selected weather station.
  *
@@ -35,7 +38,7 @@ function getCurrentData() {
 		url += "&units=h";
 	}
 
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
+	url += "&apiKey=" + API_KEY;
 	url += "&numericPrecision=decimal";
 
 	printDebug("[pws-api.js] " + url);
@@ -119,7 +122,7 @@ function getForecastData() {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
-	url += "?apiKey=6532d6454b8aa370768e63d6ba5a832e";
+	url += "?apiKey=" + API_KEY;
 	url += "&language=en-US";
 
 	if (unitsChoice === 0) {
@@ -230,7 +233,7 @@ function getNearestStation() {
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
+	url += "&apiKey=" + API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -266,7 +269,7 @@ function findIconCode() {
 	var url = "https://api.weather.com/v3/wx/observations/current";
 
 	url += "?geocode=" + lat + "," + long;
-	url += "&apiKey=6532d6454b8aa370768e63d6ba5a832e";
+	url += "&apiKey=" + API_KEY;
 	url += "&language=en-US";
 
 	if (unitsChoice === 0) {

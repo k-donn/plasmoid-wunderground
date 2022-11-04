@@ -78,6 +78,7 @@ Item {
             id: refreshPeriod
 
             from: 1
+            to: 86400
             editable: true
 
             validator: IntValidator {
