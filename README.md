@@ -34,6 +34,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 ## TODO
 
 -   [ ] Version 3 updates
+-   Update translations to include config page and screen on widget
 
 ## Parking lot
 

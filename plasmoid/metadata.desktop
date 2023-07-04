@@ -10,7 +10,7 @@ X-KDE-PluginInfo-Author=k-donn
 X-KDE-PluginInfo-Email=k-donn@github.com
 X-KDE-PluginInfo-License=GPL2-or-later
 X-KDE-PluginInfo-Name=com.github.k-donn.plasmoid-wunderground
-X-KDE-PluginInfo-Version=2.5.0
+X-KDE-PluginInfo-Version=2.5.1
 X-KDE-PluginInfo-Website=https://github.com/k-donn/plasmoid-wunderground
 X-KDE-ServiceTypes=Plasma/Applet
 X-KDE-PluginInfo-Category=Environment and Weather
@@ -21,5 +21,7 @@ X-Plasma-RemoteLocation=
 
 Name[es_ES]=Wunderground
 Name[nl_NL]=Wunderground
+Name[ru_RU]=Wunderground
 Comment[es_ES]=Visor de la estación meteorológica personal Wunderground
 Comment[nl_NL]=Wunderground - Bekijk je eigen weerstation
+Comment[ru_RU]=Программа просмотра персональных метеостанций Wunderground
