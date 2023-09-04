@@ -19,9 +19,11 @@ X-Plasma-API=declarativeappletscript
 X-Plasma-MainScript=ui/main.qml
 X-Plasma-RemoteLocation=
 
+Name[de_DE]=Wunderground
 Name[es_ES]=Wunderground
 Name[nl_NL]=Wunderground
 Name[ru_RU]=Wunderground
+Comment[de_DE]=Wunderground Personal Weather Station viewer
 Comment[es_ES]=Visor de la estación meteorológica personal Wunderground
 Comment[nl_NL]=Wunderground - Bekijk je eigen weerstation
 Comment[ru_RU]=Программа просмотра персональных метеостанций Wunderground
