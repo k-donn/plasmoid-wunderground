@@ -36,7 +36,8 @@ GridLayout {
             bold: true
             pointSize: plasmoid.configuration.tempPointSize
         }
-        color: Utils.heatColor(weatherData["details"]["temp"])
+        // Use the dyanimcally calulated color (light/dark theme) of the wind label if user doesn't want temp colored
+        color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"]) : windLabel.color
     }
     PlasmaCore.SvgItem {
         id: topPanelIcon

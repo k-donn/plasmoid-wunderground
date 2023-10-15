@@ -28,6 +28,7 @@ Item {
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
+    property alias cfg_tempAutoColor: tempAutoColor.checked
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -88,6 +89,12 @@ Item {
             editable: true
 
             Kirigami.FormData.label: i18n("Temperature text size")
+        }
+
+        CheckBox {
+            id: tempAutoColor
+
+            Kirigami.FormData.label: "Auto-color temperature:"
         }
 
     }
