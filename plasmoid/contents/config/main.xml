@@ -42,6 +42,9 @@
         <entry name="tempPointSize" type="Int">
             <default>30</default>
         </entry>
+        <entry name="tempAutoColor" type="Bool">
+            <default>true</default>
+        </entry>
     </group>
     <group name="Units">
         <entry name="unitsChoice" type="Int">

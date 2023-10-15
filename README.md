@@ -33,10 +33,12 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 ## TODO
 
--   [ ] Version 3 updates
--   Update translations to include config page and screen on widget
-
-## Parking lot
-
--   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
--   [ ] Use Wunderground Plasma Ion (when I finish it).
+-   i18n
+    -   [ ] Add configuration buttons
+    -   [ ] Add color change text
+-   Customizability
+    -   [ ] Widget size/padding
+    -   [ ] Units choice (eg. from km/h to m/s for metric)
+-   Parking lot
+    -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
+    -   [ ] Use Wunderground Plasma Ion (when I finish it).
