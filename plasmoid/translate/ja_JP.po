@@ -1,4 +1,4 @@
-# Translation of plasmoid-wunderground in LANGUAGE
+# Translation of plasmoid-wunderground in ja_JP
 # Copyright (C) 2023
 # This file is distributed under the same license as the plasmoid-wunderground package.
 # Yuta Takahashi <y.highbridge04@gmail.com>, 2024.
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2023-07-04 10:45-0400\n"
+"POT-Creation-Date: 2024-01-21 20:04-0500\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -32,7 +32,6 @@ msgstr "コンパクトな表示"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font"
 msgstr "フォント"
-
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Font size (0px=scale to widget)"
