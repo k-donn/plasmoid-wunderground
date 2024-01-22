@@ -1,5 +1,5 @@
 # Translation of plasmoid-wunderground in LANGUAGE
-# Copyright (C) 2023
+# Copyright (C) 2024
 # This file is distributed under the same license as the plasmoid-wunderground package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2023-07-04 10:45-0400\n"
+"POT-Creation-Date: 2024-01-21 19:53-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
