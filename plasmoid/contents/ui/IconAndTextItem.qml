@@ -5,12 +5,12 @@
  */
 
 
-import QtQuick 2.9
-import QtQuick.Layouts 1.3
-
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 3.0 as PlasmaComponents
+import QtQuick
+import QtQuick.Layouts
+import org.kde.ksvg as KSvg
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 
 GridLayout {
     id: iconAndTextRoot
@@ -54,7 +54,7 @@ GridLayout {
         compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth)
     }
 
-    PlasmaCore.SvgItem {
+    KSvg.SvgItem {
         id: icon
 
         readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
@@ -62,7 +62,7 @@ GridLayout {
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
 
-        svg: PlasmaCore.Svg {
+        svg: KSvg.Svg {
             id: svg
         }
 

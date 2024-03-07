@@ -1,4 +1,4 @@
-# Wunderground PWS Widget for KDE 5
+# Wunderground PWS Widget for KDE 6
 
 A Plasma 5 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview)
 

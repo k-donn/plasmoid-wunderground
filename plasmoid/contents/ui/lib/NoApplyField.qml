@@ -1,6 +1,6 @@
-import QtQuick 2.0
-import QtQuick.Controls 1.0
-import QtQuick.Layouts 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 TextField {
     id: configString
@@ -20,7 +20,7 @@ TextField {
     onTextChanged: serializeTimer.restart()
 
     ToolButton {
-        iconName: "edit-clear"
+        icon.name: "edit-clear"
         onClicked: configString.value = defaultValue
 
         anchors.top: parent.top

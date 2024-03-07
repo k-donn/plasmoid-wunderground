@@ -15,15 +15,16 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import QtQuick.Controls 2.0
-import QtQuick.Layouts 1.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.kirigami 2.4 as Kirigami
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kcmutils as KCM
+import org.kde.plasma.components as PlasmaComponents
+import org.kde.kirigami as Kirigami
 import "../../code/pws-api.js" as StationAPI
 import "../lib"
 
-Item {
+KCM.SimpleKCM {
     id: stationConfig
 
     property alias cfg_stationID: stationID.text

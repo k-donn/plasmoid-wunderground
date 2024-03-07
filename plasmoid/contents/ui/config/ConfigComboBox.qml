@@ -1,8 +1,8 @@
 // Version 5
 
-import QtQuick 2.0
-import QtQuick.Controls 1.0
-import QtQuick.Layouts 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
 
 /*
 ** Example:
@@ -64,7 +64,7 @@ RowLayout {
     ComboBox {
         id: comboBox
         textRole: "text" // Doesn't autodeduce from model if we manually populate it
-        property string valueRole: "value"
+        valueRole: "value"
 
         model: []
 

@@ -15,21 +15,21 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
 import "../code/pws-api.js" as StationAPI
 
-Item {
+PlasmoidItem {
     id: root
 
     property var weatherData: null
     property ListModel forecastModel: ListModel {}
     property string errorStr: ""
-    property string toolTipSubText: ""
+    property string toolTipSubTextVar: ""
     property string iconCode: "32" // 32 = sunny
     property string conditionNarrative: ""
 
@@ -107,7 +107,7 @@ Item {
         subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]))
         subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
 
-        toolTipSubText = subText;
+        toolTipSubTextVar = subText;
     }
 
     onUnitsChoiceChanged: {
@@ -164,8 +164,8 @@ Item {
         onTriggered: updateForecastData()
     }
 
-    Plasmoid.toolTipTextFormat: Text.RichText
-    Plasmoid.toolTipMainText: {
+    toolTipTextFormat: Text.RichText
+    toolTipMainText: {
         if (appState == showCONFIG) {
             return i18n("Please Configure");
         } else if (appState == showDATA) {
@@ -176,10 +176,10 @@ Item {
             return i18n("Error...");
         }
     }
-    Plasmoid.toolTipSubText: toolTipSubText
+    toolTipSubText: toolTipSubText
 
-    // Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
-    Plasmoid.fullRepresentation: fr
-    Plasmoid.compactRepresentation: cr
+    // preferredRepresentation: compactRepresentation
+    fullRepresentation: fr
+    compactRepresentation: cr
 
 }

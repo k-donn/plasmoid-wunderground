@@ -15,18 +15,19 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
-import org.kde.plasma.plasmoid 2.0
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 
 Button {
     function showSettings() {
-        plasmoid.action("configure").trigger()
+    // TODO: figure out how to open config dialog
     }
 
     text: "Configure Wunderground"
     icon.name: "settings"
+
     onClicked: showSettings()
 }
