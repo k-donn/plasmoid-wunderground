@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 import "lib"
@@ -29,7 +30,7 @@ ColumnLayout {
     height: parent.height
     width: parent.width
 
-    spacing: units.smallSpacing
+    spacing: Kirigami.Units.smallSpacing
 
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {console.log("[debug] [FullRep.qml] " + msg)};

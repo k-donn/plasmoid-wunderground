@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,6 +20,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import org.kde.plasma.plasmoid
 import org.kde.ksvg as KSvg
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
@@ -27,7 +28,7 @@ import "../code/utils.js" as Utils
 RowLayout {
     id: forecastItemRoot
 
-    readonly property int preferredIconSize: units.iconSizes.large
+    readonly property int preferredIconSize: Kirigami.Units.iconSizes.large
 
     Repeater {
         id: repeater
@@ -58,7 +59,7 @@ RowLayout {
                 Layout.preferredWidth: preferredIconSize
 
                 svg: KSvg.Svg {
-                    imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+                    imagePath: iconCode + ".svg"
                 }
 
                 PlasmaCore.ToolTipArea {

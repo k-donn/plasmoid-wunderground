@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -43,15 +43,16 @@ GridLayout {
     KSvg.SvgItem {
         id: topPanelIcon
 
+        // FIXME: Figure out Plasma 6 file loading. AppletInterface::file() was removed
         svg: KSvg.Svg {
             id: svg
-            imagePath: plasmoid.file("", "icons/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg")
+            imagePath: "image://plasmoid-wunderground/theme/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg"
         }
 
         rotation: weatherData["winddir"] - 270
 
-        Layout.minimumWidth: units.iconSizes.large
-        Layout.minimumHeight: units.iconSizes.large
+        Layout.minimumWidth: Kirigami.Units.iconSizes.large
+        Layout.minimumHeight: Kirigami.Units.iconSizes.large
         Layout.preferredWidth: Layout.minimumWidth
         Layout.preferredHeight: Layout.minimumHeight
     }

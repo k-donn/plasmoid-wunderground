@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -20,6 +20,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import org.kde.plasma.plasmoid
 import org.kde.ksvg as KSvg
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
@@ -32,11 +33,11 @@ RowLayout {
 
         svg: KSvg.Svg {
             id: svg
-            imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
+            imagePath: "../icons/" + iconCode + ".svg"
         }
 
-        Layout.minimumWidth: units.iconSizes.large
-        Layout.minimumHeight: units.iconSizes.large
+        Layout.minimumWidth: Kirigami.Units.iconSizes.large
+        Layout.minimumHeight: Kirigami.Units.iconSizes.large
         Layout.preferredWidth: Layout.minimumWidth
         Layout.preferredHeight: Layout.minimumHeight
     }

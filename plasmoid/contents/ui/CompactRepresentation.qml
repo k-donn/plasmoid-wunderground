@@ -5,9 +5,7 @@
  */
 
 import QtQuick
-
 import QtQuick.Layouts
-
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
@@ -24,7 +22,7 @@ ColumnLayout {
 
     IconAndTextItem {
         vertical: compactRoot.vertical
-        iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
+        iconSource: "../theme/" + iconCode + ".svg"
         text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"].toFixed(1)) : "---.-° X"
 
         Layout.fillWidth: compactRoot.vertical
@@ -36,9 +34,7 @@ ColumnLayout {
 
             hoverEnabled: true
 
-            onClicked: {
-                plasmoid.expanded = !plasmoid.expanded;
-            }
+            onClicked: root.expanded = !root.expanded
         }
     }
 
@@ -47,7 +43,7 @@ ColumnLayout {
     //     id: iconComponent
 
     //     PlasmaCore.SvgItem {
-    //         readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
+    //         readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), Kirigami.Units.iconSizes.small)
 
     //         svg: PlasmaCore.Svg {
     //             id: svg
@@ -55,10 +51,10 @@ ColumnLayout {
     //         }
 
     //         // reset implicit size, so layout in free dimension does not stop at the default one
-    //         implicitWidth: units.iconSizes.small
-    //         implicitHeight: units.iconSizes.small
-    //         Layout.minimumWidth: compactRoot.vertical ? units.iconSizes.small : minIconSize
-    //         Layout.minimumHeight: compactRoot.vertical ? minIconSize : units.iconSizes.small
+    //         implicitWidth: Kirigami.Units.iconSizes.small
+    //         implicitHeight: Kirigami.Units.iconSizes.small
+    //         Layout.minimumWidth: compactRoot.vertical ? Kirigami.Units.iconSizes.small : minIconSize
+    //         Layout.minimumHeight: compactRoot.vertical ? minIconSize : Kirigami.Units.iconSizes.small
     //     }
     // }
 

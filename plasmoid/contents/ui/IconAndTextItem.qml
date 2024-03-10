@@ -9,6 +9,7 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.ksvg as KSvg
 import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 
@@ -28,9 +29,9 @@ GridLayout {
 
     readonly property bool showTemperature: !inTray
 
-    readonly property int verticalFixedHeight: 21 * units.devicePixelRatio
+    readonly property int verticalFixedHeight: 21
 
-    readonly property int minimumIconSize: units.iconSizes.small
+    readonly property int minimumIconSize: Kirigami.Units.iconSizes.small
 
     columns: iconAndTextRoot.vertical ? 1 : 2
     rows: iconAndTextRoot.vertical ? 2 : 1
@@ -103,8 +104,8 @@ GridLayout {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             anchors {
-                leftMargin: units.smallSpacing
-                rightMargin: units.smallSpacing
+                leftMargin: Kirigami.Units.smallSpacing
+                rightMargin: Kirigami.Units.smallSpacing
             }
 
             smooth: true
@@ -145,8 +146,8 @@ GridLayout {
 
             anchors {
                 fill: parent
-                leftMargin: units.smallSpacing
-                rightMargin: units.smallSpacing
+                leftMargin: Kirigami.Units.smallSpacing
+                rightMargin: Kirigami.Units.smallSpacing
             }
         }
     }

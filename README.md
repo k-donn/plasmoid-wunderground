@@ -1,6 +1,6 @@
 # Wunderground PWS Widget for KDE 6
 
-A Plasma 5 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview)
+A Plasma 6 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview)
 
 Wunderground lets you upload data from Smart Ambient Weather stations through their API.
 You can view the data though wunderground or through Wunderground API. This widget lets
