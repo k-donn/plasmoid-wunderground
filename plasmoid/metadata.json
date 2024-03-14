@@ -15,7 +15,7 @@
         "Description[ja_JP]": "Wunderground Personal Weather Station viewer",
         "Description[nl_NL]": "Wunderground - Bekijk je eigen weerstation",
         "Description[ru_RU]": "Программа просмотра персональных метеостанций Wunderground",
-        "Icon": "fifteenpuzzle",
+        "Icon": "weather-clear",
         "Id": "com.github.k-donn.plasmoid-wunderground",
         "License": "GPL2-or-later",
         "Name": "Wunderground",

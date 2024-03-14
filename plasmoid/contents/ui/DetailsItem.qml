@@ -20,6 +20,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import org.kde.plasma.plasmoid
 import org.kde.ksvg as KSvg
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
@@ -46,7 +47,7 @@ GridLayout {
         // FIXME: Figure out Plasma 6 file loading. AppletInterface::file() was removed
         svg: KSvg.Svg {
             id: svg
-            imagePath: "image://plasmoid-wunderground/theme/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg"
+            imagePath: "widgets/"+ Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg"
         }
 
         rotation: weatherData["winddir"] - 270

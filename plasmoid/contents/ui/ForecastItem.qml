@@ -59,7 +59,7 @@ RowLayout {
                 Layout.preferredWidth: preferredIconSize
 
                 svg: KSvg.Svg {
-                    imagePath: iconCode + ".svg"
+                    imagePath: "/home/neon/plasmoid-wunderground/plasmoid/contents/images/" + iconCode + ".svg"
                 }
 
                 PlasmaCore.ToolTipArea {

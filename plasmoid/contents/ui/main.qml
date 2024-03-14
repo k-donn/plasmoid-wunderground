@@ -44,8 +44,8 @@ PlasmoidItem {
     // QML does not let you property bind items part of ListModels.
     // The TopPanel shows the high/low values which are items part of forecastModel
     // These are updated in pws-api.js to overcome that limitation
-    property int currDayHigh: null
-    property int currDayLow: null
+    property int currDayHigh: 0
+    property int currDayLow: 0
 
     property bool showForecast: false
 
@@ -143,6 +143,7 @@ PlasmoidItem {
     }
 
     Component.onCompleted: {
+        // TODO: This is discouraged in Plasma 6
         inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
 
         plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.")

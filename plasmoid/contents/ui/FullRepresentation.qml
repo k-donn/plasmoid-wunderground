@@ -41,6 +41,8 @@ ColumnLayout {
 
         visible: appState == showCONFIG
 
+        onClicked: plasmoid.internalAction("configure").trigger()
+
         Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
     }
 
