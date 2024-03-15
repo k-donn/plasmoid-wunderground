@@ -6,9 +6,9 @@
 # https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh
 
 DIR=`cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd`
-plasmoidName=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
+plasmoidName=`kreadconfig6 --file="$DIR/../metadata.json" --group="Desktop Entry" --key="X-KDE-PluginInfo-Name"`
 widgetName="${plasmoidName##*.}" # Strip namespace
-website=`kreadconfig5 --file="$DIR/../metadata.desktop" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
+website=`kreadconfig6 --file="$DIR/../metadata.json" --group="Desktop Entry" --key="X-KDE-PluginInfo-Website"`
 bugAddress="$website"
 packageRoot=".." # Root of translatable sources
 projectName="plasma_applet_${plasmoidName}" # project name
@@ -166,7 +166,7 @@ for cat in $catalogs; do
 	echo "${catLocale}" >> "$DIR/LINGUAS"
 done
 
-cp -f "$DIR/../metadata.desktop" "$DIR/template.desktop"
+cp -f "$DIR/../metadata.json" "$DIR/template.desktop"
 sed -i '/^Name\[/ d; /^GenericName\[/ d; /^Comment\[/ d; /^Keywords\[/ d' "$DIR/template.desktop"
 
 msgfmt \
@@ -177,19 +177,19 @@ msgfmt \
 
 # Delete empty msgid messages that used the po header
 if [ ! -z "$(grep '^Name=$' "$DIR/new.desktop")" ]; then
-	echo "[merge] Name in metadata.desktop is empty!"
+	echo "[merge] Name in metadata.json is empty!"
 	sed -i '/^Name\[/ d' "$DIR/new.desktop"
 fi
 if [ ! -z "$(grep '^GenericName=$' "$DIR/new.desktop")" ]; then
-	echo "[merge] GenericName in metadata.desktop is empty!"
+	echo "[merge] GenericName in metadata.json is empty!"
 	sed -i '/^GenericName\[/ d' "$DIR/new.desktop"
 fi
 if [ ! -z "$(grep '^Comment=$' "$DIR/new.desktop")" ]; then
-	echo "[merge] Comment in metadata.desktop is empty!"
+	echo "[merge] Comment in metadata.json is empty!"
 	sed -i '/^Comment\[/ d' "$DIR/new.desktop"
 fi
 if [ ! -z "$(grep '^Keywords=$' "$DIR/new.desktop")" ]; then
-	echo "[merge] Keywords in metadata.desktop is empty!"
+	echo "[merge] Keywords in metadata.json is empty!"
 	sed -i '/^Keywords\[/ d' "$DIR/new.desktop"
 fi
 
@@ -205,7 +205,7 @@ if [ ! -z "${translatedLines}" ]; then
 fi
 
 # Cleanup
-mv "$DIR/new.desktop" "$DIR/../metadata.desktop"
+mv "$DIR/new.desktop" "$DIR/../metadata.json"
 rm "$DIR/template.desktop"
 rm "$DIR/LINGUAS"
 

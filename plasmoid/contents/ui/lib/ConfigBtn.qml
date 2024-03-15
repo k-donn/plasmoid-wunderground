@@ -22,12 +22,8 @@ import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 
 Button {
-    function showSettings() {
-    // TODO: figure out how to open config dialog
-    }
-
     text: "Configure Wunderground"
     icon.name: "settings"
 
-    onClicked: showSettings()
+    onClicked: plasmoid.internalAction("configure").trigger()
 }

@@ -33,12 +33,16 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 ## TODO
 
+- Porting
+    -   [ ] Update icons
+    -   [ ] Update i18n merge/build scripts
+
 -   i18n
     -   [ ] Add configuration buttons
     -   [ ] Add color change text
 -   Customizability
     -   [ ] Widget size/padding
-    -   [ ] Units choice (eg. from km/h to m/s for metric)
+    -   [ ] Specific units choice (eg. from km/h to m/s for metric)
 -   Parking lot
     -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
-    -   [ ] Use Wunderground Plasma Ion (when I finish it).
+    -   [ ] Use Wunderground Plasma Ion.
