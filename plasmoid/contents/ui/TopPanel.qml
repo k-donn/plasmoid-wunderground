@@ -28,13 +28,10 @@ import "../code/utils.js" as Utils
 RowLayout {
     id: topPanelRoot
 
-    KSvg.SvgItem {
+    Kirigami.Icon {
         id: topPanelIcon
 
-        svg: KSvg.Svg {
-            id: svg
-            imagePath: "../icons/" + iconCode + ".svg"
-        }
+	source: iconCode
 
         Layout.minimumWidth: Kirigami.Units.iconSizes.large
         Layout.minimumHeight: Kirigami.Units.iconSizes.large

@@ -50,7 +50,7 @@ RowLayout {
 
                 text: shortDesc
             }
-            KSvg.SvgItem {
+            Kirigami.Icon {
                 id: icon
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
@@ -58,9 +58,7 @@ RowLayout {
                 Layout.preferredHeight: preferredIconSize
                 Layout.preferredWidth: preferredIconSize
 
-                svg: KSvg.Svg {
-                    imagePath: "/home/neon/plasmoid-wunderground/plasmoid/contents/images/" + iconCode + ".svg"
-                }
+               	source: iconCode
 
                 PlasmaCore.ToolTipArea {
                     id: tooltip

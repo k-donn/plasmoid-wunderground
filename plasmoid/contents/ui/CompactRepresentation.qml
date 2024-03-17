@@ -22,7 +22,7 @@ ColumnLayout {
 
     IconAndTextItem {
         vertical: compactRoot.vertical
-        iconSource: "/home/neon/plasmoid-wunderground/contens/images/" + iconCode + ".svg"
+        iconSource: iconCode
         text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"].toFixed(1)) : "---.-° X"
 
         Layout.fillWidth: compactRoot.vertical

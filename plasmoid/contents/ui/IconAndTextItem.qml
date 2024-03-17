@@ -16,7 +16,7 @@ import org.kde.plasma.components as PlasmaComponents
 GridLayout {
     id: iconAndTextRoot
 
-    property alias iconSource: svg.imagePath
+    property alias iconSource: icon.source
     property alias text: label.text
     property alias paintWidth: sizeHelper.paintedWidth
     property alias paintHeight: sizeHelper.paintedHeight
@@ -55,17 +55,13 @@ GridLayout {
         compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth)
     }
 
-    KSvg.SvgItem {
+    Kirigami.Icon {
         id: icon
 
         readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
-
-        svg: KSvg.Svg {
-            id: svg
-        }
 
         Layout.fillWidth: iconAndTextRoot.vertical
         Layout.fillHeight: !iconAndTextRoot.vertical

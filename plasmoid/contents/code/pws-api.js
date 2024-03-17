@@ -18,6 +18,58 @@
 /** @type {string} */
 let API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
 
+/** Map from Wunderground provided icon codes to opendesktop icon theme descs */
+let iconThemeMap = {
+	0: "weather-storm-symbolic",
+	1: "weather-storm-symbolic",
+	2: "weather-storm-symbolic",
+	3: "weather-storm-symbolic",
+	4: "weather-storm-symbolic",
+	5: "weather-snow-rain-symbolic",
+	6: "weather-snow-rain-symbolic",
+	7: "weather-freezing-scattered-symbolic",
+	8: "weather-freezing-rain-symbolic",
+	9: "weather-showers-scattered-symbolic",
+	10: "weather-freezing-rain-symbolic",
+	11: "weather-showers-symbolic",
+	12: "weather-showers-symbolic",
+	13: "weather-snow-scattered-symbolic",
+	14: "weather-snow-symbolic",
+	15: "weather-snow-symbolic",
+	16: "weather-snow-symbolic",
+	17: "weather-hail-symbolic",
+	18: "weather-snow-scattered-symbolic",
+	19: "weather-many-clouds-wind-symbolic",
+	20: "weather-fog-symbolic",
+	21: "weather-fog-symbolic",
+	22: "weather-fog-symbolic",
+	23: "weather-clouds-wind-symbolic",
+	24: "weather-clouds-wind-symbolic",
+	25: "weather-snow-symbolic",
+	26: "weather-clouds-symbolic",
+	27: "weather-many-clouds-symbolic",
+	28: "weather-clouds-symbolic",
+	29: "weather-clouds-night-symbolic",
+	30: "weather-few-clouds-symbolic",
+	31: "weather-clear-night-symbolic",
+	32: "weather-clear-symbolic",
+	33: "weather-few-clouds-night-symbolic",
+	34: "weather-few-clouds-day-symbolic",
+	35: "weather-freezing-storm-day-symbolic",
+	36: "weather-clear-symbolic",
+	37: "weather-storm-day-symbolic",
+	38: "weather-storm-day-symbolic",
+	39: "weather-showers-scattered-day-symbolic",
+	40: "weather-showers-symbolic",
+	41: "weather-snow-scattered-day-symbolic",
+	42: "weather-snow-symbolic",
+	43: "weather-snow-symbolic",
+	44: "weather-none-available-symbolic",
+	45: "weather-showers-scattered-night-symbolic",
+	46: "weather-snow-storm-night-symbolic",
+	47: "weather-storm-night"
+}
+
 /**
  * Pull the most recent observation from the selected weather station.
  *
@@ -177,7 +229,7 @@ function getForecastData() {
 					forecastModel.append({
 						date: date,
 						dayOfWeek: isDay ? forecast["dow"] : "Tonight",
-						iconCode: isDay ? day["icon_code"] : night["icon_code"],
+						iconCode: isDay ? iconThemeMap[day["icon_code"]] : iconThemeMap[night["icon_code"]],
 						high: isDay ? forecast["max_temp"] : night["hi"],
 						low: forecast["min_temp"],
 						feelsLike: isDay ? day["hi"] : night["hi"],
@@ -298,7 +350,7 @@ function findIconCode() {
 			if (req.status == 200) {
 				var res = JSON.parse(req.responseText);
 
-				iconCode = res["iconCode"];
+				iconCode = iconThemeMap[res["iconCode"]];
 				conditionNarrative = res["wxPhraseLong"];
 
 				// Determine if the precipitation is snow or rain

@@ -41,14 +41,10 @@ GridLayout {
         // Use the dyanimcally calulated color (light/dark theme) of the wind label if user doesn't want temp colored
         color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"]) : windLabel.color
     }
-    KSvg.SvgItem {
+    Kirigami.Icon {
         id: topPanelIcon
-
-        // FIXME: Figure out Plasma 6 file loading. AppletInterface::file() was removed
-        svg: KSvg.Svg {
-            id: svg
-            imagePath: "widgets/"+ Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg"
-        }
+	
+	source: "plasmoid/contents/images/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg"
 
         rotation: weatherData["winddir"] - 270
 

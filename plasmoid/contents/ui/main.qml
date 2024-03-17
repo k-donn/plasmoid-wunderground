@@ -30,7 +30,7 @@ PlasmoidItem {
     property ListModel forecastModel: ListModel {}
     property string errorStr: ""
     property string toolTipSubTextVar: ""
-    property string iconCode: "32" // 32 = sunny
+    property string iconCode: "weather-clear" // 32 = sunny
     property string conditionNarrative: ""
 
     // TODO: add option for showFORECAST and showFORECASTERROR
@@ -143,8 +143,13 @@ PlasmoidItem {
     }
 
     Component.onCompleted: {
-        // TODO: This is discouraged in Plasma 6
-        inTray = (plasmoid.parent !== null && (plasmoid.parent.pluginName === 'org.kde.plasma.private.systemtray' || plasmoid.parent.objectName === 'taskItemContainer'))
+        //printDebug(plasmoid.containment.corona.kPackage)
+	//printDebug("qlocation: " + plasmoid.location)
+	//printDebug("qformfactor: " + plasmoid.formFactor)
+	//printDebug("qavailscreen: " + plasmoid.containment.availableScreenRect)
+	//printDebug("qcontaintype: " + plasmoid.containment.containmentType)
+	//printDebug("qcontainhint: " + plasmoid.containment.containmentDisplayHints)
+	inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2
 
         plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.")
 
