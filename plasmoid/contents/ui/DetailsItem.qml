@@ -44,9 +44,13 @@ GridLayout {
     Kirigami.Icon {
         id: topPanelIcon
 	
-	source: "plasmoid/contents/images/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg"
+        source: "gnumeric-object-arrow-symbolic"
+        //source: "plasmoid/contents/images/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg"
 
-        rotation: weatherData["winddir"] - 270
+        // wind barb icons are -90/270 degrees deviated from 0 degrees (north)
+        //rotation: weatherData["winddir"] - 270
+        // new rotation for icons:
+        rotation: weatherData["winddir"] - 135
 
         Layout.minimumWidth: Kirigami.Units.iconSizes.large
         Layout.minimumHeight: Kirigami.Units.iconSizes.large

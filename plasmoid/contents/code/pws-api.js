@@ -27,7 +27,7 @@ let iconThemeMap = {
 	4: "weather-storm-symbolic",
 	5: "weather-snow-rain-symbolic",
 	6: "weather-snow-rain-symbolic",
-	7: "weather-freezing-scattered-symbolic",
+	7: "weather-freezing-rain-symbolic",
 	8: "weather-freezing-rain-symbolic",
 	9: "weather-showers-scattered-symbolic",
 	10: "weather-freezing-rain-symbolic",

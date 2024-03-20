@@ -35,6 +35,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 - Porting
     -   [ ] Update icons
+    -   [ ] Add AQI
     -   [ ] Update i18n merge/build scripts
 
 -   i18n
