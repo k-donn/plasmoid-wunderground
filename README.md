@@ -34,13 +34,13 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 ## TODO
 
 - Porting
-    -   [ ] Update icons
+    -   [x] Update icons
     -   [ ] Add AQI
-    -   [ ] Update i18n merge/build scripts
+    -   [x] Update i18n merge/build scripts
 
 -   i18n
-    -   [ ] Add configuration buttons
-    -   [ ] Add color change text
+    -   [x] Request from API with locale
+    -   [x] Add configuration buttons
 -   Customizability
     -   [ ] Widget size/padding
     -   [ ] Specific units choice (eg. from km/h to m/s for metric)

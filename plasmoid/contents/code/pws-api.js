@@ -177,7 +177,7 @@ function getForecastData() {
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
 	url += "?apiKey=" + API_KEY;
-	url += "&language=en-US";
+	url += "&language=" + Qt.locale().name.replace("_","-");
 
 	if (unitsChoice === 0) {
 		url += "&units=m";
@@ -215,6 +215,7 @@ function getForecastData() {
 						fullDateTime.split("T")[0].split("-")[2]
 					);
 
+					// API returns empty string if no snow. Check for empty string.
 					var snowDesc = "";
 					if (isDay) {
 						snowDesc =
@@ -228,6 +229,15 @@ function getForecastData() {
 								: night["snow_phrase"];
 					}
 
+					// API does not return a thunderDesc for any language other than English. Check for null value
+					var thunderDesc = "";
+					if (isDay) {
+						thunderDesc = day["thunder_enum_phrase"] !== null ? day["thunder_enum_phrase"] : ""
+					} else {
+						thunderDesc = night["thunder_enum_phrase"] !== null ? night["thunder_enum_phrase"] : ""
+					}
+
+
 					forecastModel.append({
 						date: date,
 						dayOfWeek: isDay ? forecast["dow"] : "Tonight",
@@ -239,9 +249,7 @@ function getForecastData() {
 							? day["phrase_12char"]
 							: night["phrase_12char"],
 						longDesc: isDay ? day["narrative"] : night["narrative"],
-						thunderDesc: isDay
-							? day["thunder_enum_phrase"]
-							: night["thunder_enum_phrase"],
+						thunderDesc: thunderDesc,
 						winDesc: isDay
 							? day["wind_phrase"]
 							: night["wind_phrase"],
@@ -328,7 +336,7 @@ function findIconCode() {
 
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=" + API_KEY;
-	url += "&language=en-US";
+	url += "&language=" + Qt.locale().name.replace("_","-");
 
 	if (unitsChoice === 0) {
 		url += "&units=m";
@@ -462,5 +470,3 @@ function getExtendedConditions() {
 	req.send();
 }
 
-/**
- * Get air quality
