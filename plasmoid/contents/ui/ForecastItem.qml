@@ -48,6 +48,7 @@ RowLayout {
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
 
+                // TODO: add elide behavior since non-English descriptions can be longer
                 text: shortDesc
             }
             Kirigami.Icon {

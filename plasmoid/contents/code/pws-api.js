@@ -243,7 +243,7 @@ function getForecastData() {
 						shortDesc = day["phrase_12char"] !== "" ? day["phrase_12char"] : day["phrase_32char"]
 					} else {
 
-						shortDesc = night["phrase_12char"] !== "" ? night["phrase_12char"] : day["phrase_32char"]
+						shortDesc = night["phrase_12char"] !== "" ? night["phrase_12char"] : night["phrase_32char"]
 					}
 
 
