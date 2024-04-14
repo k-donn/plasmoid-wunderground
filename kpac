@@ -4,8 +4,8 @@ __version__ = '24'
 #--- User Configurable Defaults
 # You can use `kpac --dir=package --i18ndir=package/translate`
 # or edit the variables below to always run `kpac` with defaults.
-sourceDirDefault = 'package'
-translateDirDefault = 'package/translate'
+sourceDirDefault = 'plasmoid'
+translateDirDefault = 'plasmoid/translate'
 qtMinVer="6.0"
 kfMinVer="6.0" # KDE Frameworks
 plasmaMinVer="6.0"

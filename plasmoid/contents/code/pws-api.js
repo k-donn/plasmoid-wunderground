@@ -229,12 +229,21 @@ function getForecastData() {
 								: night["snow_phrase"];
 					}
 
-					// API does not return a thunderDesc for any language other than English. Check for null value
+					// API does not return a thunderDesc for non-English languages. Check for null value.
 					var thunderDesc = "";
 					if (isDay) {
-						thunderDesc = day["thunder_enum_phrase"] !== null ? day["thunder_enum_phrase"] : ""
+						thunderDesc = day["thunder_enum_phrase"] !== null ? day["thunder_enum_phrase"] : "N/A"
 					} else {
-						thunderDesc = night["thunder_enum_phrase"] !== null ? night["thunder_enum_phrase"] : ""
+						thunderDesc = night["thunder_enum_phrase"] !== null ? night["thunder_enum_phrase"] : "N/A"
+					}
+
+					// API does not return a 12char weather description for non-English languages, but it always returns a 32char. Check for empty string.
+					var shortDesc = "";
+					if (isDay) {
+						shortDesc = day["phrase_12char"] !== "" ? day["phrase_12char"] : day["phrase_32char"]
+					} else {
+
+						shortDesc = night["phrase_12char"] !== "" ? night["phrase_12char"] : day["phrase_32char"]
 					}
 
 
@@ -245,9 +254,7 @@ function getForecastData() {
 						high: isDay ? forecast["max_temp"] : night["hi"],
 						low: forecast["min_temp"],
 						feelsLike: isDay ? day["hi"] : night["hi"],
-						shortDesc: isDay
-							? day["phrase_12char"]
-							: night["phrase_12char"],
+						shortDesc: shortDesc,
 						longDesc: isDay ? day["narrative"] : night["narrative"],
 						thunderDesc: thunderDesc,
 						winDesc: isDay
