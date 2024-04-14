@@ -25,7 +25,7 @@
         "Name[ja_JP]": "Wunderground",
         "Name[nl_NL]": "Wunderground",
         "Name[ru_RU]": "Wunderground",
-        "Version": "0.0.8",
+        "Version": "0.0.9",
         "Website": "https://github.com/k-donn/plasmoid-wunderground"
     },
     "X-KDE-ParentApp": "",
