@@ -1,7 +1,7 @@
 # Translation of plasmoid-wunderground in de_DE
-# Copyright (C) 2023
+# Copyright (C) 2024
 # This file is distributed under the same license as the plasmoid-wunderground package.
-# swannema  <swannema@t-online.de>, 2023.
+# swannema  <swannema@t-online.de>, 2024.
 #
 #, fuzzy
 msgid ""
@@ -23,7 +23,7 @@ msgstr "Wunderground"
 
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
-msgstr "Wunderground Personal Weather Station viewer"
+msgstr "Meine Wetterstation"
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -75,11 +75,11 @@ msgstr "Temperatur"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
-msgstr ""
+msgstr "Auto-Farbe der Temperatur"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show forecast page on load:"
-msgstr ""
+msgstr "Zeige Wettervorhersage beim starten "
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
@@ -191,7 +191,7 @@ msgstr "Lade Daten..."
 
 #: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
-msgstr ""
+msgstr "Wunderground einrichten"
 
 #: ../contents/ui/main.qml
 msgctxt "Do not edit HTML tags. 'Temp' means temperature"
@@ -235,6 +235,3 @@ msgstr "Wettervorhersage"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
-
-#~ msgid "Wind from: %1"
-#~ msgstr "Wind von: %1"

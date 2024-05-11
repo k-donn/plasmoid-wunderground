@@ -408,7 +408,7 @@ function getExtendedConditions() {
 
 	url += "?geocodes=" + lat + "," + long;
 	url += "&apiKey=" + API_KEY;
-	url += "&language=en-US";
+	url += "&language=" + Qt.locale().name.replace("_","-");
 	url += "&scale=EPA"
 
 	if (unitsChoice === 0) {
