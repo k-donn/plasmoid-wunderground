@@ -42,7 +42,7 @@ RowLayout {
     PlasmaComponents.Label {
         id: tempOverview
 
-        text: showForecast ? i18n("High: %1 Low: %2", currDayHigh, currDayLow) : i18n("Loading...")
+        text: showForecast ? i18n("High: %1 Low: %2", Utils.currentTempUnit(Utils.toUserTemp(currDayHigh)), Utils.currentTempUnit(Utils.toUserTemp(currDayLow))) : i18n("Loading...")
 
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignHCenter

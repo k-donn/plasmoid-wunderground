@@ -53,10 +53,29 @@
         <entry name="unitsChoice" type="Int">
             <default>0</default>
         </entry>
+        <entry name="windUnitsChoice" type="Int">
+            <default>0</default>
+        </entry>
+        <entry name="rainUnitsChoice" type="Int">
+            <default>0</default>
+        </entry>
+        <entry name="snowUnitsChoice" type="Int">
+            <default>0</default>
+        </entry>
+        <entry name="tempUnitsChoice" type="Int">
+            <default>0</default>
+        </entry>
+        <entry name="presUnitsChoice" type="Int">
+            <default>0</default>
+        </entry>
+        <entry name="elevUnitsChoice" type="Int">
+            <default>0</default>
+        </entry>
+
     </group>
     <group name="Debug">
         <entry name="logConsole" type="Bool">
-            <default>false</default>
+            <default>true</default>
         </entry>
     </group>
 </kcfg>

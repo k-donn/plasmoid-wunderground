@@ -18,6 +18,46 @@
 /** @type {string} */
 let API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
 
+
+/** @type {object} */
+let UNITS_SYSTEM = {
+	METRIC: 0,
+	IMPERIAL: 1,
+	HYBRID: 2,
+	CUSTOM: 3
+}
+
+let WIND_UNITS = {
+	MPS: 0,
+	KPH: 1,
+	MPH: 2
+}
+
+let RAIN_UNITS = {
+	MM: 0,
+	CM: 1,
+	IN: 2
+}
+
+let SNOW_UNITS = {
+	MM: 0,
+	CM: 1,
+	IN: 2
+}
+
+let TEMP_UNITS = {
+	C: 0,
+	F: 1,
+	K: 2
+}
+
+let PRES_UNITS = {
+	HPA: 0,
+	CMHG: 1,
+	INHG: 2
+}
+
+
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
 let iconThemeMap = {
 	0: "weather-storm-symbolic",
@@ -82,12 +122,14 @@ function getCurrentData() {
 	url += "?stationId=" + stationID;
 	url += "&format=json";
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	url += "&apiKey=" + API_KEY;
@@ -113,12 +155,14 @@ function getCurrentData() {
 			if (req.status == 200) {
 				var sectionName = "";
 
-				if (unitsChoice === 0) {
+				if (unitsChoice === UNITS_SYSTEM.METRIC) {
 					sectionName = "metric";
-				} else if (unitsChoice === 1) {
+				} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 					sectionName = "imperial";
-				} else {
+				} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 					sectionName = "uk_hybrid";
+				} else {
+					sectionName = "metric";
 				}
 
 				var res = JSON.parse(req.responseText);
@@ -179,12 +223,14 @@ function getForecastData() {
 	url += "?apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	printDebug("[pws-api.js] " + url);
@@ -345,12 +391,14 @@ function findIconCode() {
 	url += "&apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	url += "&format=json";
@@ -411,12 +459,14 @@ function getExtendedConditions() {
 	url += "&language=" + Qt.locale().name.replace("_","-");
 	url += "&scale=EPA"
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	url += "&format=json";

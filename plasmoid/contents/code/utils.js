@@ -15,6 +15,45 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+/** @type {object} */
+let UNITS_SYSTEM = {
+	METRIC: 0,
+	IMPERIAL: 1,
+	HYBRID: 2,
+	CUSTOM: 3
+}
+
+let WIND_UNITS = {
+	MPS: 0,
+	KPH: 1,
+	MPH: 2
+}
+
+let RAIN_UNITS = {
+	MM: 0,
+	CM: 1,
+	IN: 2
+}
+
+let SNOW_UNITS = {
+	MM: 0,
+	CM: 1,
+	IN: 2
+}
+
+let TEMP_UNITS = {
+	C: 0,
+	F: 1,
+	K: 2
+}
+
+let PRES_UNITS = {
+	HPA: 0,
+	CMHG: 1,
+	INHG: 2
+}
+
+
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.
  *
@@ -83,6 +122,10 @@ function cToF(degC) {
 	return degC * 1.8 + 32;
 }
 
+function cToK(degC) {
+	return degC + 273;
+}
+
 /**
  * Turn a Fahrenheit temperature into a Celcius one.
  *
@@ -136,7 +179,7 @@ function within(value, low, high) {
  * @param {number} relHumid Percent humidity
  * @param {number} windSpeed Speed in km/h or m/h
  *
- * @returns {number} What the air feels like
+ * @returns {number} What the air feels like in user units
  */
 function feelsLike(temp, relHumid, windSpeed) {
 	var degF, windSpeedMph, finalRes;
@@ -152,13 +195,23 @@ function feelsLike(temp, relHumid, windSpeed) {
 		windSpeedMph = windSpeed;
 
 		finalRes = feelsLikeImperial(degF, relHumid, windSpeedMph);
-	} else {
+	} else if (unitsChoice === 2){
 		degF = cToF(temp);
 		windSpeedMph = windSpeed;
 
 		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
 		finalRes = fToC(res);
+	} else {
+		// When custom units are choosen, the API gives metric units.
+		degF = cToF(temp);
+		windSpeedMph = kmhToMph(windSpeed);
+
+		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
+
+		var tmpRes = fToC(res);
+
+		finalRes = toUserTemp(tmpRes);
 	}
 	return finalRes.toFixed(2);
 }
@@ -306,86 +359,99 @@ function heatColorF(degF) {
 /////////////////////////////////////////////////////////////////
 /// All of the following return what unit measures            ///
 /// that property for each system. (Metric, Imperial, and UK) ///
-/// The user can choose whether to prepend                    ///
-/// a space in front of the unit. (32°F or 32 °F)             ///
 /////////////////////////////////////////////////////////////////
 
-function currentTempUnit(value, prependSpace) {
-	if (prependSpace === undefined) {
-		prependSpace = true;
-	}
-	var res = value;
-	if (unitsChoice === 1) {
-		res += returnSpace(prependSpace) + "°F";
+/**
+ * Take in API temp values and convert them to user choosen units.
+ * When a user chooses custom units, the API returns metric. So,
+ * convert from metric to choice.
+ *
+ * @param {number} Temp in Celcius
+ *
+ * @returns {number} Temp in user units
+ */
+function toUserTemp(value) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value;
 	} else {
-		res += returnSpace(prependSpace) + "°C";
-	}
-	return res;
-}
-
-function currentSpeedUnit(value, prependSpace) {
-	if (prependSpace === undefined) {
-		prependSpace = true;
-	}
-	var res = value;
-	if (unitsChoice === 0) {
-		res += returnSpace(prependSpace) + "kmh";
-	} else {
-		res += returnSpace(prependSpace) + "mph";
-	}
-	return res;
-}
-
-function currentElevUnit(value, prependSpace) {
-	if (prependSpace === undefined) {
-		prependSpace = true;
-	}
-	var res = value;
-	if (unitsChoice === 0) {
-		res += returnSpace(prependSpace) + "m";
-	} else {
-		res += returnSpace(prependSpace) + "ft";
-	}
-	return res;
-}
-
-function currentPrecipUnit(value, isRain, prependSpace) {
-	if (prependSpace === undefined) {
-		prependSpace = true;
-	}
-	if (isRain === undefined) {
-		isRain = true;
-	}
-	var res = value;
-	if (unitsChoice === 1) {
-		res += returnSpace(prependSpace) + "in";
-	} else {
-		if (isRain) {
-			res += returnSpace(prependSpace) + "mm";
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C){
+			return value;
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F){
+			return cToF(value);
 		} else {
-			res += returnSpace(prependSpace) + "cm";
+			return cToK(value);
+		}
+	}
+}
+
+function currentTempUnit(value) {
+	var res = Math.round(value);
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res += " °C";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+		res += " °F";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res += " °C";
+	} else {
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C){
+			res += " °C";
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F){
+			res += " °F";
+		} else {
+			res += " °K";
 		}
 	}
 	return res;
 }
 
-function currentPresUnit(value, prependSpace) {
-	if (prependSpace === undefined) {
-		prependSpace = true;
-	}
+function currentSpeedUnit(value) {
 	var res = value;
-	if (unitsChoice === 1) {
-		res += returnSpace(prependSpace) + "inHG";
+	if (unitsChoice === 0) {
+		res += " kmh";
 	} else {
-		res += returnSpace(prependSpace) + "hPa";
+		res += " mph";
 	}
 	return res;
 }
 
-function returnSpace(shouldReturnSpace) {
-	if (shouldReturnSpace) {
-		return " ";
+function currentElevUnit(value) {
+	var res = value;
+	if (unitsChoice === 0) {
+		res += " m";
 	} else {
-		return "";
+		res += " ft";
 	}
+	return res;
 }
+
+function currentPrecipUnit(value, isRain) {
+	if (isRain === undefined) {
+		isRain = true;
+	}
+	var res = value;
+	if (unitsChoice === 1) {
+		res += " in";
+	} else {
+		if (isRain) {
+			res += " mm";
+		} else {
+			res += " cm";
+		}
+	}
+	return res;
+}
+
+function currentPresUnit(value) {
+	var res = value;
+	if (unitsChoice === 1) {
+		res += " inHG";
+	} else {
+		res += " hPa";
+	}
+	return res;
+}
+

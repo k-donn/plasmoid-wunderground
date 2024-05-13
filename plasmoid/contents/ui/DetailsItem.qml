@@ -33,7 +33,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: temp
-        text: Utils.currentTempUnit(weatherData["details"]["temp"])
+        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]))
         font {
             bold: true
             pointSize: plasmoid.configuration.tempPointSize
@@ -70,7 +70,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: feelsLike
-        text: i18n("Feels like %1", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"])))
+        text: i18n("Feels like %1", Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
@@ -112,7 +112,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: dew
-        text: Utils.currentTempUnit(weatherData["details"]["dewpt"])
+        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
