@@ -35,15 +35,13 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 - Porting
     -   [x] Update icons
-    -   [ ] Add AQI
-    -   [x] Update i18n merge/build scripts
-
+    -   [ ] Add AQI/weather warnings
 -   i18n
-    -   [x] Request from API with locale
-    -   [x] Add configuration buttons
+    -   [ ] Translations for new text
 -   Customizability
-    -   [ ] Widget size/padding
-    -   [ ] Specific units choice (eg. from km/h to m/s for metric)
+    -   [ ] Context menu refresh option
+    -   [ ] Widget size/padding/scaling
+    -   [x] Specific units choice (eg. from km/h to m/s for metric)
 -   Parking lot
     -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
     -   [ ] Use Wunderground Plasma Ion.

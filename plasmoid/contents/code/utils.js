@@ -15,30 +15,12 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-/** @type {object} */
+// TODO: make constants accesible plasmoid-globally
 let UNITS_SYSTEM = {
 	METRIC: 0,
 	IMPERIAL: 1,
 	HYBRID: 2,
 	CUSTOM: 3
-}
-
-let WIND_UNITS = {
-	MPS: 0,
-	KPH: 1,
-	MPH: 2
-}
-
-let RAIN_UNITS = {
-	MM: 0,
-	CM: 1,
-	IN: 2
-}
-
-let SNOW_UNITS = {
-	MM: 0,
-	CM: 1,
-	IN: 2
 }
 
 let TEMP_UNITS = {
@@ -47,12 +29,35 @@ let TEMP_UNITS = {
 	K: 2
 }
 
-let PRES_UNITS = {
-	HPA: 0,
-	CMHG: 1,
-	INHG: 2
+let WIND_UNITS = {
+	KMH: 0,
+	MPH: 1,
+	MPS: 2
 }
 
+let RAIN_UNITS = {
+	MM: 0,
+	IN: 1,
+	CM: 2,
+}
+
+let SNOW_UNITS = {
+	MM: 0,
+	IN: 1,
+	CM: 2
+}
+
+let PRES_UNITS = {
+	MB: 0,
+	INHG: 1,
+	MMHG: 2,
+	HPA: 3
+}
+
+let ELEV_UNITS = {
+	M: 0,
+	FT: 1
+}
 
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.
@@ -84,12 +89,25 @@ function windDirToCard(deg) {
 	return directions[Math.round((deg % 3600) / 255)];
 }
 
+
+/**
+ * Return the filename of the wind barb that should be shown for
+ * the given windspeed.
+ *
+ * @param {number} Wind speed in API units
+ *
+ * @retruns {string} Filename
+ */
 function getWindBarb(windSpeed) {
 	var speedKts;
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		speedKts = kmhToKts(windSpeed);
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		speedKts = mphToKts(windSpeed);
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		speedKts = mphToKts(windSpeed);
+	} else {
+		speedKts = kmhToKts(windSpeed);
 	}
 
 	if (within(speedKts, 0, 2.9999)) {
@@ -111,28 +129,14 @@ function getWindBarb(windSpeed) {
 	}
 }
 
-/**
- * Turn a Celcius temperature into a Fahrenheit one.
- *
- * @param {number} degC Temp in degrees Celcius
- *
- * @returns {number} Temp in degrees Fahrenheit
- */
 function cToF(degC) {
 	return degC * 1.8 + 32;
 }
 
 function cToK(degC) {
-	return degC + 273;
+	return degC + 273.15;
 }
 
-/**
- * Turn a Fahrenheit temperature into a Celcius one.
- *
- * @param {number} degF Temp in degrees Fahrenheit
- *
- * @returns {number} degC Temp in degrees Celcius
- */
 function fToC(degF) {
 	return (degF - 32) / 1.8;
 }
@@ -149,13 +153,46 @@ function kmhToKts(kmh) {
 	return kmh * 0.5399565;
 }
 
+function kmhToMps(kmh) {
+	return kmh * 0.2777778;
+}
+
 function ktsToMph(kts) {
-	return kts / 0.8689758;
+	return kts * 1.15078;
 }
 
 function ktsToKmh(kts) {
-	return kts / 0.5399565;
+	return kts * 1.852;
 }
+
+function mToFt(m) {
+	return m * 3.28084;
+}
+
+function mmToIn(mm) {
+	return mm * 0.0393701;
+}
+
+function mmToCm(mm) {
+	return mm * 0.1;
+}
+
+function cmToMm(cm) {
+	return cm * 10;
+}
+
+function cmToIn(cm) {
+	return cm * 0.393701;
+}
+
+function mbToInhg(mb) {
+	return mb * 0.02953;
+}
+
+function mbToMmhg(mb) {
+	return mb * 0.750062;
+}
+
 
 /**
  * Returns whether value is within the range of [low, high).
@@ -177,25 +214,25 @@ function within(value, low, high) {
  *
  * @param {number} temp Temp in Celcius or Fahrenheit
  * @param {number} relHumid Percent humidity
- * @param {number} windSpeed Speed in km/h or m/h
+ * @param {number} windSpeed Speed in kmh or mph
  *
  * @returns {number} What the air feels like in user units
  */
 function feelsLike(temp, relHumid, windSpeed) {
 	var degF, windSpeedMph, finalRes;
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		degF = cToF(temp);
 		windSpeedMph = kmhToMph(windSpeed);
 
 		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
 		finalRes = fToC(res);
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		degF = temp;
 		windSpeedMph = windSpeed;
 
 		finalRes = feelsLikeImperial(degF, relHumid, windSpeedMph);
-	} else if (unitsChoice === 2){
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		degF = cToF(temp);
 		windSpeedMph = windSpeed;
 
@@ -209,6 +246,7 @@ function feelsLike(temp, relHumid, windSpeed) {
 
 		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
+		// Convery degF result to degC so it can be passed in extpect degC to toUserTemp
 		var tmpRes = fToC(res);
 
 		finalRes = toUserTemp(tmpRes);
@@ -281,15 +319,20 @@ function windChillF(degF, windSpeedMph) {
  *
  * This determines what unit is passed and calls corresponding func.
  *
- * @param {number} temp Temp in Celcius or Fahrenheit
+ * @param {number} temp Temp in API units
  *
  * @returns {string} Hex color code
  */
 function heatColor(temp) {
-	if (unitsChoice === 1) {
-		return heatColorF(temp);
-	} else {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		return heatColorC(temp);
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+		return heatColorF(temp);
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return heatColorC(temp);
+	} else {
+		// Then, temp is in Celcius
+		heatColorC(temp);
 	}
 }
 
@@ -366,7 +409,7 @@ function heatColorF(degF) {
  * When a user chooses custom units, the API returns metric. So,
  * convert from metric to choice.
  *
- * @param {number} Temp in Celcius
+ * @param {number} value Temp in API units
  *
  * @returns {number} Temp in user units
  */
@@ -378,6 +421,7 @@ function toUserTemp(value) {
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		return value;
 	} else {
+		// Then, value is in Celcius
 		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C){
 			return value;
 		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F){
@@ -388,6 +432,15 @@ function toUserTemp(value) {
 	}
 }
 
+
+/**
+ * Take in a numeric temperature value and return a string
+ * with the user specified unit attached.
+ *
+ * @param {number} value Temperature
+ *
+ * @returns {string} User-shown value
+ */
 function currentTempUnit(value) {
 	var res = Math.round(value);
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
@@ -408,49 +461,269 @@ function currentTempUnit(value) {
 	return res;
 }
 
-function currentSpeedUnit(value) {
-	var res = value;
-	if (unitsChoice === 0) {
-		res += " kmh";
-	} else {
-		res += " mph";
-	}
-	return res;
-}
 
-function currentElevUnit(value) {
-	var res = value;
-	if (unitsChoice === 0) {
-		res += " m";
+/**
+ * Take in API wind speed values and convert them to user choosen units.
+ * When a user chooses custom units, the API returns metric. So,
+ * convert from metric to choice.
+ *
+ * @param {number} value Wind speed in API units
+ *
+ * @returns {number} Wind speed in user units
+ */
+function toUserSpeed(value) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value;
 	} else {
-		res += " ft";
-	}
-	return res;
-}
-
-function currentPrecipUnit(value, isRain) {
-	if (isRain === undefined) {
-		isRain = true;
-	}
-	var res = value;
-	if (unitsChoice === 1) {
-		res += " in";
-	} else {
-		if (isRain) {
-			res += " mm";
+		// Then, value is in kmh
+		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KPH){
+			return value;
+		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH){
+			return kmhToMph(value);
 		} else {
-			res += " cm";
+			return kmhToMps(value);
+		}
+	}
+}
+
+
+/**
+ * Take in a numeric wind speed value and return a string
+ * with the user specified unit attached.
+ *
+ * @param {number} value Wind speed
+ *
+ * @returns {string} User-shown value
+ */
+function currentSpeedUnit(value) {
+	var res = value.toFixed(1);
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res += " kmh";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+		res += " mph";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res += " mph";
+	} else {
+		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH){
+			res += " kmh";
+		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH){
+			res += " mph";
+		} else {
+			res += " m/s";
 		}
 	}
 	return res;
 }
 
-function currentPresUnit(value) {
-	var res = value;
-	if (unitsChoice === 1) {
-		res += " inHG";
+
+/**
+ * Take in API elevation and convert it to user choosen units.
+ * When a user chooses custom units, the API returns metric. So,
+ * convert from metric to choice.
+ *
+ * @param {number} value Elevation in API units
+ *
+ * @returns {number} Wind speed in user units
+ */
+function toUserElev(value) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value;
 	} else {
-		res += " hPa";
+		// Then, value is in meters
+		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
+			return value;
+		} else {
+			return mToFt(value);
+		}
+	}
+}
+
+/**
+ * Take in a numeric elevation value and return a string
+ * with the user specified unit attached.
+ *
+ * @param {number} value Elevation
+ *
+ * @returns {string} User-shown value
+ */
+function currentElevUnit(value) {
+	var res = Math.round(value);
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res += " m";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res += " ft";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res += " ft";
+	} else {
+		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
+			res += " m";
+		} else {
+			res += " ft";
+		}
+	}
+	return res;
+}
+
+
+/**
+ * Take in API precip and convert it to user choosen units.
+ * When a user chooses custom units, the API returns metric. So,
+ * convert from metric to choice.
+ *
+ * @param {number} value Precip in API units
+ *
+ * @returns {number} Precip in user units
+ */
+function toUserPrecip(value, isRain) {
+	if (isRain === undefined) {
+		isRain = true;
+	}
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value;
+	} else {
+		if (isRain) {
+			// Then, value is in mm
+			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM){
+				return value;
+			} else if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN){
+				return mmToIn(value);
+			} else {
+				return mmToCm(value);
+			}
+		} else {
+			// Then, value is in cm
+			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM){
+				return cmToMm(value);
+			} else if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN){
+				return cmToIn(value);
+			} else {
+				return value;
+			}
+		}
+	}
+}
+
+/**
+ * Take in a numeric precip value and return a string
+ * with the user specified unit attached.
+ *
+ * @param {number} value Precipitation
+ *
+ * @returns {string} User-shown value
+ */
+function currentPrecipUnit(value, isRain) {
+	var res = value.toFixed(2);
+	if (isRain === undefined) {
+		isRain = true;
+	}
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		if (isRain) {
+			res += " mm";
+		} else {
+			res += " cm";
+		}
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return res += " in";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		if (isRain) {
+			res += " mm";
+		} else {
+			res += " cm";
+		}
+	} else {
+		// This is not redundant because the user can choose different rain/snow
+		// units and the result of this function must reflect that.
+		if (isRain) {
+			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM){
+				res += " mm";
+			} else if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN){
+				res += " in";
+			} else {
+				res += " cm";
+			}
+		} else {
+			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM){
+				res += " mm";
+			} else if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN){
+				res += " in";
+			} else {
+				res += " cm";
+			}
+		}
+	}
+	return res;
+}
+
+
+/**
+ * Take in API pressure and convert it to user choosen units.
+ * When a user chooses custom units, the API returns metric. So,
+ * convert from metric to choice.
+ *
+ * @param {number} value Precip in API units
+ *
+ * @returns {number} Precip in user units
+ */
+function toUserPres(value) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return value;
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value;
+	} else {
+		// Then, value is in mb
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB){
+			return value;
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG){
+			return mbToInhg(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
+			return mbToMmhg(value);
+		} else {
+			return value;
+		}
+	}
+}
+
+
+/**
+ * Take in a numeric pressure value and return a string
+ * with the user specified unit attached.
+ *
+ * @param {number} value Precipitation
+ *
+ * @returns {string} User-shown value
+ */
+function currentPresUnit(value) {
+	var res = value.toFixed(2);
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res += " mb";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res += " inHG";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res += " mb";
+	} else {
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB){
+			res += " mb";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG){
+			res += " inHG";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
+			res += " mmHG";
+		} else {
+			res += " hPa";
+		}
 	}
 	return res;
 }

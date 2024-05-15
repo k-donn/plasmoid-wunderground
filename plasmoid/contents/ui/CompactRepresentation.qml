@@ -23,7 +23,7 @@ ColumnLayout {
     IconAndTextItem {
         vertical: compactRoot.vertical
         iconSource: iconCode
-        text: appState == showDATA ? Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"].toFixed(1))) : "---.-° X"
+        text: appState == showDATA ? Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])) : "--- °X"
 
         Layout.fillWidth: compactRoot.vertical
         Layout.fillHeight: !compactRoot.vertical

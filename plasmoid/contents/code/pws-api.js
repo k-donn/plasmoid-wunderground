@@ -19,7 +19,6 @@
 let API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
 
 
-/** @type {object} */
 let UNITS_SYSTEM = {
 	METRIC: 0,
 	IMPERIAL: 1,
@@ -56,6 +55,12 @@ let PRES_UNITS = {
 	CMHG: 1,
 	INHG: 2
 }
+
+let ELEV_UNITS = {
+	M: 0,
+	FT: 1
+}
+
 
 
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */

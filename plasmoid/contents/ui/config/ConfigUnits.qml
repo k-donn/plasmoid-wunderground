@@ -53,7 +53,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["m/s","kph","mph"]
+            model: ["kmh","mph","m/s"]
 
             Kirigami.FormData.label: i18n("Wind unit:")
         }
@@ -63,7 +63,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["mm","cm","in"]
+            model: ["mm","in","cm"]
 
             Kirigami.FormData.label: i18n("Rain unit:")
         }
@@ -73,7 +73,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["mm","cm","in"]
+            model: ["mm","in","cm"]
 
             Kirigami.FormData.label: i18n("Snow unit:")
         }
@@ -93,7 +93,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["hPa","cmHG","inHG"]
+            model: ["mb","inHG","mmHG","hPa"]
 
             Kirigami.FormData.label: i18n("Pressure unit:")
         }

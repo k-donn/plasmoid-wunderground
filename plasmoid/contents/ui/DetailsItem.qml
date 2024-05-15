@@ -80,7 +80,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: wind
-        text: weatherData["details"]["windSpeed"] + " / " + Utils.currentSpeedUnit(weatherData["details"]["windGust"])
+        text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
 
@@ -117,12 +117,12 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipRate
-        text: Utils.currentPrecipUnit(weatherData["details"]["precipRate"], isRain) + "/hr"
+        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain),isRain) + "/hr"
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
         id: pressure
-        text: Utils.currentPresUnit(weatherData["details"]["pressure"])
+        text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
 
@@ -158,7 +158,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipAcc
-        text: Utils.currentPrecipUnit(weatherData["details"]["precipTotal"], isRain)
+        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain),isRain)
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {

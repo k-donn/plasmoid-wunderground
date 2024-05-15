@@ -40,7 +40,7 @@ RowLayout {
 
         Layout.fillWidth: true
 
-        text: weatherData["stationID"] + "   " + Utils.currentElevUnit(weatherData["details"]["elev"])
+        text: weatherData["stationID"] + "   " + Utils.currentElevUnit(Utils.toUserElev(weatherData["details"]["elev"]))
 
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignRight

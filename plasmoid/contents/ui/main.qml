@@ -34,7 +34,6 @@ PlasmoidItem {
     property string iconCode: "weather-clear" // 32 = sunny
     property string conditionNarrative: ""
 
-    // TODO: add option for showFORECASTERROR
     property int showCONFIG: 1
     property int showLOADING: 2
     property int showERROR: 4
@@ -52,7 +51,6 @@ PlasmoidItem {
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
-    property int tempUnitsChoice: plasmoid.configuration.tempUnitsChoice
 
     property bool inTray: false
     // Metric units change based on precipitation type
@@ -104,28 +102,20 @@ PlasmoidItem {
     function updatetoolTipSubText() {
         var subText = ""
 
-        subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])))
-        subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"])))
-        subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(weatherData["details"]["windSpeed"]))
-        subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>"
+        if (appState == showDATA) {
+            subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])));
+            subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />", Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]));
+            subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windSpeed"])));
+            subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>";
+        } else if (appState == showERROR) {
+            subText = errorStr;
+        }
 
         toolTipSubTextVar = subText;
     }
 
     onUnitsChoiceChanged: {
         printDebug("Units changed")
-
-        // A user could configure units but not station id. This would trigger improper request.
-        if (stationID != "") {
-            // Show loading screen after units change
-            appState = showLOADING;
-
-            updateWeatherData();
-        }
-    }
-
-    onTempUnitsChoiceChanged: {
-        printDebug("Temp Units changed")
 
         // A user could configure units but not station id. This would trigger improper request.
         if (stationID != "") {
@@ -191,7 +181,7 @@ PlasmoidItem {
             return i18n("Error...");
         }
     }
-    toolTipSubText: toolTipSubText
+    toolTipSubText: toolTipSubTextVar
 
     // preferredRepresentation: compactRepresentation
     fullRepresentation: fr

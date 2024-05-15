@@ -3,6 +3,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
 
 RowLayout {
     id: configTextFormat
@@ -42,7 +43,7 @@ RowLayout {
     }
 
     Item {
-        Layout.preferredWidth: units.smallSpacing
+        Layout.preferredWidth: Kirigiami.Units.smallSpacing
         visible: configBold.visible || configItalic.visible || configUnderline.visible
     }
 }
