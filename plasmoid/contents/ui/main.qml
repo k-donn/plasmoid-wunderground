@@ -79,39 +79,18 @@ PlasmoidItem {
 
         StationAPI.getCurrentData()
         StationAPI.getForecastData()
-
-        updatetoolTipSubText()
     }
 
     function updateCurrentData() {
         printDebug("Getting new current data")
 
         StationAPI.getCurrentData()
-
-        updatetoolTipSubText()
     }
 
     function updateForecastData() {
         printDebug("Getting new forecast data")
 
         StationAPI.getForecastData()
-
-        updatetoolTipSubText()
-    }
-
-    function updatetoolTipSubText() {
-        var subText = ""
-
-        if (appState == showDATA) {
-            subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])));
-            subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />", Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]));
-            subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windSpeed"])));
-            subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>";
-        } else if (appState == showERROR) {
-            subText = errorStr;
-        }
-
-        toolTipSubTextVar = subText;
     }
 
     onUnitsChoiceChanged: {
@@ -141,18 +120,15 @@ PlasmoidItem {
 
     onAppStateChanged: {
         printDebug("State is: " + appState)
-
-        // The state could now be an error, the tooltip displays the error
-        updatetoolTipSubText()
     }
 
     Component.onCompleted: {
         //printDebug(plasmoid.containment.corona.kPackage)
-        inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2
+        inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2;
 
-        plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.")
+        plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.");
 
-        plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground
+        plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground;
     }
 
     Timer {
@@ -181,7 +157,20 @@ PlasmoidItem {
             return i18n("Error...");
         }
     }
-    toolTipSubText: toolTipSubTextVar
+    toolTipSubText: {
+        var subText = ""
+
+        if (appState == showDATA) {
+            subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])));
+            subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />",Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]),false));
+            subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windSpeed"])));
+            subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>";
+        } else if (appState == showERROR) {
+            subText = errorStr;
+        }
+
+        return subText;
+    }
 
     // preferredRepresentation: compactRepresentation
     fullRepresentation: fr

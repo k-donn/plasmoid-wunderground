@@ -332,7 +332,7 @@ function heatColor(temp) {
 		return heatColorC(temp);
 	} else {
 		// Then, temp is in Celcius
-		heatColorC(temp);
+		return heatColorC(temp);
 	}
 }
 
@@ -441,8 +441,11 @@ function toUserTemp(value) {
  *
  * @returns {string} User-shown value
  */
-function currentTempUnit(value) {
-	var res = Math.round(value);
+function currentTempUnit(value, shouldRound) {
+	if (shouldRound === undefined) {
+		shouldRound = true;
+	}
+	var res = shouldRound ? Math.round(value) : value;
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		res += " °C";
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){

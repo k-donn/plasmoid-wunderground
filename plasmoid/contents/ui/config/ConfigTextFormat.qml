@@ -43,7 +43,7 @@ RowLayout {
     }
 
     Item {
-        Layout.preferredWidth: Kirigiami.Units.smallSpacing
+        Layout.preferredWidth: Kirigami.Units.smallSpacing
         visible: configBold.visible || configItalic.visible || configUnderline.visible
     }
 }

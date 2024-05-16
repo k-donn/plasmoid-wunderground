@@ -517,7 +517,7 @@ function getExtendedConditions() {
 				}
 
 				if (alertsVars !== null) {
-					// TODO: parse and show weather alerts
+					// parse and show weather alerts
 				}
 
 				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"]
