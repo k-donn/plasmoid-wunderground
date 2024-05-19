@@ -17,7 +17,6 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami

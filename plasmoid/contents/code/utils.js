@@ -399,11 +399,6 @@ function heatColorF(degF) {
 }
 
 
-/////////////////////////////////////////////////////////////////
-/// All of the following return what unit measures            ///
-/// that property for each system. (Metric, Imperial, and UK) ///
-/////////////////////////////////////////////////////////////////
-
 /**
  * Take in API temp values and convert them to user choosen units.
  * When a user chooses custom units, the API returns metric. So,
@@ -414,13 +409,7 @@ function heatColorF(degF) {
  * @returns {number} Temp in user units
  */
 function toUserTemp(value) {
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		return value;
-	} else {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in Celcius
 		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C){
 			return value;
@@ -429,6 +418,9 @@ function toUserTemp(value) {
 		} else {
 			return cToK(value);
 		}
+	} else {
+		// The user wants the units the API gives
+		return value;
 	}
 }
 
@@ -475,21 +467,18 @@ function currentTempUnit(value, shouldRound) {
  * @returns {number} Wind speed in user units
  */
 function toUserSpeed(value) {
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		return value;
-	} else {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in kmh
-		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KPH){
+		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH){
 			return value;
 		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH){
 			return kmhToMph(value);
 		} else {
 			return kmhToMps(value);
 		}
+	} else {
+		// The user wants the units the API gives
+		return value;
 	}
 }
 
@@ -533,19 +522,16 @@ function currentSpeedUnit(value) {
  * @returns {number} Wind speed in user units
  */
 function toUserElev(value) {
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		return value;
-	} else {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in meters
 		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
 			return value;
 		} else {
 			return mToFt(value);
 		}
+	} else {
+		// The user wants the units the API gives
+		return value;
 	}
 }
 
@@ -589,13 +575,7 @@ function toUserPrecip(value, isRain) {
 	if (isRain === undefined) {
 		isRain = true;
 	}
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		return value;
-	} else {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		if (isRain) {
 			// Then, value is in mm
 			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM){
@@ -615,6 +595,9 @@ function toUserPrecip(value, isRain) {
 				return value;
 			}
 		}
+	} else {
+		// The user wants the units the API gives
+		return value;
 	}
 }
 
@@ -680,13 +663,7 @@ function currentPrecipUnit(value, isRain) {
  * @returns {number} Precip in user units
  */
 function toUserPres(value) {
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return value;
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		return value;
-	} else {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in mb
 		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB){
 			return value;
@@ -697,6 +674,9 @@ function toUserPres(value) {
 		} else {
 			return value;
 		}
+	} else {
+		// The user wants the units the API gives
+		return value;
 	}
 }
 

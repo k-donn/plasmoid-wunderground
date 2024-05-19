@@ -17,7 +17,6 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import org.kde.plasma.plasmoid
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
