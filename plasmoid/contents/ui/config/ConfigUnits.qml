@@ -38,7 +38,7 @@ KCM.SimpleKCM {
             id: unitsChoice
 
             width: 100
-            model: [i18nc("The unit system", "Metric"), i18nc("The unit system", "Imperial"), i18nc("The unit system", "Hybrid (UK)"),i18n("Custom")]
+            model: [i18nc("The unit system", "Metric"), i18nc("The unit system", "Imperial"), i18nc("The unit system", "Hybrid (UK)"), i18n("Custom")]
 
             Kirigami.FormData.label: i18n("Choose:")
         }
@@ -52,7 +52,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["kmh","mph","m/s"]
+            model: ["kmh", "mph", "m/s"]
 
             Kirigami.FormData.label: i18n("Wind unit:")
         }
@@ -62,7 +62,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["mm","in","cm"]
+            model: ["mm", "in", "cm"]
 
             Kirigami.FormData.label: i18n("Rain unit:")
         }
@@ -72,7 +72,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["mm","in","cm"]
+            model: ["mm", "in", "cm"]
 
             Kirigami.FormData.label: i18n("Snow unit:")
         }
@@ -82,7 +82,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["C","F","K"]
+            model: ["C", "F", "K"]
 
             Kirigami.FormData.label: i18n("Temperature unit:")
         }
@@ -92,7 +92,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["mb","inHG","mmHG","hPa"]
+            model: ["mb", "inHG", "mmHG", "hPa"]
 
             Kirigami.FormData.label: i18n("Pressure unit:")
         }
@@ -102,10 +102,9 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["m","ft"]
+            model: ["m", "ft"]
 
             Kirigami.FormData.label: i18n("Elevation unit:")
         }
     }
-
 }

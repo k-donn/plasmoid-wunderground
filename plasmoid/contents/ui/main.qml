@@ -27,7 +27,29 @@ import "../code/pws-api.js" as StationAPI
 PlasmoidItem {
     id: root
 
-    property var weatherData: {"stationID":"","uv":0,"obsTimeLocal":"","winddir":0,"details":{"temp":0,"windSpeed":0,"windGust":0,"dewpt":0,"precipRate":0,"pressure":0,"precipTotal":0,"elev":0},"aq":{"aqi":"","aqhi":"","aqDesc":"","aqColor":""},"alerts":[]}
+    property var weatherData: {
+        "stationID": "",
+        "uv": 0,
+        "obsTimeLocal": "",
+        "winddir": 0,
+        "details": {
+            "temp": 0,
+            "windSpeed": 0,
+            "windGust": 0,
+            "dewpt": 0,
+            "precipRate": 0,
+            "pressure": 0,
+            "precipTotal": 0,
+            "elev": 0
+        },
+        "aq": {
+            "aqi": "",
+            "aqhi": "",
+            "aqDesc": "",
+            "aqColor": ""
+        },
+        "alerts": []
+    }
     property ListModel forecastModel: ListModel {}
     property string errorStr: ""
     property string toolTipSubTextVar: ""
@@ -67,67 +89,64 @@ PlasmoidItem {
     }
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] [main.qml] " + msg)}
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [main.qml] " + msg);
+        }
     }
 
     function printDebugJSON(json) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] [main.qml] " + JSON.stringify(json))}
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [main.qml] " + JSON.stringify(json));
+        }
     }
 
     function updateWeatherData() {
-        printDebug("Getting new weather data")
-
-        StationAPI.getCurrentData()
-        StationAPI.getForecastData()
+        printDebug("Getting new weather data");
+        StationAPI.getCurrentData();
+        StationAPI.getForecastData();
     }
 
     function updateCurrentData() {
-        printDebug("Getting new current data")
-
-        StationAPI.getCurrentData()
+        printDebug("Getting new current data");
+        StationAPI.getCurrentData();
     }
 
     function updateForecastData() {
-        printDebug("Getting new forecast data")
-
-        StationAPI.getForecastData()
+        printDebug("Getting new forecast data");
+        StationAPI.getForecastData();
     }
 
     onUnitsChoiceChanged: {
-        printDebug("Units changed")
+        printDebug("Units changed");
 
         // A user could configure units but not station id. This would trigger improper request.
         if (stationID != "") {
             // Show loading screen after units change
             appState = showLOADING;
-
             updateWeatherData();
         }
     }
 
     onStationIDChanged: {
-        printDebug("Station ID changed")
+        printDebug("Station ID changed");
 
         // Show loading screen after ID change
         appState = showLOADING;
-
         updateWeatherData();
     }
 
     onWeatherDataChanged: {
-        printDebug("Weather data changed")
+        printDebug("Weather data changed");
     }
 
     onAppStateChanged: {
-        printDebug("State is: " + appState)
+        printDebug("State is: " + appState);
     }
 
     Component.onCompleted: {
         //printDebug(plasmoid.containment.corona.kPackage)
         inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2;
-
         plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.");
-
         plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground;
     }
 
@@ -158,22 +177,19 @@ PlasmoidItem {
         }
     }
     toolTipSubText: {
-        var subText = ""
-
+        var subText = "";
         if (appState == showDATA) {
             subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])));
-            subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />",Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]),false));
+            subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]), false));
             subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windSpeed"])));
             subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>";
         } else if (appState == showERROR) {
             subText = errorStr;
         }
-
         return subText;
     }
 
     // preferredRepresentation: compactRepresentation
     fullRepresentation: fr
     compactRepresentation: cr
-
 }

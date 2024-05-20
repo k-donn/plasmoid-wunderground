@@ -33,7 +33,10 @@ ColumnLayout {
     spacing: Kirigami.Units.smallSpacing
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] [FullRep.qml] " + msg)};
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [FullRep.qml] " + msg);
+        }
+        ;
     }
 
     ConfigBtn {

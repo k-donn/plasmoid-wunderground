@@ -30,7 +30,9 @@ KCM.SimpleKCM {
     property alias cfg_refreshPeriod: refreshPeriod.value
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] [ConfigStation.qml] " + msg)}
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [ConfigStation.qml] " + msg);
+        }
     }
 
     Kirigami.FormLayout {
@@ -97,5 +99,4 @@ KCM.SimpleKCM {
             text: "Version 0.1.1"
         }
     }
-
 }

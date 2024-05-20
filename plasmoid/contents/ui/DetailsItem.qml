@@ -43,7 +43,7 @@ GridLayout {
     }
     Kirigami.Icon {
         id: topPanelIcon
-	
+
         source: "gnumeric-object-arrow-symbolic"
         // source: "../images/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg"
 
@@ -75,7 +75,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: windDirCard
-        text: i18n("Wind from: %1 (%2°)", Utils.windDirToCard(weatherData["winddir"]),weatherData["winddir"])
+        text: i18n("Wind from: %1 (%2°)", Utils.windDirToCard(weatherData["winddir"]), weatherData["winddir"])
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
@@ -83,7 +83,6 @@ GridLayout {
         text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(1) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
-
 
     PlasmaComponents.Label {
         id: dewLabel
@@ -117,7 +116,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipRate
-        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain),isRain) + "/hr"
+        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain), isRain) + "/hr"
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
@@ -158,7 +157,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipAcc
-        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain),isRain)
+        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain), isRain)
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {

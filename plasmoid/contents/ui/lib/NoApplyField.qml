@@ -11,7 +11,7 @@ TextField {
     readonly property string configValue: configKey ? plasmoid.configuration[configKey] : ""
     onConfigValueChanged: {
         if (!configString.focus && value != configValue) {
-            value = configValue
+            value = configValue;
         }
     }
     property string defaultValue: ""
@@ -35,7 +35,7 @@ TextField {
         interval: 300
         onTriggered: {
             if (configKey) {
-                plasmoid.configuration[configKey] = value
+                plasmoid.configuration[configKey] = value;
             }
         }
     }

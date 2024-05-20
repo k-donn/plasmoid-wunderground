@@ -34,5 +34,4 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Write to console.log:")
         }
     }
-
 }

@@ -26,7 +26,6 @@ ColumnLayout {
     property int indexDETAILS: 0
     property int indexFORECAST: 1
 
-
     PlasmaComponents.TabBar {
         id: tabBar
 

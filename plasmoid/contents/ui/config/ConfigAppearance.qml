@@ -103,6 +103,5 @@ KCM.SimpleKCM {
 
             Kirigami.FormData.label: i18n("Show forecast page on load:")
         }
-
     }
 }
