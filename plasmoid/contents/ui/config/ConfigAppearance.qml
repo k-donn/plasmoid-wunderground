@@ -29,7 +29,7 @@ KCM.SimpleKCM {
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
     property alias cfg_tempAutoColor: tempAutoColor.checked
-    property alias cfg_showForecastDefault: showForecastDefault.checked
+    property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -98,10 +98,12 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Auto-color temperature:")
         }
 
-        CheckBox {
-            id: showForecastDefault
+        ComboBox {
+            id: defaultLoadPage
 
-            Kirigami.FormData.label: i18n("Show forecast page on load:")
+            model: ["Details","Forecast"]
+
+            Kirigami.FormData.label: i18n("Default page shown:")
         }
     }
 }

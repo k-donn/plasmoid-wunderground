@@ -44,8 +44,8 @@
         <entry name="tempAutoColor" type="Bool">
             <default>true</default>
         </entry>
-        <entry name="showForecastDefault" type="Bool">
-            <default>false</default>
+        <entry name="defaultLoadPage" type="Int">
+            <default>0</default>
         </entry>
     </group>
     <group name="Units">

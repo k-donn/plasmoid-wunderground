@@ -36,7 +36,6 @@ ColumnLayout {
         if (plasmoid.configuration.logConsole) {
             console.log("[debug] [FullRep.qml] " + msg);
         }
-        ;
     }
 
     ConfigBtn {

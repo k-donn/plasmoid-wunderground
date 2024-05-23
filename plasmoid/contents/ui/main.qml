@@ -189,6 +189,16 @@ PlasmoidItem {
         return subText;
     }
 
+    Plasmoid.contextualActions: [
+        PlasmaCore.Action {
+            text: i18n("Refresh weather")
+            icon.name: "view-refresh-symbolic"
+            visible: appState == showDATA
+            enabled: appState == showDATA
+            onTriggered: updateWeatherData()
+        }
+    ]
+
     // preferredRepresentation: compactRepresentation
     fullRepresentation: fr
     compactRepresentation: cr

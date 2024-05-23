@@ -23,15 +23,12 @@ import org.kde.plasma.components as PlasmaComponents
 ColumnLayout {
     id: switchRoot
 
-    property int indexDETAILS: 0
-    property int indexFORECAST: 1
-
     PlasmaComponents.TabBar {
         id: tabBar
 
         Layout.fillWidth: true
 
-        currentIndex: plasmoid.configuration.showForecastDefault ? indexFORECAST : indexDETAILS
+        currentIndex: plasmoid.configuration.defaultLoadPage
 
         PlasmaComponents.TabButton {
             id: detailsTabButton

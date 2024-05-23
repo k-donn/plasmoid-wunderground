@@ -39,7 +39,7 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 -   i18n
     -   [ ] Translations for new text
 -   Customizability
-    -   [ ] Context menu refresh option
+    -   [x] Context menu refresh option
     -   [ ] Widget size/padding/scaling
     -   [x] Specific units choice (eg. from km/h to m/s for metric)
 -   Parking lot
