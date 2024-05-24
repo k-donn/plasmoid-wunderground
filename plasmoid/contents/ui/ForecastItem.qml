@@ -31,7 +31,7 @@ RowLayout {
     readonly property int preferredIconSize: Kirigami.Units.iconSizes.large
 
     Repeater {
-        id: repeater
+        id: forecastRepeater
 
         model: forecastModel
         ColumnLayout {

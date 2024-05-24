@@ -34,6 +34,7 @@ PlasmoidItem {
         "winddir": 0,
         "lat": 0,
         "lon": 0,
+        "humidity": 0,
         "details": {
             "temp": 0,
             "windSpeed": 0,
@@ -47,13 +48,14 @@ PlasmoidItem {
         "aq": {
             "aqi": 0,
             "aqhi": 0,
-            "aqDesc": "",
+            "aqDesc": "Good",
             "aqColor": "FFFFFF",
             "aqPrimary": "PM2.5"
         },
         "alerts": []
     }
     property ListModel forecastModel: ListModel {}
+    property ListModel alertsModel: ListModel {}
     property string errorStr: ""
     property string toolTipSubTextVar: ""
     property string iconCode: "weather-clear" // 32 = sunny

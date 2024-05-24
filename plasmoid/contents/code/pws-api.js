@@ -115,6 +115,14 @@ let iconThemeMap = {
 	47: "weather-storm-night"
 }
 
+let severityColorMap = {
+	1: "#cc3300",
+	2: "#ff9966",
+	3: "#ffcc00",
+	4: "#99cc33",
+	5: "#ffcc00"
+}
+
 /**
  * Pull the most recent observation from the selected weather station.
  *
@@ -182,6 +190,7 @@ function getCurrentData() {
 
 				weatherData["stationID"] = obs["stationID"];
 				weatherData["uv"] = obs["uv"];
+				weatherData["humidity"] = obs["humidity"];
 				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
 				weatherData["winddir"] = obs["winddir"];
 				weatherData["lat"] = obs["lat"];
@@ -526,7 +535,21 @@ function getExtendedConditions() {
 				}
 
 				if (alertsVars !== null) {
-					// parse and show weather alerts
+					alertsModel.clear();
+
+					var alerts = alertsVars["alerts"];
+					for (var index = 0; index < alerts.length; index++) {
+						var curAlert = alerts[index];
+
+						alertsModel.append({
+							desc: curAlert["eventDescription"],
+							severity: curAlert["severity"],
+							severityColor: severityColorMap[curAlert["severityCode"]],
+							headline: curAlert["headlineText"],
+							source: curAlert["source"],
+							area: curAlert["areaName"]
+						});
+					}
 				}
 
 				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"];

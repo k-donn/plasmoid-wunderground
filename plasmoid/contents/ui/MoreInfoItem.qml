@@ -25,18 +25,26 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
-
 ColumnLayout {
     id: moreInfoRoot
+
     PlasmaComponents.Label {
         id: heading
 
         font {
             bold: true
-            pointSize: 20
+            pointSize: 15
         }
 
         text: i18n("Air quality")
+    }
+
+
+    PlasmaComponents.Label {
+        id: aqDesc
+        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+
+        text: weatherData["aq"]["aqDesc"]
     }
 
     GridLayout {
@@ -54,13 +62,13 @@ ColumnLayout {
 
             Layout.alignment: Qt.AlignHCenter
 
-            text: i18n("AQI: %1",weatherData["aq"]["aqi"])
+            text: i18n("AQI: %1", weatherData["aq"]["aqi"])
         }
         PlasmaComponents.Label {
             id: aqhi
             Layout.alignment: Qt.AlignHCenter
 
-            text: i18n("AQHI: %1",weatherData["aq"]["aqhi"])
+            text: i18n("AQHI: %1", weatherData["aq"]["aqhi"])
         }
         PlasmaComponents.Label {
             id: aqIndexColor
@@ -74,16 +82,23 @@ ColumnLayout {
             id: aqPrimary
             Layout.alignment: Qt.AlignHCenter
 
-            text: i18n("Primary pollutant: %1",weatherData["aq"]["aqPrimary"])
+            text: i18n("Primary pollutant: %1", weatherData["aq"]["aqPrimary"])
         }
     }
 
+
     PlasmaComponents.Label {
-        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
+        id: alertsLabel
 
-        id: aqDesc
+        font {
+            bold: true
+            pointSize: 15
+        }
 
-        text: i18n("Air quality message: %1", weatherData["aq"]["aqDesc"])
+        text: i18n("Alerts")
     }
 
+    AlertsItem {
+        id: alertsItem
+    }
 }
