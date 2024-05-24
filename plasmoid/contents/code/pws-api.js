@@ -172,22 +172,31 @@ function getCurrentData() {
 
 				var res = JSON.parse(req.responseText);
 
-				// The nested section name returned in JSON is the units type
-				// So res cannot be directly assigned to weatherData
-				var tmp = {};
-				var tmp = res["observations"][0];
+				var obs = res["observations"][0];
 
-				var details = res["observations"][0][sectionName];
-				tmp["details"] = details;
+				var details = obs[sectionName];
 
-				weatherData = tmp;
+				// The properties are assigned to weatherData explicitly to preserve
+				// its structure instead of assigning obs completely and breaking it
+				weatherData["details"] = details;
+
+				weatherData["stationID"] = obs["stationID"];
+				weatherData["uv"] = obs["uv"];
+				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
+				weatherData["winddir"] = obs["winddir"];
+				weatherData["lat"] = obs["lat"];
+				weatherData["lon"] = obs["lon"];
+
 
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
 
 				printDebug("[pws-api.js] Got new current data");
 
-				findIconCode();
+				// Force QML to update text depending on weatherData
+				weatherData = weatherData;
+
+				getExtendedConditions();
 
 				appState = showDATA;
 			} else {
@@ -462,7 +471,7 @@ function getExtendedConditions() {
 	url += "?geocodes=" + lat + "," + long;
 	url += "&apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
-	url += "&scale=EPA"
+	url += "&scale=EPA";
 
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
@@ -492,11 +501,11 @@ function getExtendedConditions() {
 			if (req.status == 200) {
 				var res = JSON.parse(req.responseText);
 
-				var combinedVars = res[0]
+				var combinedVars = res[0];
 
-				var condVars = combinedVars["v3-wx-observations-current"]
-				var alertsVars = combinedVars["v3alertsHeadlines"]
-				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"]
+				var condVars = combinedVars["v3-wx-observations-current"];
+				var alertsVars = combinedVars["v3alertsHeadlines"];
+				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"];
 
 				iconCode = iconThemeMap[condVars["iconCode"]];
 				conditionNarrative = condVars["wxPhraseLong"];
@@ -520,10 +529,14 @@ function getExtendedConditions() {
 					// parse and show weather alerts
 				}
 
-				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"]
-				weatherData["aq"]["aqhi"] = airQualVars["airQualityCategoryIndex"]
-				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"]
-				weatherData["aq"]["aqColor"] = airQualVars["airQualityCategoryIndexColor"]
+				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"];
+				weatherData["aq"]["aqhi"] = airQualVars["airQualityCategoryIndex"];
+				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"];
+				weatherData["aq"]["aqColor"] = airQualVars["airQualityCategoryIndexColor"];
+				weatherData["aq"]["aqPrimary"] = airQualVars["primaryPollutant"];
+
+				// Force QML to update text depending on weatherData
+				weatherData = weatherData;
 
 			}
 		}

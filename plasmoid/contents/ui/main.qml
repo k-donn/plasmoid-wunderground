@@ -32,6 +32,8 @@ PlasmoidItem {
         "uv": 0,
         "obsTimeLocal": "",
         "winddir": 0,
+        "lat": 0,
+        "lon": 0,
         "details": {
             "temp": 0,
             "windSpeed": 0,
@@ -43,10 +45,11 @@ PlasmoidItem {
             "elev": 0
         },
         "aq": {
-            "aqi": "",
-            "aqhi": "",
+            "aqi": 0,
+            "aqhi": 0,
             "aqDesc": "",
-            "aqColor": ""
+            "aqColor": "FFFFFF",
+            "aqPrimary": "PM2.5"
         },
         "alerts": []
     }
@@ -61,7 +64,7 @@ PlasmoidItem {
     property int showERROR: 4
     property int showDATA: 8
 
-    property int appState: showCONFIG
+    property int appState: showDATA
 
     // QML does not let you property bind items part of ListModels.
     // The TopPanel shows the high/low values which are items part of forecastModel

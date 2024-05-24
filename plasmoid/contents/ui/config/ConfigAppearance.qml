@@ -101,7 +101,7 @@ KCM.SimpleKCM {
         ComboBox {
             id: defaultLoadPage
 
-            model: ["Details","Forecast"]
+            model: ["Details","Forecast","More Info"]
 
             Kirigami.FormData.label: i18n("Default page shown:")
         }

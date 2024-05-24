@@ -41,6 +41,13 @@ ColumnLayout {
 
             text: i18n("Forecast")
         }
+
+        PlasmaComponents.TabButton {
+            id: moreInfoTabButton
+
+            text: i18n("More Info")
+        }
+
     }
 
     SwipeView {
@@ -70,6 +77,15 @@ ColumnLayout {
             Layout.preferredHeight: parent.height * 0.75
 
             Layout.alignment: Qt.AlignTop
+        }
+
+        MoreInfoItem {
+            id: moreInfoItem
+
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height * 0.75
+
+            Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
         }
 
         onCurrentIndexChanged: {
