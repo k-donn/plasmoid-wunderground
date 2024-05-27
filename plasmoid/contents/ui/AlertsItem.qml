@@ -25,41 +25,56 @@ import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
-Repeater {
-    id: alertsRepeater
+ColumnLayout {
 
-    model: alertsModel
+    ListView {
+        id: alertsRepeater
 
-    RowLayout {
-        PlasmaComponents.Label {
-            text: desc
+        clip: true
 
-            Layout.alignment: Qt.AlignHCenter
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
-            color: severityColor
-        }
+        Component {
+            id: alertDelegate
 
-        PlasmaComponents.Label {
-            text: headline
+            RowLayout {
+                width: ListView.view.width
 
-            Layout.alignment: Qt.AlignHCenter
-        }
+                PlasmaComponents.Label {
+                    text: desc
 
+                    Layout.alignment: Qt.AlignHCenter
 
-        Kirigami.Icon {
-            source: "documentinfo-symbolic"
+                    color: severityColor
+                }
 
-            Layout.alignment: Qt.AlignHCenter
+                PlasmaComponents.Label {
+                    text: headline
+                    wrapMode: Text.Wrap
 
-            PlasmaCore.ToolTipArea {
-                mainText: i18n("Severity: %1", severity)
-                subText: i18n("Source: %1<br/>Region: %2", source, area)
+                    Layout.fillWidth: true
+                }
 
-                interactive: true
+                Kirigami.Icon {
+                    source: "documentinfo-symbolic"
 
-                anchors.fill: parent
+                    Layout.alignment: Qt.AlignHCenter
+
+                    PlasmaCore.ToolTipArea {
+                        mainText: i18n("Severity: %1", severity)
+                        subText: i18n("Source: %1<br/>Region: %2<br/>Action: %3", source, area, action)
+
+                        interactive: true
+
+                        anchors.fill: parent
+                    }
+                }
             }
         }
-    }
 
+        model: alertsModel
+
+        delegate: alertDelegate
+    }
 }

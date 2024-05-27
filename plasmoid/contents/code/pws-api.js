@@ -541,13 +541,20 @@ function getExtendedConditions() {
 					for (var index = 0; index < alerts.length; index++) {
 						var curAlert = alerts[index];
 
+						var actions = [];
+
+						for (var actionIndex = 0; actionIndex <  curAlert["responseTypes"].length; actionIndex++) {
+							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
+						}
+
 						alertsModel.append({
 							desc: curAlert["eventDescription"],
 							severity: curAlert["severity"],
 							severityColor: severityColorMap[curAlert["severityCode"]],
 							headline: curAlert["headlineText"],
 							source: curAlert["source"],
-							area: curAlert["areaName"]
+							area: curAlert["areaName"],
+							action: actions.join(",")
 						});
 					}
 				}

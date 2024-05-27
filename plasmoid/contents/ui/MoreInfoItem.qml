@@ -29,7 +29,7 @@ ColumnLayout {
     id: moreInfoRoot
 
     PlasmaComponents.Label {
-        id: heading
+        id: aqLabel
 
         font {
             bold: true
@@ -39,24 +39,22 @@ ColumnLayout {
         text: i18n("Air quality")
     }
 
-
-    PlasmaComponents.Label {
-        id: aqDesc
-        Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
-
-        text: weatherData["aq"]["aqDesc"]
-    }
-
     GridLayout {
         id: aqGrid
 
         columns: 2
-        rows: 2
-
-        columnSpacing: parent.width * 0.25
+        rows: 3
 
         Layout.alignment: Qt.AlignTop | Qt.AlignHCenter
 
+        PlasmaComponents.Label {
+            id: aqDesc
+
+            Layout.alignment: Qt.AlignHCenter
+            Layout.columnSpan: 2
+
+            text: weatherData["aq"]["aqDesc"]
+        }
         PlasmaComponents.Label {
             id: aqIndex
 
@@ -85,8 +83,6 @@ ColumnLayout {
             text: i18n("Primary pollutant: %1", weatherData["aq"]["aqPrimary"])
         }
     }
-
-
     PlasmaComponents.Label {
         id: alertsLabel
 

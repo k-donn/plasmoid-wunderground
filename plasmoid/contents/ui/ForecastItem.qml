@@ -35,26 +35,30 @@ RowLayout {
 
         model: forecastModel
         ColumnLayout {
+            Layout.maximumWidth: parent.width / 7
+
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 text: date
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 text: dayOfWeek
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.fillWidth: true
 
-                // TODO: add elide behavior since non-English descriptions can be longer
+                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignHCenter
+
                 text: shortDesc
             }
             Kirigami.Icon {
                 id: icon
 
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 Layout.preferredHeight: preferredIconSize
                 Layout.preferredWidth: preferredIconSize
@@ -73,12 +77,12 @@ RowLayout {
                 }
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 text: Utils.currentTempUnit(Utils.toUserTemp(high))
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 text: Utils.currentTempUnit(Utils.toUserTemp(low))
             }

@@ -130,3 +130,7 @@ _deps
 # KDE
 .kdev4/
 *.mo
+.testdata
+
+# mac
+.DS_STORE

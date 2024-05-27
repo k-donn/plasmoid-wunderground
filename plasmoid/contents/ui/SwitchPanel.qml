@@ -47,7 +47,6 @@ ColumnLayout {
 
             text: i18n("More Info")
         }
-
     }
 
     SwipeView {
@@ -55,7 +54,7 @@ ColumnLayout {
 
         Layout.fillWidth: true
         Layout.fillHeight: true
-        Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+        Layout.alignment: Qt.AlignCenter
 
         clip: true
 

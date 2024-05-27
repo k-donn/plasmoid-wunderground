@@ -51,8 +51,7 @@ PlasmoidItem {
             "aqDesc": "Good",
             "aqColor": "FFFFFF",
             "aqPrimary": "PM2.5"
-        },
-        "alerts": []
+        }
     }
     property ListModel forecastModel: ListModel {}
     property ListModel alertsModel: ListModel {}
@@ -66,7 +65,7 @@ PlasmoidItem {
     property int showERROR: 4
     property int showDATA: 8
 
-    property int appState: showDATA
+    property int appState: showCONFIG
 
     // QML does not let you property bind items part of ListModels.
     // The TopPanel shows the high/low values which are items part of forecastModel
