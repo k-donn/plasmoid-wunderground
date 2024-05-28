@@ -454,6 +454,9 @@ function getExtendedConditions() {
 				conditionNarrative = condVars["wxPhraseLong"];
 				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
 				weatherData["sunset"] = condVars["sunsetTimeLocal"];
+				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
+				weatherData["details"]["pressureDelta"] = condVars["pressureChange"];
+
 
 
 				// Determine if the precipitation is snow or rain

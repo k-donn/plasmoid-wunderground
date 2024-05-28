@@ -30,6 +30,7 @@ KCM.SimpleKCM {
     property alias cfg_tempPointSize: tempPointSize.value
     property alias cfg_tempAutoColor: tempAutoColor.checked
     property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
+    property alias cfg_showPresTrend: showPresTrend.checked
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -104,6 +105,11 @@ KCM.SimpleKCM {
             model: ["Details", "Forecast", "More Info"]
 
             Kirigami.FormData.label: i18n("Default page shown:")
+        }
+        CheckBox {
+            id: showPresTrend
+
+            Kirigami.FormData.label: i18n("Show pressure trend:")
         }
     }
 }

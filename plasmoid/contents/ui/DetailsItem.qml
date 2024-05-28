@@ -119,10 +119,26 @@ GridLayout {
         text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain), isRain) + "/hr"
         font.pointSize: plasmoid.configuration.propPointSize
     }
-    PlasmaComponents.Label {
-        id: pressure
-        text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
-        font.pointSize: plasmoid.configuration.propPointSize
+    Row {
+        PlasmaComponents.Label {
+            id: pressure
+            text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
+            font.pointSize: plasmoid.configuration.propPointSize
+        }
+        Kirigami.Icon {
+            source: Utils.getPressureTrendIcon(weatherData["details"]["pressureTrend"])
+
+            visible: plasmoid.configuration.showPresTrend
+
+            height: Kirigami.Units.iconSizes.small
+
+            PlasmaCore.ToolTipArea {
+                anchors.fill: parent
+
+                mainText: weatherData["details"]["pressureTrend"]
+                subText: i18n("Pressure has %1 %2 in the last three hours.", Utils.getShortDesc(weatherData["details"]["pressureDelta"]), Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressureDelta"])))
+            }
+        }
     }
 
     PlasmaComponents.Label {

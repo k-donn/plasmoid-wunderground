@@ -45,6 +45,8 @@ PlasmoidItem {
             "solarRad": 0,
             "precipRate": 0,
             "pressure": 0,
+            "pressureTrend": "Steady",
+            "pressureDelta": 0,
             "precipTotal": 0,
             "elev": 0
         },

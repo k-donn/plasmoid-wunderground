@@ -398,6 +398,28 @@ function heatColorF(degF) {
 		: "#5E4FA2";
 }
 
+function getPressureTrendIcon(longDesc) {
+	if (longDesc === "Steady") {
+		return "gnumeric-object-line";
+	} else if (longDesc === "Rising") {
+		return "arrow-up-symbolic";
+	} else if (longDesc === "Falling") {
+		return "arrow-down-symbolic";
+	} else if (longDesc === "Rapidly Rising") {
+		return "arrow-up-double-symbolic";
+	} else {
+		return "arrow-down-double-symbolic";
+	}
+}
+
+function getShortDesc(delta) {
+	if (delta > 0) {
+		return "risen";
+	} else {
+		return "fallen";
+	}
+}
+
 
 /**
  * Take in API temp values and convert them to user choosen units.
