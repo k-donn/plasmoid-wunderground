@@ -69,7 +69,7 @@ RowLayout {
                     id: tooltip
 
                     mainText: longDesc
-                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike)), thunderDesc, UVDesc, snowDesc, golfDesc)
+                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike)), thunderDesc, uvDesc, snowDesc, golfDesc)
 
                     interactive: true
 

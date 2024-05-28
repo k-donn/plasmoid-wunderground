@@ -18,7 +18,6 @@
 import QtQml
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
@@ -34,12 +33,16 @@ PlasmoidItem {
         "winddir": 0,
         "lat": 0,
         "lon": 0,
+        "sunrise": "2020-01-01T07:00:10-0500",
+        "sunset": "2020-01-01T20:00:10-0500",
+        "solarRad": 0,
         "humidity": 0,
         "details": {
             "temp": 0,
             "windSpeed": 0,
             "windGust": 0,
             "dewpt": 0,
+            "solarRad": 0,
             "precipRate": 0,
             "pressure": 0,
             "precipTotal": 0,
@@ -55,8 +58,8 @@ PlasmoidItem {
     }
     property ListModel forecastModel: ListModel {}
     property ListModel alertsModel: ListModel {}
+
     property string errorStr: ""
-    property string toolTipSubTextVar: ""
     property string iconCode: "weather-clear" // 32 = sunny
     property string conditionNarrative: ""
 

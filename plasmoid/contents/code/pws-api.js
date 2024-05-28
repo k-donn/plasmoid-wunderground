@@ -191,6 +191,7 @@ function getCurrentData() {
 				weatherData["stationID"] = obs["stationID"];
 				weatherData["uv"] = obs["uv"];
 				weatherData["humidity"] = obs["humidity"];
+				weatherData["solarRad"] = obs["solarRadiation"];
 				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
 				weatherData["winddir"] = obs["winddir"];
 				weatherData["lat"] = obs["lat"];
@@ -329,7 +330,7 @@ function getForecastData() {
 						winDesc: isDay
 							? day["wind_phrase"]
 							: night["wind_phrase"],
-						UVDesc: isDay ? day["uv_desc"] : night["uv_desc"],
+						uvDesc: isDay ? day["uv_desc"] : night["uv_desc"],
 						snowDesc: snowDesc,
 						golfDesc: isDay
 							? day["golf_category"]
@@ -398,73 +399,6 @@ function getNearestStation() {
 	req.send();
 }
 
-// TODO: replace with getExtendedConditions
-/**
- * Get icon code for display in TopPanel and CompactRep
- */
-function findIconCode() {
-	var req = new XMLHttpRequest();
-
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
-
-	var url = "https://api.weather.com/v3/wx/observations/current";
-
-	url += "?geocode=" + lat + "," + long;
-	url += "&apiKey=" + API_KEY;
-	url += "&language=" + Qt.locale().name.replace("_","-");
-
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
-		url += "&units=h";
-	} else {
-		url += "&units=m";
-	}
-
-	url += "&format=json";
-
-	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
-	req.onerror = function () {
-		printDebug("[pws-api.js] " + req.responseText);
-	};
-
-	printDebug("[pws-api.js] " + url);
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				iconCode = iconThemeMap[res["iconCode"]];
-				conditionNarrative = res["wxPhraseLong"];
-
-				// Determine if the precipitation is snow or rain
-				// All of these codes are for snow
-				if (
-					iconCode === 5 ||
-					iconCode === 13 ||
-					iconCode === 14 ||
-					iconCode === 15 ||
-					iconCode === 16 ||
-					iconCode === 42 ||
-					iconCode === 43 ||
-					iconCode === 46
-				) {
-					isRain = false;
-				}
-			}
-		}
-	};
-
-	req.send();
-}
 
 /**
  * Get broad weather info from station area including textual/icon description of conditions and weather warnings.
@@ -518,6 +452,9 @@ function getExtendedConditions() {
 
 				iconCode = iconThemeMap[condVars["iconCode"]];
 				conditionNarrative = condVars["wxPhraseLong"];
+				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
+				weatherData["sunset"] = condVars["sunsetTimeLocal"];
+
 
 				// Determine if the precipitation is snow or rain
 				// All of these codes are for snow
@@ -534,8 +471,8 @@ function getExtendedConditions() {
 					isRain = false;
 				}
 
+				alertsModel.clear();
 				if (alertsVars !== null) {
-					alertsModel.clear();
 
 					var alerts = alertsVars["alerts"];
 					for (var index = 0; index < alerts.length; index++) {

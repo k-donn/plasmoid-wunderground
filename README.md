@@ -35,7 +35,9 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 - Porting
     -   [x] Update icons
-    -   [ ] Add AQI/weather warnings
+    -   [x] Add AQI/weather warnings
+    -   [ ] Add sun rise/set info
+    -   [ ] Pressure rising/falling info
 -   i18n
     -   [ ] Translations for new text
 -   Customizability
