@@ -168,7 +168,7 @@ RowLayout {
 
             horizontalAlignment: Text.AlignHCenter
 
-            text: Qt.formatDateTime(weatherData["sunrise"], "hh:mm a")
+            text: new Date(weatherData["sunrise"]).toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         }
         PlasmaComponents.Label {
             id: sunset
@@ -176,7 +176,7 @@ RowLayout {
 
             horizontalAlignment: Text.AlignHCenter
 
-            text: Qt.formatDateTime(weatherData["sunset"], "hh:mm a")
+            text: new Date(weatherData["sunset"]).toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         }
     }
 }

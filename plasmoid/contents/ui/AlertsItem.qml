@@ -27,6 +27,27 @@ import "../code/utils.js" as Utils
 
 ColumnLayout {
 
+    PlasmaComponents.Label {
+        id: alertsLabel
+
+        font {
+            bold: true
+            pointSize: 15
+        }
+
+        text: i18n("Alerts")
+    }
+
+    PlasmaComponents.Label {
+        id: noAlertsLabel
+
+        visible: alertsModel.count == 0
+
+        horizontalAlignment: Text.AlignHCenter
+
+        text: i18n("There are no alerts for your area.")
+    }
+
     ListView {
         id: alertsRepeater
 
@@ -34,6 +55,8 @@ ColumnLayout {
 
         Layout.fillWidth: true
         Layout.fillHeight: true
+
+        visible: alertsModel.count > 0
 
         Component {
             id: alertDelegate

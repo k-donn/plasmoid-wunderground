@@ -26,17 +26,6 @@ ColumnLayout {
         id: airSolarItem
     }
 
-    PlasmaComponents.Label {
-        id: alertsLabel
-
-        font {
-            bold: true
-            pointSize: 15
-        }
-
-        text: i18n("Alerts")
-    }
-
     AlertsItem {
         id: alertsItem
     }
