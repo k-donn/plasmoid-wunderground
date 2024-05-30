@@ -189,9 +189,9 @@ function getCurrentData() {
 				weatherData["details"] = details;
 
 				weatherData["stationID"] = obs["stationID"];
-				weatherData["uv"] = obs["uv"];
+				weatherData["uv"] = obs["uv"]; // nullable
 				weatherData["humidity"] = obs["humidity"];
-				weatherData["solarRad"] = obs["solarRadiation"];
+				weatherData["solarRad"] = obs["solarRadiation"]; // nullable
 				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
 				weatherData["winddir"] = obs["winddir"];
 				weatherData["lat"] = obs["lat"];

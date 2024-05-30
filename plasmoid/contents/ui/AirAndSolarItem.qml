@@ -22,13 +22,19 @@ import org.kde.plasma.components as PlasmaComponents
 
 RowLayout {
 
+    TextMetrics {
+        id: aqIndexTxt
+
+        text: i18n("Status Color")
+    }
+
     GridLayout {
         id: aqGrid
 
         columns: 2
         rows: 4
 
-        Layout.fillWidth: true
+        Layout.preferredWidth: parent.width / 2
 
         PlasmaComponents.Label {
             id: aqLabel
@@ -72,16 +78,27 @@ RowLayout {
 
             text: i18n("AQHI: %1", weatherData["aq"]["aqhi"])
         }
-        PlasmaComponents.Label {
+        Rectangle {
             id: aqIndexColor
-            Layout.fillWidth: true
 
-            horizontalAlignment: Text.AlignHCenter
+            Layout.preferredWidth: aqIndexTxt.width
+            Layout.preferredHeight: aqIndexTxt.height
+            Layout.alignment: Qt.AlignCenter
 
             color: "#" + weatherData["aq"]["aqColor"]
 
-            text: i18n("Status Color")
+            PlasmaComponents.Label {
+                id: aqIndexLabel
+
+                horizontalAlignment: Text.AlignHCenter
+
+                color: Utils.lightDark(aqIndex.color, "#000000", "#ffffff")
+
+                text: aqIndexTxt.text
+            }
+
         }
+
         PlasmaComponents.Label {
             id: aqPrimary
             Layout.fillWidth: true
@@ -98,7 +115,7 @@ RowLayout {
         columns: 2
         rows: 4
 
-        Layout.fillWidth: true
+        Layout.preferredWidth: parent.width / 2
 
         PlasmaComponents.Label {
             id: solLabel
@@ -123,6 +140,8 @@ RowLayout {
             Layout.fillWidth: true
 
             horizontalAlignment: Text.AlignHCenter
+
+            textFormat: Text.RichText
 
             text: weatherData["solarRad"] + " W/m<sup>2</sup>"
         }

@@ -59,7 +59,7 @@ RowLayout {
             PlasmaCore.ToolTipArea {
                 anchors.fill: parent
 
-                mainText: i18n("There are weather warnings for your area!")
+                mainText: i18n("There are weather alerts for your area!")
             }
         }
     }

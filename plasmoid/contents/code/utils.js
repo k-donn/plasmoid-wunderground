@@ -398,6 +398,25 @@ function heatColorF(degF) {
 		: "#5E4FA2";
 }
 
+// Credit to @Gojir4
+/*!
+ *   Select a color depending on whether the background is light or dark.
+ *   \c lightColor is the color used on a light background.
+ *   \c darkColor is the color used on a dark background.
+ */
+function lightDark(background, lightColor, darkColor) {
+	return isDarkColor(background) ? darkColor : lightColor
+}
+
+/*!
+ *   Returns true if the color is dark and should have light content on top
+ */
+function isDarkColor(background) {
+	var temp = Qt.darker(background, 1) //Force conversion to color QML type object
+	var a = 1 - ( 0.299 * temp.r + 0.587 * temp.g + 0.114 * temp.b);
+	return temp.a > 0 && a >= 0.3
+}
+
 function getPressureTrendIcon(longDesc) {
 	if (longDesc === "Steady") {
 		return "gnumeric-object-line";

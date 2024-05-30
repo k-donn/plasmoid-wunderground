@@ -31,19 +31,23 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
+The text coloring utility functions are from [@Gojira4](https://forum.qt.io/user/gojir4).
+
 ## TODO
 
 - Porting
     -   [x] Update icons
     -   [x] Add AQI/weather warnings
-    -   [ ] Add sun rise/set info
-    -   [ ] Pressure rising/falling info
+    -   [x] Add sun rise/set info
+    -   [x] Pressure rising/falling info
 -   i18n
     -   [ ] Translations for new text
 -   Customizability
     -   [x] Context menu refresh option
     -   [ ] Widget size/padding/scaling
     -   [x] Specific units choice (eg. from km/h to m/s for metric)
+-   Graphical
+    -   [ ] Improve text coloring of temp and alerts for dark/transparent themes
 -   Parking lot
     -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
     -   [ ] Use Wunderground Plasma Ion.
