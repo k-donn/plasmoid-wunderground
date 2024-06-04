@@ -33,6 +33,12 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 The text coloring utility functions are from [@Gojira4](https://forum.qt.io/user/gojir4).
 
+### Known Problems
+
+Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
+
+Changing the transparency then back again seems to solve this issue. See #58.
+
 ## TODO
 
 - Porting
@@ -40,8 +46,10 @@ The text coloring utility functions are from [@Gojira4](https://forum.qt.io/user
     -   [x] Add AQI/weather warnings
     -   [x] Add sun rise/set info
     -   [x] Pressure rising/falling info
+    -   [ ] Github templates
 -   i18n
     -   [ ] Translations for new text
+    -   [ ] AQI/AQHI scale localization
 -   Customizability
     -   [x] Context menu refresh option
     -   [ ] Widget size/padding/scaling

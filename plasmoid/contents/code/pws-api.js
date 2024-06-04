@@ -124,6 +124,20 @@ let severityColorMap = {
 }
 
 /**
+ * Handle API fields that could be null. Return if not null,
+ * return two dashes for plasholder otherwise.
+ *
+ * @param value API value
+ */
+function nullableField(value) {
+	if (value != null) {
+		return value;
+	} else {
+		return "--";
+	}
+}
+
+/**
  * Pull the most recent observation from the selected weather station.
  *
  * This handles setting errors and making the loading screen appear.
@@ -189,9 +203,9 @@ function getCurrentData() {
 				weatherData["details"] = details;
 
 				weatherData["stationID"] = obs["stationID"];
-				weatherData["uv"] = obs["uv"]; // nullable
+				weatherData["uv"] = nullableField(obs["uv"]);
 				weatherData["humidity"] = obs["humidity"];
-				weatherData["solarRad"] = obs["solarRadiation"]; // nullable
+				weatherData["solarRad"] = nullableField(obs["solarRadiation"]);
 				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
 				weatherData["winddir"] = obs["winddir"];
 				weatherData["lat"] = obs["lat"];
@@ -487,14 +501,19 @@ function getExtendedConditions() {
 							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
 						}
 
+						var source = "Issued by: " + curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
+
+						var disclaimer = curAlert["disclaimer"] !== null ? curAlert["disclaimer"] : "None";
+
 						alertsModel.append({
 							desc: curAlert["eventDescription"],
 							severity: curAlert["severity"],
 							severityColor: severityColorMap[curAlert["severityCode"]],
 							headline: curAlert["headlineText"],
-							source: curAlert["source"],
 							area: curAlert["areaName"],
-							action: actions.join(",")
+							action: actions.join(","),
+							source: source,
+							disclaimer: disclaimer
 						});
 					}
 				}
@@ -503,7 +522,17 @@ function getExtendedConditions() {
 				weatherData["aq"]["aqhi"] = airQualVars["airQualityCategoryIndex"];
 				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"];
 				weatherData["aq"]["aqColor"] = airQualVars["airQualityCategoryIndexColor"];
-				weatherData["aq"]["aqPrimary"] = airQualVars["primaryPollutant"];
+
+				var primaryPollutant = weatherData["aq"]["aqPrimary"] = airQualVars["primaryPollutant"];
+
+				var primaryDetails = airQualVars["pollutants"][primaryPollutant];
+
+				weatherData["aq"]["primaryDetails"]["phrase"] = primaryDetails["phrase"];
+				weatherData["aq"]["primaryDetails"]["amount"] = primaryDetails["amount"];
+				weatherData["aq"]["primaryDetails"]["unit"] = primaryDetails["unit"];
+				weatherData["aq"]["primaryDetails"]["desc"] = primaryDetails["category"];
+				weatherData["aq"]["primaryDetails"]["index"] = primaryDetails["index"];
+
 
 				// Force QML to update text depending on weatherData
 				weatherData = weatherData;

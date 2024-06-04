@@ -38,6 +38,7 @@ ColumnLayout {
         text: i18n("Alerts")
     }
 
+
     PlasmaComponents.Label {
         id: noAlertsLabel
 
@@ -47,6 +48,7 @@ ColumnLayout {
 
         text: i18n("There are no alerts for your area.")
     }
+
 
     ListView {
         id: alertsRepeater
@@ -86,7 +88,7 @@ ColumnLayout {
 
                     PlasmaCore.ToolTipArea {
                         mainText: i18n("Severity: %1", severity)
-                        subText: i18n("Source: %1<br/>Region: %2<br/>Action: %3", source, area, action)
+                        subText: i18n("Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>%4", area, action, disclaimer, source)
 
                         interactive: true
 

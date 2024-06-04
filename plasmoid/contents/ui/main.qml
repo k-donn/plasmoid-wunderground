@@ -55,7 +55,14 @@ PlasmoidItem {
             "aqhi": 0,
             "aqDesc": "Good",
             "aqColor": "FFFFFF",
-            "aqPrimary": "PM2.5"
+            "aqPrimary": "PM2.5",
+            "primaryDetails": {
+                "phrase": "Particulate matter <2.5 microns",
+                "amount": 0,
+                "unit": "ug/m3",
+                "desc": "Moderate",
+                "index": 0
+            }
         }
     }
     property ListModel forecastModel: ListModel {}

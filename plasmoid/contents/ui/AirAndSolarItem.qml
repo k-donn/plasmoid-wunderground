@@ -18,7 +18,9 @@
 import QtQuick
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
+import "../code/utils.js" as Utils
 
 RowLayout {
 
@@ -92,20 +94,35 @@ RowLayout {
 
                 horizontalAlignment: Text.AlignHCenter
 
-                color: Utils.lightDark(aqIndex.color, "#000000", "#ffffff")
+                color: "#000000"
 
                 text: aqIndexTxt.text
             }
-
         }
 
-        PlasmaComponents.Label {
-            id: aqPrimary
-            Layout.fillWidth: true
+        Row {
+            Layout.alignment: Qt.AlignCenter
 
-            horizontalAlignment: Text.AlignHCenter
+            PlasmaComponents.Label {
+                horizontalAlignment: Text.AlignCenter
+                text: i18n("Primary pollutant: ")
+            }
 
-            text: i18n("Primary pollutant: %1", weatherData["aq"]["aqPrimary"])
+            PlasmaComponents.Label {
+                horizontalAlignment: Text.AlignCenter
+                textFormat: Text.StyledText
+
+                text: "<u style='border-bottom: 2px dotted #000;text-decoration: none;'>" + weatherData["aq"]["aqPrimary"] + "</u>"
+
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+
+                    interactive: true
+
+                    mainText: weatherData["aq"]["primaryDetails"]["phrase"]
+                    subText: i18n("Amount: %1 %2<br/>Description: %3<br/>Index: %4", weatherData["aq"]["primaryDetails"]["amount"], weatherData["aq"]["primaryDetails"]["unit"], weatherData["aq"]["primaryDetails"]["desc"], weatherData["aq"]["primaryDetails"]["index"])
+                }
+            }
         }
     }
 
