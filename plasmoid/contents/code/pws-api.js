@@ -124,16 +124,45 @@ let severityColorMap = {
 }
 
 /**
- * Handle API fields that could be null. Return if not null,
- * return two dashes for plasholder otherwise.
+ * Handle API fields that could be null. If not null, return.
+ * Otherwise, return two dashes for placeholder.
  *
  * @param value API value
+ * @returns {any|string} `value` or "--"
  */
 function nullableField(value) {
 	if (value != null) {
 		return value;
 	} else {
 		return "--";
+	}
+}
+
+/**
+ * Find the territory code and return the air quality scale used there.
+ * 
+ * @returns {string} Air quality scale
+ */
+function getAQScale() {
+	var countryCode = Qt.locale().name.split("_")[1];
+	console.log(countryCode)
+
+	if (countryCode === "CN") {
+		return "HJ6332012";
+	} else if (countryCode === "FR") {
+		return "ATMO";
+	} else if (countryCode === "DE") {
+		return "UBA";
+	} else if (countryCode === "GB") {
+		return "DAQI";
+	} else if (countryCode === "IN") {
+		return "NAQI";
+	} else if (countryCode === "MX") {
+		return "IMECA";
+	} else if (countryCode === "ES") {
+		return "CAQI";
+	} else {
+		return "EPA";
 	}
 }
 
@@ -428,7 +457,7 @@ function getExtendedConditions() {
 	url += "?geocodes=" + lat + "," + long;
 	url += "&apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
-	url += "&scale=EPA";
+	url += "&scale=" + getAQScale();
 
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";

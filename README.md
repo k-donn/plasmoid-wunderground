@@ -49,7 +49,7 @@ Changing the transparency then back again seems to solve this issue. See #58.
     -   [ ] Github templates
 -   i18n
     -   [ ] Translations for new text
-    -   [ ] AQI/AQHI scale localization
+    -   [x] AQI/AQHI scale localization
 -   Customizability
     -   [x] Context menu refresh option
     -   [ ] Widget size/padding/scaling
