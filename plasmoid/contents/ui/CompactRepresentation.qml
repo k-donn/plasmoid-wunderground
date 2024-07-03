@@ -4,12 +4,10 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-import QtQuick 2.9
-
-import QtQuick.Layouts 1.3
-
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
+import QtQuick
+import QtQuick.Layouts
+import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
 
 ColumnLayout {
@@ -18,14 +16,15 @@ ColumnLayout {
     readonly property bool vertical: (plasmoid.formFactor == PlasmaCore.Types.Vertical)
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] [CompactRep.qml] " + msg)}
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [CompactRep.qml] " + msg);
+        }
     }
-
 
     IconAndTextItem {
         vertical: compactRoot.vertical
-        iconSource: plasmoid.file("", "icons/" + iconCode + ".svg")
-        text: appState == showDATA ? Utils.currentTempUnit(weatherData["details"]["temp"].toFixed(1)) : "---.-° X"
+        iconSource: iconCode
+        text: appState == showDATA ? Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])) : "--- °X"
 
         Layout.fillWidth: compactRoot.vertical
         Layout.fillHeight: !compactRoot.vertical
@@ -36,18 +35,15 @@ ColumnLayout {
 
             hoverEnabled: true
 
-            onClicked: {
-                plasmoid.expanded = !plasmoid.expanded;
-            }
+            onClicked: root.expanded = !root.expanded
         }
     }
-
 
     // Component {
     //     id: iconComponent
 
     //     PlasmaCore.SvgItem {
-    //         readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), units.iconSizes.small)
+    //         readonly property int minIconSize: Math.max((compactRoot.vertical ? compactRoot.width : compactRoot.height), Kirigami.Units.iconSizes.small)
 
     //         svg: PlasmaCore.Svg {
     //             id: svg
@@ -55,13 +51,12 @@ ColumnLayout {
     //         }
 
     //         // reset implicit size, so layout in free dimension does not stop at the default one
-    //         implicitWidth: units.iconSizes.small
-    //         implicitHeight: units.iconSizes.small
-    //         Layout.minimumWidth: compactRoot.vertical ? units.iconSizes.small : minIconSize
-    //         Layout.minimumHeight: compactRoot.vertical ? minIconSize : units.iconSizes.small
+    //         implicitWidth: Kirigami.Units.iconSizes.small
+    //         implicitHeight: Kirigami.Units.iconSizes.small
+    //         Layout.minimumWidth: compactRoot.vertical ? Kirigami.Units.iconSizes.small : minIconSize
+    //         Layout.minimumHeight: compactRoot.vertical ? minIconSize : Kirigami.Units.iconSizes.small
     //     }
     // }
-
 
     // Component {
     //     id: iconAndTextComponent

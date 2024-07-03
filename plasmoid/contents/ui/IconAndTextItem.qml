@@ -4,18 +4,18 @@
  * SPDX-License-Identifier: GPL-2.0-or-later
  */
 
-
-import QtQuick 2.9
-import QtQuick.Layouts 1.3
-
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 3.0 as PlasmaComponents
+import QtQuick
+import QtQuick.Layouts
+import org.kde.ksvg as KSvg
+import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 
 GridLayout {
     id: iconAndTextRoot
 
-    property alias iconSource: svg.imagePath
+    property alias iconSource: icon.source
     property alias text: label.text
     property alias paintWidth: sizeHelper.paintedWidth
     property alias paintHeight: sizeHelper.paintedHeight
@@ -28,9 +28,9 @@ GridLayout {
 
     readonly property bool showTemperature: !inTray
 
-    readonly property int verticalFixedHeight: 21 * units.devicePixelRatio
+    readonly property int verticalFixedHeight: 21
 
-    readonly property int minimumIconSize: units.iconSizes.small
+    readonly property int minimumIconSize: Kirigami.Units.iconSizes.small
 
     columns: iconAndTextRoot.vertical ? 1 : 2
     rows: iconAndTextRoot.vertical ? 2 : 1
@@ -39,32 +39,29 @@ GridLayout {
     rowSpacing: 0
 
     function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {console.log("[debug] [IconText.qml] " + msg)}
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [IconText.qml] " + msg);
+        }
     }
 
     onPaintWidthChanged: {
         // TODO: use property binding or states inside of "text" instead of this?
-        text.Layout.minimumWidth = iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth
-        text.Layout.maximumWidth = iconAndTextRoot.vertical ? Infinity : text.Layout.minimumWidth
-
-        text.Layout.minimumHeight = iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0
-        text.Layout.maximumHeight = iconAndTextRoot.vertical ? text.Layout.minimumHeight : Infinity
+        text.Layout.minimumWidth = iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth;
+        text.Layout.maximumWidth = iconAndTextRoot.vertical ? Infinity : text.Layout.minimumWidth;
+        text.Layout.minimumHeight = iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0;
+        text.Layout.maximumHeight = iconAndTextRoot.vertical ? text.Layout.minimumHeight : Infinity;
 
         // Loaded within scope of compactRoot; can access compactRoot properties!
-        compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth)
+        compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth);
     }
 
-    PlasmaCore.SvgItem {
+    Kirigami.Icon {
         id: icon
 
         readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
-
-        svg: PlasmaCore.Svg {
-            id: svg
-        }
 
         Layout.fillWidth: iconAndTextRoot.vertical
         Layout.fillHeight: !iconAndTextRoot.vertical
@@ -103,21 +100,21 @@ GridLayout {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             anchors {
-                leftMargin: units.smallSpacing
-                rightMargin: units.smallSpacing
+                leftMargin: Kirigami.Units.smallSpacing
+                rightMargin: Kirigami.Units.smallSpacing
             }
 
             smooth: true
 
             height: {
                 var textHeightScaleFactor = 0.71;
-                return Math.min (targetHeight * textHeightScaleFactor, 3 * targetHeight);
+                return Math.min(targetHeight * textHeightScaleFactor, 3 * targetHeight);
             }
 
             visible: false
 
             // pattern to reserve some constant space TODO: improve and take formatting/i18n into account
-            text: "888.8 °X"
+            text: "888 °X"
         }
 
         PlasmaComponents.Label {
@@ -145,8 +142,8 @@ GridLayout {
 
             anchors {
                 fill: parent
-                leftMargin: units.smallSpacing
-                rightMargin: units.smallSpacing
+                leftMargin: Kirigami.Units.smallSpacing
+                rightMargin: Kirigami.Units.smallSpacing
             }
         }
     }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,27 +14,26 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
-import QtQuick 2.0
-import org.kde.plasma.configuration 2.0
+import org.kde.plasma.configuration
 
 ConfigModel {
     ConfigCategory {
-        name: "Station"
+        name: i18n("Station")
         icon: "flag"
         source: "config/ConfigStation.qml"
     }
     ConfigCategory {
-        name: "Appearance"
+        name: i18n("Appearance")
         icon: "preferences-desktop-color"
         source: "config/ConfigAppearance.qml"
     }
     ConfigCategory {
-        name: "Units"
-        icon: "configuration"
+        name: i18n("Units")
+        icon: "configure"
         source: "config/ConfigUnits.qml"
     }
     ConfigCategory {
-        name: "Debug"
+        name: i18n("Debug")
         icon: "preferences-other"
         source: "config/ConfigDebug.qml"
     }

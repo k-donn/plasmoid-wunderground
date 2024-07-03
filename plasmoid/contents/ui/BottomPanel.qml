@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,11 +15,12 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQuick
+import QtQuick.Layouts
+import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
 RowLayout {
@@ -35,14 +36,31 @@ RowLayout {
         Layout.fillWidth: true
     }
 
-    PlasmaComponents.Label {
-        id: bottomPanelStation
+    Row {
+        PlasmaComponents.Label {
+            id: bottomPanelStation
 
-        Layout.fillWidth: true
+            Layout.fillWidth: true
 
-        text: weatherData["stationID"] + "   " + Utils.currentElevUnit(weatherData["details"]["elev"])
+            text: weatherData["stationID"] + "   " + Utils.currentElevUnit(Utils.toUserElev(weatherData["details"]["elev"]))
 
-        verticalAlignment: Text.AlignBottom
-        horizontalAlignment: Text.AlignRight
+            verticalAlignment: Text.AlignBottom
+            horizontalAlignment: Text.AlignRight
+        }
+        Kirigami.Icon {
+            source: "documentinfo-symbolic"
+
+            visible: alertsModel.count > 0
+
+            height: Kirigami.Units.iconSizes.smallMedium
+
+            color: "#ff0000"
+
+            PlasmaCore.ToolTipArea {
+                anchors.fill: parent
+
+                mainText: i18n("There are weather alerts for your area!")
+            }
+        }
     }
 }

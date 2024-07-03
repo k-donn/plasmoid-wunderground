@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-01-21 20:04-0500\n"
+"POT-Creation-Date: 2024-06-04 13:51-0400\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -18,13 +18,85 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 22.03.90\n"
 
-#: ../metadata.desktop
+#: ../metadata.json
 msgid "Wunderground"
 msgstr "Wunderground"
 
-#: ../metadata.desktop
+#: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
 msgstr "Wunderground - Bekijk je eigen weerstation"
+
+#: ../contents/config/config.qml
+msgid "Station"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Appearance"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Units"
+msgstr ""
+
+#: ../contents/config/config.qml
+msgid "Debug"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Status Color"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Air quality"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "AQI: %1"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "AQHI: %1"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Primary pollutant: "
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Solar info"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Sunrise"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Sunset"
+msgstr ""
+
+#: ../contents/ui/AlertsItem.qml
+msgid "Alerts"
+msgstr ""
+
+#: ../contents/ui/AlertsItem.qml
+msgid "There are no alerts for your area."
+msgstr ""
+
+#: ../contents/ui/AlertsItem.qml
+msgid "Severity: %1"
+msgstr ""
+
+#: ../contents/ui/AlertsItem.qml
+msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>%4"
+msgstr ""
+
+#: ../contents/ui/BottomPanel.qml
+msgid "There are weather alerts for your area!"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Compact Representation"
@@ -57,6 +129,30 @@ msgstr "Tekstgrootte van items"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Temperature text size"
 msgstr "Tekstgrootte van temperatuur"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Auto-color temperature:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+msgid "Weather Details"
+msgstr "Weerinformatie"
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+msgid "Forecast"
+msgstr "Weersvoorspelling"
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+msgid "More Info"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Default page shown:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show pressure trend:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
@@ -115,8 +211,36 @@ msgid "Hybrid (UK)"
 msgstr "Hybride (VK)"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
 msgstr "Kiezen:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Wind unit:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Rain unit:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Snow unit:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Temperature unit:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Pressure unit:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Elevation unit:"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml
 msgid "WIND & GUST"
@@ -127,8 +251,8 @@ msgid "Feels like %1"
 msgstr "Gevoelstemperatuur: %1"
 
 #: ../contents/ui/DetailsItem.qml
-msgid "Wind from: %1"
-msgstr "Windrichting: %1"
+msgid "Wind from: %1 (%2°)"
+msgstr "Windrichting: %1 (%2°)"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "DEWPOINT"
@@ -144,6 +268,10 @@ msgid "PRESSURE"
 msgstr "LUCHTDRUK"
 
 #: ../contents/ui/DetailsItem.qml
+msgid "Pressure has %1 %2 in the last three hours."
+msgstr ""
+
+#: ../contents/ui/DetailsItem.qml
 msgid "HUMIDITY"
 msgstr "LUCHTVOCHTIGHEID"
 
@@ -157,24 +285,20 @@ msgctxt "Ultra Violet"
 msgid "UV"
 msgstr "UV-index"
 
+#: ../contents/ui/ForecastItem.qml
+msgctxt "Do not edit HTML tags."
+msgid ""
+"<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/"
+">Golf: %5</font>"
+msgstr ""
+
 #: ../contents/ui/FullRepresentation.qml
 msgid "Loading data..."
 msgstr "Bezig met laden…"
 
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags. 'Temp' means temperature"
-msgid "<font size='4'>Temp: %1</font><br />"
-msgstr "<font size='4'>Temp.: %1</font><br />"
-
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags."
-msgid "<font size='4'>Feels: %1</font><br />"
-msgstr "<font size='4'>Voelt als: %1</font><br />"
-
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
-msgid "<font size='4'>Wnd spd: %1</font><br />"
-msgstr "<font size='4'>Windsnelh.: %1</font><br />"
+#: ../contents/ui/lib/ConfigBtn.qml
+msgid "Configure Wunderground"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
@@ -192,14 +316,28 @@ msgstr "Bezig met laden…"
 msgid "Error..."
 msgstr "Foutmelding"
 
-#: ../contents/ui/SwitchPanel.qml
-msgid "Weather Details"
-msgstr "Weerinformatie"
+#: ../contents/ui/main.qml
+msgctxt "Do not edit HTML tags. 'Temp' means temperature"
+msgid "<font size='4'>Temp: %1</font><br />"
+msgstr "<font size='4'>Temp.: %1</font><br />"
 
-#: ../contents/ui/SwitchPanel.qml
-msgid "Forecast"
-msgstr "Weersvoorspelling"
+#: ../contents/ui/main.qml
+msgctxt "Do not edit HTML tags."
+msgid "<font size='4'>Feels: %1</font><br />"
+msgstr "<font size='4'>Voelt als: %1</font><br />"
+
+#: ../contents/ui/main.qml
+msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
+msgid "<font size='4'>Wnd spd: %1</font><br />"
+msgstr "<font size='4'>Windsnelh.: %1</font><br />"
+
+#: ../contents/ui/main.qml
+msgid "Refresh weather"
+msgstr ""
 
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Hoog: %1 - Laag: %2"
+
+#~ msgid "Wind from: %1"
+#~ msgstr "Windrichting: %1"

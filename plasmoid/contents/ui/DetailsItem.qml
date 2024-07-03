@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,12 +15,14 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import org.kde.plasma.plasmoid
+import org.kde.ksvg as KSvg
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
 GridLayout {
@@ -31,7 +33,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: temp
-        text: Utils.currentTempUnit(weatherData["details"]["temp"])
+        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]))
         font {
             bold: true
             pointSize: plasmoid.configuration.tempPointSize
@@ -39,21 +41,24 @@ GridLayout {
         // Use the dyanimcally calulated color (light/dark theme) of the wind label if user doesn't want temp colored
         color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"]) : windLabel.color
     }
-    PlasmaCore.SvgItem {
+    Kirigami.Icon {
         id: topPanelIcon
 
-        svg: PlasmaCore.Svg {
-            id: svg
-            imagePath: plasmoid.file("", "icons/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"]) + ".svg")
-        }
+        source: "gnumeric-object-arrow-symbolic"
+        // source: "../images/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg"
 
-        rotation: weatherData["winddir"] - 270
+        // wind barb icons are 270 degrees deviated from 0 degrees (north)
+        //rotation: weatherData["winddir"] - 270
 
-        Layout.minimumWidth: units.iconSizes.large
-        Layout.minimumHeight: units.iconSizes.large
+        // new rotation for icons:
+        rotation: weatherData["winddir"] - 135
+
+        Layout.minimumWidth: Kirigami.Units.iconSizes.large
+        Layout.minimumHeight: Kirigami.Units.iconSizes.large
         Layout.preferredWidth: Layout.minimumWidth
         Layout.preferredHeight: Layout.minimumHeight
     }
+
     PlasmaComponents.Label {
         id: windLabel
         text: i18n("WIND & GUST")
@@ -70,15 +75,14 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: windDirCard
-        text: i18n("Wind from: %1", Utils.windDirToCard(weatherData["winddir"]))
+        text: i18n("Wind from: %1 (%2°)", Utils.windDirToCard(weatherData["winddir"]), weatherData["winddir"])
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
         id: wind
-        text: weatherData["details"]["windSpeed"] + " / " + Utils.currentSpeedUnit(weatherData["details"]["windGust"])
+        text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(1) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
-
 
     PlasmaComponents.Label {
         id: dewLabel
@@ -107,18 +111,34 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: dew
-        text: Utils.currentTempUnit(weatherData["details"]["dewpt"])
+        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]))
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
         id: precipRate
-        text: Utils.currentPrecipUnit(weatherData["details"]["precipRate"], isRain) + "/hr"
+        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain), isRain) + "/hr"
         font.pointSize: plasmoid.configuration.propPointSize
     }
-    PlasmaComponents.Label {
-        id: pressure
-        text: Utils.currentPresUnit(weatherData["details"]["pressure"])
-        font.pointSize: plasmoid.configuration.propPointSize
+    Row {
+        PlasmaComponents.Label {
+            id: pressure
+            text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
+            font.pointSize: plasmoid.configuration.propPointSize
+        }
+        Kirigami.Icon {
+            source: Utils.getPressureTrendIcon(weatherData["details"]["pressureTrend"])
+
+            visible: plasmoid.configuration.showPresTrend
+
+            height: Kirigami.Units.iconSizes.small
+
+            PlasmaCore.ToolTipArea {
+                anchors.fill: parent
+
+                mainText: weatherData["details"]["pressureTrend"]
+                subText: i18n("Pressure has %1 %2 in the last three hours.", Utils.getShortDesc(weatherData["details"]["pressureDelta"]), Utils.currentPresUnit(Math.abs(Utils.toUserPres(weatherData["details"]["pressureDelta"]))))
+            }
+        }
     }
 
     PlasmaComponents.Label {
@@ -153,7 +173,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipAcc
-        text: Utils.currentPrecipUnit(weatherData["details"]["precipTotal"], isRain)
+        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain), isRain)
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {

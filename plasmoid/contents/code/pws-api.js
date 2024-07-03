@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -18,6 +18,154 @@
 /** @type {string} */
 let API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
 
+
+let UNITS_SYSTEM = {
+	METRIC: 0,
+	IMPERIAL: 1,
+	HYBRID: 2,
+	CUSTOM: 3
+}
+
+let WIND_UNITS = {
+	MPS: 0,
+	KPH: 1,
+	MPH: 2
+}
+
+let RAIN_UNITS = {
+	MM: 0,
+	CM: 1,
+	IN: 2
+}
+
+let SNOW_UNITS = {
+	MM: 0,
+	CM: 1,
+	IN: 2
+}
+
+let TEMP_UNITS = {
+	C: 0,
+	F: 1,
+	K: 2
+}
+
+let PRES_UNITS = {
+	HPA: 0,
+	CMHG: 1,
+	INHG: 2
+}
+
+let ELEV_UNITS = {
+	M: 0,
+	FT: 1
+}
+
+
+
+/** Map from Wunderground provided icon codes to opendesktop icon theme descs */
+let iconThemeMap = {
+	0: "weather-storm-symbolic",
+	1: "weather-storm-symbolic",
+	2: "weather-storm-symbolic",
+	3: "weather-storm-symbolic",
+	4: "weather-storm-symbolic",
+	5: "weather-snow-rain-symbolic",
+	6: "weather-snow-rain-symbolic",
+	7: "weather-freezing-rain-symbolic",
+	8: "weather-freezing-rain-symbolic",
+	9: "weather-showers-scattered-symbolic",
+	10: "weather-freezing-rain-symbolic",
+	11: "weather-showers-symbolic",
+	12: "weather-showers-symbolic",
+	13: "weather-snow-scattered-symbolic",
+	14: "weather-snow-symbolic",
+	15: "weather-snow-symbolic",
+	16: "weather-snow-symbolic",
+	17: "weather-hail-symbolic",
+	18: "weather-snow-scattered-symbolic",
+	19: "weather-many-clouds-wind-symbolic",
+	20: "weather-fog-symbolic",
+	21: "weather-fog-symbolic",
+	22: "weather-fog-symbolic",
+	23: "weather-clouds-wind-symbolic",
+	24: "weather-clouds-wind-symbolic",
+	25: "weather-snow-symbolic",
+	26: "weather-many-clouds-symbolic",
+	27: "weather-many-clouds-symbolic",
+	28: "weather-clouds-symbolic",
+	29: "weather-clouds-night-symbolic",
+	30: "weather-few-clouds-symbolic",
+	31: "weather-clear-night-symbolic",
+	32: "weather-clear-symbolic",
+	33: "weather-few-clouds-night-symbolic",
+	34: "weather-few-clouds-day-symbolic",
+	35: "weather-freezing-storm-day-symbolic",
+	36: "weather-clear-symbolic",
+	37: "weather-storm-day-symbolic",
+	38: "weather-storm-day-symbolic",
+	39: "weather-showers-scattered-day-symbolic",
+	40: "weather-showers-symbolic",
+	41: "weather-snow-scattered-day-symbolic",
+	42: "weather-snow-symbolic",
+	43: "weather-snow-symbolic",
+	44: "weather-none-available-symbolic",
+	45: "weather-showers-scattered-night-symbolic",
+	46: "weather-snow-storm-night-symbolic",
+	47: "weather-storm-night"
+}
+
+let severityColorMap = {
+	1: "#cc3300",
+	2: "#ff9966",
+	3: "#ffcc00",
+	4: "#99cc33",
+	5: "#ffcc00"
+}
+
+/**
+ * Handle API fields that could be null. If not null, return.
+ * Otherwise, return two dashes for placeholder.
+ *
+ * @param value API value
+ * @returns {any|string} `value` or "--"
+ */
+function nullableField(value) {
+	if (value != null) {
+		return value;
+	} else {
+		return "--";
+	}
+}
+
+/**
+ * Find the territory code and return the air quality scale used there.
+ * 
+ * @returns {string} Air quality scale
+ */
+function getAQScale() {
+	var countryCode = Qt.locale().name.split("_")[1];
+	console.log(countryCode)
+
+	if (countryCode === "CN") {
+		return "HJ6332012";
+	} else if (countryCode === "FR") {
+		return "ATMO";
+	} else if (countryCode === "DE") {
+		return "UBA";
+	} else if (countryCode === "GB") {
+		return "DAQI";
+	} else if (countryCode === "IN") {
+		return "NAQI";
+	} else if (countryCode === "MX") {
+		return "IMECA";
+	} else if (countryCode === "ES") {
+		return "CAQI";
+	} else {
+		return "EPA";
+	}
+}
+
 /**
  * Pull the most recent observation from the selected weather station.
  *
@@ -30,12 +178,14 @@ function getCurrentData() {
 	url += "?stationId=" + stationID;
 	url += "&format=json";
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	url += "&apiKey=" + API_KEY;
@@ -61,30 +211,45 @@ function getCurrentData() {
 			if (req.status == 200) {
 				var sectionName = "";
 
-				if (unitsChoice === 0) {
+				if (unitsChoice === UNITS_SYSTEM.METRIC) {
 					sectionName = "metric";
-				} else if (unitsChoice === 1) {
+				} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 					sectionName = "imperial";
-				} else {
+				} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 					sectionName = "uk_hybrid";
+				} else {
+					sectionName = "metric";
 				}
 
 				var res = JSON.parse(req.responseText);
 
-				var tmp = {};
-				var tmp = res["observations"][0];
+				var obs = res["observations"][0];
 
-				var details = res["observations"][0][sectionName];
-				tmp["details"] = details;
+				var details = obs[sectionName];
 
-				weatherData = tmp;
+				// The properties are assigned to weatherData explicitly to preserve
+				// its structure instead of assigning obs completely and breaking it
+				weatherData["details"] = details;
+
+				weatherData["stationID"] = obs["stationID"];
+				weatherData["uv"] = nullableField(obs["uv"]);
+				weatherData["humidity"] = obs["humidity"];
+				weatherData["solarRad"] = nullableField(obs["solarRadiation"]);
+				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
+				weatherData["winddir"] = obs["winddir"];
+				weatherData["lat"] = obs["lat"];
+				weatherData["lon"] = obs["lon"];
+
 
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
 
 				printDebug("[pws-api.js] Got new current data");
 
-				findIconCode();
+				// Force QML to update text depending on weatherData
+				weatherData = weatherData;
+
+				getExtendedConditions();
 
 				appState = showDATA;
 			} else {
@@ -123,14 +288,16 @@ function getForecastData() {
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
 	url += "?apiKey=" + API_KEY;
-	url += "&language=en-US";
+	url += "&language=" + Qt.locale().name.replace("_","-");
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	printDebug("[pws-api.js] " + url);
@@ -161,6 +328,7 @@ function getForecastData() {
 						fullDateTime.split("T")[0].split("-")[2]
 					);
 
+					// API returns empty string if no snow. Check for empty string.
 					var snowDesc = "";
 					if (isDay) {
 						snowDesc =
@@ -174,24 +342,38 @@ function getForecastData() {
 								: night["snow_phrase"];
 					}
 
+					// API does not return a thunderDesc for non-English languages. Check for null value.
+					var thunderDesc = "";
+					if (isDay) {
+						thunderDesc = day["thunder_enum_phrase"] !== null ? day["thunder_enum_phrase"] : "N/A"
+					} else {
+						thunderDesc = night["thunder_enum_phrase"] !== null ? night["thunder_enum_phrase"] : "N/A"
+					}
+
+					// API does not return a 12char weather description for non-English languages, but it always returns a 32char. Check for empty string.
+					var shortDesc = "";
+					if (isDay) {
+						shortDesc = day["phrase_12char"] !== "" ? day["phrase_12char"] : day["phrase_32char"]
+					} else {
+
+						shortDesc = night["phrase_12char"] !== "" ? night["phrase_12char"] : night["phrase_32char"]
+					}
+
+
 					forecastModel.append({
 						date: date,
 						dayOfWeek: isDay ? forecast["dow"] : "Tonight",
-						iconCode: isDay ? day["icon_code"] : night["icon_code"],
+						iconCode: isDay ? iconThemeMap[day["icon_code"]] : iconThemeMap[night["icon_code"]],
 						high: isDay ? forecast["max_temp"] : night["hi"],
 						low: forecast["min_temp"],
 						feelsLike: isDay ? day["hi"] : night["hi"],
-						shortDesc: isDay
-							? day["phrase_12char"]
-							: night["phrase_12char"],
+						shortDesc: shortDesc,
 						longDesc: isDay ? day["narrative"] : night["narrative"],
-						thunderDesc: isDay
-							? day["thunder_enum_phrase"]
-							: night["thunder_enum_phrase"],
+						thunderDesc: thunderDesc,
 						winDesc: isDay
 							? day["wind_phrase"]
 							: night["wind_phrase"],
-						UVDesc: isDay ? day["uv_desc"] : night["uv_desc"],
+						uvDesc: isDay ? day["uv_desc"] : night["uv_desc"],
 						snowDesc: snowDesc,
 						golfDesc: isDay
 							? day["golf_category"]
@@ -260,24 +442,31 @@ function getNearestStation() {
 	req.send();
 }
 
-function findIconCode() {
+
+/**
+ * Get broad weather info from station area including textual/icon description of conditions and weather warnings.
+ */
+function getExtendedConditions() {
 	var req = new XMLHttpRequest();
 
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;
 
-	var url = "https://api.weather.com/v3/wx/observations/current";
+	var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
 
-	url += "?geocode=" + lat + "," + long;
+	url += "?geocodes=" + lat + "," + long;
 	url += "&apiKey=" + API_KEY;
-	url += "&language=en-US";
+	url += "&language=" + Qt.locale().name.replace("_","-");
+	url += "&scale=" + getAQScale();
 
-	if (unitsChoice === 0) {
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === 1) {
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else {
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
+	} else {
+		url += "&units=m";
 	}
 
 	url += "&format=json";
@@ -298,8 +487,20 @@ function findIconCode() {
 			if (req.status == 200) {
 				var res = JSON.parse(req.responseText);
 
-				iconCode = res["iconCode"];
-				conditionNarrative = res["wxPhraseLong"];
+				var combinedVars = res[0];
+
+				var condVars = combinedVars["v3-wx-observations-current"];
+				var alertsVars = combinedVars["v3alertsHeadlines"];
+				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"];
+
+				iconCode = iconThemeMap[condVars["iconCode"]];
+				conditionNarrative = condVars["wxPhraseLong"];
+				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
+				weatherData["sunset"] = condVars["sunsetTimeLocal"];
+				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
+				weatherData["details"]["pressureDelta"] = condVars["pressureChange"];
+
+
 
 				// Determine if the precipitation is snow or rain
 				// All of these codes are for snow
@@ -315,9 +516,60 @@ function findIconCode() {
 				) {
 					isRain = false;
 				}
+
+				alertsModel.clear();
+				if (alertsVars !== null) {
+
+					var alerts = alertsVars["alerts"];
+					for (var index = 0; index < alerts.length; index++) {
+						var curAlert = alerts[index];
+
+						var actions = [];
+
+						for (var actionIndex = 0; actionIndex <  curAlert["responseTypes"].length; actionIndex++) {
+							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
+						}
+
+						var source = "Issued by: " + curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
+
+						var disclaimer = curAlert["disclaimer"] !== null ? curAlert["disclaimer"] : "None";
+
+						alertsModel.append({
+							desc: curAlert["eventDescription"],
+							severity: curAlert["severity"],
+							severityColor: severityColorMap[curAlert["severityCode"]],
+							headline: curAlert["headlineText"],
+							area: curAlert["areaName"],
+							action: actions.join(","),
+							source: source,
+							disclaimer: disclaimer
+						});
+					}
+				}
+
+				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"];
+				weatherData["aq"]["aqhi"] = airQualVars["airQualityCategoryIndex"];
+				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"];
+				weatherData["aq"]["aqColor"] = airQualVars["airQualityCategoryIndexColor"];
+
+				var primaryPollutant = weatherData["aq"]["aqPrimary"] = airQualVars["primaryPollutant"];
+
+				var primaryDetails = airQualVars["pollutants"][primaryPollutant];
+
+				weatherData["aq"]["primaryDetails"]["phrase"] = primaryDetails["phrase"];
+				weatherData["aq"]["primaryDetails"]["amount"] = primaryDetails["amount"];
+				weatherData["aq"]["primaryDetails"]["unit"] = primaryDetails["unit"];
+				weatherData["aq"]["primaryDetails"]["desc"] = primaryDetails["category"];
+				weatherData["aq"]["primaryDetails"]["index"] = primaryDetails["index"];
+
+
+				// Force QML to update text depending on weatherData
+				weatherData = weatherData;
+
 			}
 		}
 	};
 
 	req.send();
 }
+

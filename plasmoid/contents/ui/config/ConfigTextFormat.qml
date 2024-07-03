@@ -1,8 +1,9 @@
 // Version 1
 
-import QtQuick 2.0
-import QtQuick.Controls 1.0
-import QtQuick.Layouts 1.0
+import QtQuick
+import QtQuick.Controls
+import QtQuick.Layouts
+import org.kde.kirigami as Kirigami
 
 RowLayout {
     id: configTextFormat
@@ -15,7 +16,7 @@ RowLayout {
         id: configBold
         property string configKey: "compactWeight"
         visible: configKey
-        iconName: "format-text-bold-symbolic"
+        icon.name: "format-text-bold-symbolic"
         checkable: true
         checked: configKey ? plasmoid.configuration[configKey] : false
         onClicked: plasmoid.configuration[configKey] = checked
@@ -25,7 +26,7 @@ RowLayout {
         id: configItalic
         property string configKey: "compactItalic"
         visible: configKey
-        iconName: "format-text-italic-symbolic"
+        icon.name: "format-text-italic-symbolic"
         checkable: true
         checked: configKey ? plasmoid.configuration[configKey] : false
         onClicked: plasmoid.configuration[configKey] = checked
@@ -35,14 +36,14 @@ RowLayout {
         id: configUnderline
         property string configKey: "compactUnderline"
         visible: configKey
-        iconName: "format-text-underline-symbolic"
+        icon.name: "format-text-underline-symbolic"
         checkable: true
         checked: configKey ? plasmoid.configuration[configKey] : false
         onClicked: plasmoid.configuration[configKey] = checked
     }
 
     Item {
-        Layout.preferredWidth: units.smallSpacing
+        Layout.preferredWidth: Kirigami.Units.smallSpacing
         visible: configBold.visible || configItalic.visible || configUnderline.visible
     }
 }

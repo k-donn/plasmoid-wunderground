@@ -15,15 +15,18 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import org.kde.plasma.plasmoid
-import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 
-Button {
-    text: i18n("Configure Wunderground")
-    icon.name: "settings"
+ColumnLayout {
+    id: moreInfoRoot
 
-    onClicked: plasmoid.internalAction("configure").trigger()
+    AirAndSolarItem {
+        id: airSolarItem
+    }
+
+    AlertsItem {
+        id: alertsItem
+    }
 }

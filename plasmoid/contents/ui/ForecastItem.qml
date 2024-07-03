@@ -1,5 +1,5 @@
 /*
- * Copyright 2021  Kevin Donnelly
+ * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,56 +15,61 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.0
-import QtQuick.Layouts 1.0
-import QtQuick.Controls 2.0
-import org.kde.plasma.plasmoid 2.0
-import org.kde.plasma.core 2.0 as PlasmaCore
-import org.kde.plasma.components 2.0 as PlasmaComponents
+import QtQuick
+import QtQuick.Layouts
+import QtQuick.Controls
+import org.kde.plasma.plasmoid
+import org.kde.ksvg as KSvg
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
 RowLayout {
     id: forecastItemRoot
 
-    readonly property int preferredIconSize: units.iconSizes.large
+    readonly property int preferredIconSize: Kirigami.Units.iconSizes.large
 
     Repeater {
-        id: repeater
+        id: forecastRepeater
 
         model: forecastModel
         ColumnLayout {
+            Layout.maximumWidth: parent.width / 7
+
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 text: date
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 text: dayOfWeek
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.fillWidth: true
+
+                elide: Text.ElideRight
+                horizontalAlignment: Text.AlignHCenter
 
                 text: shortDesc
             }
-            PlasmaCore.SvgItem {
+            Kirigami.Icon {
                 id: icon
 
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
                 Layout.preferredHeight: preferredIconSize
                 Layout.preferredWidth: preferredIconSize
 
-                svg: PlasmaCore.Svg {
-                    imagePath: plasmoid.file("", "icons/" + iconCode + ".svg")
-                }
+                source: iconCode
 
                 PlasmaCore.ToolTipArea {
                     id: tooltip
 
                     mainText: longDesc
-                    subText: "<font size='4'>" + "Feels like: " + Utils.currentTempUnit(feelsLike) + "<br/>Thunder: " + thunderDesc + "<br/>UV: " + UVDesc + "<br/>Snow: " + snowDesc + "<br/>Golf: " + golfDesc + "</font>"
+                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike)), thunderDesc, uvDesc, snowDesc, golfDesc)
 
                     interactive: true
 
@@ -72,14 +77,14 @@ RowLayout {
                 }
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
-                text: Utils.currentTempUnit(high)
+                text: Utils.currentTempUnit(Utils.toUserTemp(high))
             }
             PlasmaComponents.Label {
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
 
-                text: Utils.currentTempUnit(low)
+                text: Utils.currentTempUnit(Utils.toUserTemp(low))
             }
         }
     }

@@ -1,6 +1,6 @@
-# Wunderground PWS Widget for KDE 5
+# Wunderground PWS Widget for KDE 6
 
-A Plasma 5 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview)
+A Plasma 6 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview)
 
 Wunderground lets you upload data from Smart Ambient Weather stations through their API.
 You can view the data though wunderground or through Wunderground API. This widget lets
@@ -31,14 +31,31 @@ Big thanks to [Zren](https://github.com/Zren) for the files [NoApplyField](./pla
 
 [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
+The text coloring utility functions are from [@Gojira4](https://forum.qt.io/user/gojir4).
+
+### Known Problems
+
+Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
+
+Changing the transparency then back again seems to solve this issue. See #58.
+
 ## TODO
 
+- Porting
+    -   [x] Update icons
+    -   [x] Add AQI/weather warnings
+    -   [x] Add sun rise/set info
+    -   [x] Pressure rising/falling info
+    -   [ ] Github templates
 -   i18n
-    -   [ ] Add configuration buttons
-    -   [ ] Add color change text
+    -   [ ] Translations for new text
+    -   [x] AQI/AQHI scale localization
 -   Customizability
-    -   [ ] Widget size/padding
-    -   [ ] Units choice (eg. from km/h to m/s for metric)
+    -   [x] Context menu refresh option
+    -   [ ] Widget size/padding/scaling
+    -   [x] Specific units choice (eg. from km/h to m/s for metric)
+-   Graphical
+    -   [ ] Improve text coloring of temp and alerts for dark/transparent themes
 -   Parking lot
     -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
-    -   [ ] Use Wunderground Plasma Ion (when I finish it).
+    -   [ ] Use Wunderground Plasma Ion.
