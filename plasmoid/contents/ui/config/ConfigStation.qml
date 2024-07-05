@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
@@ -38,9 +39,9 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         anchors.fill: parent
 
-        Kirigami.Heading {
-            text: i18n("Enter Station")
-            level: 2
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Enter Station")
+            Kirigami.FormData.isSection: true
         }
 
         ClearableField {
@@ -50,11 +51,9 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Weatherstation ID:")
         }
 
-        Kirigami.Separator {}
-
-        Kirigami.Heading {
-            text: i18n("Get Nearest Station")
-            level: 2
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Get Nearest Station")
+            Kirigami.FormData.isSection: true
         }
 
         Kirigami.Heading {
@@ -95,8 +94,11 @@ KCM.SimpleKCM {
             onClicked: StationAPI.getNearestStation()
         }
 
+        Kirigami.Separator{}
+
         PlasmaComponents.Label {
             text: "Version 3.0.0"
         }
+
     }
 }

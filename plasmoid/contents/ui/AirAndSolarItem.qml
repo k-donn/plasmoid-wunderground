@@ -110,9 +110,10 @@ RowLayout {
 
             PlasmaComponents.Label {
                 horizontalAlignment: Text.AlignCenter
-                textFormat: Text.StyledText
 
-                text: "<u style='border-bottom: 2px dotted #000;text-decoration: none;'>" + weatherData["aq"]["aqPrimary"] + "</u>"
+                font.underline: true
+
+                text: weatherData["aq"]["aqPrimary"]
 
                 PlasmaCore.ToolTipArea {
                     anchors.fill: parent
