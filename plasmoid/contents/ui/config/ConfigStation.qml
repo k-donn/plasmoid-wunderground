@@ -39,6 +39,12 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         anchors.fill: parent
 
+        StationPicker {
+            Kirigami.FormData.label: i18n("Enter Station")
+
+            Layout.fillWidth: true
+        }
+
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Enter Station")
             Kirigami.FormData.isSection: true

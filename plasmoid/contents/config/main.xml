@@ -5,6 +5,9 @@
         <entry name="stationID" type="String">
             <default/>
         </entry>
+        <entry name="source" type="String">
+            <default/>
+        </entry>
         <entry name="longitude" type="String">
             <default>-83.905502</default>
         </entry>
