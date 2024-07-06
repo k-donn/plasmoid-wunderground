@@ -49,18 +49,6 @@ KCM.SimpleKCM {
         }
 
         Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Enter Station")
-            Kirigami.FormData.isSection: true
-        }
-
-        ClearableField {
-            id: stationID
-            placeholderText: "KGADACUL1"
-
-            Kirigami.FormData.label: i18n("Weatherstation ID:")
-        }
-
-        Kirigami.Separator {
             Kirigami.FormData.label: i18n("Get Nearest Station")
             Kirigami.FormData.isSection: true
         }

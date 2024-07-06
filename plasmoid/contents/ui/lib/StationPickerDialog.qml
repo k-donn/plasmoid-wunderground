@@ -49,6 +49,17 @@ Window {
 
     StationSearcher {
         id: stationSearcher
+
+        onChoosen: {
+            // User searched for a new station. Add and make new selection
+            stationListModel.append({"name": newStation});
+            for (let i = 0; i < stationListModel.count; i++) {
+                if (stationListModel.get(i).name === newStation) {
+                    stationListView.currentIndex = i;
+                }
+            }
+            dialog.source = newStation;
+        }
     }
 
     signal accepted

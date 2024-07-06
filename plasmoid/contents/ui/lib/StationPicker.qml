@@ -27,10 +27,18 @@ RowLayout {
 
     property alias selectedStation: stationPickerDialog.source
 
+    function printDebug(msg) {
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [StationPicker.qml] " + msg);
+        }
+    }
+
     property var stationPicker: StationPickerDialog {
         id: stationPickerDialog
 
         onAccepted: {
+            printDebug("Received list: " + stationListModel);
+            printDebug("Recieved source: " + source)
             stationList = [];
             for (let i = 0; i < stationListModel.count; i++) {
                 stationList.push(stationListModel.get(i).name);

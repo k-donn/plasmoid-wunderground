@@ -165,6 +165,45 @@ function getAQScale() {
 	}
 }
 
+function isStationActive(givenID, callback) {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v2/pws/observations/current";
+	url += "?stationId=" + givenID;
+	url += "&format=json";
+	url += "&units=m";
+	url += "&apiKey=" + API_KEY;
+	url += "&numericPrecision=decimal";
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onerror = function () {
+		errorStr = "Request couldn't be sent" + req.statusText;
+
+		appState = showERROR;
+
+		printDebug("[pws-api.js] " + errorStr);
+	};
+
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				callback(true);
+			} else {
+				callback(false);
+			}
+		}
+	};
+
+	req.send();
+}
+
 /**
  * Pull the most recent observation from the selected weather station.
  *
