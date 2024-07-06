@@ -27,7 +27,8 @@ import "../lib"
 KCM.SimpleKCM {
     id: stationConfig
 
-    property alias cfg_stationID: stationID.text
+    property alias cfg_stationID: stationPickerEl.selectedStation
+    property alias cfg_savedStations: stationPickerEl.stationList
     property alias cfg_refreshPeriod: refreshPeriod.value
 
     function printDebug(msg) {
@@ -40,6 +41,8 @@ KCM.SimpleKCM {
         anchors.fill: parent
 
         StationPicker {
+            id: stationPickerEl
+
             Kirigami.FormData.label: i18n("Enter Station")
 
             Layout.fillWidth: true

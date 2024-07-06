@@ -23,13 +23,18 @@ import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
 
 RowLayout {
+    property var stationList: []
+
+    property alias selectedStation: stationPickerDialog.source
 
     property var stationPicker: StationPickerDialog {
-        id: stationPicker
+        id: stationPickerDialog
 
         onAccepted: {
-            console.log("Recieved: " + source)
-            plasmoid.configuration.source = source
+            stationList = [];
+            for (let i = 0; i < stationListModel.count; i++) {
+                stationList.push(stationListModel.get(i).name);
+            }
         }
     }
 
@@ -38,13 +43,7 @@ RowLayout {
 
         Layout.fillWidth: true
 
-        text: {
-            if (plasmoid.configuration.source != "") {
-                return plasmoid.configuration.source;
-            } else {
-                return "";
-            }
-        }
+        text: selectedStation
     }
 
     Button {

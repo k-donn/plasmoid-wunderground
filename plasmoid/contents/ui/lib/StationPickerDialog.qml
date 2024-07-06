@@ -34,10 +34,14 @@ Window {
     width: Kirigami.Units.gridUnit * 25
     height: Kirigami.Units.gridUnit * 20
 
-    title: i18ndc("plasma_applet_org.kde.plasma.weather", "@title:window", "Select Weather Station")
+    title: i18n("Saved Weather Stations")
     color: syspal.window
 
-    property string source: stationListModel.get(stationListView.currentIndex).name
+    property int initialIndex: -1
+
+    property string source: ""
+
+    property ListModel stationListModel: ListModel {}
 
     SystemPalette {
         id: syspal
@@ -53,7 +57,7 @@ Window {
         id: acceptAction
 
         shortcut: "Return"
-        enabled: !!source
+        enabled: initialIndex != stationListView.currentIndex
         onTriggered: {
             accepted();
             dialog.close();
@@ -67,6 +71,23 @@ Window {
         onTriggered: {
             dialog.close();
         }
+    }
+
+    Component.onCompleted: {
+        // Populate ListModel with saved stations
+        for (let i = 0; i < plasmoid.configuration.savedStations.length; i++) {
+            stationListModel.append({"name": plasmoid.configuration.savedStations[i]});
+        }
+
+        // Set selected station to force highlight
+        for (let i = 0; i < stationListModel.count; i++) {
+            if (stationListModel.get(i).name === source) {
+                stationListView.currentIndex = i;
+            }
+        }
+        stationListView.forceActiveFocus();
+
+        initialIndex = stationListView.currentIndex
     }
 
     ColumnLayout {
@@ -98,20 +119,21 @@ Window {
             activeFocusOnTab: true
             keyNavigationEnabled: true
 
-            model: ListModel {
-                id: stationListModel
-                ListElement { name: "KGADACUL1" }
-                ListElement { name: "KGADACUL2" }
-                ListElement { name: "KGADACUL3" }
-            }
+            model: stationListModel
 
             delegate: ItemDelegate {
                 width: ListView.view.width
                 text: name
 
+                highlighted: ListView.isCurrentItem
+
                 onClicked: {
-                    stationListView.forceActiveFocus();
-                    stationListView.currentIndex = index;
+                    if (!ListView.isCurrentItem) {
+                        dialog.source = name
+
+                        stationListView.forceActiveFocus();
+                        stationListView.currentIndex = index;
+                    }
                 }
             }
         }
@@ -124,6 +146,7 @@ Window {
             Button {
                 icon.name: "dialog-ok"
                 text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Select")
+                enabled: initialIndex != stationListView.currentIndex
                 onClicked: {
                     acceptAction.trigger();
                 }

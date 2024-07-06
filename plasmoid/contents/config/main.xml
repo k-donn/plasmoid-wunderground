@@ -5,7 +5,7 @@
         <entry name="stationID" type="String">
             <default/>
         </entry>
-        <entry name="source" type="String">
+        <entry name="savedStations" type="StringList">
             <default/>
         </entry>
         <entry name="longitude" type="String">

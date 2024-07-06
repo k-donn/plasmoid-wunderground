@@ -145,7 +145,6 @@ function nullableField(value) {
  */
 function getAQScale() {
 	var countryCode = Qt.locale().name.split("_")[1];
-	console.log(countryCode)
 
 	if (countryCode === "CN") {
 		return "HJ6332012";
