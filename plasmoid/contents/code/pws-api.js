@@ -441,7 +441,7 @@ function getForecastData() {
 }
 
 /**
- * Find the nearest PWS with the choosen coordinates.
+ * Find the nearest PWS with the configured coordinates.
  */
 function getNearestStation() {
 	var long = plasmoid.configuration.longitude;
@@ -470,6 +470,97 @@ function getNearestStation() {
 				if (stations.length > 0) {
 					var closest = stations[0];
 					stationID.text = closest;
+				}
+			} else {
+				printDebug("[pws-api.js] " + req.responseText);
+			}
+		}
+	};
+
+	req.send();
+}
+
+function getNearestStations(latLongObj) {
+	var long = latLongObj.long
+	var lat = latLongObj.lat;
+
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v3/location/near";
+	url += "?geocode=" + lat + "," + long;
+	url += "&product=pws";
+	url += "&format=json";
+	url += "&apiKey=" + API_KEY;
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				stationsModel.clear();
+
+				var loc = res["location"];
+				var stations = loc["stationId"];
+				for (let i = 0; i < stations.length; i++) {
+					stationsModel.append({
+						text: loc["stationId"][i] + " - " + loc["stationName"][i],
+						stationName: loc["stationName"][i],
+						stationId: loc["stationId"][i],
+						latitude: loc["latitude"][i],
+						longitude: loc["longitude"][i]
+					});
+				}
+			} else {
+				printDebug("[pws-api.js] " + req.responseText);
+			}
+		}
+	};
+
+	req.send();
+}
+
+function getLocations(city) {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v3/location/search";
+	url += "?query=" + city;
+	url += "&locationType=city";
+	url += "&language=" + Qt.locale().name.replace("_","-");
+	url += "&format=json";
+	url += "&apiKey=" + API_KEY;
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				locationsModel.clear();
+
+				var loc = res["location"];
+
+				for (let i = 0; i < loc["address"].length; i++) {
+					locationsModel.append({
+						address: loc["address"][i],
+						adminDistrict: loc["adminDistrict"][i],
+						city: loc["city"][i],
+						country: loc["country"][i],
+						countryCode: loc["countryCode"][i],
+						displayName: loc["displayName"][i],
+						latitude: loc["latitude"][i],
+						longitude: loc["longitude"][i]
+					});
 				}
 			} else {
 				printDebug("[pws-api.js] " + req.responseText);

@@ -39,6 +39,10 @@ Window {
 
     property int initialIndex: -1
 
+    // This is aliased back to the plasmoid conf stationID variable
+    // So it cannot be directly aliased to the ListModel's currentItem 
+    // because if the widget loads with an initial value,
+    // that would not reflect in the ListModel
     property string source: ""
 
     property ListModel stationListModel: ListModel {}
@@ -114,7 +118,7 @@ Window {
         Button {
             id: addMoreBtn
             Layout.fillWidth: true
-            icon.name: "find-location"
+            icon.name: "list-add"
             text: i18n("Add more...")
             onClicked: stationSearcher.visible = true 
         }

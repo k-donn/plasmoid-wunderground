@@ -31,8 +31,8 @@ Window {
     flags: Qt.Dialog
     modality: Qt.WindowModal
 
-    width: Kirigami.Units.gridUnit * 30
-    height: Kirigami.Units.gridUnit * 20
+    width: Kirigami.Units.gridUnit * 40
+    height: Kirigami.Units.gridUnit * 30
 
     title: i18n("Find Station")
     color: syspal.window
@@ -59,13 +59,16 @@ Window {
 
         shortcut: "Escape"
         onTriggered: {
-            dialog.close();
+            searchDialog.close();
         }
     }
 
     property bool canChoose: false
 
     property string newStation: ""
+
+    property ListModel locationsModel: ListModel {}
+    property ListModel stationsModel: ListModel {}
 
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
@@ -88,9 +91,12 @@ Window {
     }
 
     ColumnLayout {
+        id: mainColumn
+
         anchors {
             fill: parent
             centerIn: parent
+            margins: mainColumn.spacing * Screen.devicePixelRatio //margins are hardcoded in QStyle we should match that here
         }
 
         Kirigami.FormLayout {
@@ -144,8 +150,63 @@ Window {
                 Kirigami.FormData.label: i18n("Look for location:")
             }
 
+
             Button {
                 text: i18n("Find Station")
+                onClicked: {
+                    StationAPI.getLocations(cityLookup.text.trim());
+                }
+            }
+            ComboBox {
+                id: pickerLocation
+                editable: false
+                enabled: locationsModel.count > 0
+                model: locationsModel
+                textRole: "address"
+            
+                onCurrentIndexChanged: doOnSelect(currentIndex)
+                Kirigami.FormData.label: i18n("Select City:")
+
+                function doOnSelect(currentIndex) {
+                    var currentObj = locationsModel.get(currentIndex)
+                    if(currentObj != null && currentObj["latitude"] != undefined) {
+                        printDebug(JSON.stringify({lat: currentObj["latitude"], long: currentObj["longitude"]}));
+                        StationAPI.getNearestStations({lat: currentObj["latitude"], long: currentObj["longitude"]});
+                    }
+                }
+            }
+
+            ComboBox {
+                id: pickerStation
+                editable: false
+                enabled: stationsModel.count > 0
+                model: stationsModel
+                textRole: "text"
+            
+                onCurrentIndexChanged: doOnSelectStation(currentIndex)
+                Kirigami.FormData.label: i18n("Select Station:")
+
+                function doOnSelectStation(currentIndex) {
+                    var currentObj = stationsModel.get(currentIndex)
+                    if(currentObj != null && currentObj["stationId"] != undefined) {
+                        validateWeatherStation(currentObj["stationId"], stationStatus, function(result){
+                            manualField.text = currentObj["stationId"];
+                            manualStationStatus.placeholderText = "";
+                            newStation = currentObj["stationId"];
+                            canChoose = true;
+                        });
+                    }
+                }
+            }
+
+            TextField {
+                id: stationStatus
+                enabled: false
+
+                horizontalAlignment: Text.AlignHCenter
+                placeholderText: i18nc("Text shown until a station is chosen from the dropdown", "Pending selection")
+
+                Kirigami.FormData.label: i18nc("Indicates if the station selected is active or not", "Station status:")
             }
         }
 
