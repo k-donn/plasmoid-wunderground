@@ -90,6 +90,27 @@ Window {
         });
     }
 
+
+    function onSelectStation(currentIndex) {
+        var currentObj = stationsModel.get(currentIndex)
+        if(currentObj != null && currentObj["stationId"] != undefined) {
+            validateWeatherStation(currentObj["stationId"], stationStatus, function(result){
+                manualField.text = currentObj["stationId"];
+                manualStationStatus.placeholderText = "";
+                newStation = currentObj["stationId"];
+                canChoose = true;
+            });
+        }
+    }
+
+    function onSelectLocation(currentIndex) {
+        var currentObj = locationsModel.get(currentIndex)
+        if(currentObj != null && currentObj["latitude"] != undefined) {
+            printDebug(JSON.stringify({lat: currentObj["latitude"], long: currentObj["longitude"]}));
+            StationAPI.getNearestStations({lat: currentObj["latitude"], long: currentObj["longitude"]});
+        }
+    }
+
     ColumnLayout {
         id: mainColumn
 
@@ -99,114 +120,103 @@ Window {
             margins: mainColumn.spacing * Screen.devicePixelRatio //margins are hardcoded in QStyle we should match that here
         }
 
-        Kirigami.FormLayout {
-            Layout.fillWidth: true
+        ScrollView {
             Layout.fillHeight: true
+            Layout.alignment: Qt.AlignCenter
 
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Enter Station")
-            }
+            Kirigami.FormLayout {
 
-            ClearableField {
-                id: manualField
-                placeholderText: "KGADACUL1"
-
-                Kirigami.FormData.label: i18n("Weatherstation ID:")
-            }
-
-            Button {
-                text: i18n("Test Station")
-
-                onClicked: {
-                    var stationQuery = manualField.text.trim();
-                    validateWeatherStation(stationQuery, manualStationStatus, function(isActive) {
-                        printDebug("Station active: " + isActive);
-                        newStation = stationQuery;
-                        canChoose = true;
-                    });
+                anchors {
+                    fill: parent
+                    centerIn: parent
                 }
-            }
 
-            TextField {
-                id: manualStationStatus
-                enabled: false
-
-                horizontalAlignment: Text.AlignHCenter
-                placeholderText: i18n("Pending selection")
-
-                Kirigami.FormData.label: i18n("Station status:")
-            }
-
-            Kirigami.Separator {
-                Kirigami.FormData.isSection: true
-                Kirigami.FormData.label: i18n("Get Nearest Station")
-            }
-
-            ClearableField {
-                id: cityLookup
-                placeholderText: i18nc("plaseholder text, example London", "e.g. London")
-
-                Kirigami.FormData.label: i18n("Look for location:")
-            }
-
-
-            Button {
-                text: i18n("Find Station")
-                onClicked: {
-                    StationAPI.getLocations(cityLookup.text.trim());
+                Kirigami.Separator {
+                    Kirigami.FormData.isSection: true
+                    Kirigami.FormData.label: i18n("Enter Station")
                 }
-            }
-            ComboBox {
-                id: pickerLocation
-                editable: false
-                enabled: locationsModel.count > 0
-                model: locationsModel
-                textRole: "address"
-            
-                onCurrentIndexChanged: doOnSelect(currentIndex)
-                Kirigami.FormData.label: i18n("Select City:")
 
-                function doOnSelect(currentIndex) {
-                    var currentObj = locationsModel.get(currentIndex)
-                    if(currentObj != null && currentObj["latitude"] != undefined) {
-                        printDebug(JSON.stringify({lat: currentObj["latitude"], long: currentObj["longitude"]}));
-                        StationAPI.getNearestStations({lat: currentObj["latitude"], long: currentObj["longitude"]});
-                    }
+                ClearableField {
+                    id: manualField
+                    placeholderText: "KGADACUL1"
+
+                    Kirigami.FormData.label: i18n("Weatherstation ID:")
                 }
-            }
 
-            ComboBox {
-                id: pickerStation
-                editable: false
-                enabled: stationsModel.count > 0
-                model: stationsModel
-                textRole: "text"
-            
-                onCurrentIndexChanged: doOnSelectStation(currentIndex)
-                Kirigami.FormData.label: i18n("Select Station:")
+                Button {
+                    text: i18n("Test Station")
 
-                function doOnSelectStation(currentIndex) {
-                    var currentObj = stationsModel.get(currentIndex)
-                    if(currentObj != null && currentObj["stationId"] != undefined) {
-                        validateWeatherStation(currentObj["stationId"], stationStatus, function(result){
-                            manualField.text = currentObj["stationId"];
-                            manualStationStatus.placeholderText = "";
-                            newStation = currentObj["stationId"];
+                    onClicked: {
+                        var stationQuery = manualField.text.trim();
+                        validateWeatherStation(stationQuery, manualStationStatus, function(isActive) {
+                            printDebug("Station active: " + isActive);
+                            newStation = stationQuery;
                             canChoose = true;
                         });
                     }
                 }
-            }
 
-            TextField {
-                id: stationStatus
-                enabled: false
+                TextField {
+                    id: manualStationStatus
+                    enabled: false
 
-                horizontalAlignment: Text.AlignHCenter
-                placeholderText: i18nc("Text shown until a station is chosen from the dropdown", "Pending selection")
+                    horizontalAlignment: Text.AlignHCenter
+                    placeholderText: i18n("---------------------Pending selection-----------------------")
 
-                Kirigami.FormData.label: i18nc("Indicates if the station selected is active or not", "Station status:")
+                    Kirigami.FormData.label: i18n("Station status:")
+                }
+
+                Kirigami.Separator {
+                    Kirigami.FormData.isSection: true
+                    Kirigami.FormData.label: i18n("Get Nearest Station")
+                }
+
+                ClearableField {
+                    id: cityLookup
+                    placeholderText: i18n("e.g. London")
+
+                    Kirigami.FormData.label: i18n("Look for location:")
+                }
+
+                Button {
+                    text: i18n("Find Station")
+                    onClicked: {
+                        StationAPI.getLocations(cityLookup.text.trim());
+                    }
+                }
+
+                ComboBox {
+                    id: pickerLocation
+                    editable: false
+                    enabled: locationsModel.count > 0
+                    model: locationsModel
+                    textRole: "address"
+                
+                    onCurrentIndexChanged: onSelectLocation(currentIndex)
+
+                    Kirigami.FormData.label: i18n("Select City:")
+                }
+
+                ComboBox {
+                    id: pickerStation
+                    editable: false
+                    enabled: stationsModel.count > 0
+                    model: stationsModel
+                    textRole: "text"
+                
+                    onCurrentIndexChanged: onSelectStation(currentIndex)
+                    Kirigami.FormData.label: i18n("Select Station:")
+                }
+
+                TextField {
+                    id: stationStatus
+                    enabled: false
+
+                    horizontalAlignment: Text.AlignHCenter
+                    placeholderText: i18n("---------------------Pending selection-----------------------")
+
+                    Kirigami.FormData.label: i18n("Station status:")
+                }
             }
         }
 

@@ -165,6 +165,12 @@ function getAQScale() {
 	}
 }
 
+/**
+ * Determine if the user supplied station is active or not.
+ * 
+ * @param {string} givenID Station ID
+ * @param {(isActive: boolean) => void} callback Callback called with true/false
+ */
 function isStationActive(givenID, callback) {
 	var req = new XMLHttpRequest();
 
@@ -480,6 +486,11 @@ function getNearestStation() {
 	req.send();
 }
 
+/**
+ * Searches a geocode pair for the nearest stations.
+ * 
+ * @param {{lat: number, long: number}} latLongObj Coordinates of city to search
+ */
 function getNearestStations(latLongObj) {
 	var long = latLongObj.long
 	var lat = latLongObj.lat;

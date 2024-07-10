@@ -40,6 +40,11 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         anchors.fill: parent
 
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Find Station")
+            Kirigami.FormData.isSection: true
+        }
+
         StationPicker {
             id: stationPickerEl
 
@@ -49,7 +54,7 @@ KCM.SimpleKCM {
         }
 
         Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Get Nearest Station")
+            Kirigami.FormData.label: i18n("Station Info")
             Kirigami.FormData.isSection: true
         }
 
@@ -58,18 +63,22 @@ KCM.SimpleKCM {
             level: 5
         }
 
-        NoApplyField {
-            configKey: "longitude"
-            placeholderText: "-83.905502"
+        PlasmaComponents.Label {
+            Kirigami.FormData.label: i18n("Weatherstation ID:")
 
-            Kirigami.FormData.label: i18n("Longitude:")
+            text: plasmoid.configuration.stationID
         }
 
-        NoApplyField {
-            configKey: "latitude"
-            placeholderText: "34.0602"
+        PlasmaComponents.Label {
+            Kirigami.FormData.label: i18n("Longitude:")
 
+            text: plasmoid.configuration.longitude
+        }
+
+        PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Latitude:")
+
+            text: plasmoid.configuration.latitude
         }
 
         SpinBox {
@@ -84,11 +93,6 @@ KCM.SimpleKCM {
             }
 
             Kirigami.FormData.label: i18n("Refresh period (s):")
-        }
-
-        Button {
-            text: i18n("Find Station")
-            onClicked: StationAPI.getNearestStation()
         }
 
         Kirigami.Separator{}

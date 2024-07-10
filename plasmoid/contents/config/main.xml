@@ -9,10 +9,10 @@
             <default/>
         </entry>
         <entry name="longitude" type="String">
-            <default>-83.905502</default>
+            <default/>
         </entry>
         <entry name="latitude" type="String">
-            <default>34.0602</default>
+            <default/>
         </entry>
         <entry name="refreshPeriod" type="Int">
             <default>60</default>
