@@ -37,8 +37,6 @@ Window {
     title: i18n("Saved Weather Stations")
     color: syspal.window
 
-    property int initialIndex: -1
-
     // This is aliased back to the plasmoid conf stationID variable
     // So it cannot be directly aliased to the ListModel's currentItem 
     // because if the widget loads with an initial value,
@@ -55,8 +53,20 @@ Window {
         id: stationSearcher
 
         onChoosen: {
-            // User searched for a new station. Add and make new selection
-            stationListModel.append({"name": newStation});
+            // User searched for a new station. Check for duplicate, add, and make it the current selection.
+            var isDuplicate = false;
+
+            for (let i = 0; i < stationListModel.count; i++) {
+                if (stationListModel.get(i).name === newStation) {
+                    isDuplicate = true;
+                }
+            }
+
+            if (!isDuplicate) {
+                stationListModel.append({"name": newStation});
+            }
+
+            // The duplicate was not added twice, but make still make it the current selection.
             for (let i = 0; i < stationListModel.count; i++) {
                 if (stationListModel.get(i).name === newStation) {
                     stationListView.currentIndex = i;
@@ -72,7 +82,7 @@ Window {
         id: acceptAction
 
         shortcut: "Return"
-        enabled: initialIndex != stationListView.currentIndex
+        enabled: stationListModel.count > 0
         onTriggered: {
             accepted();
             dialog.close();
@@ -101,8 +111,6 @@ Window {
             }
         }
         stationListView.forceActiveFocus();
-
-        initialIndex = stationListView.currentIndex
     }
 
     ColumnLayout {
@@ -161,7 +169,7 @@ Window {
             Button {
                 icon.name: "dialog-ok"
                 text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Select")
-                enabled: initialIndex != stationListView.currentIndex
+                enabled: stationListModel.count > 0
                 onClicked: {
                     acceptAction.trigger();
                 }

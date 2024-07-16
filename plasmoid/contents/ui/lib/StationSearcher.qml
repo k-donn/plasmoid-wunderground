@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
 import "../../code/pws-api.js" as StationAPI
 
@@ -50,7 +51,10 @@ Window {
         enabled: canChoose
         onTriggered: {
             choosen();
+
             searchDialog.close();
+
+            resetForms();
         }
     }
 
@@ -60,6 +64,8 @@ Window {
         shortcut: "Escape"
         onTriggered: {
             searchDialog.close();
+
+            resetForms();
         }
     }
 
@@ -76,6 +82,21 @@ Window {
         }
     }
 
+    function resetForms() {
+        newStation = "";
+
+        manualField.text = "";
+        manualField.placeholderText = "KGADACUL1";
+
+        manualStationStatus.placeholderText = i18n("---------------------Pending selection-----------------------");
+        manualStationStatus.placeholderTextColor = PlasmaCore.Theme.disabledTextColor;
+
+        stationComboxBox.currentIndex = -1;
+
+        stationStatus.placeholderText = i18n("---------------------Pending selection-----------------------");
+        stationStatus.placeholderTextColor = PlasmaCore.Theme.disabledTextColor;
+    }
+
     function validateWeatherStation(typedID, statusField, callback) {
         StationAPI.isStationActive(typedID, function(isActive) {
             if (isActive) {
@@ -90,24 +111,20 @@ Window {
         });
     }
 
+    function onSelectLocation(currentIndex) {
+        var currentObj = locationsModel.get(currentIndex)
+        if(currentObj != null && currentObj["latitude"] != undefined) {
+            StationAPI.getNearestStations({lat: currentObj["latitude"], long: currentObj["longitude"]});
+        }
+    }
 
     function onSelectStation(currentIndex) {
         var currentObj = stationsModel.get(currentIndex)
         if(currentObj != null && currentObj["stationId"] != undefined) {
-            validateWeatherStation(currentObj["stationId"], stationStatus, function(result){
-                manualField.text = currentObj["stationId"];
-                manualStationStatus.placeholderText = "";
+            validateWeatherStation(currentObj["stationId"], stationStatus, function(isActive){
                 newStation = currentObj["stationId"];
                 canChoose = true;
             });
-        }
-    }
-
-    function onSelectLocation(currentIndex) {
-        var currentObj = locationsModel.get(currentIndex)
-        if(currentObj != null && currentObj["latitude"] != undefined) {
-            printDebug(JSON.stringify({lat: currentObj["latitude"], long: currentObj["longitude"]}));
-            StationAPI.getNearestStations({lat: currentObj["latitude"], long: currentObj["longitude"]});
         }
     }
 
@@ -186,7 +203,7 @@ Window {
                 }
 
                 ComboBox {
-                    id: pickerLocation
+                    id: locationComboBox
                     editable: false
                     enabled: locationsModel.count > 0
                     model: locationsModel
@@ -198,7 +215,7 @@ Window {
                 }
 
                 ComboBox {
-                    id: pickerStation
+                    id: stationComboxBox
                     editable: false
                     enabled: stationsModel.count > 0
                     model: stationsModel
@@ -223,7 +240,18 @@ Window {
         RowLayout {
             id: buttonsRow
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.alignment: Qt.AlignVCenter
+
+            PlasmaComponents.Label {
+                id: newStationText
+
+                Layout.fillWidth: true
+
+                horizontalAlignment: Text.AlignLeft
+                verticalAlignment: Text.AlignVCenter
+
+                text: i18n("New Station: %1", newStation)
+            }
 
             Button {
                 icon.name: "dialog-ok"

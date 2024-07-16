@@ -20,6 +20,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
 import "../../code/pws-api.js" as StationAPI
 import "../lib"
@@ -66,19 +67,25 @@ KCM.SimpleKCM {
         PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Weatherstation ID:")
 
-            text: plasmoid.configuration.stationID
+            color: plasmoid.configuration.stationID !== "" ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+
+            text: plasmoid.configuration.stationID !== "" ? plasmoid.configuration.stationID : "KGADACUL1"
         }
 
         PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Longitude:")
 
-            text: plasmoid.configuration.longitude
+            color: plasmoid.configuration.longitude !== "" ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+
+            text: plasmoid.configuration.longitude !== "" ? plasmoid.configuration.longitude : "-83.91"
         }
 
         PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Latitude:")
 
-            text: plasmoid.configuration.latitude
+            color: plasmoid.configuration.latitude !== "" ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+
+            text: plasmoid.configuration.latitude !== "" ? plasmoid.configuration.latitude : "34.06"
         }
 
         SpinBox {

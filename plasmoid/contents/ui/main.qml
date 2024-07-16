@@ -117,8 +117,7 @@ PlasmoidItem {
 
     function updateWeatherData() {
         printDebug("Getting new weather data");
-        StationAPI.getCurrentData();
-        StationAPI.getForecastData();
+        StationAPI.getCurrentData(StationAPI.getForecastData);
     }
 
     function updateCurrentData() {
