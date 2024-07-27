@@ -1,5 +1,8 @@
 /*
  * Copyright 2024  Kevin Donnelly
+ * Copyright 2022  Rafal (Raf) Liwoch
+ * Copyright 2022  Chris Holland
+ * Copyright 2016, 2018 Friedrich W. H. Kossebau
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as

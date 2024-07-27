@@ -1,5 +1,7 @@
 /*
  * Copyright 2024  Kevin Donnelly
+ * Copyright 2022  Chris Holland
+ * Copyright 2016, 2018 Friedrich W. H. Kossebau
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,13 +39,17 @@ Window {
     title: i18n("Saved Weather Stations")
     color: syspal.window
 
-    // This is aliased back to the plasmoid conf stationID variable
-    // So it cannot be directly aliased to the ListModel's currentItem 
-    // because if the widget loads with an initial value,
-    // that would not reflect in the ListModel
     property string source: ""
 
+    property bool fixedErrorState: false
+
     property ListModel stationListModel: ListModel {}
+
+    function printDebug(msg) {
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [StationPickerDialog.qml] " + msg);
+        }
+    }
 
     SystemPalette {
         id: syspal
@@ -78,6 +84,8 @@ Window {
 
     signal accepted
 
+    signal cancel
+
     Action {
         id: acceptAction
 
@@ -94,11 +102,33 @@ Window {
 
         shortcut: "Escape"
         onTriggered: {
+            cancel();
             dialog.close();
         }
     }
 
     Component.onCompleted: {
+        if (plasmoid.configuration.stationID !== "") {
+            // Transition state where user has stationID set but no savedStations
+            if (plasmoid.configuration.savedStations.length === 0) {
+                plasmoid.configuration.savedStations.push(plasmoid.configuration.stationID);
+                fixedErrorState = true;
+            }
+
+            // Possible error state where stationID not in savedStations
+            if (!plasmoid.configuration.savedStations.includes(plasmoid.configuration.stationID)) {
+                plasmoid.configuration.savedStations.push(plasmoid.configuration.stationID);
+                fixedErrorState = true;
+            }
+        } else {
+            // Possible error state where savedStations set but no stationID
+            if (plasmoid.configuration.savedStations.length !== 0) {
+                // Make selected station first savedStation
+                plasmoid.configuration.stationID = plasmoid.configuration.savedStations[0];
+                fixedErrorState = true;
+            }
+        }
+
         // Populate ListModel with saved stations
         for (let i = 0; i < plasmoid.configuration.savedStations.length; i++) {
             stationListModel.append({"name": plasmoid.configuration.savedStations[i]});
@@ -106,7 +136,9 @@ Window {
 
         // Set selected station to force highlight
         for (let i = 0; i < stationListModel.count; i++) {
-            if (stationListModel.get(i).name === source) {
+            if (stationListModel.get(i).name === plasmoid.configuration.stationID) {
+                dialog.source = plasmoid.configuration.stationID;
+
                 stationListView.currentIndex = i;
             }
         }
@@ -152,10 +184,10 @@ Window {
 
                 onClicked: {
                     if (!ListView.isCurrentItem) {
-                        dialog.source = name
+                        dialog.source = name;
 
-                        stationListView.forceActiveFocus();
                         stationListView.currentIndex = index;
+                        stationListView.forceActiveFocus();
                     }
                 }
             }

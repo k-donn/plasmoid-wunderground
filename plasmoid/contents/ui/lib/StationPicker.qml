@@ -1,5 +1,7 @@
 /*
  * Copyright 2024  Kevin Donnelly
+ * Copyright 2022  Chris Holland
+ * Copyright 2016, 2018 Friedrich W. H. Kossebau
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,9 +25,11 @@ import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
 
 RowLayout {
+    // Aliased by ConfigStation
     property var stationList: []
 
-    property alias selectedStation: stationPickerDialog.source
+    // Aliased by ConfigStation
+    property string selectedStation: ""
 
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
@@ -37,12 +41,33 @@ RowLayout {
         id: stationPickerDialog
 
         onAccepted: {
-            printDebug("Recieved source: " + source)
+            printDebug("Recieved source: " + source);
+            selectedStation = source;
+            
             stationList = [];
             for (let i = 0; i < stationListModel.count; i++) {
                 stationList.push(stationListModel.get(i).name);
             }
             printDebug("Received list: " + stationList);
+        }
+
+        onCancel: {
+            if (fixedErrorState) {
+                printDebug("Fixing config");
+
+                // An error state was fixed so do not cancel changes
+                printDebug("Recieved source: " + source);
+                selectedStation = source;
+                
+                stationList = [];
+                for (let i = 0; i < stationListModel.count; i++) {
+                    stationList.push(stationListModel.get(i).name);
+                }
+                printDebug("Received list: " + stationList);
+
+                // Reset error
+                fixedErrorState = false;
+            }
         }
     }
 
