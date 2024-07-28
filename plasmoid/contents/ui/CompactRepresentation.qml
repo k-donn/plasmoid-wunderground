@@ -23,7 +23,7 @@ ColumnLayout {
 
     IconAndTextItem {
         vertical: compactRoot.vertical
-        iconSource: iconCode
+        iconSource: Qt.resolvedUrl("../icons/" + iconCode + ".svg")
         text: appState == showDATA ? Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])) : "--- °X"
 
         Layout.fillWidth: compactRoot.vertical

@@ -1,14 +1,14 @@
 # Wunderground PWS Widget for KDE 6
 
-A Plasma 6 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview)
+A Plasma 6 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview).
 
 Wunderground lets you upload data from Smart Ambient Weather stations through their API.
-You can view the data though wunderground or through Wunderground API. This widget lets
+You can view the data though Wunderground.com or through Wunderground API. This widget lets
 you input the station ID then view the properties that the station sends up.
 
 ## Running
 
-Configure the widget by finding weather stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at the [`wunderground.com`](https://wunderground.com/wundermap) Weather station IDs can be entered manually or there is a search functionality to search by geographic region.
+Configure the widget by finding weather stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap) Weather station IDs can be entered manually or there is a search functionality to search by geographic region.
 
 ### Manual Entry
 
@@ -47,7 +47,7 @@ Big thanks to [@bluxart](https://x.com/bluxart) and [@pyconic](https://x.com/pyc
 
 Big thanks to [Zren](https://github.com/Zren) for files from [`applet-lib`](https://github.com/Zren/plasma-applet-lib/) and [`applet-simpleweather`](https://github.com/Zren/plasma-applet-simpleweather/).
 
-Upstream changes have also been merged back in from [`plasmoid-wunderground-extended`](https://github.com/rliwoch/plasmoid-wunderground-extended).
+Upstream changes have also been merged back in from rliwoch's [`plasmoid-wunderground-extended`](https://github.com/rliwoch/plasmoid-wunderground-extended).
 
 Portions of [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
@@ -56,6 +56,7 @@ Portions of [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation
 Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
 
 Changing the transparency then back again seems to solve this issue. See [#58](https://github.com/k-donn/plasmoid-wunderground/issues/58).
+Under Appearance in the widget settings, toggle "Show Background."
 
 ## TODO
 

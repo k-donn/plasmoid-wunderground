@@ -513,7 +513,7 @@ function getExtendedConditions(callback = function() {}) {
 				var alertsVars = combinedVars["v3alertsHeadlines"];
 				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"];
 
-				iconCode = iconThemeMap[condVars["iconCode"]];
+				iconCode = condVars["iconCode"];
 				conditionNarrative = condVars["wxPhraseLong"];
 				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
 				weatherData["sunset"] = condVars["sunsetTimeLocal"];
@@ -685,7 +685,7 @@ function getForecastData() {
 					forecastModel.append({
 						date: date,
 						dayOfWeek: isDay ? forecast["dow"] : "Tonight",
-						iconCode: isDay ? iconThemeMap[day["icon_code"]] : iconThemeMap[night["icon_code"]],
+						iconCode: isDay ? day["icon_code"] : night["icon_code"],
 						high: isDay ? forecast["max_temp"] : night["hi"],
 						low: forecast["min_temp"],
 						feelsLike: isDay ? day["hi"] : night["hi"],

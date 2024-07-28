@@ -69,7 +69,7 @@ PlasmoidItem {
     property ListModel alertsModel: ListModel {}
 
     property string errorStr: ""
-    property string iconCode: "weather-clear" // 32 = sunny
+    property string iconCode: "32" // 32 = sunny
     property string conditionNarrative: ""
 
     property int showCONFIG: 1

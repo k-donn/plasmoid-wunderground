@@ -67,7 +67,7 @@ KCM.SimpleKCM {
         PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Weatherstation ID:")
 
-            color: plasmoid.configuration.stationID !== "" ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+            color: plasmoid.configuration.stationID !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
 
             text: plasmoid.configuration.stationID !== "" ? plasmoid.configuration.stationID : "KGADACUL1"
         }
@@ -75,7 +75,7 @@ KCM.SimpleKCM {
         PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Longitude:")
 
-            color: plasmoid.configuration.longitude !== "" ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+            color: plasmoid.configuration.longitude !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
 
             text: plasmoid.configuration.longitude !== "" ? plasmoid.configuration.longitude : "-83.91"
         }
@@ -83,7 +83,7 @@ KCM.SimpleKCM {
         PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Latitude:")
 
-            color: plasmoid.configuration.latitude !== "" ? PlasmaCore.Theme.textColor : PlasmaCore.Theme.disabledTextColor
+            color: plasmoid.configuration.latitude !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
 
             text: plasmoid.configuration.latitude !== "" ? plasmoid.configuration.latitude : "34.06"
         }

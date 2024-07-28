@@ -63,7 +63,10 @@ RowLayout {
                 Layout.preferredHeight: preferredIconSize
                 Layout.preferredWidth: preferredIconSize
 
-                source: iconCode
+                source: Qt.resolvedUrl("../icons/" + iconCode + ".svg")
+
+                isMask: true
+                color: Kirigami.Theme.textColor
 
                 PlasmaCore.ToolTipArea {
                     id: tooltip

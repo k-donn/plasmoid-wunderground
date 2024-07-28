@@ -418,7 +418,7 @@ function isDarkColor(background) {
 
 function getPressureTrendIcon(longDesc) {
 	if (longDesc === "Steady") {
-		return "gnumeric-object-line";
+		return "list-remove-symbolic";
 	} else if (longDesc === "Rising") {
 		return "arrow-up-symbolic";
 	} else if (longDesc === "Falling") {

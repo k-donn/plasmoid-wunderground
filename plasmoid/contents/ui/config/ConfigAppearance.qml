@@ -38,6 +38,13 @@ KCM.SimpleKCM {
         anchors.fill: parent
 
         Kirigami.Separator {
+            Kirigami.FormData.label: i18nd("plasma_applet_org.kde.desktopcontainment", "Show Background")
+            Kirigami.FormData.isSection: true
+        }
+
+        BackgroundToggle {}
+
+        Kirigami.Separator {
             Kirigami.FormData.label: i18n("Compact Representation")
             Kirigami.FormData.isSection: true
         }

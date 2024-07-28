@@ -92,12 +92,12 @@ Window {
         manualField.placeholderText = "KGADACUL1";
 
         manualStationStatus.placeholderText = i18n("---------------------Pending selection-----------------------");
-        manualStationStatus.placeholderTextColor = PlasmaCore.Theme.disabledTextColor;
+        manualStationStatus.placeholderTextColor = Kirigami.Theme.disabledTextColor;
 
         stationComboxBox.currentIndex = -1;
 
         stationStatus.placeholderText = i18n("---------------------Pending selection-----------------------");
-        stationStatus.placeholderTextColor = PlasmaCore.Theme.disabledTextColor;
+        stationStatus.placeholderTextColor = Kirigami.Theme.disabledTextColor;
     }
 
     function validateWeatherStation(typedID, statusField, callback) {
