@@ -21,6 +21,8 @@ import QtQuick.Layouts
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 
+import "../lib"
+
 KCM.SimpleKCM {
     id: appearanceConfig
 
@@ -35,10 +37,16 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         anchors.fill: parent
 
-        Kirigami.Heading {
-            Layout.fillWidth: true
-            level: 2
-            text: i18n("Compact Representation")
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18nd("plasma_applet_org.kde.desktopcontainment", "Show Background")
+            Kirigami.FormData.isSection: true
+        }
+
+        BackgroundToggle {}
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Compact Representation")
+            Kirigami.FormData.isSection: true
         }
 
         ConfigFontFamily {
@@ -61,12 +69,9 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Font styles")
         }
 
-        Kirigami.Separator {}
-
-        Kirigami.Heading {
-            Layout.fillWidth: true
-            level: 2
-            text: i18n("Full Representation")
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Full Representation")
+            Kirigami.FormData.isSection: true
         }
 
         SpinBox {

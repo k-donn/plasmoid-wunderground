@@ -112,7 +112,7 @@ let iconThemeMap = {
 	44: "weather-none-available-symbolic",
 	45: "weather-showers-scattered-night-symbolic",
 	46: "weather-snow-storm-night-symbolic",
-	47: "weather-storm-night"
+	47: "weather-storm-night-symbolic"
 }
 
 let severityColorMap = {
@@ -145,7 +145,6 @@ function nullableField(value) {
  */
 function getAQScale() {
 	var countryCode = Qt.locale().name.split("_")[1];
-	console.log(countryCode)
 
 	if (countryCode === "CN") {
 		return "HJ6332012";
@@ -167,11 +166,202 @@ function getAQScale() {
 }
 
 /**
+ * Determine if the user supplied station is active or not.
+ * 
+ * @param {string} givenID Station ID
+ * @param {(isActive: boolean) => void} callback Callback called with success/failure
+ */
+function isStationActive(givenID, callback) {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v2/pws/observations/current";
+	url += "?stationId=" + givenID;
+	url += "&format=json";
+	url += "&units=m";
+	url += "&apiKey=" + API_KEY;
+	url += "&numericPrecision=decimal";
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onerror = function () {
+		errorStr = "Request couldn't be sent" + req.statusText;
+
+		appState = showERROR;
+
+		printDebug("[pws-api.js] " + errorStr);
+	};
+
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				callback(true);
+			} else {
+				callback(false);
+			}
+		}
+	};
+
+	req.send();
+}
+
+
+/**
+ * Find the nearest PWS with the configured coordinates.
+ */
+function getNearestStation() {
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v3/location/near";
+	url += "?geocode=" + lat + "," + long;
+	url += "&product=pws";
+	url += "&format=json";
+	url += "&apiKey=" + API_KEY;
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				var stations = res["location"]["stationId"];
+				if (stations.length > 0) {
+					var closest = stations[0];
+					stationID.text = closest;
+				}
+			} else {
+				printDebug("[pws-api.js] " + req.responseText);
+			}
+		}
+	};
+
+	req.send();
+}
+
+/**
+ * Searches a geocode pair for the nearest stations.
+ * 
+ * @param {{lat: number, long: number}} latLongObj Coordinates of city to search
+ */
+function getNearestStations(latLongObj) {
+	var long = latLongObj.long
+	var lat = latLongObj.lat;
+
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v3/location/near";
+	url += "?geocode=" + lat + "," + long;
+	url += "&product=pws";
+	url += "&format=json";
+	url += "&apiKey=" + API_KEY;
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				stationsModel.clear();
+
+				var loc = res["location"];
+				var stations = loc["stationId"];
+				for (let i = 0; i < stations.length; i++) {
+					stationsModel.append({
+						text: loc["stationId"][i] + " - " + loc["stationName"][i],
+						stationName: loc["stationName"][i],
+						stationId: loc["stationId"][i],
+						latitude: loc["latitude"][i],
+						longitude: loc["longitude"][i]
+					});
+				}
+			} else {
+				printDebug("[pws-api.js] " + req.responseText);
+			}
+		}
+	};
+
+	req.send();
+}
+
+/**
+ * Search for the qualified name of a city the user searches for.
+ * This can then be used to search for stations in that area.
+ * 
+ * @param {string} city Textual city description
+ */
+function getLocations(city) {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v3/location/search";
+	url += "?query=" + city;
+	url += "&locationType=city";
+	url += "&language=" + Qt.locale().name.replace("_","-");
+	url += "&format=json";
+	url += "&apiKey=" + API_KEY;
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				locationsModel.clear();
+
+				var loc = res["location"];
+
+				for (let i = 0; i < loc["address"].length; i++) {
+					locationsModel.append({
+						address: loc["address"][i],
+						adminDistrict: loc["adminDistrict"][i],
+						city: loc["city"][i],
+						country: loc["country"][i],
+						countryCode: loc["countryCode"][i],
+						displayName: loc["displayName"][i],
+						latitude: loc["latitude"][i],
+						longitude: loc["longitude"][i]
+					});
+				}
+			} else {
+				printDebug("[pws-api.js] " + req.responseText);
+			}
+		}
+	};
+
+	req.send();
+}
+
+
+/**
  * Pull the most recent observation from the selected weather station.
  *
  * This handles setting errors and making the loading screen appear.
+ * 
+ * @param {() => void} [callback=function() {}] Function to call after this and getExtendedConditions
  */
-function getCurrentData() {
+function getCurrentData(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
 	var url = "https://api.weather.com/v2/pws/observations/current";
@@ -240,7 +430,6 @@ function getCurrentData() {
 				weatherData["lat"] = obs["lat"];
 				weatherData["lon"] = obs["lon"];
 
-
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
 
@@ -249,7 +438,7 @@ function getCurrentData() {
 				// Force QML to update text depending on weatherData
 				weatherData = weatherData;
 
-				getExtendedConditions();
+				getExtendedConditions(callback);
 
 				appState = showDATA;
 			} else {
@@ -270,6 +459,139 @@ function getCurrentData() {
 
 	req.send();
 }
+
+
+/**
+ * Get broad weather info from station area including textual/icon description of conditions and weather warnings.
+ * 
+ * @param {() => void} [callback=function() {}] Function to call after extended conditions are fetched
+ */
+function getExtendedConditions(callback = function() {}) {
+	var req = new XMLHttpRequest();
+
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+
+	var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
+
+	url += "?geocodes=" + lat + "," + long;
+	url += "&apiKey=" + API_KEY;
+	url += "&language=" + Qt.locale().name.replace("_","-");
+	url += "&scale=" + getAQScale();
+
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		url += "&units=m";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		url += "&units=e";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+		url += "&units=h";
+	} else {
+		url += "&units=m";
+	}
+
+	url += "&format=json";
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onerror = function () {
+		printDebug("[pws-api.js] " + req.responseText);
+	};
+
+	printDebug("[pws-api.js] " + url);
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				var res = JSON.parse(req.responseText);
+
+				var combinedVars = res[0];
+
+				var condVars = combinedVars["v3-wx-observations-current"];
+				var alertsVars = combinedVars["v3alertsHeadlines"];
+				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"];
+
+				iconCode = condVars["iconCode"];
+				conditionNarrative = condVars["wxPhraseLong"];
+				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
+				weatherData["sunset"] = condVars["sunsetTimeLocal"];
+				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
+				weatherData["details"]["pressureDelta"] = condVars["pressureChange"];
+
+				// Determine if the precipitation is snow or rain
+				// All of these codes are for snow
+				if (
+					iconCode === 5 ||
+					iconCode === 13 ||
+					iconCode === 14 ||
+					iconCode === 15 ||
+					iconCode === 16 ||
+					iconCode === 42 ||
+					iconCode === 43 ||
+					iconCode === 46
+				) {
+					isRain = false;
+				}
+
+				alertsModel.clear();
+				if (alertsVars !== null) {
+
+					var alerts = alertsVars["alerts"];
+					for (var index = 0; index < alerts.length; index++) {
+						var curAlert = alerts[index];
+
+						var actions = [];
+
+						for (var actionIndex = 0; actionIndex <  curAlert["responseTypes"].length; actionIndex++) {
+							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
+						}
+
+						var source = "Issued by: " + curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
+
+						var disclaimer = curAlert["disclaimer"] !== null ? curAlert["disclaimer"] : "None";
+
+						alertsModel.append({
+							desc: curAlert["eventDescription"],
+							severity: curAlert["severity"],
+							severityColor: severityColorMap[curAlert["severityCode"]],
+							headline: curAlert["headlineText"],
+							area: curAlert["areaName"],
+							action: actions.join(","),
+							source: source,
+							disclaimer: disclaimer
+						});
+					}
+				}
+
+				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"];
+				weatherData["aq"]["aqhi"] = airQualVars["airQualityCategoryIndex"];
+				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"];
+				weatherData["aq"]["aqColor"] = airQualVars["airQualityCategoryIndexColor"];
+
+				var primaryPollutant = weatherData["aq"]["aqPrimary"] = airQualVars["primaryPollutant"];
+
+				var primaryDetails = airQualVars["pollutants"][primaryPollutant];
+
+				weatherData["aq"]["primaryDetails"]["phrase"] = primaryDetails["phrase"];
+				weatherData["aq"]["primaryDetails"]["amount"] = primaryDetails["amount"];
+				weatherData["aq"]["primaryDetails"]["unit"] = primaryDetails["unit"];
+				weatherData["aq"]["primaryDetails"]["desc"] = primaryDetails["category"];
+				weatherData["aq"]["primaryDetails"]["index"] = primaryDetails["index"];
+
+
+				// Force QML to update text depending on weatherData
+				weatherData = weatherData;
+
+				callback();
+			}
+		}
+	};
+
+	req.send();
+}
+
 
 /**
  * Fetch the forecast data and place it in the forecast data model.
@@ -363,7 +685,7 @@ function getForecastData() {
 					forecastModel.append({
 						date: date,
 						dayOfWeek: isDay ? forecast["dow"] : "Tonight",
-						iconCode: isDay ? iconThemeMap[day["icon_code"]] : iconThemeMap[night["icon_code"]],
+						iconCode: isDay ? day["icon_code"] : night["icon_code"],
 						high: isDay ? forecast["max_temp"] : night["hi"],
 						low: forecast["min_temp"],
 						feelsLike: isDay ? day["hi"] : night["hi"],
@@ -401,175 +723,3 @@ function getForecastData() {
 
 	req.send();
 }
-
-/**
- * Find the nearest PWS with the choosen coordinates.
- */
-function getNearestStation() {
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
-
-	var req = new XMLHttpRequest();
-
-	var url = "https://api.weather.com/v3/location/near";
-	url += "?geocode=" + lat + "," + long;
-	url += "&product=pws";
-	url += "&format=json";
-	url += "&apiKey=" + API_KEY;
-
-	printDebug("[pws-api.js] " + url);
-
-	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				var stations = res["location"]["stationId"];
-				if (stations.length > 0) {
-					var closest = stations[0];
-					stationID.text = closest;
-				}
-			} else {
-				printDebug("[pws-api.js] " + req.responseText);
-			}
-		}
-	};
-
-	req.send();
-}
-
-
-/**
- * Get broad weather info from station area including textual/icon description of conditions and weather warnings.
- */
-function getExtendedConditions() {
-	var req = new XMLHttpRequest();
-
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
-
-	var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
-
-	url += "?geocodes=" + lat + "," + long;
-	url += "&apiKey=" + API_KEY;
-	url += "&language=" + Qt.locale().name.replace("_","-");
-	url += "&scale=" + getAQScale();
-
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
-		url += "&units=h";
-	} else {
-		url += "&units=m";
-	}
-
-	url += "&format=json";
-
-	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
-	req.onerror = function () {
-		printDebug("[pws-api.js] " + req.responseText);
-	};
-
-	printDebug("[pws-api.js] " + url);
-
-	req.onreadystatechange = function () {
-		if (req.readyState == 4) {
-			if (req.status == 200) {
-				var res = JSON.parse(req.responseText);
-
-				var combinedVars = res[0];
-
-				var condVars = combinedVars["v3-wx-observations-current"];
-				var alertsVars = combinedVars["v3alertsHeadlines"];
-				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"];
-
-				iconCode = iconThemeMap[condVars["iconCode"]];
-				conditionNarrative = condVars["wxPhraseLong"];
-				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
-				weatherData["sunset"] = condVars["sunsetTimeLocal"];
-				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
-				weatherData["details"]["pressureDelta"] = condVars["pressureChange"];
-
-
-
-				// Determine if the precipitation is snow or rain
-				// All of these codes are for snow
-				if (
-					iconCode === 5 ||
-					iconCode === 13 ||
-					iconCode === 14 ||
-					iconCode === 15 ||
-					iconCode === 16 ||
-					iconCode === 42 ||
-					iconCode === 43 ||
-					iconCode === 46
-				) {
-					isRain = false;
-				}
-
-				alertsModel.clear();
-				if (alertsVars !== null) {
-
-					var alerts = alertsVars["alerts"];
-					for (var index = 0; index < alerts.length; index++) {
-						var curAlert = alerts[index];
-
-						var actions = [];
-
-						for (var actionIndex = 0; actionIndex <  curAlert["responseTypes"].length; actionIndex++) {
-							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
-						}
-
-						var source = "Issued by: " + curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
-
-						var disclaimer = curAlert["disclaimer"] !== null ? curAlert["disclaimer"] : "None";
-
-						alertsModel.append({
-							desc: curAlert["eventDescription"],
-							severity: curAlert["severity"],
-							severityColor: severityColorMap[curAlert["severityCode"]],
-							headline: curAlert["headlineText"],
-							area: curAlert["areaName"],
-							action: actions.join(","),
-							source: source,
-							disclaimer: disclaimer
-						});
-					}
-				}
-
-				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"];
-				weatherData["aq"]["aqhi"] = airQualVars["airQualityCategoryIndex"];
-				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"];
-				weatherData["aq"]["aqColor"] = airQualVars["airQualityCategoryIndexColor"];
-
-				var primaryPollutant = weatherData["aq"]["aqPrimary"] = airQualVars["primaryPollutant"];
-
-				var primaryDetails = airQualVars["pollutants"][primaryPollutant];
-
-				weatherData["aq"]["primaryDetails"]["phrase"] = primaryDetails["phrase"];
-				weatherData["aq"]["primaryDetails"]["amount"] = primaryDetails["amount"];
-				weatherData["aq"]["primaryDetails"]["unit"] = primaryDetails["unit"];
-				weatherData["aq"]["primaryDetails"]["desc"] = primaryDetails["category"];
-				weatherData["aq"]["primaryDetails"]["index"] = primaryDetails["index"];
-
-
-				// Force QML to update text depending on weatherData
-				weatherData = weatherData;
-
-			}
-		}
-	};
-
-	req.send();
-}
-

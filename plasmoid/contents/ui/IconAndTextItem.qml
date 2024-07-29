@@ -58,6 +58,9 @@ GridLayout {
     Kirigami.Icon {
         id: icon
 
+        isMask: true
+        color: Kirigami.Theme.textColor
+
         readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize

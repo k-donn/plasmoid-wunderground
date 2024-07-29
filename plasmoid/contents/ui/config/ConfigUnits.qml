@@ -44,6 +44,8 @@ KCM.SimpleKCM {
         }
 
         Kirigami.Separator {
+            Kirigami.FormData.label: ""
+            Kirigami.FormData.isSection: true
             visible: unitsChoice.currentIndex == 3
         }
 

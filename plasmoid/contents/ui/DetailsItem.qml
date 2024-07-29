@@ -38,20 +38,24 @@ GridLayout {
             bold: true
             pointSize: plasmoid.configuration.tempPointSize
         }
-        // Use the dyanimcally calulated color (light/dark theme) of the wind label if user doesn't want temp colored
-        color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"]) : windLabel.color
+        // Use theme color if user doesn't want temp colored
+        color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"]) : Kirigami.Theme.textColor
     }
     Kirigami.Icon {
         id: topPanelIcon
 
-        source: "gnumeric-object-arrow-symbolic"
-        // source: "../images/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg"
+        // source: "gnumeric-object-arrow-symbolic"
+        // new rotation for icons:
+        // rotation: weatherData["winddir"] - 135
+
+        source: Qt.resolvedUrl("../icons/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg")
+
+        color: Kirigami.Theme.textColor
+        isMask: true
 
         // wind barb icons are 270 degrees deviated from 0 degrees (north)
-        //rotation: weatherData["winddir"] - 270
+        rotation: weatherData["winddir"] - 270
 
-        // new rotation for icons:
-        rotation: weatherData["winddir"] - 135
 
         Layout.minimumWidth: Kirigami.Units.iconSizes.large
         Layout.minimumHeight: Kirigami.Units.iconSizes.large

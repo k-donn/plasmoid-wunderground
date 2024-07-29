@@ -31,7 +31,10 @@ RowLayout {
     Kirigami.Icon {
         id: topPanelIcon
 
-        source: iconCode
+        source: Qt.resolvedUrl("../icons/" + iconCode + ".svg")
+
+        isMask: true
+        color: Kirigami.Theme.textColor
 
         Layout.minimumWidth: Kirigami.Units.iconSizes.large
         Layout.minimumHeight: Kirigami.Units.iconSizes.large

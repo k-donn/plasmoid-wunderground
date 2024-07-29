@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-06-04 13:51-0400\n"
+"POT-Creation-Date: 2024-07-29 14:39-0400\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,26 +157,25 @@ msgstr "Zeige Luftdrucktendenz"
 msgid "Write to console.log:"
 msgstr "Schreibe in den console.log"
 
-#: ../contents/ui/config/ConfigFontFamily.qml
-msgctxt "Use default font"
-msgid "Default"
-msgstr "Standard"
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "Finde Station"
 
-#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Enter Station"
 msgstr "Eingabe Station"
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Weatherstation ID:"
-msgstr "Wetterstation ID"
-
-#: ../contents/ui/config/ConfigStation.qml
-msgid "Get Nearest Station"
-msgstr "Naheliegenste Station"
+msgid "Station Info"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Uses WGS84 geocode coordinates"
 msgstr "Nutzt WGS84 Geocode Koordinaten"
+
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Weatherstation ID:"
+msgstr "Wetterstation ID"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude:"
@@ -189,10 +188,6 @@ msgstr "Breitengrad"
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
 msgstr "Aktualisieren (s):"
-
-#: ../contents/ui/config/ConfigStation.qml
-msgid "Find Station"
-msgstr "Finde Station"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
@@ -293,9 +288,71 @@ msgstr "<font size='4'>Gefühlt wie: %1<br/>Gewitter: %2<br/>UV: %3<br/>Schnee: 
 msgid "Loading data..."
 msgstr "Lade Daten..."
 
+#: ../contents/ui/lib/BackgroundToggle.qml
+msgid "Desktop Widget:"
+msgstr ""
+
 #: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
 msgstr "Wunderground einrichten"
+
+#: ../contents/ui/lib/ConfigFontFamily.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Standard"
+
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Saved Weather Stations"
+msgstr ""
+
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Add more..."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Pending selection"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station %1 is active and can be used"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station %1 is NOT active. Please select a different station."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Test Station"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station status:"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Get Nearest Station"
+msgstr "Naheliegenste Station"
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgctxt "Give a well known example city."
+msgid "London"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Look for location:"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Select City:"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Select Station:"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "New Station: %1"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
