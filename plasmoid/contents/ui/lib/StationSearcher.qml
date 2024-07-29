@@ -91,12 +91,12 @@ Window {
         manualField.text = "";
         manualField.placeholderText = "KGADACUL1";
 
-        manualStationStatus.placeholderText = i18n("---------------------Pending selection-----------------------");
+        manualStationStatus.placeholderText = i18n("Pending selection");
         manualStationStatus.placeholderTextColor = Kirigami.Theme.disabledTextColor;
 
         stationComboxBox.currentIndex = -1;
 
-        stationStatus.placeholderText = i18n("---------------------Pending selection-----------------------");
+        stationStatus.placeholderText = i18n("Pending selection");
         stationStatus.placeholderTextColor = Kirigami.Theme.disabledTextColor;
     }
 
@@ -181,7 +181,7 @@ Window {
                     enabled: false
 
                     horizontalAlignment: Text.AlignHCenter
-                    placeholderText: i18n("---------------------Pending selection-----------------------")
+                    placeholderText: i18n("Pending selection")
 
                     Kirigami.FormData.label: i18n("Station status:")
                 }
@@ -193,7 +193,7 @@ Window {
 
                 ClearableField {
                     id: cityLookup
-                    placeholderText: i18n("e.g. London")
+                    placeholderText: i18nc("Give a well known example city.", "London")
 
                     Kirigami.FormData.label: i18n("Look for location:")
                 }
@@ -233,7 +233,7 @@ Window {
                     enabled: false
 
                     horizontalAlignment: Text.AlignHCenter
-                    placeholderText: i18n("---------------------Pending selection-----------------------")
+                    placeholderText: i18n("Pending selection")
 
                     Kirigami.FormData.label: i18n("Station status:")
                 }
