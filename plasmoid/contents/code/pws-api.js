@@ -429,9 +429,11 @@ function getCurrentData(callback = function() {}) {
 				weatherData["winddir"] = obs["winddir"];
 				weatherData["lat"] = obs["lat"];
 				weatherData["lon"] = obs["lon"];
+				weatherData["neighborhood"] = obs["neighborhood"];
 
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
+				plasmoid.configuration.stationName = weatherData["neighborhood"];
 
 				printDebug("[pws-api.js] Got new current data");
 

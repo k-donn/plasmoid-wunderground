@@ -20,7 +20,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-import org.kde.kcmutils as KCM
+import QtQuick.Dialogs
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
 
@@ -55,32 +55,7 @@ Window {
         id: syspal
     }
 
-    StationSearcher {
-        id: stationSearcher
-
-        onChoosen: {
-            // User searched for a new station. Check for duplicate, add, and make it the current selection.
-            var isDuplicate = false;
-
-            for (let i = 0; i < stationListModel.count; i++) {
-                if (stationListModel.get(i).name === newStation) {
-                    isDuplicate = true;
-                }
-            }
-
-            if (!isDuplicate) {
-                stationListModel.append({"name": newStation});
-            }
-
-            // The duplicate was not added twice, but make still make it the current selection.
-            for (let i = 0; i < stationListModel.count; i++) {
-                if (stationListModel.get(i).name === newStation) {
-                    stationListView.currentIndex = i;
-                }
-            }
-            dialog.source = newStation;
-        }
-    }
+    signal open
 
     signal accepted
 
@@ -89,7 +64,6 @@ Window {
     Action {
         id: acceptAction
 
-        shortcut: "Return"
         enabled: stationListModel.count > 0
         onTriggered: {
             accepted();
@@ -104,6 +78,36 @@ Window {
         onTriggered: {
             cancel();
             dialog.close();
+        }
+    }
+
+    MessageDialog {
+        id: confirmRemoveDialog
+
+        text: i18n("Remove Selected")
+        informativeText: i18n("Confirm Remove %1", stationListModel.get(stationListView.currentIndex).name)
+        buttons: MessageDialog.Ok | MessageDialog.Cancel
+
+        onAccepted: {
+            var toRemoveName = stationListModel.get(stationListView.currentIndex).name;
+            var toRemoveIndex = stationListView.currentIndex;
+
+            var wasLast = toRemoveIndex === stationListModel.count - 1;
+
+            stationListModel.remove(toRemoveIndex);
+
+            if (stationListModel.count > 0) {
+                if (wasLast) {
+                    // If we removed the last element, set selected to new last.
+                    stationListView.currentIndex = stationListModel.count - 1;
+                    dialog.source = stationListModel.get(stationListView.currentIndex).name;
+                } else {
+                    // If we removed the n'th element and there are remaining elements, set selected to new n'th.
+                    dialog.source = stationListModel.get(stationListView.currentIndex).name;
+                }
+            } else {
+                dialog.source = "";
+            }
         }
     }
 
@@ -142,7 +146,26 @@ Window {
                 stationListView.currentIndex = i;
             }
         }
-        stationListView.forceActiveFocus();
+    }
+
+    onOpen: {
+        dialog.visible = true;
+
+        stationListModel.clear();
+
+        // Populate ListModel with saved stations
+        for (let i = 0; i < plasmoid.configuration.savedStations.length; i++) {
+            stationListModel.append({"name": plasmoid.configuration.savedStations[i]});
+        }
+
+        // Set selected station to force highlight
+        for (let i = 0; i < stationListModel.count; i++) {
+            if (stationListModel.get(i).name === plasmoid.configuration.stationID) {
+                dialog.source = plasmoid.configuration.stationID;
+
+                stationListView.currentIndex = i;
+            }
+        }
     }
 
     ColumnLayout {
@@ -155,12 +178,53 @@ Window {
         Layout.minimumWidth: Math.max(stationPicker.Layout.minimumWidth, buttonsRow.implicitWidth) + 2*anchors.margins
         Layout.minimumHeight: stationPicker.Layout.minimumHeight + buttonsRow.implicitHeight + 2*anchors.margins
 
-        Button {
-            id: addMoreBtn
+        RowLayout {
             Layout.fillWidth: true
-            icon.name: "list-add"
-            text: i18n("Add more...")
-            onClicked: stationSearcher.visible = true 
+
+            Kirigami.SearchField {
+                id: addField
+
+                Layout.fillWidth: true
+                focus: true
+                placeholderText: "KGADACUL1"
+
+                Keys.onReturnPressed: function(keyEvent) {
+                    if (text.trim().length > 0) {
+                        addBtn.clicked();
+                        keyEvent.accepted = true;
+                    }
+                }
+            }
+
+            Button {
+                id: addBtn
+
+                text: i18n("Add")
+                enabled: addField.text.length > 0
+                icon.name: "list-add"
+
+                onClicked: {
+                    var isNew = true;
+
+                    // Check for duplicate
+                    for (let i = 0; i < stationListModel.count; i++) {
+                        if (stationListModel.get(i).name === addField.text.trim()) {
+                            isNew = false;
+                        }
+                    }
+
+                    if (isNew) {
+                        stationListModel.append({"name": addField.text.trim()});
+
+                        dialog.source = addField.text.trim();
+
+                        stationListView.currentIndex = stationListModel.count - 1;
+                        stationListView.forceActiveFocus();
+
+                        addField.text = "";
+                    }
+                }
+            }
         }
 
         ListView {
@@ -196,11 +260,22 @@ Window {
         RowLayout {
             id: buttonsRow
 
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+            Layout.alignment: Qt.AlignVCenter
+            Layout.fillWidth: true
 
             Button {
+                icon.name: "list-remove"
+                text: i18n("Remove")
+                enabled: stationListModel.count > 0
+                onClicked: {
+                    confirmRemoveDialog.visible = true;
+                }
+            }
+
+            Button {
+                Layout.fillWidth: true
                 icon.name: "dialog-ok"
-                text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Select")
+                text: i18n("Select")
                 enabled: stationListModel.count > 0
                 onClicked: {
                     acceptAction.trigger();
@@ -208,7 +283,7 @@ Window {
             }
             Button {
                 icon.name: "dialog-cancel"
-                text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Cancel")
+                text: i18n("Cancel")
                 onClicked: {
                     cancelAction.trigger();
                 }

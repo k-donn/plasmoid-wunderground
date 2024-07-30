@@ -47,7 +47,7 @@ class TC:
 	FG_Purple='\033[35m'
 	FG_Cyan='\033[36m'
 	FG_LightGray='\033[37m'
-	FG_DarkGray='\033[90m'
+	FG_DarkGray='\033[1m'
 	FG_LightRed='\033[91m'
 	FG_LightGreen='\033[92m'
 	FG_Yellow='\033[93m'
@@ -55,10 +55,6 @@ class TC:
 	FG_Pink='\033[95m'
 	FG_LightCyan='\033[96m'
 	FG_White='\033[97m'
-
-	@staticmethod
-	def stripColors(str):
-		return re.sub('\033' + '\[((\d{1,2});)?(\d{1,2})m', '', str)
 
 def echoTC(terminalColor, *args):
 	print(terminalColor + ' '.join(args) + TC.Reset)
