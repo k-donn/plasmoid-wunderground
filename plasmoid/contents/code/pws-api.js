@@ -550,7 +550,7 @@ function getExtendedConditions(callback = function() {}) {
 							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
 						}
 
-						var source = "Issued by: " + curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
+						var source = curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
 
 						var disclaimer = curAlert["disclaimer"] !== null ? curAlert["disclaimer"] : "None";
 

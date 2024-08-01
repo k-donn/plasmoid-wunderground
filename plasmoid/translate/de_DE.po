@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-07-30 16:10-0400\n"
+"POT-Creation-Date: 2024-08-01 13:29-0400\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,8 +90,8 @@ msgid "Severity: %1"
 msgstr "Level: %1"
 
 #: ../contents/ui/AlertsItem.qml
-msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>%4"
-msgstr "Region: %1<br/>Aktion: %2<br/>Haftungsausschluss: %3<br/>%4"
+msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4"
+msgstr "Region: %1<br/>Aktion: %2<br/>Haftungsausschluss: %3<br/>Ausgestellt von: %4"
 
 #: ../contents/ui/BottomPanel.qml
 msgid "There are weather alerts for your area!"
@@ -159,19 +159,19 @@ msgstr "Schreibe in den console.log"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
-msgstr "Finde Station"
+msgstr "Station suchen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Enter Station"
-msgstr "Eingabe Station"
+msgstr "Aktuelle Station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Station Info"
-msgstr ""
+msgstr "Station Details"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Uses WGS84 geocode coordinates"
-msgstr "Nutzt WGS84 Geocode Koordinaten"
+msgstr "WGS84 Geocode Koordinaten"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Weatherstation ID:"
@@ -179,7 +179,7 @@ msgstr "Wetterstation ID"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Weatherstation Name:"
-msgstr ""
+msgstr "Wetterstation Name"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude:"
@@ -294,7 +294,7 @@ msgstr "Lade Daten..."
 
 #: ../contents/ui/lib/BackgroundToggle.qml
 msgid "Desktop Widget:"
-msgstr ""
+msgstr "Desktop-Widget"
 
 #: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
@@ -307,35 +307,35 @@ msgstr "Standard"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
-msgstr ""
+msgstr "Gespeicherte Wetterstationen"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove Selected"
-msgstr ""
+msgstr "Ausgewählte Station entfernen"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Confirm Remove %1"
-msgstr ""
+msgstr "Bestätige  %1  entfernen "
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Add"
-msgstr ""
+msgstr "Hinzufügen"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove"
-msgstr ""
+msgstr "Entfernen"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Select"
-msgstr ""
+msgstr "Anwenden"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: ../contents/ui/lib/StationPicker.qml
 msgid "Choose…"
-msgstr ""
+msgstr "Wählen"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
@@ -375,6 +375,3 @@ msgstr "Wetterdaten aktualisieren"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
-
-#~ msgid "Get Nearest Station"
-#~ msgstr "Naheliegenste Station"

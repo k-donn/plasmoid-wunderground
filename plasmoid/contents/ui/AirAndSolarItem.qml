@@ -83,16 +83,18 @@ RowLayout {
         Rectangle {
             id: aqIndexColor
 
-            Layout.preferredWidth: aqIndexTxt.width
-            Layout.preferredHeight: aqIndexTxt.height
+            Layout.preferredWidth: aqIndexTxt.width + 5
+            Layout.preferredHeight: aqIndexTxt.height + 5
             Layout.alignment: Qt.AlignCenter
 
             color: "#" + weatherData["aq"]["aqColor"]
 
+            radius: 5
+
             PlasmaComponents.Label {
                 id: aqIndexLabel
 
-                horizontalAlignment: Text.AlignHCenter
+                anchors.centerIn: parent
 
                 color: "#000000"
 
