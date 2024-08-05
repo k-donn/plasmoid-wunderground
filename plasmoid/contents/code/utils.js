@@ -322,16 +322,16 @@ function windChillF(degF, windSpeedMph) {
  *
  * @returns {string} Hex color code
  */
-function heatColor(temp) {
+function heatColor(temp, bgColor) {
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		return heatColorC(temp);
+        return heatColorC(temp, bgColor);
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
-		return heatColorF(temp);
+        return heatColorF(temp, bgColor);
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		return heatColorC(temp);
+        return heatColorC(temp, bgColor);
 	} else {
 		// Then, temp is in Celcius
-		return heatColorC(temp);
+        return heatColorC(temp, bgColor);
 	}
 }
 
@@ -344,7 +344,7 @@ function heatColor(temp) {
  *
  * @returns {string} Hex color code
  */
-function heatColorC(degC) {
+function heatColorC(degC, bgColor) {
 	return degC > 37.78
 		? "#9E1642"
 		: degC > 32.2
@@ -354,13 +354,13 @@ function heatColorC(degC) {
 		: degC > 23.9
 		? "#FDAE61"
 		: degC > 21.1
-		? "#FEE08B"
+		? lightDark(bgColor, "#E2B434" ,"#FEE08B")
 		: degC > 15.5
-		? "#E6F598"
+		? lightDark(bgColor, "#B1CC2E" , "#E6F598")
 		: degC > 10
-		? "#ABDDA4"
+		? lightDark(bgColor, "#6EBA50", "#ABDDA4")
 		: degC > 4.4
-		? "#66C2A5"
+		? lightDark(bgColor, "#66C2A5", "#2F9374")
 		: degC > 0
 		? "#3288BD"
 		: "#5E4FA2";
@@ -375,7 +375,7 @@ function heatColorC(degC) {
  *
  * @returns {string} Hex color code
  */
-function heatColorF(degF) {
+function heatColorF(degF, bgColor) {
 	return degF > 100
 		? "#9E1642"
 		: degF > 90
@@ -385,13 +385,13 @@ function heatColorF(degF) {
 		: degF > 75
 		? "#FDAE61"
 		: degF > 70
-		? "#FEE08B"
+		? lightDark(bgColor, "#E2B434" ,"#FEE08B")
 		: degF > 60
-		? "#E6F598"
+		? lightDark(bgColor, "#B1CC2E" , "#E6F598")
 		: degF > 50
-		? "#ABDDA4"
+		? lightDark(bgColor, "#6EBA50", "#ABDDA4")
 		: degF > 40
-		? "#66C2A5"
+		? lightDark(bgColor, "#66C2A5", "#2F9374")
 		: degF > 32
 		? "#3288BD"
 		: "#5E4FA2";
@@ -416,25 +416,39 @@ function isDarkColor(background) {
 	return temp.a > 0 && a >= 0.3
 }
 
-function getPressureTrendIcon(longDesc) {
-	if (longDesc === "Steady") {
+/**
+ * Return an icon to represent the changing barometric pressure.
+ * 
+ * @param {0|1|2|3|4} code Code provided by API
+ * @returns {string} Opendesktop icon name
+ */
+function getPressureTrendIcon(code) {
+	if (code === 0) {
 		return "list-remove-symbolic";
-	} else if (longDesc === "Rising") {
+	} else if (code === 1) {
 		return "arrow-up-symbolic";
-	} else if (longDesc === "Falling") {
+	} else if (code === 2) {
 		return "arrow-down-symbolic";
-	} else if (longDesc === "Rapidly Rising") {
+	} else if (code === 3) {
 		return "arrow-up-double-symbolic";
 	} else {
 		return "arrow-down-double-symbolic";
 	}
 }
 
-function getShortDesc(delta) {
-	if (delta > 0) {
-		return "risen";
+/**
+ * Return whether pressure has increased.
+ * True = increased
+ * False = decreased/no change
+ * 
+ * @param {0|1|2|3|4} code Code provided by API
+ * @returns {boolean}
+ */
+function hasPresIncreased(code) {
+	if (code === 1 || code === 3) {
+		return true;
 	} else {
-		return "fallen";
+		return false;
 	}
 }
 

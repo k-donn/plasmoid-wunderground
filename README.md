@@ -61,7 +61,7 @@ Under Appearance in the widget settings, toggle "Show Background."
   -   [ ] Widget size/padding/scaling
   -   [x] Specific units choice (eg. from km/h to m/s for metric)
 - Graphical
-  -   [ ] Improve text coloring of temp and alerts for dark/transparent themes
+  -   [x] Improve text coloring of temp and alerts for dark/transparent themes
 - Parking lot
   -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
   -   [ ] Use Wunderground Plasma Ion.

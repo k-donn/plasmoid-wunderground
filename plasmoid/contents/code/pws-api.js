@@ -520,6 +520,7 @@ function getExtendedConditions(callback = function() {}) {
 				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
 				weatherData["sunset"] = condVars["sunsetTimeLocal"];
 				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
+				weatherData["details"]["pressureTrendCode"] = condVars["pressureTendencyCode"];
 				weatherData["details"]["pressureDelta"] = condVars["pressureChange"];
 
 				// Determine if the precipitation is snow or rain
