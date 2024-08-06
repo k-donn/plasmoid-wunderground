@@ -267,11 +267,11 @@ msgstr "Luftdruck"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has risen %1 in the last three hours."
-msgstr ""
+msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gestiegen"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has fallen %1 in the last three hours."
-msgstr ""
+msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gefallen"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "HUMIDITY"
@@ -379,6 +379,3 @@ msgstr "Wetterdaten aktualisieren"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
-
-#~ msgid "Pressure has %1 %2 in the last three hours."
-#~ msgstr "Luftdruck ist in den letzten 3 Stunden %1 %2."
