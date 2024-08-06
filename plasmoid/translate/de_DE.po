@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-07-29 14:39-0400\n"
+"POT-Creation-Date: 2024-08-05 19:44-0400\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,8 +90,8 @@ msgid "Severity: %1"
 msgstr "Level: %1"
 
 #: ../contents/ui/AlertsItem.qml
-msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>%4"
-msgstr "Region: %1<br/>Aktion: %2<br/>Haftungsausschluss: %3<br/>%4"
+msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4"
+msgstr "Region: %1<br/>Aktion: %2<br/>Haftungsausschluss: %3<br/>Ausgestellt von: %4"
 
 #: ../contents/ui/BottomPanel.qml
 msgid "There are weather alerts for your area!"
@@ -157,25 +157,29 @@ msgstr "Zeige Luftdrucktendenz"
 msgid "Write to console.log:"
 msgstr "Schreibe in den console.log"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
-msgstr "Finde Station"
+msgstr "Station suchen"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Enter Station"
-msgstr "Eingabe Station"
+msgstr "Aktuelle Station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Station Info"
-msgstr ""
+msgstr "Station Details"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Uses WGS84 geocode coordinates"
-msgstr "Nutzt WGS84 Geocode Koordinaten"
+msgstr "WGS84 Geocode Koordinaten"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Weatherstation ID:"
 msgstr "Wetterstation ID"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Weatherstation Name:"
+msgstr "Wetterstation Name"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude:"
@@ -262,8 +266,12 @@ msgid "PRESSURE"
 msgstr "Luftdruck"
 
 #: ../contents/ui/DetailsItem.qml
-msgid "Pressure has %1 %2 in the last three hours."
-msgstr "Luftdruck ist in den letzten 3 Stunden %1 %2."
+msgid "Pressure has risen %1 in the last three hours."
+msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gestiegen"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Pressure has fallen %1 in the last three hours."
+msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gefallen"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "HUMIDITY"
@@ -290,7 +298,7 @@ msgstr "Lade Daten..."
 
 #: ../contents/ui/lib/BackgroundToggle.qml
 msgid "Desktop Widget:"
-msgstr ""
+msgstr "Desktop-Widget"
 
 #: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
@@ -303,56 +311,35 @@ msgstr "Standard"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
-msgstr ""
+msgstr "Gespeicherte Wetterstationen"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add more..."
-msgstr ""
+msgid "Remove Selected"
+msgstr "Ausgewählte Station entfernen"
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Pending selection"
-msgstr ""
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Confirm Remove %1"
+msgstr "Bestätige  %1  entfernen "
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Station %1 is active and can be used"
-msgstr ""
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Add"
+msgstr "Hinzufügen"
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Station %1 is NOT active. Please select a different station."
-msgstr ""
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Remove"
+msgstr "Entfernen"
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Test Station"
-msgstr ""
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Select"
+msgstr "Anwenden"
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Station status:"
-msgstr ""
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Cancel"
+msgstr "Abbrechen"
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Get Nearest Station"
-msgstr "Naheliegenste Station"
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgctxt "Give a well known example city."
-msgid "London"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Look for location:"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Select City:"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Select Station:"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "New Station: %1"
-msgstr ""
+#: ../contents/ui/lib/StationPicker.qml
+msgid "Choose…"
+msgstr "Wählen"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."

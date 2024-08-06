@@ -73,6 +73,14 @@ KCM.SimpleKCM {
         }
 
         PlasmaComponents.Label {
+            Kirigami.FormData.label: i18n("Weatherstation Name:")
+
+            color: plasmoid.configuration.stationName !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
+
+            text: plasmoid.configuration.stationName !== "" ? plasmoid.configuration.stationName : "Hog Mountain"
+        }
+
+        PlasmaComponents.Label {
             Kirigami.FormData.label: i18n("Longitude:")
 
             color: plasmoid.configuration.longitude !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
@@ -105,7 +113,7 @@ KCM.SimpleKCM {
         Kirigami.Separator{}
 
         PlasmaComponents.Label {
-            text: "Version 3.1.0"
+            text: "Version 3.1.3"
         }
 
     }

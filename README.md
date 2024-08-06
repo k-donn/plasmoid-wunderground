@@ -8,32 +8,19 @@ you input the station ID then view the properties that the station sends up.
 
 ## Running
 
-Configure the widget by finding weather stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap) Weather station IDs can be entered manually or there is a search functionality to search by geographic region.
+Configure the widget by finding weather stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap).
 
-### Manual Entry
-
-1. Enter the case-sensitive ID into the text field and press `Test Station`. The settings page will query the station to determine if it is reporting valid data.
-    -   If it is valid, then the status bar will report that the station is active and can be used.
-    -   Otherwise, the status bar will report that the station is not active and you must use a different station or check for a spelling error.
-2. Then, press the `Select` button at the bottom right to add this station to the list of available stations.
-
-### Geographic Search
-
-1. Enter your city/locality into the top text field and press `Find Station`.
-2. The combo box below will populate with localities matching your search. Choose the closest.
-3. Further below, the combox box will populate with weather station IDs in that locality. Choose a desired station.
-4. Press `Test Station` to determine if the station is reporting valid data. Like above,
-    -   If it is valid, then the status bar will report that the station is active and can be used.
-    -   Otherwise, the status bar will report that the station is not active and you must use a different station or check for a spelling error.
-5. Then, press the `Select` button at the bottom right to add this station to the list of available stations.  
-
-### Saved Weather Stations
+Navigate to the settings page by clicking `Configure Wunderground` or right-clicking the widget. Then, under `Station`, click `Choose...`. This will open up the saved stations dialog. Enter the case-sensitive ID into the field then press `Add` or hit enter.
 
 Once a station has been added to the list, it is automatically selected and will be highlighted. Otherwise, click on the desired station ID then press `Select` at the bottom right.
 
 Then, the station ID will appear on the config page and the settings can be applied to change the station.
 
 Furthermore, some stations update at different rates so you can set the refresh rate.
+
+### Removing Stations
+
+Navigate back to the saved stations dialog and select the station to be removed. Click the `Remove` button at the bottom left and then confirm the removal. You can then close the window or click `Cancel`. If you have removed all of the stations, you can close the window or click `Cancel` as well.
 
 ## Translating
 
@@ -72,10 +59,9 @@ Under Appearance in the widget settings, toggle "Show Background."
 - Customizability
   -   [x] Context menu refresh option
   -   [ ] Widget size/padding/scaling
-  -   [ ] Allow removal of stations from saved stations
   -   [x] Specific units choice (eg. from km/h to m/s for metric)
 - Graphical
-  -   [ ] Improve text coloring of temp and alerts for dark/transparent themes
+  -   [x] Improve text coloring of temp and alerts for dark/transparent themes
 - Parking lot
   -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
   -   [ ] Use Wunderground Plasma Ion.

@@ -39,7 +39,7 @@ GridLayout {
             pointSize: plasmoid.configuration.tempPointSize
         }
         // Use theme color if user doesn't want temp colored
-        color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"]) : Kirigami.Theme.textColor
+        color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"], Kirigami.Theme.backgroundColor) : Kirigami.Theme.textColor
     }
     Kirigami.Icon {
         id: topPanelIcon
@@ -130,7 +130,7 @@ GridLayout {
             font.pointSize: plasmoid.configuration.propPointSize
         }
         Kirigami.Icon {
-            source: Utils.getPressureTrendIcon(weatherData["details"]["pressureTrend"])
+            source: Utils.getPressureTrendIcon(weatherData["details"]["pressureTrendCode"])
 
             visible: plasmoid.configuration.showPresTrend
 
@@ -140,7 +140,7 @@ GridLayout {
                 anchors.fill: parent
 
                 mainText: weatherData["details"]["pressureTrend"]
-                subText: i18n("Pressure has %1 %2 in the last three hours.", Utils.getShortDesc(weatherData["details"]["pressureDelta"]), Utils.currentPresUnit(Math.abs(Utils.toUserPres(weatherData["details"]["pressureDelta"]))))
+                subText: Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"]) ? i18n("Pressure has risen %1 in the last three hours.", Utils.currentPresUnit(Math.abs(Utils.toUserPres(weatherData["details"]["pressureDelta"])))) : i18n("Pressure has fallen %1 in the last three hours.", Utils.currentPresUnit(Math.abs(Utils.toUserPres(weatherData["details"]["pressureDelta"]))))
             }
         }
     }

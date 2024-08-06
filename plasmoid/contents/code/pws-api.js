@@ -429,9 +429,11 @@ function getCurrentData(callback = function() {}) {
 				weatherData["winddir"] = obs["winddir"];
 				weatherData["lat"] = obs["lat"];
 				weatherData["lon"] = obs["lon"];
+				weatherData["neighborhood"] = obs["neighborhood"];
 
 				plasmoid.configuration.latitude = weatherData["lat"];
 				plasmoid.configuration.longitude = weatherData["lon"];
+				plasmoid.configuration.stationName = weatherData["neighborhood"];
 
 				printDebug("[pws-api.js] Got new current data");
 
@@ -518,6 +520,7 @@ function getExtendedConditions(callback = function() {}) {
 				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
 				weatherData["sunset"] = condVars["sunsetTimeLocal"];
 				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
+				weatherData["details"]["pressureTrendCode"] = condVars["pressureTendencyCode"];
 				weatherData["details"]["pressureDelta"] = condVars["pressureChange"];
 
 				// Determine if the precipitation is snow or rain
@@ -548,7 +551,7 @@ function getExtendedConditions(callback = function() {}) {
 							actions[actionIndex] = curAlert["responseTypes"][actionIndex]["responseType"];
 						}
 
-						var source = "Issued by: " + curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
+						var source = curAlert["source"] + " - " + curAlert["officeName"] + ", " + curAlert["officeCountryCode"];
 
 						var disclaimer = curAlert["disclaimer"] !== null ? curAlert["disclaimer"] : "None";
 

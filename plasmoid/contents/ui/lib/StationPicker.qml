@@ -68,6 +68,12 @@ RowLayout {
                 // Reset error
                 fixedErrorState = false;
             }
+
+            if (stationListModel.count === 0) {
+                // selectedStation may have picked up a value; if user removes all stations,
+                // clear that value.
+                selectedStation = "";
+            }
         }
     }
 
@@ -83,7 +89,7 @@ RowLayout {
         id: selectBtn
         Layout.fillWidth: true
         icon.name: "find-location"
-        text: i18ndc("plasma_applet_org.kde.plasma.weather", "@action:button", "Choose…")
-        onClicked: stationPicker.visible = true
+        text: i18n("Choose…")
+        onClicked: stationPicker.open()
     }
 }

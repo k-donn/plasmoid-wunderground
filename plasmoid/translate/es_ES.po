@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-07-29 14:39-0400\n"
+"POT-Creation-Date: 2024-08-05 19:44-0400\n"
 "PO-Revision-Date: 2022-03-09 20:36+0100\n"
 "Last-Translator: victorhck <victorhck@mailbox.org>\n"
 "Language-Team: Spanish <>\n"
@@ -91,7 +91,7 @@ msgid "Severity: %1"
 msgstr ""
 
 #: ../contents/ui/AlertsItem.qml
-msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>%4"
+msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4"
 msgstr ""
 
 #: ../contents/ui/BottomPanel.qml
@@ -159,12 +159,10 @@ msgid "Write to console.log:"
 msgstr "Escribir en console.log:"
 
 #: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationSearcher.qml
 msgid "Find Station"
 msgstr "Encontrar estación"
 
 #: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter Station"
 msgstr "Introducir estación"
 
@@ -177,9 +175,12 @@ msgid "Uses WGS84 geocode coordinates"
 msgstr "Utiliza coordenadas de geocodificación WGS84"
 
 #: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation ID:"
 msgstr "ID de la estación meteorológica"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Weatherstation Name:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude:"
@@ -266,7 +267,11 @@ msgid "PRESSURE"
 msgstr "PRESIÓN"
 
 #: ../contents/ui/DetailsItem.qml
-msgid "Pressure has %1 %2 in the last three hours."
+msgid "Pressure has risen %1 in the last three hours."
+msgstr ""
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Pressure has fallen %1 in the last three hours."
 msgstr ""
 
 #: ../contents/ui/DetailsItem.qml
@@ -312,52 +317,31 @@ msgid "Saved Weather Stations"
 msgstr ""
 
 #: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add more..."
+msgid "Remove Selected"
 msgstr ""
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Pending selection"
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Confirm Remove %1"
 msgstr ""
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Station %1 is active and can be used"
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Add"
 msgstr ""
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Station %1 is NOT active. Please select a different station."
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Remove"
 msgstr ""
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Test Station"
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Select"
 msgstr ""
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Station status:"
+#: ../contents/ui/lib/StationPickerDialog.qml
+msgid "Cancel"
 msgstr ""
 
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Get Nearest Station"
-msgstr "Obtener la estación más cercana"
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgctxt "Give a well known example city."
-msgid "London"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Look for location:"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Select City:"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Select Station:"
-msgstr ""
-
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "New Station: %1"
+#: ../contents/ui/lib/StationPicker.qml
+msgid "Choose…"
 msgstr ""
 
 #: ../contents/ui/main.qml
@@ -398,6 +382,9 @@ msgstr ""
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Alto: %1 Bajo: %2"
+
+#~ msgid "Get Nearest Station"
+#~ msgstr "Obtener la estación más cercana"
 
 #~ msgid "Wind from: %1"
 #~ msgstr "Viento desde: %1"

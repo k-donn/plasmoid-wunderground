@@ -88,7 +88,7 @@ ColumnLayout {
 
                     PlasmaCore.ToolTipArea {
                         mainText: i18n("Severity: %1", severity)
-                        subText: i18n("Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>%4", area, action, disclaimer, source)
+                        subText: i18n("Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4", area, action, disclaimer, source)
 
                         interactive: true
 

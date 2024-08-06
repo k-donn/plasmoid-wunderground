@@ -33,8 +33,8 @@ PlasmoidItem {
         "winddir": 0,
         "lat": 0,
         "lon": 0,
-        "sunrise": "2020-01-01T07:00:10-0500",
-        "sunset": "2020-01-01T20:00:10-0500",
+        "sunrise": "2020-08-09T07:00:10-0500",
+        "sunset": "2020-08-09T20:00:10-0500",
         "solarRad": 0,
         "humidity": 0,
         "details": {
@@ -46,6 +46,7 @@ PlasmoidItem {
             "precipRate": 0,
             "pressure": 0,
             "pressureTrend": "Steady",
+            "pressureTrendCode": 0,
             "pressureDelta": 0,
             "precipTotal": 0,
             "elev": 0
