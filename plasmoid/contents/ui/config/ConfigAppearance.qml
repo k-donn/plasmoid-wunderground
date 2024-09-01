@@ -30,6 +30,7 @@ KCM.SimpleKCM {
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
+    property alias cfg_useSystemThemeIcons: useSystemIcons.checked
     property alias cfg_tempAutoColor: tempAutoColor.checked
     property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
     property alias cfg_showPresTrend: showPresTrend.checked
@@ -96,6 +97,12 @@ KCM.SimpleKCM {
             editable: true
 
             Kirigami.FormData.label: i18n("Temperature text size")
+        }
+
+        CheckBox {
+            id: useSystemIcons
+
+            Kirigami.FormData.label: i18n("Use system theme icons:")
         }
 
         CheckBox {

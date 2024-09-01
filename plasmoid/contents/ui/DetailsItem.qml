@@ -44,17 +44,14 @@ GridLayout {
     Kirigami.Icon {
         id: topPanelIcon
 
-        // source: "gnumeric-object-arrow-symbolic"
-        // new rotation for icons:
-        // rotation: weatherData["winddir"] - 135
-
-        source: Qt.resolvedUrl("../icons/wind-barbs/" + Utils.getWindBarb(weatherData["details"]["windSpeed"])+ ".svg")
+        source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
 
         color: Kirigami.Theme.textColor
         isMask: true
 
         // wind barb icons are 270 degrees deviated from 0 degrees (north)
-        rotation: weatherData["winddir"] - 270
+        // themed icons are 135 degrees deviated
+        rotation: plasmoid.configuration.useSystemThemeIcons ? weatherData["winddir"] - 135 : weatherData["winddir"] - 270
 
 
         Layout.minimumWidth: Kirigami.Units.iconSizes.large
