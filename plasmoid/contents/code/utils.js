@@ -58,6 +58,59 @@ let ELEV_UNITS = {
 	FT: 1
 }
 
+/** Map from Wunderground provided icon codes to opendesktop icon theme descs */
+let iconThemeMap = {
+	0: "weather-storm-symbolic",
+	1: "weather-storm-symbolic",
+	2: "weather-storm-symbolic",
+	3: "weather-storm-symbolic",
+	4: "weather-storm-symbolic",
+	5: "weather-snow-rain-symbolic",
+	6: "weather-snow-rain-symbolic",
+	7: "weather-freezing-rain-symbolic",
+	8: "weather-freezing-rain-symbolic",
+	9: "weather-showers-scattered-symbolic",
+	10: "weather-freezing-rain-symbolic",
+	11: "weather-showers-symbolic",
+	12: "weather-showers-symbolic",
+	13: "weather-snow-scattered-symbolic",
+	14: "weather-snow-symbolic",
+	15: "weather-snow-symbolic",
+	16: "weather-snow-symbolic",
+	17: "weather-hail-symbolic",
+	18: "weather-snow-scattered-symbolic",
+	19: "weather-many-clouds-wind-symbolic",
+	20: "weather-fog-symbolic",
+	21: "weather-fog-symbolic",
+	22: "weather-fog-symbolic",
+	23: "weather-clouds-wind-symbolic",
+	24: "weather-clouds-wind-symbolic",
+	25: "weather-snow-symbolic",
+	26: "weather-many-clouds-symbolic",
+	27: "weather-many-clouds-symbolic",
+	28: "weather-clouds-symbolic",
+	29: "weather-clouds-night-symbolic",
+	30: "weather-few-clouds-symbolic",
+	31: "weather-clear-night-symbolic",
+	32: "weather-clear-symbolic",
+	33: "weather-few-clouds-night-symbolic",
+	34: "weather-few-clouds-day-symbolic",
+	35: "weather-freezing-storm-day-symbolic",
+	36: "weather-clear-symbolic",
+	37: "weather-storm-day-symbolic",
+	38: "weather-storm-day-symbolic",
+	39: "weather-showers-scattered-day-symbolic",
+	40: "weather-showers-symbolic",
+	41: "weather-snow-scattered-day-symbolic",
+	42: "weather-snow-symbolic",
+	43: "weather-snow-symbolic",
+	44: "weather-none-available-symbolic",
+	45: "weather-showers-scattered-night-symbolic",
+	46: "weather-snow-storm-night-symbolic",
+	47: "weather-storm-night-symbolic"
+}
+
+
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.
  *
@@ -89,44 +142,6 @@ function windDirToCard(deg) {
 }
 
 
-/**
- * Return the filename of the wind barb that should be shown for
- * the given windspeed.
- *
- * @param {number} Wind speed in API units
- *
- * @retruns {string} Filename
- */
-function getWindBarb(windSpeed) {
-	var speedKts;
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		speedKts = kmhToKts(windSpeed);
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		speedKts = mphToKts(windSpeed);
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		speedKts = mphToKts(windSpeed);
-	} else {
-		speedKts = kmhToKts(windSpeed);
-	}
-
-	if (within(speedKts, 0, 2.9999)) {
-		return "0-2";
-	} else if (within(speedKts, 3, 7.9999)) {
-		return "3-7";
-	} else if (within(speedKts, 8, 12.9999)) {
-		return "8-12";
-	} else if (within(speedKts, 13, 17.9999)) {
-		return "13-17";
-	} else if (within(speedKts, 18, 22.9999)) {
-		return "18-22";
-	} else if (within(speedKts, 23, 27.9999)) {
-		return "23-27";
-	} else if (within(speedKts, 28, 32.9999)) {
-		return "28-32";
-	} else {
-		return "28-32";
-	}
-}
 
 function cToF(degC) {
 	return degC * 1.8 + 32;
@@ -433,6 +448,60 @@ function getPressureTrendIcon(code) {
 		return "arrow-up-double-symbolic";
 	} else {
 		return "arrow-down-double-symbolic";
+	}
+}
+
+
+/**
+ * Return the filename of the wind barb that should be shown for
+ * the given windspeed.
+ *
+ * @param {number} Wind speed in API units
+ *
+ * @retruns {string} Filename
+ */
+function getWindBarbIcon(windSpeed) {
+	if (plasmoid.configuration.useSystemThemeIcons) {
+		return "gnumeric-object-arrow";
+	}
+
+	var speedKts, fileName;
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		speedKts = kmhToKts(windSpeed);
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		speedKts = mphToKts(windSpeed);
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		speedKts = mphToKts(windSpeed);
+	} else {
+		speedKts = kmhToKts(windSpeed);
+	}
+
+	if (within(speedKts, 0, 2.9999)) {
+		fileName = "0-2";
+	} else if (within(speedKts, 3, 7.9999)) {
+		fileName = "3-7";
+	} else if (within(speedKts, 8, 12.9999)) {
+		fileName = "8-12";
+	} else if (within(speedKts, 13, 17.9999)) {
+		fileName = "13-17";
+	} else if (within(speedKts, 18, 22.9999)) {
+		fileName = "18-22";
+	} else if (within(speedKts, 23, 27.9999)) {
+		fileName = "23-27";
+	} else if (within(speedKts, 28, 32.9999)) {
+		fileName = "28-32";
+	} else {
+		fileName = "28-32";
+	}
+
+	return Qt.resolvedUrl("../icons/wind-barbs/" + fileName + ".svg");
+}
+
+function getConditionIcon(code) {
+	if (plasmoid.configuration.useSystemThemeIcons) {
+		return iconThemeMap[code];
+	} else {
+		return Qt.resolvedUrl("../icons/" + iconCode + ".svg");
 	}
 }
 

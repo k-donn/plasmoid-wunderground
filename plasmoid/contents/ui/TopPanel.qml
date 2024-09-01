@@ -31,7 +31,7 @@ RowLayout {
     Kirigami.Icon {
         id: topPanelIcon
 
-        source: Qt.resolvedUrl("../icons/" + iconCode + ".svg")
+        source: Utils.getConditionIcon(iconCode)
 
         isMask: true
         color: Kirigami.Theme.textColor

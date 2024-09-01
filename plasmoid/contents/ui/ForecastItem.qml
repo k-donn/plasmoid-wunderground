@@ -63,7 +63,7 @@ RowLayout {
                 Layout.preferredHeight: preferredIconSize
                 Layout.preferredWidth: preferredIconSize
 
-                source: Qt.resolvedUrl("../icons/" + iconCode + ".svg")
+                source: Utils.getConditionIcon(iconCode)
 
                 isMask: true
                 color: Kirigami.Theme.textColor

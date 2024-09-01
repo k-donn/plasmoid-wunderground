@@ -17,7 +17,7 @@
 		"Description[ru_RU]": "Программа просмотра персональных метеостанций Wunderground",
 		"Icon": "weather-clear",
 		"Id": "com.github.k-donn.plasmoid-wunderground",
-		"License": "GPL2-or-later",
+		"License": "GPL-2.0-or-later",
 		"Name": "Wunderground",
 		"Name[de_DE]": "Wunderground",
 		"Name[es_ES]": "Wunderground",
