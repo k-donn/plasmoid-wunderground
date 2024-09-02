@@ -38,6 +38,8 @@ Upstream changes have also been merged back in from rliwoch's [`plasmoid-wunderg
 
 Portions of [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
 
+The text coloring utilities are thanks to @Gojir4 on the QML forum.
+
 ### Known Problems
 
 Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
@@ -47,12 +49,6 @@ Under Appearance in the widget settings, toggle "Show Background."
 
 ## TODO
 
-- Porting
-  -   [x] Update icons
-  -   [x] Add AQI/weather warnings
-  -   [x] Add sun rise/set info
-  -   [x] Pressure rising/falling info
-  -   [x] Github templates
 - i18n
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
