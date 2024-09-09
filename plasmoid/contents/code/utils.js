@@ -273,7 +273,7 @@ function feelsLike(temp, relHumid, windSpeed) {
  *
  * @param {number} degF Temp in Fahrenheit
  * @param {number} relHumid Percent humidity
- * @param {number} windSpeed Speed in m/h
+ * @param {number} windSpeedMph Speed in m/h
  *
  * @returns {number} What the air feels like in Fahrenheit
  */
@@ -497,11 +497,17 @@ function getWindBarbIcon(windSpeed) {
 	return Qt.resolvedUrl("../icons/wind-barbs/" + fileName + ".svg");
 }
 
+/**
+ * Return the icon representing a weather condition.
+ * 
+ * @param {number} code Wunderground provided icon code
+ * @returns {string} Either an opendesktop icon name or path to custom icon
+ */
 function getConditionIcon(code) {
 	if (plasmoid.configuration.useSystemThemeIcons) {
 		return iconThemeMap[code];
 	} else {
-		return Qt.resolvedUrl("../icons/" + iconCode + ".svg");
+		return Qt.resolvedUrl("../icons/" + code + ".svg");
 	}
 }
 

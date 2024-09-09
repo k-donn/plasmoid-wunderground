@@ -131,7 +131,7 @@ msgstr "Temperatur"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use system theme icons:"
-msgstr ""
+msgstr "Systemdesignsymbole verwenden"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
