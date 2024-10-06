@@ -5,11 +5,10 @@
  */
 
 import QtQuick
+
 import QtQuick.Layouts
-import org.kde.ksvg as KSvg
-import org.kde.plasma.plasmoid
+
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 
 GridLayout {
@@ -17,20 +16,11 @@ GridLayout {
 
     property alias iconSource: icon.source
     property alias text: label.text
-    property alias paintWidth: sizeHelper.paintedWidth
-    property alias paintHeight: sizeHelper.paintedHeight
-
-    property bool vertical: false
-    property bool useUserHeight: userHeight > 0
-
-    property int userHeight: plasmoid.configuration.compactPointSize
-    property int targetHeight: useUserHeight ? userHeight : verticalFixedHeight
-
-    readonly property bool showTemperature: !inTray
-
-    readonly property int verticalFixedHeight: 21
+    property bool vertical: false // too bad we cannot make this an enum
+    property alias active: icon.active
 
     readonly property int minimumIconSize: Kirigami.Units.iconSizes.small
+    readonly property int iconSize: iconAndTextRoot.vertical ? width : height
 
     columns: iconAndTextRoot.vertical ? 1 : 2
     rows: iconAndTextRoot.vertical ? 2 : 1
@@ -38,30 +28,12 @@ GridLayout {
     columnSpacing: 0
     rowSpacing: 0
 
-    function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {
-            console.log("[debug] [IconText.qml] " + msg);
-        }
-    }
-
-    onPaintWidthChanged: {
-        // TODO: use property binding or states inside of "text" instead of this?
-        text.Layout.minimumWidth = iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth;
-        text.Layout.maximumWidth = iconAndTextRoot.vertical ? Infinity : text.Layout.minimumWidth;
-        text.Layout.minimumHeight = iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0;
-        text.Layout.maximumHeight = iconAndTextRoot.vertical ? text.Layout.minimumHeight : Infinity;
-
-        // Loaded within scope of compactRoot; can access compactRoot properties!
-        compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth);
-    }
-
     Kirigami.Icon {
         id: icon
 
         isMask: true
-        color: Kirigami.Theme.textColor
 
-        readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
+        readonly property int implicitMinimumIconSize: Math.max(iconSize, minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
@@ -76,28 +48,27 @@ GridLayout {
         id: text
 
         // Otherwise it takes up too much space while loading
-        visible: label.text.length > 0 && showTemperature
+        visible: label.text.length > 0
 
         Layout.fillWidth: iconAndTextRoot.vertical
         Layout.fillHeight: !iconAndTextRoot.vertical
-        Layout.minimumWidth: iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth
+        Layout.minimumWidth: iconAndTextRoot.vertical ? 0 : sizehelper.paintedWidth
         Layout.maximumWidth: iconAndTextRoot.vertical ? Infinity : Layout.minimumWidth
 
-        Layout.minimumHeight: iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0
+        Layout.minimumHeight: iconAndTextRoot.vertical ? sizehelper.paintedHeight : 0
         Layout.maximumHeight: iconAndTextRoot.vertical ? Layout.minimumHeight : Infinity
 
         Text {
-            id: sizeHelper
+            id: sizehelper
 
             font {
                 family: label.font.family
                 weight: label.font.weight
                 italic: label.font.italic
-                underline: label.font.underline
-                pixelSize: targetHeight
+                pixelSize: iconAndTextRoot.vertical ? Kirigami.Units.gridUnit * 2 : 1024 // random "big enough" size - this is used as a max pixelSize by the fontSizeMode
             }
-            minimumPixelSize: 1
-            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
+            minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)
+            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.VerticalFit
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -106,43 +77,35 @@ GridLayout {
                 leftMargin: Kirigami.Units.smallSpacing
                 rightMargin: Kirigami.Units.smallSpacing
             }
-
-            smooth: true
-
+            // These magic values are taken from the digital clock, so that the
+            // text sizes here are identical with various clock text sizes
             height: {
-                var textHeightScaleFactor = 0.71;
-                return Math.min(targetHeight * textHeightScaleFactor, 3 * targetHeight);
+                const textHeightScaleFactor = (parent.height > 26) ? 0.7 : 0.9;
+                return Math.min (parent.height * textHeightScaleFactor, 3 * Kirigami.Theme.defaultFont.pixelSize);
             }
-
             visible: false
 
             // pattern to reserve some constant space TODO: improve and take formatting/i18n into account
-            text: "888 °X"
+            text: "888° X"
+            textFormat: Text.PlainText
         }
 
         PlasmaComponents.Label {
             id: label
 
-            visible: showTemperature
-
             font {
-                family: plasmoid.configuration.compactFamily
-                weight: plasmoid.configuration.compactWeight ? Font.Bold : Font.Normal
-                italic: plasmoid.configuration.compactItalic
-                underline: plasmoid.configuration.compactUnderline
-                pixelSize: targetHeight
-                pointSize: -1
+                weight: Font.Normal
+                pixelSize: 1024
             }
-
-            minimumPixelSize: 1
-
-            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
+            minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)
+            fontSizeMode: Text.Fit
+            textFormat: Text.PlainText
             wrapMode: Text.NoWrap
 
+            height: 0
+            width: 0
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            smooth: true
-
             anchors {
                 fill: parent
                 leftMargin: Kirigami.Units.smallSpacing

@@ -53,9 +53,8 @@ Under Appearance in the widget settings, toggle "Show Background."
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [x] Context menu refresh option
+  -   [ ] Option to show temperature in compact rep
   -   [ ] Widget size/padding/scaling
-  -   [x] Specific units choice (eg. from km/h to m/s for metric)
 - Graphical
   -   [x] Improve text coloring of temp and alerts for dark/transparent themes
 - Parking lot
