@@ -53,6 +53,7 @@ Under Appearance in the widget settings, toggle "Show Background."
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
 - Customizability
+  -   [ ] Move to Qt contols font dialog
   -   [ ] Option to show temperature in compact rep
   -   [ ] Widget size/padding/scaling
 - Graphical

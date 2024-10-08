@@ -100,8 +100,8 @@ PlasmoidItem {
     }
 
     property Component cr: CompactRepresentation {
-        Layout.minimumWidth: 110
-        Layout.preferredWidth: 110
+        // Layout.minimumWidth: 110
+        // Layout.preferredWidth: 110
     }
 
     function printDebug(msg) {

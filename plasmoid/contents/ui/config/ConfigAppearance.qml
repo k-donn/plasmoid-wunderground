@@ -26,7 +26,7 @@ import "../lib"
 KCM.SimpleKCM {
     id: appearanceConfig
 
-    property alias cfg_compactPointSize: compactPointSize.value
+    //property alias cfg_compactPointSize: compactPointSize.value
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
@@ -45,7 +45,7 @@ KCM.SimpleKCM {
 
         BackgroundToggle {}
 
-        Kirigami.Separator {
+        /**Kirigami.Separator {
             Kirigami.FormData.label: i18n("Compact Representation")
             Kirigami.FormData.isSection: true
         }
@@ -68,7 +68,7 @@ KCM.SimpleKCM {
 
         ConfigTextFormat {
             Kirigami.FormData.label: i18n("Font styles")
-        }
+        }*/
 
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Full Representation")
