@@ -55,10 +55,10 @@ Under Appearance in the widget settings, toggle "Show Background."
 - Customizability
   -   [x] Move to Qt contols font dialog
   -   [ ] Add underline/strikeout/style props to font customization
-  -   [ ] Option to show temperature in compact rep
+  -   [ ] Add option to choose showing of temperature in compact rep
   -   [ ] Widget size/padding/scaling
-- Graphical
-  -   [x] Improve text coloring of temp and alerts for dark/transparent themes
+- Backend
+  -   [ ] Refactor QML style
 - Parking lot
   -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
   -   [ ] Use Wunderground Plasma Ion.

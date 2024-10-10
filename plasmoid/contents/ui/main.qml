@@ -214,7 +214,7 @@ PlasmoidItem {
         }
     ]
 
-    preferredRepresentation: compactRepresentation
+    // preferredRepresentation: compactRepresentation
     fullRepresentation: fr
     compactRepresentation: cr
 }
