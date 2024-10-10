@@ -25,6 +25,11 @@ GridLayout {
     columnSpacing: 0
     rowSpacing: 0
 
+    function pointToPixel(pointSize: int): int {
+        const pixelsPerInch = Screen.pixelDensity * 25.4
+        return Math.round(pointSize / 72 * pixelsPerInch)
+    }
+
     states: [
         State {
             name: "horizontalPanel"
@@ -166,8 +171,10 @@ GridLayout {
             id: label
 
             font {
-                weight: Font.Normal
-                pixelSize: 1024
+                family: (plasmoid.configuration.autoFontAndSize || plasmoid.configuration.fontFamily.length === 0) ? Kirigami.Theme.defaultFont.family : plasmoid.configuration.fontFamily
+                weight: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.weight : plasmoid.configuration.fontWeight
+                italic: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.italic : plasmoid.configuration.italicText
+                pixelSize: plasmoid.configuration.autoFontAndSize ? 3 * Kirigami.Theme.defaultFont.pixelSize : pointToPixel(plasmoid.configuration.fontSize)
             }
             minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)
             fontSizeMode: Text.Fit

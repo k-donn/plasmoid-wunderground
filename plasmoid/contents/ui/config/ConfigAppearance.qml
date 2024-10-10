@@ -29,9 +29,6 @@ KCM.SimpleKCM {
 
     property alias cfg_autoFontAndSize: autoFontAndSizeRadioButton.checked
 
-    // boldText and fontStyleName are not used in DigitalClock.qml
-    // However, they are necessary to remember the exact font style chosen.
-    // Otherwise, when the user open the font dialog again, the style will be lost.
     property alias cfg_fontFamily: fontDialog.fontChosen.family
     property alias cfg_boldText: fontDialog.fontChosen.bold
     property alias cfg_italicText: fontDialog.fontChosen.italic
@@ -111,7 +108,7 @@ KCM.SimpleKCM {
             id: fontDialog
             title: i18nc("@title:window", "Choose a Font")
             modality: Qt.WindowModal
-            parentWindow: appearancePage.Window.window
+            parentWindow: appearanceConfig.Window.window
 
             property font fontChosen: Qt.font()
 
