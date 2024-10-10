@@ -18,6 +18,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 
@@ -26,7 +27,19 @@ import "../lib"
 KCM.SimpleKCM {
     id: appearanceConfig
 
-    //property alias cfg_compactPointSize: compactPointSize.value
+    property alias cfg_autoFontAndSize: autoFontAndSizeRadioButton.checked
+
+    // boldText and fontStyleName are not used in DigitalClock.qml
+    // However, they are necessary to remember the exact font style chosen.
+    // Otherwise, when the user open the font dialog again, the style will be lost.
+    property alias cfg_fontFamily: fontDialog.fontChosen.family
+    property alias cfg_boldText: fontDialog.fontChosen.bold
+    property alias cfg_italicText: fontDialog.fontChosen.italic
+    property alias cfg_fontWeight: fontDialog.fontChosen.weight
+    property alias cfg_fontStyleName: fontDialog.fontChosen.styleName
+    property alias cfg_fontSize: fontDialog.fontChosen.pointSize
+
+
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
@@ -45,30 +58,67 @@ KCM.SimpleKCM {
 
         BackgroundToggle {}
 
-        /**Kirigami.Separator {
+        Kirigami.Separator {
             Kirigami.FormData.label: i18n("Compact Representation")
             Kirigami.FormData.isSection: true
         }
 
-        ConfigFontFamily {
-            id: compactFontFamily
-
-            configKey: "compactFamily"
-
-            Kirigami.FormData.label: i18n("Font")
+        ButtonGroup {
+            buttons: [autoFontAndSizeRadioButton, manualFontAndSizeRadioButton]
         }
 
-        SpinBox {
-            id: compactPointSize
-
-            editable: true
-
-            Kirigami.FormData.label: i18n("Font size (0px=scale to widget)")
+        RadioButton {
+            id: autoFontAndSizeRadioButton
+            Kirigami.FormData.label: i18nc("@label:group", "Text display:")
+            text: i18nc("@option:radio", "Automatic")
         }
 
-        ConfigTextFormat {
-            Kirigami.FormData.label: i18n("Font styles")
-        }*/
+        Label {
+            text: i18nc("@label", "Text will follow the system font and expand to fill the available space.")
+            textFormat: Text.PlainText
+            Layout.fillWidth: true
+            wrapMode: Text.Wrap
+            font: Kirigami.Theme.smallFont
+        }
+
+        RowLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            RadioButton {
+                id: manualFontAndSizeRadioButton
+                text: i18nc("@option:radio setting for manually configuring the font settings", "Manual")
+                checked: !cfg_autoFontAndSize
+                onClicked: {
+                    if (cfg_fontFamily === "") {
+                        fontDialog.fontChosen = Kirigami.Theme.defaultFont
+                    }
+                }
+            }
+
+            Button {
+                text: i18nc("@action:button", "Choose Style…")
+                icon.name: "settings-configure"
+                enabled: manualFontAndSizeRadioButton.checked
+                onClicked: {
+                    fontDialog.selectedFont = fontDialog.fontChosen
+                    fontDialog.open()
+                }
+            }
+
+        }
+
+        FontDialog {
+            id: fontDialog
+            title: i18nc("@title:window", "Choose a Font")
+            modality: Qt.WindowModal
+            parentWindow: appearancePage.Window.window
+
+            property font fontChosen: Qt.font()
+
+            onAccepted: {
+                fontChosen = selectedFont
+            }
+        }
 
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Full Representation")
