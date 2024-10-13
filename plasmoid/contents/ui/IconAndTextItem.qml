@@ -192,16 +192,4 @@ GridLayout {
             }
         }
     }
-
-    Component.onCompleted: {
-        console.log("icon painted width: " + icon.paintedWidth);
-        console.log("icon width: " + icon.Layout.minimumWidth);
-        console.log("text painted width: " + text.paintedWidth);
-        console.log("text width: " + text.Layout.minimumWidth);
-        console.log("label painted width: " + label.paintedWidth);
-        console.log("label width: " + label.width);
-        console.log("iconAndTextRoot painted width: " + iconAndTextRoot.paintedWidth);
-        console.log("iconAndTextRoot width: " + iconAndTextRoot.width);
-
-    }
 }

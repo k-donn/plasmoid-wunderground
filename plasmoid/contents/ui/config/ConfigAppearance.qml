@@ -21,6 +21,8 @@ import QtQuick.Layouts
 import QtQuick.Dialogs
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 
 import "../lib"
 
@@ -64,18 +66,30 @@ KCM.SimpleKCM {
             buttons: [autoFontAndSizeRadioButton, manualFontAndSizeRadioButton]
         }
 
-        RadioButton {
-            id: autoFontAndSizeRadioButton
-            Kirigami.FormData.label: i18nc("@label:group", "Text display:")
-            text: i18nc("@option:radio", "Automatic")
-        }
+        RowLayout {
+            spacing: Kirigami.Units.smallSpacing
 
-        Label {
-            text: i18nc("@label", "Text will follow the system font and expand to fill the available space.")
-            textFormat: Text.PlainText
-            Layout.fillWidth: true
-            wrapMode: Text.Wrap
-            font: Kirigami.Theme.smallFont
+            Kirigami.FormData.label: i18n("Text display:")
+
+            RadioButton {
+                id: autoFontAndSizeRadioButton
+                text: i18n("Automatic")
+            }
+
+            Kirigami.Icon {
+                isMask: true
+                color: Kirigami.Theme.textColor
+                source: "dialog-question-symbolic"
+
+                Layout.maximumHeight: autoFontAndSizeRadioButton.height * 0.8
+
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+
+                    interactive: true
+                    subText: i18n("Text will follow the system font and expand to fill the available space.")
+                }
+            }
         }
 
         RowLayout {
@@ -83,7 +97,7 @@ KCM.SimpleKCM {
 
             RadioButton {
                 id: manualFontAndSizeRadioButton
-                text: i18nc("@option:radio setting for manually configuring the font settings", "Manual")
+                text: i18n("Manual")
                 checked: !cfg_autoFontAndSize
                 onClicked: {
                     if (cfg_fontFamily === "") {
@@ -93,12 +107,12 @@ KCM.SimpleKCM {
             }
 
             Button {
-                text: i18nc("@action:button", "Choose Style…")
+                text: i18n("Choose Style…")
                 icon.name: "settings-configure"
                 enabled: manualFontAndSizeRadioButton.checked
                 onClicked: {
-                    fontDialog.selectedFont = fontDialog.fontChosen
-                    fontDialog.open()
+                    fontDialog.selectedFont = fontDialog.fontChosen;
+                    fontDialog.open();
                 }
             }
 
@@ -106,7 +120,7 @@ KCM.SimpleKCM {
 
         FontDialog {
             id: fontDialog
-            title: i18nc("@title:window", "Choose a Font")
+            title: i18n("Choose a Font")
             modality: Qt.WindowModal
             parentWindow: appearanceConfig.Window.window
 
