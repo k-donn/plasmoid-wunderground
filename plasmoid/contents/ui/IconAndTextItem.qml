@@ -8,8 +8,8 @@ import QtQuick
 
 import QtQuick.Layouts
 
-import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 
 GridLayout {
@@ -124,6 +124,7 @@ GridLayout {
         id: icon
 
         isMask: true
+        color: Kirigami.Theme.textColor
 
         readonly property int implicitMinimumIconSize: Math.max(iconSize, minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
@@ -157,7 +158,7 @@ GridLayout {
             // These magic values are taken from the digital clock, so that the
             // text sizes here are identical with various clock text sizes
             height: {
-                const textHeightScaleFactor = (parent.height > 26) ? 0.7 : 0.9;
+                const textHeightScaleFactor = (parent.height > 26) ? 0.7: 0.9;
                 return Math.min (parent.height * textHeightScaleFactor, 3 * Kirigami.Theme.defaultFont.pixelSize);
             }
             visible: false
@@ -174,6 +175,9 @@ GridLayout {
                 family: (plasmoid.configuration.autoFontAndSize || plasmoid.configuration.fontFamily.length === 0) ? Kirigami.Theme.defaultFont.family : plasmoid.configuration.fontFamily
                 weight: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.weight : plasmoid.configuration.fontWeight
                 italic: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.italic : plasmoid.configuration.italicText
+                bold: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.bold : plasmoid.configuration.boldText
+                underline: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.underline : plasmoid.configuration.underlineText
+                strikeout: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.strikeout : plasmoid.configuration.strikeoutText
                 pixelSize: plasmoid.configuration.autoFontAndSize ? 3 * Kirigami.Theme.defaultFont.pixelSize : pointToPixel(plasmoid.configuration.fontSize)
             }
             minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)

@@ -16,15 +16,15 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
-import QtQuick.Dialogs
+import QtQuick.Dialogs as QtDialogs
 import org.kde.kcmutils as KCM
+import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 
-import "../lib"
+import "../lib" as Lib
 
 KCM.SimpleKCM {
     id: appearanceConfig
@@ -34,6 +34,8 @@ KCM.SimpleKCM {
     property alias cfg_fontFamily: fontDialog.fontChosen.family
     property alias cfg_boldText: fontDialog.fontChosen.bold
     property alias cfg_italicText: fontDialog.fontChosen.italic
+    property alias cfg_underlineText: fontDialog.fontChosen.underline
+    property alias cfg_strikeoutText: fontDialog.fontChosen.strikeout
     property alias cfg_fontWeight: fontDialog.fontChosen.weight
     property alias cfg_fontStyleName: fontDialog.fontChosen.styleName
     property alias cfg_fontSize: fontDialog.fontChosen.pointSize
@@ -55,14 +57,14 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        BackgroundToggle {}
+        Lib.BackgroundToggle {}
 
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Compact Representation")
             Kirigami.FormData.isSection: true
         }
 
-        ButtonGroup {
+        QQC.ButtonGroup {
             buttons: [autoFontAndSizeRadioButton, manualFontAndSizeRadioButton]
         }
 
@@ -71,7 +73,7 @@ KCM.SimpleKCM {
 
             Kirigami.FormData.label: i18n("Text display:")
 
-            RadioButton {
+            QQC.RadioButton {
                 id: autoFontAndSizeRadioButton
                 text: i18n("Automatic")
             }
@@ -95,7 +97,7 @@ KCM.SimpleKCM {
         RowLayout {
             spacing: Kirigami.Units.smallSpacing
 
-            RadioButton {
+            QQC.RadioButton {
                 id: manualFontAndSizeRadioButton
                 text: i18n("Manual")
                 checked: !cfg_autoFontAndSize
@@ -106,7 +108,7 @@ KCM.SimpleKCM {
                 }
             }
 
-            Button {
+            QQC.Button {
                 text: i18n("Choose Style…")
                 icon.name: "settings-configure"
                 enabled: manualFontAndSizeRadioButton.checked
@@ -118,7 +120,7 @@ KCM.SimpleKCM {
 
         }
 
-        FontDialog {
+        QtDialogs.FontDialog {
             id: fontDialog
             title: i18n("Choose a Font")
             modality: Qt.WindowModal
@@ -127,7 +129,7 @@ KCM.SimpleKCM {
             property font fontChosen: Qt.font()
 
             onAccepted: {
-                fontChosen = selectedFont
+                fontChosen = selectedFont;
             }
         }
 
@@ -136,7 +138,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: propHeadPointSize
 
             editable: true
@@ -144,7 +146,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Property header text size")
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: propPointSize
 
             editable: true
@@ -152,7 +154,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Property text size")
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: tempPointSize
 
             editable: true
@@ -160,26 +162,26 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Temperature text size")
         }
 
-        CheckBox {
+        QQC.CheckBox {
             id: useSystemIcons
 
             Kirigami.FormData.label: i18n("Use system theme icons:")
         }
 
-        CheckBox {
+        QQC.CheckBox {
             id: tempAutoColor
 
             Kirigami.FormData.label: i18n("Auto-color temperature:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: defaultLoadPage
 
             model: [i18n("Weather Details"), i18n("Forecast"), i18n("More Info")]
 
             Kirigami.FormData.label: i18n("Default page shown:")
         }
-        CheckBox {
+        QQC.CheckBox {
             id: showPresTrend
 
             Kirigami.FormData.label: i18n("Show pressure trend:")

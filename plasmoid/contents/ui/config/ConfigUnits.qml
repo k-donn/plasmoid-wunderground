@@ -16,7 +16,7 @@
  */
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls as QQC
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 
@@ -34,7 +34,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         anchors.fill: parent
 
-        ComboBox {
+        QQC.ComboBox {
             id: unitsChoice
 
             width: 100
@@ -49,7 +49,7 @@ KCM.SimpleKCM {
             visible: unitsChoice.currentIndex == 3
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: windUnitsChoice
 
             visible: unitsChoice.currentIndex == 3
@@ -59,7 +59,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Wind unit:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: rainUnitsChoice
 
             visible: unitsChoice.currentIndex == 3
@@ -69,7 +69,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Rain unit:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: snowUnitsChoice
 
             visible: unitsChoice.currentIndex == 3
@@ -79,7 +79,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Snow unit:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: tempUnitsChoice
 
             visible: unitsChoice.currentIndex == 3
@@ -89,7 +89,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Temperature unit:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: presUnitsChoice
 
             visible: unitsChoice.currentIndex == 3
@@ -99,7 +99,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Pressure unit:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: elevUnitsChoice
 
             visible: unitsChoice.currentIndex == 3

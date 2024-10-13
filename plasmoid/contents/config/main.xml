@@ -24,31 +24,30 @@
     </group>
     <group name="Appearance">
         <entry name="autoFontAndSize" type="Bool">
-            <label>Use Plasma default font and automatically determine font size.</label>
             <default>true</default>
         </entry>
-        <entry name="fontFamily" type="string">
-            <label>Font family. e.g "arial". The system font is used if this is not set.</label>
+        <entry name="fontFamily" type="String">
             <default></default>
         </entry>
         <entry name="boldText" type="Bool">
-            <label>Sets the font to bold.</label>
             <default>false</default>
         </entry>
         <entry name="italicText" type="Bool">
-            <label>Sets the font to italic.</label>
+            <default>false</default>
+        </entry>
+        <entry name="underlineText" type="Bool">
+            <default>false</default>
+        </entry>
+        <entry name="strikeoutText" type="Bool">
             <default>false</default>
         </entry>
         <entry name="fontWeight" type="Int">
-            <label>Sets font weight.</label>
             <default>50</default>
         </entry>
-        <entry name="fontStyleName" type="string">
-            <label>Sets font style </label>
+        <entry name="fontStyleName" type="String">
             <default></default>
         </entry>
         <entry name="fontSize" type="Int">
-            <label>Sets font size.</label>
             <default>10</default>
         </entry>
         <entry name="propHeadPointSize" type="Int">
