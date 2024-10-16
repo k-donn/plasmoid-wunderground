@@ -113,7 +113,7 @@ KCM.SimpleKCM {
         Kirigami.Separator{}
 
         PlasmaComponents.Label {
-            text: "Version 3.2.5"
+            text: "Version 3.3.0"
         }
 
     }
