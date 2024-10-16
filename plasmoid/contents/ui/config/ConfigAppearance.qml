@@ -16,17 +16,31 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs as QtDialogs
 import org.kde.kcmutils as KCM
+import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 
-import "../lib"
+import "../lib" as Lib
 
 KCM.SimpleKCM {
     id: appearanceConfig
 
-    property alias cfg_compactPointSize: compactPointSize.value
+    property alias cfg_autoFontAndSize: autoFontAndSizeRadioButton.checked
+    property alias cfg_fontFamily: fontDialog.fontChosen.family
+    property alias cfg_boldText: fontDialog.fontChosen.bold
+    property alias cfg_italicText: fontDialog.fontChosen.italic
+    property alias cfg_underlineText: fontDialog.fontChosen.underline
+    property alias cfg_strikeoutText: fontDialog.fontChosen.strikeout
+    property alias cfg_fontWeight: fontDialog.fontChosen.weight
+    property alias cfg_fontStyleName: fontDialog.fontChosen.styleName
+    property alias cfg_fontSize: fontDialog.fontChosen.pointSize
+
+
+    property alias cfg_showCompactTemp: showCompactTemp.checked
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
@@ -43,31 +57,86 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        BackgroundToggle {}
+        Lib.BackgroundToggle {}
 
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Compact Representation")
             Kirigami.FormData.isSection: true
         }
 
-        ConfigFontFamily {
-            id: compactFontFamily
+        QQC.CheckBox {
+            id: showCompactTemp
 
-            configKey: "compactFamily"
-
-            Kirigami.FormData.label: i18n("Font")
+            Kirigami.FormData.label: i18n("Show temperature:")
         }
 
-        SpinBox {
-            id: compactPointSize
-
-            editable: true
-
-            Kirigami.FormData.label: i18n("Font size (0px=scale to widget)")
+        QQC.ButtonGroup {
+            buttons: [autoFontAndSizeRadioButton, manualFontAndSizeRadioButton]
         }
 
-        ConfigTextFormat {
-            Kirigami.FormData.label: i18n("Font styles")
+        RowLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            Kirigami.FormData.label: i18n("Text display:")
+
+            QQC.RadioButton {
+                id: autoFontAndSizeRadioButton
+                text: i18n("Automatic")
+            }
+
+            Kirigami.Icon {
+                isMask: true
+                color: Kirigami.Theme.textColor
+                source: "dialog-question-symbolic"
+
+                Layout.maximumHeight: autoFontAndSizeRadioButton.height * 0.8
+
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+
+                    interactive: true
+                    subText: i18n("Text will follow the system font and expand to fill the available space.")
+                }
+            }
+        }
+
+        RowLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            QQC.RadioButton {
+                id: manualFontAndSizeRadioButton
+                text: i18n("Manual")
+                checked: !cfg_autoFontAndSize
+                onClicked: {
+                    if (cfg_fontFamily === "") {
+                        fontDialog.fontChosen = Kirigami.Theme.defaultFont
+                    }
+                }
+            }
+
+            QQC.Button {
+                text: i18n("Choose Style…")
+                icon.name: "settings-configure"
+                enabled: manualFontAndSizeRadioButton.checked
+                onClicked: {
+                    fontDialog.selectedFont = fontDialog.fontChosen;
+                    fontDialog.open();
+                }
+            }
+
+        }
+
+        QtDialogs.FontDialog {
+            id: fontDialog
+            title: i18n("Choose a Font")
+            modality: Qt.WindowModal
+            parentWindow: appearanceConfig.Window.window
+
+            property font fontChosen: Qt.font()
+
+            onAccepted: {
+                fontChosen = selectedFont;
+            }
         }
 
         Kirigami.Separator {
@@ -75,7 +144,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: propHeadPointSize
 
             editable: true
@@ -83,7 +152,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Property header text size")
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: propPointSize
 
             editable: true
@@ -91,7 +160,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Property text size")
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: tempPointSize
 
             editable: true
@@ -99,26 +168,26 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Temperature text size")
         }
 
-        CheckBox {
+        QQC.CheckBox {
             id: useSystemIcons
 
             Kirigami.FormData.label: i18n("Use system theme icons:")
         }
 
-        CheckBox {
+        QQC.CheckBox {
             id: tempAutoColor
 
             Kirigami.FormData.label: i18n("Auto-color temperature:")
         }
 
-        ComboBox {
+        QQC.ComboBox {
             id: defaultLoadPage
 
             model: [i18n("Weather Details"), i18n("Forecast"), i18n("More Info")]
 
             Kirigami.FormData.label: i18n("Default page shown:")
         }
-        CheckBox {
+        QQC.CheckBox {
             id: showPresTrend
 
             Kirigami.FormData.label: i18n("Show pressure trend:")

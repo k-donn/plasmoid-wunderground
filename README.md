@@ -53,11 +53,12 @@ Under Appearance in the widget settings, toggle "Show Background."
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [x] Context menu refresh option
+  -   [x] Move to Qt contols font dialog
+  -   [x] Add underline/strikeout/style props to font customization
+  -   [x] Add option to choose showing of temperature in compact rep
   -   [ ] Widget size/padding/scaling
-  -   [x] Specific units choice (eg. from km/h to m/s for metric)
-- Graphical
-  -   [x] Improve text coloring of temp and alerts for dark/transparent themes
+- Backend
+  -   [x] Refactor QML style
 - Parking lot
   -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
   -   [ ] Use Wunderground Plasma Ion.

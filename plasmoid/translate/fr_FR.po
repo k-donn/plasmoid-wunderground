@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-09-01 15:04-0400\n"
+"POT-Creation-Date: 2024-10-15 21:47-0400\n"
 "PO-Revision-Date: 2023-11-05 21:20+0100\n"
 "Last-Translator: Bruno Bianchessi <bruno.bianchessi@laposte.net>\n"
 "Language-Team: French <>\n"
@@ -102,16 +102,32 @@ msgid "Compact Representation"
 msgstr "Affichage Compact"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font"
-msgstr "Police"
+msgid "Show temperature:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font size (0px=scale to widget)"
-msgstr "Taille de la police (0px=ajuster au widget)"
+msgid "Text display:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font styles"
-msgstr "Style de police"
+msgid "Automatic"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text will follow the system font and expand to fill the available space."
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Manual"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose Style…"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose a Font"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
@@ -308,11 +324,6 @@ msgstr ""
 msgid "Configure Wunderground"
 msgstr ""
 
-#: ../contents/ui/lib/ConfigFontFamily.qml
-msgctxt "Use default font"
-msgid "Default"
-msgstr "Défaut"
-
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
 msgstr ""
@@ -383,6 +394,19 @@ msgstr ""
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Maxi: %1 Mini: %2"
+
+#~ msgid "Font"
+#~ msgstr "Police"
+
+#~ msgid "Font size (0px=scale to widget)"
+#~ msgstr "Taille de la police (0px=ajuster au widget)"
+
+#~ msgid "Font styles"
+#~ msgstr "Style de police"
+
+#~ msgctxt "Use default font"
+#~ msgid "Default"
+#~ msgstr "Défaut"
 
 #~ msgid "Get Nearest Station"
 #~ msgstr "Chercher la station la plus proche"

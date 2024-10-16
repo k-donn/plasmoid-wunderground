@@ -16,7 +16,7 @@
  */
 
 import QtQuick
-import QtQuick.Controls
+import QtQuick.Controls as QQC
 import org.kde.kcmutils as KCM
 import org.kde.kirigami as Kirigami
 
@@ -28,7 +28,7 @@ KCM.SimpleKCM {
     Kirigami.FormLayout {
         anchors.fill: parent
 
-        CheckBox {
+        QQC.CheckBox {
             id: logConsole
 
             Kirigami.FormData.label: i18n("Write to console.log:")

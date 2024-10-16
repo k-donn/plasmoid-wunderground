@@ -16,14 +16,14 @@
  */
 
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kcmutils as KCM
+import QtQuick.Controls as QQC
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
 import "../../code/pws-api.js" as StationAPI
-import "../lib"
+import "../lib" as Lib
 
 KCM.SimpleKCM {
     id: stationConfig
@@ -46,7 +46,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        StationPicker {
+        Lib.StationPicker {
             id: stationPickerEl
 
             Kirigami.FormData.label: i18n("Enter Station")
@@ -96,7 +96,7 @@ KCM.SimpleKCM {
             text: plasmoid.configuration.latitude !== "" ? plasmoid.configuration.latitude : "34.06"
         }
 
-        SpinBox {
+        QQC.SpinBox {
             id: refreshPeriod
 
             from: 1
@@ -113,7 +113,7 @@ KCM.SimpleKCM {
         Kirigami.Separator{}
 
         PlasmaComponents.Label {
-            text: "Version 3.2.2"
+            text: "Version 3.3.0"
         }
 
     }

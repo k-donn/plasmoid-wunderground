@@ -46,8 +46,8 @@ GridLayout {
 
         source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
 
-        color: Kirigami.Theme.textColor
         isMask: true
+        color: Kirigami.Theme.textColor
 
         // wind barb icons are 270 degrees deviated from 0 degrees (north)
         // themed icons are 135 degrees deviated

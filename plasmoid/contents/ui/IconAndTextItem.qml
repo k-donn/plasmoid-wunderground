@@ -5,9 +5,9 @@
  */
 
 import QtQuick
+
 import QtQuick.Layouts
-import org.kde.ksvg as KSvg
-import org.kde.plasma.plasmoid
+
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
@@ -17,43 +17,107 @@ GridLayout {
 
     property alias iconSource: icon.source
     property alias text: label.text
-    property alias paintWidth: sizeHelper.paintedWidth
-    property alias paintHeight: sizeHelper.paintedHeight
+    property alias active: icon.active
 
-    property bool vertical: false
-    property bool useUserHeight: userHeight > 0
-
-    property int userHeight: plasmoid.configuration.compactPointSize
-    property int targetHeight: useUserHeight ? userHeight : verticalFixedHeight
-
-    readonly property bool showTemperature: !inTray
-
-    readonly property int verticalFixedHeight: 21
-
+    readonly property int iconSize: plasmoid.formFactor === PlasmaCore.Types.Horizontal ? height : width
     readonly property int minimumIconSize: Kirigami.Units.iconSizes.small
-
-    columns: iconAndTextRoot.vertical ? 1 : 2
-    rows: iconAndTextRoot.vertical ? 2 : 1
 
     columnSpacing: 0
     rowSpacing: 0
 
-    function printDebug(msg) {
-        if (plasmoid.configuration.logConsole) {
-            console.log("[debug] [IconText.qml] " + msg);
+    function pointToPixel(pointSize: int): int {
+        const pixelsPerInch = Screen.pixelDensity * 25.4
+        return Math.round(pointSize / 72 * pixelsPerInch)
+    }
+
+    states: [
+        State {
+            name: "horizontalPanel"
+            when: plasmoid.formFactor === PlasmaCore.Types.Horizontal
+
+            PropertyChanges {
+                target: iconAndTextRoot
+
+                columns: 2
+                rows: 1
+            }
+
+            PropertyChanges {
+                target: icon
+
+                Layout.fillWidth: false
+                Layout.fillHeight: true
+
+                Layout.minimumWidth: implicitMinimumIconSize
+                Layout.minimumHeight: minimumIconSize
+            }
+
+            PropertyChanges {
+                target: text
+
+                Layout.fillWidth: false
+                Layout.fillHeight: true
+
+                Layout.minimumWidth: sizeHelper.paintedWidth
+                Layout.maximumWidth: Layout.minimumWidth
+
+                Layout.minimumHeight: 0
+                Layout.maximumHeight: Infinity
+            }
+
+            PropertyChanges {
+                target: sizeHelper
+
+                font {
+                    pixelSize: 1024
+                }
+                fontSizeMode: Text.VerticalFit
+            }
+        },
+        State {
+            name: "verticalPanel"
+            when: plasmoid.formFactor === PlasmaCore.Types.Vertical
+
+            PropertyChanges {
+                target: iconAndTextRoot
+
+                columns: 1
+                rows: 2
+            }
+
+            PropertyChanges {
+                target: icon
+
+                Layout.fillWidth: true
+                Layout.fillHeight: false
+
+                Layout.minimumWidth: minimumIconSize
+                Layout.minimumHeight: implicitMinimumIconSize
+            }
+
+            PropertyChanges {
+                target: text
+
+                Layout.fillWidth: true
+                Layout.fillHeight: false
+
+                Layout.minimumWidth: 0
+                Layout.maximumWidth: Infinity
+
+                Layout.minimumHeight: sizeHelper.paintedHeight
+                Layout.maximumHeight: Layout.minimumHeight
+            }
+
+            PropertyChanges {
+                target: sizeHelper
+
+                font {
+                    pixelSize: Kirigami.Units.gridUnit * 2
+                }
+                fontSizeMode: Text.HorizontalFit
+            }
         }
-    }
-
-    onPaintWidthChanged: {
-        // TODO: use property binding or states inside of "text" instead of this?
-        text.Layout.minimumWidth = iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth;
-        text.Layout.maximumWidth = iconAndTextRoot.vertical ? Infinity : text.Layout.minimumWidth;
-        text.Layout.minimumHeight = iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0;
-        text.Layout.maximumHeight = iconAndTextRoot.vertical ? text.Layout.minimumHeight : Infinity;
-
-        // Loaded within scope of compactRoot; can access compactRoot properties!
-        compactRoot.Layout.minimumWidth = (text.Layout.minimumWidth + icon.Layout.minimumWidth);
-    }
+    ]
 
     Kirigami.Icon {
         id: icon
@@ -61,30 +125,17 @@ GridLayout {
         isMask: true
         color: Kirigami.Theme.textColor
 
-        readonly property int implicitMinimumIconSize: Math.max((iconAndTextRoot.vertical ? iconAndTextRoot.width : iconAndTextRoot.height), minimumIconSize)
+        readonly property int implicitMinimumIconSize: Math.max(iconSize, minimumIconSize)
         // reset implicit size, so layout in free dimension does not stop at the default one
         implicitWidth: minimumIconSize
         implicitHeight: minimumIconSize
-
-        Layout.fillWidth: iconAndTextRoot.vertical
-        Layout.fillHeight: !iconAndTextRoot.vertical
-        Layout.minimumWidth: iconAndTextRoot.vertical ? minimumIconSize : implicitMinimumIconSize
-        Layout.minimumHeight: iconAndTextRoot.vertical ? implicitMinimumIconSize : minimumIconSize
     }
 
     Item {
         id: text
 
         // Otherwise it takes up too much space while loading
-        visible: label.text.length > 0 && showTemperature
-
-        Layout.fillWidth: iconAndTextRoot.vertical
-        Layout.fillHeight: !iconAndTextRoot.vertical
-        Layout.minimumWidth: iconAndTextRoot.vertical ? 0 : sizeHelper.paintedWidth
-        Layout.maximumWidth: iconAndTextRoot.vertical ? Infinity : Layout.minimumWidth
-
-        Layout.minimumHeight: iconAndTextRoot.vertical ? sizeHelper.paintedHeight : 0
-        Layout.maximumHeight: iconAndTextRoot.vertical ? Layout.minimumHeight : Infinity
+        visible: label.text.length > 0
 
         Text {
             id: sizeHelper
@@ -93,11 +144,8 @@ GridLayout {
                 family: label.font.family
                 weight: label.font.weight
                 italic: label.font.italic
-                underline: label.font.underline
-                pixelSize: targetHeight
             }
-            minimumPixelSize: 1
-            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
+            minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)
             wrapMode: Text.NoWrap
 
             horizontalAlignment: Text.AlignHCenter
@@ -106,43 +154,40 @@ GridLayout {
                 leftMargin: Kirigami.Units.smallSpacing
                 rightMargin: Kirigami.Units.smallSpacing
             }
-
-            smooth: true
-
+            // These magic values are taken from the digital clock, so that the
+            // text sizes here are identical with various clock text sizes
             height: {
-                var textHeightScaleFactor = 0.71;
-                return Math.min(targetHeight * textHeightScaleFactor, 3 * targetHeight);
+                const textHeightScaleFactor = (parent.height > 26) ? 0.7: 0.9;
+                return Math.min (parent.height * textHeightScaleFactor, 3 * Kirigami.Theme.defaultFont.pixelSize);
             }
-
             visible: false
 
             // pattern to reserve some constant space TODO: improve and take formatting/i18n into account
-            text: "888 °X"
+            text: "888° X"
+            textFormat: Text.PlainText
         }
 
         PlasmaComponents.Label {
             id: label
 
-            visible: showTemperature
-
             font {
-                family: plasmoid.configuration.compactFamily
-                weight: plasmoid.configuration.compactWeight ? Font.Bold : Font.Normal
-                italic: plasmoid.configuration.compactItalic
-                underline: plasmoid.configuration.compactUnderline
-                pixelSize: targetHeight
-                pointSize: -1
+                family: (plasmoid.configuration.autoFontAndSize || plasmoid.configuration.fontFamily.length === 0) ? Kirigami.Theme.defaultFont.family : plasmoid.configuration.fontFamily
+                weight: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.weight : plasmoid.configuration.fontWeight
+                italic: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.italic : plasmoid.configuration.italicText
+                bold: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.bold : plasmoid.configuration.boldText
+                underline: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.underline : plasmoid.configuration.underlineText
+                strikeout: plasmoid.configuration.autoFontAndSize ? Kirigami.Theme.defaultFont.strikeout : plasmoid.configuration.strikeoutText
+                pixelSize: plasmoid.configuration.autoFontAndSize ? 3 * Kirigami.Theme.defaultFont.pixelSize : pointToPixel(plasmoid.configuration.fontSize)
             }
-
-            minimumPixelSize: 1
-
-            fontSizeMode: iconAndTextRoot.vertical ? Text.HorizontalFit : Text.FixedSize
+            minimumPixelSize: Math.round(Kirigami.Units.gridUnit / 2)
+            fontSizeMode: Text.Fit
+            textFormat: Text.PlainText
             wrapMode: Text.NoWrap
 
+            height: 0
+            width: 0
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            smooth: true
-
             anchors {
                 fill: parent
                 leftMargin: Kirigami.Units.smallSpacing

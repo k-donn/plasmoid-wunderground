@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-09-01 15:04-0400\n"
+"POT-Creation-Date: 2024-10-15 21:47-0400\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,16 +102,32 @@ msgid "Compact Representation"
 msgstr "Kontrollleistenansicht"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font"
-msgstr "Schriftart"
+msgid "Show temperature:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font size (0px=scale to widget)"
-msgstr "Schriftzeichengröße (0px=Auf Widget skalieren) "
+msgid "Text display:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font styles"
-msgstr "Schriftartenstil"
+msgid "Automatic"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text will follow the system font and expand to fill the available space."
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Manual"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose Style…"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose a Font"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
@@ -308,11 +324,6 @@ msgstr "Desktop-Widget"
 msgid "Configure Wunderground"
 msgstr "Wunderground einrichten"
 
-#: ../contents/ui/lib/ConfigFontFamily.qml
-msgctxt "Use default font"
-msgid "Default"
-msgstr "Standard"
-
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
 msgstr "Gespeicherte Wetterstationen"
@@ -383,3 +394,16 @@ msgstr "Wetterdaten aktualisieren"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
+
+#~ msgid "Font"
+#~ msgstr "Schriftart"
+
+#~ msgid "Font size (0px=scale to widget)"
+#~ msgstr "Schriftzeichengröße (0px=Auf Widget skalieren) "
+
+#~ msgid "Font styles"
+#~ msgstr "Schriftartenstil"
+
+#~ msgctxt "Use default font"
+#~ msgid "Default"
+#~ msgstr "Standard"
