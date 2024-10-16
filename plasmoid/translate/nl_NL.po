@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-09-01 15:04-0400\n"
+"POT-Creation-Date: 2024-10-15 21:47-0400\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -103,16 +103,33 @@ msgid "Compact Representation"
 msgstr "Compacte indeling gebruiken"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font"
-msgstr "Lettertype"
+msgid "Show temperature:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font size (0px=scale to widget)"
-msgstr "Tekstgrootte (0 px = afhankelijk van widgetafmetingen)"
+msgid "Text display:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Font styles"
-msgstr "Lettertypestijlen"
+msgid "Automatic"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid ""
+"Text will follow the system font and expand to fill the available space."
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Manual"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose Style…"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose a Font"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
@@ -311,11 +328,6 @@ msgstr ""
 msgid "Configure Wunderground"
 msgstr ""
 
-#: ../contents/ui/lib/ConfigFontFamily.qml
-msgctxt "Use default font"
-msgid "Default"
-msgstr "Standaard"
-
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
 msgstr ""
@@ -386,6 +398,19 @@ msgstr ""
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Hoog: %1 - Laag: %2"
+
+#~ msgid "Font"
+#~ msgstr "Lettertype"
+
+#~ msgid "Font size (0px=scale to widget)"
+#~ msgstr "Tekstgrootte (0 px = afhankelijk van widgetafmetingen)"
+
+#~ msgid "Font styles"
+#~ msgstr "Lettertypestijlen"
+
+#~ msgctxt "Use default font"
+#~ msgid "Default"
+#~ msgstr "Standaard"
 
 #~ msgid "Get Nearest Station"
 #~ msgstr "Dichtstbijzijnde station gebruiken"

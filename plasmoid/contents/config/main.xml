@@ -23,6 +23,9 @@
         </entry>
     </group>
     <group name="Appearance">
+        <entry name="showCompactTemp" type="Bool">
+            <default>true</default>
+        </entry>
         <entry name="autoFontAndSize" type="Bool">
             <default>true</default>
         </entry>

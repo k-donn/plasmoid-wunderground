@@ -30,7 +30,6 @@ KCM.SimpleKCM {
     id: appearanceConfig
 
     property alias cfg_autoFontAndSize: autoFontAndSizeRadioButton.checked
-
     property alias cfg_fontFamily: fontDialog.fontChosen.family
     property alias cfg_boldText: fontDialog.fontChosen.bold
     property alias cfg_italicText: fontDialog.fontChosen.italic
@@ -41,6 +40,7 @@ KCM.SimpleKCM {
     property alias cfg_fontSize: fontDialog.fontChosen.pointSize
 
 
+    property alias cfg_showCompactTemp: showCompactTemp.checked
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
@@ -62,6 +62,12 @@ KCM.SimpleKCM {
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Compact Representation")
             Kirigami.FormData.isSection: true
+        }
+
+        QQC.CheckBox {
+            id: showCompactTemp
+
+            Kirigami.FormData.label: i18n("Show temperature:")
         }
 
         QQC.ButtonGroup {

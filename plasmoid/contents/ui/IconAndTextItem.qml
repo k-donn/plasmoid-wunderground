@@ -74,7 +74,6 @@ GridLayout {
                 fontSizeMode: Text.VerticalFit
             }
         },
-
         State {
             name: "verticalPanel"
             when: plasmoid.formFactor === PlasmaCore.Types.Vertical

@@ -159,7 +159,8 @@ PlasmoidItem {
     }
 
     Component.onCompleted: {
-        //printDebug(plasmoid.containment.corona.kPackage)
+        // Plasma::Containment::Type::CustomEmbedded = 129
+        // Plasma::Types::FormFactor::Horizonal = 2
         inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2;
         plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.");
         plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground;
