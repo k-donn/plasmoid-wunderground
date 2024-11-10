@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-11-10 15:53-0500\n"
+"POT-Creation-Date: 2024-11-10 16:16-0500\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -173,6 +173,10 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Details icon size:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Top panel icon margins:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
