@@ -38,6 +38,8 @@ RowLayout {
         isMask: plasmoid.configuration.applyColorScheme ? true : false
         color: Kirigami.Theme.textColor
 
+        Layout.margins: plasmoid.configuration.topIconMargins
+
         Layout.minimumWidth: preferredIconSize
         Layout.minimumHeight: preferredIconSize
         Layout.preferredWidth: Layout.minimumWidth

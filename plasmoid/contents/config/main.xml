@@ -71,6 +71,9 @@
         <entry name="detailsIconSize" type="Int">
             <default>48</default>
         </entry>
+        <entry name="topIconMargins" type="Int">
+            <default>0</default>
+        </entry>
         <entry name="tempAutoColor" type="Bool">
             <default>true</default>
         </entry>

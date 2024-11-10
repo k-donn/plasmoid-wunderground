@@ -46,6 +46,7 @@ KCM.SimpleKCM {
     property alias cfg_tempPointSize: tempPointSize.value
     property alias cfg_useSystemThemeIcons: useSystemIcons.checked
     property alias cfg_applyColorScheme: applyColorScheme.checked
+    property alias cfg_topIconMargins: topIconMargins.value
     property alias cfg_tempAutoColor: tempAutoColor.checked
     property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
     property alias cfg_showPresTrend: showPresTrend.checked
@@ -183,6 +184,14 @@ KCM.SimpleKCM {
             ]
 
             Kirigami.FormData.label: i18n("Details icon size:")
+        }
+
+        QQC.SpinBox {
+            id: topIconMargins
+
+            editable: true
+
+            Kirigami.FormData.label: i18n("Top panel icon margins:")
         }
 
         QQC.CheckBox {
