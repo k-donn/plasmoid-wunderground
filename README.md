@@ -53,9 +53,7 @@ Under Appearance in the widget settings, toggle "Show Background."
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [x] Move to Qt contols font dialog
-  -   [x] Add underline/strikeout/style props to font customization
-  -   [x] Add option to choose showing of temperature in compact rep
+  -   [ ] Customize CompactRep icon size
   -   [ ] Widget size/padding/scaling
 - Backend
   -   [x] Refactor QML style
