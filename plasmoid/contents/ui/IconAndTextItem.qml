@@ -122,7 +122,7 @@ GridLayout {
     Kirigami.Icon {
         id: icon
 
-        isMask: true
+        isMask: plasmoid.configuration.applyColorScheme ? true : false
         color: Kirigami.Theme.textColor
 
         readonly property int implicitMinimumIconSize: Math.max(iconSize, minimumIconSize)

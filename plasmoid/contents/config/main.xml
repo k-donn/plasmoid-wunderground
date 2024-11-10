@@ -65,6 +65,12 @@
         <entry name="useSystemThemeIcons" type="Bool">
             <default>false</default>
         </entry>
+        <entry name="applyColorScheme" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="detailsIconSize" type="Int">
+            <default>48</default>
+        </entry>
         <entry name="tempAutoColor" type="Bool">
             <default>true</default>
         </entry>

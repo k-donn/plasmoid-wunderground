@@ -28,7 +28,7 @@ import "../code/utils.js" as Utils
 RowLayout {
     id: forecastItemRoot
 
-    readonly property int preferredIconSize: Kirigami.Units.iconSizes.large
+    readonly property int preferredIconSize: plasmoid.configuration.detailsIconSize
 
     Repeater {
         id: forecastRepeater
@@ -65,7 +65,7 @@ RowLayout {
 
                 source: Utils.getConditionIcon(iconCode)
 
-                isMask: true
+                isMask: plasmoid.configuration.applyColorScheme ? true : false
                 color: Kirigami.Theme.textColor
 
                 PlasmaCore.ToolTipArea {

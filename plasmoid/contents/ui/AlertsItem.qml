@@ -84,6 +84,9 @@ ColumnLayout {
                 Kirigami.Icon {
                     source: "documentinfo-symbolic"
 
+                    isMask: plasmoid.configuration.applyColorScheme ? true : false
+                    color: Kirigami.Theme.textColor
+
                     Layout.alignment: Qt.AlignHCenter
 
                     PlasmaCore.ToolTipArea {

@@ -59,7 +59,59 @@ let ELEV_UNITS = {
 }
 
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
-let iconThemeMap = {
+let iconThemeMapPredefined = {
+	0: "weather-storm",
+	1: "weather-storm",
+	2: "weather-storm",
+	3: "weather-storm",
+	4: "weather-storm",
+	5: "weather-snow-rain",
+	6: "weather-snow-rain",
+	7: "weather-freezing-rain",
+	8: "weather-freezing-rain",
+	9: "weather-showers-scattered",
+	10: "weather-freezing-rain",
+	11: "weather-showers",
+	12: "weather-showers",
+	13: "weather-snow-scattered",
+	14: "weather-snow",
+	15: "weather-snow",
+	16: "weather-snow",
+	17: "weather-hail",
+	18: "weather-snow-scattered",
+	19: "weather-many-clouds-wind",
+	20: "weather-fog",
+	21: "weather-fog",
+	22: "weather-fog",
+	23: "weather-clouds-wind",
+	24: "weather-clouds-wind",
+	25: "weather-snow",
+	26: "weather-many-clouds",
+	27: "weather-many-clouds",
+	28: "weather-clouds",
+	29: "weather-clouds-night",
+	30: "weather-few-clouds",
+	31: "weather-clear-night",
+	32: "weather-clear",
+	33: "weather-few-clouds-night",
+	34: "weather-few-clouds-day",
+	35: "weather-freezing-storm-day",
+	36: "weather-clear",
+	37: "weather-storm-day",
+	38: "weather-storm-day",
+	39: "weather-showers-scattered-day",
+	40: "weather-showers",
+	41: "weather-snow-scattered-day",
+	42: "weather-snow",
+	43: "weather-snow",
+	44: "weather-none-available",
+	45: "weather-showers-scattered-night",
+	46: "weather-snow-storm-night",
+	47: "weather-storm-night"
+}
+
+/** Map from Wunderground provided icon codes to opendesktop icon theme descs */
+let iconThemeMapSymbolic = {
 	0: "weather-storm-symbolic",
 	1: "weather-storm-symbolic",
 	2: "weather-storm-symbolic",
@@ -109,7 +161,6 @@ let iconThemeMap = {
 	46: "weather-snow-storm-night-symbolic",
 	47: "weather-storm-night-symbolic"
 }
-
 
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.
@@ -461,10 +512,6 @@ function getPressureTrendIcon(code) {
  * @retruns {string} Filename
  */
 function getWindBarbIcon(windSpeed) {
-	if (plasmoid.configuration.useSystemThemeIcons) {
-		return "gnumeric-object-arrow";
-	}
-
 	var speedKts, fileName;
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		speedKts = kmhToKts(windSpeed);
@@ -505,7 +552,11 @@ function getWindBarbIcon(windSpeed) {
  */
 function getConditionIcon(code) {
 	if (plasmoid.configuration.useSystemThemeIcons) {
-		return iconThemeMap[code];
+		if (plasmoid.configuration.applyColorScheme) {
+			return iconThemeMapSymbolic[code];
+		} else {
+			return iconThemeMapPredefined[code];
+		}
 	} else {
 		return Qt.resolvedUrl("../icons/" + code + ".svg");
 	}

@@ -45,6 +45,7 @@ KCM.SimpleKCM {
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
     property alias cfg_useSystemThemeIcons: useSystemIcons.checked
+    property alias cfg_applyColorScheme: applyColorScheme.checked
     property alias cfg_tempAutoColor: tempAutoColor.checked
     property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
     property alias cfg_showPresTrend: showPresTrend.checked
@@ -85,9 +86,10 @@ KCM.SimpleKCM {
             }
 
             Kirigami.Icon {
-                isMask: true
-                color: Kirigami.Theme.textColor
                 source: "dialog-question-symbolic"
+
+                isMask: plasmoid.configuration.applyColorScheme ? true : false
+                color: Kirigami.Theme.textColor
 
                 Layout.maximumHeight: autoFontAndSizeRadioButton.height * 0.8
 
@@ -168,10 +170,31 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Temperature text size")
         }
 
+        Lib.ConfigComboBox {
+            configKey: "detailsIconSize"
+
+            model: [
+                { value: 16, text: i18n("small (16x16)")},
+                { value: 22, text: i18n("smallMedium (22x22)")},
+                { value: 32, text: i18n("medium (32x32)")},
+                { value: 48, text: i18n("large (48x48)")},
+                { value: 64, text: i18n("huge (64x64)")},
+                { value: 128, text: i18n("enormous (128x128)")}
+            ]
+
+            Kirigami.FormData.label: i18n("Details icon size:")
+        }
+
         QQC.CheckBox {
             id: useSystemIcons
 
             Kirigami.FormData.label: i18n("Use system theme icons:")
+        }
+
+        QQC.CheckBox {
+            id: applyColorScheme
+
+            Kirigami.FormData.label: i18n("Apply system colors to icons:")
         }
 
         QQC.CheckBox {
