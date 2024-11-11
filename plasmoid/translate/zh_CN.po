@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-10-15 21:47-0400\n"
-"PO-Revision-Date: 2024-11-10 23:06+0800\n"
+"POT-Creation-Date: 2024-11-10 16:16-0500\n"
+"PO-Revision-Date: 2024-11-11 17:12+0800\n"
 "Last-Translator: CloverGit <clovergit@hotmail.com>\n"
 "Language-Team: Simplified Chinese <>\n"
 "Language: zh_CN\n"
@@ -146,8 +146,44 @@ msgid "Temperature text size"
 msgstr "温度文本大小"
 
 #: ../contents/ui/config/ConfigAppearance.qml
+msgid "small (16x16)"
+msgstr "小 (16x16)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "smallMedium (22x22)"
+msgstr "较小 (22x22)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "medium (32x32)"
+msgstr "中等 (32x32)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "large (48x48)"
+msgstr "大 (48x48)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "huge (64x64)"
+msgstr "巨大 (64x64)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "enormous (128x128)"
+msgstr "特大 (128x128)"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Details icon size:"
+msgstr "详情图标大小:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Top panel icon margins:"
+msgstr "顶部面板图标边距:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use system theme icons:"
 msgstr "使用系统主题图标:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Apply system colors to icons:"
+msgstr "将系统颜色应用于图标:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
