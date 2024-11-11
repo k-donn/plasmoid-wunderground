@@ -96,6 +96,9 @@ Loader {
         Kirigami.Icon {
             id: soleIcon
 
+            isMask: plasmoid.configuration.applyColorScheme ? true : false
+            color: Kirigami.Theme.textColor
+
             source: Utils.getConditionIcon(iconCode)
             active: compactMouseArea.containsMouse
             // reset implicit size, so layout in free dimension does not stop at the default one

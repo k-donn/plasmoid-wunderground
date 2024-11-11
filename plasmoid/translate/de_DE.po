@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-10-15 21:47-0400\n"
+"POT-Creation-Date: 2024-11-10 16:16-0500\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,31 +103,31 @@ msgstr "Kontrollleistenansicht"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show temperature:"
-msgstr ""
+msgstr "Zeige Temperatur"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text display:"
-msgstr ""
+msgstr "Schriftart"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Automatic"
-msgstr ""
+msgstr "Automatisch"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text will follow the system font and expand to fill the available space."
-msgstr ""
+msgstr "System Schriftart, vorhandener Platz wird ausgefüllt"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Manual"
-msgstr ""
+msgstr "Manuell"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose Style…"
-msgstr ""
+msgstr "Wähle Schriftartenstil"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose a Font"
-msgstr ""
+msgstr "Wähle Schriftart"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
@@ -146,8 +146,44 @@ msgid "Temperature text size"
 msgstr "Temperatur"
 
 #: ../contents/ui/config/ConfigAppearance.qml
+msgid "small (16x16)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "smallMedium (22x22)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "medium (32x32)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "large (48x48)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "huge (64x64)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "enormous (128x128)"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Details icon size:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Top panel icon margins:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use system theme icons:"
 msgstr "Systemdesignsymbole verwenden"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Apply system colors to icons:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
@@ -354,7 +390,7 @@ msgstr "Abbrechen"
 
 #: ../contents/ui/lib/StationPicker.qml
 msgid "Choose…"
-msgstr "Wählen"
+msgstr "Auswählen"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
@@ -394,16 +430,3 @@ msgstr "Wetterdaten aktualisieren"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
-
-#~ msgid "Font"
-#~ msgstr "Schriftart"
-
-#~ msgid "Font size (0px=scale to widget)"
-#~ msgstr "Schriftzeichengröße (0px=Auf Widget skalieren) "
-
-#~ msgid "Font styles"
-#~ msgstr "Schriftartenstil"
-
-#~ msgctxt "Use default font"
-#~ msgid "Default"
-#~ msgstr "Standard"

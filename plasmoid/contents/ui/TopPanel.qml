@@ -28,16 +28,20 @@ import "../code/utils.js" as Utils
 RowLayout {
     id: topPanelRoot
 
+    readonly property int preferredIconSize: plasmoid.configuration.detailsIconSize
+
     Kirigami.Icon {
         id: topPanelIcon
 
         source: Utils.getConditionIcon(iconCode)
 
-        isMask: true
+        isMask: plasmoid.configuration.applyColorScheme ? true : false
         color: Kirigami.Theme.textColor
 
-        Layout.minimumWidth: Kirigami.Units.iconSizes.large
-        Layout.minimumHeight: Kirigami.Units.iconSizes.large
+        Layout.margins: plasmoid.configuration.topIconMargins
+
+        Layout.minimumWidth: preferredIconSize
+        Layout.minimumHeight: preferredIconSize
         Layout.preferredWidth: Layout.minimumWidth
         Layout.preferredHeight: Layout.minimumHeight
     }

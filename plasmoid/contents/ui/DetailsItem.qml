@@ -46,7 +46,7 @@ GridLayout {
 
         source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
 
-        isMask: true
+        isMask: plasmoid.configuration.applyColorScheme ? true : false
         color: Kirigami.Theme.textColor
 
         // wind barb icons are 270 degrees deviated from 0 degrees (north)
@@ -132,6 +132,9 @@ GridLayout {
             visible: plasmoid.configuration.showPresTrend
 
             height: Kirigami.Units.iconSizes.small
+
+            isMask: plasmoid.configuration.applyColorScheme ? true : false
+            color: Kirigami.Theme.textColor
 
             PlasmaCore.ToolTipArea {
                 anchors.fill: parent
