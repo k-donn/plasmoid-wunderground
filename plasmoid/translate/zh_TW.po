@@ -58,8 +58,8 @@ msgid "AQHI: %1"
 msgstr "AQHI: %1"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Primary pollutant:"
-msgstr "主要污染物:"
+msgid "Primary pollutant: "
+msgstr "主要污染物: "
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"

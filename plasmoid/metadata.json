@@ -15,6 +15,8 @@
 		"Description[ja_JP]": "Wunderground Personal Weather Station viewer",
 		"Description[nl_NL]": "Wunderground - Bekijk je eigen weerstation",
 		"Description[ru_RU]": "Программа просмотра персональных метеостанций Wunderground",
+		"Description[zh_CN]": "Wunderground 个人气象站查看器",
+		"Description[zh_TW]": "Wunderground 個人氣象站檢視器",
 		"Icon": "weather-clear",
 		"Id": "com.github.k-donn.plasmoid-wunderground",
 		"License": "GPL-2.0-or-later",
@@ -25,6 +27,8 @@
 		"Name[ja_JP]": "Wunderground",
 		"Name[nl_NL]": "Wunderground",
 		"Name[ru_RU]": "Wunderground",
+		"Name[zh_CN]": "Wunderground",
+		"Name[zh_TW]": "Wunderground",
 		"Version": "3.3.1",
 		"Website": "https://github.com/k-donn/plasmoid-wunderground"
 	},
