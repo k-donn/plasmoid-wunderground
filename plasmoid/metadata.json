@@ -33,7 +33,7 @@
 		"Name[ru_RU]": "Wunderground",
 		"Name[zh_CN]": "Wunderground",
 		"Name[zh_TW]": "Wunderground",
-		"Version": "3.3.1",
+		"Version": "3.3.2",
 		"Website": "https://github.com/k-donn/plasmoid-wunderground"
 	},
 	"X-KDE-ParentApp": "",
