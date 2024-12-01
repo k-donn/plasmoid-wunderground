@@ -50,8 +50,7 @@ GridLayout {
         color: Kirigami.Theme.textColor
 
         // wind barb icons are 270 degrees deviated from 0 degrees (north)
-        // themed icons are 135 degrees deviated
-        rotation: plasmoid.configuration.useSystemThemeIcons ? weatherData["winddir"] - 135 : weatherData["winddir"] - 270
+        rotation: weatherData["winddir"] - 270
 
 
         Layout.minimumWidth: Kirigami.Units.iconSizes.large

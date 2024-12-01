@@ -19,6 +19,7 @@ import QtQml
 import QtQuick
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
 import "../code/pws-api.js" as StationAPI
@@ -209,6 +210,7 @@ PlasmoidItem {
         PlasmaCore.Action {
             text: i18n("Refresh weather")
             icon.name: "view-refresh-symbolic"
+            // icon.color: Kirigami.Theme.textColor
             visible: appState == showDATA
             enabled: appState == showDATA
             onTriggered: updateWeatherData()
