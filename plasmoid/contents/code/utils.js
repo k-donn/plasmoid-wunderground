@@ -615,7 +615,7 @@ function toUserTemp(value) {
  */
 function currentTempUnit(value, shouldRound) {
 	if (shouldRound === undefined) {
-		shouldRound = true;
+		shouldRound = false;
 	}
 	var res = shouldRound ? Math.round(value) : value;
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
