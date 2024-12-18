@@ -105,6 +105,7 @@ KCM.SimpleKCM {
 
             validator: IntValidator {
                 bottom: refreshPeriod.from
+                top: refreshPeriod.to
             }
 
             Kirigami.FormData.label: i18n("Refresh period (s):")
@@ -113,7 +114,7 @@ KCM.SimpleKCM {
         Kirigami.Separator{}
 
         PlasmaComponents.Label {
-            text: "Version 3.3.2"
+            text: "Version 3.3.3"
         }
 
     }

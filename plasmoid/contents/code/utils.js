@@ -311,12 +311,12 @@ function feelsLike(temp, relHumid, windSpeed) {
 
 		var res = feelsLikeImperial(degF, relHumid, windSpeedMph);
 
-		// Convery degF result to degC so it can be passed in extpect degC to toUserTemp
+		// Convert degF result to degC so it can be passed in expected degC to toUserTemp
 		var tmpRes = fToC(res);
 
 		finalRes = toUserTemp(tmpRes);
 	}
-	return finalRes.toFixed(2);
+	return finalRes;
 }
 
 /**
@@ -610,14 +610,12 @@ function toUserTemp(value) {
  * with the user specified unit attached.
  *
  * @param {number} value Temperature
+ * @param {number} precision Decimal places to round value to
  *
  * @returns {string} User-shown value
  */
-function currentTempUnit(value, shouldRound) {
-	if (shouldRound === undefined) {
-		shouldRound = true;
-	}
-	var res = shouldRound ? Math.round(value) : value;
+function currentTempUnit(value, precision) {
+	var res = value.toFixed(precision);
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		res += " °C";
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
@@ -671,8 +669,8 @@ function toUserSpeed(value) {
  *
  * @returns {string} User-shown value
  */
-function currentSpeedUnit(value) {
-	var res = value.toFixed(1);
+function currentSpeedUnit(value, precision) {
+	var res = value.toFixed(precision);
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		res += " kmh";
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){

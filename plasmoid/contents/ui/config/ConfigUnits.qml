@@ -23,6 +23,11 @@ import org.kde.kirigami as Kirigami
 KCM.SimpleKCM {
     id: unitsConfig
 
+    property alias cfg_windPrecision: windPrecision.value
+    property alias cfg_tempPrecision: tempPrecision.value
+    property alias cfg_feelsPrecision: feelsPrecision.value
+    property alias cfg_dewPrecision: dewPrecision.value
+    property alias cfg_forecastPrecision: forecastPrecision.value
     property alias cfg_unitsChoice: unitsChoice.currentIndex
     property alias cfg_windUnitsChoice: windUnitsChoice.currentIndex
     property alias cfg_rainUnitsChoice: rainUnitsChoice.currentIndex
@@ -31,8 +36,93 @@ KCM.SimpleKCM {
     property alias cfg_presUnitsChoice: presUnitsChoice.currentIndex
     property alias cfg_elevUnitsChoice: elevUnitsChoice.currentIndex
 
+    function displayTxt(i18nStr) {
+        return i18nStr.charAt(0).toUpperCase() + i18nStr.toLowerCase().slice(1)
+    }
+
     Kirigami.FormLayout {
         anchors.fill: parent
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Precision")
+            Kirigami.FormData.isSection: true
+        }
+
+        QQC.SpinBox {
+            id: tempPrecision
+
+            Kirigami.FormData.label: i18n("Temperature:")
+
+            from: 0
+            to: 15
+
+            validator: IntValidator {
+                bottom: tempPrecision.from
+                top: tempPrecision.to
+            }
+        }
+
+        QQC.SpinBox {
+            id: windPrecision
+
+            Kirigami.FormData.label: displayTxt(i18n("WIND & GUST")) + ":"
+
+            from: 0
+            to: 15
+
+            validator: IntValidator {
+                bottom: windPrecision.from
+                top: windPrecision.to
+            }
+        }
+
+        QQC.SpinBox {
+            id: feelsPrecision
+
+            // Reuse existing i18n strings
+            Kirigami.FormData.label: i18n("Feels like %1", "").slice(0,-1) + ":"
+
+            from: 0
+            to: 15
+
+            validator: IntValidator {
+                bottom: feelsPrecision.from
+                top: feelsPrecision.to
+            }
+        }
+
+        QQC.SpinBox {
+            id: forecastPrecision
+
+            Kirigami.FormData.label: i18n("Forecast") + ":"
+
+            from: 0
+            to: 15
+
+            validator: IntValidator {
+                bottom: forecastPrecision.from
+                top: forecastPrecision.to
+            }
+        }
+        
+        QQC.SpinBox {
+            id: dewPrecision
+
+            Kirigami.FormData.label: displayTxt(i18n("DEWPOINT")) + ":"
+
+            from: 0
+            to: 15
+
+            validator: IntValidator {
+                bottom: dewPrecision.from
+                top: dewPrecision.to
+            }
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Units")
+            Kirigami.FormData.isSection: true
+        }
 
         QQC.ComboBox {
             id: unitsChoice
@@ -41,12 +131,6 @@ KCM.SimpleKCM {
             model: [i18nc("The unit system", "Metric"), i18nc("The unit system", "Imperial"), i18nc("The unit system", "Hybrid (UK)"), i18n("Custom")]
 
             Kirigami.FormData.label: i18n("Choose:")
-        }
-
-        Kirigami.Separator {
-            Kirigami.FormData.label: ""
-            Kirigami.FormData.isSection: true
-            visible: unitsChoice.currentIndex == 3
         }
 
         QQC.ComboBox {

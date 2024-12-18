@@ -85,6 +85,21 @@
         </entry>
     </group>
     <group name="Units">
+        <entry name="windPrecision" type="Int">
+            <default>1</default>
+        </entry>
+        <entry name="tempPrecision" type="Int">
+            <default>1</default>
+        </entry>
+        <entry name="feelsPrecision" type="Int">
+            <default>2</default>
+        </entry>
+        <entry name="dewPrecision" type="Int">
+            <default>1</default>
+        </entry>
+        <entry name="forecastPrecision" type="Int">
+            <default>0</default>
+        </entry>
         <entry name="unitsChoice" type="Int">
             <default>0</default>
         </entry>
