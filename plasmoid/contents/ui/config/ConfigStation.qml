@@ -105,6 +105,7 @@ KCM.SimpleKCM {
 
             validator: IntValidator {
                 bottom: refreshPeriod.from
+                top: refreshPeriod.to
             }
 
             Kirigami.FormData.label: i18n("Refresh period (s):")

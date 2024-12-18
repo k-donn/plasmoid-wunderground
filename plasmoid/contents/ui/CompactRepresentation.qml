@@ -86,7 +86,7 @@ Loader {
             id: iconAndTextItem
 
             iconSource: Utils.getConditionIcon(iconCode)
-            text: appState == showDATA ? Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"])) : "--- °X"
+            text: appState == showDATA ? Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision) : "--- °X"
         }
     }
 

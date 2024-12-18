@@ -33,7 +33,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: temp
-        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]))
+        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]),plasmoid.configuration.tempPrecision)
         font {
             bold: true
             pointSize: plasmoid.configuration.tempPointSize
@@ -70,7 +70,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: feelsLike
-        text: i18n("Feels like %1", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"])))
+        text: i18n("Feels like %1", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]),plasmoid.configuration.feelsPrecision))
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
@@ -80,7 +80,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: wind
-        text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(1) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]))
+        text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(plasmoid.configuration.windPrecision) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]),plasmoid.configuration.windPrecision)
         font.pointSize: plasmoid.configuration.propPointSize
     }
 
@@ -111,7 +111,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: dew
-        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]))
+        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]),plasmoid.configuration.dewPrecision)
         font.pointSize: plasmoid.configuration.propPointSize
     }
     PlasmaComponents.Label {
