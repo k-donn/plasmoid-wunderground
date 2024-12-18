@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-11-10 16:16-0500\n"
+"POT-Creation-Date: 2024-12-18 16:43-0500\n"
 "PO-Revision-Date: 2024-11-11 17:28+0800\n"
 "Last-Translator: CloverGit <clovergit@hotmail.com>\n"
 "Language-Team: Traditional Chinese <>\n"
@@ -33,7 +33,7 @@ msgstr "站點"
 msgid "Appearance"
 msgstr "外觀"
 
-#: ../contents/config/config.qml
+#: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
 msgstr "單位"
 
@@ -193,7 +193,7 @@ msgstr "自動顏色溫度:"
 msgid "Weather Details"
 msgstr "天氣詳情"
 
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
 msgid "Forecast"
 msgstr "天氣預報"
 
@@ -250,6 +250,27 @@ msgid "Refresh period (s):"
 msgstr "刷新週期 (秒):"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Precision"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Temperature:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+msgid "WIND & GUST"
+msgstr "風速和陣風"
+
+#. i18n strings
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+msgid "Feels like %1"
+msgstr "體感溫度 %1"
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+msgid "DEWPOINT"
+msgstr "露點"
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Metric"
 msgstr "公制"
@@ -297,20 +318,8 @@ msgid "Elevation unit:"
 msgstr "海拔單位:"
 
 #: ../contents/ui/DetailsItem.qml
-msgid "WIND & GUST"
-msgstr "風速和陣風"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Feels like %1"
-msgstr "體感溫度 %1"
-
-#: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "風向: %1 (%2°)"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "DEWPOINT"
-msgstr "露點"
 
 #: ../contents/ui/DetailsItem.qml
 msgctxt "Precipitaion rate"

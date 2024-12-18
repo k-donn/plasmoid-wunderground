@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-11-10 16:16-0500\n"
+"POT-Creation-Date: 2024-12-18 16:43-0500\n"
 "PO-Revision-Date: 2023-07-03 20:36+0100\n"
 "Last-Translator: AleksZZ <alexyvp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Appearance"
 msgstr ""
 
-#: ../contents/config/config.qml
+#: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
 msgstr ""
 
@@ -193,7 +193,7 @@ msgstr ""
 msgid "Weather Details"
 msgstr "Информация о погоде"
 
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
 msgid "Forecast"
 msgstr "Прогноз"
 
@@ -250,6 +250,27 @@ msgid "Refresh period (s):"
 msgstr "Интервал обновления (сек):"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Precision"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Temperature:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+msgid "WIND & GUST"
+msgstr "ВЕТЕР и ПОРЫВЫ"
+
+#. i18n strings
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+msgid "Feels like %1"
+msgstr "По ощущениям %1"
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+msgid "DEWPOINT"
+msgstr "ТОЧКА РОСЫ"
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Metric"
 msgstr "Метрическая"
@@ -297,20 +318,8 @@ msgid "Elevation unit:"
 msgstr ""
 
 #: ../contents/ui/DetailsItem.qml
-msgid "WIND & GUST"
-msgstr "ВЕТЕР и ПОРЫВЫ"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Feels like %1"
-msgstr "По ощущениям %1"
-
-#: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Напралвение ветра: %1 (%2°)"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "DEWPOINT"
-msgstr "ТОЧКА РОСЫ"
 
 #: ../contents/ui/DetailsItem.qml
 msgctxt "Precipitaion rate"
