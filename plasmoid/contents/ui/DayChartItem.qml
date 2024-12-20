@@ -1,4 +1,5 @@
 /*
+ * Copyright 2022  Rafal (Raf) Liwoch
  * Copyright 2024  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
@@ -15,30 +16,5 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-import QtQuick
-import QtQuick.Controls as QQC
-import org.kde.kcmutils as KCM
-import org.kde.kirigami as Kirigami
 
-KCM.SimpleKCM {
-    id: debugConfig
 
-    property alias cfg_logConsole: logConsole.checked
-    property alias cfg_useLegacyAPI: useLegacyAPI.checked
-
-    Kirigami.FormLayout {
-        anchors.fill: parent
-
-        QQC.CheckBox {
-            id: logConsole
-
-            Kirigami.FormData.label: i18n("Write to console.log:")
-        }
-
-        QQC.CheckBox {
-            id: useLegacyAPI
-
-            Kirigami.FormData.label: i18n("Use Legacy Forecast API:")
-        }
-    }
-}

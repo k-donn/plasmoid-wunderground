@@ -1,5 +1,6 @@
 /*
  * Copyright 2024  Kevin Donnelly
+ * Copyright 2024  dniminenn
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -61,8 +62,6 @@ let ELEV_UNITS = {
 	FT: 1
 }
 
-
-
 let severityColorMap = {
 	1: "#cc3300",
 	2: "#ff9966",
@@ -76,7 +75,7 @@ let severityColorMap = {
  * Otherwise, return two dashes for placeholder.
  *
  * @param value API value
- * @returns {any|string} `value` or "--"
+ * @returns {any|"--"} `value` or "--"
  */
 function nullableField(value) {
 	if (value != null) {
@@ -179,6 +178,7 @@ function getNearestStation() {
 	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -221,6 +221,7 @@ function getNearestStations(latLongObj) {
 	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -270,6 +271,7 @@ function getLocations(city) {
 	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -463,8 +465,10 @@ function getExtendedConditions(callback = function() {}) {
 				var alertsVars = combinedVars["v3alertsHeadlines"];
 				var airQualVars = combinedVars["v3-wx-globalAirQuality"]["globalairquality"];
 
+				var isNight = condVars["dayOrNight"] === "N";
 				iconCode = condVars["iconCode"];
 				conditionNarrative = condVars["wxPhraseLong"];
+				weatherData["isNight"] = isNight;
 				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
 				weatherData["sunset"] = condVars["sunsetTimeLocal"];
 				weatherData["details"]["pressureTrend"] = condVars["pressureTendencyTrend"];
@@ -543,14 +547,163 @@ function getExtendedConditions(callback = function() {}) {
 	req.send();
 }
 
+/**
+ * Call the forecast function according to user choice.
+ */
+function getForecastData() {
+	if (plasmoid.configuration.useLegacyAPI) {
+		getForecastDataV1();
+	} else {
+		getForecastDataV3();
+	}
+}
 
 /**
- * Fetch the forecast data and place it in the forecast data model.
+ * Fetch the forecast data and place it in the forecast data model using V3 API.
+ * 
+ * See note in README for more info.
  *
  * @todo Incorporate a bitmapped appState field so an error with forecasts
  * doesn't show an error screen for entire widget.
  */
-function getForecastData() {
+function getForecastDataV3() {
+	var req = new XMLHttpRequest();
+
+	var long = plasmoid.configuration.longitude;
+	var lat = plasmoid.configuration.latitude;
+
+	var url = "https://api.weather.com/v3/wx/forecast/daily/7day";
+	url += "?geocode=" + lat + "," + long;
+	url += "&apiKey=" + API_KEY;
+	url += "&language=" + Qt.locale().name.replace("_","-");
+
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		url += "&units=m";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		url += "&units=e";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+		url += "&units=h";
+	} else {
+		url += "&units=m";
+	}
+
+	url += "&format=json";
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onerror = function () {
+		printDebug("[pws-api.js] " + req.responseText);
+	};
+
+	printDebug("[pws-api.js] " + url);
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				forecastModel.clear();
+
+				var res = JSON.parse(req.responseText);
+
+				var dailyForecastVars = res;
+
+				var dailyDayPart = dailyForecastVars["daypart"][0];
+				for (var period = 0; period < dailyForecastVars["dayOfWeek"].length; period++) {
+					var isFirstNight = period === 0 && weatherData["isNight"];
+					var daypartPeriod = isFirstNight ? 1 : period * 2;
+
+
+					var fullDateTime = dailyForecastVars["validTimeLocal"][period];
+					var date = parseInt(
+						fullDateTime.split("T")[0].split("-")[2]
+					);
+
+					var high = isFirstNight ? dailyDayPart["temperature"][daypartPeriod] : dailyForecastVars["calendarDayTemperatureMax"][period];
+					var low = isFirstNight ? dailyForecastVars["temperatureMin"][period] : dailyForecastVars["calendarDayTemperatureMin"][period];
+
+					var heatIndexThresh,windChillThresh;
+					if (unitsChoice === UNITS_SYSTEM.METRIC) {
+						heatIndexThresh = 21.1;
+						windChillThresh = 16.17;
+					} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+						heatIndexThresh = 70;
+						windChillThresh = 61;
+					} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+						heatIndexThresh = 294.26;
+						windChillThresh = 289.32;
+					} else {
+						heatIndexThresh = 21.1;
+						windChillThresh = 16.17;
+					}
+
+					var feelsLike;
+					if (dailyDayPart["temperature"][daypartPeriod] > heatIndexThresh) {
+						feelsLike = dailyDayPart["temperatureHeatIndex"][daypartPeriod];
+					} else if (dailyDayPart["temperature"][daypartPeriod] < windChillThresh) {
+						feelsLike = dailyDayPart["temperatureWindChill"][daypartPeriod];
+					} else {
+						feelsLike = dailyDayPart["temperatureWindChill"][daypartPeriod];
+					}
+
+					// API does not return a 12char weather description for non-English languages, but it always returns a 32char. Check for empty string.
+					var shortDesc;
+					if (dailyDayPart["wxPhraseShort"][daypartPeriod] !== "") {
+						shortDesc = dailyDayPart["wxPhraseShort"][daypartPeriod];
+					} else {
+						shortDesc = dailyDayPart["wxPhraseLong"][daypartPeriod]
+					}
+
+					var snowDesc = dailyDayPart["snowRange"][daypartPeriod] !== "" ? dailyDayPart["snowRange"][daypartPeriod] : "N/A";
+					var thunderDesc = dailyDayPart["thunderCategory"][daypartPeriod] !== null && dailyDayPart["thunderCategory"][daypartPeriod] !== "" ? dailyDayPart["thunderCategory"][daypartPeriod] : "N/A";
+
+					// TODO: Golf and Thunder translation. Choice of V1/V3 forecast API
+					forecastModel.append({
+						date: date,
+						dayOfWeek: dailyDayPart["daypartName"][daypartPeriod],
+						iconCode: dailyDayPart["iconCode"][daypartPeriod],
+						high: high,
+						low: low,
+						feelsLike: feelsLike,
+						shortDesc: shortDesc,
+						longDesc: dailyForecastVars["narrative"][period],
+						thunderDesc: thunderDesc,
+						windDesc: dailyDayPart["windPhrase"][daypartPeriod],
+						uvDesc: dailyDayPart["uvDescription"][daypartPeriod],
+						snowDesc: snowDesc,
+						golfDesc: !isFirstNight ? "Good day for golf." : "Don't play golf at night."
+					});
+				}
+
+				currDayHigh = forecastModel.get(0).high;
+				currDayLow = forecastModel.get(0).low;
+
+				printDebug("[pws-api.js] Got new forecast data");
+
+				showForecast = true;
+			} else {
+				errorStr = "Could not fetch forecast data";
+
+				printDebug("[pws-api.js] " + errorStr);
+
+				appState = showERROR;
+			}
+		}
+	};
+
+	req.send();
+}
+
+/**
+ * Fetch the forecast data and place it in the forecast data model using V1 API.
+ * 
+ * See note in README for more info.
+ *
+ * @todo Incorporate a bitmapped appState field so an error with forecasts
+ * doesn't show an error screen for entire widget.
+ */
+function getForecastDataV1() {
 	var req = new XMLHttpRequest();
 
 	var url = "https://api.weather.com/v1/geocode";
@@ -578,6 +731,7 @@ function getForecastData() {
 	req.open("GET", url);
 
 	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -602,7 +756,7 @@ function getForecastData() {
 					);
 
 					// API returns empty string if no snow. Check for empty string.
-					var snowDesc = "";
+					var snowDesc;
 					if (isDay) {
 						snowDesc =
 							day["snow_phrase"] === ""
@@ -616,7 +770,7 @@ function getForecastData() {
 					}
 
 					// API does not return a thunderDesc for non-English languages. Check for null value.
-					var thunderDesc = "";
+					var thunderDesc;
 					if (isDay) {
 						thunderDesc = day["thunder_enum_phrase"] !== null ? day["thunder_enum_phrase"] : "N/A"
 					} else {
@@ -624,7 +778,7 @@ function getForecastData() {
 					}
 
 					// API does not return a 12char weather description for non-English languages, but it always returns a 32char. Check for empty string.
-					var shortDesc = "";
+					var shortDesc;
 					if (isDay) {
 						shortDesc = day["phrase_12char"] !== "" ? day["phrase_12char"] : day["phrase_32char"]
 					} else {
@@ -639,7 +793,7 @@ function getForecastData() {
 						iconCode: isDay ? day["icon_code"] : night["icon_code"],
 						high: isDay ? forecast["max_temp"] : night["hi"],
 						low: forecast["min_temp"],
-						feelsLike: isDay ? day["hi"] : night["hi"],
+						feelsLike: isDay ? day["wc"] : night["wc"],
 						shortDesc: shortDesc,
 						longDesc: isDay ? day["narrative"] : night["narrative"],
 						thunderDesc: thunderDesc,

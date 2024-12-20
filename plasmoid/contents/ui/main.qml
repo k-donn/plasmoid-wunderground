@@ -31,6 +31,7 @@ PlasmoidItem {
         "stationID": "",
         "uv": 0,
         "obsTimeLocal": "",
+        "isNight": false,
         "winddir": 0,
         "lat": 0,
         "lon": 0,
@@ -90,6 +91,7 @@ PlasmoidItem {
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
+    property bool useLegacyAPI: plasmoid.configuration.useLegacyAPI
 
     property bool inTray: false
     // Metric units change based on precipitation type
@@ -132,6 +134,14 @@ PlasmoidItem {
         StationAPI.getForecastData();
     }
 
+    onStationIDChanged: {
+        printDebug("Station ID changed");
+
+        // Show loading screen after ID change
+        appState = showLOADING;
+        updateWeatherData();
+    }
+
     onUnitsChoiceChanged: {
         printDebug("Units changed");
 
@@ -143,12 +153,9 @@ PlasmoidItem {
         }
     }
 
-    onStationIDChanged: {
-        printDebug("Station ID changed");
-
-        // Show loading screen after ID change
-        appState = showLOADING;
-        updateWeatherData();
+    onUseLegacyAPIChanged: {
+        printDebug("Forecast API changed");
+        updateForecastData();
     }
 
     onWeatherDataChanged: {
