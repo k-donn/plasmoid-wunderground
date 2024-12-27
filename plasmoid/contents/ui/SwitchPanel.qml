@@ -43,6 +43,12 @@ ColumnLayout {
         }
 
         PlasmaComponents.TabButton {
+            id: dayChartButton
+
+            text: i18n("Day Chart")
+        }
+
+        PlasmaComponents.TabButton {
             id: moreInfoTabButton
 
             text: i18n("More Info")
@@ -71,6 +77,15 @@ ColumnLayout {
 
         ForecastItem {
             id: forecastItem
+
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height * 0.75
+
+            Layout.alignment: Qt.AlignTop
+        }
+
+        DayChartItem {
+            id: dayChartItem
 
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height * 0.75

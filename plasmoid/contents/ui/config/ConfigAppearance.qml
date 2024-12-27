@@ -215,7 +215,7 @@ KCM.SimpleKCM {
         QQC.ComboBox {
             id: defaultLoadPage
 
-            model: [i18n("Weather Details"), i18n("Forecast"), i18n("More Info")]
+            model: [i18n("Weather Details"), i18n("Forecast"), i18n("Day Chart"), i18n("More Info")]
 
             Kirigami.FormData.label: i18n("Default page shown:")
         }

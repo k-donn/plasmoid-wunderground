@@ -19,44 +19,44 @@ let UNITS_SYSTEM = {
 	METRIC: 0,
 	IMPERIAL: 1,
 	HYBRID: 2,
-	CUSTOM: 3
-}
+	CUSTOM: 3,
+};
 
 let TEMP_UNITS = {
 	C: 0,
 	F: 1,
-	K: 2
-}
+	K: 2,
+};
 
 let WIND_UNITS = {
 	KMH: 0,
 	MPH: 1,
-	MPS: 2
-}
+	MPS: 2,
+};
 
 let RAIN_UNITS = {
 	MM: 0,
 	IN: 1,
 	CM: 2,
-}
+};
 
 let SNOW_UNITS = {
 	MM: 0,
 	IN: 1,
-	CM: 2
-}
+	CM: 2,
+};
 
 let PRES_UNITS = {
 	MB: 0,
 	INHG: 1,
 	MMHG: 2,
-	HPA: 3
-}
+	HPA: 3,
+};
 
 let ELEV_UNITS = {
 	M: 0,
-	FT: 1
-}
+	FT: 1,
+};
 
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
 let iconThemeMapPredefined = {
@@ -107,8 +107,8 @@ let iconThemeMapPredefined = {
 	44: "weather-none-available",
 	45: "weather-showers-scattered-night",
 	46: "weather-snow-storm-night",
-	47: "weather-storm-night"
-}
+	47: "weather-storm-night",
+};
 
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
 let iconThemeMapSymbolic = {
@@ -159,8 +159,20 @@ let iconThemeMapSymbolic = {
 	44: "weather-none-available-symbolic",
 	45: "weather-showers-scattered-night-symbolic",
 	46: "weather-snow-storm-night-symbolic",
-	47: "weather-storm-night-symbolic"
-}
+	47: "weather-storm-night-symbolic",
+};
+
+let chartIconMap = {
+	temperature: "thermometer",
+	uvIndex: 32,
+	pressure: "compass",
+	cloudCover: 28,
+	humidity: 36,
+	precipitationChance: "compass",
+	precipitationRate: "moon",
+	snowPrecipitationRate: 42,
+	wind: 23,
+};
 
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.
@@ -191,8 +203,6 @@ function windDirToCard(deg) {
 	deg *= 10;
 	return directions[Math.round((deg % 3600) / 255)];
 }
-
-
 
 function cToF(degC) {
 	return degC * 1.8 + 32;
@@ -258,7 +268,6 @@ function mbToMmhg(mb) {
 	return mb * 0.750062;
 }
 
-
 /**
  * Returns whether value is within the range of [low, high).
  * Inclusive lower; exclusive upper
@@ -297,7 +306,7 @@ function feelsLike(temp, relHumid, windSpeed) {
 		windSpeedMph = windSpeed;
 
 		finalRes = feelsLikeImperial(degF, relHumid, windSpeedMph);
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		degF = cToF(temp);
 		windSpeedMph = windSpeed;
 
@@ -390,14 +399,14 @@ function windChillF(degF, windSpeedMph) {
  */
 function heatColor(temp, bgColor) {
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-        return heatColorC(temp, bgColor);
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
-        return heatColorF(temp, bgColor);
+		return heatColorC(temp, bgColor);
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return heatColorF(temp, bgColor);
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-        return heatColorC(temp, bgColor);
+		return heatColorC(temp, bgColor);
 	} else {
 		// Then, temp is in Celcius
-        return heatColorC(temp, bgColor);
+		return heatColorC(temp, bgColor);
 	}
 }
 
@@ -420,9 +429,9 @@ function heatColorC(degC, bgColor) {
 		: degC > 23.9
 		? "#FDAE61"
 		: degC > 21.1
-		? lightDark(bgColor, "#E2B434" ,"#FEE08B")
+		? lightDark(bgColor, "#E2B434", "#FEE08B")
 		: degC > 15.5
-		? lightDark(bgColor, "#B1CC2E" , "#E6F598")
+		? lightDark(bgColor, "#B1CC2E", "#E6F598")
 		: degC > 10
 		? lightDark(bgColor, "#6EBA50", "#ABDDA4")
 		: degC > 4.4
@@ -451,9 +460,9 @@ function heatColorF(degF, bgColor) {
 		: degF > 75
 		? "#FDAE61"
 		: degF > 70
-		? lightDark(bgColor, "#E2B434" ,"#FEE08B")
+		? lightDark(bgColor, "#E2B434", "#FEE08B")
 		: degF > 60
-		? lightDark(bgColor, "#B1CC2E" , "#E6F598")
+		? lightDark(bgColor, "#B1CC2E", "#E6F598")
 		: degF > 50
 		? lightDark(bgColor, "#6EBA50", "#ABDDA4")
 		: degF > 40
@@ -463,6 +472,17 @@ function heatColorF(degF, bgColor) {
 		: "#5E4FA2";
 }
 
+/**
+ * Wrap a unit/value pair with a rate value with brackets.
+ *
+ * @param {string} unit Complete string unit to display
+ * @param {string} unitInterval Rate that value is displayed
+ * @returns {string} Provided text wrapped in brackets
+ */
+function wrapInBrackets(unit, unitInterval) {
+	return unit !== "" ? `[${unit}${unitInterval}]` : unit;
+}
+
 // Credit to @Gojir4
 /*!
  *   Select a color depending on whether the background is light or dark.
@@ -470,21 +490,21 @@ function heatColorF(degF, bgColor) {
  *   \c darkColor is the color used on a dark background.
  */
 function lightDark(background, lightColor, darkColor) {
-	return isDarkColor(background) ? darkColor : lightColor
+	return isDarkColor(background) ? darkColor : lightColor;
 }
 
 /*!
  *   Returns true if the color is dark and should have light content on top
  */
 function isDarkColor(background) {
-	var temp = Qt.darker(background, 1) //Force conversion to color QML type object
-	var a = 1 - ( 0.299 * temp.r + 0.587 * temp.g + 0.114 * temp.b);
-	return temp.a > 0 && a >= 0.3
+	var temp = Qt.darker(background, 1); //Force conversion to color QML type object
+	var a = 1 - (0.299 * temp.r + 0.587 * temp.g + 0.114 * temp.b);
+	return temp.a > 0 && a >= 0.3;
 }
 
 /**
  * Return an icon to represent the changing barometric pressure.
- * 
+ *
  * @param {0|1|2|3|4} code Code provided by API
  * @returns {string} Opendesktop icon name
  */
@@ -501,7 +521,6 @@ function getPressureTrendIcon(code) {
 		return "arrow-down-double-symbolic";
 	}
 }
-
 
 /**
  * Return the filename of the wind barb that should be shown for
@@ -546,7 +565,7 @@ function getWindBarbIcon(windSpeed) {
 
 /**
  * Return the icon representing a weather condition.
- * 
+ *
  * @param {number} code Wunderground provided icon code
  * @returns {string} Either an opendesktop icon name or path to custom icon
  */
@@ -562,11 +581,15 @@ function getConditionIcon(code) {
 	}
 }
 
+function getChartIcon(code) {
+	return Qt.resolvedUrl("../icons/" + chartIconMap[code] + ".svg");
+}
+
 /**
  * Return whether pressure has increased.
  * True = increased
  * False = decreased/no change
- * 
+ *
  * @param {0|1|2|3|4} code Code provided by API
  * @returns {boolean}
  */
@@ -577,7 +600,6 @@ function hasPresIncreased(code) {
 		return false;
 	}
 }
-
 
 /**
  * Take in API temp values and convert them to user choosen units.
@@ -591,9 +613,9 @@ function hasPresIncreased(code) {
 function toUserTemp(value) {
 	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in Celcius
-		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C){
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
 			return value;
-		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F){
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
 			return cToF(value);
 		} else {
 			return cToK(value);
@@ -603,7 +625,6 @@ function toUserTemp(value) {
 		return value;
 	}
 }
-
 
 /**
  * Take in a numeric temperature value and return a string
@@ -618,14 +639,14 @@ function currentTempUnit(value, precision) {
 	var res = value.toFixed(precision);
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		res += " °C";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		res += " °F";
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		res += " °C";
 	} else {
-		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C){
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
 			res += " °C";
-		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F){
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
 			res += " °F";
 		} else {
 			res += " °K";
@@ -633,7 +654,6 @@ function currentTempUnit(value, precision) {
 	}
 	return res;
 }
-
 
 /**
  * Take in API wind speed values and convert them to user choosen units.
@@ -647,9 +667,9 @@ function currentTempUnit(value, precision) {
 function toUserSpeed(value) {
 	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in kmh
-		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH){
+		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH) {
 			return value;
-		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH){
+		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH) {
 			return kmhToMph(value);
 		} else {
 			return kmhToMps(value);
@@ -659,7 +679,6 @@ function toUserSpeed(value) {
 		return value;
 	}
 }
-
 
 /**
  * Take in a numeric wind speed value and return a string
@@ -673,14 +692,14 @@ function currentSpeedUnit(value, precision) {
 	var res = value.toFixed(precision);
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		res += " kmh";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL){
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		res += " mph";
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		res += " mph";
 	} else {
-		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH){
+		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH) {
 			res += " kmh";
-		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH){
+		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH) {
 			res += " mph";
 		} else {
 			res += " m/s";
@@ -688,7 +707,6 @@ function currentSpeedUnit(value, precision) {
 	}
 	return res;
 }
-
 
 /**
  * Take in API elevation and convert it to user choosen units.
@@ -739,7 +757,6 @@ function currentElevUnit(value) {
 	return res;
 }
 
-
 /**
  * Take in API precip and convert it to user choosen units.
  * When a user chooses custom units, the API returns metric. So,
@@ -756,18 +773,22 @@ function toUserPrecip(value, isRain) {
 	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		if (isRain) {
 			// Then, value is in mm
-			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM){
+			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM) {
 				return value;
-			} else if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN){
+			} else if (
+				plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN
+			) {
 				return mmToIn(value);
 			} else {
 				return mmToCm(value);
 			}
 		} else {
 			// Then, value is in cm
-			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM){
+			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM) {
 				return cmToMm(value);
-			} else if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN){
+			} else if (
+				plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN
+			) {
 				return cmToIn(value);
 			} else {
 				return value;
@@ -799,7 +820,7 @@ function currentPrecipUnit(value, isRain) {
 			res += " cm";
 		}
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return res += " in";
+		return (res += " in");
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		if (isRain) {
 			res += " mm";
@@ -810,17 +831,21 @@ function currentPrecipUnit(value, isRain) {
 		// This is not redundant because the user can choose different rain/snow
 		// units and the result of this function must reflect that.
 		if (isRain) {
-			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM){
+			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM) {
 				res += " mm";
-			} else if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN){
+			} else if (
+				plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN
+			) {
 				res += " in";
 			} else {
 				res += " cm";
 			}
 		} else {
-			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM){
+			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM) {
 				res += " mm";
-			} else if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN){
+			} else if (
+				plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN
+			) {
 				res += " in";
 			} else {
 				res += " cm";
@@ -829,7 +854,6 @@ function currentPrecipUnit(value, isRain) {
 	}
 	return res;
 }
-
 
 /**
  * Take in API pressure and convert it to user choosen units.
@@ -843,9 +867,9 @@ function currentPrecipUnit(value, isRain) {
 function toUserPres(value) {
 	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
 		// Then, value is in mb
-		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB){
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
 			return value;
-		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG){
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
 			return mbToInhg(value);
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			return mbToMmhg(value);
@@ -857,7 +881,6 @@ function toUserPres(value) {
 		return value;
 	}
 }
-
 
 /**
  * Take in a numeric pressure value and return a string
@@ -876,9 +899,9 @@ function currentPresUnit(value) {
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		res += " mb";
 	} else {
-		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB){
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
 			res += " mb";
-		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG){
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
 			res += " inHG";
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			res += " mmHG";
@@ -889,3 +912,24 @@ function currentPresUnit(value) {
 	return res;
 }
 
+function rawPresUnit() {
+	var res = "";
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res = "mb";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res = "inHG";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res = "mb";
+	} else {
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
+			res = "mb";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
+			res = "inHG";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
+			res = "mmHG";
+		} else {
+			res = "hPa";
+		}
+	}
+	return res;
+}
