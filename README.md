@@ -51,6 +51,11 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
 
 ## TODO
 
+- Day Chart
+  -   [ ] Implement V3 API
+  -   [ ] Refactor key/value dict for API terms
+  -   [ ] Change sizing of chart
+  -   [ ] Make ECMA compatibility consistent
 - i18n
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
