@@ -1,6 +1,7 @@
 /*
  * Copyright 2024  Kevin Donnelly
  * Copyright 2024  dniminenn
+ * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -68,6 +69,45 @@ let severityColorMap = {
 	3: "#ffcc00",
 	4: "#99cc33",
 	5: "#ffcc00"
+}
+
+var hourlyModelTemplate = {
+	temperature: {
+		name: "temperature",
+	},
+	cloudCover: {
+		name: "cloudCover",
+	},
+	humidity: {
+		name: "humidity",
+	},
+	precipitationChance: {
+		name: "precipitationChance",
+	},
+	precipitationRate: {
+		name: "precipitationRate",
+	},
+	snowPrecipitationRate: {
+		name: "snowPrecipitationRate",
+	},
+	wind: {
+		name: "wind",
+	},
+	num: {
+		name: "num"
+	}
+}
+
+// TODO: just loop over key/value pairs of this.
+var hourlyModelDict = {
+	temperature: "temp",
+	cloudCover: "clds",
+	humidity: "rh",
+	precipitationChance: "pop",
+	precipitationRate: "qpf",
+	snowPrecipitationRate: "snow_qpf",
+	wind: "wspd",
+	num: "num"
 }
 
 /**
@@ -550,11 +590,11 @@ function getExtendedConditions(callback = function() {}) {
 /**
  * Call the forecast function according to user choice.
  */
-function getForecastData() {
+function getForecastData(callback = function() {}) {
 	if (plasmoid.configuration.useLegacyAPI) {
-		getForecastDataV1();
+		getForecastDataV1(callback);
 	} else {
-		getForecastDataV3();
+		getForecastDataV3(callback);
 	}
 }
 
@@ -566,7 +606,7 @@ function getForecastData() {
  * @todo Incorporate a bitmapped appState field so an error with forecasts
  * doesn't show an error screen for entire widget.
  */
-function getForecastDataV3() {
+function getForecastDataV3(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
 	var long = plasmoid.configuration.longitude;
@@ -682,6 +722,8 @@ function getForecastDataV3() {
 				printDebug("[pws-api.js] Got new forecast data");
 
 				showForecast = true;
+
+				callback();
 			} else {
 				errorStr = "Could not fetch forecast data";
 
@@ -703,7 +745,7 @@ function getForecastDataV3() {
  * @todo Incorporate a bitmapped appState field so an error with forecasts
  * doesn't show an error screen for entire widget.
  */
-function getForecastDataV1() {
+function getForecastDataV1(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
 	var url = "https://api.weather.com/v1/geocode";
@@ -816,6 +858,8 @@ function getForecastDataV1() {
 				printDebug("[pws-api.js] Got new forecast data");
 
 				showForecast = true;
+
+				callback();
 			} else {
 				errorStr = "Could not fetch forecast data";
 
@@ -827,4 +871,92 @@ function getForecastDataV1() {
 	};
 
 	req.send();
+}
+
+function getHourlyData(callback = function() {}) {
+	// if (plasmoid.configuration.useLegacyAPI) {
+	// 	getHourlyDataV1();
+	// } else {
+	// 	getHourlyDataV3();
+	// }
+	getHourlyDataV1(callback);
+}
+
+function getHourlyDataV1(callback = function() {}) {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v1/geocode";
+	url +=
+		"/" +
+		plasmoid.configuration.latitude +
+		"/" +
+		plasmoid.configuration.longitude;
+	url += "/forecast/hourly/24hour.json";
+	url += "?apiKey=" + API_KEY;
+	url += "&language=" + Qt.locale().name.replace("_","-");
+
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		url += "&units=m";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		url += "&units=e";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+		url += "&units=h";
+	} else {
+		url += "&units=m";
+	}
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				hourlyModel.clear();
+
+				var res = JSON.parse(req.responseText);
+
+				var forecasts = res["forecasts"];
+
+				for (var period = 0; period < forecasts.length && period !== 22 && period !== 23; period++) {
+					var forecast = forecasts[period];
+					var date = new Date(forecast["fcst_valid_local"]);
+
+					var hourModel = {
+						date: date,
+						time: date,
+						iconCode: forecast["icon_code"]
+					};
+					Object.values(hourlyModelTemplate).forEach(reading => {
+						hourModel[reading.name] = forecast[hourlyModelDict[reading.name]];
+					});
+
+					hourModel.golfIndex = forecast["golf_index"] !== null ? forecast["golf_index"] : 0;
+					hourModel.uvIndex = forecast["uv_index"];
+					hourModel.pressure = forecast["mslp"];
+
+					printDebug("Made hourly model:" + JSON.stringify(hourModel));
+
+					hourlyModel.append(hourModel);
+				}
+
+				callback();
+			} else {
+				errorStr = "Could not fetch forecast data";
+
+				printDebug("[pws-api.js] " + errorStr);
+
+				appState = showERROR;
+			}
+		}
+	}
+
+	req.send();
+}
+
+function getHourlyDataV3() {
+	
 }
