@@ -69,6 +69,7 @@ PlasmoidItem {
         }
     }
     property ListModel forecastModel: ListModel {}
+    property ListModel hourlyModel: ListModel {}
     property ListModel alertsModel: ListModel {}
 
     property string errorStr: ""
@@ -121,7 +122,9 @@ PlasmoidItem {
 
     function updateWeatherData() {
         printDebug("Getting new weather data");
-        StationAPI.getCurrentData(StationAPI.getForecastData);
+        StationAPI.getCurrentData(function() {
+            StationAPI.getForecastData(StationAPI.getHourlyData)
+        });
     }
 
     function updateCurrentData() {
@@ -131,7 +134,7 @@ PlasmoidItem {
 
     function updateForecastData() {
         printDebug("Getting new forecast data");
-        StationAPI.getForecastData();
+        StationAPI.getForecastData(StationAPI.getHourlyData);
     }
 
     onStationIDChanged: {
