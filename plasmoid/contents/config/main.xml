@@ -19,7 +19,7 @@
             <default/>
         </entry>
         <entry name="refreshPeriod" type="Int">
-            <default>60</default>
+            <default>3600</default>
         </entry>
     </group>
     <group name="Appearance">
