@@ -15,51 +15,65 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-let UNITS_SYSTEM = {
+var UNITS_SYSTEM = {
 	METRIC: 0,
 	IMPERIAL: 1,
 	HYBRID: 2,
 	CUSTOM: 3,
 };
 
-let TEMP_UNITS = {
+var TEMP_UNITS = {
 	C: 0,
 	F: 1,
 	K: 2,
 };
 
-let WIND_UNITS = {
+var WIND_UNITS = {
 	KMH: 0,
 	MPH: 1,
 	MPS: 2,
 };
 
-let RAIN_UNITS = {
+var RAIN_UNITS = {
 	MM: 0,
 	IN: 1,
 	CM: 2,
 };
 
-let SNOW_UNITS = {
+var SNOW_UNITS = {
 	MM: 0,
 	IN: 1,
 	CM: 2,
 };
 
-let PRES_UNITS = {
+var PRES_UNITS = {
 	MB: 0,
 	INHG: 1,
 	MMHG: 2,
 	HPA: 3,
 };
 
-let ELEV_UNITS = {
+var ELEV_UNITS = {
 	M: 0,
 	FT: 1,
 };
 
+var hourlyModelDict = {
+	temperature: "temp",
+	cloudCover: "clds",
+	humidity: "rh",
+	precipitationChance: "pop",
+	precipitationRate: "qpf",
+	snowPrecipitationRate: "snow_qpf",
+	wind: "wspd",
+	pressure: "mslp",
+	uvIndex: "uv_index",
+	iconCode: "icon_code",
+	num: "num",
+};
+
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
-let iconThemeMapPredefined = {
+var iconThemeMapPredefined = {
 	0: "weather-storm",
 	1: "weather-storm",
 	2: "weather-storm",
@@ -111,7 +125,7 @@ let iconThemeMapPredefined = {
 };
 
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
-let iconThemeMapSymbolic = {
+var iconThemeMapSymbolic = {
 	0: "weather-storm-symbolic",
 	1: "weather-storm-symbolic",
 	2: "weather-storm-symbolic",
@@ -162,7 +176,7 @@ let iconThemeMapSymbolic = {
 	47: "weather-storm-night-symbolic",
 };
 
-let chartIconMap = {
+var chartIconMap = {
 	temperature: "thermometer",
 	uvIndex: 32,
 	pressure: "compass",
@@ -475,7 +489,7 @@ function heatColorF(degF, bgColor) {
 /**
  * Wrap a unit/value pair with a rate value with brackets.
  *
- * @param {string} unit Complete string unit to display
+ * @param {string} unit Compare string unit to display
  * @param {string} unitInterval Rate that value is displayed
  * @returns {string} Provided text wrapped in brackets
  */
@@ -910,6 +924,45 @@ function currentPresUnit(value) {
 		}
 	}
 	return res;
+}
+
+/**
+ * Take in values inside the `hourlyModel` structure and convert
+ * them to the desired user units.
+ * 
+ * @param {number} value Number in API unit
+ * @param {string} prop Name of the property according to hourlyModel
+ * @returns {number} Converted value
+ */
+function toUserProp(value, prop) {
+	if (prop === "temperature") {
+		return toUserTemp(value);
+	} else if (prop === "precipitationRate") {
+		return toUserPrecip(value, true);
+	} else if (prop === "snowPrecipitationRate") {
+		return toUserPrecip(value, false);
+	} else if (prop === "wind") {
+		return toUserSpeed(value);
+	} else if (prop === "pressure") {
+		return toUserPres(value);
+	} else {
+		return value;
+	}
+}
+
+function convertHourlyModelUnits() {
+	var valueNames = Object.entries(hourlyModelDict);
+
+	for (var period = 0; period < hourlyModel.count; period++) {
+		for (var prop = 0; prop < valueNames.length; prop++) {
+			var modelName = valueNames[prop][0];
+			hourlyModel.setProperty(
+				period,
+				modelName,
+				toUserProp(hourlyModel.get(period)[modelName], modelName)
+			);
+		}
+	}
 }
 
 function rawPresUnit() {
