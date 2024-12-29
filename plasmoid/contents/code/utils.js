@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+
+var API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
+
 var UNITS_SYSTEM = {
 	METRIC: 0,
 	IMPERIAL: 1,
@@ -187,6 +190,14 @@ var chartIconMap = {
 	snowPrecipitationRate: 42,
 	wind: 23,
 };
+
+var severityColorMap = {
+	1: "#cc3300",
+	2: "#ff9966",
+	3: "#ffcc00",
+	4: "#99cc33",
+	5: "#ffcc00"
+}
 
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.

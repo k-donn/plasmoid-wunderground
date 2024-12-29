@@ -19,19 +19,6 @@
 
 .import "utils.js" as Utils
 
-/** @type {string} */
-var API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
-
-
-var severityColorMap = {
-	1: "#cc3300",
-	2: "#ff9966",
-	3: "#ffcc00",
-	4: "#99cc33",
-	5: "#ffcc00"
-}
-
-
 /**
  * Handle API fields that could be null. If not null, return.
  * Otherwise, return two dashes for placeholder.
@@ -40,7 +27,7 @@ var severityColorMap = {
  * @returns {any|"--"} `value` or "--"
  */
 function nullableField(value) {
-	if (value != null) {
+    if (value !== null) {
 		return value;
 	} else {
 		return "--";
@@ -87,7 +74,7 @@ function isStationActive(givenID, callback) {
 	url += "?stationId=" + givenID;
 	url += "&format=json";
 	url += "&units=m";
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 	url += "&numericPrecision=decimal";
 
 	printDebug("[pws-api.js] " + url);
@@ -133,7 +120,7 @@ function getNearestStation() {
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -176,7 +163,7 @@ function getNearestStations(latLongObj) {
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -226,7 +213,7 @@ function getLocations(city) {
 	url += "&locationType=city";
 	url += "&language=" + Qt.locale().name.replace("_","-");
 	url += "&format=json";
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -290,7 +277,7 @@ function getCurrentData(callback = function() {}) {
 		url += "&units=m";
 	}
 
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 	url += "&numericPrecision=decimal";
 
 	printDebug("[pws-api.js] " + url);
@@ -389,7 +376,7 @@ function getExtendedConditions(callback = function() {}) {
 	var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
 
 	url += "?geocodes=" + lat + "," + long;
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 	url += "&scale=" + getAQScale();
 
@@ -472,7 +459,7 @@ function getExtendedConditions(callback = function() {}) {
 						alertsModel.append({
 							desc: curAlert["eventDescription"],
 							severity: curAlert["severity"],
-							severityColor: severityColorMap[curAlert["severityCode"]],
+							severityColor: Utils.severityColorMap[curAlert["severityCode"]],
 							headline: curAlert["headlineText"],
 							area: curAlert["areaName"],
 							action: actions.join(","),
@@ -536,7 +523,7 @@ function getForecastDataV3(callback = function() {}) {
 
 	var url = "https://api.weather.com/v3/wx/forecast/daily/7day";
 	url += "?geocode=" + lat + "," + long;
-	url += "&apiKey=" + API_KEY;
+	url += "&apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
@@ -573,7 +560,7 @@ function getForecastDataV3(callback = function() {}) {
 
 				var dailyDayPart = dailyForecastVars["daypart"][0];
 				for (var period = 0; period < dailyForecastVars["dayOfWeek"].length; period++) {
-					var isFirstNight = period === 0 && weatherData["isNight"];
+					var isFirstNight = period === 0 && dailyDayPart["temperature"][0] === null;
 					var daypartPeriod = isFirstNight ? 1 : period * 2;
 
 
@@ -620,7 +607,6 @@ function getForecastDataV3(callback = function() {}) {
 					var snowDesc = dailyDayPart["snowRange"][daypartPeriod] !== "" ? dailyDayPart["snowRange"][daypartPeriod] : "N/A";
 					var thunderDesc = dailyDayPart["thunderCategory"][daypartPeriod] !== null && dailyDayPart["thunderCategory"][daypartPeriod] !== "" ? dailyDayPart["thunderCategory"][daypartPeriod] : "N/A";
 
-					// TODO: Golf and Thunder translation. Choice of V1/V3 forecast API
 					forecastModel.append({
 						date: date,
 						dayOfWeek: dailyDayPart["daypartName"][daypartPeriod],
@@ -677,7 +663,7 @@ function getForecastDataV1(callback = function() {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
-	url += "?apiKey=" + API_KEY;
+	url += "?apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
@@ -814,7 +800,7 @@ function getHourlyDataV1(callback = function() {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/hourly/24hour.json";
-	url += "?apiKey=" + API_KEY;
+	url += "?apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
@@ -843,6 +829,8 @@ function getHourlyDataV1(callback = function() {}) {
 
 				var forecasts = res["forecasts"];
 
+				var valueNames = Object.entries(Utils.hourlyModelDict);
+
 				for (var period = 0; period < forecasts.length && period !== 22 && period !== 23; period++) {
 					var forecast = forecasts[period];
 					var date = new Date(forecast["fcst_valid_local"]);
@@ -852,19 +840,32 @@ function getHourlyDataV1(callback = function() {}) {
 						time: date,
 					};
 
-					var valueNames = Object.entries(Utils.hourlyModelDict);
-
 					for (var prop = 0; prop < valueNames.length; prop++) {
 						var modelName = valueNames[prop][0];
 						var apiName = valueNames[prop][1];
 						hourModel[modelName] = Utils.toUserProp(forecast[apiName],modelName);
+
+						if (hourModel[modelName] > maxValDict[modelName]) {
+							maxValDict[modelName] = hourModel[modelName];
+						}
 					}
-
+					
 					hourModel.golfIndex = forecast["golf_index"] !== null ? forecast["golf_index"] : 0;
-
-					printDebug("Made hourly model:" + JSON.stringify(hourModel));
-
+					
 					hourlyModel.append(hourModel);
+				}
+				
+				// Set the range for each values to calculate the spacing of the gridlines on the chart
+				for (var prop = 0; prop < valueNames.length; prop++) {
+					var modelName = valueNames[prop][0];
+					if (modelName === "cloudCover" || modelName === "humidity" || modelName === "precipitationChance") {
+						rangeValDict[modelName] = 100;
+					} else if (modelName === "pressure") {
+						var pressureUnit = Utils.rawPresUnit();
+						rangeValDict[modelName] = (pressureUnit === "hPa" || pressureUnit === "mb") ? 70 : pressureUnit === "inHG" ? 2.1 : 53;
+					} else {
+						rangeValDict[modelName] = maxValDict[modelName];
+					}
 				}
 
 				callback();

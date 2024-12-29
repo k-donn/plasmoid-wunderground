@@ -109,10 +109,10 @@ ColumnLayout {
                 chart: lineChart
                 opacity: 1
                 direction: ChartsControls.GridLines.Vertical
-                major.frequency: lineChart.yRange.distance / 5
+                major.frequency: rangeValDict[currentLegendText] / 4
                 major.lineWidth: 2
                 major.color: Qt.rgba(0.8, 0.8, 0.8, 0.1)
-                minor.frequency: lineChart.yRange.distance / 10
+                minor.frequency: rangeValDict[currentLegendText] / 8
                 minor.lineWidth: 1
                 minor.color: Qt.rgba(0.8, 0.8, 0.8, 0.1)
             }
