@@ -109,6 +109,30 @@ PlasmoidItem {
         tiny: plasmoid.configuration.propPointSize - 2
     })
 
+    property var maxValDict: ({
+        temperature: -999,
+        humidity: -999,
+        cloudCover: -999,
+        precipitationChance: -999,
+        precipitationRate: -999,
+        snowPrecipitationRate: -999,
+        wind: -999,
+        pressure: -999,
+        uvIndex: -999,
+    })
+
+    property var rangeValDict: ({
+        temperature: 30,
+        humidity: 100,
+        cloudCover: 100,
+        precipitationChance: 100,
+        precipitationRate: 5,
+        snowPrecipitationRate: 5,
+        wind: 10,
+        pressure: 5,
+        uvIndex: 5,
+    })
+
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 600
         Layout.preferredHeight: 340
