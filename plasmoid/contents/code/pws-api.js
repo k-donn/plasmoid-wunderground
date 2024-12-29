@@ -17,53 +17,13 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+.import "utils.js" as Utils
+
 /** @type {string} */
-let API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
+var API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
 
 
-let UNITS_SYSTEM = {
-	METRIC: 0,
-	IMPERIAL: 1,
-	HYBRID: 2,
-	CUSTOM: 3
-}
-
-let WIND_UNITS = {
-	MPS: 0,
-	KPH: 1,
-	MPH: 2
-}
-
-let RAIN_UNITS = {
-	MM: 0,
-	CM: 1,
-	IN: 2
-}
-
-let SNOW_UNITS = {
-	MM: 0,
-	CM: 1,
-	IN: 2
-}
-
-let TEMP_UNITS = {
-	C: 0,
-	F: 1,
-	K: 2
-}
-
-let PRES_UNITS = {
-	HPA: 0,
-	CMHG: 1,
-	INHG: 2
-}
-
-let ELEV_UNITS = {
-	M: 0,
-	FT: 1
-}
-
-let severityColorMap = {
+var severityColorMap = {
 	1: "#cc3300",
 	2: "#ff9966",
 	3: "#ffcc00",
@@ -71,44 +31,6 @@ let severityColorMap = {
 	5: "#ffcc00"
 }
 
-var hourlyModelTemplate = {
-	temperature: {
-		name: "temperature",
-	},
-	cloudCover: {
-		name: "cloudCover",
-	},
-	humidity: {
-		name: "humidity",
-	},
-	precipitationChance: {
-		name: "precipitationChance",
-	},
-	precipitationRate: {
-		name: "precipitationRate",
-	},
-	snowPrecipitationRate: {
-		name: "snowPrecipitationRate",
-	},
-	wind: {
-		name: "wind",
-	},
-	num: {
-		name: "num"
-	}
-}
-
-// TODO: just loop over key/value pairs of this.
-var hourlyModelDict = {
-	temperature: "temp",
-	cloudCover: "clds",
-	humidity: "rh",
-	precipitationChance: "pop",
-	precipitationRate: "qpf",
-	snowPrecipitationRate: "snow_qpf",
-	wind: "wspd",
-	num: "num"
-}
 
 /**
  * Handle API fields that could be null. If not null, return.
@@ -272,7 +194,7 @@ function getNearestStations(latLongObj) {
 
 				var loc = res["location"];
 				var stations = loc["stationId"];
-				for (let i = 0; i < stations.length; i++) {
+				for (var i = 0; i < stations.length; i++) {
 					stationsModel.append({
 						text: loc["stationId"][i] + " - " + loc["stationName"][i],
 						stationName: loc["stationName"][i],
@@ -322,7 +244,7 @@ function getLocations(city) {
 
 				var loc = res["location"];
 
-				for (let i = 0; i < loc["address"].length; i++) {
+				for (var i = 0; i < loc["address"].length; i++) {
 					locationsModel.append({
 						address: loc["address"][i],
 						adminDistrict: loc["adminDistrict"][i],
@@ -358,11 +280,11 @@ function getCurrentData(callback = function() {}) {
 	url += "?stationId=" + stationID;
 	url += "&format=json";
 
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
 	} else {
 		url += "&units=m";
@@ -391,11 +313,11 @@ function getCurrentData(callback = function() {}) {
 			if (req.status == 200) {
 				var sectionName = "";
 
-				if (unitsChoice === UNITS_SYSTEM.METRIC) {
+				if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 					sectionName = "metric";
-				} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+				} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 					sectionName = "imperial";
-				} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+				} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 					sectionName = "uk_hybrid";
 				} else {
 					sectionName = "metric";
@@ -408,7 +330,7 @@ function getCurrentData(callback = function() {}) {
 				var details = obs[sectionName];
 
 				// The properties are assigned to weatherData explicitly to preserve
-				// its structure instead of assigning obs completely and breaking it
+				// its structure instead of assigning obs compvarely and breaking it
 				weatherData["details"] = details;
 
 				weatherData["stationID"] = obs["stationID"];
@@ -471,11 +393,11 @@ function getExtendedConditions(callback = function() {}) {
 	url += "&language=" + Qt.locale().name.replace("_","-");
 	url += "&scale=" + getAQScale();
 
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
 	} else {
 		url += "&units=m";
@@ -617,11 +539,11 @@ function getForecastDataV3(callback = function() {}) {
 	url += "&apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
 	} else {
 		url += "&units=m";
@@ -664,13 +586,13 @@ function getForecastDataV3(callback = function() {}) {
 					var low = isFirstNight ? dailyForecastVars["temperatureMin"][period] : dailyForecastVars["calendarDayTemperatureMin"][period];
 
 					var heatIndexThresh,windChillThresh;
-					if (unitsChoice === UNITS_SYSTEM.METRIC) {
+					if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 						heatIndexThresh = 21.1;
 						windChillThresh = 16.17;
-					} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+					} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 						heatIndexThresh = 70;
 						windChillThresh = 61;
-					} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+					} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 						heatIndexThresh = 294.26;
 						windChillThresh = 289.32;
 					} else {
@@ -758,11 +680,11 @@ function getForecastDataV1(callback = function() {}) {
 	url += "?apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
 	} else {
 		url += "&units=m";
@@ -895,11 +817,11 @@ function getHourlyDataV1(callback = function() {}) {
 	url += "?apiKey=" + API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
 
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
 		url += "&units=e";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID){
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
 		url += "&units=h";
 	} else {
 		url += "&units=m";
@@ -928,15 +850,17 @@ function getHourlyDataV1(callback = function() {}) {
 					var hourModel = {
 						date: date,
 						time: date,
-						iconCode: forecast["icon_code"]
 					};
-					Object.values(hourlyModelTemplate).forEach(reading => {
-						hourModel[reading.name] = forecast[hourlyModelDict[reading.name]];
-					});
+
+					var valueNames = Object.entries(Utils.hourlyModelDict);
+
+					for (var prop = 0; prop < valueNames.length; prop++) {
+						var modelName = valueNames[prop][0];
+						var apiName = valueNames[prop][1];
+						hourModel[modelName] = Utils.toUserProp(forecast[apiName],modelName);
+					}
 
 					hourModel.golfIndex = forecast["golf_index"] !== null ? forecast["golf_index"] : 0;
-					hourModel.uvIndex = forecast["uv_index"];
-					hourModel.pressure = forecast["mslp"];
 
 					printDebug("Made hourly model:" + JSON.stringify(hourModel));
 

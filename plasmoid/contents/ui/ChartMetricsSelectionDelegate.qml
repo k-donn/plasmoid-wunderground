@@ -53,8 +53,9 @@ Component {
                     } else if (currentLegendText == "pressure") {
                         var pressureUnit = Utils.rawPresUnit();
                         lineChart.yRange.automatic = false;
-                        lineChart.yRange.from = pressureUnit == "hPa" ? 970 : Math.floor(970 * 0.03);
-                        lineChart.yRange.to = pressureUnit == "hPa" ? 1040 : Math.floor(1040 * 0.03);
+                        // mmHG is the final unit
+                        lineChart.yRange.from = (pressureUnit === "hPa" || pressureUnit === "mb") ? 970 : pressureUnit === "inHG" ? 28.6 : 727; 
+                        lineChart.yRange.to = (pressureUnit === "hPa" || pressureUnit === "mb") ? 1040 : pressureUnit === "inHG" ? 30.7 : 780;
                     } else {
                         lineChart.yRange.automatic = true;
                     }
