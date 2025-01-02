@@ -1,5 +1,6 @@
 /*
  * Copyright 2024  Kevin Donnelly
+ * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -15,8 +16,7 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-
-var API_KEY = "e1f10a1e78da46f5b10a1e78da96f525"
+var API_KEY = "e1f10a1e78da46f5b10a1e78da96f525";
 
 var UNITS_SYSTEM = {
 	METRIC: 0,
@@ -61,7 +61,7 @@ var ELEV_UNITS = {
 	FT: 1,
 };
 
-var hourlyModelDict = {
+var hourlyModelDictV1 = {
 	temperature: "temp",
 	cloudCover: "clds",
 	humidity: "rh",
@@ -72,7 +72,19 @@ var hourlyModelDict = {
 	pressure: "mslp",
 	uvIndex: "uv_index",
 	iconCode: "icon_code",
-	num: "num",
+};
+
+var hourlyModelDictV3 = {
+	temperature: "temperature",
+	cloudCover: "cloudCover",
+	humidity: "relativeHumidity",
+	precipitationChance: "precipChance",
+	precipitationRate: "qpf",
+	snowPrecipitationRate: "qpfSnow",
+	wind: "windSpeed",
+	pressure: "pressureMeanSeaLevel",
+	uvIndex: "uvIndex",
+	iconCode: "iconCode",
 };
 
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
@@ -181,12 +193,12 @@ var iconThemeMapSymbolic = {
 
 var chartIconMap = {
 	temperature: "thermometer",
-	uvIndex: 32,
-	pressure: "compass",
+	uvIndex: "wi-horizon-alt",
+	pressure: "wi-barometer",
 	cloudCover: 28,
-	humidity: 36,
-	precipitationChance: "compass",
-	precipitationRate: "moon",
+	humidity: "wi-humidity",
+	precipitationChance: "wi-umbrella",
+	precipitationRate: 11,
 	snowPrecipitationRate: 42,
 	wind: 23,
 };
@@ -196,8 +208,8 @@ var severityColorMap = {
 	2: "#ff9966",
 	3: "#ffcc00",
 	4: "#99cc33",
-	5: "#ffcc00"
-}
+	5: "#ffcc00",
+};
 
 /**
  * Turn a 1-360° angle into the corresponding part on the compass.
@@ -610,6 +622,10 @@ function getChartIcon(code) {
 	return Qt.resolvedUrl("../icons/" + chartIconMap[code] + ".svg");
 }
 
+function wrapInBrackets(unit, unitInterval) {
+	return "[" + unit + unitInterval + "]";
+}
+
 /**
  * Return whether pressure has increased.
  * True = increased
@@ -651,6 +667,26 @@ function toUserTemp(value) {
 	}
 }
 
+function rawTempUnit() {
+	var res = "";
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res = "°C";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res = "°F";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res = "°C";
+	} else {
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
+			res = "°C";
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
+			res = "°F";
+		} else {
+			res = "°K";
+		}
+	}
+	return res;
+}
+
 /**
  * Take in a numeric temperature value and return a string
  * with the user specified unit attached.
@@ -662,22 +698,8 @@ function toUserTemp(value) {
  */
 function currentTempUnit(value, precision) {
 	var res = value.toFixed(precision);
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res += " °C";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res += " °F";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res += " °C";
-	} else {
-		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
-			res += " °C";
-		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
-			res += " °F";
-		} else {
-			res += " °K";
-		}
-	}
-	return res;
+	var unit = rawTempUnit();
+	return res + " " + unit;
 }
 
 /**
@@ -705,6 +727,26 @@ function toUserSpeed(value) {
 	}
 }
 
+function rawSpeedUnit() {
+	var res = "";
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res = "kmh";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res = "mph";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res = "mph";
+	} else {
+		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH) {
+			res = "kmh";
+		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH) {
+			res = "mph";
+		} else {
+			res = "m/s";
+		}
+	}
+	return res;
+}
+
 /**
  * Take in a numeric wind speed value and return a string
  * with the user specified unit attached.
@@ -715,22 +757,8 @@ function toUserSpeed(value) {
  */
 function currentSpeedUnit(value, precision) {
 	var res = value.toFixed(precision);
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res += " kmh";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res += " mph";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res += " mph";
-	} else {
-		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH) {
-			res += " kmh";
-		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH) {
-			res += " mph";
-		} else {
-			res += " m/s";
-		}
-	}
-	return res;
+	var unit = rawSpeedUnit();
+	return res + " " + unit;
 }
 
 /**
@@ -756,6 +784,24 @@ function toUserElev(value) {
 	}
 }
 
+function rawElevUnit() {
+	var res = "";
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res = "m";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res = "ft";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res = "ft";
+	} else {
+		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
+			res = "m";
+		} else {
+			res = "ft";
+		}
+	}
+	return res;
+}
+
 /**
  * Take in a numeric elevation value and return a string
  * with the user specified unit attached.
@@ -766,20 +812,8 @@ function toUserElev(value) {
  */
 function currentElevUnit(value) {
 	var res = Math.round(value);
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res += " m";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res += " ft";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res += " ft";
-	} else {
-		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
-			res += " m";
-		} else {
-			res += " ft";
-		}
-	}
-	return res;
+	var unit = rawElevUnit();
+	return res + " " + unit;
 }
 
 /**
@@ -825,6 +859,53 @@ function toUserPrecip(value, isRain) {
 	}
 }
 
+function rawPrecipUnit(isRain) {
+	var res = "";
+	if (isRain === undefined) {
+		isRain = true;
+	}
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		if (isRain) {
+			res = "mm";
+		} else {
+			res = "cm";
+		}
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return (res = "in");
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		if (isRain) {
+			res = "mm";
+		} else {
+			res = "cm";
+		}
+	} else {
+		// This is not redundant because the user can choose different rain/snow
+		// units and the result of this function must reflect that.
+		if (isRain) {
+			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM) {
+				res = "mm";
+			} else if (
+				plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN
+			) {
+				res = "in";
+			} else {
+				res = "cm";
+			}
+		} else {
+			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM) {
+				res = "mm";
+			} else if (
+				plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN
+			) {
+				res = "in";
+			} else {
+				res = "cm";
+			}
+		}
+	}
+	return res;
+}
+
 /**
  * Take in a numeric precip value and return a string
  * with the user specified unit attached.
@@ -835,49 +916,8 @@ function toUserPrecip(value, isRain) {
  */
 function currentPrecipUnit(value, isRain) {
 	var res = value.toFixed(2);
-	if (isRain === undefined) {
-		isRain = true;
-	}
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		if (isRain) {
-			res += " mm";
-		} else {
-			res += " cm";
-		}
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return (res += " in");
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		if (isRain) {
-			res += " mm";
-		} else {
-			res += " cm";
-		}
-	} else {
-		// This is not redundant because the user can choose different rain/snow
-		// units and the result of this function must reflect that.
-		if (isRain) {
-			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM) {
-				res += " mm";
-			} else if (
-				plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN
-			) {
-				res += " in";
-			} else {
-				res += " cm";
-			}
-		} else {
-			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM) {
-				res += " mm";
-			} else if (
-				plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN
-			) {
-				res += " in";
-			} else {
-				res += " cm";
-			}
-		}
-	}
-	return res;
+	var unit = rawPrecipUnit(isRain);
+	return res + " " + unit;
 }
 
 /**
@@ -907,6 +947,28 @@ function toUserPres(value) {
 	}
 }
 
+function rawPresUnit() {
+	var res = "";
+	if (unitsChoice === UNITS_SYSTEM.METRIC) {
+		res = "mb";
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		res = "inHG";
+	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
+		res = "mb";
+	} else {
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
+			res = "mb";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
+			res = "inHG";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
+			res = "mmHG";
+		} else {
+			res = "hPa";
+		}
+	}
+	return res;
+}
+
 /**
  * Take in a numeric pressure value and return a string
  * with the user specified unit attached.
@@ -917,30 +979,14 @@ function toUserPres(value) {
  */
 function currentPresUnit(value) {
 	var res = value.toFixed(2);
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res += " mb";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res += " inHG";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res += " mb";
-	} else {
-		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
-			res += " mb";
-		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
-			res += " inHG";
-		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
-			res += " mmHG";
-		} else {
-			res += " hPa";
-		}
-	}
-	return res;
+	var unit = rawPresUnit();
+	return res + " " + unit;
 }
 
 /**
  * Take in values inside the `hourlyModel` structure and convert
  * them to the desired user units.
- * 
+ *
  * @param {number} value Number in API unit
  * @param {string} prop Name of the property according to hourlyModel
  * @returns {number} Converted value
@@ -974,26 +1020,4 @@ function convertHourlyModelUnits() {
 			);
 		}
 	}
-}
-
-function rawPresUnit() {
-	var res = "";
-	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res = "mb";
-	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res = "inHG";
-	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res = "mb";
-	} else {
-		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
-			res = "mb";
-		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
-			res = "inHG";
-		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
-			res = "mmHG";
-		} else {
-			res = "hPa";
-		}
-	}
-	return res;
 }

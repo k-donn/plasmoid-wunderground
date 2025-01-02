@@ -85,6 +85,12 @@
         </entry>
     </group>
     <group name="Units">
+        <entry name="dayChartTimeFormat" type="String">
+            <default>h ap</default>
+        </entry>
+        <entry name="weekForecastDateFormat" type="String">
+            <default>d</default>
+        </entry>
         <entry name="windPrecision" type="Int">
             <default>1</default>
         </entry>

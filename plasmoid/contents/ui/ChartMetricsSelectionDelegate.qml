@@ -54,12 +54,23 @@ Component {
                         var pressureUnit = Utils.rawPresUnit();
                         lineChart.yRange.automatic = false;
                         // mmHG is the final unit
-                        lineChart.yRange.from = (pressureUnit === "hPa" || pressureUnit === "mb") ? 970 : pressureUnit === "inHG" ? 28.6 : 727; 
+                        lineChart.yRange.from = (pressureUnit === "hPa" || pressureUnit === "mb") ? 970 : pressureUnit === "inHG" ? 28.6 : 727;
                         lineChart.yRange.to = (pressureUnit === "hPa" || pressureUnit === "mb") ? 1040 : pressureUnit === "inHG" ? 30.7 : 780;
                     } else {
                         lineChart.yRange.automatic = true;
                     }
                     lineChart.valueSources[0].roleName = currentLegendText;
+
+                    var majorFreq = Math.ceil(rangeValDict[currentLegendText] / 4);
+
+                    if (majorFreq < 2) {
+                        majorFreq = 2;
+                    } else if (majorFreq % 2 === 1) {
+                        majorFreq += 1;
+                    }
+
+                    horizontalLines.major.frequency = majorFreq
+                    horizontalLines.minor.frequency = majorFreq / 2;
                 }
             }
 

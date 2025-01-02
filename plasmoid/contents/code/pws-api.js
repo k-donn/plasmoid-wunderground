@@ -563,11 +563,7 @@ function getForecastDataV3(callback = function() {}) {
 					var isFirstNight = period === 0 && dailyDayPart["temperature"][0] === null;
 					var daypartPeriod = isFirstNight ? 1 : period * 2;
 
-
-					var fullDateTime = dailyForecastVars["validTimeLocal"][period];
-					var date = parseInt(
-						fullDateTime.split("T")[0].split("-")[2]
-					);
+					var date = new Date(dailyForecastVars["validTimeLocal"][period]);
 
 					var high = isFirstNight ? dailyDayPart["temperature"][daypartPeriod] : dailyForecastVars["calendarDayTemperatureMax"][period];
 					var low = isFirstNight ? dailyForecastVars["temperatureMin"][period] : dailyForecastVars["calendarDayTemperatureMin"][period];
@@ -676,6 +672,8 @@ function getForecastDataV1(callback = function() {}) {
 		url += "&units=m";
 	}
 
+	url += "&format=json";
+
 	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
@@ -700,10 +698,7 @@ function getForecastDataV1(callback = function() {}) {
 
 					var isDay = day !== undefined;
 
-					var fullDateTime = forecast["fcst_valid_local"];
-					var date = parseInt(
-						fullDateTime.split("T")[0].split("-")[2]
-					);
+					var date = new Date(forecast["fcst_valid_local"]);
 
 					// API returns empty string if no snow. Check for empty string.
 					var snowDesc;
@@ -782,12 +777,11 @@ function getForecastDataV1(callback = function() {}) {
 }
 
 function getHourlyData(callback = function() {}) {
-	// if (plasmoid.configuration.useLegacyAPI) {
-	// 	getHourlyDataV1();
-	// } else {
-	// 	getHourlyDataV3();
-	// }
-	getHourlyDataV1(callback);
+	if (plasmoid.configuration.useLegacyAPI) {
+		getHourlyDataV1(callback);
+	} else {
+		getHourlyDataV3(callback);
+	}
 }
 
 function getHourlyDataV1(callback = function() {}) {
@@ -813,6 +807,8 @@ function getHourlyDataV1(callback = function() {}) {
 		url += "&units=m";
 	}
 
+	url += "&format=json";
+
 	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
@@ -829,15 +825,14 @@ function getHourlyDataV1(callback = function() {}) {
 
 				var forecasts = res["forecasts"];
 
-				var valueNames = Object.entries(Utils.hourlyModelDict);
+				var valueNames = Object.entries(Utils.hourlyModelDictV1);
 
 				for (var period = 0; period < forecasts.length && period !== 22 && period !== 23; period++) {
 					var forecast = forecasts[period];
-					var date = new Date(forecast["fcst_valid_local"]);
+					var time = new Date(forecast["fcst_valid_local"]);
 
 					var hourModel = {
-						date: date,
-						time: date,
+						time: time,
 					};
 
 					for (var prop = 0; prop < valueNames.length; prop++) {
@@ -850,12 +845,10 @@ function getHourlyDataV1(callback = function() {}) {
 						}
 					}
 					
-					hourModel.golfIndex = forecast["golf_index"] !== null ? forecast["golf_index"] : 0;
-					
 					hourlyModel.append(hourModel);
 				}
 				
-				// Set the range for each values to calculate the spacing of the gridlines on the chart
+				// Set the range for each value to calculate the spacing of the gridlines on the chart
 				for (var prop = 0; prop < valueNames.length; prop++) {
 					var modelName = valueNames[prop][0];
 					if (modelName === "cloudCover" || modelName === "humidity" || modelName === "precipitationChance") {
@@ -882,6 +875,83 @@ function getHourlyDataV1(callback = function() {}) {
 	req.send();
 }
 
-function getHourlyDataV3() {
-	
+function getHourlyDataV3(callback = function() {}) {
+	var req = new XMLHttpRequest();
+
+	var url = "https://api.weather.com/v3/wx/forecast/hourly/2day";
+	url += "?geocode=" + plasmoid.configuration.latitude + "," + plasmoid.configuration.longitude;
+	url += "&apiKey=" + Utils.API_KEY;
+	url += "&language=" + Qt.locale().name.replace("_","-");
+
+	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
+		url += "&units=m";
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.IMPERIAL) {
+		url += "&units=e";
+	} else if (unitsChoice === Utils.UNITS_SYSTEM.HYBRID){
+		url += "&units=h";
+	} else {
+		url += "&units=m";
+	}
+
+	url += "&format=json";
+
+	printDebug("[pws-api.js] " + url);
+
+	req.open("GET", url);
+
+	req.setRequestHeader("Accept-Encoding", "gzip");
+	req.setRequestHeader("Origin", "https://www.wunderground.com");
+
+	req.onreadystatechange = function () {
+		if (req.readyState == 4) {
+			if (req.status == 200) {
+				hourlyModel.clear();
+
+				var res = JSON.parse(req.responseText);
+
+				var valueNames = Object.entries(Utils.hourlyModelDictV3);
+
+				for (var period = 0; period < 22; period++) {
+					var hourModel = {
+						time: new Date(res["validTimeLocal"][period])
+					};
+
+					for (var prop = 0; prop < valueNames.length; prop++) {
+						var modelName = valueNames[prop][0];
+						var apiName = valueNames[prop][1];
+						hourModel[modelName] = Utils.toUserProp(res[apiName][period],modelName);
+
+						if (hourModel[modelName] > maxValDict[modelName]) {
+							maxValDict[modelName] = hourModel[modelName];
+						}
+					}
+
+					hourlyModel.append(hourModel);
+				}
+
+				// Set the range for each value to calculate the spacing of the gridlines on the chart
+				for (var prop = 0; prop < valueNames.length; prop++) {
+					var modelName = valueNames[prop][0];
+					if (modelName === "cloudCover" || modelName === "humidity" || modelName === "precipitationChance") {
+						rangeValDict[modelName] = 100;
+					} else if (modelName === "pressure") {
+						var pressureUnit = Utils.rawPresUnit();
+						rangeValDict[modelName] = (pressureUnit === "hPa" || pressureUnit === "mb") ? 70 : pressureUnit === "inHG" ? 2.1 : 53;
+					} else {
+						rangeValDict[modelName] = maxValDict[modelName];
+					}
+				}
+
+				callback();
+			} else {
+				errorStr = "Could not fetch forecast data";
+
+				printDebug("[pws-api.js] " + errorStr);
+
+				appState = showERROR;
+			}
+		}
+	}
+
+	req.send();
 }

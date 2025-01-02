@@ -238,7 +238,10 @@ PlasmoidItem {
 
     onUseLegacyAPIChanged: {
         printDebug("Forecast API changed");
-        updateForecastData();
+
+        if (stationID != "") {
+            updateForecastData();
+        }
     }
 
     onWeatherDataChanged: {
