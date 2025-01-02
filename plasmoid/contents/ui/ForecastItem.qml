@@ -40,7 +40,7 @@ RowLayout {
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 
-                text: date
+                text: Qt.formatDateTime(date, plasmoid.configuration.weekForecastDateFormat)
             }
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter

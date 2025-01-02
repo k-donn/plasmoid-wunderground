@@ -23,6 +23,8 @@ import org.kde.kirigami as Kirigami
 KCM.SimpleKCM {
     id: unitsConfig
 
+    property alias cfg_dayChartTimeFormat: dayChartTimeFormat.text
+    property alias cfg_weekForecastDateFormat: weekForecastDateFormat.text
     property alias cfg_windPrecision: windPrecision.value
     property alias cfg_tempPrecision: tempPrecision.value
     property alias cfg_feelsPrecision: feelsPrecision.value
@@ -42,6 +44,23 @@ KCM.SimpleKCM {
 
     Kirigami.FormLayout {
         anchors.fill: parent
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Time/Date Format")
+            Kirigami.FormData.isSection: true
+        }
+
+        QQC.TextField {
+            id: dayChartTimeFormat
+
+            Kirigami.FormData.label: i18n("Day Chart time format:")
+        }
+
+        QQC.TextField {
+            id: weekForecastDateFormat
+
+            Kirigami.FormData.label: i18n("Week forecast date format:")
+        }
 
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Precision")

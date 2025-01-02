@@ -108,11 +108,11 @@ ColumnLayout {
                 anchors.fill: lineChart
                 chart: lineChart
                 opacity: 1
-                direction: ChartsControls.GridLines.Vertical
-                major.frequency: rangeValDict[currentLegendText] / 4
+                direction: ChartsControls.GridLines.Vertical // KDE uses a different convention for horz/vert lines?
+                major.frequency: 2
                 major.lineWidth: 2
                 major.color: Qt.rgba(0.8, 0.8, 0.8, 0.1)
-                minor.frequency: rangeValDict[currentLegendText] / 8
+                minor.frequency: 1
                 minor.lineWidth: 1
                 minor.color: Qt.rgba(0.8, 0.8, 0.8, 0.1)
             }
@@ -176,7 +176,7 @@ ColumnLayout {
 
                     rotation: 0
                     font.pointSize: textSize.tiny
-                    text: "<b>" + Qt.formatDateTime(hourlyModel.get(ChartsControls.AxisLabels.label).time,"h ap") + "</b>"
+                    text: "<b>" + Qt.formatDateTime(hourlyModel.get(ChartsControls.AxisLabels.label).time,plasmoid.configuration.dayChartTimeFormat) + "</b>"
                 }
 
                 source: Charts.ChartAxisSource {
@@ -259,9 +259,7 @@ ColumnLayout {
                     radius: 2
                 }
 
-                delegate: ChartMetricsSelectionDelegate {
-                }
-
+                delegate: ChartMetricsSelectionDelegate { }
             }
 
         }
