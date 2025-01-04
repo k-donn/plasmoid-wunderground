@@ -127,7 +127,7 @@ KCM.SimpleKCM {
         QQC.SpinBox {
             id: dewPrecision
 
-            Kirigami.FormData.label: displayTxt(i18n("DEWPOINT")) + ":"
+            Kirigami.FormData.label: i18n("Dew Point") + ":"
 
             from: 0
             to: 15

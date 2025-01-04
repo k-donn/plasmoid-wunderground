@@ -61,7 +61,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: windLabel
-        text: i18n("WIND & GUST")
+        text: i18n("Wind & Gust")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize
@@ -86,7 +86,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: dewLabel
-        text: i18n("DEWPOINT")
+        text: i18n("Dew Point")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize
@@ -94,7 +94,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipRateLabel
-        text: i18nc("Precipitaion rate", "PRECIP RATE")
+        text: i18n("Precipitation Rate")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize
@@ -102,7 +102,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: pressureLabel
-        text: i18n("PRESSURE")
+        text: i18n("Pressure")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize
@@ -146,7 +146,7 @@ GridLayout {
 
     PlasmaComponents.Label {
         id: humidityLabel
-        text: i18n("HUMIDITY")
+        text: i18n("Humidity")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize
@@ -154,7 +154,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: precipAccLabel
-        text: i18nc("Precipitation accumulation", "PRECIP ACCUM")
+        text: i18nc("Short for: 'Precipitation Accumulation'", "Precipitation Accum.")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize
@@ -162,7 +162,7 @@ GridLayout {
     }
     PlasmaComponents.Label {
         id: uvLabel
-        text: i18nc("Ultra Violet", "UV")
+        text: i18n("UV")
         font {
             bold: true
             pointSize: plasmoid.configuration.propHeadPointSize

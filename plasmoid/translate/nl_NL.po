@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-12-18 16:43-0500\n"
+"POT-Creation-Date: 2025-01-04 17:07-0500\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -201,6 +201,10 @@ msgid "Forecast"
 msgstr "Weersvoorspelling"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+msgid "Day Chart"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "More Info"
 msgstr ""
 
@@ -215,6 +219,10 @@ msgstr ""
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
 msgstr "Wegschrijven naar console.log:"
+
+#: ../contents/ui/config/ConfigDebug.qml
+msgid "Use Legacy Forecast API:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
@@ -253,15 +261,28 @@ msgid "Refresh period (s):"
 msgstr "Periodiek bijwerken (in sec.):"
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Precision"
+msgid "Time/Date Format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Temperature:"
+msgid "Day Chart time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Week forecast date format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Precision"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Temperature"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
-msgid "WIND & GUST"
+#: ../contents/ui/main.qml
+msgid "Wind & Gust"
 msgstr "Windsnelheid"
 
 #. i18n strings
@@ -270,8 +291,8 @@ msgid "Feels like %1"
 msgstr "Gevoelstemperatuur: %1"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
-msgid "DEWPOINT"
-msgstr "DAUWPUNT"
+msgid "Dew Point"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
@@ -320,18 +341,22 @@ msgstr ""
 msgid "Elevation unit:"
 msgstr ""
 
+#: ../contents/ui/DayChartItem.qml
+msgctxt "per 12 hours, please keep it short"
+msgid "/12h"
+msgstr ""
+
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Windrichting: %1 (%2°)"
 
-#: ../contents/ui/DetailsItem.qml
-msgctxt "Precipitaion rate"
-msgid "PRECIP RATE"
-msgstr "HOEVEELHEID NEERSLAG"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr ""
 
-#: ../contents/ui/DetailsItem.qml
-msgid "PRESSURE"
-msgstr "LUCHTDRUK"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Pressure"
+msgstr "Luchtdruk"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has risen %1 in the last three hours."
@@ -341,17 +366,16 @@ msgstr ""
 msgid "Pressure has fallen %1 in the last three hours."
 msgstr ""
 
-#: ../contents/ui/DetailsItem.qml
-msgid "HUMIDITY"
-msgstr "LUCHTVOCHTIGHEID"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Humidity"
+msgstr "Luchtvochtigheid"
 
 #: ../contents/ui/DetailsItem.qml
-msgctxt "Precipitation accumulation"
-msgid "PRECIP ACCUM"
-msgstr "HOEVEELHEID NEERSLAG"
+msgctxt "Short for: 'Precipitation Accumulation'"
+msgid "Precipitation Accum."
+msgstr ""
 
-#: ../contents/ui/DetailsItem.qml
-msgctxt "Ultra Violet"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
 msgstr "UV-index"
 
@@ -407,6 +431,18 @@ msgid "Choose…"
 msgstr ""
 
 #: ../contents/ui/main.qml
+msgid "Cloud Cover"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Precipitation Chance"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Snow Precipitation Rate"
+msgstr ""
+
+#: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
 msgstr "Kies het weerstation dat de gegevens moet leveren."
 
@@ -444,6 +480,30 @@ msgstr ""
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Hoog: %1 - Laag: %2"
+
+#~ msgid "DEWPOINT"
+#~ msgstr "DAUWPUNT"
+
+#~ msgctxt "Precipitaion rate"
+#~ msgid "PRECIP RATE"
+#~ msgstr "HOEVEELHEID NEERSLAG"
+
+#~ msgctxt "Precipitation accumulation"
+#~ msgid "PRECIP ACCUM"
+#~ msgstr "HOEVEELHEID NEERSLAG"
+
+#~ msgid "WIND & GUST"
+#~ msgstr "Windsnelheid"
+
+#~ msgid "PRESSURE"
+#~ msgstr "LUCHTDRUK"
+
+#~ msgid "HUMIDITY"
+#~ msgstr "LUCHTVOCHTIGHEID"
+
+#~ msgctxt "Ultra Violet"
+#~ msgid "UV"
+#~ msgstr "UV-index"
 
 #~ msgid "Font"
 #~ msgstr "Lettertype"
