@@ -70,7 +70,7 @@ KCM.SimpleKCM {
         QQC.SpinBox {
             id: tempPrecision
 
-            Kirigami.FormData.label: i18n("Temperature:")
+            Kirigami.FormData.label: i18n("Temperature") + ":"
 
             from: 0
             to: 15
@@ -84,7 +84,7 @@ KCM.SimpleKCM {
         QQC.SpinBox {
             id: windPrecision
 
-            Kirigami.FormData.label: displayTxt(i18n("WIND & GUST")) + ":"
+            Kirigami.FormData.label: i18n("Wind & Gust") + ":"
 
             from: 0
             to: 15

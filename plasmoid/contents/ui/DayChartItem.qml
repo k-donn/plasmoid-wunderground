@@ -227,7 +227,7 @@ ColumnLayout {
 
                 Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
                 // text: `${dictVals[currentLegendText].name} ${Utils.wrapInBrackets(dictVals[currentLegendText].unit, unitInterval)}`
-                text: currentLegendText + unitInterval
+                text: propInfoDict[currentLegendText].name + " " + Utils.wrapInBrackets(propInfoDict[currentLegendText].unit, unitInterval)
 
                 anchors {
                     top: xAxisLabels.bottom

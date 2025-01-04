@@ -133,6 +133,45 @@ PlasmoidItem {
         uvIndex: 5,
     })
 
+    property var propInfoDict: ({
+        temperature: {
+            unit: Utils.rawTempUnit(),
+            name: i18n("Temperature")
+        },
+        humidity: {
+            unit: "%",
+            name: i18n("Humidity")
+        },
+        cloudCover: {
+            unit: "%",
+            name: i18n("Cloud Cover")
+        },
+        precipitationChance: {
+            unit: "%",
+            name: i18n("Precipitation Chance")
+        },
+        precipitationRate: {
+            unit: Utils.rawPrecipUnit(true),
+            name: i18n("Precipitation Rate")
+        },
+        snowPrecipitationRate: {
+            unit: Utils.rawPrecipUnit(false),
+            name: i18n("Snow Precipitation Rate")
+        },
+        wind: {
+            unit: Utils.rawSpeedUnit(),
+            name: i18n("Wind & Gust")
+        },
+        pressure: {
+            unit: Utils.rawPresUnit(),
+            name: i18n("Pressure")
+        },
+        uvIndex: {
+            unit: "",
+            name: i18n("UV")
+        },
+    })
+
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 600
         Layout.preferredHeight: 340

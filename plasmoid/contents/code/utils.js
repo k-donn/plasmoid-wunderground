@@ -622,10 +622,6 @@ function getChartIcon(code) {
 	return Qt.resolvedUrl("../icons/" + chartIconMap[code] + ".svg");
 }
 
-function wrapInBrackets(unit, unitInterval) {
-	return "[" + unit + unitInterval + "]";
-}
-
 /**
  * Return whether pressure has increased.
  * True = increased

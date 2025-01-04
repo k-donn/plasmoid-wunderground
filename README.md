@@ -52,11 +52,11 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
 ## TODO
 
 - Day Chart
-  -   [ ] Implement V3 API
+  -   [x] Implement V3 API
   -   [x] Refactor key/value dict for API terms
   -   [x] Change sizing of chart
   -   [ ] Make ECMA compatibility consistent
-  -   [ ] Handle dates with JS Date obj instead of splitting strings
+  -   [x] Handle dates with JS Date obj instead of splitting strings
 - i18n
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
