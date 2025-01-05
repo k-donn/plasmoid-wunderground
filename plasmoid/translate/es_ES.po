@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2024-12-18 16:43-0500\n"
+"POT-Creation-Date: 2025-01-04 17:07-0500\n"
 "PO-Revision-Date: 2024-10-27 22:41-0400\n"
 "Last-Translator: ekkia\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -198,6 +198,10 @@ msgid "Forecast"
 msgstr "Pronóstico"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
+msgid "Day Chart"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "More Info"
 msgstr "Más información"
 
@@ -212,6 +216,10 @@ msgstr "Mostrar tendencia de presión:"
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
 msgstr "Escribir en console.log:"
+
+#: ../contents/ui/config/ConfigDebug.qml
+msgid "Use Legacy Forecast API:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
@@ -250,16 +258,28 @@ msgid "Refresh period (s):"
 msgstr "Periodo de actualización (s):"
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Precision"
+msgid "Time/Date Format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Temperature:"
+msgid "Day Chart time format:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
-msgid "WIND & GUST"
-msgstr "RÁFAGA DE VIENTO"
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Week forecast date format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Precision"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Temperature"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "Ráfaga de viento"
 
 #. i18n strings
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
@@ -267,8 +287,8 @@ msgid "Feels like %1"
 msgstr "Sensación térmica de %1"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
-msgid "DEWPOINT"
-msgstr "PUNTO DE ROCÍO"
+msgid "Dew Point"
+msgstr "Punto de rocío"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
@@ -317,18 +337,22 @@ msgstr "Unidad para presión"
 msgid "Elevation unit:"
 msgstr "Unidad para altitud"
 
+#: ../contents/ui/DayChartItem.qml
+msgctxt "per 12 hours, please keep it short"
+msgid "/12h"
+msgstr ""
+
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Viento desde: %1 (%2°)"
 
-#: ../contents/ui/DetailsItem.qml
-msgctxt "Precipitaion rate"
-msgid "PRECIP RATE"
-msgstr "TASA DE PRECIPITACIÓN"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr "Tasa de Precipitación"
 
-#: ../contents/ui/DetailsItem.qml
-msgid "PRESSURE"
-msgstr "PRESIÓN"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Pressure"
+msgstr "Presión"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has risen %1 in the last three hours."
@@ -338,17 +362,16 @@ msgstr "La presión ha aumentado un 1% en las últimas tres horas."
 msgid "Pressure has fallen %1 in the last three hours."
 msgstr "La presión ha descendido un 1% en las últimas tres horas."
 
-#: ../contents/ui/DetailsItem.qml
-msgid "HUMIDITY"
-msgstr "HUMEDAD"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Humidity"
+msgstr "Humedad"
 
 #: ../contents/ui/DetailsItem.qml
-msgctxt "Precipitation accumulation"
-msgid "PRECIP ACCUM"
-msgstr "PRECIP. ACUMULADA"
+msgctxt "Short for: 'Precipitation Accumulation'"
+msgid "Precipitation Accum."
+msgstr ""
 
-#: ../contents/ui/DetailsItem.qml
-msgctxt "Ultra Violet"
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
 msgstr "UV"
 
@@ -402,6 +425,18 @@ msgid "Choose…"
 msgstr "Escoger"
 
 #: ../contents/ui/main.qml
+msgid "Cloud Cover"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Precipitation Chance"
+msgstr ""
+
+#: ../contents/ui/main.qml
+msgid "Snow Precipitation Rate"
+msgstr ""
+
+#: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
 msgstr "Configure la estación meteorológica para extraer datos."
 
@@ -439,3 +474,27 @@ msgstr "Refrescar información meteorológica"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Alto: %1 Bajo: %2"
+
+#~ msgid "DEWPOINT"
+#~ msgstr "PUNTO DE ROCÍO"
+
+#~ msgctxt "Precipitaion rate"
+#~ msgid "PRECIP RATE"
+#~ msgstr "TASA DE PRECIPITACIÓN"
+
+#~ msgctxt "Precipitation accumulation"
+#~ msgid "PRECIP ACCUM"
+#~ msgstr "PRECIP. ACUMULADA"
+
+#~ msgid "WIND & GUST"
+#~ msgstr "RÁFAGA DE VIENTO"
+
+#~ msgid "PRESSURE"
+#~ msgstr "PRESIÓN"
+
+#~ msgid "HUMIDITY"
+#~ msgstr "HUMEDAD"
+
+#~ msgctxt "Ultra Violet"
+#~ msgid "UV"
+#~ msgstr "UV"

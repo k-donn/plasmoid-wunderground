@@ -47,13 +47,21 @@ Text coloring for dark/transparent themes is currently buggy in Plasma 6. The fi
 Changing the transparency then back again seems to solve this issue. See [#58](https://github.com/k-donn/plasmoid-wunderground/issues/58).
 Under Appearance in the widget settings, toggle "Show Background."
 
+The legacy forecast API is geolocation locked in some cases. The newer API is not, but it does not provide all of the same attributes. Checking `Use Legacy Forecast API:` under `Debug` in settings reverts the widget to use the legacy API. Then, you then get the snow, thunder, and golf forecast.
+
 ## TODO
 
+- Day Chart
+  -   [x] Implement V3 API
+  -   [x] Refactor key/value dict for API terms
+  -   [x] Change sizing of chart
+  -   [x] Make ECMA compatibility consistent
+  -   [x] Handle dates with JS Date obj instead of splitting strings
 - i18n
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [ ] Customize CompactRep icon size
+  -   [ ] Customize CompactRep icon/text size
   -   [ ] Widget size/padding/scaling
 - Backend
   -   [x] Refactor QML style

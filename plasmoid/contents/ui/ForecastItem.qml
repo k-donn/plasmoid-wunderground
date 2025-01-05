@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -40,7 +40,7 @@ RowLayout {
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 
-                text: date
+                text: Qt.formatDateTime(date, plasmoid.configuration.weekForecastDateFormat)
             }
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
@@ -72,7 +72,7 @@ RowLayout {
                     id: tooltip
 
                     mainText: longDesc
-                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike),plasmoid.configuration.dewPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
+                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike),plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
 
                     interactive: true
 

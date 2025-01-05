@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -24,6 +24,7 @@ KCM.SimpleKCM {
     id: debugConfig
 
     property alias cfg_logConsole: logConsole.checked
+    property alias cfg_useLegacyAPI: useLegacyAPI.checked
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -32,6 +33,12 @@ KCM.SimpleKCM {
             id: logConsole
 
             Kirigami.FormData.label: i18n("Write to console.log:")
+        }
+
+        QQC.CheckBox {
+            id: useLegacyAPI
+
+            Kirigami.FormData.label: i18n("Use Legacy Forecast API:")
         }
     }
 }

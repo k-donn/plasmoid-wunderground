@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -23,6 +23,8 @@ import org.kde.kirigami as Kirigami
 KCM.SimpleKCM {
     id: unitsConfig
 
+    property alias cfg_dayChartTimeFormat: dayChartTimeFormat.text
+    property alias cfg_weekForecastDateFormat: weekForecastDateFormat.text
     property alias cfg_windPrecision: windPrecision.value
     property alias cfg_tempPrecision: tempPrecision.value
     property alias cfg_feelsPrecision: feelsPrecision.value
@@ -44,6 +46,23 @@ KCM.SimpleKCM {
         anchors.fill: parent
 
         Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Time/Date Format")
+            Kirigami.FormData.isSection: true
+        }
+
+        QQC.TextField {
+            id: dayChartTimeFormat
+
+            Kirigami.FormData.label: i18n("Day Chart time format:")
+        }
+
+        QQC.TextField {
+            id: weekForecastDateFormat
+
+            Kirigami.FormData.label: i18n("Week forecast date format:")
+        }
+
+        Kirigami.Separator {
             Kirigami.FormData.label: i18n("Precision")
             Kirigami.FormData.isSection: true
         }
@@ -51,7 +70,7 @@ KCM.SimpleKCM {
         QQC.SpinBox {
             id: tempPrecision
 
-            Kirigami.FormData.label: i18n("Temperature:")
+            Kirigami.FormData.label: i18n("Temperature") + ":"
 
             from: 0
             to: 15
@@ -65,7 +84,7 @@ KCM.SimpleKCM {
         QQC.SpinBox {
             id: windPrecision
 
-            Kirigami.FormData.label: displayTxt(i18n("WIND & GUST")) + ":"
+            Kirigami.FormData.label: i18n("Wind & Gust") + ":"
 
             from: 0
             to: 15
@@ -108,7 +127,7 @@ KCM.SimpleKCM {
         QQC.SpinBox {
             id: dewPrecision
 
-            Kirigami.FormData.label: displayTxt(i18n("DEWPOINT")) + ":"
+            Kirigami.FormData.label: i18n("Dew Point") + ":"
 
             from: 0
             to: 15

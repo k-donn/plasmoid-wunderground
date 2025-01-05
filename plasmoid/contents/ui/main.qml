@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -31,6 +31,7 @@ PlasmoidItem {
         "stationID": "",
         "uv": 0,
         "obsTimeLocal": "",
+        "isNight": false,
         "winddir": 0,
         "lat": 0,
         "lon": 0,
@@ -68,6 +69,7 @@ PlasmoidItem {
         }
     }
     property ListModel forecastModel: ListModel {}
+    property ListModel hourlyModel: ListModel {}
     property ListModel alertsModel: ListModel {}
 
     property string errorStr: ""
@@ -90,14 +92,89 @@ PlasmoidItem {
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
+    property int tempUnitsChoice: plasmoid.configuration.tempUnitsChoice
+    property int windUnitsChoice: plasmoid.configuration.windUnitsChoice
+    property int rainUnitsChoice: plasmoid.configuration.rainUnitsChoice
+    property int snowUnitsChoice: plasmoid.configuration.snowUnitsChoice
+    property int presUnitsChoice: plasmoid.configuration.presUnitsChoice
+    property bool useLegacyAPI: plasmoid.configuration.useLegacyAPI
 
     property bool inTray: false
     // Metric units change based on precipitation type
     property bool isRain: true
 
+    property var textSize: ({
+        normal: plasmoid.configuration.propPointSize,
+        small: plasmoid.configuration.propPointSize - 1,
+        tiny: plasmoid.configuration.propPointSize - 2
+    })
+
+    property var maxValDict: ({
+        temperature: -999,
+        humidity: -999,
+        cloudCover: -999,
+        precipitationChance: -999,
+        precipitationRate: -999,
+        snowPrecipitationRate: -999,
+        wind: -999,
+        pressure: -999,
+        uvIndex: -999,
+    })
+
+    property var rangeValDict: ({
+        temperature: 30,
+        humidity: 100,
+        cloudCover: 100,
+        precipitationChance: 100,
+        precipitationRate: 5,
+        snowPrecipitationRate: 5,
+        wind: 10,
+        pressure: 5,
+        uvIndex: 5,
+    })
+
+    property var propInfoDict: ({
+        temperature: {
+            unit: Utils.rawTempUnit(),
+            name: i18n("Temperature")
+        },
+        humidity: {
+            unit: "%",
+            name: i18n("Humidity")
+        },
+        cloudCover: {
+            unit: "%",
+            name: i18n("Cloud Cover")
+        },
+        precipitationChance: {
+            unit: "%",
+            name: i18n("Precipitation Chance")
+        },
+        precipitationRate: {
+            unit: Utils.rawPrecipUnit(true),
+            name: i18n("Precipitation Rate")
+        },
+        snowPrecipitationRate: {
+            unit: Utils.rawPrecipUnit(false),
+            name: i18n("Snow Precipitation Rate")
+        },
+        wind: {
+            unit: Utils.rawSpeedUnit(),
+            name: i18n("Wind & Gust")
+        },
+        pressure: {
+            unit: Utils.rawPresUnit(),
+            name: i18n("Pressure")
+        },
+        uvIndex: {
+            unit: "",
+            name: i18n("UV")
+        },
+    })
+
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 600
-        Layout.preferredHeight: 340
+        Layout.preferredHeight: 380
     }
 
     property Component cr: CompactRepresentation {
@@ -119,7 +196,9 @@ PlasmoidItem {
 
     function updateWeatherData() {
         printDebug("Getting new weather data");
-        StationAPI.getCurrentData(StationAPI.getForecastData);
+        StationAPI.getCurrentData(function() {
+            StationAPI.getForecastData(StationAPI.getHourlyData)
+        });
     }
 
     function updateCurrentData() {
@@ -129,7 +208,15 @@ PlasmoidItem {
 
     function updateForecastData() {
         printDebug("Getting new forecast data");
-        StationAPI.getForecastData();
+        StationAPI.getForecastData(StationAPI.getHourlyData);
+    }
+
+    onStationIDChanged: {
+        printDebug("Station ID changed");
+
+        // Show loading screen after ID change
+        appState = showLOADING;
+        updateWeatherData();
     }
 
     onUnitsChoiceChanged: {
@@ -143,12 +230,57 @@ PlasmoidItem {
         }
     }
 
-    onStationIDChanged: {
-        printDebug("Station ID changed");
+    onTempUnitsChoiceChanged: {
+        printDebug("Temp Units changed");
 
-        // Show loading screen after ID change
-        appState = showLOADING;
-        updateWeatherData();
+        if (stationID != "") {
+            appState = showLOADING;
+            updateWeatherData();
+        }
+    }
+
+    onWindUnitsChoiceChanged: {
+        printDebug("Wind Units changed");
+
+        if (stationID != "") {
+            appState = showLOADING;
+            updateWeatherData();
+        }
+    }
+
+    onRainUnitsChoiceChanged: {
+        printDebug("Rain Units changed");
+
+        if (stationID != "") {
+            appState = showLOADING;
+            updateWeatherData();
+        }
+    }
+
+    onSnowUnitsChoiceChanged: {
+        printDebug("Snow Units changed");
+
+        if (stationID != "") {
+            appState = showLOADING;
+            updateWeatherData();
+        }
+    }
+
+    onPresUnitsChoiceChanged: {
+        printDebug("Pres Units changed");
+
+        if (stationID != "") {
+            appState = showLOADING;
+            updateWeatherData();
+        }
+    }
+
+    onUseLegacyAPIChanged: {
+        printDebug("Forecast API changed");
+
+        if (stationID != "") {
+            updateForecastData();
+        }
     }
 
     onWeatherDataChanged: {

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -43,6 +43,12 @@ ColumnLayout {
         }
 
         PlasmaComponents.TabButton {
+            id: dayChartButton
+
+            text: i18n("Day Chart")
+        }
+
+        PlasmaComponents.TabButton {
             id: moreInfoTabButton
 
             text: i18n("More Info")
@@ -71,6 +77,15 @@ ColumnLayout {
 
         ForecastItem {
             id: forecastItem
+
+            Layout.preferredWidth: parent.width
+            Layout.preferredHeight: parent.height * 0.75
+
+            Layout.alignment: Qt.AlignTop
+        }
+
+        DayChartItem {
+            id: dayChartItem
 
             Layout.preferredWidth: parent.width
             Layout.preferredHeight: parent.height * 0.75

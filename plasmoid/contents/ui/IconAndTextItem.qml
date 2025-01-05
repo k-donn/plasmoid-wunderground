@@ -1,5 +1,6 @@
 /*
  * SPDX-FileCopyrightText: 2018 Friedrich W. H. Kossebau <kossebau@kde.org>
+ * Copyright               2025 Kevin Donnelly
  *
  * SPDX-License-Identifier: GPL-2.0-or-later
  */

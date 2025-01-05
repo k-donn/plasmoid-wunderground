@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -215,7 +215,7 @@ KCM.SimpleKCM {
         QQC.ComboBox {
             id: defaultLoadPage
 
-            model: [i18n("Weather Details"), i18n("Forecast"), i18n("More Info")]
+            model: [i18n("Weather Details"), i18n("Forecast"), i18n("Day Chart"), i18n("More Info")]
 
             Kirigami.FormData.label: i18n("Default page shown:")
         }
