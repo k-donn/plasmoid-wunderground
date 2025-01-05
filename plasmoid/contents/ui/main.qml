@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -174,7 +174,7 @@ PlasmoidItem {
 
     property Component fr: FullRepresentation {
         Layout.preferredWidth: 600
-        Layout.preferredHeight: 340
+        Layout.preferredHeight: 380
     }
 
     property Component cr: CompactRepresentation {

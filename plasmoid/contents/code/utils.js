@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
@@ -663,6 +663,11 @@ function toUserTemp(value) {
 	}
 }
 
+/**
+ * Return the user's choice of temperature unit with no additional data.
+ * 
+ * @returns {"°C"|"°F"|"°K"} User shoosen unit
+ */
 function rawTempUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
@@ -723,6 +728,11 @@ function toUserSpeed(value) {
 	}
 }
 
+/**
+ * Return the user's choice of wind speed unit with no additional data.
+ * 
+ * @returns {"kmh"|"mph"|"m/s"} User choosen unit
+ */
 function rawSpeedUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
@@ -780,6 +790,11 @@ function toUserElev(value) {
 	}
 }
 
+/**
+ * Return the user's choice of elevation unit with no additional data.
+ * 
+ * @returns {"m"|"ft"} User choosen unit
+ */
 function rawElevUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
@@ -855,6 +870,12 @@ function toUserPrecip(value, isRain) {
 	}
 }
 
+/**
+ * Return the user's choice of precipitation unit with no additional data.
+ * 
+ * @param {boolean} isRain Whether the measured precip is rain
+ * @returns {"mm"|"cm"|"in"}
+ */
 function rawPrecipUnit(isRain) {
 	var res = "";
 	if (isRain === undefined) {
@@ -943,6 +964,11 @@ function toUserPres(value) {
 	}
 }
 
+/**
+ * Return the user's choice of temperature unit with no additional data.
+ * 
+ * @returns {"mb"|"inHG"|"mmHG"|"hPa"} User choosen unit
+ */
 function rawPresUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
@@ -1000,20 +1026,5 @@ function toUserProp(value, prop) {
 		return toUserPres(value);
 	} else {
 		return value;
-	}
-}
-
-function convertHourlyModelUnits() {
-	var valueNames = Object.entries(hourlyModelDict);
-
-	for (var period = 0; period < hourlyModel.count; period++) {
-		for (var prop = 0; prop < valueNames.length; prop++) {
-			var modelName = valueNames[prop][0];
-			hourlyModel.setProperty(
-				period,
-				modelName,
-				toUserProp(hourlyModel.get(period)[modelName], modelName)
-			);
-		}
 	}
 }

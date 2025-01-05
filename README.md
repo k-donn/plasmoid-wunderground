@@ -55,13 +55,13 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
   -   [x] Implement V3 API
   -   [x] Refactor key/value dict for API terms
   -   [x] Change sizing of chart
-  -   [ ] Make ECMA compatibility consistent
+  -   [x] Make ECMA compatibility consistent
   -   [x] Handle dates with JS Date obj instead of splitting strings
 - i18n
   -   [ ] Translations for new text
   -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [ ] Customize CompactRep icon size
+  -   [ ] Customize CompactRep icon/text size
   -   [ ] Widget size/padding/scaling
 - Backend
   -   [x] Refactor QML style

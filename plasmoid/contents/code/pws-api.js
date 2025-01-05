@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  * Copyright 2024  dniminenn
  * Copyright 2022  Rafal (Raf) Liwoch
  *
@@ -498,6 +498,8 @@ function getExtendedConditions(callback = function() {}) {
 
 /**
  * Call the forecast function according to user choice.
+ * 
+ * @param {() => void} [callback=function() {}] Function to call after the forecast is fetched
  */
 function getForecastData(callback = function() {}) {
 	if (plasmoid.configuration.useLegacyAPI) {
@@ -511,6 +513,8 @@ function getForecastData(callback = function() {}) {
  * Fetch the forecast data and place it in the forecast data model using V3 API.
  * 
  * See note in README for more info.
+ * 
+ * @param {() => void} [callback=function() {}] Function to call after the forecast is fetched
  *
  * @todo Incorporate a bitmapped appState field so an error with forecasts
  * doesn't show an error screen for entire widget.
@@ -645,6 +649,8 @@ function getForecastDataV3(callback = function() {}) {
  * Fetch the forecast data and place it in the forecast data model using V1 API.
  * 
  * See note in README for more info.
+ * 
+ * @param {() => void} [callback=function() {}] Function to call after the forecast is fetched
  *
  * @todo Incorporate a bitmapped appState field so an error with forecasts
  * doesn't show an error screen for entire widget.
@@ -671,8 +677,6 @@ function getForecastDataV1(callback = function() {}) {
 	} else {
 		url += "&units=m";
 	}
-
-	url += "&format=json";
 
 	printDebug("[pws-api.js] " + url);
 
@@ -776,6 +780,11 @@ function getForecastDataV1(callback = function() {}) {
 	req.send();
 }
 
+/**
+ * Get data for the hourly chart according the user API preferences.
+ * 
+ * @param {() => void} [callback = function(){}] Function to call after hourly data is fetched
+ */
 function getHourlyData(callback = function() {}) {
 	if (plasmoid.configuration.useLegacyAPI) {
 		getHourlyDataV1(callback);
@@ -784,6 +793,11 @@ function getHourlyData(callback = function() {}) {
 	}
 }
 
+/**
+ * Fetch hourly data for day chart using V1 API.
+ * 
+ * @param {() => void} [callback = function(){}] Function to call after hourly data is fetched
+ */
 function getHourlyDataV1(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
@@ -806,8 +820,6 @@ function getHourlyDataV1(callback = function() {}) {
 	} else {
 		url += "&units=m";
 	}
-
-	url += "&format=json";
 
 	printDebug("[pws-api.js] " + url);
 
@@ -875,6 +887,11 @@ function getHourlyDataV1(callback = function() {}) {
 	req.send();
 }
 
+/**
+ * Fetch hourly data for day chart using V3 API.
+ * 
+ * @param {() => void} [callback = function(){}] Function to call after hourly data is fetched
+ */
 function getHourlyDataV3(callback = function() {}) {
 	var req = new XMLHttpRequest();
 

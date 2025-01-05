@@ -1,5 +1,5 @@
 /*
- * Copyright 2024  Kevin Donnelly
+ * Copyright 2025  Kevin Donnelly
  * Copyright 2022  Chris Holland
  * Copyright 2016, 2018 Friedrich W. H. Kossebau
  *
