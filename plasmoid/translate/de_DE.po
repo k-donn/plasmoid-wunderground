@@ -199,7 +199,7 @@ msgstr "Wettervorhersage"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "Day Chart"
-msgstr ""
+msgstr "Tagesdiagramme"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "More Info"
@@ -219,7 +219,7 @@ msgstr "Schreibe in den console.log"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Use Legacy Forecast API:"
-msgstr ""
+msgstr "Alte Vorhersage API verwenden:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
@@ -259,19 +259,19 @@ msgstr "Aktualisieren (s):"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time/Date Format"
-msgstr ""
+msgstr "Zeit- und Datumsformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
-msgstr ""
+msgstr "Tagesdiagramme- Zeitformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
-msgstr ""
+msgstr "Wettervorhersage- Datumsformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
-msgstr ""
+msgstr "Nachkommastellen"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
 msgid "Temperature"
@@ -340,7 +340,7 @@ msgstr "Stationshöhe"
 #: ../contents/ui/DayChartItem.qml
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
-msgstr ""
+msgstr "/12h"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
@@ -373,7 +373,7 @@ msgstr "Niederschlagsmenge"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
-msgstr "UV-Index"
+msgstr "UV Index"
 
 #: ../contents/ui/ForecastItem.qml
 msgctxt "Do not edit HTML tags."
@@ -426,15 +426,15 @@ msgstr "Auswählen"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Bewölkungsdichte"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Chance"
-msgstr ""
+msgstr "Niederschlagswahrscheinlichkeit"
 
 #: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
-msgstr ""
+msgstr "Schneefallstärke"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
@@ -474,27 +474,3 @@ msgstr "Wetterdaten aktualisieren"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
-
-#~ msgid "DEWPOINT"
-#~ msgstr "Taupunkt"
-
-#~ msgctxt "Precipitaion rate"
-#~ msgid "PRECIP RATE"
-#~ msgstr "Niederschlagsrate"
-
-#~ msgctxt "Precipitation accumulation"
-#~ msgid "PRECIP ACCUM"
-#~ msgstr "Niederschlagsmenge"
-
-#~ msgid "WIND & GUST"
-#~ msgstr "Wind & Böen"
-
-#~ msgid "PRESSURE"
-#~ msgstr "Luftdruck"
-
-#~ msgid "HUMIDITY"
-#~ msgstr "Luftfeuchtigkeit"
-
-#~ msgctxt "Ultra Violet"
-#~ msgid "UV"
-#~ msgstr "UV-Index"
