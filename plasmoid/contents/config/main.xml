@@ -78,7 +78,7 @@
             <default>true</default>
         </entry>
         <entry name="defaultLoadPage" type="Int">
-            <default>2</default>
+            <default>0</default>
         </entry>
         <entry name="showPresTrend" type="Bool">
             <default>true</default>
