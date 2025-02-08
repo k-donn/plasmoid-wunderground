@@ -59,7 +59,7 @@ msgstr "AQHI: %1"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Primary pollutant: "
-msgstr "Primarni zagađivač"
+msgstr "Primarni zagađivač: "
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
