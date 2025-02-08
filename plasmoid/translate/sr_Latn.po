@@ -207,7 +207,7 @@ msgstr "Više Informacija"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Default page shown:"
-msgstr "Podrazumevana stranica prikazana:"
+msgstr "Podrazumevana prikazana stranica:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show pressure trend:"
@@ -340,7 +340,7 @@ msgstr "Jedinica za visinu:"
 #: ../contents/ui/DayChartItem.qml
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
-msgstr "za 12 sati, molimo Vas da bude kratko."
+msgstr "/12h"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
@@ -369,7 +369,7 @@ msgstr "Vlažnost"
 #: ../contents/ui/DetailsItem.qml
 msgctxt "Short for: 'Precipitation Accumulation'"
 msgid "Precipitation Accum."
-msgstr "Akumul. padavina"
+msgstr "Akumul. Padavina"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
