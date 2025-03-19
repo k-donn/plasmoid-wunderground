@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
 "POT-Creation-Date: 2025-01-04 17:07-0500\n"
-"PO-Revision-Date: 2023-11-05 21:20+0100\n"
-"Last-Translator: Bruno Bianchessi <bruno.bianchessi@laposte.net>\n"
+"PO-Revision-Date: 2028-15-03 21:20+0100\n"
+"Last-Translator: foXaCe <>\n"
 "Language-Team: French <>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
@@ -27,75 +27,75 @@ msgstr "Visualisation de station météorologique personnelle Wunderground"
 
 #: ../contents/config/config.qml
 msgid "Station"
-msgstr ""
+msgstr "Station"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
-msgstr ""
+msgstr "Apparence"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
-msgstr ""
+msgstr "Unités"
 
 #: ../contents/config/config.qml
 msgid "Debug"
-msgstr ""
+msgstr "Débogage"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Status Color"
-msgstr ""
+msgstr "Couleur de statut"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
-msgstr ""
+msgstr "Qualité de l'air"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQI: %1"
-msgstr ""
+msgstr "IQA: %1"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQHI: %1"
-msgstr ""
+msgstr "IQHA: %1"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Primary pollutant: "
-msgstr ""
+msgstr "Polluant principal : "
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
-msgstr ""
+msgstr "Quantité : %1 %2<br/>Description : %3<br/>Indice : %4"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
-msgstr ""
+msgstr "Informations solaires"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Sunrise"
-msgstr ""
+msgstr "Lever du soleil"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Sunset"
-msgstr ""
+msgstr "Coucher du soleil"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "Alerts"
-msgstr ""
+msgstr "Alertes"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
-msgstr ""
+msgstr "Il n'y a pas d'alertes pour votre région."
 
 #: ../contents/ui/AlertsItem.qml
 msgid "Severity: %1"
-msgstr ""
+msgstr "Sévérité : %1"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4"
-msgstr ""
+msgstr "Région : %1<br/>Action : %2<br/>Avertissement : %3<br/>Émis par : %4"
 
 #: ../contents/ui/BottomPanel.qml
 msgid "There are weather alerts for your area!"
-msgstr ""
+msgstr "Il y a des alertes météo pour votre région !"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Compact Representation"
@@ -103,31 +103,31 @@ msgstr "Affichage Compact"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show temperature:"
-msgstr ""
+msgstr "Afficher la température :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text display:"
-msgstr ""
+msgstr "Affichage du texte :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Automatic"
-msgstr ""
+msgstr "Automatique"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text will follow the system font and expand to fill the available space."
-msgstr ""
+msgstr "Le texte suivra la police système et s'étendra pour remplir l'espace disponible."
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Manual"
-msgstr ""
+msgstr "Manuel"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose Style…"
-msgstr ""
+msgstr "Choisir le style…"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose a Font"
-msgstr ""
+msgstr "Choisir une police"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
@@ -147,47 +147,47 @@ msgstr "Taille du texte de la température"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "small (16x16)"
-msgstr ""
+msgstr "petit (16x16)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "smallMedium (22x22)"
-msgstr ""
+msgstr "petit-moyen (22x22)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "medium (32x32)"
-msgstr ""
+msgstr "moyen (32x32)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "large (48x48)"
-msgstr ""
+msgstr "grand (48x48)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "huge (64x64)"
-msgstr ""
+msgstr "très grand (64x64)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "enormous (128x128)"
-msgstr ""
+msgstr "énorme (128x128)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Details icon size:"
-msgstr ""
+msgstr "Taille des icônes de détails :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Top panel icon margins:"
-msgstr ""
+msgstr "Marges des icônes du panneau supérieur :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use system theme icons:"
-msgstr ""
+msgstr "Utiliser les icônes du thème système :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Apply system colors to icons:"
-msgstr ""
+msgstr "Appliquer les couleurs système aux icônes :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
-msgstr ""
+msgstr "Couleur automatique de la température :"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "Weather Details"
@@ -199,19 +199,19 @@ msgstr "Prévisions"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "Day Chart"
-msgstr ""
+msgstr "Graphique journalier"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "More Info"
-msgstr ""
+msgstr "Plus d'informations"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Default page shown:"
-msgstr ""
+msgstr "Page affichée par défaut :"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show pressure trend:"
-msgstr ""
+msgstr "Afficher la tendance de pression :"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
@@ -219,7 +219,7 @@ msgstr "Ecrire dans console.log"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Use Legacy Forecast API:"
-msgstr ""
+msgstr "Utiliser l'API de prévision héritée :"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Find Station"
@@ -231,7 +231,7 @@ msgstr "Saisir la station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Station Info"
-msgstr ""
+msgstr "Informations sur la station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Uses WGS84 geocode coordinates"
@@ -243,7 +243,7 @@ msgstr "ID de la station météorologique:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Weatherstation Name:"
-msgstr ""
+msgstr "Nom de la station météorologique :"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude:"
@@ -259,23 +259,23 @@ msgstr "Intervalle de rafraîchissement (s):"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time/Date Format"
-msgstr ""
+msgstr "Format de date/heure"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
-msgstr ""
+msgstr "Format d'heure du graphique journalier :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
-msgstr ""
+msgstr "Format de date des prévisions hebdomadaires :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
-msgstr ""
+msgstr "Précision"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
 msgid "Temperature"
-msgstr ""
+msgstr "Température"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Wind & Gust"
@@ -303,11 +303,11 @@ msgstr "Impérial"
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
-msgstr "Hybride(GB)"
+msgstr "Hybride (GB)"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Custom"
-msgstr ""
+msgstr "Personnalisé"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
@@ -315,32 +315,32 @@ msgstr "Sélectionner:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Wind unit:"
-msgstr ""
+msgstr "Unité de vent :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Rain unit:"
-msgstr ""
+msgstr "Unité de pluie :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Snow unit:"
-msgstr ""
+msgstr "Unité de neige :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Temperature unit:"
-msgstr ""
+msgstr "Unité de température :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Pressure unit:"
-msgstr ""
+msgstr "Unité de pression :"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Elevation unit:"
-msgstr ""
+msgstr "Unité d'altitude :"
 
 #: ../contents/ui/DayChartItem.qml
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
-msgstr ""
+msgstr "/12h"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
@@ -356,11 +356,11 @@ msgstr "Pression"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has risen %1 in the last three hours."
-msgstr ""
+msgstr "La pression a augmenté de %1 au cours des trois dernières heures."
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has fallen %1 in the last three hours."
-msgstr ""
+msgstr "La pression a chuté de %1 au cours des trois dernières heures."
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Humidity"
@@ -378,7 +378,7 @@ msgstr "UV"
 #: ../contents/ui/ForecastItem.qml
 msgctxt "Do not edit HTML tags."
 msgid "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>"
-msgstr ""
+msgstr "<font size='4'>Ressenti : %1<br/>Orage : %2<br/>UV : %3<br/>Neige : %4<br/>Golf : %5</font>"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Loading data..."
@@ -386,55 +386,55 @@ msgstr "Chargement des données"
 
 #: ../contents/ui/lib/BackgroundToggle.qml
 msgid "Desktop Widget:"
-msgstr ""
+msgstr "Widget de bureau :"
 
 #: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
-msgstr ""
+msgstr "Configurer Wunderground"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
-msgstr ""
+msgstr "Stations météo enregistrées"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove Selected"
-msgstr ""
+msgstr "Supprimer la sélection"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Confirm Remove %1"
-msgstr ""
+msgstr "Confirmer la suppression de %1"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Add"
-msgstr ""
+msgstr "Ajouter"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove"
-msgstr ""
+msgstr "Supprimer"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Select"
-msgstr ""
+msgstr "Sélectionner"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Cancel"
-msgstr ""
+msgstr "Annuler"
 
 #: ../contents/ui/lib/StationPicker.qml
 msgid "Choose…"
-msgstr ""
+msgstr "Choisir…"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Couverture nuageuse"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Chance"
-msgstr ""
+msgstr "Risque de précipitations"
 
 #: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
-msgstr ""
+msgstr "Taux de chutes de neige"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
@@ -469,7 +469,7 @@ msgstr "<font size='4'>Vent: %1</font><br />"
 
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
-msgstr ""
+msgstr "Actualiser la météo"
 
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
