@@ -87,7 +87,7 @@ ColumnLayout {
                         radius: width / 2
                         color: parent.Charts.LineChart.color
                         ToolTip.visible: mouse.containsMouse
-                        ToolTip.text: "%1: %2".arg(parent.Charts.LineChart.name).arg(parent.Charts.LineChart.value)
+                        ToolTip.text: "%1: %2".arg(propInfoDict[parent.Charts.LineChart.name].name).arg(parent.Charts.LineChart.value)
 
                         MouseArea {
                             id: mouse
