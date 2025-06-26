@@ -69,7 +69,7 @@ PlasmoidItem {
         }
     }
     property ListModel forecastModel: ListModel {}
-    // property ListModel hourlyModel: ListModel {}
+    property ListModel hourlyModel: ListModel {}
     property ListModel alertsModel: ListModel {}
 
     property string errorStr: ""

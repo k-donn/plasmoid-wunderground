@@ -144,11 +144,18 @@ ColumnLayout {
                 }
 
                 delegate: PlasmaComponents.Label {
-                    id: xAxisLabelId
+                    id: yAxisLabelId
 
                     font.pointSize: textSize.tiny
                     horizontalAlignment: Text.AlignHCenter
-                    text: ChartsControls.AxisLabels.label
+                    text: {
+                        var chunks = (ChartsControls.AxisLabels.label.toString()).split(".");
+                        if (chunks.length > 1) {
+                            return chunks[0] + "." + chunks[1].substring(0,2);
+                        } else {
+                            return ChartsControls.AxisLabels.label;
+                        }
+                    }
                 }
 
                 source: Charts.ChartAxisSource {
