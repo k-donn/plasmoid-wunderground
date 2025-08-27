@@ -26,6 +26,9 @@
         <entry name="showCompactTemp" type="Bool">
             <default>true</default>
         </entry>
+        <entry name="showSystemTrayTemp" type="Bool">
+            <default>true</default>
+        </entry>
         <entry name="autoFontAndSize" type="Bool">
             <default>true</default>
         </entry>
