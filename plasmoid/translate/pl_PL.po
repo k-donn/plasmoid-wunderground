@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-08-13 10:17-0400\n"
+"POT-Creation-Date: 2025-08-27 12:41-0400\n"
 "Language-Team: Polish <>\n"
 "Language: pl_PL\n"
 "MIME-Version: 1.0\n"
@@ -126,6 +126,10 @@ msgstr "Wybierz styl…"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose a Font"
 msgstr "Wybierz czcionkę"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "System Tray Representation"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
