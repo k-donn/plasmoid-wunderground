@@ -70,7 +70,7 @@ function getAQScale() {
 function isStationActive(givenID, callback) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v2/pws/observations/current";
+	var url = Utils.getAPIHost() + "/v2/pws/observations/current";
 	url += "?stationId=" + givenID;
 	url += "&format=json";
 	url += "&units=m";
@@ -116,7 +116,7 @@ function getNearestStation() {
 
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v3/location/near";
+	var url = Utils.getAPIHost() + "/v3/location/near";
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
@@ -159,7 +159,7 @@ function getNearestStations(latLongObj) {
 
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v3/location/near";
+	var url = Utils.getAPIHost() + "/v3/location/near";
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
@@ -208,7 +208,7 @@ function getNearestStations(latLongObj) {
 function getLocations(city) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v3/location/search";
+	var url = Utils.getAPIHost() + "/v3/location/search";
 	url += "?query=" + city;
 	url += "&locationType=city";
 	url += "&language=" + Qt.locale().name.replace("_","-");
@@ -263,7 +263,7 @@ function getLocations(city) {
 function getCurrentData(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v2/pws/observations/current";
+	var url = Utils.getAPIHost() + "/v2/pws/observations/current";
 	url += "?stationId=" + stationID;
 	url += "&format=json";
 
@@ -376,7 +376,7 @@ function getExtendedConditions(callback = function() {}) {
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;
 
-	var url = "https://api.weather.com/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
+	var url = Utils.getAPIHost() + "/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
 
 	url += "?geocodes=" + lat + "," + long;
 	url += "&apiKey=" + Utils.API_KEY;
@@ -528,7 +528,7 @@ function getForecastDataV3(callback = function() {}) {
 	var long = plasmoid.configuration.longitude;
 	var lat = plasmoid.configuration.latitude;
 
-	var url = "https://api.weather.com/v3/wx/forecast/daily/7day";
+	var url = Utils.getAPIHost() + "/v3/wx/forecast/daily/7day";
 	url += "?geocode=" + lat + "," + long;
 	url += "&apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");
@@ -661,7 +661,7 @@ function getForecastDataV3(callback = function() {}) {
 function getForecastDataV1(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v1/geocode";
+	var url = Utils.getAPIHost() + "/v1/geocode";
 	url +=
 		"/" +
 		plasmoid.configuration.latitude +
@@ -804,7 +804,7 @@ function getHourlyData(callback = function() {}) {
 function getHourlyDataV1(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v1/geocode";
+	var url = Utils.getAPIHost() + "/v1/geocode";
 	url +=
 		"/" +
 		plasmoid.configuration.latitude +
@@ -899,7 +899,7 @@ function getHourlyDataV1(callback = function() {}) {
 function getHourlyDataV3(callback = function() {}) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://api.weather.com/v3/wx/forecast/hourly/2day";
+	var url = Utils.getAPIHost() + "/v3/wx/forecast/hourly/2day";
 	url += "?geocode=" + plasmoid.configuration.latitude + "," + plasmoid.configuration.longitude;
 	url += "&apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_","-");

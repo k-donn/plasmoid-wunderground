@@ -92,6 +92,7 @@ PlasmoidItem {
 
     property string stationID: plasmoid.configuration.stationID
     property int unitsChoice: plasmoid.configuration.unitsChoice
+    property bool useAltAPI: plasmoid.configuration.useAltAPI
     property int tempUnitsChoice: plasmoid.configuration.tempUnitsChoice
     property int windUnitsChoice: plasmoid.configuration.windUnitsChoice
     property int rainUnitsChoice: plasmoid.configuration.rainUnitsChoice
