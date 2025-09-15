@@ -832,6 +832,15 @@ function currentElevUnit(value) {
 }
 
 /**
+ * Get hostname
+ * 
+ * @returns {string} hostname
+ */
+function getAPIHost() {
+	return useAltAPI ? "https://wps.mitchell-a91.workers.dev" : "https://api.weather.com";
+}
+
+/**
  * Take in API precip and convert it to user choosen units.
  * When a user chooses custom units, the API returns metric. So,
  * convert from metric to choice.
