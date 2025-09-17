@@ -51,17 +51,12 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
 
 ## TODO
 
-- Day Chart
-  -   [x] Implement V3 API
-  -   [x] Refactor key/value dict for API terms
-  -   [x] Change sizing of chart
-  -   [x] Make ECMA compatibility consistent
-  -   [x] Handle dates with JS Date obj instead of splitting strings
+- Features
+  -   [ ] Refactor station choice page
 - i18n
   -   [ ] Translations for new text
-  -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [ ] Customize CompactRep icon/text size
+  -   [ ] Choose what to show in panel and desktop forms
   -   [ ] Widget size/padding/scaling
 - Backend
   -   [x] Refactor QML style

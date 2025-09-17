@@ -9,8 +9,8 @@
         <entry name="stationName" type="String">
             <default/>
         </entry>
-        <entry name="savedStations" type="StringList">
-            <default/>
+        <entry name="savedStations" type="String">
+            <default>[]</default>
         </entry>
         <entry name="longitude" type="String">
             <default/>

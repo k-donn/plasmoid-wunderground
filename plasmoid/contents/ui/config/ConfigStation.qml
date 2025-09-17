@@ -28,8 +28,11 @@ import "../lib" as Lib
 KCM.SimpleKCM {
     id: stationConfig
 
+    // Aliases for configuration
     property alias cfg_stationID: stationPickerEl.selectedStation
     property alias cfg_savedStations: stationPickerEl.stationList
+    property alias cfg_latitude: stationPickerEl.latitude
+    property alias cfg_longitude: stationPickerEl.longitude
     property alias cfg_refreshPeriod: refreshPeriod.value
 
     function printDebug(msg) {
@@ -38,83 +41,191 @@ KCM.SimpleKCM {
         }
     }
 
-    Kirigami.FormLayout {
-        anchors.fill: parent
+    function listModelToStr(listModel) {
+        var kvs = [];
+        for (var i = 0; i < listModel.count; i++) {
+            kvs.push(listModel.get(i));
+        }
+        return JSON.stringify(kvs);
+    }
 
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Find Station")
-            Kirigami.FormData.isSection: true
+    // Station Picker Table
+    Item {
+        id: stationPickerEl
+        property string selectedStation: ""
+        property string stationList: ""
+        property real latitude: 0
+        property real longitude: 0
+
+
+        // Helper to update selection
+        function selectStation(index) {
+            printDebug("selectStation: " + stationList);
+            var stationsArr = JSON.parse(stationList);
+            if (index < 0 || index >= stationsArr.length) {
+                return;
+            }
+            selectedStation = stationsArr[index].stationID;
+            latitude = stationsArr[index].latitude;
+            longitude = stationsArr[index].longitude;
+            for (var i = 0; i < stationsArr.length; i++) {
+                stationsArr[i].selected = (i === index);
+            }
+            stationList = JSON.stringify(stationsArr);
         }
 
-        Lib.StationPicker {
-            id: stationPickerEl
-
-            Kirigami.FormData.label: i18n("Enter Station")
-
-            Layout.fillWidth: true
+        // Helper to remove station
+        function removeStation(index) {
+            printDebug("removeStation: " + index + " of " + stationList);
+            var stationsArr = JSON.parse(stationList);
+            if (index < 0 || index >= stationsArr.length) {
+                return;
+            } 
+            var wasSelected = stationsArr[index].selected;
+            stationsArr.splice(index, 1);
+            if (wasSelected && stationsArr.length > 0) {
+                selectStation(0);
+            } else if (stationsArr.length === 0) {
+                selectedStation = "";
+                latitude = 0;
+                longitude = 0;
+            }
+            stationList = JSON.stringify(stationsArr);
         }
 
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Station Info")
-            Kirigami.FormData.isSection: true
+        // Add station and select it
+        function addStation(station) {
+            printDebug("add station: " + JSON.stringify(station) + " to " + stationList);
+            // Prevent duplicates
+            var stationsArr = JSON.parse(stationList);
+            for (var i = 0; i < stationsArr.length; i++) {
+                if (stationsArr[i].stationID === station.stationID) {
+                    return;
+                }
+            }
+            for (var i = 0; i < stationsArr.length; i++) {
+                stationsArr[i].selected = false;
+            }
+            station.selected = true;
+            stationsArr.push(station);
+            stationList = JSON.stringify(stationsArr);
+            selectStation(stationsArr.length - 1);
         }
 
-        Kirigami.Heading {
-            text: i18n("Uses WGS84 geocode coordinates")
-            level: 5
-        }
+        ColumnLayout {
+            width: parent.width
 
-        PlasmaComponents.Label {
-            Kirigami.FormData.label: i18n("Weatherstation ID:")
-
-            color: plasmoid.configuration.stationID !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
-
-            text: plasmoid.configuration.stationID !== "" ? plasmoid.configuration.stationID : "KGADACUL1"
-        }
-
-        PlasmaComponents.Label {
-            Kirigami.FormData.label: i18n("Weatherstation Name:")
-
-            color: plasmoid.configuration.stationName !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
-
-            text: plasmoid.configuration.stationName !== "" ? plasmoid.configuration.stationName : "Hog Mountain"
-        }
-
-        PlasmaComponents.Label {
-            Kirigami.FormData.label: i18n("Longitude:")
-
-            color: plasmoid.configuration.longitude !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
-
-            text: plasmoid.configuration.longitude !== "" ? plasmoid.configuration.longitude : "-83.91"
-        }
-
-        PlasmaComponents.Label {
-            Kirigami.FormData.label: i18n("Latitude:")
-
-            color: plasmoid.configuration.latitude !== "" ? Kirigami.Theme.textColor : Kirigami.Theme.disabledTextColor
-
-            text: plasmoid.configuration.latitude !== "" ? plasmoid.configuration.latitude : "34.06"
-        }
-
-        QQC.SpinBox {
-            id: refreshPeriod
-
-            from: 1
-            to: 86400
-            editable: true
-
-            validator: IntValidator {
-                bottom: refreshPeriod.from
-                top: refreshPeriod.to
+            Kirigami.Heading {
+                text: i18n("Saved Weather Stations")
+                level: 3
             }
 
-            Kirigami.FormData.label: i18n("Refresh period (s):")
-        }
+            // Table header
+            RowLayout {
+                spacing: 8
+                PlasmaComponents.Label { text: i18n("Station ID"); Layout.preferredWidth: 120; font.bold: true }
+                PlasmaComponents.Label { text: i18n("Place Name"); Layout.preferredWidth: 160; font.bold: true }
+                PlasmaComponents.Label { text: i18n("Latitude"); Layout.preferredWidth: 80; font.bold: true }
+                PlasmaComponents.Label { text: i18n("Longitude"); Layout.preferredWidth: 80; font.bold: true }
+                PlasmaComponents.Label { text: i18n("Action"); Layout.preferredWidth: 120; font.bold: true }
+            }
 
-        Kirigami.Separator{}
+            // Table rows
+            ListView {
+                id: stationListView
+                model: ListModel {
+                    id: stationListModel
+                    Component.onCompleted: {
+                        stationListModel.clear();
+                        printDebug("Loaded " + stationPickerEl.stationList + " from station settings");
+                        var stationsArr = JSON.parse(stationPickerEl.stationList);
+                        for (var i = 0; i < stationsArr.length; i++) {
+                            stationListModel.append({
+                                "stationID": stationsArr[i].stationID,
+                                "placeName": stationsArr[i].placeName,
+                                "latitude": stationsArr[i].latitude,
+                                "longitude": stationsArr[i].longitude,
+                                "selected": stationsArr[i].selected === true
+                            });
+                            if (stationsArr[i].selected === true) {
+                                selectStation(i);
+                            }
+                        }
+                    printDebug("onComplete: StationListModel: " + listModelToStr(stationListModel));
+                    }
+                }
+                delegate: RowLayout {
+                    spacing: 8
+                    PlasmaComponents.Label { text: stationID; Layout.preferredWidth: 120 }
+                    PlasmaComponents.Label { text: placeName; Layout.preferredWidth: 160 }
+                    PlasmaComponents.Label { text: latitude; Layout.preferredWidth: 80 }
+                    PlasmaComponents.Label { text: longitude; Layout.preferredWidth: 80 }
+                    RowLayout {
+                        spacing: 4
+                        QQC.Button {
+                            text: i18n("Select")
+                            enabled: !selected
+                            onClicked: {
+                                stationPickerEl.selectStation(index);
+                                // Sync model
+                                for (var i = 0; i < stationListModel.count; i++) {
+                                    stationListModel.setProperty(i, "selected", i === index);
+                                }
+                                printDebug("onClicked: StationListModel: " + listModelToStr(stationListModel));
+                            }
+                        }
+                        QQC.Button {
+                            text: i18n("Remove")
+                            onClicked: {
+                                stationPickerEl.removeStation(index);
+                                stationListModel.remove(index);
+                                printDebug("onRemove: StationListModel: " + listModelToStr(stationListModel));
+                            }
+                        }
+                    }
+                }
+                Layout.preferredHeight: Math.min(6, stationListModel.count) * 36
+                Layout.fillWidth: true
+                clip: true
+            }
 
-        PlasmaComponents.Label {
-            text: "Version 3.4.6"
+            QQC.Button {
+                text: i18n("Add Station…")
+                icon.name: "list-add"
+                onClicked: stationSearcher.open()
+            }
+
+            Lib.StationSearcher {
+                id: stationSearcher
+                onStationSelected: function(station) {
+                    printDebug("Received station: " + JSON.stringify(station));
+                    stationPickerEl.addStation(station);
+                    stationListModel.append({
+                        "stationID": station.stationID,
+                        "placeName": station.placeName,
+                        "latitude": station.latitude,
+                        "longitude": station.longitude,
+                        "selected": true
+                    });
+                    for (var i = 0; i < stationListModel.count; i++) {
+                        stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
+                    }
+                    stationSearcher.close();
+                    printDebug("onSelect: StationListModel: " + listModelToStr(stationListModel));
+                }
+            }
+            QQC.SpinBox {
+                id: refreshPeriod
+                from: 1
+                to: 86400
+                editable: true
+                validator: IntValidator { bottom: refreshPeriod.from; top: refreshPeriod.to }
+                Kirigami.FormData.label: i18n("Refresh period (s):")
+            }
+
+            PlasmaComponents.Label {
+                text: "Version 3.4.6"
+            }
         }
 
     }
