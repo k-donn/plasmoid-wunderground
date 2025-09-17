@@ -81,9 +81,6 @@ function isStationActive(givenID, callback) {
 
 	req.open("GET", url);
 
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
 	req.onerror = function () {
 		errorStr = "Request couldn't be sent" + req.statusText;
 
@@ -124,9 +121,6 @@ function getNearestStation() {
 
 	req.open("GET", url);
 
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
@@ -149,7 +143,7 @@ function getNearestStation() {
 function searchStationID(query, callback) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://wps.mitchell-a91.workers.dev/v3/location/search";
+	var url = Utils.getAPIHost() + "/v3/location/search";
 	url += "?query=" + query;
 	url += "&locationType=pws";
 	url += "&language=" + Qt.locale().name.replace("_", "-");
@@ -200,7 +194,7 @@ function searchGeocode(latLongObj, callback) {
 
 	var req = new XMLHttpRequest();
 
-	var url = "https://wps.mitchell-a91.workers.dev/v3/location/near";
+	var url = Utils.getAPIHost() + "/v3/location/near";
 	url += "?geocode=" + lat + "," + long;
 	url += "&product=pws";
 	url += "&format=json";
@@ -209,9 +203,6 @@ function searchGeocode(latLongObj, callback) {
 	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -251,7 +242,7 @@ function searchGeocode(latLongObj, callback) {
 function getLocations(city, callback) {
 	var req = new XMLHttpRequest();
 
-	var url = "https://wps.mitchell-a91.workers.dev/v3/location/search";
+	var url = Utils.getAPIHost() + "/v3/location/search";
 	url += "?query=" + city;
 	url += "&locationType=city";
 	url += "&language=" + Qt.locale().name.replace("_", "-");
@@ -261,9 +252,6 @@ function getLocations(city, callback) {
 	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
@@ -323,9 +311,6 @@ function getCurrentData(callback = function () {}) {
 	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onerror = function () {
 		errorStr = "Request couldn't be sent" + req.statusText;
@@ -438,9 +423,6 @@ function getExtendedConditions(callback = function () {}) {
 	url += "&format=json";
 
 	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onerror = function () {
 		printDebug("[pws-api.js] " + req.responseText);
@@ -618,9 +600,6 @@ function getForecastDataV3(callback = function () {}) {
 
 	req.open("GET", url);
 
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
 	req.onerror = function () {
 		printDebug("[pws-api.js] " + req.responseText);
 	};
@@ -791,9 +770,6 @@ function getForecastDataV1(callback = function () {}) {
 
 	req.open("GET", url);
 
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
@@ -944,9 +920,6 @@ function getHourlyDataV1(callback = function () {}) {
 
 	req.open("GET", url);
 
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
-
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
@@ -1054,9 +1027,6 @@ function getHourlyDataV3(callback = function () {}) {
 	printDebug("[pws-api.js] " + url);
 
 	req.open("GET", url);
-
-	req.setRequestHeader("Accept-Encoding", "gzip");
-	req.setRequestHeader("Origin", "https://www.wunderground.com");
 
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {

@@ -160,7 +160,6 @@ KCM.SimpleKCM {
                             enabled: !selected
                             onClicked: {
                                 stationPickerEl.selectStation(index);
-                                // Sync model
                                 for (var i = 0; i < stationListModel.count; i++) {
                                     stationListModel.setProperty(i, "selected", i === index);
                                 }

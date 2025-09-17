@@ -669,7 +669,7 @@ function toUserTemp(value) {
 
 /**
  * Return the user's choice of temperature unit with no additional data.
- * 
+ *
  * @returns {"°C"|"°F"|"°K"} User shoosen unit
  */
 function rawTempUnit() {
@@ -734,7 +734,7 @@ function toUserSpeed(value) {
 
 /**
  * Return the user's choice of wind speed unit with no additional data.
- * 
+ *
  * @returns {"kmh"|"mph"|"m/s"} User choosen unit
  */
 function rawSpeedUnit() {
@@ -796,7 +796,7 @@ function toUserElev(value) {
 
 /**
  * Return the user's choice of elevation unit with no additional data.
- * 
+ *
  * @returns {"m"|"ft"} User choosen unit
  */
 function rawElevUnit() {
@@ -833,11 +833,11 @@ function currentElevUnit(value) {
 
 /**
  * Get hostname
- * 
+ *
  * @returns {string} hostname
  */
 function getAPIHost() {
-	return useAltAPI ? "https://wps.mitchell-a91.workers.dev" : "https://api.weather.com";
+	return "https://wps.mitchell-a91.workers.dev";
 }
 
 /**
@@ -885,7 +885,7 @@ function toUserPrecip(value, isRain) {
 
 /**
  * Return the user's choice of precipitation unit with no additional data.
- * 
+ *
  * @param {boolean} isRain Whether the measured precip is rain
  * @returns {"mm"|"cm"|"in"}
  */
@@ -979,7 +979,7 @@ function toUserPres(value) {
 
 /**
  * Return the user's choice of temperature unit with no additional data.
- * 
+ *
  * @returns {"mb"|"inHG"|"mmHG"|"hPa"} User choosen unit
  */
 function rawPresUnit() {

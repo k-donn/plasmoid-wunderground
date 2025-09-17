@@ -24,7 +24,6 @@ KCM.SimpleKCM {
     id: debugConfig
 
     property alias cfg_logConsole: logConsole.checked
-    property alias cfg_useAltAPI: useAltAPI.checked
     property alias cfg_useLegacyAPI: useLegacyAPI.checked
     property alias cfg_startupDelay: startupDelay.value
 
@@ -35,12 +34,6 @@ KCM.SimpleKCM {
             id: logConsole
 
             Kirigami.FormData.label: i18n("Write to console.log:")
-        }
-
-        QQC.CheckBox {
-            id: useAltAPI
-
-            Kirigami.FormData.label: i18n("Use Alternative API Host:")
         }
 
         QQC.CheckBox {
