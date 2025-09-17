@@ -28,7 +28,6 @@ import "../lib" as Lib
 KCM.SimpleKCM {
     id: stationConfig
 
-    // Aliases for configuration
     property alias cfg_stationID: stationPickerEl.selectedStation
     property alias cfg_savedStations: stationPickerEl.stationList
     property alias cfg_latitude: stationPickerEl.latitude
@@ -49,7 +48,6 @@ KCM.SimpleKCM {
         return JSON.stringify(kvs);
     }
 
-    // Station Picker Table
     Item {
         id: stationPickerEl
         property string selectedStation: ""
@@ -117,7 +115,6 @@ KCM.SimpleKCM {
                 level: 3
             }
 
-            // Table header
             RowLayout {
                 spacing: 8
                 PlasmaComponents.Label { text: i18n("Station ID"); Layout.preferredWidth: 120; font.bold: true }
@@ -127,7 +124,6 @@ KCM.SimpleKCM {
                 PlasmaComponents.Label { text: i18n("Action"); Layout.preferredWidth: 120; font.bold: true }
             }
 
-            // Table rows
             ListView {
                 id: stationListView
                 model: ListModel {

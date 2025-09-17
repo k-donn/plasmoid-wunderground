@@ -40,11 +40,13 @@ Window {
     property real searchLon: 0
 
     property ListModel searchResults: ListModel {}
+    property ListModel availableCitiesModel: ListModel {}
 
     onOpen: {
         stationSearcher.visible = true;
 
         searchResults.clear();
+        availableCitiesModel.clear();
     }
 
     ColumnLayout {
@@ -89,7 +91,13 @@ Window {
                         })
                     } else if (stationSearcher.searchMode === "placeName") {
                         StationAPI.getLocations(stationSearcher.searchText, function(places) {
-                            // populate places and do search on choosen one
+                            for (var i = 0; i < places.length; i++) {
+                                availableCitiesModel.append({
+                                    "placeName": places[i].city + "," + places[i].country,
+                                    "latitude": places[i].latitude,
+                                    "longitude": places[i].longitude
+                                });
+                            }
                         })
                     } else {
                         StationAPI.searchGeocode({lat: stationSearcher.searchLat, long: stationSearcher.searchLon}, function(stations) {
@@ -99,6 +107,57 @@ Window {
                         })
                     }
                 }
+            }
+        }
+
+        Loader {
+            id: searchHelpLoader
+            Layout.fillWidth: true
+            sourceComponent: stationSearcher.searchMode === "placeName" ? placeNameHelp : (stationSearcher.searchMode === "latlon" ? latLonHelp : stationIDHelp)
+        }
+
+        Component {
+            id: placeNameHelp
+            RowLayout {
+                Layout.fillWidth: true
+
+                PlasmaComponents.Label {
+                    text: i18n("Searching place:")
+                }
+
+                QQC.ComboBox {
+                    id: cityChoice
+                    Layout.fillWidth: true
+                    textRole: "placeName"
+                    model: availableCitiesModel
+                }
+
+                QQC.Button {
+                    text: i18n("Choose")
+                    onClicked: {
+                        StationAPI.searchGeocode({lat: availableCitiesModel.get(cityChoice.currentIndex).latitude, long: availableCitiesModel.get(cityChoice.currentIndex).longitude}, function(stations) {
+                            for (var i = 0; i < stations.length; i++) {
+                                stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                            }
+                        });
+                    }
+                }
+            }
+        }
+
+        Component {
+            id: latLonHelp
+
+            PlasmaComponents.Label {
+                text: i18n("Uses WGS84 geocode coordinates")
+            }
+        }
+
+        Component {
+            id: stationIDHelp
+
+            PlasmaComponents.Label {
+                text: i18n("Use exact stationID name")
             }
         }
 

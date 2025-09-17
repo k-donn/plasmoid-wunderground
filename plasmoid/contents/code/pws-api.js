@@ -251,7 +251,7 @@ function searchGeocode(latLongObj, callback) {
 function getLocations(city, callback) {
 	var req = new XMLHttpRequest();
 
-	var url = Utils.getAPIHost() + "/v3/location/search";
+	var url = "https://wps.mitchell-a91.workers.dev/v3/location/search";
 	url += "?query=" + city;
 	url += "&locationType=city";
 	url += "&language=" + Qt.locale().name.replace("_", "-");
