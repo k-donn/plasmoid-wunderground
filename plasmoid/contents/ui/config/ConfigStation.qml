@@ -58,7 +58,6 @@ KCM.SimpleKCM {
         property real longitude: 0
 
 
-        // Helper to update selection
         function selectStation(index) {
             printDebug("selectStation: " + stationList);
             var stationsArr = JSON.parse(stationList);
@@ -74,7 +73,6 @@ KCM.SimpleKCM {
             stationList = JSON.stringify(stationsArr);
         }
 
-        // Helper to remove station
         function removeStation(index) {
             printDebug("removeStation: " + index + " of " + stationList);
             var stationsArr = JSON.parse(stationList);
@@ -93,7 +91,6 @@ KCM.SimpleKCM {
             stationList = JSON.stringify(stationsArr);
         }
 
-        // Add station and select it
         function addStation(station) {
             printDebug("add station: " + JSON.stringify(station) + " to " + stationList);
             // Prevent duplicates
@@ -151,7 +148,7 @@ KCM.SimpleKCM {
                                 selectStation(i);
                             }
                         }
-                    printDebug("onComplete: StationListModel: " + listModelToStr(stationListModel));
+                        printDebug("onComplete: StationListModel: " + listModelToStr(stationListModel));
                     }
                 }
                 delegate: RowLayout {

@@ -3,6 +3,8 @@ import QtQuick.Layouts
 import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
+import "../../code/utils.js" as Utils
+import "../../code/pws-api.js" as StationAPI
 
 Window {
     id: stationSearcher
@@ -69,8 +71,8 @@ Window {
                 }
             }
 
-            // Search fields
             Loader {
+                id: searchFieldLoader
                 Layout.fillWidth: true
                 sourceComponent: stationSearcher.searchMode === "latlon" ? latlonFields : textField
             }
@@ -80,11 +82,21 @@ Window {
                 text: "Search"
                 onClicked: {
                     if (stationSearcher.searchMode === "stationID") {
-                        stationSearcher.searchResults.append({ "stationID": stationSearcher.searchText,"placeName": "Sample Place", "latitude": 12.34, "longitude": 56.78 });
+                        StationAPI.searchStationID(stationSearcher.searchText, function(stations) {
+                            for (var i = 0; i < stations.length; i++) {
+                                stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                            }
+                        })
                     } else if (stationSearcher.searchMode === "placeName") {
-                        stationSearcher.searchResults.append({ "stationID": "STN001", "placeName": stationSearcher.searchText, "latitude": 12.34, "longitude": 56.78 });
+                        StationAPI.getLocations(stationSearcher.searchText, function(places) {
+                            // populate places and do search on choosen one
+                        })
                     } else {
-                        stationSearcher.searchResults.append({ "stationID": "STN002", "placeName": "Nearby Place", "latitude": stationSearcher.searchLat, "longitude": stationSearcher.searchLon });
+                        StationAPI.searchGeocode({lat: stationSearcher.searchLat, long: stationSearcher.searchLon}, function(stations) {
+                            for (var i = 0; i < stations.length; i++) {
+                                stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                            }
+                        })
                     }
                 }
             }
@@ -95,7 +107,7 @@ Window {
             id: textField
             QQC.TextField {
                 Layout.fillWidth: true
-                placeholderText: stationSearcher.searchMode === "stationID" ? "Enter Station ID" : "Enter Place Name"
+                placeholderText: stationSearcher.searchMode === "stationID" ? i18n("Enter Station ID") : i18n("Enter Place Name")
                 text: stationSearcher.searchText
                 onTextChanged: stationSearcher.searchText = text
             }
@@ -133,9 +145,13 @@ Window {
                 PlasmaComponents.Label { text: longitude; Layout.preferredWidth: 80 }
                 QQC.Button {
                     text: "Select"
+                    enabled: !selected
                     onClicked: {
-                        printDebug("selected: " + JSON.stringify(stationSearcher.searchResults.get(index)))
                         selectedStation = stationSearcher.searchResults.get(index)
+                        for (var i = 0; i < stationSearcher.searchResults.count; i++) {
+                            stationSearcher.searchResults.setProperty(i, "selected", i === index);
+                        }
+                        printDebug("selected: " + JSON.stringify(stationSearcher.searchResults.get(index)))
                     }
                 }
             }
