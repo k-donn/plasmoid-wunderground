@@ -41,7 +41,7 @@ Window {
         errText.text = "Error: " + errorObj.type + " message: " + errorObj.message;
     }
 
-    title: i18n("Search Weather Stations")
+    title: i18n("Find Station")
     color: syspal.window
 
     property string searchMode: "stationID"
@@ -76,7 +76,7 @@ Window {
                 QQC.Label { text: i18n("Search by:") }
                 QQC.ComboBox {
                     id: modeCombo
-                    model: [ i18n("Station ID"), i18n("Place Name"), i18n("Lat/Lon") ]
+                    model: [ i18n("Weatherstation ID:"), i18n("Place Name"), i18n("Lat/Lon") ]
                     onCurrentIndexChanged: {
                         if (currentIndex === 0) stationSearcher.searchMode = "stationID";
                         else if (currentIndex === 1) stationSearcher.searchMode = "placeName";
@@ -210,7 +210,7 @@ Window {
             id: textField
             QQC.TextField {
                 Layout.fillWidth: true
-                placeholderText: stationSearcher.searchMode === "stationID" ? i18n("Enter Station ID") : i18n("Enter Place Name")
+                placeholderText: stationSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter Place Name")
                 onTextChanged: stationSearcher.searchText = text.trim()
             }
         }
@@ -236,9 +236,9 @@ Window {
 
         RowLayout {
             Layout.fillWidth: true
-            spacing: 8
-            PlasmaComponents.Label { text: i18n("Station ID"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
-            PlasmaComponents.Label { text: i18n("Place Name"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
+            spacing: 6
+            PlasmaComponents.Label { text: i18n("Weatherstation ID:"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
+            PlasmaComponents.Label { text: i18n("Weatherstation Name:"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
             PlasmaComponents.Label { text: i18n("Latitude:"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
             PlasmaComponents.Label { text: i18n("Longitude:"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
             PlasmaComponents.Label { text: "" ; Layout.fillWidth: true; Layout.preferredWidth: 1 }
@@ -251,7 +251,7 @@ Window {
                 spacing: 8
                 width: ListView.view.width
 
-                PlasmaComponents.Label { text: stationID; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
+                PlasmaComponents.Label { text: stationID; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
                 PlasmaComponents.Label { text: placeName; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
                 PlasmaComponents.Label { text: latitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
                 PlasmaComponents.Label { text: longitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }

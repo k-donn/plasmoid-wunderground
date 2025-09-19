@@ -59,7 +59,7 @@ KCM.SimpleKCM {
 
 
         function selectStation(index) {
-            printDebug("selectStation: " + stationList);
+            printDebug("selectStation " + index + " of " + stationList);
             var stationsArr = JSON.parse(stationList);
             if (index < 0 || index >= stationsArr.length) {
                 return;
@@ -82,15 +82,18 @@ KCM.SimpleKCM {
             } 
             var wasSelected = stationsArr[index].selected;
             stationsArr.splice(index, 1);
-            if (wasSelected && stationsArr.length > 0) {
-                selectStation(0);
+            stationList = JSON.stringify(stationsArr);
+            if (stationsArr.length === 1) {
+                stationPickerEl.selectStation(0);
+            } else if (wasSelected && stationsArr.length > 1) {
+                stationPickerEl.selectStation(stationsArr.length - 1);
             } else if (stationsArr.length === 0) {
                 selectedStation = "";
                 latitude = 0;
                 longitude = 0;
                 stationName = "";
             }
-            stationList = JSON.stringify(stationsArr);
+            printDebug("After removal: " + stationList);
         }
 
         function addStation(station) {
@@ -108,7 +111,7 @@ KCM.SimpleKCM {
             station.selected = true;
             stationsArr.push(station);
             stationList = JSON.stringify(stationsArr);
-            selectStation(stationsArr.length - 1);
+            stationPickerEl.selectStation(stationsArr.length - 1);
         }
 
         ColumnLayout {
@@ -130,7 +133,7 @@ KCM.SimpleKCM {
                     width: 120
                     PlasmaComponents.Label {
                         anchors.centerIn: parent
-                        text: i18n("Station ID")
+                        text: i18n("ID:")
                         font.bold: true
                         elide: Text.ElideRight
                         horizontalAlignment: Text.AlignHCenter
@@ -147,7 +150,7 @@ KCM.SimpleKCM {
                     width: 160
                     PlasmaComponents.Label {
                         anchors.centerIn: parent
-                        text: i18n("Place Name")
+                        text: i18n("Weatherstation Name:")
                         font.bold: true
                         elide: Text.ElideRight
                         horizontalAlignment: Text.AlignHCenter
@@ -341,8 +344,21 @@ KCM.SimpleKCM {
                                 QQC.ToolTip.text: i18n("Remove")
                                 QQC.ToolTip.visible: hovered
                                 onClicked: {
+                                    var wasSelected = selected;
+                                    var oldIndex = index;
                                     stationPickerEl.removeStation(index);
                                     stationListModel.remove(index);
+                                    if (wasSelected && stationListModel.count === 1) {
+                                        stationListModel.setProperty(0, "selected", true);
+                                    } else if (wasSelected && stationListModel.count > 1) {
+                                        if (stationListModel.count > oldIndex) {
+                                            stationListModel.setProperty(oldIndex, "selected", true);
+                                        } else if (stationListModel.count === oldIndex) {
+                                            stationListModel.setProperty(oldIndex - 1, "selected", true);
+                                        } else {
+                                            stationListModel.setProperty(stationListModel.count - 1, "selected", true);
+                                        }
+                                    }
                                     printDebug("onRemove: StationListModel: " + listModelToStr(stationListModel));
                                 }
                             }
