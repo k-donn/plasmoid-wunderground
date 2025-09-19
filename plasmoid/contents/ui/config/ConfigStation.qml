@@ -30,6 +30,7 @@ KCM.SimpleKCM {
 
     property alias cfg_stationID: stationPickerEl.selectedStation
     property alias cfg_savedStations: stationPickerEl.stationList
+    property alias cfg_stationName: stationPickerEl.stationName
     property alias cfg_latitude: stationPickerEl.latitude
     property alias cfg_longitude: stationPickerEl.longitude
     property alias cfg_refreshPeriod: refreshPeriod.value
@@ -52,6 +53,7 @@ KCM.SimpleKCM {
         id: stationPickerEl
         property string selectedStation: ""
         property string stationList: ""
+        property string stationName: ""
         property real latitude: 0
         property real longitude: 0
 
@@ -65,6 +67,7 @@ KCM.SimpleKCM {
             selectedStation = stationsArr[index].stationID;
             latitude = stationsArr[index].latitude;
             longitude = stationsArr[index].longitude;
+            stationName = stationsArr[index].placeName;
             for (var i = 0; i < stationsArr.length; i++) {
                 stationsArr[i].selected = (i === index);
             }
@@ -74,7 +77,7 @@ KCM.SimpleKCM {
         function removeStation(index) {
             printDebug("removeStation: " + index + " of " + stationList);
             var stationsArr = JSON.parse(stationList);
-            if (index < 0 || index >= stationsArr.length) {
+            if (index < 0 || index >= stationsArr.length || stationsArr.length === 0) {
                 return;
             } 
             var wasSelected = stationsArr[index].selected;
@@ -85,6 +88,7 @@ KCM.SimpleKCM {
                 selectedStation = "";
                 latitude = 0;
                 longitude = 0;
+                stationName = "";
             }
             stationList = JSON.stringify(stationsArr);
         }
@@ -211,18 +215,56 @@ KCM.SimpleKCM {
                     id: stationListModel
                     Component.onCompleted: {
                         stationListModel.clear();
-                        printDebug("Loaded " + stationPickerEl.stationList + " from station settings");
-                        var stationsArr = JSON.parse(stationPickerEl.stationList);
-                        for (var i = 0; i < stationsArr.length; i++) {
-                            stationListModel.append({
-                                "stationID": stationsArr[i].stationID,
-                                "placeName": stationsArr[i].placeName,
-                                "latitude": stationsArr[i].latitude,
-                                "longitude": stationsArr[i].longitude,
-                                "selected": stationsArr[i].selected === true
-                            });
-                            if (stationsArr[i].selected === true) {
-                                selectStation(i);
+                        printDebug("Loading from savedStations: " + stationPickerEl.stationList + "");
+                        var stationsArr = [];
+                        try {
+                            stationsArr = JSON.parse(stationPickerEl.stationList);
+
+                            if (stationsArr.length === 0 && plasmoid.configuration.stationID !== "") {
+                                printDebug("Station not saved to savedStations. Attempting to add.");
+                                stationListModel.append({
+                                    "stationID":plasmoid.configuration.stationID,
+                                    "placeName":plasmoid.configuration.stationName,
+                                    "latitude":plasmoid.configuration.latitude,
+                                    "longitude":plasmoid.configuration.longitude,
+                                    "selected": true
+                                });
+                                var stationListTxt = listModelToStr(stationListModel);
+                                printDebug("Wrote to savedStations: " + stationListTxt);
+                                plasmoid.configuration.savedStations = stationListTxt;
+                                stationPickerEl.stationList = stationListTxt;
+                                stationPickerEl.selectStation(0);
+                            }
+
+                            for (var i = 0; i < stationsArr.length; i++) {
+                                stationListModel.append({
+                                    "stationID": stationsArr[i].stationID,
+                                    "placeName": stationsArr[i].placeName,
+                                    "latitude": stationsArr[i].latitude,
+                                    "longitude": stationsArr[i].longitude,
+                                    "selected": stationsArr[i].selected === true
+                                });
+                                if (stationsArr[i].selected === true) {
+                                    stationPickerEl.selectStation(i);
+                                }
+                            }
+                        } catch (e) {
+                            printDebug("Invalid saved stations");
+                            printDebug("Station ID: " + plasmoid.configuration.stationID + " long: " + plasmoid.configuration.longitude + " lat: " + plasmoid.configuration.latitude + " name: " + plasmoid.configuration.stationName + " list: " + plasmoid.configuration.stationList);
+                            if (plasmoid.configuration.stationID !== null) {
+                                printDebug("Attempting to fill in savedStations");
+                                stationListModel.append({
+                                    "stationID":plasmoid.configuration.stationID,
+                                    "placeName":plasmoid.configuration.stationName,
+                                    "latitude":plasmoid.configuration.latitude,
+                                    "longitude":plasmoid.configuration.longitude,
+                                    "selected": true
+                                });
+                                var stationListTxt = listModelToStr(stationListModel);
+                                printDebug("Wrote to savedStations: " + stationListTxt);
+                                plasmoid.configuration.savedStations = stationListTxt;
+                                stationPickerEl.stationList = stationListTxt;
+                                stationPickerEl.selectStation(0);
                             }
                         }
                         printDebug("onComplete: StationListModel: " + listModelToStr(stationListModel));
@@ -295,6 +337,7 @@ KCM.SimpleKCM {
                             }
                             QQC.Button {
                                 icon.name: "dialog-cancel"
+                                enabled: stationListModel.count > 1
                                 QQC.ToolTip.text: i18n("Remove")
                                 QQC.ToolTip.visible: hovered
                                 onClicked: {
