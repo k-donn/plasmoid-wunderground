@@ -116,12 +116,93 @@ KCM.SimpleKCM {
             }
 
             RowLayout {
-                spacing: 8
-                PlasmaComponents.Label { text: i18n("Station ID"); Layout.preferredWidth: 120; font.bold: true }
-                PlasmaComponents.Label { text: i18n("Place Name"); Layout.preferredWidth: 160; font.bold: true }
-                PlasmaComponents.Label { text: i18n("Latitude"); Layout.preferredWidth: 80; font.bold: true }
-                PlasmaComponents.Label { text: i18n("Longitude"); Layout.preferredWidth: 80; font.bold: true }
-                PlasmaComponents.Label { text: i18n("Action"); Layout.preferredWidth: 120; font.bold: true }
+                id: headerRow
+                spacing: 0
+                Rectangle {
+                    color: Kirigami.Theme.backgroundColor
+                    border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
+                    border.width: 1
+                    height: 36
+                    width: 120
+                    PlasmaComponents.Label {
+                        anchors.centerIn: parent
+                        text: i18n("Station ID")
+                        font.bold: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        width: parent.width - 8
+                        clip: true
+                    }
+                }
+                Rectangle {
+                    color: Kirigami.Theme.backgroundColor
+                    border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
+                    border.width: 1
+                    height: 36
+                    width: 160
+                    PlasmaComponents.Label {
+                        anchors.centerIn: parent
+                        text: i18n("Place Name")
+                        font.bold: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        width: parent.width - 8
+                        clip: true
+                    }
+                }
+                Rectangle {
+                    color: Kirigami.Theme.backgroundColor
+                    border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
+                    border.width: 1
+                    height: 36
+                    width: 80
+                    PlasmaComponents.Label {
+                        anchors.centerIn: parent
+                        text: i18n("Latitude:")
+                        font.bold: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        width: parent.width - 8
+                        clip: true
+                    }
+                }
+                Rectangle {
+                    color: Kirigami.Theme.backgroundColor
+                    border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
+                    border.width: 1
+                    height: 36
+                    width: 80
+                    PlasmaComponents.Label {
+                        anchors.centerIn: parent
+                        text: i18n("Longitude:")
+                        font.bold: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        width: parent.width - 8
+                        clip: true
+                    }
+                }
+                Rectangle {
+                    color: Kirigami.Theme.backgroundColor
+                    border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
+                    border.width: 1
+                    height: 36
+                    width: 120
+                    PlasmaComponents.Label {
+                        anchors.centerIn: parent
+                        text: i18n("Action")
+                        font.bold: true
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                        width: parent.width - 8
+                        clip: true
+                    }
+                }
             }
 
             ListView {
@@ -147,36 +228,85 @@ KCM.SimpleKCM {
                         printDebug("onComplete: StationListModel: " + listModelToStr(stationListModel));
                     }
                 }
-                delegate: RowLayout {
-                    spacing: 8
-                    PlasmaComponents.Label { text: stationID; Layout.preferredWidth: 120 }
-                    PlasmaComponents.Label { text: placeName; Layout.preferredWidth: 160 }
-                    PlasmaComponents.Label { text: latitude; Layout.preferredWidth: 80 }
-                    PlasmaComponents.Label { text: longitude; Layout.preferredWidth: 80 }
+                delegate: Item {
+                    width: headerRow.width
+                    height: 36
+                    Rectangle {
+                        anchors.fill: parent
+                        color: selected ? Kirigami.Theme.highlightColor
+                                        : (index % 2 === 0 ? Kirigami.Theme.backgroundColor : Kirigami.Theme.alternateBackgroundColor)
+                        border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
+                        border.width: 1
+                    }
                     RowLayout {
-                        spacing: 4
-                        QQC.Button {
-                            text: i18n("Select")
-                            enabled: !selected
-                            onClicked: {
-                                stationPickerEl.selectStation(index);
-                                for (var i = 0; i < stationListModel.count; i++) {
-                                    stationListModel.setProperty(i, "selected", i === index);
-                                }
-                                printDebug("onClicked: StationListModel: " + listModelToStr(stationListModel));
-                            }
+                        anchors.fill: parent
+                        spacing: 0
+                        PlasmaComponents.Label {
+                            text: stationID
+                            Layout.preferredWidth: 120
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            elide: Text.ElideRight
+                            clip: true
                         }
-                        QQC.Button {
-                            text: i18n("Remove")
-                            onClicked: {
-                                stationPickerEl.removeStation(index);
-                                stationListModel.remove(index);
-                                printDebug("onRemove: StationListModel: " + listModelToStr(stationListModel));
+                        Rectangle { width: 1; color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15); height: parent.height }
+                        PlasmaComponents.Label {
+                            text: placeName
+                            Layout.preferredWidth: 160
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            elide: Text.ElideRight
+                            clip: true
+                        }
+                        Rectangle { width: 1; color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15); height: parent.height }
+                        PlasmaComponents.Label {
+                            text: latitude
+                            Layout.preferredWidth: 80
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            elide: Text.ElideRight
+                            clip: true
+                        }
+                        Rectangle { width: 1; color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15); height: parent.height }
+                        PlasmaComponents.Label {
+                            text: longitude
+                            Layout.preferredWidth: 80
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            elide: Text.ElideRight
+                            clip: true
+                        }
+                        Rectangle { width: 1; color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15); height: parent.height }
+                        RowLayout {
+                            Layout.preferredWidth: 120
+                            spacing: 4
+                            QQC.Button {
+                                icon.name: "dialog-ok-apply"
+                                enabled: !selected
+                                QQC.ToolTip.text: i18n("Select")
+                                QQC.ToolTip.visible: hovered
+                                onClicked: {
+                                    stationPickerEl.selectStation(index);
+                                    for (var i = 0; i < stationListModel.count; i++) {
+                                        stationListModel.setProperty(i, "selected", i === index);
+                                    }
+                                    printDebug("onClicked: StationListModel: " + listModelToStr(stationListModel));
+                                }
+                            }
+                            QQC.Button {
+                                icon.name: "dialog-cancel"
+                                QQC.ToolTip.text: i18n("Remove")
+                                QQC.ToolTip.visible: hovered
+                                onClicked: {
+                                    stationPickerEl.removeStation(index);
+                                    stationListModel.remove(index);
+                                    printDebug("onRemove: StationListModel: " + listModelToStr(stationListModel));
+                                }
                             }
                         }
                     }
                 }
-                Layout.preferredHeight: Math.min(6, stationListModel.count) * 36
+                Layout.preferredHeight: 216
                 Layout.fillWidth: true
                 clip: true
             }

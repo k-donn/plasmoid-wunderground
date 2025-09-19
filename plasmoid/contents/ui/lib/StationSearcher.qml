@@ -30,10 +30,20 @@ Window {
         }
     }
 
+    function clearError() {
+        errText.visible = false;
+        errText.text = "";
+    }
+
+    function setError(errorObj) {
+        errText.visible = true;
+        errText.text = "Error: " + errorObj.type + " message: " + errorObj.message;
+    }
+
     title: i18n("Search Weather Stations")
     color: syspal.window
 
-    property string searchMode: "stationID" // "stationID", "placeName", "latlon"
+    property string searchMode: "stationID"
     property string searchText: ""
     property var selectedStation
     property real searchLat: 0
@@ -44,6 +54,7 @@ Window {
 
     onOpen: {
         stationSearcher.visible = true;
+        clearError();
 
         searchResults.clear();
         availableCitiesModel.clear();
@@ -61,10 +72,10 @@ Window {
             Layout.fillWidth: true
 
             RowLayout {
-                QQC.Label { text: "Search by:" }
+                QQC.Label { text: i18n("Search by:") }
                 QQC.ComboBox {
                     id: modeCombo
-                    model: [ "Station ID", "Place Name", "Lat/Lon" ]
+                    model: [ i18n("Station ID"), i18n("Place Name"), i18n("Lat/Lon") ]
                     onCurrentIndexChanged: {
                         if (currentIndex === 0) stationSearcher.searchMode = "stationID";
                         else if (currentIndex === 1) stationSearcher.searchMode = "placeName";
@@ -82,29 +93,45 @@ Window {
 
             QQC.Button {
                 text: "Search"
+                enabled: (stationSearcher.searchMode === "stationID" || stationSearcher.searchMode === "placeName") ? stationSearcher.searchText.length > 0 : true
                 onClicked: {
                     if (stationSearcher.searchMode === "stationID") {
-                        StationAPI.searchStationID(stationSearcher.searchText, function(stations) {
-                            for (var i = 0; i < stations.length; i++) {
-                                stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                        StationAPI.searchStationID(stationSearcher.searchText, function(stations, error) {
+                            if (error) {
+                                setError(error);
+                            } else {
+                                clearError();
+                                for (var i = 0; i < stations.length; i++) {
+                                    stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                                }
                             }
-                        })
+                        });
                     } else if (stationSearcher.searchMode === "placeName") {
-                        StationAPI.getLocations(stationSearcher.searchText, function(places) {
-                            for (var i = 0; i < places.length; i++) {
-                                availableCitiesModel.append({
-                                    "placeName": places[i].city + "," + places[i].country,
-                                    "latitude": places[i].latitude,
-                                    "longitude": places[i].longitude
-                                });
+                        StationAPI.getLocations(stationSearcher.searchText, function(places, error) {
+                            if (error) {
+                                setError(error);
+                            } else {
+                                clearError();
+                                for (var i = 0; i < places.length; i++) {
+                                    availableCitiesModel.append({
+                                        "placeName": places[i].city + "," + places[i].country,
+                                        "latitude": places[i].latitude,
+                                        "longitude": places[i].longitude
+                                    });
+                                }
                             }
-                        })
+                        });
                     } else {
-                        StationAPI.searchGeocode({lat: stationSearcher.searchLat, long: stationSearcher.searchLon}, function(stations) {
-                            for (var i = 0; i < stations.length; i++) {
-                                stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                        StationAPI.searchGeocode({latitude: stationSearcher.searchLat, longitude: stationSearcher.searchLon}, function(stations, error) {
+                            if (error) {
+                                setError(error);
+                            } else {
+                                clearError();
+                                for (var i = 0; i < stations.length; i++) {
+                                    stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                                }
                             }
-                        })
+                        });
                     }
                 }
             }
@@ -114,6 +141,14 @@ Window {
             id: searchHelpLoader
             Layout.fillWidth: true
             sourceComponent: stationSearcher.searchMode === "placeName" ? placeNameHelp : (stationSearcher.searchMode === "latlon" ? latLonHelp : stationIDHelp)
+        }
+
+        PlasmaComponents.Label {
+            id: errText
+            visible: false
+            Layout.fillWidth: true
+            clip: true
+            elide: Text.ElideRight
         }
 
         Component {
@@ -130,12 +165,14 @@ Window {
                     Layout.fillWidth: true
                     textRole: "placeName"
                     model: availableCitiesModel
+                    enabled: availableCitiesModel.count > 0
                 }
 
                 QQC.Button {
                     text: i18n("Choose")
+                    enabled: cityChoice.currentIndex !== -1
                     onClicked: {
-                        StationAPI.searchGeocode({lat: availableCitiesModel.get(cityChoice.currentIndex).latitude, long: availableCitiesModel.get(cityChoice.currentIndex).longitude}, function(stations) {
+                        StationAPI.searchGeocode({latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude, longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude}, function(stations) {
                             for (var i = 0; i < stations.length; i++) {
                                 stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
                             }
@@ -157,7 +194,7 @@ Window {
             id: stationIDHelp
 
             PlasmaComponents.Label {
-                text: i18n("Use exact stationID name")
+                text: i18n("Use Station ID, not city name. Select 'Search by: Place Name' to search by city.")
             }
         }
 
@@ -167,8 +204,7 @@ Window {
             QQC.TextField {
                 Layout.fillWidth: true
                 placeholderText: stationSearcher.searchMode === "stationID" ? i18n("Enter Station ID") : i18n("Enter Place Name")
-                text: stationSearcher.searchText
-                onTextChanged: stationSearcher.searchText = text
+                onTextChanged: stationSearcher.searchText = text.trim()
             }
         }
         Component {
@@ -176,35 +212,47 @@ Window {
             RowLayout {
                 Layout.fillWidth: true
                 QQC.TextField {
-                    placeholderText: "Latitude"
+                    Layout.fillWidth: true
+                    placeholderText: i18n("Latitude:")
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
-                    text: stationSearcher.searchLat
-                    onTextChanged: stationSearcher.searchLat = parseFloat(text)
-                    Layout.preferredWidth: 80
+                    onTextChanged: stationSearcher.searchLat = parseFloat(text.trim())
                 }
                 QQC.TextField {
-                    placeholderText: "Longitude"
+                    Layout.fillWidth: true
+                    placeholderText: i18n("Longitude:")
                     inputMethodHints: Qt.ImhFormattedNumbersOnly
-                    text: stationSearcher.searchLon
-                    onTextChanged: stationSearcher.searchLon = parseFloat(text)
-                    Layout.preferredWidth: 80
+                    onTextChanged: stationSearcher.searchLon = parseFloat(text.trim())
                 }
             }
         }
 
+
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: 8
+            PlasmaComponents.Label { text: i18n("Station ID"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
+            PlasmaComponents.Label { text: i18n("Place Name"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
+            PlasmaComponents.Label { text: i18n("Latitude:"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
+            PlasmaComponents.Label { text: i18n("Longitude:"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
+            PlasmaComponents.Label { text: "" ; Layout.fillWidth: true; Layout.preferredWidth: 1 }
+        }
 
         ListView {
             id: resultsView
             model: stationSearcher.searchResults
             delegate: RowLayout {
                 spacing: 8
-                PlasmaComponents.Label { text: stationID; Layout.preferredWidth: 120 }
-                PlasmaComponents.Label { text: placeName; Layout.preferredWidth: 160 }
-                PlasmaComponents.Label { text: latitude; Layout.preferredWidth: 80 }
-                PlasmaComponents.Label { text: longitude; Layout.preferredWidth: 80 }
+                width: ListView.view.width
+
+                PlasmaComponents.Label { text: stationID; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
+                PlasmaComponents.Label { text: placeName; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
+                PlasmaComponents.Label { text: latitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
+                PlasmaComponents.Label { text: longitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
                 QQC.Button {
                     text: "Select"
                     enabled: !selected
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: 1
                     onClicked: {
                         selectedStation = stationSearcher.searchResults.get(index)
                         for (var i = 0; i < stationSearcher.searchResults.count; i++) {

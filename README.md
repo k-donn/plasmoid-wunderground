@@ -53,6 +53,8 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
 
 - Features
   -   [ ] Refactor station choice page
+  -   [ ] Text popups for error messages.
+
 - i18n
   -   [ ] Translations for new text
 - Customizability

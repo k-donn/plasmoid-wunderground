@@ -74,7 +74,6 @@ function isStationActive(givenID, callback) {
 	url += "?stationId=" + givenID;
 	url += "&format=json";
 	url += "&units=m";
-	url += "&apiKey=" + Utils.API_KEY;
 	url += "&numericPrecision=decimal";
 
 	printDebug("[pws-api.js] " + url);
@@ -106,16 +105,15 @@ function isStationActive(givenID, callback) {
  * Find the nearest PWS with the configured coordinates.
  */
 function getNearestStation() {
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
+	var longitude = plasmoid.configuration.longitude;
+	var latitude = plasmoid.configuration.latitude;
 
 	var req = new XMLHttpRequest();
 
 	var url = Utils.getAPIHost() + "/v3/location/near";
-	url += "?geocode=" + lat + "," + long;
+	url += "?geocode=" + latitude + "," + longitude;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -148,7 +146,6 @@ function searchStationID(query, callback) {
 	url += "&locationType=pws";
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 	url += "&format=json";
-	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -157,7 +154,6 @@ function searchStationID(query, callback) {
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
-				printDebug("Response succeded");
 				var res = JSON.parse(req.responseText);
 
 				var stationsArr = [];
@@ -172,7 +168,10 @@ function searchStationID(query, callback) {
 					});
 				}
 
-				callback(stationsArr);
+				callback(stationsArr, null);
+			} else if (req.status == 404) {
+				var err = JSON.parse(req.responseText);
+				callback(null, {type: err.errors[0].error["code"], message: err.errors[0].error["message"]});
 			} else {
 				printDebug(req.responseText);
 			}
@@ -185,20 +184,19 @@ function searchStationID(query, callback) {
 /**
  * Searches a geocode pair for the nearest stations.
  *
- * @param {{lat: number, long: number}} latLongObj Coordinates of city to search
- * @param {(res: Array<{stationID: string, latitude: float, longitude: float}) => void} callback
+ * @param {{latitude: number, longitude: number}} latLongObj Coordinates of city to search
+ * @param {(res: Array<{stationID: string, latitude: float, longitude: float, error: {type: string, message: string}}) => void} callback
  */
 function searchGeocode(latLongObj, callback) {
-	var long = latLongObj.long;
-	var lat = latLongObj.lat;
+	var longitude = latLongObj.longitude;
+	var latitude = latLongObj.latitude;
 
 	var req = new XMLHttpRequest();
 
 	var url = Utils.getAPIHost() + "/v3/location/near";
-	url += "?geocode=" + lat + "," + long;
+	url += "?geocode=" + latitude + "," + longitude;
 	url += "&product=pws";
 	url += "&format=json";
-	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -222,7 +220,10 @@ function searchGeocode(latLongObj, callback) {
 					});
 				}
 
-				callback(stationsArr);
+				callback(stationsArr, null);
+			} else if (req.status == 404) {
+				var err = JSON.parse(req.responseText);
+				callback(null, {type: err.errors[0].error["code"], message: err.errors[0].error["message"]});
 			} else {
 				printDebug("[pws-api.js] " + req.responseText);
 			}
@@ -247,7 +248,6 @@ function getLocations(city, callback) {
 	url += "&locationType=city";
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 	url += "&format=json";
-	url += "&apiKey=" + Utils.API_KEY;
 
 	printDebug("[pws-api.js] " + url);
 
@@ -305,7 +305,6 @@ function getCurrentData(callback = function () {}) {
 		url += "&units=m";
 	}
 
-	url += "&apiKey=" + Utils.API_KEY;
 	url += "&numericPrecision=decimal";
 
 	printDebug("[pws-api.js] " + url);
@@ -354,12 +353,12 @@ function getCurrentData(callback = function () {}) {
 				weatherData["solarRad"] = nullableField(obs["solarRadiation"]);
 				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
 				weatherData["winddir"] = obs["winddir"];
-				weatherData["lat"] = obs["lat"];
-				weatherData["lon"] = obs["lon"];
+				weatherData["latitude"] = obs["lat"];
+				weatherData["longitude"] = obs["lon"];
 				weatherData["neighborhood"] = obs["neighborhood"];
 
-				plasmoid.configuration.latitude = weatherData["lat"];
-				plasmoid.configuration.longitude = weatherData["lon"];
+				plasmoid.configuration.latitude = weatherData["latitude"];
+				plasmoid.configuration.longitude = weatherData["longitude"];
 				plasmoid.configuration.stationName =
 					weatherData["neighborhood"];
 
@@ -398,15 +397,14 @@ function getCurrentData(callback = function () {}) {
 function getExtendedConditions(callback = function () {}) {
 	var req = new XMLHttpRequest();
 
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
+	var longitude = plasmoid.configuration.longitude;
+	var latitude = plasmoid.configuration.latitude;
 
 	var url =
 		Utils.getAPIHost() +
 		"/v3/aggcommon/v3-wx-observations-current;v3alertsHeadlines;v3-wx-globalAirQuality";
 
-	url += "?geocodes=" + lat + "," + long;
-	url += "&apiKey=" + Utils.API_KEY;
+	url += "?geocodes=" + latitude + "," + longitude;
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 	url += "&scale=" + getAQScale();
 
@@ -578,12 +576,11 @@ function getForecastData(callback = function () {}) {
 function getForecastDataV3(callback = function () {}) {
 	var req = new XMLHttpRequest();
 
-	var long = plasmoid.configuration.longitude;
-	var lat = plasmoid.configuration.latitude;
+	var longitude = plasmoid.configuration.longitude;
+	var latitude = plasmoid.configuration.latitude;
 
 	var url = Utils.getAPIHost() + "/v3/wx/forecast/daily/7day";
-	url += "?geocode=" + lat + "," + long;
-	url += "&apiKey=" + Utils.API_KEY;
+	url += "?geocode=" + latitude + "," + longitude;
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
@@ -753,7 +750,6 @@ function getForecastDataV1(callback = function () {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
-	url += "?apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
@@ -903,7 +899,6 @@ function getHourlyDataV1(callback = function () {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/hourly/24hour.json";
-	url += "?apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
@@ -1009,7 +1004,6 @@ function getHourlyDataV3(callback = function () {}) {
 		plasmoid.configuration.latitude +
 		"," +
 		plasmoid.configuration.longitude;
-	url += "&apiKey=" + Utils.API_KEY;
 	url += "&language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {

@@ -16,8 +16,6 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-var API_KEY = "e1f10a1e78da46f5b10a1e78da96f525";
-
 var UNITS_SYSTEM = {
 	METRIC: 0,
 	IMPERIAL: 1,
