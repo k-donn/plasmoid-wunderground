@@ -58,60 +58,29 @@ KCM.SimpleKCM {
         property real longitude: 0
 
 
-        function selectStation(index) {
-            printDebug("selectStation " + index + " of " + stationList);
-            var stationsArr = JSON.parse(stationList);
-            if (index < 0 || index >= stationsArr.length) {
-                return;
+        function syncSavedStations(force) {
+            var stationsTxt = listModelToStr(stationListModel);
+            if (force) {
+                plasmoid.configuration.savedStations = stationsTxt;
             }
-            selectedStation = stationsArr[index].stationID;
-            latitude = stationsArr[index].latitude;
-            longitude = stationsArr[index].longitude;
-            stationName = stationsArr[index].placeName;
-            for (var i = 0; i < stationsArr.length; i++) {
-                stationsArr[i].selected = (i === index);
-            }
-            stationList = JSON.stringify(stationsArr);
-        }
-
-        function removeStation(index) {
-            printDebug("removeStation: " + index + " of " + stationList);
-            var stationsArr = JSON.parse(stationList);
-            if (index < 0 || index >= stationsArr.length || stationsArr.length === 0) {
-                return;
-            } 
-            var wasSelected = stationsArr[index].selected;
-            stationsArr.splice(index, 1);
-            stationList = JSON.stringify(stationsArr);
-            if (stationsArr.length === 1) {
-                stationPickerEl.selectStation(0);
-            } else if (wasSelected && stationsArr.length > 1) {
-                stationPickerEl.selectStation(stationsArr.length - 1);
-            } else if (stationsArr.length === 0) {
+            printDebug("Wrote to savedStations: " + stationsTxt);
+            stationList = stationsTxt;
+            if (stationListModel.count === 0) {
                 selectedStation = "";
+                stationName = "";
                 latitude = 0;
                 longitude = 0;
-                stationName = "";
-            }
-            printDebug("After removal: " + stationList);
-        }
-
-        function addStation(station) {
-            printDebug("add station: " + JSON.stringify(station) + " to " + stationList);
-            // Prevent duplicates
-            var stationsArr = JSON.parse(stationList);
-            for (var i = 0; i < stationsArr.length; i++) {
-                if (stationsArr[i].stationID === station.stationID) {
-                    return;
+            } else {
+                for (var i = 0; i < stationListModel.count; i++) {
+                    var station = stationListModel.get(i);
+                    if (station.selected) {
+                        selectedStation = station.stationID;
+                        stationName = station.placeName;
+                        latitude = station.latitude;
+                        longitude = station.longitude;
+                    }
                 }
             }
-            for (var i = 0; i < stationsArr.length; i++) {
-                stationsArr[i].selected = false;
-            }
-            station.selected = true;
-            stationsArr.push(station);
-            stationList = JSON.stringify(stationsArr);
-            stationPickerEl.selectStation(stationsArr.length - 1);
         }
 
         ColumnLayout {
@@ -232,11 +201,7 @@ KCM.SimpleKCM {
                                     "longitude":plasmoid.configuration.longitude,
                                     "selected": true
                                 });
-                                var stationListTxt = listModelToStr(stationListModel);
-                                printDebug("Wrote to savedStations: " + stationListTxt);
-                                plasmoid.configuration.savedStations = stationListTxt;
-                                stationPickerEl.stationList = stationListTxt;
-                                stationPickerEl.selectStation(0);
+                                stationPickerEl.syncSavedStations(true);
                             }
 
                             for (var i = 0; i < stationsArr.length; i++) {
@@ -247,14 +212,12 @@ KCM.SimpleKCM {
                                     "longitude": stationsArr[i].longitude,
                                     "selected": stationsArr[i].selected === true
                                 });
-                                if (stationsArr[i].selected === true) {
-                                    stationPickerEl.selectStation(i);
-                                }
+                                stationPickerEl.syncSavedStations();
                             }
                         } catch (e) {
                             printDebug("Invalid saved stations");
                             printDebug("Station ID: " + plasmoid.configuration.stationID + " long: " + plasmoid.configuration.longitude + " lat: " + plasmoid.configuration.latitude + " name: " + plasmoid.configuration.stationName + " list: " + plasmoid.configuration.stationList);
-                            if (plasmoid.configuration.stationID !== null) {
+                            if (plasmoid.configuration.stationID !== "") {
                                 printDebug("Attempting to fill in savedStations");
                                 stationListModel.append({
                                     "stationID":plasmoid.configuration.stationID,
@@ -263,14 +226,9 @@ KCM.SimpleKCM {
                                     "longitude":plasmoid.configuration.longitude,
                                     "selected": true
                                 });
-                                var stationListTxt = listModelToStr(stationListModel);
-                                printDebug("Wrote to savedStations: " + stationListTxt);
-                                plasmoid.configuration.savedStations = stationListTxt;
-                                stationPickerEl.stationList = stationListTxt;
-                                stationPickerEl.selectStation(0);
+                                stationPickerEl.syncSavedStations(true);
                             }
                         }
-                        printDebug("onComplete: StationListModel: " + listModelToStr(stationListModel));
                     }
                 }
                 delegate: Item {
@@ -331,22 +289,19 @@ KCM.SimpleKCM {
                                 QQC.ToolTip.text: i18n("Select")
                                 QQC.ToolTip.visible: hovered
                                 onClicked: {
-                                    stationPickerEl.selectStation(index);
                                     for (var i = 0; i < stationListModel.count; i++) {
                                         stationListModel.setProperty(i, "selected", i === index);
                                     }
-                                    printDebug("onClicked: StationListModel: " + listModelToStr(stationListModel));
+                                    stationPickerEl.syncSavedStations();
                                 }
                             }
                             QQC.Button {
                                 icon.name: "dialog-cancel"
-                                enabled: stationListModel.count > 1
                                 QQC.ToolTip.text: i18n("Remove")
                                 QQC.ToolTip.visible: hovered
                                 onClicked: {
                                     var wasSelected = selected;
                                     var oldIndex = index;
-                                    stationPickerEl.removeStation(index);
                                     stationListModel.remove(index);
                                     if (wasSelected && stationListModel.count === 1) {
                                         stationListModel.setProperty(0, "selected", true);
@@ -359,7 +314,7 @@ KCM.SimpleKCM {
                                             stationListModel.setProperty(stationListModel.count - 1, "selected", true);
                                         }
                                     }
-                                    printDebug("onRemove: StationListModel: " + listModelToStr(stationListModel));
+                                    stationPickerEl.syncSavedStations();
                                 }
                             }
                         }
@@ -380,7 +335,6 @@ KCM.SimpleKCM {
                 id: stationSearcher
                 onStationSelected: function(station) {
                     printDebug("Received station: " + JSON.stringify(station));
-                    stationPickerEl.addStation(station);
                     stationListModel.append({
                         "stationID": station.stationID,
                         "placeName": station.placeName,
@@ -392,7 +346,7 @@ KCM.SimpleKCM {
                         stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
                     }
                     stationSearcher.close();
-                    printDebug("onSelect: StationListModel: " + listModelToStr(stationListModel));
+                    stationPickerEl.syncSavedStations();
                 }
             }
             QQC.SpinBox {

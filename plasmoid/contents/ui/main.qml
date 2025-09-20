@@ -243,9 +243,13 @@ PlasmoidItem {
     onStationIDChanged: {
         printDebug("Station ID changed");
 
-        // Show loading screen after ID change
-        appState = showLOADING;
-        updateWeatherData();
+        if (stationID != "") {
+            // Show loading screen after ID change
+            appState = showLOADING;
+            updateWeatherData();
+        } else if (stationID == "") {
+            appState = showCONFIG;
+        }
     }
 
     onUnitsChoiceChanged: {
