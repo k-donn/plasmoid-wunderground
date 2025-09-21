@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-19 15:51-0400\n"
+"POT-Creation-Date: 2025-09-21 14:29-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: undernature\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -433,12 +433,12 @@ msgid "Search by:"
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Weatherstation ID:"
-msgstr "ID stazione meteorologica:"
+msgid "City Name"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Place Name"
-msgstr ""
+msgid "Weatherstation ID:"
+msgstr "ID stazione meteorologica:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Lat/Lon"
@@ -457,7 +457,7 @@ msgid "Uses WGS84 geocode coordinates"
 msgstr "Utilizza le coordinate geocodificate WGS84"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Use Station ID, not city name. Select 'Search by: Place Name' to search by city."
+msgid "Use Station ID, not city name. Select 'Search by: City Name' to search by city."
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
@@ -465,7 +465,7 @@ msgid "Enter Station"
 msgstr "Inserire la stazione"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Enter Place Name"
+msgid "Enter City Name"
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml

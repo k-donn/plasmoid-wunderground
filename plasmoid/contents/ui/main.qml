@@ -330,6 +330,10 @@ PlasmoidItem {
         inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2;
         plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.");
         plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground;
+
+        if(plasmoid.configuration.refreshPeriod < 300) {
+            plasmoid.configuration.refreshPeriod = 300;
+        }
     }
 
     Timer {

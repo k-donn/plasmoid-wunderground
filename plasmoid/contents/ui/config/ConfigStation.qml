@@ -349,13 +349,20 @@ KCM.SimpleKCM {
                     stationPickerEl.syncSavedStations();
                 }
             }
-            QQC.SpinBox {
-                id: refreshPeriod
-                from: 1
-                to: 86400
-                editable: true
-                validator: IntValidator { bottom: refreshPeriod.from; top: refreshPeriod.to }
-                Kirigami.FormData.label: i18n("Refresh period (s):")
+
+            RowLayout {
+                PlasmaComponents.Label {
+                    id: refreshLabel
+                    text: i18n("Refresh period (s):")
+                }
+
+                QQC.SpinBox {
+                    id: refreshPeriod
+                    from: 300
+                    to: 86400
+                    editable: true
+                    validator: IntValidator { bottom: refreshPeriod.from; top: refreshPeriod.to }
+                }
             }
 
             PlasmaComponents.Label {

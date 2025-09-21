@@ -835,8 +835,9 @@ function currentElevUnit(value) {
  * @returns {string} hostname
  */
 function getAPIHost() {
-	var num = Math.random();
-	return num < 0.333 ? "https://wps.mitchell-a91.workers.dev" : (num < 0.666 ? "https://wps.mitchell-75b.workers.dev" : "https://wps.mitchell-aaa.workers.dev");
+	var hosts = ["aaa", "a91", "0a3", "75b", "fd6"];
+	var host = hosts[Math.floor(Math.random() * hosts.length)];
+	return "https://wps.mitchell-" + host + ".workers.dev";
 }
 
 /**

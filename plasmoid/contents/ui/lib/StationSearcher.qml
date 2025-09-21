@@ -76,10 +76,10 @@ Window {
                 QQC.Label { text: i18n("Search by:") }
                 QQC.ComboBox {
                     id: modeCombo
-                    model: [ i18n("Weatherstation ID:"), i18n("Place Name"), i18n("Lat/Lon") ]
+                    model: [ i18n("City Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon") ]
                     onCurrentIndexChanged: {
-                        if (currentIndex === 0) stationSearcher.searchMode = "stationID";
-                        else if (currentIndex === 1) stationSearcher.searchMode = "placeName";
+                        if (currentIndex === 0) stationSearcher.searchMode = "placeName";
+                        else if (currentIndex === 1) stationSearcher.searchMode = "stationID";
                         else stationSearcher.searchMode = "latlon";
                     }
                 }
@@ -201,7 +201,7 @@ Window {
             id: stationIDHelp
 
             PlasmaComponents.Label {
-                text: i18n("Use Station ID, not city name. Select 'Search by: Place Name' to search by city.")
+                text: i18n("Use Station ID, not city name. Select 'Search by: City Name' to search by city.")
             }
         }
 
@@ -210,7 +210,7 @@ Window {
             id: textField
             QQC.TextField {
                 Layout.fillWidth: true
-                placeholderText: stationSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter Place Name")
+                placeholderText: stationSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter City Name")
                 onTextChanged: stationSearcher.searchText = text.trim()
             }
         }

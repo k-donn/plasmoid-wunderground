@@ -8,14 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-19 15:51-0400\n"
-"PO-Revision-Date: 2025-09-17 21:00+0200\n"
+"POT-Creation-Date: 2025-09-21 14:29-0400\n"
+"PO-Revision-Date: 2025-09-20 20:34+0200\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
-"Language-Team:  <ll@li.org>\n"
-"Language: da_DK, da, Danish (Denmark)\n"
+"Language-Team: <ll@li.org>\n"
+"Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
 
 #: ../metadata.json
 msgid "Wunderground"
@@ -31,7 +32,7 @@ msgstr "Station"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
-msgstr "Visning"
+msgstr "Udseende"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
@@ -114,8 +115,11 @@ msgid "Automatic"
 msgstr "Automatisk"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Text will follow the system font and expand to fill the available space."
-msgstr "Tekst vil anvende systemets skrifttype og udvides for at udfylde tilgængeligt plads."
+msgid ""
+"Text will follow the system font and expand to fill the available space."
+msgstr ""
+"Tekst vil følge systemets skrifttype og udvides for at fylde tilgængeligt "
+"plads."
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Manual"
@@ -143,7 +147,7 @@ msgstr "Overskrift tekst størrelse"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property text size"
-msgstr ""
+msgstr "Egenskab tekst størrelse"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Temperature text size"
@@ -175,7 +179,7 @@ msgstr "enorm (128x128)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Details icon size:"
-msgstr "Detalje ikon størrelse:"
+msgstr "Detaljer ikon størrelse:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Top panel icon margins:"
@@ -197,13 +201,14 @@ msgstr "Automatisk farve temperatur:"
 msgid "Weather Details"
 msgstr "Vejr detaljer"
 
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
 msgid "Forecast"
-msgstr "Vejrudsigt"
+msgstr "Udsigt"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "Day Chart"
-msgstr "Døgn udsigt"
+msgstr "Dag diagram"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "More Info"
@@ -215,7 +220,7 @@ msgstr "Standard side vist:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show pressure trend:"
-msgstr "Vis luftryk udsigt:"
+msgstr "Vis luftryk tendens:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
@@ -229,7 +234,8 @@ msgstr "Anvend tidligere vejrudsigt API:"
 msgid "Startup time delay (ms):"
 msgstr "Start tid forsinkelse (ms):"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
 msgstr "Gemte Vejrstationer"
 
@@ -237,15 +243,18 @@ msgstr "Gemte Vejrstationer"
 msgid "ID:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation Name:"
 msgstr "Vejrstation navn:"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Latitude:"
 msgstr "Breddegrad:"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Longitude:"
 msgstr "Længdegrad:"
 
@@ -253,11 +262,13 @@ msgstr "Længdegrad:"
 msgid "Action"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Select"
 msgstr "Markér"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove"
 msgstr "Fjern"
 
@@ -275,7 +286,7 @@ msgstr "Tid/dato format"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
-msgstr "Dagsudsigt tidsformat:"
+msgstr "Dag diagram tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
@@ -289,7 +300,8 @@ msgstr "Præcision"
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+#: ../contents/ui/main.qml
 msgid "Wind & Gust"
 msgstr "Vind & Vindstød"
 
@@ -389,8 +401,12 @@ msgstr "UV"
 
 #: ../contents/ui/ForecastItem.qml
 msgctxt "Do not edit HTML tags."
-msgid "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>"
-msgstr "<font size='4'>Føles som: %1<br/>Torden: %2<br/>UV: %3<br/>Sne: %4<br/>Golf: %5</font>"
+msgid ""
+"<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/"
+">Golf: %5</font>"
+msgstr ""
+"<font size='4'>Føles som: %1<br/>Torden: %2<br/>UV: %3<br/>Sne: %4<br/>Golf: "
+"%5</font>"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Loading data..."
@@ -416,7 +432,8 @@ msgstr "Bekræft fjern %1"
 msgid "Add"
 msgstr "Tilføj"
 
-#: ../contents/ui/lib/StationPickerDialog.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Annullér"
 
@@ -433,12 +450,12 @@ msgid "Search by:"
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Weatherstation ID:"
-msgstr "Vejrstation ID:"
+msgid "City Name"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Place Name"
-msgstr ""
+msgid "Weatherstation ID:"
+msgstr "Vejrstation ID:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Lat/Lon"
@@ -457,7 +474,9 @@ msgid "Uses WGS84 geocode coordinates"
 msgstr "Anvender WGS84 geocode koordinater"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Use Station ID, not city name. Select 'Search by: Place Name' to search by city."
+msgid ""
+"Use Station ID, not city name. Select 'Search by: City Name' to search by "
+"city."
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
@@ -465,7 +484,7 @@ msgid "Enter Station"
 msgstr "Angiv station"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Enter Place Name"
+msgid "Enter City Name"
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
