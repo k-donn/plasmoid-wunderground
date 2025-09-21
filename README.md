@@ -83,8 +83,6 @@ Under Appearance in the widget settings, toggle "Show Background."
 
 The legacy forecast API is geolocation locked in some cases. The newer API is not, but it does not provide all of the same attributes. Checking `Use Legacy Forecast API:` under `Debug` in settings reverts the widget to use the legacy API. Then, you then get the snow, thunder, and golf forecast.
 
-*Discover sometimes has inconsistencies with getting the newest version of widgets.
-
 ## TODO
 
 - i18n
