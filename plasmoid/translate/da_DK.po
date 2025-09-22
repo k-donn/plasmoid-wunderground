@@ -1,7 +1,7 @@
-# Translation of plasmoid-wunderground in zh_CN
-# Copyright (C) 2024
+# Translation of plasmoid-wunderground in da_DK
+# Copyright (C) 2025
 # This file is distributed under the same license as the plasmoid-wunderground package.
-# CloverGit <clovergit@hotmail.com>, 2024.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
@@ -9,13 +9,14 @@ msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
 "POT-Creation-Date: 2025-09-21 14:29-0400\n"
-"PO-Revision-Date: 2024-11-11 17:12+0800\n"
-"Last-Translator: CloverGit <clovergit@hotmail.com>\n"
-"Language-Team: Simplified Chinese <>\n"
-"Language: zh_CN\n"
+"PO-Revision-Date: 2025-09-20 20:34+0200\n"
+"Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
+"Language-Team: <ll@li.org>\n"
+"Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
 
 #: ../metadata.json
 msgid "Wunderground"
@@ -23,31 +24,31 @@ msgstr "Wunderground"
 
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
-msgstr "Wunderground 个人气象站查看器"
+msgstr "Vejrstation visning"
 
 #: ../contents/config/config.qml
 msgid "Station"
-msgstr "站点"
+msgstr "Station"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
-msgstr "外观"
+msgstr "Udseende"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
-msgstr "单位"
+msgstr "Enheder"
 
 #: ../contents/config/config.qml
 msgid "Debug"
-msgstr "调试"
+msgstr "Fejlret"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Status Color"
-msgstr "状态颜色"
+msgstr "Status farve"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
-msgstr "空气质量"
+msgstr "Luft kvalitet"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQI: %1"
@@ -59,207 +60,217 @@ msgstr "AQHI: %1"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Primary pollutant: "
-msgstr "主要污染物: "
+msgstr "Primær forurening: "
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
-msgstr "数量: %1 %2<br/>描述: %3<br/>指数: %4"
+msgstr "Antal: %1 %2<br/>Beskrivelse: %3<br/>Indeks: %4"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
-msgstr "太阳信息"
+msgstr "Sol info"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Sunrise"
-msgstr "日出"
+msgstr "Solopgang"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Sunset"
-msgstr "日落"
+msgstr "Solnedgang"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "Alerts"
-msgstr "警报"
+msgstr "Varslinger"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
-msgstr "您的地区没有警报。"
+msgstr "Ingen advarsler for dit område."
 
 #: ../contents/ui/AlertsItem.qml
 msgid "Severity: %1"
-msgstr "严重性: %1"
+msgstr "Alvorsgrad: %1"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4"
-msgstr "地区: %1<br/>措施: %2<br/>免责声明: %3<br/>发布者: %4"
+msgstr "Region: %1<br/>Handling: %2<br/>Fraskrivelse: %3<br/>Udstedt af : %4"
 
 #: ../contents/ui/BottomPanel.qml
 msgid "There are weather alerts for your area!"
-msgstr "您的地区有天气警报！"
+msgstr "Der er varslinger for dit område!"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Compact Representation"
-msgstr "紧凑显示"
+msgstr "Kompakt  visning"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show temperature:"
-msgstr "显示温度:"
+msgstr "Vis temperatur:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text display:"
-msgstr "文本显示:"
+msgstr "Tekst visning:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Automatic"
-msgstr "自动"
+msgstr "Automatisk"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Text will follow the system font and expand to fill the available space."
-msgstr "文本将遵循系统字体并扩展以填充可用空间。"
+msgid ""
+"Text will follow the system font and expand to fill the available space."
+msgstr ""
+"Tekst vil følge systemets skrifttype og udvides for at fylde tilgængeligt "
+"plads."
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Manual"
-msgstr "手动"
+msgstr "Manual"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose Style…"
-msgstr "选择样式…"
+msgstr "Vælg stil…"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose a Font"
-msgstr "选择字体"
+msgstr "Vælg skrifttype"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "System Tray Representation"
-msgstr ""
+msgstr "System Panel visning"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
-msgstr "完整显示"
+msgstr "Udvidet visning"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property header text size"
-msgstr "属性标题文本大小"
+msgstr "Overskrift tekst størrelse"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property text size"
-msgstr "属性文本大小"
+msgstr "Egenskab tekst størrelse"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Temperature text size"
-msgstr "温度文本大小"
+msgstr "Temperatur tekst størrelse"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "small (16x16)"
-msgstr "小 (16x16)"
+msgstr "lille (16x16)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "smallMedium (22x22)"
-msgstr "较小 (22x22)"
+msgstr "lilleMedium (22x22)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "medium (32x32)"
-msgstr "中等 (32x32)"
+msgstr "medium (32x32)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "large (48x48)"
-msgstr "大 (48x48)"
+msgstr "stor (48x48)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "huge (64x64)"
-msgstr "巨大 (64x64)"
+msgstr "meget stor (64x64)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "enormous (128x128)"
-msgstr "特大 (128x128)"
+msgstr "enorm (128x128)"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Details icon size:"
-msgstr "详情图标大小:"
+msgstr "Detaljer ikon størrelse:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Top panel icon margins:"
-msgstr "顶部面板图标边距:"
+msgstr "Top panel ikon margin:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use system theme icons:"
-msgstr "使用系统主题图标:"
+msgstr "Brug systemets ikon tema:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Apply system colors to icons:"
-msgstr "将系统颜色应用于图标:"
+msgstr "Anvend  system farver til ikoner:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
-msgstr "自动颜色温度:"
+msgstr "Automatisk farve temperatur:"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "Weather Details"
-msgstr "天气详情"
+msgstr "Vejr detaljer"
 
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
 msgid "Forecast"
-msgstr "天气预报"
+msgstr "Udsigt"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "Day Chart"
-msgstr ""
+msgstr "Dag diagram"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
 msgid "More Info"
-msgstr "更多信息"
+msgstr "Mere info"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Default page shown:"
-msgstr "默认显示页面:"
+msgstr "Standard side vist:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show pressure trend:"
-msgstr "显示压力趋势:"
+msgstr "Vis luftryk tendens:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
-msgstr "写入 console.log:"
+msgstr "Skriv til konsol log:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Use Legacy Forecast API:"
-msgstr ""
+msgstr "Anvend tidligere vejrudsigt API:"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Startup time delay (ms):"
-msgstr ""
+msgstr "Start tid forsinkelse (ms):"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
-msgstr "已保存的气象站"
+msgstr "Gemte Vejrstationer"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "ID:"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation Name:"
-msgstr "气象站名称:"
+msgstr "Vejrstation navn:"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Latitude:"
-msgstr "纬度:"
+msgstr "Breddegrad:"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Longitude:"
-msgstr "经度:"
+msgstr "Længdegrad:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Action"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Select"
-msgstr "选择"
+msgstr "Markér"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove"
-msgstr "移除"
+msgstr "Fjern"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Add Station…"
@@ -267,166 +278,172 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
-msgstr "刷新周期 (秒):"
+msgstr "Opdatering interval (s):"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time/Date Format"
-msgstr ""
+msgstr "Tid/dato format"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
-msgstr ""
+msgstr "Dag diagram tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
-msgstr ""
+msgstr "Uge udsigt dato format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
-msgstr ""
+msgstr "Præcision"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
 msgid "Temperature"
-msgstr ""
+msgstr "Temperatur"
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
+#: ../contents/ui/main.qml
 msgid "Wind & Gust"
-msgstr "风速和阵风"
+msgstr "Vind & Vindstød"
 
 #. i18n strings
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
 msgid "Feels like %1"
-msgstr "体感温度 %1"
+msgstr "Føles som %1"
 
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
 msgid "Dew Point"
-msgstr "露点"
+msgstr "Dug punkt"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Metric"
-msgstr "公制"
+msgstr "Metrisk"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Imperial"
-msgstr "英制"
+msgstr "Imperial"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
-msgstr "混合 (英国)"
+msgstr "Hybrid (UK)"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Custom"
-msgstr "自定义"
+msgstr "Tilpasset"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
-msgstr "选择:"
+msgstr "Vælg:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Wind unit:"
-msgstr "风速单位:"
+msgstr "Vind enhed:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Rain unit:"
-msgstr "降雨单位:"
+msgstr "Regn enhed:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Snow unit:"
-msgstr "降雪单位:"
+msgstr "Sne enhed:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Temperature unit:"
-msgstr "温度单位:"
+msgstr "Temperatur enhed:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Pressure unit:"
-msgstr "压力单位:"
+msgstr "Lufttryk enhed:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Elevation unit:"
-msgstr "海拔单位:"
+msgstr "Højde enhed:"
 
 #: ../contents/ui/DayChartItem.qml
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
-msgstr ""
+msgstr "/12h"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
-msgstr "风向: %1 (%2°)"
+msgstr "Vind fra : %1 (%2°)"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Precipitation Rate"
-msgstr "降水率"
+msgstr "Nedbørsmængde"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
-msgstr "气压"
+msgstr "Lufttryk"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has risen %1 in the last three hours."
-msgstr "过去三小时内气压上升了 %1。"
+msgstr "Lufttryk er steget %1 i de sidste 3 timer."
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Pressure has fallen %1 in the last three hours."
-msgstr "过去三小时内气压下降了 %1。"
+msgstr "Lufttryk er faldet %1 i de sidste 3 timer."
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Humidity"
-msgstr "湿度"
+msgstr "Fugtighed"
 
 #: ../contents/ui/DetailsItem.qml
 msgctxt "Short for: 'Precipitation Accumulation'"
 msgid "Precipitation Accum."
-msgstr "降水累积"
+msgstr "Nedbørsmængde akkum."
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
-msgstr "紫外线"
+msgstr "UV"
 
 #: ../contents/ui/ForecastItem.qml
 msgctxt "Do not edit HTML tags."
-msgid "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>"
-msgstr "<font size='4'>体感温度: %1<br/>雷电: %2<br/>紫外线: %3<br/>降雪: %4<br/>Golf: %5</font>"
+msgid ""
+"<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/"
+">Golf: %5</font>"
+msgstr ""
+"<font size='4'>Føles som: %1<br/>Torden: %2<br/>UV: %3<br/>Sne: %4<br/>Golf: "
+"%5</font>"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Loading data..."
-msgstr "加载数据中..."
+msgstr "Indlæser data..."
 
 #: ../contents/ui/lib/BackgroundToggle.qml
 msgid "Desktop Widget:"
-msgstr "桌面小部件:"
+msgstr "Skrivebord Widget:"
 
 #: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
-msgstr "配置 Wunderground"
+msgstr "Konfigurér Wunderground"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove Selected"
-msgstr "移除所选"
+msgstr "Fjern valgte"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Confirm Remove %1"
-msgstr "确认移除 %1"
+msgstr "Bekræft fjern %1"
 
 #: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Add"
-msgstr "添加"
+msgstr "Tilføj"
 
-#: ../contents/ui/lib/StationPickerDialog.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
-msgstr "取消"
+msgstr "Annullér"
 
 #: ../contents/ui/lib/StationPicker.qml
 msgid "Choose…"
-msgstr "选择…"
+msgstr "Vælg…"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Find Station"
-msgstr "查找站点"
+msgstr "Find station"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -438,7 +455,7 @@ msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation ID:"
-msgstr "气象站 ID:"
+msgstr "Vejrstation ID:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Lat/Lon"
@@ -454,15 +471,17 @@ msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Uses WGS84 geocode coordinates"
-msgstr "使用 WGS84 地理编码坐标"
+msgstr "Anvender WGS84 geocode koordinater"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Use Station ID, not city name. Select 'Search by: City Name' to search by city."
+msgid ""
+"Use Station ID, not city name. Select 'Search by: City Name' to search by "
+"city."
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter Station"
-msgstr "输入站点"
+msgstr "Angiv station"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter City Name"
@@ -474,78 +493,54 @@ msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
-msgstr ""
+msgstr "Skydækning"
 
 #: ../contents/ui/main.qml
 msgid "Precipitation Chance"
-msgstr ""
+msgstr "Nedbørs sandsynlighed"
 
 #: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
-msgstr ""
+msgstr "Sne nedbørs mængde"
 
 #: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
-msgstr "设置气象站以获取数据。"
+msgstr "Angiv vejrstation til udtræk af data."
 
 #: ../contents/ui/main.qml
 msgid "Please Configure"
-msgstr "请配置"
+msgstr "Konfigurér"
 
 #: ../contents/ui/main.qml ../contents/ui/TopPanel.qml
 msgid "Loading..."
-msgstr "加载中..."
+msgstr "Indlæser..."
 
 #: ../contents/ui/main.qml
 msgid "Error..."
-msgstr "错误..."
+msgstr "Fejl..."
 
 #: ../contents/ui/main.qml
 msgctxt "Do not edit HTML tags. 'Temp' means temperature"
 msgid "<font size='4'>Temp: %1</font><br />"
-msgstr "<font size='4'>温度: %1</font><br />"
+msgstr "<font size='4'>Temp: %1</font><br />"
 
 #: ../contents/ui/main.qml
 msgctxt "Do not edit HTML tags."
 msgid "<font size='4'>Feels: %1</font><br />"
-msgstr "<font size='4'>体感: %1</font><br />"
+msgstr "<font size='4'>Føles som: %1</font><br />"
 
 #: ../contents/ui/main.qml
 msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
 msgid "<font size='4'>Wnd spd: %1</font><br />"
-msgstr "<font size='4'>风速: %1</font><br />"
+msgstr "<font size='4'>Vind hastighed: %1</font><br />"
 
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
-msgstr "刷新天气"
+msgstr "Opdater vejr"
 
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
-msgstr "最高: %1 最低: %2"
+msgstr "Høj: %1 Lav: %2"
 
 #~ msgid "Station Info"
-#~ msgstr "站点信息"
-
-#~ msgid "DEWPOINT"
-#~ msgstr "露点"
-
-#~ msgctxt "Precipitaion rate"
-#~ msgid "PRECIP RATE"
-#~ msgstr "降水率"
-
-#~ msgctxt "Precipitation accumulation"
-#~ msgid "PRECIP ACCUM"
-#~ msgstr "降水累积"
-
-#~ msgid "WIND & GUST"
-#~ msgstr "风速和阵风"
-
-#~ msgid "PRESSURE"
-#~ msgstr "气压"
-
-#~ msgid "HUMIDITY"
-#~ msgstr "湿度"
-
-#~ msgctxt "Ultra Violet"
-#~ msgid "UV"
-#~ msgstr "紫外线"
+#~ msgstr "Station info"

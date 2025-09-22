@@ -1,32 +1,66 @@
 # Wunderground PWS Widget for KDE 6
 
-A Plasma 6 widget for showing data from Wunderground [Personal Weather Stations](https://www.wunderground.com/pws/overview).
+A Plasma 6 widget for showing weather from Wunderground Personal Weather Stations (PWS).
 
-Wunderground lets you upload data from Smart Ambient Weather stations through their API.
-You can view the data though Wunderground.com or through Wunderground API. This widget lets
-you input the station ID then view the properties that the station sends up.
+![image showing main widget face](./examples/main.png)
 
-## Running
+PWS is a network of [250,000+](https://www.wunderground.com/pws/overview) weather stations that offer local and timely weather conditions. Rather than traditional sources which average data across areas, you can know exactly what the conditions are within a small (many times less than 1km) radius. Furthermore, the stations offer more timely (every 5 minutes) reporting than most sources. This widget includes those local conditions as well as forecasts, alerts, air quality, and additional info for your area.
 
-Configure the widget by finding weather stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap).
+## Installing
 
-Navigate to the settings page by clicking `Configure Wunderground` or right-clicking the widget. Then, under `Station`, click `Choose...`. This will open up the saved stations dialog. Enter the case-sensitive ID into the field then press `Add` or hit enter.
+Install at the [KDE Store](https://store.kde.org/p/2135799) or your distribution's package manager if it carries plasma widgets (ie. [Discover](https://apps.kde.org/discover/)[^1]).
 
-Once a station has been added to the list, it is automatically selected and will be highlighted. Otherwise, click on the desired station ID then press `Select` at the bottom right.
+## Configuring
 
-Then, the station ID will appear on the config page and the settings can be applied to change the station.
+This widget relies on local stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap). Do not worry if you don't know any or you cannot access that site! The widget allows you to search by your area name or coordinates.
 
-Furthermore, some stations update at different rates so you can set the refresh rate.
+Once installed, click `Configure Wunderground` or right-click and hit the slider icon. Then, under `Station`, click `+Add Station...`.
+
+### Search by city/area
+
+To search by your city/area, enter that name into the first search box next to the `Search` button. Then, click `Search`. Next, choose the full name of your area with the dropdown box next to the `Choose` button. Click `Choose`. Due to API restrictions, this must be split into two parts.
+
+<details>
+  <summary>See steps</summary>
+
+  #### Step 1
+
+  Type the area name into the red search bar and click `Search`.
+
+  ![step 1 image](./examples/step1.png)
+
+  #### Step 2
+
+  That search has populated the green dropdown box with matches for that area name. Select the correct one and the click `Choose`.
+
+  ![step 2 image](./examples/step2.png)
+</details>
+
+### Search by coordinates
+
+To search by coordinates, choose `Lat/Lon` in the `Search by:` dropdown box. Enter WGS84 geocode coordinates and hit `Search`.
+
+### Search by station ID
+
+If you know your/a station's ID. Choose `Weatherstation ID:` in the `Search by:` dropdown box. Enter the station's ID and hit `Search`.
+
+### Selecting a station
+
+In the search popup, hit the `Select` button next to the desired station. Once selected, hit `✓Confirm` to add it to the main config page's list. It will be automatically selected and `Apply` the settings to change the station. You can change your selection by hitting the `✓` icon next to any of the saved stations and `Apply` the settings to take effect.
 
 ### Removing Stations
 
-Navigate back to the saved stations dialog and select the station to be removed. Click the `Remove` button at the bottom left and then confirm the removal. You can then close the window or click `Cancel`. If you have removed all of the stations, you can close the window or click `Cancel` as well.
+In the list under the `Station` config page, select the `X` icon to remove that station from the list of saved stations.
+
+### Units
+
+Units and time format is fully customizable.
 
 ## Translating
 
-Translations welcome!
+Translations are welcome!
 
-Follow the file in [plasmoid/translate](./plasmoid/translate) for directions.
+Follow the file in [plasmoid/translate](./plasmoid/translate) for directions or feel free to contact me!
 
 ## Meta
 
@@ -51,20 +85,16 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
 
 ## TODO
 
-- Day Chart
-  -   [x] Implement V3 API
-  -   [x] Refactor key/value dict for API terms
-  -   [x] Change sizing of chart
-  -   [x] Make ECMA compatibility consistent
-  -   [x] Handle dates with JS Date obj instead of splitting strings
 - i18n
   -   [ ] Translations for new text
-  -   [x] AQI/AQHI scale localization
 - Customizability
-  -   [ ] Customize CompactRep icon/text size
+  -   [ ] Choose what to show in panel and desktop forms
   -   [ ] Widget size/padding/scaling
 - Backend
   -   [x] Refactor QML style
 - Parking lot
+  -   [ ] Search by map feature
   -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
   -   [ ] Use Wunderground Plasma Ion.
+
+[^1]: Discover sometimes has difficulties getting the most recent version.
