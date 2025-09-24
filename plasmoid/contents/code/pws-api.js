@@ -367,7 +367,7 @@ function getCurrentData(callback = function () {}) {
 				// Force QML to update text depending on weatherData
 				weatherData = weatherData;
 
-				getExtendedConditions(callback);
+				callback();
 
 				appState = showDATA;
 			} else {
@@ -750,7 +750,7 @@ function getForecastDataV1(callback = function () {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
-	url += "&language=" + Qt.locale().name.replace("_", "-");
+	url += "?language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
@@ -899,7 +899,7 @@ function getHourlyDataV1(callback = function () {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/hourly/24hour.json";
-	url += "&language=" + Qt.locale().name.replace("_", "-");
+	url += "?language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";

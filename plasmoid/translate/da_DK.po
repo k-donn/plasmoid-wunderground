@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
 "POT-Creation-Date: 2025-09-21 14:29-0400\n"
-"PO-Revision-Date: 2025-09-20 20:34+0200\n"
+"PO-Revision-Date: 2025-09-22 21:11+0200\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
 "Language: da_DK\n"
@@ -24,7 +24,7 @@ msgstr "Wunderground"
 
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
-msgstr "Vejrstation visning"
+msgstr "Wunderground personlige vejrstation visning"
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -139,7 +139,7 @@ msgstr "System Panel visning"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Full Representation"
-msgstr "Udvidet visning"
+msgstr "Fuld visning"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Property header text size"
@@ -241,7 +241,7 @@ msgstr "Gemte Vejrstationer"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "ID:"
-msgstr ""
+msgstr "ID:"
 
 #: ../contents/ui/config/ConfigStation.qml
 #: ../contents/ui/lib/StationSearcher.qml
@@ -260,7 +260,7 @@ msgstr "Længdegrad:"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Action"
-msgstr ""
+msgstr "Handling"
 
 #: ../contents/ui/config/ConfigStation.qml
 #: ../contents/ui/lib/StationPickerDialog.qml
@@ -274,7 +274,7 @@ msgstr "Fjern"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Add Station…"
-msgstr ""
+msgstr "Tilføj station…"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -447,11 +447,11 @@ msgstr "Find station"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
-msgstr ""
+msgstr "Søg efter:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "City Name"
-msgstr ""
+msgstr "By navn"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation ID:"
@@ -459,15 +459,15 @@ msgstr "Vejrstation ID:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Lat/Lon"
-msgstr ""
+msgstr "Bred/Læng"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Searching place:"
-msgstr ""
+msgstr "Søger sted:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Choose"
-msgstr ""
+msgstr "Vælg"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Uses WGS84 geocode coordinates"
@@ -478,6 +478,8 @@ msgid ""
 "Use Station ID, not city name. Select 'Search by: City Name' to search by "
 "city."
 msgstr ""
+"Brug station ID, ikke navn på by. Vælg 'Søg efter: By navn' for at søge "
+"efter by."
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter Station"
@@ -485,11 +487,11 @@ msgstr "Angiv station"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter City Name"
-msgstr ""
+msgstr "Angiv bynavn"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Confirm"
-msgstr ""
+msgstr "Bekræft"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"

@@ -219,13 +219,17 @@ PlasmoidItem {
             delay(plasmoid.configuration.startupDelay * 1000, function() {
                 printDebug("Delayed startup " + (plasmoid.configuration.startupDelay) + " s.");
                 StationAPI.getCurrentData(function() {
-                    StationAPI.getForecastData(StationAPI.getHourlyData)
+                    StationAPI.getExtendedConditions(function() {
+                        StationAPI.getForecastData(StationAPI.getHourlyData)
+                    })
                 });
                 hasLoaded = true;
             });
         } else {
             StationAPI.getCurrentData(function() {
-                StationAPI.getForecastData(StationAPI.getHourlyData)
+                StationAPI.getExtendedConditions(function() {
+                    StationAPI.getForecastData(StationAPI.getHourlyData)
+                });
             });
         }
     }
@@ -237,7 +241,9 @@ PlasmoidItem {
 
     function updateForecastData() {
         printDebug("Getting new forecast data");
-        StationAPI.getForecastData(StationAPI.getHourlyData);
+        StationAPI.getExtendedConditions(function() {
+            StationAPI.getForecastData(StationAPI.getHourlyData)
+        });
     }
 
     onStationIDChanged: {
