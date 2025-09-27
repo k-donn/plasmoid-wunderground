@@ -54,7 +54,7 @@ In the list under the `Station` config page, select the `X` icon to remove that 
 
 ### Advanced Manual Add
 
-If you know the station ID and do not want to click through extra steps, hit `+ Manual Add`, enter the case-sensitive station ID, and you confirm. The station will be on the list and you should be good to go!
+If you know the station ID and do not want to click through extra steps, hit `+ Manual Add`, enter the case-sensitive station ID, and confirm. The station will be on the list and you should be good to go!
 
 ### Units
 
@@ -95,6 +95,7 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
   -   [ ] Choose what to show in panel and desktop forms
   -   [ ] Widget size/padding/scaling
 - Backend
+  -   [ ] Improve searching and testing error messages
   -   [ ] Better handle null fields
   -   [ ] Seperate error page for forecast and extended condition errors
 - Parking lot
