@@ -17,6 +17,7 @@
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import org.kde.kcmutils as KCM
 import QtQuick.Controls as QQC
 import org.kde.plasma.components as PlasmaComponents
@@ -326,9 +327,64 @@ KCM.SimpleKCM {
             }
 
             QQC.Button {
-                text: i18n("Add Station…")
-                icon.name: "list-add"
+                text: i18n("Find Station")
+                icon.name: "find-location"
                 onClicked: stationSearcher.open()
+            }
+
+            QQC.Button {
+                text: i18n("Manual Add")
+                icon.name: "list-add"
+                onClicked: manualAdd.open()
+            }
+
+            Lib.ManualStationAdd {
+                id: manualAdd
+                onStationSelected: function(station) {
+                    printDebug("Received manual station: " + station);
+                    // StationAPI.searchStationID(station, function(stations, error) {
+                    //     var foundStation = false;
+                    //     if (!error) {
+                    //         for (var i = 0; i < stations.length; i++) {
+                    //             var stationCandidate = stations[i];
+                    //             if (stationCandidate.stationID === station) {
+                    //                 stationListModel.append({
+                    //                     "stationID": stationCandidate.stationID,
+                    //                     "placeName": stationCandidate.placeName,
+                    //                     "latitude": stationCandidate.latitude,
+                    //                     "longitude": stationCandidate.longitude,
+                    //                     "selected": true
+                    //                 });
+                    //                 foundStation = true;
+                    //                 for (var j = 0; j < stationListModel.count; j++) {
+                    //                     stationListModel.setProperty(j, "selected", j === stationListModel.count - 1);
+                    //                 }
+                    //                 stationPickerEl.syncSavedStations();
+                    //             }
+                    //         }
+                    //     }
+                    //     if (!foundStation) {
+                    //         stationNotFound.open()
+                    //     }
+                    // })
+                    stationListModel.append({
+                        "stationID": station,
+                        "placeName": "",
+                        "longitude": 0,
+                        "latitude": 0,
+                        "selected": true
+                    });
+                    stationPickerEl.syncSavedStations();
+                }
+            }
+
+            MessageDialog {
+                id: stationNotFound
+                title: i18n("Error")
+                text: i18n("Error: Bad station.")
+                buttons: MessageDialog.Ok
+                onAccepted: destroy()
+                onRejected: destroy()
             }
 
             Lib.StationSearcher {
@@ -366,7 +422,7 @@ KCM.SimpleKCM {
             }
 
             PlasmaComponents.Label {
-                text: "Version 3.5.0"
+                text: "Version 3.5.1"
             }
         }
 

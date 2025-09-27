@@ -14,7 +14,7 @@ Install at the [KDE Store](https://store.kde.org/p/2135799) or your distribution
 
 This widget relies on local stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap). Do not worry if you don't know any or you cannot access that site! The widget allows you to search by your area name or coordinates.
 
-Once installed, click `Configure Wunderground` or right-click and hit the slider icon. Then, under `Station`, click `+Add Station...`.
+Once installed, click `Configure Wunderground` or right-click and hit the slider icon. Then, under `Station`, click `Find Station`.
 
 ### Search by city/area
 
@@ -52,9 +52,13 @@ In the search popup, hit the `Select` button next to the desired station. Once s
 
 In the list under the `Station` config page, select the `X` icon to remove that station from the list of saved stations.
 
+### Advanced Manual Add
+
+If you know the station ID and do not want to click through extra steps, hit `+ Manual Add`, enter the case-sensitive station ID, and you confirm. The station will be on the list and you should be good to go!
+
 ### Units
 
-Units and time format is fully customizable.
+Units and time format are fully customizable.
 
 ## Translating
 
@@ -91,10 +95,10 @@ The legacy forecast API is geolocation locked in some cases. The newer API is no
   -   [ ] Choose what to show in panel and desktop forms
   -   [ ] Widget size/padding/scaling
 - Backend
-  -   [x] Refactor QML style
+  -   [ ] Better handle null fields
+  -   [ ] Seperate error page for forecast and extended condition errors
 - Parking lot
   -   [ ] Search by map feature
-  -   [ ] Have seperate error page for forecast errors and use bitmapped field for appState
   -   [ ] Use Wunderground Plasma Ion.
 
 [^1]: Discover sometimes has difficulties getting the most recent version.

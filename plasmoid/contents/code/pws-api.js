@@ -65,7 +65,7 @@ function getAQScale() {
  * Determine if the user supplied station is active or not.
  *
  * @param {string} givenID Station ID
- * @param {(isActive: boolean) => void} callback Callback called with success/failure
+ * @param {(isActive: boolean, healthCount: number) => void} callback Callback called with success/failure
  */
 function isStationActive(givenID, callback) {
 	var req = new XMLHttpRequest();
@@ -91,9 +91,50 @@ function isStationActive(givenID, callback) {
 	req.onreadystatechange = function () {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
-				callback(true);
+				var sectionName = "";
+
+				if (
+					plasmoid.configuration.unitsChoice ===
+					Utils.UNITS_SYSTEM.METRIC
+				) {
+					sectionName = "metric";
+				} else if (
+					plasmoid.configuration.unitsChoice ===
+					Utils.UNITS_SYSTEM.IMPERIAL
+				) {
+					sectionName = "imperial";
+				} else if (
+					plasmoid.configuration.unitsChoice ===
+					Utils.UNITS_SYSTEM.HYBRID
+				) {
+					sectionName = "uk_hybrid";
+				} else {
+					sectionName = "metric";
+				}
+
+				var res = JSON.parse(req.responseText);
+
+				var obs = res["observations"][0];
+
+				var details = obs[sectionName];
+
+				var healthCount = 0;
+
+				for (var key in details) {
+					if (details[key] !== null) {
+						healthCount += 1;
+					}
+				}
+
+				for (var key in obs) {
+					if (key !== sectionName && obs[key] !== null) {
+						healthCount += 1;
+					}
+				}
+
+				callback(true, healthCount);
 			} else {
-				callback(false);
+				callback(false, 0);
 			}
 		}
 	};
@@ -170,10 +211,9 @@ function searchStationID(query, callback) {
 
 				callback(stationsArr, null);
 			} else if (req.status == 404) {
-				var err = JSON.parse(req.responseText);
-				callback(null, {type: err.errors[0].error["code"], message: err.errors[0].error["message"]});
+				callback(null, { type: "404", message: "No stations found" });
 			} else {
-				printDebug(req.responseText);
+				callback(null, { type: req.status, message: req.responseText });
 			}
 		}
 	};
@@ -212,20 +252,21 @@ function searchGeocode(latLongObj, callback) {
 				var loc = res["location"];
 				var stations = loc["stationId"];
 				for (var i = 0; i < stations.length; i++) {
-					stationsArr.push({
-						stationID: loc["stationId"][i],
-						placeName: loc["stationName"][i],
-						latitude: loc["latitude"][i],
-						longitude: loc["longitude"][i],
-					});
+					if (loc["qcStatus"][i] !== -1) {
+						stationsArr.push({
+							stationID: loc["stationId"][i],
+							placeName: loc["stationName"][i],
+							latitude: loc["latitude"][i],
+							longitude: loc["longitude"][i],
+						});
+					}
 				}
 
 				callback(stationsArr, null);
 			} else if (req.status == 404) {
-				var err = JSON.parse(req.responseText);
-				callback(null, {type: err.errors[0].error["code"], message: err.errors[0].error["message"]});
+				callback(null, { type: "404", message: "No stations found" });
 			} else {
-				printDebug("[pws-api.js] " + req.responseText);
+				callback(null, { type: req.status, message: req.responseText });
 			}
 		}
 	};
@@ -238,7 +279,7 @@ function searchGeocode(latLongObj, callback) {
  * This can then be used to search for stations in that area.
  *
  * @param {string} city Textual city description
- * @param {(res: Array<{city: string, country: string, latitude: float, longitude: float}>) => void} callback
+ * @param {(res: Array<{city: string, country: string, latitude: float, longitude: float}>, error: {type: string, message: string}) => void} callback
  */
 function getLocations(city, callback) {
 	var req = new XMLHttpRequest();
@@ -265,6 +306,7 @@ function getLocations(city, callback) {
 				for (var i = 0; i < loc["address"].length; i++) {
 					locationsArr.push({
 						city: loc["city"][i],
+						state: loc["adminDistrict"][i],
 						country: loc["country"][i],
 						latitude: loc["latitude"][i],
 						longitude: loc["longitude"][i],
@@ -272,8 +314,13 @@ function getLocations(city, callback) {
 				}
 
 				callback(locationsArr);
+			} else if (req.status === 404) {
+				callback(null, {
+					type: "404",
+					message: i18n("Location not found"),
+				});
 			} else {
-				printDebug("[pws-api.js] " + req.responseText);
+				callback(null, { type: req.status, message: req.responseText });
 			}
 		}
 	};
@@ -367,7 +414,7 @@ function getCurrentData(callback = function () {}) {
 				// Force QML to update text depending on weatherData
 				weatherData = weatherData;
 
-				getExtendedConditions(callback);
+				callback();
 
 				appState = showDATA;
 			} else {
@@ -750,7 +797,7 @@ function getForecastDataV1(callback = function () {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/daily/7day.json";
-	url += "&language=" + Qt.locale().name.replace("_", "-");
+	url += "?language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";
@@ -899,7 +946,7 @@ function getHourlyDataV1(callback = function () {}) {
 		"/" +
 		plasmoid.configuration.longitude;
 	url += "/forecast/hourly/24hour.json";
-	url += "&language=" + Qt.locale().name.replace("_", "-");
+	url += "?language=" + Qt.locale().name.replace("_", "-");
 
 	if (unitsChoice === Utils.UNITS_SYSTEM.METRIC) {
 		url += "&units=m";

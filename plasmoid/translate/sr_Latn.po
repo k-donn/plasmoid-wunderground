@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-21 14:29-0400\n"
+"POT-Creation-Date: 2025-09-26 20:05-0400\n"
 "PO-Revision-Date: 2025-02-08 14:02+0100\n"
 "Last-Translator: Ivan Todorov <ivan@globedotters.com>\n"
 "Language-Team: Serbian (Latin) <YOUR_EMAIL>\n"
@@ -24,6 +24,10 @@ msgstr "Wunderground"
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
 msgstr "Wunderground Prikazivač Personalnih Meteoroloških Stanica"
+
+#: ../contents/code/pws-api.js
+msgid "Location not found"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -229,7 +233,7 @@ msgstr "Koristi Stari API za Prognozu"
 msgid "Startup time delay (ms):"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Saved Weather Stations"
 msgstr "Sačuvane Meteorološke Stanice"
 
@@ -253,16 +257,28 @@ msgstr "Geografska dužina:"
 msgid "Action"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
 msgstr "Izaberite"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Remove"
 msgstr "Ukloni"
 
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "Pronađi Stanicu"
+
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Add Station…"
+msgid "Manual Add"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Error"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Bad station."
 msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
@@ -404,29 +420,45 @@ msgstr "Desktop Vidžet:"
 msgid "Configure Wunderground"
 msgstr "Podesite Wunderground"
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Remove Selected"
-msgstr "Ukloni izabrano"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Add Station..."
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Confirm Remove %1"
-msgstr "Potvrdite Uklanjanje %1"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station ID"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add"
-msgstr "Dodaj"
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Confirm"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Otkaži"
 
-#: ../contents/ui/lib/StationPicker.qml
-msgid "Choose…"
-msgstr "Izaberite…"
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: %1 message: %2"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Find Station"
-msgstr "Pronađi Stanicu"
+msgid "Station active!"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Reporting %1% of properties."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station active."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station unhealthy."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Station not active!"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -469,7 +501,7 @@ msgid "Enter City Name"
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Confirm"
+msgid "Test"
 msgstr ""
 
 #: ../contents/ui/main.qml
@@ -522,6 +554,18 @@ msgstr "Osveži vremenske podatke"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Najviša: %1 Najniža: %2"
+
+#~ msgid "Remove Selected"
+#~ msgstr "Ukloni izabrano"
+
+#~ msgid "Confirm Remove %1"
+#~ msgstr "Potvrdite Uklanjanje %1"
+
+#~ msgid "Add"
+#~ msgstr "Dodaj"
+
+#~ msgid "Choose…"
+#~ msgstr "Izaberite…"
 
 #~ msgid "Station Info"
 #~ msgstr "Informacije o Stanici"
