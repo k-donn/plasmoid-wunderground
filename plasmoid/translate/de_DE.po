@@ -27,7 +27,7 @@ msgstr "Meine Wetterstation"
 
 #: ../contents/code/pws-api.js
 msgid "Location not found"
-msgstr ""
+msgstr "Standort nicht gefunden"
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -259,7 +259,7 @@ msgstr "Aktion"
 
 #: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
-msgstr "Anwenden"
+msgstr "Auswählen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Remove"
@@ -271,15 +271,15 @@ msgstr "Station suchen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Manual Add"
-msgstr ""
+msgstr "Manuelles Hinzufügen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Error"
-msgstr ""
+msgstr "Fehler"
 
 #: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Error: Bad station."
-msgstr ""
+msgstr "Fehler: Schlechte Station"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -422,11 +422,11 @@ msgstr "Wunderground einrichten"
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Add Station..."
-msgstr ""
+msgstr "Neue Station"
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Enter station ID"
-msgstr ""
+msgstr "Eingabe Station's ID"
 
 #: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Confirm"
@@ -438,27 +438,27 @@ msgstr "Abbrechen"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: %1 message: %2"
-msgstr ""
+msgstr "Fehler: %1 Nachricht: %2"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Station active!"
-msgstr ""
+msgstr "Station aktiv!"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Reporting %1% of properties."
-msgstr ""
+msgstr "Berichtet %1 Eigenschaften"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Station active."
-msgstr ""
+msgstr "Station aktiv"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Station unhealthy."
-msgstr ""
+msgstr "Station fehlerhaft"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: Station not active!"
-msgstr ""
+msgstr "Fehler: Station nicht aktiv"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -502,7 +502,7 @@ msgstr "Eingabe Stadt"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Test"
-msgstr ""
+msgstr "Test"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
@@ -554,18 +554,3 @@ msgstr "Wetterdaten aktualisieren"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Temp max.: %1               Temp min.: %2"
-
-#~ msgid "Add Station…"
-#~ msgstr "Neue Station..."
-
-#~ msgid "Remove Selected"
-#~ msgstr "Ausgewählte Station entfernen"
-
-#~ msgid "Confirm Remove %1"
-#~ msgstr "Bestätige  %1  entfernen "
-
-#~ msgid "Add"
-#~ msgstr "Hinzufügen"
-
-#~ msgid "Choose…"
-#~ msgstr "Auswählen"
