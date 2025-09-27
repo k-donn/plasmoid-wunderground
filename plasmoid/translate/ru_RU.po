@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-21 14:29-0400\n"
+"POT-Creation-Date: 2025-09-26 20:05-0400\n"
 "PO-Revision-Date: 2025-09-24 14:11-0400\n"
 "Last-Translator: AleksZZ <alexyvp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -24,6 +24,10 @@ msgstr "Wunderground"
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
 msgstr "Программа просмотра персональных метеостанций Wunderground"
+
+#: ../contents/code/pws-api.js
+msgid "Location not found"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -229,7 +233,7 @@ msgstr "Используйте устаревший API прогнозов:"
 msgid "Startup time delay (ms):"
 msgstr "Задержка времени запуска (мс):"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Saved Weather Stations"
 msgstr "Сохраненные метеостанции"
 
@@ -253,17 +257,29 @@ msgstr "Долгота:"
 msgid "Action"
 msgstr "Действие"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
 msgstr "Выбирать"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Remove"
 msgstr "Удалять"
 
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "Найти станцию"
+
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Add Station…"
-msgstr "Добавить станцию…"
+msgid "Manual Add"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Error"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Bad station."
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -404,29 +420,45 @@ msgstr "Виджет рабочего стола:"
 msgid "Configure Wunderground"
 msgstr "Настроить Wunderground"
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Remove Selected"
-msgstr "Удалить выбранное"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Add Station..."
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Confirm Remove %1"
-msgstr "Подтвердите удаление %1"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station ID"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add"
-msgstr "Добавлять"
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Confirm"
+msgstr "Подтверждать"
 
-#: ../contents/ui/lib/StationPickerDialog.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ../contents/ui/lib/StationPicker.qml
-msgid "Choose…"
-msgstr "Выбирать…"
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: %1 message: %2"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Find Station"
-msgstr "Найти станцию"
+msgid "Station active!"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Reporting %1% of properties."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station active."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station unhealthy."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Station not active!"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -469,8 +501,8 @@ msgid "Enter City Name"
 msgstr "Введите название города"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Confirm"
-msgstr "Подтверждать"
+msgid "Test"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
@@ -522,6 +554,21 @@ msgstr "Обновить погоду"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Высокий: %1 Низкий: %2"
+
+#~ msgid "Add Station…"
+#~ msgstr "Добавить станцию…"
+
+#~ msgid "Remove Selected"
+#~ msgstr "Удалить выбранное"
+
+#~ msgid "Confirm Remove %1"
+#~ msgstr "Подтвердите удаление %1"
+
+#~ msgid "Add"
+#~ msgstr "Добавлять"
+
+#~ msgid "Choose…"
+#~ msgstr "Выбирать…"
 
 #~ msgid "DEWPOINT"
 #~ msgstr "ТОЧКА РОСЫ"

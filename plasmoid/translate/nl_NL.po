@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-21 14:29-0400\n"
+"POT-Creation-Date: 2025-09-26 20:05-0400\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -25,6 +25,10 @@ msgstr "Wunderground"
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
 msgstr "Wunderground - Bekijk je eigen weerstation"
+
+#: ../contents/code/pws-api.js
+msgid "Location not found"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -235,7 +239,6 @@ msgid "Startup time delay (ms):"
 msgstr "Opstartvertraging (ms):"
 
 #: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Saved Weather Stations"
 msgstr "Opgeslagen weerstations"
 
@@ -263,18 +266,31 @@ msgid "Action"
 msgstr "Actie"
 
 #: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
 msgstr "Selecteer"
 
 #: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationPickerDialog.qml
 msgid "Remove"
 msgstr "Verwijderen"
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Add Station…"
-msgstr "Station toevoegen…"
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "Weerstation zoeken"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Manual Add"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Error"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Bad station."
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -420,30 +436,47 @@ msgstr "Bureaubladwidget:"
 msgid "Configure Wunderground"
 msgstr "Wunderground configureren"
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Remove Selected"
-msgstr "Geselecteerde verwijderen"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Add Station..."
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Confirm Remove %1"
-msgstr "Bevestig Verwijderen %1"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station ID"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add"
-msgstr "Toevoegen"
+#: ../contents/ui/lib/ManualStationAdd.qml
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Confirm"
+msgstr "Bevestigen"
 
-#: ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/lib/ManualStationAdd.qml
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: ../contents/ui/lib/StationPicker.qml
-msgid "Choose…"
-msgstr "Kiezen…"
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: %1 message: %2"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Find Station"
-msgstr "Weerstation zoeken"
+msgid "Station active!"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Reporting %1% of properties."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station active."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station unhealthy."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Station not active!"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -490,8 +523,8 @@ msgid "Enter City Name"
 msgstr "Voer de stadsnaam in"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Confirm"
-msgstr "Bevestigen"
+msgid "Test"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
@@ -543,6 +576,21 @@ msgstr "Vernieuw het weer"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Hoog: %1 - Laag: %2"
+
+#~ msgid "Add Station…"
+#~ msgstr "Station toevoegen…"
+
+#~ msgid "Remove Selected"
+#~ msgstr "Geselecteerde verwijderen"
+
+#~ msgid "Confirm Remove %1"
+#~ msgstr "Bevestig Verwijderen %1"
+
+#~ msgid "Add"
+#~ msgstr "Toevoegen"
+
+#~ msgid "Choose…"
+#~ msgstr "Kiezen…"
 
 #~ msgid "DEWPOINT"
 #~ msgstr "DAUWPUNT"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-21 14:29-0400\n"
+"POT-Creation-Date: 2025-09-26 20:05-0400\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -24,6 +24,10 @@ msgstr "Wunderground"
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
 msgstr "Wunderground 個人用気象ステーション ビューアー"
+
+#: ../contents/code/pws-api.js
+msgid "Location not found"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -229,7 +233,7 @@ msgstr "従来の予測 API を使用する:"
 msgid "Startup time delay (ms):"
 msgstr "起動時間遅延（ミリ秒）:"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Saved Weather Stations"
 msgstr "保存された気象ステーション"
 
@@ -253,17 +257,29 @@ msgstr "経度："
 msgid "Action"
 msgstr "アクション"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
 msgstr "選択"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Remove"
 msgstr "取り除く"
 
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "駅を探す"
+
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Add Station…"
-msgstr "ステーションの追加…"
+msgid "Manual Add"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Error"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Bad station."
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -404,29 +420,45 @@ msgstr "デスクトップウィジェット:"
 msgid "Configure Wunderground"
 msgstr "Wundergroundを設定する"
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Remove Selected"
-msgstr "選択項目を削除"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Add Station..."
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Confirm Remove %1"
-msgstr "%1 の削除を確認"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station ID"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add"
-msgstr "追加"
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Confirm"
+msgstr "確認する"
 
-#: ../contents/ui/lib/StationPickerDialog.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: ../contents/ui/lib/StationPicker.qml
-msgid "Choose…"
-msgstr "選ぶ…"
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: %1 message: %2"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Find Station"
-msgstr "駅を探す"
+msgid "Station active!"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Reporting %1% of properties."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station active."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station unhealthy."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Station not active!"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -469,8 +501,8 @@ msgid "Enter City Name"
 msgstr "都市名を入力"
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Confirm"
-msgstr "確認する"
+msgid "Test"
+msgstr ""
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"
@@ -522,6 +554,21 @@ msgstr "天気を更新"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "最高: %1 最低: %2"
+
+#~ msgid "Add Station…"
+#~ msgstr "ステーションの追加…"
+
+#~ msgid "Remove Selected"
+#~ msgstr "選択項目を削除"
+
+#~ msgid "Confirm Remove %1"
+#~ msgstr "%1 の削除を確認"
+
+#~ msgid "Add"
+#~ msgstr "追加"
+
+#~ msgid "Choose…"
+#~ msgstr "選ぶ…"
 
 #~ msgid "DEWPOINT"
 #~ msgstr "露点温度"

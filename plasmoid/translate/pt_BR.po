@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-09-21 14:29-0400\n"
+"POT-Creation-Date: 2025-09-26 20:05-0400\n"
 "PO-Revision-Date: 2024-10-01 00:00+0000\n"
 "Last-Translator: JULIANO MADEIRA <julianomadeira@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) <LL@li.org>\n"
@@ -23,6 +23,10 @@ msgstr "Wunderground"
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
 msgstr "Visualizador de Estação Meteorológica Pessoal Wunderground"
+
+#: ../contents/code/pws-api.js
+msgid "Location not found"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -228,7 +232,7 @@ msgstr ""
 msgid "Startup time delay (ms):"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Saved Weather Stations"
 msgstr "Estações Meteorológicas Salvas"
 
@@ -252,16 +256,28 @@ msgstr "Longitude:"
 msgid "Action"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
 msgstr "Selecionar"
 
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationPickerDialog.qml
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Remove"
 msgstr "Remover"
 
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "Encontrar Estação"
+
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Add Station…"
+msgid "Manual Add"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Error"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Bad station."
 msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
@@ -403,29 +419,45 @@ msgstr "Widget da Área de Trabalho:"
 msgid "Configure Wunderground"
 msgstr "Configurar Wunderground"
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Remove Selected"
-msgstr "Remover Selecionado"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Add Station..."
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Confirm Remove %1"
-msgstr "Confirmar Remoção de %1"
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station ID"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml
-msgid "Add"
-msgstr "Adicionar"
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Confirm"
+msgstr ""
 
-#: ../contents/ui/lib/StationPickerDialog.qml ../contents/ui/lib/StationSearcher.qml
+#: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: ../contents/ui/lib/StationPicker.qml
-msgid "Choose…"
-msgstr "Escolher…"
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: %1 message: %2"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Find Station"
-msgstr "Encontrar Estação"
+msgid "Station active!"
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Reporting %1% of properties."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station active."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Station unhealthy."
+msgstr ""
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Error: Station not active!"
+msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -468,7 +500,7 @@ msgid "Enter City Name"
 msgstr ""
 
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Confirm"
+msgid "Test"
 msgstr ""
 
 #: ../contents/ui/main.qml
@@ -521,6 +553,18 @@ msgstr "Atualizar clima"
 #: ../contents/ui/TopPanel.qml
 msgid "High: %1 Low: %2"
 msgstr "Máxima: %1 - Mínima: %2"
+
+#~ msgid "Remove Selected"
+#~ msgstr "Remover Selecionado"
+
+#~ msgid "Confirm Remove %1"
+#~ msgstr "Confirmar Remoção de %1"
+
+#~ msgid "Add"
+#~ msgstr "Adicionar"
+
+#~ msgid "Choose…"
+#~ msgstr "Escolher…"
 
 #~ msgid "Station Info"
 #~ msgstr "Informação da Estação"

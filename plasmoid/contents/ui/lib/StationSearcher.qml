@@ -1,7 +1,25 @@
+/*
+ * Copyright 2025  Kevin Donnelly
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+ */
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../../code/utils.js" as Utils
@@ -38,7 +56,26 @@ Window {
 
     function setError(errorObj) {
         errText.visible = true;
-        errText.text = "Error: " + errorObj.type + " message: " + errorObj.message;
+        errText.text =i18n("Error: %1 message: %2", errorObj.type, errorObj.message);
+    }
+
+    function testStation(stationID) {
+        StationAPI.isStationActive(stationID, function(isActive, healthCount) {
+            if (isActive) {
+                if (healthCount > 20) {
+                    errText.text = i18n("Station active!") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                } else if (healthCount > 15) {
+                    errText.text = i18n("Station active.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                } else if (healthCount > 10) {
+                    errText.text = i18n("Station unhealthy.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                } else {
+                    errText.text = i18n("Error: Bad station.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                }
+            } else {
+                errText.text = i18n("Error: Station not active!");
+            }
+            errText.visible = true;
+        });
     }
 
     title: i18n("Find Station")
@@ -96,6 +133,7 @@ Window {
                 text: "Search"
                 enabled: (stationSearcher.searchMode === "stationID" || stationSearcher.searchMode === "placeName") ? stationSearcher.searchText.length > 0 : true
                 onClicked: {
+                    clearError();
                     if (stationSearcher.searchMode === "stationID") {
                         StationAPI.searchStationID(stationSearcher.searchText, function(stations, error) {
                             if (error) {
@@ -115,7 +153,7 @@ Window {
                                 clearError();
                                 for (var i = 0; i < places.length; i++) {
                                     availableCitiesModel.append({
-                                        "placeName": places[i].city + "," + places[i].country,
+                                        "placeName": places[i].city + "," + places[i].state + " (" + places[i].country + ")",
                                         "latitude": places[i].latitude,
                                         "longitude": places[i].longitude
                                     });
@@ -150,12 +188,6 @@ Window {
             Layout.fillWidth: true
             clip: true
             elide: Text.ElideRight
-
-            PlasmaCore.ToolTipArea {
-                anchors.fill: parent
-
-                subText: errText.text
-            }
         }
 
         Component {
@@ -239,8 +271,8 @@ Window {
             spacing: 6
             PlasmaComponents.Label { text: i18n("Weatherstation ID:"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
             PlasmaComponents.Label { text: i18n("Weatherstation Name:"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
-            PlasmaComponents.Label { text: i18n("Latitude:"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
-            PlasmaComponents.Label { text: i18n("Longitude:"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
+            PlasmaComponents.Label { text: i18n("Lat/Lon"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
+            PlasmaComponents.Label { text: ""; Layout.fillWidth: true; Layout.preferredWidth: 1 }
             PlasmaComponents.Label { text: "" ; Layout.fillWidth: true; Layout.preferredWidth: 1 }
         }
 
@@ -253,15 +285,23 @@ Window {
 
                 PlasmaComponents.Label { text: stationID; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
                 PlasmaComponents.Label { text: placeName; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
-                PlasmaComponents.Label { text: latitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
-                PlasmaComponents.Label { text: longitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
+                PlasmaComponents.Label { text: latitude + "," + longitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
                 QQC.Button {
-                    text: "Select"
+                    text: i18n("Test")
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: 1
+                    onClicked: {
+                        var testingStation = stationSearcher.searchResults.get(index);
+                        testStation(testingStation.stationID);
+                    }
+                }
+                QQC.Button {
+                    text: i18n("Select")
                     enabled: !selected
                     Layout.fillWidth: true
                     Layout.preferredWidth: 1
                     onClicked: {
-                        selectedStation = stationSearcher.searchResults.get(index)
+                        selectedStation = stationSearcher.searchResults.get(index);
                         for (var i = 0; i < stationSearcher.searchResults.count; i++) {
                             stationSearcher.searchResults.setProperty(i, "selected", i === index);
                         }
