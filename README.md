@@ -80,12 +80,16 @@ The text coloring utilities are thanks to @Gojir4 on the QML forum.
 
 ### Known Problems
 
+Qt 6.10: Widget version 3.5.3 is required.
+
 Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
 
 Changing the transparency then back again seems to solve this issue. See [#58](https://github.com/k-donn/plasmoid-wunderground/issues/58).
 Under Appearance in the widget settings, toggle "Show Background."
 
 The legacy forecast API is geolocation locked in some cases. The newer API is not, but it does not provide all of the same attributes. Checking `Use Legacy Forecast API:` under `Debug` in settings reverts the widget to use the legacy API. Then, you then get the snow, thunder, and golf forecast.
+
+If you are getting lots of `Setting initial properties failed: <COMPONENT> does not have a property called cfg_XXXX` that is a known [Plasma bug](https://bugs.kde.org/show_bug.cgi?id=494417) and does not affect the widget.
 
 ## TODO
 
