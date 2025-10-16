@@ -387,22 +387,62 @@ function getCurrentData(callback = function () {}) {
 
 				var details = obs[sectionName];
 
-				// The properties are assigned to weatherData explicitly to preserve
-				// its structure instead of assigning obs completely and breaking it
-				weatherData["details"] = details;
-				weatherData["details"]["pressureTrend"] = -1;
-				weatherData["details"]["pressureTrendCode"] = -1;
-				weatherData["details"]["pressureDelta"] = -1;
-
-				weatherData["stationID"] = obs["stationID"];
-				weatherData["uv"] = nullableField(obs["uv"]);
-				weatherData["humidity"] = obs["humidity"];
-				weatherData["solarRad"] = nullableField(obs["solarRadiation"]);
-				weatherData["obsTimeLocal"] = obs["obsTimeLocal"];
-				weatherData["winddir"] = obs["winddir"];
-				weatherData["latitude"] = obs["lat"];
-				weatherData["longitude"] = obs["lon"];
-				weatherData["neighborhood"] = obs["neighborhood"];
+				weatherData = Qt.binding(function () {
+					return {
+						stationID: obs["stationID"],
+						uv: nullableField(obs["uv"]),
+						humidity: obs["humidity"],
+						solarRad: nullableField(obs["solarRadiation"]),
+						obsTimeLocal: obs["obsTimeLocal"],
+						winddir: obs["winddir"],
+						latitude: obs["lat"],
+						longitude: obs["lon"],
+						neighborhood: obs["neighborhood"],
+						isNight: weatherData["isNight"],
+						sunrise: weatherData["sunrise"],
+						sunset: weatherData["sunset"],
+						details: {
+							temp: details["temp"],
+							heatIndex: details["heatIndex"],
+							dewpt: details["dewpt"],
+							windChill: details["windChill"],
+							windSpeed: details["windSpeed"],
+							windGust: details["windGust"],
+							pressure: details["pressure"],
+							precipRate: details["precipRate"],
+							precipTotal: details["precipTotal"],
+							elev: details["elev"],
+							solarRad: weatherData["solarRad"],
+							pressureTrend: weatherData["pressureTrend"],
+							pressureTrendCode: weatherData["pressureTrendCode"],
+							pressureDelta: weatherData["pressureDelta"],
+						},
+						aq: {
+							aqi: weatherData["aq"]["aqi"],
+							aqhi: weatherData["aq"]["aqhi"],
+							aqDesc: weatherData["aq"]["aqDesc"],
+							aqColor: weatherData["aq"]["aqColor"],
+							aqPrimary: weatherData["aq"]["aqPrimary"],
+							primaryDetails: {
+								phrase: weatherData["aq"]["primaryDetails"][
+									"phrase"
+								],
+								amount: weatherData["aq"]["primaryDetails"][
+									"amount"
+								],
+								unit: weatherData["aq"]["primaryDetails"][
+									"unit"
+								],
+								desc: weatherData["aq"]["primaryDetails"][
+									"desc"
+								],
+								index: weatherData["aq"]["primaryDetails"][
+									"index"
+								],
+							},
+						},
+					};
+				});
 
 				plasmoid.configuration.latitude = weatherData["latitude"];
 				plasmoid.configuration.longitude = weatherData["longitude"];
@@ -410,9 +450,6 @@ function getCurrentData(callback = function () {}) {
 					weatherData["neighborhood"];
 
 				printDebug("[pws-api.js] Got new current data");
-
-				// Force QML to update text depending on weatherData
-				weatherData = weatherData;
 
 				callback();
 
@@ -490,15 +527,6 @@ function getExtendedConditions(callback = function () {}) {
 				var isNight = condVars["dayOrNight"] === "N";
 				iconCode = condVars["iconCode"];
 				conditionNarrative = condVars["wxPhraseLong"];
-				weatherData["isNight"] = isNight;
-				weatherData["sunrise"] = condVars["sunriseTimeLocal"];
-				weatherData["sunset"] = condVars["sunsetTimeLocal"];
-				weatherData["details"]["pressureTrend"] =
-					condVars["pressureTendencyTrend"];
-				weatherData["details"]["pressureTrendCode"] =
-					condVars["pressureTendencyCode"];
-				weatherData["details"]["pressureDelta"] =
-					condVars["pressureChange"];
 
 				// Determine if the precipitation is snow or rain
 				// All of these codes are for snow
@@ -562,32 +590,55 @@ function getExtendedConditions(callback = function () {}) {
 					}
 				}
 
-				weatherData["aq"]["aqi"] = airQualVars["airQualityIndex"];
-				weatherData["aq"]["aqhi"] =
-					airQualVars["airQualityCategoryIndex"];
-				weatherData["aq"]["aqDesc"] = airQualVars["airQualityCategory"];
-				weatherData["aq"]["aqColor"] =
-					airQualVars["airQualityCategoryIndexColor"];
-
-				var primaryPollutant = (weatherData["aq"]["aqPrimary"] =
-					airQualVars["primaryPollutant"]);
+				var primaryPollutant = airQualVars["primaryPollutant"];
 
 				var primaryDetails =
 					airQualVars["pollutants"][primaryPollutant];
 
-				weatherData["aq"]["primaryDetails"]["phrase"] =
-					primaryDetails["phrase"];
-				weatherData["aq"]["primaryDetails"]["amount"] =
-					primaryDetails["amount"];
-				weatherData["aq"]["primaryDetails"]["unit"] =
-					primaryDetails["unit"];
-				weatherData["aq"]["primaryDetails"]["desc"] =
-					primaryDetails["category"];
-				weatherData["aq"]["primaryDetails"]["index"] =
-					primaryDetails["index"];
-
-				// Force QML to update text depending on weatherData
-				weatherData = weatherData;
+				weatherData = Qt.binding(function () {
+					return {
+						stationID: weatherData["stationID"],
+						uv: weatherData["uv"],
+						obsTimeLocal: weatherData["obsTimeLocal"],
+						isNight: isNight,
+						winddir: weatherData["winddir"],
+						latitude: weatherData["latitude"],
+						longitude: weatherData["longitude"],
+						sunrise: condVars["sunriseTimeLocal"],
+						sunset: condVars["sunsetTimeLocal"],
+						solarRad: weatherData["solarRad"],
+						humidity: weatherData["humidity"],
+						details: {
+							temp: weatherData["details"]["temp"],
+							windSpeed: weatherData["details"]["windSpeed"],
+							windGust: weatherData["details"]["windGust"],
+							dewpt: weatherData["details"]["dewpt"],
+							solarRad: weatherData["details"]["solarRad"],
+							precipRate: weatherData["details"]["precipRate"],
+							pressure: weatherData["details"]["pressure"],
+							pressureTrend: condVars["pressureTendencyTrend"],
+							pressureTrendCode: condVars["pressureTendencyCode"],
+							pressureDelta: condVars["pressureChange"],
+							precipTotal: weatherData["details"]["precipTotal"],
+							elev: weatherData["details"]["elev"],
+						},
+						aq: {
+							aqi: airQualVars["airQualityIndex"],
+							aqhi: airQualVars["airQualityCategoryIndex"],
+							aqDesc: airQualVars["airQualityCategory"],
+							aqColor:
+								airQualVars["airQualityCategoryIndexColor"],
+							aqPrimary: airQualVars["primaryPollutant"],
+							primaryDetails: {
+								phrase: primaryDetails["phrase"],
+								amount: primaryDetails["amount"],
+								unit: primaryDetails["unit"],
+								desc: primaryDetails["category"],
+								index: primaryDetails["index"],
+							},
+						},
+					};
+				});
 
 				callback();
 			}
