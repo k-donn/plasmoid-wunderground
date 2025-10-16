@@ -342,31 +342,6 @@ KCM.SimpleKCM {
                 id: manualAdd
                 onStationSelected: function(station) {
                     printDebug("Received manual station: " + station);
-                    // StationAPI.searchStationID(station, function(stations, error) {
-                    //     var foundStation = false;
-                    //     if (!error) {
-                    //         for (var i = 0; i < stations.length; i++) {
-                    //             var stationCandidate = stations[i];
-                    //             if (stationCandidate.stationID === station) {
-                    //                 stationListModel.append({
-                    //                     "stationID": stationCandidate.stationID,
-                    //                     "placeName": stationCandidate.placeName,
-                    //                     "latitude": stationCandidate.latitude,
-                    //                     "longitude": stationCandidate.longitude,
-                    //                     "selected": true
-                    //                 });
-                    //                 foundStation = true;
-                    //                 for (var j = 0; j < stationListModel.count; j++) {
-                    //                     stationListModel.setProperty(j, "selected", j === stationListModel.count - 1);
-                    //                 }
-                    //                 stationPickerEl.syncSavedStations();
-                    //             }
-                    //         }
-                    //     }
-                    //     if (!foundStation) {
-                    //         stationNotFound.open()
-                    //     }
-                    // })
                     stationListModel.append({
                         "stationID": station,
                         "placeName": "",
@@ -374,6 +349,9 @@ KCM.SimpleKCM {
                         "latitude": 0,
                         "selected": true
                     });
+                    for (var i = 0; i < stationListModel.count; i++) {
+                        stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
+                    }
                     stationPickerEl.syncSavedStations();
                 }
             }

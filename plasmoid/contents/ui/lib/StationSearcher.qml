@@ -62,14 +62,14 @@ Window {
     function testStation(stationID) {
         StationAPI.isStationActive(stationID, function(isActive, healthCount) {
             if (isActive) {
-                if (healthCount > 20) {
-                    errText.text = i18n("Station active!") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                if (healthCount > 18) {
+                    errText.text = i18n("Station active!") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 } else if (healthCount > 15) {
-                    errText.text = i18n("Station active.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                    errText.text = i18n("Station active.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 } else if (healthCount > 10) {
-                    errText.text = i18n("Station unhealthy.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                    errText.text = i18n("Station unhealthy.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 } else {
-                    errText.text = i18n("Error: Bad station.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 25) * 100) );
+                    errText.text = i18n("Error: Bad station.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 }
             } else {
                 errText.text = i18n("Error: Station not active!");

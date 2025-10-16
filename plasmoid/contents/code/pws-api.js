@@ -93,6 +93,8 @@ function isStationActive(givenID, callback) {
 			if (req.status == 200) {
 				var sectionName = "";
 
+				var requiredObs = ["stationID", "obsTimeUtc", "obsTimeLocal", "neighborhood", "country", "solarRadiation", "lat", "lon", "uv", "winddir", "humidity"];
+
 				if (
 					plasmoid.configuration.unitsChoice ===
 					Utils.UNITS_SYSTEM.METRIC
@@ -127,7 +129,7 @@ function isStationActive(givenID, callback) {
 				}
 
 				for (var key in obs) {
-					if (key !== sectionName && obs[key] !== null) {
+					if (key !== sectionName && requiredObs.includes(key) && obs[key] !== null) {
 						healthCount += 1;
 					}
 				}
@@ -444,10 +446,12 @@ function getCurrentData(callback = function () {}) {
 					};
 				});
 
-				plasmoid.configuration.latitude = weatherData["latitude"];
-				plasmoid.configuration.longitude = weatherData["longitude"];
+				plasmoid.configuration.latitude = obs["lat"];
+				plasmoid.configuration.longitude = obs["lon"];
 				plasmoid.configuration.stationName =
-					weatherData["neighborhood"];
+					obs["neighborhood"];
+
+				printDebug("[pws-api.js] " + plasmoid.configuration.stationName);
 
 				printDebug("[pws-api.js] Got new current data");
 

@@ -80,6 +80,8 @@ The text coloring utilities are thanks to @Gojir4 on the QML forum.
 
 ### Known Problems
 
+Qt 6.10: Widget version 3.5.3 is required.
+
 Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
 
 Changing the transparency then back again seems to solve this issue. See [#58](https://github.com/k-donn/plasmoid-wunderground/issues/58).

@@ -59,7 +59,7 @@ RowLayout {
             PlasmaComponents.Label {
                 id: locationLabel
 
-                text: plasmoid.configuration.stationName
+                text: weatherData["neighborhood"]
             }
 
             Kirigami.Icon {
