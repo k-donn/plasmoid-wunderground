@@ -43,6 +43,19 @@ Window {
         id: syspal
     }
 
+    title: i18n("Find Station")
+    color: syspal.window
+
+    property string searchMode: "stationID"
+    property string searchText: ""
+    property var selectedStation
+    property real searchLat: 0
+    property real searchLon: 0
+
+    property ListModel searchResults: ListModel {}
+    property ListModel availableCitiesModel: ListModel {}
+
+
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
             console.log("[debug] [StationSearcher.qml] " + msg);
@@ -86,17 +99,6 @@ Window {
         });
     }
 
-    title: i18n("Find Station")
-    color: syspal.window
-
-    property string searchMode: "stationID"
-    property string searchText: ""
-    property var selectedStation
-    property real searchLat: 0
-    property real searchLon: 0
-
-    property ListModel searchResults: ListModel {}
-    property ListModel availableCitiesModel: ListModel {}
 
     onOpen: {
         stationSearcher.visible = true;

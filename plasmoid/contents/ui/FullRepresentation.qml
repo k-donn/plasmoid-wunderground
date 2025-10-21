@@ -29,9 +29,6 @@ import "lib"
 ColumnLayout {
     id: fullRoot
 
-    height: parent.height
-    width: parent.width
-
     spacing: Kirigami.Units.smallSpacing
 
     function printDebug(msg) {
