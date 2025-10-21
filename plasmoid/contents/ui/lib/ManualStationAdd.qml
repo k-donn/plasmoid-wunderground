@@ -23,7 +23,6 @@ import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../../code/utils.js" as Utils
-import "../../code/pws-api.js" as StationAPI
 
 
 

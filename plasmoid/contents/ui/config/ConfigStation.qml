@@ -23,7 +23,6 @@ import QtQuick.Controls as QQC
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import org.kde.kirigami as Kirigami
-import "../../code/pws-api.js" as StationAPI
 import "../lib" as Lib
 
 KCM.SimpleKCM {
@@ -206,17 +205,20 @@ KCM.SimpleKCM {
                             }
 
                             for (var i = 0; i < stationsArr.length; i++) {
+                                // FIXME: If the station has been manually added, the lat/long/placeName are not set
+                                // The individual properties are set in the xml file by the widget, but the widget
+                                // does not set the JSON.
                                 stationListModel.append({
                                     "stationID": stationsArr[i].stationID,
-                                    "placeName": stationsArr[i].placeName,
-                                    "latitude": stationsArr[i].latitude,
-                                    "longitude": stationsArr[i].longitude,
+                                    "placeName":  plasmoid.configuration.stationName,
+                                    "latitude": plasmoid.configuration.latitude,
+                                    "longitude": plasmoid.configuration.longitude,
                                     "selected": stationsArr[i].selected === true
                                 });
-                                stationPickerEl.syncSavedStations();
+                                stationPickerEl.syncSavedStations(true);
                             }
                         } catch (e) {
-                            printDebug("Invalid saved stations");
+                            printDebug("Invalid saved stations: " + e);
                             printDebug("Station ID: " + plasmoid.configuration.stationID + " long: " + plasmoid.configuration.longitude + " lat: " + plasmoid.configuration.latitude + " name: " + plasmoid.configuration.stationName + " list: " + plasmoid.configuration.stationList);
                             if (plasmoid.configuration.stationID !== "") {
                                 printDebug("Attempting to fill in savedStations");
@@ -344,7 +346,7 @@ KCM.SimpleKCM {
                     printDebug("Received manual station: " + station);
                     stationListModel.append({
                         "stationID": station,
-                        "placeName": "",
+                        "placeName": "MANUALADD",
                         "longitude": 0,
                         "latitude": 0,
                         "selected": true

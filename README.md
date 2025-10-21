@@ -99,9 +99,8 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [ ] Choose what to show in panel and desktop forms
   -   [ ] Widget size/padding/scaling
 - Backend
-  -   [ ] Improve searching and testing error messages
+  -   [x] Improve searching and testing error messages
   -   [ ] Better handle null fields
-  -   [ ] Seperate error page for forecast and extended condition errors
 - Parking lot
   -   [ ] Search by map feature
   -   [ ] Use Wunderground Plasma Ion.

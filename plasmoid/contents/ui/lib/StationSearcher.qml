@@ -56,23 +56,31 @@ Window {
 
     function setError(errorObj) {
         errText.visible = true;
-        errText.text =i18n("Error: %1 message: %2", errorObj.type, errorObj.message);
+        errText.text = i18n("Error: %1 message: %2", errorObj.type, errorObj.message);
     }
 
     function testStation(stationID) {
-        StationAPI.isStationActive(stationID, function(isActive, healthCount) {
+        StationAPI.isStationActive(stationID, { unitsChoice: plasmoid.configuration.unitsChoice }, function(err, res) {
+            if (err) {
+                setError(err);
+                return;
+            }
+
+            var isActive = res.isActive;
+            var healthCount = res.healthCount;
+
             if (isActive) {
                 if (healthCount > 18) {
-                    errText.text = i18n("Station active!") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Station active!") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 } else if (healthCount > 15) {
-                    errText.text = i18n("Station active.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Station active.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 } else if (healthCount > 10) {
-                    errText.text = i18n("Station unhealthy.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Station unhealthy.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 } else {
-                    errText.text = i18n("Error: Bad station.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Error: Bad station.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
                 }
             } else {
-                errText.text = i18n("Error: Station not active!");
+                errText.text = stationID + ":" + i18n("Error: Station not active!");
             }
             errText.visible = true;
         });
@@ -129,15 +137,15 @@ Window {
             }
 
 
-            QQC.Button {
+                QQC.Button {
                 text: "Search"
                 enabled: (stationSearcher.searchMode === "stationID" || stationSearcher.searchMode === "placeName") ? stationSearcher.searchText.length > 0 : true
                 onClicked: {
                     clearError();
                     if (stationSearcher.searchMode === "stationID") {
-                        StationAPI.searchStationID(stationSearcher.searchText, function(stations, error) {
-                            if (error) {
-                                setError(error);
+                        StationAPI.searchStationID(stationSearcher.searchText, { language: Qt.locale().name.replace("_","-") }, function(err, stations) {
+                            if (err) {
+                                setError(err);
                             } else {
                                 clearError();
                                 for (var i = 0; i < stations.length; i++) {
@@ -146,9 +154,9 @@ Window {
                             }
                         });
                     } else if (stationSearcher.searchMode === "placeName") {
-                        StationAPI.getLocations(stationSearcher.searchText, function(places, error) {
-                            if (error) {
-                                setError(error);
+                        StationAPI.getLocations(stationSearcher.searchText, { language: Qt.locale().name.replace("_","-") }, function(err, places) {
+                            if (err) {
+                                setError(err);
                             } else {
                                 clearError();
                                 for (var i = 0; i < places.length; i++) {
@@ -161,9 +169,9 @@ Window {
                             }
                         });
                     } else {
-                        StationAPI.searchGeocode({latitude: stationSearcher.searchLat, longitude: stationSearcher.searchLon}, function(stations, error) {
-                            if (error) {
-                                setError(error);
+                        StationAPI.searchGeocode({latitude: stationSearcher.searchLat, longitude: stationSearcher.searchLon}, { language: Qt.locale().name.replace("_","-") }, function(err, stations) {
+                            if (err) {
+                                setError(err);
                             } else {
                                 clearError();
                                 for (var i = 0; i < stations.length; i++) {
@@ -211,7 +219,11 @@ Window {
                     text: i18n("Choose")
                     enabled: cityChoice.currentIndex !== -1
                     onClicked: {
-                        StationAPI.searchGeocode({latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude, longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude}, function(stations) {
+                        StationAPI.searchGeocode({latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude, longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude}, { language: Qt.locale().name.replace("_","-") }, function(err, stations) {
+                            if (err) {
+                                setError(err);
+                                return;
+                            }
                             for (var i = 0; i < stations.length; i++) {
                                 stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
                             }
