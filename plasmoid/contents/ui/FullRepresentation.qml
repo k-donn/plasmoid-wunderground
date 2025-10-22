@@ -82,9 +82,9 @@ ColumnLayout {
             text: i18nd("plasma_shell_org.kde.plasma.desktop", "Copy to Clipboard")
             icon.name: "edit-copy"
             onClicked: {
-                textArea.selectAll()
-                textArea.copy()
-                textArea.deselect()
+                textArea.selectAll();
+                textArea.copy();
+                textArea.deselect();
             }
 
             PlasmaCore.ToolTipArea {
@@ -92,7 +92,6 @@ ColumnLayout {
                 mainText: parent.text
                 textFormat: Text.PlainText
             }
-
         }
 
         PlasmaComponents.ScrollView {

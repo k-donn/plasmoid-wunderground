@@ -17,11 +17,8 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import org.kde.plasma.plasmoid
-import org.kde.ksvg as KSvg
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
@@ -49,7 +46,7 @@ RowLayout {
     PlasmaComponents.Label {
         id: tempOverview
 
-        text: showForecast ? i18n("High: %1 Low: %2", Utils.currentTempUnit(Utils.toUserTemp(currDayHigh),plasmoid.configuration.forecastPrecision), Utils.currentTempUnit(Utils.toUserTemp(currDayLow),plasmoid.configuration.forecastPrecision)) : i18n("Loading...")
+        text: showForecast ? i18n("High: %1 Low: %2", Utils.currentTempUnit(Utils.toUserTemp(currDayHigh), plasmoid.configuration.forecastPrecision), Utils.currentTempUnit(Utils.toUserTemp(currDayLow), plasmoid.configuration.forecastPrecision)) : i18n("Loading...")
 
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignHCenter

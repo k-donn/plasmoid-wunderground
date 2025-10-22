@@ -55,7 +55,6 @@ Window {
     property ListModel searchResults: ListModel {}
     property ListModel availableCitiesModel: ListModel {}
 
-
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
             console.log("[debug] [StationSearcher.qml] " + msg);
@@ -73,7 +72,9 @@ Window {
     }
 
     function testStation(stationID) {
-        StationAPI.isStationActive(stationID, { unitsChoice: plasmoid.configuration.unitsChoice }, function(err, res) {
+        StationAPI.isStationActive(stationID, {
+            unitsChoice: plasmoid.configuration.unitsChoice
+        }, function (err, res) {
             if (err) {
                 setError(err);
                 return;
@@ -84,13 +85,13 @@ Window {
 
             if (isActive) {
                 if (healthCount > 18) {
-                    errText.text = stationID + ":" + i18n("Station active!") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Station active!") + " " + i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100));
                 } else if (healthCount > 15) {
-                    errText.text = stationID + ":" + i18n("Station active.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Station active.") + " " + i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100));
                 } else if (healthCount > 10) {
-                    errText.text = stationID + ":" + i18n("Station unhealthy.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Station unhealthy.") + " " + i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100));
                 } else {
-                    errText.text = stationID + ":" + i18n("Error: Bad station.") + " " +  i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100) );
+                    errText.text = stationID + ":" + i18n("Error: Bad station.") + " " + i18n("Reporting %1\% of properties.", Math.floor((healthCount / 21) * 100));
                 }
             } else {
                 errText.text = stationID + ":" + i18n("Error: Station not active!");
@@ -98,7 +99,6 @@ Window {
             errText.visible = true;
         });
     }
-
 
     onOpen: {
         stationSearcher.visible = true;
@@ -120,14 +120,19 @@ Window {
             Layout.fillWidth: true
 
             RowLayout {
-                QQC.Label { text: i18n("Search by:") }
+                QQC.Label {
+                    text: i18n("Search by:")
+                }
                 QQC.ComboBox {
                     id: modeCombo
-                    model: [ i18n("City Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon") ]
+                    model: [i18n("City Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon")]
                     onCurrentIndexChanged: {
-                        if (currentIndex === 0) stationSearcher.searchMode = "placeName";
-                        else if (currentIndex === 1) stationSearcher.searchMode = "stationID";
-                        else stationSearcher.searchMode = "latlon";
+                        if (currentIndex === 0)
+                            stationSearcher.searchMode = "placeName";
+                        else if (currentIndex === 1)
+                            stationSearcher.searchMode = "stationID";
+                        else
+                            stationSearcher.searchMode = "latlon";
                     }
                 }
             }
@@ -138,25 +143,34 @@ Window {
                 sourceComponent: stationSearcher.searchMode === "latlon" ? latlonFields : textField
             }
 
-
-                QQC.Button {
+            QQC.Button {
                 text: "Search"
                 enabled: (stationSearcher.searchMode === "stationID" || stationSearcher.searchMode === "placeName") ? stationSearcher.searchText.length > 0 : true
                 onClicked: {
                     clearError();
                     if (stationSearcher.searchMode === "stationID") {
-                        StationAPI.searchStationID(stationSearcher.searchText, { language: Qt.locale().name.replace("_","-") }, function(err, stations) {
+                        StationAPI.searchStationID(stationSearcher.searchText, {
+                            language: Qt.locale().name.replace("_", "-")
+                        }, function (err, stations) {
                             if (err) {
                                 setError(err);
                             } else {
                                 clearError();
                                 for (var i = 0; i < stations.length; i++) {
-                                    stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                                    stationSearcher.searchResults.append({
+                                        "stationID": stations[i].stationID,
+                                        "placeName": stations[i].placeName,
+                                        "latitude": stations[i].latitude,
+                                        "longitude": stations[i].longitude,
+                                        "selected": false
+                                    });
                                 }
                             }
                         });
                     } else if (stationSearcher.searchMode === "placeName") {
-                        StationAPI.getLocations(stationSearcher.searchText, { language: Qt.locale().name.replace("_","-") }, function(err, places) {
+                        StationAPI.getLocations(stationSearcher.searchText, {
+                            language: Qt.locale().name.replace("_", "-")
+                        }, function (err, places) {
                             if (err) {
                                 setError(err);
                             } else {
@@ -171,13 +185,24 @@ Window {
                             }
                         });
                     } else {
-                        StationAPI.searchGeocode({latitude: stationSearcher.searchLat, longitude: stationSearcher.searchLon}, { language: Qt.locale().name.replace("_","-") }, function(err, stations) {
+                        StationAPI.searchGeocode({
+                            latitude: stationSearcher.searchLat,
+                            longitude: stationSearcher.searchLon
+                        }, {
+                            language: Qt.locale().name.replace("_", "-")
+                        }, function (err, stations) {
                             if (err) {
                                 setError(err);
                             } else {
                                 clearError();
                                 for (var i = 0; i < stations.length; i++) {
-                                    stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                                    stationSearcher.searchResults.append({
+                                        "stationID": stations[i].stationID,
+                                        "placeName": stations[i].placeName,
+                                        "latitude": stations[i].latitude,
+                                        "longitude": stations[i].longitude,
+                                        "selected": false
+                                    });
                                 }
                             }
                         });
@@ -221,13 +246,24 @@ Window {
                     text: i18n("Choose")
                     enabled: cityChoice.currentIndex !== -1
                     onClicked: {
-                        StationAPI.searchGeocode({latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude, longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude}, { language: Qt.locale().name.replace("_","-") }, function(err, stations) {
+                        StationAPI.searchGeocode({
+                            latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude,
+                            longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude
+                        }, {
+                            language: Qt.locale().name.replace("_", "-")
+                        }, function (err, stations) {
                             if (err) {
                                 setError(err);
                                 return;
                             }
                             for (var i = 0; i < stations.length; i++) {
-                                stationSearcher.searchResults.append({"stationID": stations[i].stationID, "placeName": stations[i].placeName, "latitude": stations[i].latitude, "longitude": stations[i].longitude, "selected": false});
+                                stationSearcher.searchResults.append({
+                                    "stationID": stations[i].stationID,
+                                    "placeName": stations[i].placeName,
+                                    "latitude": stations[i].latitude,
+                                    "longitude": stations[i].longitude,
+                                    "selected": false
+                                });
                             }
                         });
                     }
@@ -250,7 +286,6 @@ Window {
                 text: i18n("Use Station ID, not city name. Select 'Search by: City Name' to search by city.")
             }
         }
-
 
         Component {
             id: textField
@@ -279,15 +314,34 @@ Window {
             }
         }
 
-
         RowLayout {
             Layout.fillWidth: true
             spacing: 6
-            PlasmaComponents.Label { text: i18n("Weatherstation ID:"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
-            PlasmaComponents.Label { text: i18n("Weatherstation Name:"); Layout.fillWidth: true; Layout.preferredWidth: 2 }
-            PlasmaComponents.Label { text: i18n("Lat/Lon"); Layout.fillWidth: true; Layout.preferredWidth: 1 }
-            PlasmaComponents.Label { text: ""; Layout.fillWidth: true; Layout.preferredWidth: 1 }
-            PlasmaComponents.Label { text: "" ; Layout.fillWidth: true; Layout.preferredWidth: 1 }
+            PlasmaComponents.Label {
+                text: i18n("Weatherstation ID:")
+                Layout.fillWidth: true
+                Layout.preferredWidth: 2
+            }
+            PlasmaComponents.Label {
+                text: i18n("Weatherstation Name:")
+                Layout.fillWidth: true
+                Layout.preferredWidth: 2
+            }
+            PlasmaComponents.Label {
+                text: i18n("Lat/Lon")
+                Layout.fillWidth: true
+                Layout.preferredWidth: 1
+            }
+            PlasmaComponents.Label {
+                text: ""
+                Layout.fillWidth: true
+                Layout.preferredWidth: 1
+            }
+            PlasmaComponents.Label {
+                text: ""
+                Layout.fillWidth: true
+                Layout.preferredWidth: 1
+            }
         }
 
         ListView {
@@ -297,9 +351,27 @@ Window {
                 spacing: 8
                 width: ListView.view.width
 
-                PlasmaComponents.Label { text: stationID; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
-                PlasmaComponents.Label { text: placeName; Layout.fillWidth: true; Layout.preferredWidth: 2; elide: Text.ElideRight; clip: true }
-                PlasmaComponents.Label { text: latitude + "," + longitude; Layout.fillWidth: true; Layout.preferredWidth: 1; elide: Text.ElideRight; clip: true }
+                PlasmaComponents.Label {
+                    text: stationID
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: 2
+                    elide: Text.ElideRight
+                    clip: true
+                }
+                PlasmaComponents.Label {
+                    text: placeName
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: 2
+                    elide: Text.ElideRight
+                    clip: true
+                }
+                PlasmaComponents.Label {
+                    text: latitude + "," + longitude
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: 1
+                    elide: Text.ElideRight
+                    clip: true
+                }
                 QQC.Button {
                     text: i18n("Test")
                     Layout.fillWidth: true
@@ -319,7 +391,7 @@ Window {
                         for (var i = 0; i < stationSearcher.searchResults.count; i++) {
                             stationSearcher.searchResults.setProperty(i, "selected", i === index);
                         }
-                        printDebug("selected: " + JSON.stringify(stationSearcher.searchResults.get(index)))
+                        printDebug("selected: " + JSON.stringify(stationSearcher.searchResults.get(index)));
                     }
                 }
             }
@@ -338,8 +410,8 @@ Window {
                 text: i18n("Confirm")
                 enabled: selectedStation !== undefined
                 onClicked: {
-                    stationSelected(selectedStation)
-                    stationSearcher.close()
+                    stationSelected(selectedStation);
+                    stationSearcher.close();
                 }
             }
 
@@ -347,7 +419,7 @@ Window {
                 icon.name: "dialog-cancel"
                 text: i18n("Cancel")
                 onClicked: {
-                    stationSearcher.close()
+                    stationSearcher.close();
                 }
             }
         }
