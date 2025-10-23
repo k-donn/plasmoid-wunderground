@@ -148,6 +148,8 @@ Window {
                 enabled: (stationSearcher.searchMode === "stationID" || stationSearcher.searchMode === "placeName") ? stationSearcher.searchText.length > 0 : true
                 onClicked: {
                     clearError();
+                    searchResults.clear();
+                    availableCitiesModel.clear();
                     if (stationSearcher.searchMode === "stationID") {
                         StationAPI.searchStationID(stationSearcher.searchText, {
                             language: Qt.locale().name.replace("_", "-")
@@ -246,6 +248,7 @@ Window {
                     text: i18n("Choose")
                     enabled: cityChoice.currentIndex !== -1
                     onClicked: {
+                        searchResults.clear();
                         StationAPI.searchGeocode({
                             latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude,
                             longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude

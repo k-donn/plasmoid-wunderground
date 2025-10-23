@@ -25,22 +25,27 @@ import "../code/utils.js" as Utils
 RowLayout {
     id: topPanelRoot
 
+    Layout.preferredHeight: preferredIconSize
+
     readonly property int preferredIconSize: plasmoid.configuration.detailsIconSize
 
-    Kirigami.Icon {
-        id: topPanelIcon
+    Item {
+        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 
-        source: Utils.getConditionIcon(iconCode)
+        Layout.fillWidth: true
+        Layout.preferredWidth: 1
 
-        isMask: plasmoid.configuration.applyColorScheme ? true : false
-        color: Kirigami.Theme.textColor
+        Kirigami.Icon {
+            id: topPanelIcon
 
-        Layout.margins: plasmoid.configuration.topIconMargins
+            source: Utils.getConditionIcon(iconCode)
 
-        Layout.minimumWidth: preferredIconSize
-        Layout.minimumHeight: preferredIconSize
-        Layout.preferredWidth: Layout.minimumWidth
-        Layout.preferredHeight: Layout.minimumHeight
+            isMask: plasmoid.configuration.applyColorScheme ? true : false
+            color: Kirigami.Theme.textColor
+
+            implicitHeight: preferredIconSize
+            implicitWidth: implicitHeight
+        }
     }
 
     PlasmaComponents.Label {
@@ -51,18 +56,19 @@ RowLayout {
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignHCenter
 
-        Layout.alignment: Qt.AlignHCenter
         Layout.fillWidth: true
+        Layout.preferredWidth: 1
     }
 
     PlasmaComponents.Label {
-        id: currStation
+        id: narrativeLabel
 
         text: conditionNarrative ? conditionNarrative : i18n("Loading...")
 
         verticalAlignment: Text.AlignBottom
         horizontalAlignment: Text.AlignRight
 
-        Layout.alignment: Qt.AlignRight
+        Layout.fillWidth: true
+        Layout.preferredWidth: 1
     }
 }

@@ -35,7 +35,8 @@ RowLayout {
         columns: 2
         rows: 4
 
-        Layout.preferredWidth: parent.width / 2
+        Layout.preferredWidth: 1
+        Layout.fillWidth: true
 
         PlasmaComponents.Label {
             id: aqLabel
@@ -134,7 +135,8 @@ RowLayout {
         columns: 2
         rows: 4
 
-        Layout.preferredWidth: parent.width / 2
+        Layout.preferredWidth: 1
+        Layout.fillWidth: true
 
         PlasmaComponents.Label {
             id: solLabel

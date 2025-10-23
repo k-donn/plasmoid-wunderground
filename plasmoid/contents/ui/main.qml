@@ -28,6 +28,7 @@ PlasmoidItem {
 
     property var weatherData: ({
             "stationID": "",
+            "neighborhood": "",
             "uv": 0,
             "obsTimeLocal": "",
             "isNight": false,
