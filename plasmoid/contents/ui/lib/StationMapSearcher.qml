@@ -33,18 +33,16 @@ Window {
     signal stationSelected(var station)
     signal open()
 
-    property bool hasError: false
+    property string errorType: ""
     property string errorMessage: ""
     property var selectedStation
+    
+    property ListModel searchResults: ListModel {}
+    property ListModel availableCitiesModel: ListModel {}
 
     onOpen: {
         stationMapSearcher.visible = true
-        hasError = false
         errorMessage = ""
-    }
-
-    function searchLocation(query) {
-        
     }
 
     Plugin {
@@ -77,11 +75,76 @@ Window {
                 Layout.fillWidth: true
                 placeholderText: i18n("Search for a location...")
             }
+           
 
             QQC.Button {
                 text: i18n("Search")
-                onClicked: {
-                    stationMapSearcher.searchLocation(searchField.text)
+                onPressed: {
+                    StationAPI.getLocations(searchField.text.trim(), {
+                        language: Qt.locale().name.replace("_", "-")
+                    }, function (err, places) {
+                        if (err) {
+                            errorType = err.type
+                            errorMessage = err.message
+                            availableCitiesModel.clear()
+                            return
+                        }
+                        errorType = ""
+                        errorMessage = ""
+                        availableCitiesModel.clear()
+                        for (var i = 0; i < places.length; i++) {
+                            availableCitiesModel.append({
+                                "placeName": places[i].city + "," + places[i].state + " (" + places[i].country + ")",
+                                "latitude": places[i].latitude,
+                                "longitude": places[i].longitude
+                            });
+                        }
+                    })
+                }
+            }
+        }
+
+        RowLayout {
+            RowLayout {
+                Layout.fillWidth: true
+
+                PlasmaComponents.Label {
+                    text: i18n("Searching place:")
+                }
+
+                QQC.ComboBox {
+                    id: cityChoice
+                    Layout.fillWidth: true
+                    textRole: "placeName"
+                    model: availableCitiesModel
+                    enabled: availableCitiesModel.count > 0
+                }
+
+                QQC.Button {
+                    text: i18n("Choose")
+                    enabled: cityChoice.currentIndex !== -1
+                    onClicked: {
+                        searchResults.clear();
+                        StationAPI.searchGeocode({
+                            latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude,
+                            longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude
+                        }, {
+                            language: Qt.locale().name.replace("_", "-")
+                        }, function (err, stations) {
+                            if (err) {
+                                setError(err);
+                                return;
+                            }
+                            for (var i = 0; i < stations.length; i++) {
+                                searchResults.append({
+                                    "stationID": stations[i].stationID,
+                                    "placeName": stations[i].placeName,
+                                    "latitude": stations[i].latitude,
+                                    "longitude": stations[i].longitude,
+                                });
+                            }
+                        });
+                    }
                 }
             }
         }
@@ -124,6 +187,45 @@ Window {
                 sequence: StandardKey.ZoomOut
                 onActivated: stationMap.zoomLevel = Math.round(stationMap.zoomLevel - 1)
             }
+
+            MapItemView {
+                model: searchResults
+                delegate: MapQuickItem {
+                    id: stationMarker
+                    coordinate: QtPositioning.coordinate(latitude, longitude)
+                    anchorPoint.x: iconImage.width / 2
+                    anchorPoint.y: iconImage.height
+                    sourceItem: Column {
+                        Image {
+                            id: iconImage
+                            source: Utils.getIcon("weather-station-2")
+                            width: 32
+                            height: 32
+                        }
+                        PlasmaComponents.Label {
+                            text: stationID
+                            font.pixelSize: 12
+                            color: "black"
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                            padding: 2
+                        }
+                    }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            selectedStation = {
+                                "stationID": stationID,
+                                "placeName": placeName,
+                                "latitude": latitude,
+                                "longitude": longitude,
+                            };
+                        }
+                    }
+                }
+            }
+
         }
 
         RowLayout {
