@@ -353,6 +353,12 @@ KCM.SimpleKCM {
                 onClicked: manualAdd.open()
             }
 
+            QQC.Button {
+                text: i18n("Select from Map")
+                icon.name: "earth"
+                onClicked: stationMapSearcher.open()
+            }
+
             Lib.ManualStationAdd {
                 id: manualAdd
                 onStationSelected: function (station) {
@@ -378,6 +384,24 @@ KCM.SimpleKCM {
                 buttons: MessageDialog.Ok
                 onAccepted: destroy()
                 onRejected: destroy()
+            }
+
+            Lib.StationMapSearcher { 
+                id: stationMapSearcher
+                onStationSelected: function (station) {
+                    printDebug("Received station from map: " + JSON.stringify(station));
+                    stationListModel.append({
+                        "stationID": station.stationID,
+                        "placeName": station.placeName,
+                        "latitude": station.latitude,
+                        "longitude": station.longitude,
+                        "selected": true
+                    });
+                    for (var i = 0; i < stationListModel.count; i++) {
+                        stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
+                    }
+                    stationPickerEl.syncSavedStations();
+                }
             }
 
             Lib.StationSearcher {
