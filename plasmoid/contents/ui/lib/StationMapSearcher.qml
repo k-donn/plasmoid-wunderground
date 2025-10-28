@@ -108,7 +108,6 @@ Window {
                     } else if (currentIndex === 1) {
                         stationMapSearcher.searchMode = "stationID";
                     } else {
-                        showSearchCircle = true;
                         stationMapSearcher.searchMode = "latlon";
                     }
                 }
@@ -239,7 +238,7 @@ Window {
             id: latLonSearchComponent
 
             PlasmaComponents.Label {
-                text: i18n("Select location on the map below.")
+                text: i18n("Click or drag the marker on the map below.")
             }
         }
 
@@ -362,7 +361,9 @@ Window {
             DragHandler {
                 id: drag
                 target: null
-                onTranslationChanged: delta => stationMap.pan(-delta.x, -delta.y)
+                onTranslationChanged: function (delta) {
+                    stationMap.pan(-delta.x, -delta.y);
+                }
             }
             Shortcut {
                 enabled: stationMap.zoomLevel < stationMap.maximumZoomLevel
@@ -400,20 +401,23 @@ Window {
                 id: searchPointMarker
                 coordinate: QtPositioning.coordinate(stationMapSearcher.searchLat, stationMapSearcher.searchLon)
                 visible: stationMapSearcher.searchMode === "latlon"
-                anchorPoint.x: iconImage.height / 2
-                anchorPoint.y: iconImage.height / 2
+                anchorPoint.x: searchIconImage.height / 2
+                anchorPoint.y: searchIconImage.height / 2
                 sourceItem: Image {
-                    id: iconImage
+                    id: searchIconImage
                     source: Utils.getIcon("compass")
                     width: 24
                     height: 24
                 }
 
-                MouseArea {
-                    anchors.fill: parent
-                    drag.target: parent
-                    onPositionChanged: {
-                        var coord = stationMap.toCoordinate(Qt.point(parent.x + parent.anchorPoint.x, parent.y + parent.anchorPoint.y));
+                DragHandler {
+                    id: searchPointDragHandler
+                    target: null
+                    onTranslationChanged: function (delta) {
+                        var point = stationMap.fromCoordinate(searchPointMarker.coordinate);
+                        point.x += delta.x;
+                        point.y += delta.y;
+                        var coord = stationMap.toCoordinate(point);
                         stationMapSearcher.searchLat = coord.latitude;
                         stationMapSearcher.searchLon = coord.longitude;
                     }
@@ -422,6 +426,7 @@ Window {
 
             MouseArea {
                 anchors.fill: parent
+                enabled: stationMapSearcher.searchMode === "latlon"
                 onClicked: function (mouse) {
                     var coord = stationMap.toCoordinate(Qt.point(mouse.x, mouse.y));
                     stationMapSearcher.searchLat = coord.latitude;
