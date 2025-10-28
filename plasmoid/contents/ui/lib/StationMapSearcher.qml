@@ -123,6 +123,7 @@ Window {
             }
 
             PlasmaComponents.Button {
+                id: searchBtn
                 text: i18n("Search")
                 enabled: stationMapSearcher.searchText.length > 0 || stationMapSearcher.searchMode === "latlon"
                 onPressed: {
@@ -159,12 +160,13 @@ Window {
                             errorType = "";
                             errorMessage = "";
                             var latSum, latCount, lonSum, lonCount;
+                            latSum = latCount = lonSum = lonCount = 0;
                             searchResults.clear();
                             for (var i = 0; i < stations.length; i++) {
-                                latSum += (latSum || 0) + stations[i].latitude;
-                                lonSum += (lonSum || 0) + stations[i].longitude;
-                                latCount = (latCount || 0) + 1;
-                                lonCount = (lonCount || 0) + 1;
+                                latSum += stations[i].latitude;
+                                lonSum += stations[i].longitude;
+                                latCount += 1;
+                                lonCount += 1;
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
@@ -194,12 +196,13 @@ Window {
                             errorType = "";
                             errorMessage = "";
                             var latSum, latCount, lonSum, lonCount;
+                            latSum = latCount = lonSum = lonCount = 0;
                             searchResults.clear();
                             for (var i = 0; i < stations.length; i++) {
-                                latSum += (latSum || 0) + stations[i].latitude;
-                                lonSum += (lonSum || 0) + stations[i].longitude;
-                                latCount = (latCount || 0) + 1;
-                                lonCount = (lonCount || 0) + 1;
+                                latSum += stations[i].latitude;
+                                lonSum += stations[i].longitude;
+                                latCount += 1;
+                                lonCount += 1;
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
@@ -284,7 +287,6 @@ Window {
                                 errorMessage = err.message;
                                 return;
                             }
-                            var latSum, latCount, lonSum, lonCount;
                             for (var i = 0; i < stations.length; i++) {
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
@@ -311,6 +313,14 @@ Window {
             PlasmaComponents.Label {
                 text: i18n("Selected latitude: %1, longitude: %2", stationMapSearcher.searchLat.toFixed(4), stationMapSearcher.searchLon.toFixed(4))
             }
+        }
+
+        PlasmaComponents.TextField {
+            enabled: false
+            Layout.fillWidth: true
+            visible: errorMessage.length > 0
+            text: i18n("Error (%1): %2", errorType, errorMessage)
+            color: "red"
         }
 
         Map {

@@ -496,9 +496,9 @@ function searchGeocode(latLongObj, options, callback) {
 		var loc = res && res.location;
 		if (loc && Array.isArray(loc.stationId)) {
 			for (var i = 0; i < loc.stationId.length; i++) {
-				if (loc.qcStatus && loc.qcStatus[i] === -1) continue;
 				stationsArr.push({
 					stationID: loc.stationId[i],
+					qcStatus: loc.qcStatus !== null ? loc.qcStatus[i] : 0,
 					address: loc.stationName ? loc.stationName[i] : "",
 					latitude: loc.latitude ? loc.latitude[i] : 0,
 					longitude: loc.longitude ? loc.longitude[i] : 0,
