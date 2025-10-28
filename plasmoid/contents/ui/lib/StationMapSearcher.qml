@@ -22,6 +22,7 @@ import QtPositioning
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
 import "../../code/utils.js" as Utils
 import "../../code/pws-api.js" as StationAPI
 
@@ -58,6 +59,7 @@ Window {
     property string errorMessage: ""
 
     property var selectedStation
+    property real stationHealth: -1
 
     property ListModel searchResults: ListModel {}
     property ListModel availableCitiesModel: ListModel {}
@@ -68,6 +70,12 @@ Window {
         errorType = "";
         searchResults.clear();
         availableCitiesModel.clear();
+        selectedStation = undefined;
+        stationMapSearcher.stationHealth = -1;
+    }
+
+    onSelectedStationChanged: {
+        stationMapSearcher.stationHealth = -1;
     }
 
     Plugin {
@@ -171,7 +179,8 @@ Window {
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
                                     "latitude": stations[i].latitude,
-                                    "longitude": stations[i].longitude
+                                    "longitude": stations[i].longitude,
+                                    "qcStatus": stations[i].qcStatus
                                 });
                             }
                             var latAvg = latSum / latCount;
@@ -207,7 +216,8 @@ Window {
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
                                     "latitude": stations[i].latitude,
-                                    "longitude": stations[i].longitude
+                                    "longitude": stations[i].longitude,
+                                    "qcStatus": stations[i].qcStatus
                                 });
                             }
                             var latAvg = latSum / latCount;
@@ -237,6 +247,9 @@ Window {
                 placeholderText: stationMapSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter city, state, locality, or address")
                 onTextChanged: {
                     stationMapSearcher.searchText = text.trim();
+                }
+                onAccepted: {
+                    searchBtn.click();
                 }
             }
         }
@@ -292,7 +305,8 @@ Window {
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
                                     "latitude": stations[i].latitude,
-                                    "longitude": stations[i].longitude
+                                    "longitude": stations[i].longitude,
+                                    "qcStatus": stations[i].qcStatus
                                 });
                             }
                         });
@@ -390,6 +404,7 @@ Window {
                 onActivated: stationMap.zoomLevel = Math.round(stationMap.zoomLevel - 1)
             }
 
+            // TODO: properly handle multiple search modes
             MapCircle {
                 id: searchCenterIndicator
                 visible: stationMapSearcher.searchResults.count > 0 || stationMapSearcher.searchMode === "latlon"
@@ -483,7 +498,8 @@ Window {
                                 "stationID": stationID,
                                 "address": address,
                                 "latitude": latitude,
-                                "longitude": longitude
+                                "longitude": longitude,
+                                "qcStatus": qcStatus
                             };
                         }
                     }
@@ -493,6 +509,64 @@ Window {
 
         RowLayout {
             id: buttonsRow
+
+            Kirigami.Icon {
+                visible: selectedStation !== undefined && selectedStation.qcStatus === -1
+                source: "documentinfo-symbolic"
+                height: Kirigami.Units.iconSizes.smallMedium
+                color: "orange"
+
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+                    interactive: true
+                    mainText: i18n("Warning")
+                    subText: i18n("Station has failed quality checks and may provide unreliable data.")
+                }
+            }
+
+            PlasmaComponents.TextField {
+                visible: stationMapSearcher.stationHealth >= 0
+                text: stationMapSearcher.stationHealth >= 0 ? i18n("Station Health: %1%", stationMapSearcher.stationHealth) : ""
+                enabled: false
+                color: stationMapSearcher.stationHealth >= 75 ? "green" : stationMapSearcher.stationHealth >= 40 ? "orange" : "red"
+            }
+
+            PlasmaComponents.Button {
+                text: i18n("Test Station")
+                enabled: selectedStation !== undefined
+                onClicked: {
+                    StationAPI.isStationActive(selectedStation.stationID, {}, function (err, healthObject) {
+                        if (err) {
+                            if (err.type === "no-data-found") {
+                                stationMapSearcher.stationHealth = 0;
+                                errorType = "";
+                                errorMessage = "";
+                                return;
+                            }
+                            // API backwards compatibility
+                            try {
+                                var parsedMsg = JSON.parse(err.message);
+                                if (parsedMsg.hasOwnProperty("message") && parsedMsg.message === "no-data-found") {
+                                    stationMapSearcher.stationHealth = 0;
+                                    errorType = "";
+                                    errorMessage = "";
+                                    return;
+                                }
+                            } catch (e) {}
+                            errorType = err.type;
+                            errorMessage = err.message;
+                            return;
+                        }
+                        errorType = "";
+                        errorMessage = "";
+                        if (healthObject.isActive) {
+                            stationMapSearcher.stationHealth = Math.floor((healthObject.healthCount / 21) * 100);
+                        } else {
+                            stationMapSearcher.stationHealth = 0;
+                        }
+                    });
+                }
+            }
 
             PlasmaComponents.Label {
                 Layout.fillWidth: true

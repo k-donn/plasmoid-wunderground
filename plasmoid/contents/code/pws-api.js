@@ -152,7 +152,10 @@ function _httpGet(url, cb) {
 				var resJson = req.responseText
 					? JSON.parse(req.responseText)
 					: null;
-				if (resJson.hasOwnProperty("type") && resJson.hasOwnProperty("message")) {
+				if (
+					resJson.hasOwnProperty("type") &&
+					resJson.hasOwnProperty("message")
+				) {
 					parsed = resJson;
 				} else {
 					throw new Error();
@@ -360,10 +363,7 @@ function isStationActive(givenID, options, callback) {
 		var sectionName = _unitsToSection(units);
 		var obs = res && res.observations ? res.observations[0] : null;
 		if (!obs) {
-			callback(
-				{ type: "no_data", message: "No observation returned" },
-				null
-			);
+			callback({ isActive: false, healthCount: 0 }, null);
 			return;
 		}
 
@@ -437,10 +437,12 @@ function searchStationID(query, options, callback) {
 				: 0;
 			for (var i = 0; i < count; i++) {
 				stationsArr.push({
-					stationID: loc.pwsId !== null ? loc.pwsId[i] : "",
-					address: loc.neighborhood !== null ? loc.neighborhood[i] : "",
-					latitude: loc.latitude !== null ? loc.latitude[i] : 0,
-					longitude: loc.longitude !== null ? loc.longitude[i] : 0,
+					stationID: loc.pwsId ? loc.pwsId[i] : "",
+					address:
+						loc.neighborhood ? loc.neighborhood[i] : "",
+					latitude: loc.latitude ? loc.latitude[i] : 0,
+					longitude: loc.longitude ? loc.longitude[i] : 0,
+					qcStatus: loc.qcStatus ? loc.qcStatus[i] : 0,
 				});
 			}
 		}
@@ -498,10 +500,10 @@ function searchGeocode(latLongObj, options, callback) {
 			for (var i = 0; i < loc.stationId.length; i++) {
 				stationsArr.push({
 					stationID: loc.stationId[i],
-					qcStatus: loc.qcStatus !== null ? loc.qcStatus[i] : 0,
 					address: loc.stationName ? loc.stationName[i] : "",
 					latitude: loc.latitude ? loc.latitude[i] : 0,
 					longitude: loc.longitude ? loc.longitude[i] : 0,
+					qcStatus: loc.qcStatus ? loc.qcStatus[i] : 0,
 				});
 			}
 		}
@@ -568,9 +570,9 @@ function getLocations(city, options, callback) {
 			var count = Array.isArray(loc.address) ? loc.address.length : 0;
 			for (var i = 0; i < count; i++) {
 				locationsArr.push({
-					address: loc.address !== null ? loc.address[i] : "",
-					latitude: loc.latitude !== null ? loc.latitude[i] : 0,
-					longitude: loc.longitude !== null ? loc.longitude[i] : 0,
+					address: loc.address ? loc.address[i] : "",
+					latitude: loc.latitude ? loc.latitude[i] : 0,
+					longitude: loc.longitude ? loc.longitude[i] : 0,
 				});
 			}
 		}
@@ -778,7 +780,7 @@ function getExtendedConditions(options, callback) {
 		var newIconCode = condVars ? condVars["iconCode"] : null;
 		var newConditionNarrative = condVars ? condVars["wxPhraseLong"] : "";
 		var newIsRain =
-			newIconCode !== null ? !_isSnowIconCode(newIconCode) : true;
+			newIconCode ? !_isSnowIconCode(newIconCode) : true;
 
 		var alertsList = [];
 		if (
