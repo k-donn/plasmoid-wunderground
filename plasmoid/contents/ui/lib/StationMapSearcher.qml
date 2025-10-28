@@ -19,7 +19,6 @@ import QtQuick
 import QtQuick.Layouts
 import QtLocation
 import QtPositioning
-import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.components as PlasmaComponents
@@ -48,7 +47,7 @@ Window {
     signal stationSelected(var station)
     signal open
 
-    property string searchMode: "placeName"
+    property string searchMode: "address"
     property string searchText: ""
     property real areaLat: 0
     property real areaLon: 0
@@ -95,16 +94,20 @@ Window {
         RowLayout {
             Layout.fillWidth: true
 
-            QQC.Label {
+            PlasmaComponents.Label {
                 text: i18n("Search by:")
             }
 
-            QQC.ComboBox {
+            PlasmaComponents.ComboBox {
                 id: modeCombo
-                model: [i18n("City Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon")]
+                model: [i18n("Area Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon")]
                 onCurrentIndexChanged: {
+                    searchResults.clear();
+                    availableCitiesModel.clear();
+                    errorType = "";
+                    errorMessage = "";
                     if (currentIndex === 0) {
-                        stationMapSearcher.searchMode = "placeName";
+                        stationMapSearcher.searchMode = "address";
                     } else if (currentIndex === 1) {
                         stationMapSearcher.searchMode = "stationID";
                     } else {
@@ -119,11 +122,11 @@ Window {
                 sourceComponent: stationMapSearcher.searchMode === "latlon" ? latLonSearchComponent : textSearchComponent
             }
 
-            QQC.Button {
+            PlasmaComponents.Button {
                 text: i18n("Search")
                 enabled: stationMapSearcher.searchText.length > 0 || stationMapSearcher.searchMode === "latlon"
                 onPressed: {
-                    if (stationMapSearcher.searchMode === "placeName") {
+                    if (stationMapSearcher.searchMode === "address") {
                         StationAPI.getLocations(stationMapSearcher.searchText, {
                             language: Qt.locale().name.replace("_", "-")
                         }, function (err, places) {
@@ -138,7 +141,7 @@ Window {
                             availableCitiesModel.clear();
                             for (var i = 0; i < places.length; i++) {
                                 availableCitiesModel.append({
-                                    "placeName": places[i].city + "," + places[i].state + " (" + places[i].country + ")",
+                                    "address": places[i].address,
                                     "latitude": places[i].latitude,
                                     "longitude": places[i].longitude
                                 });
@@ -164,7 +167,7 @@ Window {
                                 lonCount = (lonCount || 0) + 1;
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
-                                    "placeName": stations[i].placeName,
+                                    "address": stations[i].address,
                                     "latitude": stations[i].latitude,
                                     "longitude": stations[i].longitude
                                 });
@@ -199,7 +202,7 @@ Window {
                                 lonCount = (lonCount || 0) + 1;
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
-                                    "placeName": stations[i].placeName,
+                                    "address": stations[i].address,
                                     "latitude": stations[i].latitude,
                                     "longitude": stations[i].longitude
                                 });
@@ -219,15 +222,16 @@ Window {
         Loader {
             id: helperLoader
             Layout.fillWidth: true
-            sourceComponent: stationMapSearcher.searchMode === "placeName" ? placeNameHelperComponent : stationMapSearcher.searchMode === "stationID" ? stationIDHelperComponent : latLonHelperComponent
+            sourceComponent: stationMapSearcher.searchMode === "address" ? addressHelperComponent : stationMapSearcher.searchMode === "stationID" ? stationIDHelperComponent : latLonHelperComponent
         }
 
         Component {
             id: textSearchComponent
-            QQC.TextField {
+            PlasmaComponents.TextField {
                 id: searchField
                 Layout.fillWidth: true
-                placeholderText: stationMapSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter City Name")
+                clearButtonShown: true
+                placeholderText: stationMapSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter city, state, locality, or address")
                 onTextChanged: {
                     stationMapSearcher.searchText = text.trim();
                 }
@@ -243,7 +247,7 @@ Window {
         }
 
         Component {
-            id: placeNameHelperComponent
+            id: addressHelperComponent
 
             RowLayout {
                 Layout.fillWidth: true
@@ -252,15 +256,15 @@ Window {
                     text: i18n("Searching place:")
                 }
 
-                QQC.ComboBox {
+                PlasmaComponents.ComboBox {
                     id: cityChoice
                     Layout.fillWidth: true
-                    textRole: "placeName"
+                    textRole: "address"
                     model: availableCitiesModel
                     enabled: availableCitiesModel.count > 0
                 }
 
-                QQC.Button {
+                PlasmaComponents.Button {
                     text: i18n("Choose")
                     enabled: cityChoice.currentIndex !== -1
                     onClicked: {
@@ -284,7 +288,7 @@ Window {
                             for (var i = 0; i < stations.length; i++) {
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
-                                    "placeName": stations[i].placeName,
+                                    "address": stations[i].address,
                                     "latitude": stations[i].latitude,
                                     "longitude": stations[i].longitude
                                 });
@@ -442,11 +446,13 @@ Window {
                     anchorPoint.x: 2.5
                     anchorPoint.y: iconImage.height
                     sourceItem: Column {
-                        Image {
+                        Kirigami.Icon {
                             id: iconImage
                             source: Utils.getIcon("weather-station-2")
                             width: 32
                             height: 32
+                            isMask: true
+                            color: selectedStation !== undefined && selectedStation.stationID === stationID ? "red" : "black"
                         }
                         PlasmaComponents.Label {
                             text: stationID
@@ -460,10 +466,12 @@ Window {
 
                     MouseArea {
                         anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             selectedStation = {
                                 "stationID": stationID,
-                                "placeName": placeName,
+                                "address": address,
                                 "latitude": latitude,
                                 "longitude": longitude
                             };
@@ -478,10 +486,10 @@ Window {
 
             PlasmaComponents.Label {
                 Layout.fillWidth: true
-                text: selectedStation !== undefined ? i18n("Selected Station: %1 (%2)", selectedStation.placeName, selectedStation.stationID) : ""
+                text: selectedStation !== undefined ? i18n("Selected Station: %1 (%2)", selectedStation.address, selectedStation.stationID) : ""
             }
 
-            QQC.Button {
+            PlasmaComponents.Button {
                 icon.name: "dialog-ok"
                 text: i18n("Confirm")
                 enabled: selectedStation !== undefined
@@ -491,7 +499,7 @@ Window {
                 }
             }
 
-            QQC.Button {
+            PlasmaComponents.Button {
                 icon.name: "dialog-cancel"
                 text: i18n("Cancel")
                 onClicked: {
