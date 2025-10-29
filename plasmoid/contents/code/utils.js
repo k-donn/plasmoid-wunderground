@@ -239,6 +239,80 @@ function windDirToCard(deg) {
 	return directions[Math.round((deg % 3600) / 255)];
 }
 
+function degToRad(d) {
+	return (d * Math.PI) / 180.0;
+}
+
+// Web-Mercator projection (meters)
+function lonToMercX(lon) {
+	return 6378137.0 * degToRad(lon);
+}
+function latToMercY(lat) {
+	var rad = degToRad(lat);
+	return 6378137.0 * Math.log(Math.tan(Math.PI / 4 + rad / 2));
+}
+
+function zoomForBoundingBox(bbox, map, padding) {
+	if (padding === undefined) padding = 20;
+
+	var xMin = lonToMercX(bbox.minLon);
+	var xMax = lonToMercX(bbox.maxLon);
+	var yMin = latToMercY(bbox.minLat);
+	var yMax = latToMercY(bbox.maxLat);
+
+	var widthMeters = Math.abs(xMax - xMin);
+	var heightMeters = Math.abs(yMax - yMin);
+
+	var availW = Math.max(1, map.width - 2 * padding);
+	var availH = Math.max(1, map.height - 2 * padding);
+
+	var metersPerPixelNeeded = Math.max(
+		widthMeters / availW,
+		heightMeters / availH
+	);
+
+	var initialResolution = 156543.03392804097; // 2πR / 256
+
+	var zoom = Math.log(initialResolution / metersPerPixelNeeded) / Math.log(2);
+
+	// optional: round or floor depending on whether you want to fit strictly
+	// floor(zoom) -> ensures everything fits with some margin; ceil -> closer zoom but might crop edges
+	return Math.min(Math.max(zoom, 0), 22); // clamp to 0..22 (adjust max to your plugin)
+}
+
+// Convenience: zoom to circle defined by center + radius (meters)
+function zoomForCircle(centerCoord, radiusMeters, map, padding) {
+	// a circle of radius r requires at least a span of 2*r both directions.
+	var diameterMeters = 2 * radiusMeters;
+
+	// At the latitude of the center the mercator Y changes; easier to create bbox around center
+	// create a bbox by offsetting mercator coords by diameterMeters/2
+	var cx = lonToMercX(centerCoord.longitude);
+	var cy = latToMercY(centerCoord.latitude);
+
+	var xMin = cx - diameterMeters / 2;
+	var xMax = cx + diameterMeters / 2;
+	var yMin = cy - diameterMeters / 2;
+	var yMax = cy + diameterMeters / 2;
+
+	// convert back to lat/lon for the bbox interface
+	function mercXToLon(x) {
+		return ((x / 6378137.0) * 180.0) / Math.PI;
+	}
+	function mercYToLat(y) {
+		var latRad = 2 * Math.atan(Math.exp(y / 6378137.0)) - Math.PI / 2;
+		return (latRad * 180.0) / Math.PI;
+	}
+
+	var bbox = {
+		minLat: mercYToLat(yMin),
+		minLon: mercXToLon(xMin),
+		maxLat: mercYToLat(yMax),
+		maxLon: mercXToLon(xMax),
+	};
+	return zoomForBoundingBox(bbox, map, padding);
+}
+
 function cToF(degC) {
 	return degC * 1.8 + 32;
 }

@@ -35,8 +35,8 @@ Window {
     flags: Qt.Dialog
     modality: Qt.WindowModal
 
-    width: Kirigami.Units.gridUnit * 40
-    height: Kirigami.Units.gridUnit * 25
+    width: Kirigami.Units.gridUnit * 45
+    height: Kirigami.Units.gridUnit * 30
 
     SystemPalette {
         id: syspal
@@ -54,6 +54,7 @@ Window {
     property real areaLon: 0
     property real searchLat: 0
     property real searchLon: 0
+    property real searchRadius: -1
 
     property string errorType: ""
     property string errorMessage: ""
@@ -85,9 +86,13 @@ Window {
             name: "osm.useragent"
             value: "WundergroundPlasmoid/3.5.4 (https://github.com/k-donn/plasmoid-wunderground; contact:mitchell@mitchelldonnelly.com)"
         }
+        // PluginParameter {
+        //     name: "osm.mapping.custom.host"
+        //     value: "https://tile.openstreetmap.org/"
+        // }
         PluginParameter {
-            name: "osm.mapping.custom.host"
-            value: "https://tile.openstreetmap.org/"
+            name: "osm.mapping.providersrepository.address"
+            value: "http://127.0.0.1:5500/"
         }
     }
 
@@ -120,6 +125,7 @@ Window {
                         stationMapSearcher.searchMode = "stationID";
                     } else {
                         stationMapSearcher.searchMode = "latlon";
+                        stationMapSearcher.searchRadius = 10000;
                     }
                 }
             }
@@ -167,10 +173,20 @@ Window {
                             }
                             errorType = "";
                             errorMessage = "";
-                            var latSum, latCount, lonSum, lonCount;
+                            var latMin, latMax, latSum, latCount, lonMin, lonMax, lonSum, lonCount;
                             latSum = latCount = lonSum = lonCount = 0;
+                            latMin = lonMin = Infinity;
+                            latMax = lonMax = -Infinity;
                             searchResults.clear();
                             for (var i = 0; i < stations.length; i++) {
+                                if (stations[i].latitude < latMin)
+                                    latMin = stations[i].latitude;
+                                if (stations[i].latitude > latMax)
+                                    latMax = stations[i].latitude;
+                                if (stations[i].longitude < lonMin)
+                                    lonMin = stations[i].longitude;
+                                if (stations[i].longitude > lonMax)
+                                    lonMax = stations[i].longitude;
                                 latSum += stations[i].latitude;
                                 lonSum += stations[i].longitude;
                                 latCount += 1;
@@ -185,10 +201,14 @@ Window {
                             }
                             var latAvg = latSum / latCount;
                             var lonAvg = lonSum / lonCount;
+                            var minCoord = QtPositioning.coordinate(latMin, lonMin);
+                            var maxCoord = QtPositioning.coordinate(latMax, lonMax);
+                            var avgCoord = QtPositioning.coordinate(latAvg, lonAvg);
+                            stationMapSearcher.searchRadius = stations.length > 1 ? Math.max(avgCoord.distanceTo(minCoord), avgCoord.distanceTo(maxCoord)) : 5000;
                             stationMapSearcher.areaLat = latAvg;
                             stationMapSearcher.areaLon = lonAvg;
-                            stationMap.center = QtPositioning.coordinate(latAvg, lonAvg);
-                            stationMap.zoomLevel = 10;
+                            stationMap.center = avgCoord;
+                            stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
                         });
                     } else if (stationMapSearcher.searchMode === "latlon") {
                         StationAPI.searchGeocode({
@@ -225,7 +245,7 @@ Window {
                             stationMapSearcher.areaLat = latAvg;
                             stationMapSearcher.areaLon = lonAvg;
                             stationMap.center = QtPositioning.coordinate(latAvg, lonAvg);
-                            stationMap.zoomLevel = 10;
+                            stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, 5);
                         });
                     }
                 }
@@ -288,7 +308,6 @@ Window {
                         stationMapSearcher.areaLat = availableCitiesModel.get(cityChoice.currentIndex).latitude;
                         stationMapSearcher.areaLon = availableCitiesModel.get(cityChoice.currentIndex).longitude;
                         stationMap.center = QtPositioning.coordinate(availableCitiesModel.get(cityChoice.currentIndex).latitude, availableCitiesModel.get(cityChoice.currentIndex).longitude);
-                        stationMap.zoomLevel = 10;
                         StationAPI.searchGeocode({
                             latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude,
                             longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude
@@ -300,7 +319,18 @@ Window {
                                 errorMessage = err.message;
                                 return;
                             }
+                            var latMin, latMax, lonMin, lonMax;
+                            latMin = lonMin = Infinity;
+                            latMax = lonMax = -Infinity;
                             for (var i = 0; i < stations.length; i++) {
+                                if (stations[i].latitude < latMin)
+                                    latMin = stations[i].latitude;
+                                if (stations[i].latitude > latMax)
+                                    latMax = stations[i].latitude;
+                                if (stations[i].longitude < lonMin)
+                                    lonMin = stations[i].longitude;
+                                if (stations[i].longitude > lonMax)
+                                    lonMax = stations[i].longitude;
                                 searchResults.append({
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
@@ -309,6 +339,12 @@ Window {
                                     "qcStatus": stations[i].qcStatus
                                 });
                             }
+                            var minCoord = QtPositioning.coordinate(latMin, lonMin);
+                            var maxCoord = QtPositioning.coordinate(latMax, lonMax);
+                            var avgCoord = stationMap.center;
+
+                            stationMapSearcher.searchRadius = Math.max(avgCoord.distanceTo(minCoord), avgCoord.distanceTo(maxCoord));
+                            stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
                         });
                     }
                 }
@@ -409,7 +445,7 @@ Window {
                 id: searchCenterIndicator
                 visible: stationMapSearcher.searchResults.count > 0 || stationMapSearcher.searchMode === "latlon"
                 center: QtPositioning.coordinate(stationMapSearcher.searchMode === "latlon" ? stationMapSearcher.searchLat : stationMapSearcher.areaLat, stationMapSearcher.searchMode === "latlon" ? stationMapSearcher.searchLon : stationMapSearcher.areaLon)
-                radius: 10000
+                radius: stationMapSearcher.searchRadius
                 color: "red"
                 opacity: 0.2
                 border.color: "red"
@@ -420,7 +456,7 @@ Window {
                 id: searchCenterBorderIndicator
                 visible: stationMapSearcher.searchResults.count > 0 || stationMapSearcher.searchMode === "latlon"
                 center: QtPositioning.coordinate(stationMapSearcher.searchMode === "latlon" ? stationMapSearcher.searchLat : stationMapSearcher.areaLat, stationMapSearcher.searchMode === "latlon" ? stationMapSearcher.searchLon : stationMapSearcher.areaLon)
-                radius: 10000
+                radius: stationMapSearcher.searchRadius
                 color: "transparent"
                 border.color: "red"
                 border.width: 3
@@ -508,7 +544,7 @@ Window {
         }
 
         RowLayout {
-            id: buttonsRow
+            Layout.fillWidth: true
 
             Kirigami.Icon {
                 visible: selectedStation !== undefined && selectedStation.qcStatus === -1
@@ -572,6 +608,12 @@ Window {
                 Layout.fillWidth: true
                 text: selectedStation !== undefined ? i18n("Selected Station: %1 (%2)", selectedStation.address, selectedStation.stationID) : ""
             }
+        }
+
+        RowLayout {
+            id: buttonsRow
+
+            Layout.alignment: Qt.AlignRight
 
             PlasmaComponents.Button {
                 icon.name: "dialog-ok"
