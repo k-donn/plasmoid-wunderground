@@ -242,8 +242,6 @@ Window {
                             stationMapSearcher.areaLon = lonAvg;
                             stationMap.center = QtPositioning.coordinate(latAvg, lonAvg);
                             stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
-                            console.log("Zoom level set to " + stationMap.zoomLevel);
-                            console.log("Search radius: " + stationMapSearcher.searchRadius);
                         });
                     }
                 }
