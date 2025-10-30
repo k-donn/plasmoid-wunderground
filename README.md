@@ -14,11 +14,11 @@ Install at the [KDE Store](https://store.kde.org/p/2135799) or your distribution
 
 This widget relies on local stations (ie. [KGADACUL1](https://www.wunderground.com/dashboard/pws/KGADACUL1)). You can get an overview of stations in your area at [`wunderground.com/wundermap`](https://wunderground.com/wundermap). Do not worry if you don't know any or you cannot access that site! The widget allows you to search by your area name or coordinates.
 
-Once installed, click `Configure Wunderground` or right-click and hit the slider icon. Then, under `Station`, click `Find Station`.
+Once installed, click `Configure Wunderground` or right-click and hit the slider icon. Then, under `Station`, click `Select from Map`.
 
 ### Search by city/area
 
-To search by your city/area, enter that name into the first search box next to the `Search` button. Then, click `Search`. Next, choose the full name of your area with the dropdown box next to the `Choose` button. Click `Choose`. Due to API restrictions, this must be split into two parts.
+To search by your address, city, locality, or neighborhood, enter that name into the first search box next to the `Search` button. Then, click `Search`. Next, choose the full name of your area with the dropdown box next to the `Choose` button. Click `Choose`. Select a station from the map and hit `✓Confirm`. Due to API restrictions, this must be split into two parts.
 
 <details>
   <summary>See steps</summary>
@@ -34,19 +34,23 @@ To search by your city/area, enter that name into the first search box next to t
   That search has populated the green dropdown box with matches for that area name. Select the correct one and the click `Choose`.
 
   ![step 2 image](./examples/step2.png)
+
+  #### Step 3
+
+  ![step 3 image](./examples/step3.png)
+
+  Select any station icon to choose that station. To ensure reliability, hit `Test Station` to see the health of the selected station.
 </details>
-
-### Search by coordinates
-
-To search by coordinates, choose `Lat/Lon` in the `Search by:` dropdown box. Enter WGS84 geocode coordinates and hit `Search`.
 
 ### Search by station ID
 
 If you know your/a station's ID. Choose `Weatherstation ID:` in the `Search by:` dropdown box. Enter the station's ID and hit `Search`.
 
-### Selecting a station
+### Search by coordinates
 
-In the search popup, hit the `Select` button next to the desired station. Once selected, hit `✓Confirm` to add it to the main config page's list. It will be automatically selected and `Apply` the settings to change the station. You can change your selection by hitting the `✓` icon next to any of the saved stations and `Apply` the settings to take effect.
+To search by coordinates, choose `Lat/Lon` in the `Search by:` dropdown box. Drag the compass marker to a place on the map 
+
+
 
 ### Removing Stations
 
@@ -55,6 +59,10 @@ In the list under the `Station` config page, select the `X` icon to remove that 
 ### Advanced Manual Add
 
 If you know the station ID and do not want to click through extra steps, hit `+ Manual Add`, enter the case-sensitive station ID, and confirm. The station will be on the list and you should be good to go!
+
+### Find Station (Legacy)
+
+The non-map version of searching for a station is available under `Find Station`.
 
 ### Units
 

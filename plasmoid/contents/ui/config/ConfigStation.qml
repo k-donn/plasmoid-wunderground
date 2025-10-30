@@ -341,9 +341,9 @@ KCM.SimpleKCM {
             }
 
             PlasmaComponents.Button {
-                text: i18n("Find Station")
-                icon.name: "find-location"
-                onClicked: stationSearcher.open()
+                text: i18n("Select from Map")
+                icon.name: "earth"
+                onClicked: stationMapSearcher.open()
             }
 
             PlasmaComponents.Button {
@@ -353,9 +353,9 @@ KCM.SimpleKCM {
             }
 
             PlasmaComponents.Button {
-                text: i18n("Select from Map")
-                icon.name: "earth"
-                onClicked: stationMapSearcher.open()
+                text: i18n("Find Station")
+                icon.name: "find-location"
+                onClicked: stationSearcher.open()
             }
 
             Lib.ManualStationAdd {
@@ -367,33 +367,6 @@ KCM.SimpleKCM {
                         "address": "MANUALADD",
                         "longitude": 0,
                         "latitude": 0,
-                        "selected": true
-                    });
-                    for (var i = 0; i < stationListModel.count; i++) {
-                        stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
-                    }
-                    stationPickerEl.syncSavedStations();
-                }
-            }
-
-            MessageDialog {
-                id: stationNotFound
-                title: i18n("Error")
-                text: i18n("Error: Bad station.")
-                buttons: MessageDialog.Ok
-                onAccepted: destroy()
-                onRejected: destroy()
-            }
-
-            Lib.StationMapSearcher { 
-                id: stationMapSearcher
-                onStationSelected: function (station) {
-                    printDebug("Received station from map: " + JSON.stringify(station));
-                    stationListModel.append({
-                        "stationID": station.stationID,
-                        "address": station.address,
-                        "latitude": station.latitude,
-                        "longitude": station.longitude,
                         "selected": true
                     });
                     for (var i = 0; i < stationListModel.count; i++) {
@@ -418,6 +391,24 @@ KCM.SimpleKCM {
                         stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
                     }
                     stationSearcher.close();
+                    stationPickerEl.syncSavedStations();
+                }
+            }
+
+            Lib.StationMapSearcher {
+                id: stationMapSearcher
+                onStationSelected: function (station) {
+                    printDebug("Received station from map: " + JSON.stringify(station));
+                    stationListModel.append({
+                        "stationID": station.stationID,
+                        "address": station.address,
+                        "latitude": station.latitude,
+                        "longitude": station.longitude,
+                        "selected": true
+                    });
+                    for (var i = 0; i < stationListModel.count; i++) {
+                        stationListModel.setProperty(i, "selected", i === stationListModel.count - 1);
+                    }
                     stationPickerEl.syncSavedStations();
                 }
             }

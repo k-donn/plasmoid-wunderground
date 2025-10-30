@@ -391,7 +391,7 @@ function isStationActive(givenID, options, callback) {
  * Signature:
  *   searchStationID(query, { language }, cb)
  *
- * Callback: cb(err, Array<{stationID,address,latitude,longitude}>)
+ * Callback: cb(err, Array<{stationID,address,latitude,longitude,qcStatus}>)
  *
  * @param {string} query
  * @param {Object} options
@@ -438,11 +438,10 @@ function searchStationID(query, options, callback) {
 			for (var i = 0; i < count; i++) {
 				stationsArr.push({
 					stationID: loc.pwsId ? loc.pwsId[i] : "",
-					address:
-						loc.neighborhood ? loc.neighborhood[i] : "",
+					address: loc.neighborhood ? loc.neighborhood[i] : "",
 					latitude: loc.latitude ? loc.latitude[i] : 0,
 					longitude: loc.longitude ? loc.longitude[i] : 0,
-					qcStatus: loc.qcStatus ? loc.qcStatus[i] : 0,
+					qcStatus: 0,
 				});
 			}
 		}
@@ -779,8 +778,7 @@ function getExtendedConditions(options, callback) {
 		var isNight = condVars && condVars["dayOrNight"] === "N";
 		var newIconCode = condVars ? condVars["iconCode"] : null;
 		var newConditionNarrative = condVars ? condVars["wxPhraseLong"] : "";
-		var newIsRain =
-			newIconCode ? !_isSnowIconCode(newIconCode) : true;
+		var newIsRain = newIconCode ? !_isSnowIconCode(newIconCode) : true;
 
 		var alertsList = [];
 		if (

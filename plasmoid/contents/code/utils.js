@@ -275,41 +275,52 @@ function zoomForBoundingBox(bbox, map, padding) {
 
 	var zoom = Math.log(initialResolution / metersPerPixelNeeded) / Math.log(2);
 
-	// optional: round or floor depending on whether you want to fit strictly
-	// floor(zoom) -> ensures everything fits with some margin; ceil -> closer zoom but might crop edges
-	return Math.min(Math.max(zoom, 0), 22); // clamp to 0..22 (adjust max to your plugin)
+	return Math.min(Math.max(zoom, 0), 22);
 }
 
-// Convenience: zoom to circle defined by center + radius (meters)
 function zoomForCircle(centerCoord, radiusMeters, map, padding) {
-	// a circle of radius r requires at least a span of 2*r both directions.
-	var diameterMeters = 2 * radiusMeters;
+	const EARTH_RADIUS = 6378137;
+	const lat = degToRad(centerCoord.latitude);
+	const lon = degToRad(centerCoord.longitude);
 
-	// At the latitude of the center the mercator Y changes; easier to create bbox around center
-	// create a bbox by offsetting mercator coords by diameterMeters/2
-	var cx = lonToMercX(centerCoord.longitude);
-	var cy = latToMercY(centerCoord.latitude);
+	const angularRadius = radiusMeters / EARTH_RADIUS;
 
-	var xMin = cx - diameterMeters / 2;
-	var xMax = cx + diameterMeters / 2;
-	var yMin = cy - diameterMeters / 2;
-	var yMax = cy + diameterMeters / 2;
+	const latMax = Math.asin(
+		Math.sin(lat) * Math.cos(angularRadius) +
+			Math.cos(lat) * Math.sin(angularRadius)
+	);
+	const latMin = Math.asin(
+		Math.sin(lat) * Math.cos(angularRadius) -
+			Math.cos(lat) * Math.sin(angularRadius)
+	);
 
-	// convert back to lat/lon for the bbox interface
-	function mercXToLon(x) {
-		return ((x / 6378137.0) * 180.0) / Math.PI;
-	}
-	function mercYToLat(y) {
-		var latRad = 2 * Math.atan(Math.exp(y / 6378137.0)) - Math.PI / 2;
-		return (latRad * 180.0) / Math.PI;
-	}
+	const latCos = Math.cos(lat);
+	const angularRadiusCos = Math.cos(angularRadius);
+	const lonDelta =
+		latCos === 0
+			? Math.PI // At poles, span all longitudes
+			: Math.acos(
+					(angularRadiusCos - Math.sin(lat) * Math.sin(latMax)) /
+						(Math.cos(lat) * Math.cos(latMax))
+			  );
+
+	const lonMin = lon - lonDelta;
+	const lonMax = lon + lonDelta;
 
 	var bbox = {
-		minLat: mercYToLat(yMin),
-		minLon: mercXToLon(xMin),
-		maxLat: mercYToLat(yMax),
-		maxLon: mercXToLon(xMax),
+		minLat: (latMin * 180) / Math.PI,
+		maxLat: (latMax * 180) / Math.PI,
+		minLon: (lonMin * 180) / Math.PI,
+		maxLon: (lonMax * 180) / Math.PI,
 	};
+
+	if (bbox.minLon < -180) {
+		bbox.minLon = bbox.minLon + 360;
+	}
+	if (bbox.maxLon > 180) {
+		bbox.maxLon = bbox.maxLon - 360;
+	}
+
 	return zoomForBoundingBox(bbox, map, padding);
 }
 

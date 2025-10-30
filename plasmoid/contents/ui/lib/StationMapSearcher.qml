@@ -14,7 +14,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
-
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtLocation
@@ -86,13 +86,9 @@ Window {
             name: "osm.useragent"
             value: "WundergroundPlasmoid/3.5.4 (https://github.com/k-donn/plasmoid-wunderground; contact:mitchell@mitchelldonnelly.com)"
         }
-        // PluginParameter {
-        //     name: "osm.mapping.custom.host"
-        //     value: "https://tile.openstreetmap.org/"
-        // }
         PluginParameter {
-            name: "osm.mapping.providersrepository.address"
-            value: "http://127.0.0.1:5500/"
+            name: "osm.mapping.custom.host"
+            value: "https://tile.openstreetmap.org/"
         }
     }
 
@@ -115,17 +111,17 @@ Window {
                 id: modeCombo
                 model: [i18n("Area Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon")]
                 onCurrentIndexChanged: {
-                    searchResults.clear();
-                    availableCitiesModel.clear();
-                    errorType = "";
-                    errorMessage = "";
+                    stationMapSearcher.searchResults.clear();
+                    stationMapSearcher.availableCitiesModel.clear();
+                    stationMapSearcher.errorType = "";
+                    stationMapSearcher.errorMessage = "";
                     if (currentIndex === 0) {
                         stationMapSearcher.searchMode = "address";
                     } else if (currentIndex === 1) {
                         stationMapSearcher.searchMode = "stationID";
                     } else {
-                        stationMapSearcher.searchMode = "latlon";
                         stationMapSearcher.searchRadius = 10000;
+                        stationMapSearcher.searchMode = "latlon";
                     }
                 }
             }
@@ -245,7 +241,9 @@ Window {
                             stationMapSearcher.areaLat = latAvg;
                             stationMapSearcher.areaLon = lonAvg;
                             stationMap.center = QtPositioning.coordinate(latAvg, lonAvg);
-                            stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, 5);
+                            stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
+                            console.log("Zoom level set to " + stationMap.zoomLevel);
+                            console.log("Search radius: " + stationMapSearcher.searchRadius);
                         });
                     }
                 }
@@ -296,21 +294,21 @@ Window {
                     id: cityChoice
                     Layout.fillWidth: true
                     textRole: "address"
-                    model: availableCitiesModel
-                    enabled: availableCitiesModel.count > 0
+                    model: stationMapSearcher.availableCitiesModel
+                    enabled: stationMapSearcher.availableCitiesModel.count > 0
                 }
 
                 PlasmaComponents.Button {
                     text: i18n("Choose")
                     enabled: cityChoice.currentIndex !== -1
                     onClicked: {
-                        searchResults.clear();
-                        stationMapSearcher.areaLat = availableCitiesModel.get(cityChoice.currentIndex).latitude;
-                        stationMapSearcher.areaLon = availableCitiesModel.get(cityChoice.currentIndex).longitude;
-                        stationMap.center = QtPositioning.coordinate(availableCitiesModel.get(cityChoice.currentIndex).latitude, availableCitiesModel.get(cityChoice.currentIndex).longitude);
+                        stationMapSearcher.searchResults.clear();
+                        stationMapSearcher.areaLat = stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude;
+                        stationMapSearcher.areaLon = stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude;
+                        stationMap.center = QtPositioning.coordinate(stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude, stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude);
                         StationAPI.searchGeocode({
-                            latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude,
-                            longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude
+                            latitude: stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude,
+                            longitude: stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude
                         }, {
                             language: Qt.locale().name.replace("_", "-")
                         }, function (err, stations) {
@@ -331,7 +329,7 @@ Window {
                                     lonMin = stations[i].longitude;
                                 if (stations[i].longitude > lonMax)
                                     lonMax = stations[i].longitude;
-                                searchResults.append({
+                                stationMapSearcher.searchResults.append({
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
                                     "latitude": stations[i].latitude,
@@ -368,8 +366,8 @@ Window {
         PlasmaComponents.TextField {
             enabled: false
             Layout.fillWidth: true
-            visible: errorMessage.length > 0
-            text: i18n("Error (%1): %2", errorType, errorMessage)
+            visible: stationMapSearcher.errorMessage.length > 0
+            text: i18n("Error (%1): %2", stationMapSearcher.errorType, stationMapSearcher.errorMessage)
             color: "red"
         }
 
@@ -440,7 +438,6 @@ Window {
                 onActivated: stationMap.zoomLevel = Math.round(stationMap.zoomLevel - 1)
             }
 
-            // TODO: properly handle multiple search modes
             MapCircle {
                 id: searchCenterIndicator
                 visible: stationMapSearcher.searchResults.count > 0 || stationMapSearcher.searchMode === "latlon"
@@ -500,9 +497,15 @@ Window {
             }
 
             MapItemView {
-                model: searchResults
+                model: stationMapSearcher.searchResults
                 delegate: MapQuickItem {
                     id: stationMarker
+                    required property string stationID
+                    required property string address
+                    required property real latitude
+                    required property real longitude
+                    required property int qcStatus
+
                     coordinate: QtPositioning.coordinate(latitude, longitude)
                     anchorPoint.x: 2.5
                     anchorPoint.y: iconImage.height
@@ -513,10 +516,10 @@ Window {
                             width: 32
                             height: 32
                             isMask: true
-                            color: selectedStation !== undefined && selectedStation.stationID === stationID ? "red" : "black"
+                            color: stationMapSearcher.selectedStation !== undefined && stationMapSearcher.selectedStation.stationID === stationMarker.stationID ? "red" : "black"
                         }
                         PlasmaComponents.Label {
-                            text: stationID
+                            text: stationMarker.stationID
                             font.pixelSize: 12
                             color: "black"
                             horizontalAlignment: Text.AlignHCenter
@@ -531,11 +534,11 @@ Window {
                         cursorShape: Qt.PointingHandCursor
                         onClicked: {
                             selectedStation = {
-                                "stationID": stationID,
-                                "address": address,
-                                "latitude": latitude,
-                                "longitude": longitude,
-                                "qcStatus": qcStatus
+                                "stationID": parent.stationID,
+                                "address": parent.address,
+                                "latitude": parent.latitude,
+                                "longitude": parent.longitude,
+                                "qcStatus": parent.qcStatus
                             };
                         }
                     }
@@ -547,7 +550,7 @@ Window {
             Layout.fillWidth: true
 
             Kirigami.Icon {
-                visible: selectedStation !== undefined && selectedStation.qcStatus === -1
+                visible: stationMapSearcher.selectedStation !== undefined && stationMapSearcher.selectedStation.qcStatus === -1
                 source: "documentinfo-symbolic"
                 height: Kirigami.Units.iconSizes.smallMedium
                 color: "orange"
@@ -569,9 +572,9 @@ Window {
 
             PlasmaComponents.Button {
                 text: i18n("Test Station")
-                enabled: selectedStation !== undefined
+                enabled: stationMapSearcher.selectedStation !== undefined
                 onClicked: {
-                    StationAPI.isStationActive(selectedStation.stationID, {}, function (err, healthObject) {
+                    StationAPI.isStationActive(stationMapSearcher.selectedStation.stationID, {}, function (err, healthObject) {
                         if (err) {
                             if (err.type === "no-data-found") {
                                 stationMapSearcher.stationHealth = 0;
@@ -606,7 +609,7 @@ Window {
 
             PlasmaComponents.Label {
                 Layout.fillWidth: true
-                text: selectedStation !== undefined ? i18n("Selected Station: %1 (%2)", selectedStation.address, selectedStation.stationID) : ""
+                text: stationMapSearcher.selectedStation !== undefined ? i18n("Selected Station: %1 (%2)", stationMapSearcher.selectedStation.address, stationMapSearcher.selectedStation.stationID) : ""
             }
         }
 
@@ -618,9 +621,9 @@ Window {
             PlasmaComponents.Button {
                 icon.name: "dialog-ok"
                 text: i18n("Confirm")
-                enabled: selectedStation !== undefined
+                enabled: stationMapSearcher.selectedStation !== undefined
                 onClicked: {
-                    stationSelected(selectedStation);
+                    stationMapSearcher.stationSelected(stationMapSearcher.selectedStation);
                     stationMapSearcher.close();
                 }
             }
