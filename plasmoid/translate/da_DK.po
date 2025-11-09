@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-10-30 10:50-0400\n"
+"POT-Creation-Date: 2025-11-09 15:00-0600\n"
 "PO-Revision-Date: 2025-11-01 22:18+0100\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
@@ -53,6 +53,10 @@ msgstr "Status farve"
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
 msgstr "Luft kvalitet"
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Messages"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQI: %1"
@@ -325,14 +329,10 @@ msgid "Weatherstation Name:"
 msgstr "Vejrstation navn:"
 
 #: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
-msgid "Latitude:"
-msgstr "Breddegrad:"
-
-#: ../contents/ui/config/ConfigStation.qml
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Longitude:"
-msgstr "Længdegrad:"
+msgid "Lat/Lon"
+msgstr "Bred/Læng"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Action"
@@ -475,11 +475,6 @@ msgid "Weatherstation ID:"
 msgstr "Vejrstation ID:"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
-#: ../contents/ui/lib/StationSearcher.qml
-msgid "Lat/Lon"
-msgstr "Bred/Læng"
-
-#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Search"
 msgstr "Søg"
 
@@ -585,6 +580,14 @@ msgstr ""
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter City Name"
 msgstr "Angiv bynavn"
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Latitude:"
+msgstr "Breddegrad:"
+
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Longitude:"
+msgstr "Længdegrad:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Test"
