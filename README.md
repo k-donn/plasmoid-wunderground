@@ -110,7 +110,7 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [x] Improve searching and testing error messages
   -   [ ] Better handle null fields
 - Parking lot
-  -   [ ] Search by map feature
+  -   [x] Search by map feature
   -   [ ] Use Wunderground Plasma Ion.
 
 [^1]: Discover sometimes has difficulties getting the most recent version.
