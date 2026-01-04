@@ -113,7 +113,7 @@ PlasmoidItem {
 
     property int layoutType: plasmoid.configuration.layoutType
     property int widgetOrder: plasmoid.configuration.widgetOrder
-    property int desktopMode: plasmoid.configuration.desktopMode
+    property int planarLayoutType: plasmoid.configuration.planarLayoutType
     property int iconSizeMode: plasmoid.configuration.iconSizeMode
     property int textSizeMode: plasmoid.configuration.textSizeMode
 
@@ -199,7 +199,7 @@ PlasmoidItem {
     property Component cr: CompactRepresentation {}
     property Component crInTray: CompactRepresentationInTray {}
 
-    property bool vertical: (plasmoid.formFactor === PlasmaCore.Types.Vertical)
+    property bool vertical: plasmoid.formFactor === PlasmaCore.Types.Vertical
     property bool onDesktop: (plasmoid.location === PlasmaCore.Types.Desktop || plasmoid.location === PlasmaCore.Types.Floating)
 
     function printDebug(msg) {
@@ -599,6 +599,6 @@ PlasmoidItem {
         }
     ]
 
-    fullRepresentation: fr
+    fullRepresentation: planarLayoutType === 0 ? fr : cr
     compactRepresentation: inTray ? crInTray : cr
 }

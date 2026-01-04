@@ -104,16 +104,17 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 - i18n
   -   [ ] Translations for new text
 - Customizability
-  -   [ ] Remove bg in system tray temp view
-  -   [ ] Remove empty space when downsizing font in compact rep
+  -   [ ] Enum-ify main.xml
   -   [ ] Let user add labels to locations and show in tooltipText
   -   [ ] Choose what to show in panel and desktop forms
-  -   [ ] Widget size/padding/scaling
+  -   [x] Remove bg in system tray temp view
+  -   [x] Remove empty space when downsizing font in compact rep
+  -   [x] Widget size/padding/scaling
 - Backend
-  -   [x] Improve searching and testing error messages
   -   [ ] Better handle null fields
+  -   [x] Improve searching and testing error messages
 - Parking lot
-  -   [x] Search by map feature
   -   [ ] Use Wunderground Plasma Ion.
+  -   [x] Search by map feature
 
 [^1]: Discover sometimes has difficulties getting the most recent version.

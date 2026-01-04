@@ -3,12 +3,20 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
+import org.kde.plasma.components as PlasmaComponents
+import "../lib" as Lib
 
 KCM.SimpleKCM {
 
     id: appearancePage
     property int cfg_layoutType
     property int cfg_widgetOrder
+    property int cfg_planarLayoutType
+
+    property alias cfg_propHeadPointSize: propHeadPointSize.value
+    property alias cfg_propPointSize: propPointSize.value
+    property alias cfg_tempPointSize: tempPointSize.value
+    property alias cfg_topIconMargins: topIconMargins.value
 
     property string cfg_leftOuterMargin: plasmoid.configuration.leftOuterMargin
     property string cfg_innerMargin: plasmoid.configuration.innerMargin
@@ -32,12 +40,12 @@ KCM.SimpleKCM {
         }
     }
 
-    Component.onCompleted: {
-        cfg_layoutTypeChanged()
-    }
-
     ButtonGroup {
         id: layoutTypeGroup
+
+        Component.onCompleted: {
+            cfg_layoutTypeChanged()
+        }
     }
 
     onCfg_widgetOrderChanged: {
@@ -60,100 +68,194 @@ KCM.SimpleKCM {
         }
     }
 
-    GridLayout {
-        anchors.left: parent.left
-        anchors.right: parent.right
-        columns: 3
+    onCfg_planarLayoutTypeChanged: {
+        switch (cfg_planarLayoutType) {
+            case 0:
+                planarLayoutTypeGroup.checkedButton = planarLayoutTypeRadioFull;
+                break;
+            case 1:
+                planarLayoutTypeGroup.checkedButton = planarLayoutTypeRadioCompact;
+                break;
+            default:
+        }
+    }
 
-        Label {
-            text: i18n("Layout type") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+    ButtonGroup {
+        id: planarLayoutTypeGroup
+
+        Component.onCompleted: {
+            cfg_planarLayoutTypeChanged()
         }
-        RadioButton {
-            id: layoutTypeRadioHorizontal
-            ButtonGroup.group: layoutTypeGroup
-            text: i18n("Horizontal")
-            onCheckedChanged: if (checked) cfg_layoutType = 0;
-        }
-        Label {
-            text: i18n("Layout type is not available in the system tray")
-            Layout.rowSpan: 3
-            Layout.preferredWidth: 250
-            wrapMode: Text.WordWrap
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.rowSpan: 2
-        }
-        RadioButton {
-            id: layoutTypeRadioVertical
-            ButtonGroup.group: layoutTypeGroup
-            text: i18n("Vertical")
-            onCheckedChanged: if (checked) cfg_layoutType = 1;
-        }
-        RadioButton {
-            id: layoutTypeRadioCompact
-            ButtonGroup.group: layoutTypeGroup
-            text: i18n("Compact")
-            onCheckedChanged: if (checked) cfg_layoutType = 2;
+    }
+
+
+
+    Kirigami.FormLayout {
+        anchors.fill: parent
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("General")
+            Kirigami.FormData.isSection: true
         }
 
-        Item {
-            width: 2
-            height: 10
-            Layout.columnSpan: 3
+        ColumnLayout {
+            Kirigami.FormData.label: i18n("Planar layout") + ":"
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+            RadioButton {
+                id: planarLayoutTypeRadioFull
+                ButtonGroup.group: planarLayoutTypeGroup
+                text: i18n("Full Representation")
+                onCheckedChanged: if (checked) cfg_planarLayoutType = 0;
+            }
+
+            RadioButton {
+                id: planarLayoutTypeRadioCompact
+                ButtonGroup.group: planarLayoutTypeGroup
+                text: i18n("Compact Representation")
+                onCheckedChanged: if (checked) cfg_planarLayoutType = 1;
+            }
+
+            PlasmaComponents.Label {
+                text: i18n("Used on the desktop or in a desktop grouper")
+            }
         }
 
-        Label {
-            text: i18n("Widget order") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-        RadioButton {
-            id: widgetOrderIconFirst
-            ButtonGroup.group: widgetOrderGroup
-            text: i18n("Icon first")
-            onCheckedChanged: if (checked) cfg_widgetOrder = 0;
-        }
-        Label {
-            text: i18n("Widget order is not available in either the system tray or the Compact layout")
-            Layout.rowSpan: 3
-            Layout.preferredWidth: 250
-            wrapMode: Text.WordWrap
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.rowSpan: 2
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 1
-        }
-        RadioButton {
-            id: widgetOrderTextFirst
-            ButtonGroup.group: widgetOrderGroup
-            text: i18n("Text first")
-            onCheckedChanged: if (checked) cfg_widgetOrder = 1;
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Full Representation")
+            Kirigami.FormData.isSection: true
         }
 
-        Item {
-            width: 2
-            height: 18
-            Layout.columnSpan: 3
+        PlasmaComponents.SpinBox {
+            id: propHeadPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: i18n("Property header text size")
         }
 
-        Label {
-            text: i18n("Top Margin") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        PlasmaComponents.SpinBox {
+            id: propPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: i18n("Property text size")
         }
 
-        Item {
-            SpinBox {
+        PlasmaComponents.SpinBox {
+            id: tempPointSize
+
+            editable: true
+
+            Kirigami.FormData.label: i18n("Temperature text size")
+        }
+
+        Lib.ConfigComboBox {
+            configKey: "detailsIconSize"
+
+            model: [
+                {
+                    value: 16,
+                    text: i18n("small (16x16)")
+                },
+                {
+                    value: 22,
+                    text: i18n("smallMedium (22x22)")
+                },
+                {
+                    value: 32,
+                    text: i18n("medium (32x32)")
+                },
+                {
+                    value: 48,
+                    text: i18n("large (48x48)")
+                },
+                {
+                    value: 64,
+                    text: i18n("huge (64x64)")
+                },
+                {
+                    value: 128,
+                    text: i18n("enormous (128x128)")
+                }
+            ]
+
+            Kirigami.FormData.label: i18n("Details icon size:")
+        }
+
+        PlasmaComponents.SpinBox {
+            id: topIconMargins
+
+            editable: true
+
+            Kirigami.FormData.label: i18n("Top panel icon margins:")
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Compact Representation")
+            Kirigami.FormData.isSection: true
+        }
+
+        ColumnLayout {
+            Kirigami.FormData.label: i18n("Layout type") + ":"
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+
+            PlasmaComponents.RadioButton {
+                id: layoutTypeRadioHorizontal
+                ButtonGroup.group: layoutTypeGroup
+                text: i18n("Horizontal")
+                onCheckedChanged: if (checked) cfg_layoutType = 0;
+            }
+
+            PlasmaComponents.RadioButton {
+                id: layoutTypeRadioVertical
+                ButtonGroup.group: layoutTypeGroup
+                text: i18n("Vertical")
+                onCheckedChanged: if (checked) cfg_layoutType = 1;
+            }
+
+            PlasmaComponents.RadioButton {
+                id: layoutTypeRadioCompact
+                ButtonGroup.group: layoutTypeGroup
+                text: i18n("Compressed")
+                onCheckedChanged: if (checked) cfg_layoutType = 2;
+            }
+
+            PlasmaComponents.Label {
+                text: i18n("Layout type is not available in the system tray")
+            }
+        }
+
+        ColumnLayout {
+            Kirigami.FormData.label: i18n("Widget order") + ":"
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+
+            PlasmaComponents.RadioButton {
+                id: widgetOrderIconFirst
+                ButtonGroup.group: widgetOrderGroup
+                text: i18n("Icon first")
+                onCheckedChanged: if (checked) cfg_widgetOrder = 0;
+            }
+            PlasmaComponents.RadioButton {
+                id: widgetOrderTextFirst
+                ButtonGroup.group: widgetOrderGroup
+                text: i18n("Text first")
+                onCheckedChanged: if (checked) cfg_widgetOrder = 1;
+            }
+
+            PlasmaComponents.Label {
+                text: i18n("Widget order is not available in the system tray")
+                wrapMode: Text.NoWrap
+            }
+        }
+
+        Row {
+            Kirigami.FormData.label: i18n("Top Margin") + ":"
+
+            PlasmaComponents.SpinBox {
                 id: topOuterMargin
-                Layout.alignment: Qt.AlignVCenter
-                anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
                 from: -999
                 value: cfg_topOuterMargin
@@ -162,97 +264,17 @@ KCM.SimpleKCM {
                     cfg_topOuterMargin = topOuterMargin.value
                 }
             }
-            Label {
+            PlasmaComponents.Label {
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left:topOuterMargin.right
-                anchors.leftMargin: 4
                 text: i18nc("pixels", "px")
             }
         }
 
-        Item {
-            width: 2
-            height: 14
-            Layout.columnSpan: 3
-        }
+        Row {
+            Kirigami.FormData.label: i18n("Bottom Margin") + ":"
 
-        Label {
-            text: i18n("Inner Margin") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-
-        Item {
-            SpinBox {
-                id: innerMargin
-                Layout.alignment: Qt.AlignVCenter
-                anchors.verticalCenter: parent.verticalCenter
-                stepSize: 1
-                from: -999
-                value: cfg_innerMargin
-                to: 999
-                onValueChanged: {
-                    cfg_innerMargin = innerMargin.value
-                }
-            }
-            Label {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left:innerMargin.right
-                anchors.leftMargin: 4
-                text: i18nc("pixels", "px")
-            }
-        }
-
-        Item {
-            width: 2
-            height: 14
-            Layout.columnSpan: 3
-        }
-
-        Label {
-            text: i18n("Right Margin") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-
-        Item {
-            SpinBox {
-                id: rightOuterMargin
-                Layout.alignment: Qt.AlignVCenter
-                anchors.verticalCenter: parent.verticalCenter
-                // decimals: 0
-                stepSize: 1
-                from: -999
-                value: cfg_rightOuterMargin
-                to: 999
-                onValueChanged: {
-                    cfg_rightOuterMargin = rightOuterMargin.value
-                }
-            }
-            Label {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left:rightOuterMargin.right
-                anchors.leftMargin: 4
-                text: i18nc("pixels", "px")
-            }
-        }
-
-        Item {
-            width: 2
-            height: 14
-            Layout.columnSpan: 3
-        }
-
-        Label {
-            text: i18n("Bottom Margin") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-
-
-        }
-
-        Item {
-            SpinBox {
+            PlasmaComponents.SpinBox {
                 id: bottomOuterMargin
-                Layout.alignment: Qt.AlignVCenter
-                anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
                 from: -999
                 value: cfg_bottomOuterMargin
@@ -261,14 +283,67 @@ KCM.SimpleKCM {
                     cfg_bottomOuterMargin = bottomOuterMargin.value
                 }
             }
-
-            Label {
+            PlasmaComponents.Label {
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left:bottomOuterMargin.right
-                anchors.leftMargin: 4
                 text: i18nc("pixels", "px")
             }
         }
 
+        Row {
+            Kirigami.FormData.label: i18n("Left Margin") + ":"
+
+            PlasmaComponents.SpinBox {
+                id: leftOuterMargin
+                stepSize: 1
+                from: -999
+                value: cfg_leftOuterMargin
+                to: 999
+                onValueChanged: {
+                    cfg_leftOuterMargin = leftOuterMargin.value
+                }
+            }
+            PlasmaComponents.Label {
+                anchors.verticalCenter: parent.verticalCenter
+                text: i18nc("pixels", "px")
+            }
+        }
+
+        Row {
+            Kirigami.FormData.label: i18n("Right Margin") + ":"
+
+            PlasmaComponents.SpinBox {
+                id: rightOuterMargin
+                stepSize: 1
+                from: -999
+                value: cfg_rightOuterMargin
+                to: 999
+                onValueChanged: {
+                    cfg_rightOuterMargin = rightOuterMargin.value
+                }
+            }
+            PlasmaComponents.Label {
+                anchors.verticalCenter: parent.verticalCenter
+                text: i18nc("pixels", "px")
+            }
+        }
+
+        Row {
+            Kirigami.FormData.label: i18n("Inner Margin") + ":"
+
+            PlasmaComponents.SpinBox {
+                id: innerMargin
+                stepSize: 1
+                from: -999
+                value: cfg_innerMargin
+                to: 999
+                onValueChanged: {
+                    cfg_innerMargin = innerMargin.value
+                }
+            }
+            PlasmaComponents.Label {
+                anchors.verticalCenter: parent.verticalCenter
+                text: i18nc("pixels", "px")
+            }
+        }
     }
 }

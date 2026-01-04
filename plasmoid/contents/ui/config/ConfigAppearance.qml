@@ -2,7 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 import org.kde.kcmutils as KCM
+import "../lib" as Lib
 
 KCM.SimpleKCM {
 
@@ -20,6 +22,11 @@ KCM.SimpleKCM {
 
     property int cfg_iconSizeMode
     property int cfg_textSizeMode
+
+    property alias cfg_tempAutoColor: tempAutoColor.checked
+    property alias cfg_useDefaultPage: useDefaultPage.checked
+    property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
+    property alias cfg_showPresTrend: showPresTrend.checked
 
 
     ListModel {
@@ -79,28 +86,65 @@ KCM.SimpleKCM {
         id: textSizeModeGroup
 
         Component.onCompleted: {
-                cfg_textSizeModeChanged()
-            }
+            cfg_textSizeModeChanged()
+        }
     }
 
-    GridLayout {
-        anchors.left: parent.left
-        anchors.right: parent.right
-        columns: 3
+    Kirigami.FormLayout {
+        anchors.fill: parent
 
-        Label {
-            text: i18n("Widget font") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("General")
+            Kirigami.FormData.isSection: true
         }
-        ComboBox {
+
+        Lib.BackgroundToggle {}
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Full Representation")
+            Kirigami.FormData.isSection: true
+        }
+
+        PlasmaComponents.CheckBox {
+            id: tempAutoColor
+
+            Kirigami.FormData.label: i18n("Auto-color temperature:")
+        }
+
+        PlasmaComponents.CheckBox {
+            id: useDefaultPage
+
+            Kirigami.FormData.label: i18n("Use default page:")
+        }
+
+        PlasmaComponents.ComboBox {
+            id: defaultLoadPage
+
+            enabled: useDefaultPage.checked
+
+            model: [i18n("Weather Details"), i18n("Forecast"), i18n("Day Chart"), i18n("More Info")]
+
+            Kirigami.FormData.label: i18n("Default page shown:")
+        }
+        PlasmaComponents.CheckBox {
+            id: showPresTrend
+
+            Kirigami.FormData.label: i18n("Show pressure trend:")
+        }
+
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Compact Representation")
+            Kirigami.FormData.isSection: true
+        }
+
+        PlasmaComponents.ComboBox {
             id: fontFamilyComboBox
-            Layout.fillWidth: true
             currentIndex: 0
-            Layout.minimumWidth: Kirigami.Units.gridUnit * 10
-            Layout.maximumWidth: Kirigami.Units.gridUnit * 10
 
             model: fontsModel
             textRole: "text"
+
+            Kirigami.FormData.label: i18n("Choose a Font:")
 
             onCurrentIndexChanged: {
                 var current = model.get(currentIndex)
@@ -110,56 +154,32 @@ KCM.SimpleKCM {
             }
         }
 
-        Item {
-            width: 2
-            height: 5
-            Layout.columnSpan: 3
+        ColumnLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            Kirigami.FormData.label: i18n("Text size mode:")
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+            PlasmaComponents.RadioButton {
+                id: textSizeModeFit
+                ButtonGroup.group: textSizeModeGroup
+                text: i18n("Automatic fit")
+                onCheckedChanged: if (checked) cfg_textSizeMode = 0;
+            }
+
+            PlasmaComponents.RadioButton {
+                id: textSizeModeFixed
+                ButtonGroup.group: textSizeModeGroup
+                text: i18n("Exact size")
+                onCheckedChanged: if (checked) cfg_textSizeMode = 1;
+            }
         }
 
-        Label {
-            text: i18n("Text size mode") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-        RadioButton {
-            id: textSizeModeFit
-            ButtonGroup.group: textSizeModeGroup
-            text: i18n("Automatic fit")
-            onCheckedChanged: if (checked) cfg_textSizeMode = 0;
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.rowSpan: 2
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 1
-        }
-        RadioButton {
-            id: textSizeModeFixed
-            ButtonGroup.group: textSizeModeGroup
-            text: i18n("Exact size")
-            onCheckedChanged: if (checked) cfg_textSizeMode = 1;
-        }
+        Row {
+            Kirigami.FormData.label: i18n("Text size") + ":"
 
-        Item {
-            width: 2
-            height: 5
-            Layout.columnSpan: 3
-        }
-
-        Label {
-            text: i18n("Text size") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-
-
-        }
-        Item {
-            SpinBox {
+            PlasmaComponents.SpinBox {
                 id: widgetFontSize
-                Layout.alignment: Qt.AlignVCenter
-                anchors.verticalCenter: parent.verticalCenter
                 stepSize: 1
                 from: 4
                 value: cfg_widgetFontSize
@@ -168,101 +188,50 @@ KCM.SimpleKCM {
                     cfg_widgetFontSize = widgetFontSize.value
                 }
             }
-            Label {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left:widgetFontSize.right
-                anchors.leftMargin: 4
+            PlasmaComponents.Label {
                 text: i18nc("pixels", "px")
-            }
-        }
-
-        Item {
-            width: 2
-            height: 5
-            Layout.columnSpan: 3
-        }
-
-        // Item {
-            CheckBox {
-                id: textVisible
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            }
-
-            Label {
-                text: i18n("Text visible")
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                // Layout.leftMargin: 4
-                // anchors.left: textVisible.right
-                // anchors.leftMargin: 4
-            }
-        // }
-
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 3
-        }
-
-        CheckBox {
-            id: textDropShadow
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-
-        Label {
-            text: i18n("Text drop shadow")
-            Layout.alignment: Qt.AlignLeft
-        }
-
-        Item {
-            width: 2
-            height: 10
-            Layout.columnSpan: 3
-        }
-
-        Label {
-            text: i18n("Icon size mode") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-        }
-        RadioButton {
-            id: iconSizeModeFit
-            ButtonGroup.group: iconSizeModeGroup
-            text: i18n("Automatic fit")
-            onCheckedChanged: if (checked) cfg_iconSizeMode = 0;
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.rowSpan: 2
-        }
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 1
-        }
-        RadioButton {
-            id: iconSizeModeFixed
-            ButtonGroup.group: iconSizeModeGroup
-            text: i18n("Exact size")
-            onCheckedChanged: if (checked) cfg_iconSizeMode = 1;
-        }
-
-        Item {
-            width: 2
-            height: 5
-            Layout.columnSpan: 3
-        }
-
-        Label {
-            text: i18n("Icon size") + ":"
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-
-
-        }
-        Item {
-            SpinBox {
-                id: widgetIconSize
-                Layout.alignment: Qt.AlignVCenter
                 anchors.verticalCenter: parent.verticalCenter
+            }
+        }
+
+        PlasmaComponents.CheckBox {
+            id: textVisible
+            
+            Kirigami.FormData.label: i18n("Text visible") + ":"
+        }
+
+        PlasmaComponents.CheckBox {
+            id: textDropShadow
+
+            Kirigami.FormData.label: i18n("Text drop shadow") + ":"
+        }
+
+        ColumnLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            Kirigami.FormData.label: i18n("Icon size mode:")
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+            PlasmaComponents.RadioButton {
+                id: iconSizeModeFit
+                ButtonGroup.group: iconSizeModeGroup
+                text: i18n("Automatic fit")
+                onCheckedChanged: if (checked) cfg_iconSizeMode = 0;
+            }
+
+            PlasmaComponents.RadioButton {
+                id: iconSizeModeFixed
+                ButtonGroup.group: iconSizeModeGroup
+                text: i18n("Exact size")
+                onCheckedChanged: if (checked) cfg_iconSizeMode = 1;
+            }
+        }
+
+        Row {
+            Kirigami.FormData.label: i18n("Icon size") + ":"
+
+            PlasmaComponents.SpinBox {
+                id: widgetIconSize
                 stepSize: 1
                 from: 4
                 value: cfg_widgetIconSize
@@ -271,76 +240,36 @@ KCM.SimpleKCM {
                     cfg_widgetIconSize = widgetIconSize.value
                 }
             }
-            Label {
-                anchors.verticalCenter: parent.verticalCenter
-                anchors.left:widgetIconSize.right
-                anchors.leftMargin: 4
+            PlasmaComponents.Label {
                 text: i18nc("pixels", "px")
+                anchors.verticalCenter: parent.verticalCenter
             }
         }
 
-        Item {
-            width: 2
-            height: 5
-            Layout.columnSpan: 3
+        PlasmaComponents.CheckBox {
+            id: iconVisible
+
+            Kirigami.FormData.label: i18n("Icon visible") + ":"
         }
-
-        // Item {
-            CheckBox {
-                id: iconVisible
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            }
-
-            Label {
-                text: i18n("Icon visible")
-                Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                // anchors.left: iconVisible.right
-                // anchors.leftMargin: 4
-            }
-        // }
-
-        Item {
-            width: 2
-            height: 2
-            Layout.columnSpan: 3
-        }
-
-        CheckBox {
+        PlasmaComponents.CheckBox {
             id: iconDropShadow
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
+
+            Kirigami.FormData.label: i18n("Icon drop shadow") + ":"
         }
 
-        Label {
-            text: i18n("Icon drop shadow")
-            Layout.alignment: Qt.AlignLeft
-        }
+        Row {
+            Kirigami.FormData.label: i18n("System tray active timeout") + ":"
 
-        Item {
-            width: 2
-            height: 15
-            Layout.columnSpan: 3
-        }
-
-        Label {
-            id: timeoutLabel
-            text: i18n("System tray timeout") + ":" // Active tray timeout
-            Layout.alignment: Qt.AlignVCenter | Qt.AlignRight
-            height: inTrayActiveTimeoutSec.height
-        }
-        Item {
-            SpinBox {
+            PlasmaComponents.SpinBox {
                 id: inTrayActiveTimeoutSec
-                Layout.alignment: Qt.AlignVCenter
                 stepSize: 10
                 from: 10
                 to: 8000
                 anchors.verticalCenter: parent.verticalCenter
             }
-            Label {
+            PlasmaComponents.Label {
                 text: i18nc("Abbreviation for seconds", "sec")
                 anchors.verticalCenter: parent.verticalCenter
-                anchors.left:inTrayActiveTimeoutSec.right
-                anchors.leftMargin: 4
             }
         }
     }
