@@ -26,6 +26,10 @@ import "../code/pws-api.js" as StationAPI
 PlasmoidItem {
     id: root
 
+    FontLoader {
+        source: "../fonts/weathericons-regular-webfont-2.0.11.ttf"
+    }
+
     property var weatherData: ({
             "stationID": "",
             "neighborhood": "",
@@ -107,6 +111,12 @@ PlasmoidItem {
     property int presUnitsChoice: plasmoid.configuration.presUnitsChoice
     property bool useLegacyAPI: plasmoid.configuration.useLegacyAPI
 
+    property int layoutType: plasmoid.configuration.layoutType
+    property int widgetOrder: plasmoid.configuration.widgetOrder
+    property int desktopMode: plasmoid.configuration.desktopMode
+    property int iconSizeMode: plasmoid.configuration.iconSizeMode
+    property int textSizeMode: plasmoid.configuration.textSizeMode
+
     property bool inTray: false
     // Metric units change based on precipitation type
     property bool isRain: true
@@ -186,11 +196,11 @@ PlasmoidItem {
         Layout.preferredWidth: 600
         Layout.preferredHeight: 380
     }
+    property Component cr: CompactRepresentation {}
+    property Component crInTray: CompactRepresentationInTray {}
 
-    property Component cr:
-    // Layout.preferredWidth: 16
-    // Layout.preferredHeight: 16
-    CompactRepresentation {}
+    property bool vertical: (plasmoid.formFactor === PlasmaCore.Types.Vertical)
+    property bool onDesktop: (plasmoid.location === PlasmaCore.Types.Desktop || plasmoid.location === PlasmaCore.Types.Floating)
 
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
@@ -532,7 +542,7 @@ PlasmoidItem {
         // Plasma::Types::FormFactor::Horizonal = 2
         inTray = plasmoid.containment.containmentType == 129 && plasmoid.formFactor == 2;
         plasmoid.configurationRequiredReason = i18n("Set the weather station to pull data from.");
-        plasmoid.backgroundHints = PlasmaCore.Types.ConfigurableBackground;
+        plasmoid.backgroundHints = PlasmaCore.Types.DefaultBackground | PlasmaCore.Types.ConfigurableBackground;
 
         if (plasmoid.configuration.refreshPeriod < 300) {
             plasmoid.configuration.refreshPeriod = 300;
@@ -589,7 +599,6 @@ PlasmoidItem {
         }
     ]
 
-    // preferredRepresentation: compactRepresentation
     fullRepresentation: fr
-    compactRepresentation: cr
+    compactRepresentation: inTray ? crInTray : cr
 }
