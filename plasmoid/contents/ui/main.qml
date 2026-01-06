@@ -27,7 +27,7 @@ PlasmoidItem {
     id: root
 
     FontLoader {
-        source: "../fonts/weathericons-regular-webfont-2.0.11.ttf"
+        source: "../fonts/weather-icons.ttf"
     }
 
     property var weatherData: ({
@@ -87,7 +87,7 @@ PlasmoidItem {
     property ListModel alertsModel: ListModel {}
     property int currDayHigh: 0
     property int currDayLow: 0
-    property string iconCode: "32" // 32 = sunny
+    property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 
     property string errorStr: ""

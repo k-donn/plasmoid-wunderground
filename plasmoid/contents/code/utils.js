@@ -137,6 +137,57 @@ var iconThemeMapPredefined = {
 	47: "weather-storm-night",
 };
 
+var iconMap = {
+	0: "\uF101",
+	1: "\uF102",
+	2: "\uF103",
+	3: "\uF104",
+	4: "\uF105",
+	5: "\uF106",
+	6: "\uF107",
+	7: "\uF108",
+	8: "\uF109",
+	9: "\uF10A",
+	10: "\uF10B",
+	11: "\uF10C",
+	12: "\uF10D",
+	13: "\uF10E",
+	14: "\uF10F",
+	15: "\uF110",
+	16: "\uF111",
+	17: "\uF112",
+	18: "\uF113",
+	19: "\uF114",
+	20: "\uF115",
+	21: "\uF116",
+	22: "\uF117",
+	23: "\uF118",
+	24: "\uF119",
+	25: "\uF11A",
+	26: "\uF11B",
+	27: "\uF11C",
+	28: "\uF11D",
+	29: "\uF11E",
+	30: "\uF11F",
+	31: "\uF120",
+	32: "\uF121",
+	33: "\uF122",
+	34: "\uF123",
+	35: "\uF124",
+	36: "\uF125",
+	37: "\uF126",
+	38: "\uF127",
+	39: "\uF128",
+	40: "\uF129",
+	41: "\uF12A",
+	42: "\uF12B",
+	43: "\uF12C",
+	44: "\uF12D",
+	45: "\uF12E",
+	46: "\uF12F",
+	47: "\uF130",
+};
+
 /** Map from Wunderground provided icon codes to opendesktop icon theme descs */
 var iconThemeMapSymbolic = {
 	0: "weather-storm-symbolic",
@@ -707,6 +758,10 @@ function getChartIcon(code) {
 
 function getIcon(code) {
 	return Qt.resolvedUrl("../icons/" + code + ".svg");
+}
+
+function getIconFontStr(wundergroundCode) {
+	return iconMap[wundergroundCode];
 }
 
 /**

@@ -48,7 +48,7 @@ GridLayout {
     property bool textDropShadow: plasmoid.configuration.textDropShadow
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
-    property string iconCode: root.iconCode.length > 0 ? root.iconCode : "\uf00a"
+    property string iconNameStr: Utils.getIconFontStr(root.iconCode)
     property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
 
     uniformCellHeights: layoutType === 1 && iconAndText.vertical
@@ -103,7 +103,7 @@ GridLayout {
             visible: plasmoid.configuration.iconVisible
             font {
                 weight: Font.Normal
-                family: 'weathericons'
+                family: "weather-icons"
                 pixelSize: widgetIconSize
                 pointSize: 0 // we need to unset pointSize otherwise it breaks the Text.Fit size mode
             }
@@ -112,7 +112,7 @@ GridLayout {
             wrapMode: Text.NoWrap
             verticalAlignment: iconAndText.vertical && layoutType === 1 ? Text.AlignTop : layoutType === 2 ? Text.AlignTop : Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            text: "\uf00a"
+            text: iconNameStr
             anchors.fill: parent
         }
 
