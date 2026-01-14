@@ -74,7 +74,7 @@ Component {
             isMask: plasmoid.configuration.applyColorScheme ? true : false
             color: Kirigami.Theme.textColor
 
-            source: Utils.getChartIcon(availableReadings[index])
+            source: Utils.getIconFontStr(availableReadings[index])
         }
     }
 }

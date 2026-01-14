@@ -54,7 +54,7 @@ RowLayout {
                 color: Kirigami.Theme.textColor
 
                 height: Kirigami.Units.iconSizes.small
-                source: Utils.getIcon("pin")
+                source: Utils.getIconFontStr"pin")
             }
 
             PlasmaComponents.Label {
@@ -101,7 +101,7 @@ RowLayout {
                 color: Kirigami.Theme.textColor
 
                 height: Kirigami.Units.iconSizes.small
-                source: Utils.getIcon("weather-station-2")
+                source: Utils.getIconFontStr"weather-station-2")
             }
 
             PlasmaComponents.Label {

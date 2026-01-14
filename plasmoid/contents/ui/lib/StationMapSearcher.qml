@@ -465,7 +465,7 @@ Window {
                 anchorPoint.y: searchIconImage.height / 2
                 sourceItem: Image {
                     id: searchIconImage
-                    source: Utils.getIcon("compass")
+                    source: Utils.getIconFontStr"compass")
                     width: 24
                     height: 24
                 }
@@ -510,7 +510,7 @@ Window {
                     sourceItem: Column {
                         Kirigami.Icon {
                             id: iconImage
-                            source: Utils.getIcon("weather-station-2")
+                            source: Utils.getIconFontStr"weather-station-2")
                             width: 32
                             height: 32
                             isMask: true

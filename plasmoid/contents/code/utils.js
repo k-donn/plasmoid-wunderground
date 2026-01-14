@@ -735,31 +735,11 @@ function getWindBarbIcon(windSpeed) {
 }
 
 /**
- * Return the icon representing a weather condition.
+ * Return the icon representing a weather condition or info element.
  *
- * @param {number} code Wunderground provided icon code
- * @returns {string} Either an opendesktop icon name or path to custom icon
+ * @param {number} wundergroundCode Wunderground provided icon code
+ * @returns {string} Unicode escape sequence for the icon
  */
-function getConditionIcon(code) {
-	if (plasmoid.configuration.useSystemThemeIcons) {
-		if (plasmoid.configuration.applyColorScheme) {
-			return iconThemeMapSymbolic[code];
-		} else {
-			return iconThemeMapPredefined[code];
-		}
-	} else {
-		return Qt.resolvedUrl("../icons/" + code + ".svg");
-	}
-}
-
-function getChartIcon(code) {
-	return Qt.resolvedUrl("../icons/" + chartIconMap[code] + ".svg");
-}
-
-function getIcon(code) {
-	return Qt.resolvedUrl("../icons/" + code + ".svg");
-}
-
 function getIconFontStr(wundergroundCode) {
 	return iconMap[wundergroundCode];
 }

@@ -38,7 +38,7 @@ RowLayout {
         Kirigami.Icon {
             id: topPanelIcon
 
-            source: Utils.getConditionIcon(iconCode)
+            source: Utils.getIconFontStr(iconCode)
 
             isMask: plasmoid.configuration.applyColorScheme ? true : false
             color: Kirigami.Theme.textColor

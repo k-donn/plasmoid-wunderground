@@ -211,7 +211,7 @@ ColumnLayout {
 
                     isMask: plasmoid.configuration.applyColorScheme ? true : false
                     color: Kirigami.Theme.textColor
-                    source: Utils.getConditionIcon(weatherElement.iconCode)
+                    source: Utils.getIconFontStr(weatherElement.iconCode)
                     width: Kirigami.Units.iconSizes.smallMedium
                     height: Kirigami.Units.iconSizes.smallMedium
                 }
