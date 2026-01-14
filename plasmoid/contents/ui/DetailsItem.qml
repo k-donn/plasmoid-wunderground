@@ -41,21 +41,30 @@ GridLayout {
         // Use theme color if user doesn't want temp colored
         color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"], Kirigami.Theme.backgroundColor) : Kirigami.Theme.textColor
     }
-    Kirigami.Icon {
-        id: topPanelIcon
+    Item {
+        id: windIconContainer
+        Layout.fillWidth: true
+        Layout.fillHeight: true
 
-        source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
+        PlasmaComponents.Label {
+            id: topPanelIcon
 
-        isMask: plasmoid.configuration.applyColorScheme ? true : false
-        color: Kirigami.Theme.textColor
+            text: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
 
-        // wind barb icons are 270 degrees deviated from 0 degrees (north)
-        rotation: weatherData["winddir"] - 270
+            color: Kirigami.Theme.textColor
+            font.family: "weather-icons"
+            font.pixelSize: windIconContainer.height * 0.5
 
-        Layout.minimumWidth: Kirigami.Units.iconSizes.large
-        Layout.minimumHeight: Kirigami.Units.iconSizes.large
-        Layout.preferredWidth: Layout.minimumWidth
-        Layout.preferredHeight: Layout.minimumHeight
+            rotation: weatherData["winddir"]
+            
+            width: windIconContainer.width
+            height: windIconContainer.height
+            minimumPixelSize: Kirigami.Units.gridUnit
+            fontSizeMode: Text.VerticalFit
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            wrapMode: Text.NoWrap
+        }
     }
 
     PlasmaComponents.Label {

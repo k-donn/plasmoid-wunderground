@@ -35,16 +35,15 @@ RowLayout {
         Layout.fillWidth: true
         Layout.preferredWidth: 1
 
-        Kirigami.Icon {
+        PlasmaComponents.Label {
             id: topPanelIcon
 
-            source: Utils.getIconFontStr(iconCode)
+            text: Utils.getIconFontStr(iconCode)
 
-            isMask: plasmoid.configuration.applyColorScheme ? true : false
             color: Kirigami.Theme.textColor
 
-            implicitHeight: preferredIconSize
-            implicitWidth: implicitHeight
+            font.family: "weather-icons"
+            font.pixelSize: preferredIconSize
         }
     }
 

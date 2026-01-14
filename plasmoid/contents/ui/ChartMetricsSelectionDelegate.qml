@@ -19,6 +19,7 @@
 import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.plasmoid
 import "../code/utils.js" as Utils
 
@@ -26,13 +27,20 @@ Component {
     id: chartMetricsSelectionDelegate
 
     Column {
-        Kirigami.Icon {
+        PlasmaComponents.Label {
             id: iconHolder
 
             Layout.minimumWidth: Kirigami.Units.gridUnit * 1.3
             Layout.minimumHeight: Kirigami.Units.gridUnit * 1.3
             width: Layout.minimumWidth
             height: Layout.minimumHeight
+
+            font.family: "weather-icons"
+            font.pixelSize: Layout.minimumHeight
+            text: Utils.getIconFontStr(availableReadings[index])
+            color: Kirigami.Theme.textColor
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
 
             MouseArea {
                 anchors.fill: parent
@@ -70,11 +78,6 @@ Component {
                     horizontalLines.minor.frequency = majorFreq / 2;
                 }
             }
-
-            isMask: plasmoid.configuration.applyColorScheme ? true : false
-            color: Kirigami.Theme.textColor
-
-            source: Utils.getIconFontStr(availableReadings[index])
         }
     }
 }

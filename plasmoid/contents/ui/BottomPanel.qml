@@ -47,14 +47,14 @@ RowLayout {
         Row {
             id: centerRow
             anchors.centerIn: parent
-            Kirigami.Icon {
+            PlasmaComponents.Label {
                 id: locationIcon
 
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
                 color: Kirigami.Theme.textColor
 
-                height: Kirigami.Units.iconSizes.small
-                source: Utils.getIconFontStr"pin")
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.small
+                text: Utils.getIconFontStr("pin")
             }
 
             PlasmaComponents.Label {
@@ -94,14 +94,15 @@ RowLayout {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
 
-            Kirigami.Icon {
+            PlasmaComponents.Label {
                 id: stationIcon
 
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
                 color: Kirigami.Theme.textColor
 
-                height: Kirigami.Units.iconSizes.small
-                source: Utils.getIconFontStr"weather-station-2")
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.small
+
+                text: Utils.getIconFontStr("weatherStation")
             }
 
             PlasmaComponents.Label {
