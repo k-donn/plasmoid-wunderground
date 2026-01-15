@@ -23,6 +23,60 @@
         </entry>
     </group>
     <group name="Appearance">
+        <entry name="showCompactTemp" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="showSystemTrayTemp" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="autoFontAndSize" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="fontFamily" type="String">
+            <default></default>
+        </entry>
+        <entry name="boldText" type="Bool">
+            <default>false</default>
+        </entry>
+        <entry name="italicText" type="Bool">
+            <default>false</default>
+        </entry>
+        <entry name="underlineText" type="Bool">
+            <default>false</default>
+        </entry>
+        <entry name="strikeoutText" type="Bool">
+            <default>false</default>
+        </entry>
+        <entry name="fontWeight" type="Int">
+            <default>50</default>
+        </entry>
+        <entry name="fontStyleName" type="String">
+            <default></default>
+        </entry>
+        <entry name="fontSize" type="Int">
+            <default>10</default>
+        </entry>
+        <entry name="propHeadPointSize" type="Int">
+            <default>13</default>
+        </entry>
+        <entry name="propPointSize" type="Int">
+            <default>10</default>
+        </entry>
+        <entry name="tempPointSize" type="Int">
+            <default>30</default>
+        </entry>
+        <entry name="useSystemThemeIcons" type="Bool">
+            <default>false</default>
+        </entry>
+        <entry name="applyColorScheme" type="Bool">
+            <default>true</default>
+        </entry>
+        <entry name="detailsIconSize" type="Int">
+            <default>48</default>
+        </entry>
+        <entry name="topIconMargins" type="Int">
+            <default>0</default>
+        </entry>
         <entry name="tempAutoColor" type="Bool">
             <default>true</default>
         </entry>
@@ -34,94 +88,6 @@
         </entry>
         <entry name="showPresTrend" type="Bool">
             <default>true</default>
-        </entry>
-        <entry name="iconSizeMode" type="Enum">
-            <choices>
-                <choice name="Fit"/>
-                <choice name="Fixed"/>
-            </choices>
-            <default>0</default>
-        </entry>
-        <entry name="textSizeMode" type="Enum">
-            <choices>
-                <choice name="Fit"/>
-                <choice name="Fixed"/>
-            </choices>
-            <default>0</default>
-        </entry>
-        <entry name="inTrayActiveTimeoutSec" type="Int">
-            <default>3600</default>
-        </entry>
-        <entry name="widgetFontName" type="String">
-            <default></default>
-        </entry>
-        <entry name="textDropShadow" type="Bool">
-            <default>true</default>
-        </entry>
-        <entry name="widgetFontSize" type="Int">
-            <default>20</default>
-        </entry>
-        <entry name="widgetIconSize" type="Int">
-            <default>32</default>
-        </entry>
-        <entry name="iconDropShadow" type="Bool">
-            <default>false</default>
-        </entry>
-        <entry name="iconVisible" type="Bool">
-            <default>true</default>
-        </entry>
-        <entry name="textVisible" type="Bool">
-            <default>true</default>
-        </entry>
-    </group>
-    <group name="Layout">
-        <entry name="propHeadPointSize" type="Int">
-            <default>13</default>
-        </entry>
-        <entry name="propPointSize" type="Int">
-            <default>10</default>
-        </entry>
-        <entry name="tempPointSize" type="Int">
-            <default>30</default>
-        </entry>
-        <entry name="detailsIconSize" type="Int">
-            <default>48</default>
-        </entry>
-        <entry name="topIconMargins" type="Int">
-            <default>0</default>
-        </entry>
-        <entry name="planarLayoutType" type="Enum">
-            <default>0</default>
-        </entry>
-        <entry name="layoutType" type="Enum">
-            <choices>
-                <choice name="Horizontal"/>
-                <choice name="Vertical"/>
-                <choice name="Compact"/>
-            </choices>
-            <default>0</default>
-        </entry>
-        <entry name="widgetOrder" type="Enum">
-            <choices>
-                <choice name="widgetOrderIconFirst"/>
-                <choice name="widgetOrderTextFirst"/>
-            </choices>
-            <default>0</default>
-        </entry>
-        <entry name="leftOuterMargin" type="Int">
-            <default>0</default>
-        </entry>
-        <entry name="innerMargin" type="Int">
-            <default>0</default>
-        </entry>
-        <entry name="rightOuterMargin" type="Int">
-            <default>0</default>
-        </entry>
-        <entry name="topOuterMargin" type="Int">
-            <default>0</default>
-        </entry>
-        <entry name="bottomOuterMargin" type="Int">
-            <default>0</default>
         </entry>
     </group>
     <group name="Units">

@@ -204,16 +204,19 @@ ColumnLayout {
                     itemCount: 8
                 }
 
-                delegate: Kirigami.Icon {
+                delegate: PlasmaComponents.Label {
                     id: xAxisLabelWeatherDayId
 
                     property var weatherElement: hourlyModel.get(ChartsControls.AxisLabels.label)
 
-                    isMask: plasmoid.configuration.applyColorScheme ? true : false
                     color: Kirigami.Theme.textColor
-                    source: Utils.getConditionIcon(weatherElement.iconCode)
+                    text: Utils.getIconFontStr(weatherElement.iconCode)
+                    font.family: "weather-icons"
+                    font.pixelSize: Kirigami.Units.iconSizes.smallMedium
                     width: Kirigami.Units.iconSizes.smallMedium
                     height: Kirigami.Units.iconSizes.smallMedium
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
                 }
             }
 

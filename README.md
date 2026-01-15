@@ -76,15 +76,11 @@ Follow the file in [plasmoid/translate](./plasmoid/translate) for directions or 
 
 ## Meta
 
-Big thanks to [@bluxart](https://x.com/bluxart) and [@pyconic](https://x.com/pyconic) for Meteocons the free [icons](https://www.alessioatzeni.com/meteocons/).
+The weather icons are a mix of [Alessio Atzeni's](https://demo.alessioatzeni.com/) freely licensed [`meteocons`](https://demo.alessioatzeni.com/meteocons/) and [Erik Flowers'](https://github.com/erikflowers/) SIL OFL 1.1 licensed [`weather-icons`](https://erikflowers.github.io/weather-icons/).
 
-Big thanks to [Zren](https://github.com/Zren) for files from [`applet-lib`](https://github.com/Zren/plasma-applet-lib/) and [`applet-simpleweather`](https://github.com/Zren/plasma-applet-simpleweather/).
+Files and portions of files are from [Zren](https://github.com/zren/), [Martin Kotelnik](https://github.com/kotelnik), @Gojir4 on the QML forum, and an upstream version of this widget [rliwoch's](https://github.com/rliwoch) [`plasmoid-wunderground-extended`](https://github.com/rliwoch/plasmoid-wunderground-extended).
 
-Upstream changes have also been merged back in from rliwoch's [`plasmoid-wunderground-extended`](https://github.com/rliwoch/plasmoid-wunderground-extended).
-
-Portions of [CompactRepresentation](./plasmoid/contents/ui/CompactRepresentation.qml) and [IconAndTextItem](./plasmoid/contents/ui/IconAndTextItem.qml) are from `org.kde.plasma.weather`.
-
-The text coloring utilities are thanks to @Gojir4 on the QML forum.
+Language contributions are from [Clover Git](https://github.com/CloverGit), Martin Eilsøe, [Ivan Todorov](https://github.com/GlobeDotters), [foXaCe](https://github.com/foXaCe), [Pushpal Sidhu](https://github.com/psidhu), [Heimen Stoffels](https://github.com/Vistaus) and [Yuta Takahashi](https://github.com/Walkmana-25).
 
 ### Known Problems
 
@@ -104,13 +100,18 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 - i18n
   -   [ ] Translations for new text
 - Customizability
+  -   [ ] Enum-ify main.xml
+  -   [ ] Let user add labels to locations and show in tooltipText
   -   [ ] Choose what to show in panel and desktop forms
-  -   [ ] Widget size/padding/scaling
+  -   [x] Fix wind barb render error
+  -   [x] Remove bg in system tray temp view
+  -   [x] Remove empty space when downsizing font in compact rep
+  -   [x] Widget size/padding/scaling
 - Backend
-  -   [x] Improve searching and testing error messages
   -   [ ] Better handle null fields
+  -   [x] Improve searching and testing error messages
 - Parking lot
-  -   [x] Search by map feature
   -   [ ] Use Wunderground Plasma Ion.
+  -   [x] Search by map feature
 
 [^1]: Discover sometimes has difficulties getting the most recent version.

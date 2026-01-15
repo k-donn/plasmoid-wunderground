@@ -53,7 +53,7 @@ RowLayout {
 
                 text: shortDesc
             }
-            Kirigami.Icon {
+            PlasmaComponents.Label {
                 id: icon
 
                 Layout.alignment: Qt.AlignCenter
@@ -61,10 +61,13 @@ RowLayout {
                 Layout.preferredHeight: preferredIconSize
                 Layout.preferredWidth: preferredIconSize
 
-                source: Utils.getConditionIcon(iconCode)
+                text: Utils.getIconFontStr(iconCode)
 
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
                 color: Kirigami.Theme.textColor
+                font.family: "weather-icons"
+                font.pixelSize: preferredIconSize
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
 
                 PlasmaCore.ToolTipArea {
                     id: tooltip

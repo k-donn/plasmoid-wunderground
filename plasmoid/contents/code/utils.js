@@ -85,120 +85,74 @@ var hourlyModelDictV3 = {
 	iconCode: "iconCode",
 };
 
-/** Map from Wunderground provided icon codes to opendesktop icon theme descs */
-var iconThemeMapPredefined = {
-	0: "weather-storm",
-	1: "weather-storm",
-	2: "weather-storm",
-	3: "weather-storm",
-	4: "weather-storm",
-	5: "weather-snow-rain",
-	6: "weather-snow-rain",
-	7: "weather-freezing-rain",
-	8: "weather-freezing-rain",
-	9: "weather-showers-scattered",
-	10: "weather-freezing-rain",
-	11: "weather-showers",
-	12: "weather-showers",
-	13: "weather-snow-scattered",
-	14: "weather-snow",
-	15: "weather-snow",
-	16: "weather-snow",
-	17: "weather-hail",
-	18: "weather-snow-scattered",
-	19: "weather-many-clouds-wind",
-	20: "weather-fog",
-	21: "weather-fog",
-	22: "weather-fog",
-	23: "weather-clouds-wind",
-	24: "weather-clouds-wind",
-	25: "weather-snow",
-	26: "weather-many-clouds",
-	27: "weather-many-clouds",
-	28: "weather-clouds",
-	29: "weather-clouds-night",
-	30: "weather-few-clouds",
-	31: "weather-clear-night",
-	32: "weather-clear",
-	33: "weather-few-clouds-night",
-	34: "weather-few-clouds-day",
-	35: "weather-freezing-storm-day",
-	36: "weather-clear",
-	37: "weather-storm-day",
-	38: "weather-storm-day",
-	39: "weather-showers-scattered-day",
-	40: "weather-showers",
-	41: "weather-snow-scattered-day",
-	42: "weather-snow",
-	43: "weather-snow",
-	44: "weather-none-available",
-	45: "weather-showers-scattered-night",
-	46: "weather-snow-storm-night",
-	47: "weather-storm-night",
-};
-
-/** Map from Wunderground provided icon codes to opendesktop icon theme descs */
-var iconThemeMapSymbolic = {
-	0: "weather-storm-symbolic",
-	1: "weather-storm-symbolic",
-	2: "weather-storm-symbolic",
-	3: "weather-storm-symbolic",
-	4: "weather-storm-symbolic",
-	5: "weather-snow-rain-symbolic",
-	6: "weather-snow-rain-symbolic",
-	7: "weather-freezing-rain-symbolic",
-	8: "weather-freezing-rain-symbolic",
-	9: "weather-showers-scattered-symbolic",
-	10: "weather-freezing-rain-symbolic",
-	11: "weather-showers-symbolic",
-	12: "weather-showers-symbolic",
-	13: "weather-snow-scattered-symbolic",
-	14: "weather-snow-symbolic",
-	15: "weather-snow-symbolic",
-	16: "weather-snow-symbolic",
-	17: "weather-hail-symbolic",
-	18: "weather-snow-scattered-symbolic",
-	19: "weather-many-clouds-wind-symbolic",
-	20: "weather-fog-symbolic",
-	21: "weather-fog-symbolic",
-	22: "weather-fog-symbolic",
-	23: "weather-clouds-wind-symbolic",
-	24: "weather-clouds-wind-symbolic",
-	25: "weather-snow-symbolic",
-	26: "weather-many-clouds-symbolic",
-	27: "weather-many-clouds-symbolic",
-	28: "weather-clouds-symbolic",
-	29: "weather-clouds-night-symbolic",
-	30: "weather-few-clouds-symbolic",
-	31: "weather-clear-night-symbolic",
-	32: "weather-clear-symbolic",
-	33: "weather-few-clouds-night-symbolic",
-	34: "weather-few-clouds-day-symbolic",
-	35: "weather-freezing-storm-day-symbolic",
-	36: "weather-clear-symbolic",
-	37: "weather-storm-day-symbolic",
-	38: "weather-storm-day-symbolic",
-	39: "weather-showers-scattered-day-symbolic",
-	40: "weather-showers-symbolic",
-	41: "weather-snow-scattered-day-symbolic",
-	42: "weather-snow-symbolic",
-	43: "weather-snow-symbolic",
-	44: "weather-none-available-symbolic",
-	45: "weather-showers-scattered-night-symbolic",
-	46: "weather-snow-storm-night-symbolic",
-	47: "weather-storm-night-symbolic",
-};
-
-var chartIconMap = {
-	temperature: "thermometer",
-	uvIndex: "wi-horizon-alt",
-	pressure: "wi-barometer",
-	cloudCover: 28,
-	humidity: "wi-humidity",
-	precipitationChance: "wi-umbrella",
-	precipitationRate: 11,
-	snowPrecipitationRate: 42,
-	wind: 23,
+var iconMap = {
+	0: "\uF057",
+	1: "\uF056",
+	2: "\uF055",
+	3: "\uF054",
+	4: "\uF053",
+	5: "\uF052",
+	6: "\uF051",
+	7: "\uF050",
+	8: "\uF04F",
+	9: "\uF04E",
+	10: "\uF04D",
+	11: "\uF04C",
+	12: "\uF04B",
+	13: "\uF04A",
+	14: "\uF049",
+	15: "\uF048",
+	16: "\uF047",
+	17: "\uF046",
+	18: "\uF045",
+	19: "\uF044",
+	20: "\uF043",
+	21: "\uF042",
+	22: "\uF041",
+	23: "\uF040",
+	24: "\uF03F",
+	25: "\uF03E",
+	26: "\uF03D",
+	27: "\uF03C",
+	28: "\uF03B",
+	29: "\uF03A",
+	30: "\uF039",
+	31: "\uF038",
+	32: "\uF037",
+	33: "\uF036",
+	34: "\uF035",
+	35: "\uF034",
+	36: "\uF033",
+	37: "\uF032",
+	38: "\uF031",
+	39: "\uF030",
+	40: "\uF02F",
+	41: "\uF02E",
+	42: "\uF02D",
+	43: "\uF02C",
+	44: "\uF02B",
+	45: "\uF02A",
+	46: "\uF029",
+	47: "\uF028",
+	temperature: "\uF00C",
+	uvIndex: "\uF009",
+	pressure: "\uF00A",
+	cloudCover: "\uF03B",
+	humidity: "\uF008",
+	precipitationChance: "\uF007",
+	precipitationRate: "\uF04C",
+	snowPrecipitationRate: "\uF02D",
+	wind: "\uF040",
+	weatherStation: "\uF00B",
+	compass: "\uF01C",
+	pin: "\uF014",
+	"0-2": "\uF006",
+	"3-7": "\uF005",
+	"8-12": "\uF004",
+	"13-17": "\uF003",
+	"18-22": "\uF002",
+	"23-27": "\uF001",
+	"28-32": "\uF000",
 };
 
 var severityColorMap = {
@@ -684,29 +638,13 @@ function getWindBarbIcon(windSpeed) {
 }
 
 /**
- * Return the icon representing a weather condition.
+ * Return the icon representing a weather condition or info element.
  *
- * @param {number} code Wunderground provided icon code
- * @returns {string} Either an opendesktop icon name or path to custom icon
+ * @param {number} codeID Identifier code for the icon
+ * @returns {string} Unicode escape sequence for the icon
  */
-function getConditionIcon(code) {
-	if (plasmoid.configuration.useSystemThemeIcons) {
-		if (plasmoid.configuration.applyColorScheme) {
-			return iconThemeMapSymbolic[code];
-		} else {
-			return iconThemeMapPredefined[code];
-		}
-	} else {
-		return Qt.resolvedUrl("../icons/" + code + ".svg");
-	}
-}
-
-function getChartIcon(code) {
-	return Qt.resolvedUrl("../icons/" + chartIconMap[code] + ".svg");
-}
-
-function getIcon(code) {
-	return Qt.resolvedUrl("../icons/" + code + ".svg");
+function getIconFontStr(codeID) {
+	return iconMap[codeID];
 }
 
 /**

@@ -28,6 +28,11 @@ ConfigModel {
         source: "config/ConfigAppearance.qml"
     }
     ConfigCategory {
+        name: i18n("Layout")
+        icon: "view-grid"
+        source: "config/ConfigLayout.qml"
+    }
+    ConfigCategory {
         name: i18n("Units")
         icon: "configure"
         source: "config/ConfigUnits.qml"

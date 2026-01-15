@@ -47,37 +47,38 @@ RowLayout {
         Row {
             id: centerRow
             anchors.centerIn: parent
-            Kirigami.Icon {
+            PlasmaComponents.Label {
                 id: locationIcon
 
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
                 color: Kirigami.Theme.textColor
 
-                height: Kirigami.Units.iconSizes.small
-                source: Utils.getIcon("pin")
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.small
+                text: Utils.getIconFontStr("pin") + " "
             }
 
             PlasmaComponents.Label {
                 id: locationLabel
 
                 text: weatherData["neighborhood"]
-            }
-
-            Kirigami.Icon {
-                id: stationToolBtn
-
-                opacity: 0.25
-
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
-                color: Kirigami.Theme.textColor
-
-                height: Kirigami.Units.iconSizes.small
-                source: "draw-arrow-forward"
 
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
 
-                    onClicked: Qt.openUrlExternally("https://www.wunderground.com/dashboard/pws/" + weatherData["stationID"])
+                    hoverEnabled: true
+
+                    onClicked: {
+                        Qt.openUrlExternally("https://www.wunderground.com/dashboard/pws/" + weatherData["stationID"]);
+                    }
+
+                    onEntered: {
+                        locationLabel.font.underline = true;
+                    }
+
+                    onExited: {
+                        locationLabel.font.underline = false;
+                    }
                 }
             }
         }
@@ -94,14 +95,15 @@ RowLayout {
             anchors.verticalCenter: parent.verticalCenter
             anchors.right: parent.right
 
-            Kirigami.Icon {
+            PlasmaComponents.Label {
                 id: stationIcon
 
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
                 color: Kirigami.Theme.textColor
 
-                height: Kirigami.Units.iconSizes.small
-                source: Utils.getIcon("weather-station-2")
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.small
+
+                text: Utils.getIconFontStr("weatherStation") + " "
             }
 
             PlasmaComponents.Label {
