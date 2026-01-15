@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-12-22 19:50-0600\n"
+"POT-Creation-Date: 2026-01-14 20:14-0600\n"
 "PO-Revision-Date: 2025-02-08 14:02+0100\n"
 "Last-Translator: Ivan Todorov <ivan@globedotters.com>\n"
 "Language-Team: Serbian (Latin) <YOUR_EMAIL>\n"
@@ -36,6 +36,10 @@ msgstr "Stanica"
 #: ../contents/config/config.qml
 msgid "Appearance"
 msgstr "Izgled"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
@@ -109,6 +113,18 @@ msgstr "Postoje meteorološka upozorenja za Vaš rejon!"
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12h"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind Barb"
+msgstr ""
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind direction and speed indicator"
+msgstr ""
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Learn more"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
 msgid "Wind & Gust"
@@ -190,96 +206,17 @@ msgid "Loading..."
 msgstr "Učitavam..."
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Compact Representation"
-msgstr "Kompaktna Reprezentacija"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Show temperature:"
-msgstr "Prikaži temperaturu:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Text display:"
-msgstr "Prikaz teksta:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Automatic"
-msgstr "Automatski"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Text will follow the system font and expand to fill the available space."
-msgstr "Tekst će pratiti systemske fontove i proširiti se da popuni dostupan prostor."
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Manual"
-msgstr "Ručno"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Choose Style…"
-msgstr "Izaberite Stil"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Choose a Font"
-msgstr "Izaberite Font"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "System Tray Representation"
+msgctxt "Use default font"
+msgid "Default"
 msgstr ""
 
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
+msgid "General"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
 msgstr "Puna Reprezentacija"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Property header text size"
-msgstr "Veličina teksta zaglavlja svojstva"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Property text size"
-msgstr "Veličina teksta svojstva"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Temperature text size"
-msgstr "Veličina teksta za prikaz temperature"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "small (16x16)"
-msgstr "mali (16x16)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "smallMedium (22x22)"
-msgstr "maliSrednji (22x22)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "medium (32x32)"
-msgstr "srednji (32x32)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "large (48x48)"
-msgstr "veliki (48x48)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "huge (64x64)"
-msgstr "jako veliki (64x64)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "enormous (128x128)"
-msgstr "ogroman (128x128)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Details icon size:"
-msgstr "Veličina ikonice za detalje:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Top panel icon margins:"
-msgstr "Margine ikona panela na vrhu:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Use system theme icons:"
-msgstr "Koristi ikone iz sistemske teme:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Apply system colors to icons:"
-msgstr "Primeni sistemske boje na ikonice:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
@@ -297,6 +234,68 @@ msgstr "Podrazumevana prikazana stranica:"
 msgid "Show pressure trend:"
 msgstr "Prikaži trendove pritiska:"
 
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
+msgid "Compact Representation"
+msgstr "Kompaktna Reprezentacija"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose a Font:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text size mode:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Automatic fit"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Exact size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
+msgctxt "pixels"
+msgid "px"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text visible"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text drop shadow"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size mode:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon visible"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon drop shadow"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "System tray active timeout"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Abbreviation for seconds"
+msgid "sec"
+msgstr ""
+
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
 msgstr "Upiši u console.log:"
@@ -307,6 +306,114 @@ msgstr "Koristi Stari API za Prognozu"
 
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Startup time delay (ms):"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Planar layout"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Used on the desktop or in a desktop grouper"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property header text size"
+msgstr "Veličina teksta zaglavlja svojstva"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property text size"
+msgstr "Veličina teksta svojstva"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Temperature text size"
+msgstr "Veličina teksta za prikaz temperature"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "small (16x16)"
+msgstr "mali (16x16)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "smallMedium (22x22)"
+msgstr "maliSrednji (22x22)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "medium (32x32)"
+msgstr "srednji (32x32)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "large (48x48)"
+msgstr "veliki (48x48)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "huge (64x64)"
+msgstr "jako veliki (64x64)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "enormous (128x128)"
+msgstr "ogroman (128x128)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Details icon size:"
+msgstr "Veličina ikonice za detalje:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Top panel icon margins:"
+msgstr "Margine ikona panela na vrhu:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Layout type"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Horizontal"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Vertical"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Compressed"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Layout type is not available in the system tray"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Widget order"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Icon first"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Text first"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Widget order is not available in the system tray"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Top Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Bottom Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Left Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Right Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Inner Margin"
 msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
@@ -610,6 +717,33 @@ msgstr "<font size='4'>Brzina vetra: %1</font><br />"
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Osveži vremenske podatke"
+
+#~ msgid "Show temperature:"
+#~ msgstr "Prikaži temperaturu:"
+
+#~ msgid "Text display:"
+#~ msgstr "Prikaz teksta:"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatski"
+
+#~ msgid "Text will follow the system font and expand to fill the available space."
+#~ msgstr "Tekst će pratiti systemske fontove i proširiti se da popuni dostupan prostor."
+
+#~ msgid "Manual"
+#~ msgstr "Ručno"
+
+#~ msgid "Choose Style…"
+#~ msgstr "Izaberite Stil"
+
+#~ msgid "Choose a Font"
+#~ msgstr "Izaberite Font"
+
+#~ msgid "Use system theme icons:"
+#~ msgstr "Koristi ikone iz sistemske teme:"
+
+#~ msgid "Apply system colors to icons:"
+#~ msgstr "Primeni sistemske boje na ikonice:"
 
 #~ msgid "Loading data..."
 #~ msgstr "Učitavam podatke..."

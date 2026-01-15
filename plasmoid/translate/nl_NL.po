@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2025-12-22 19:50-0600\n"
+"POT-Creation-Date: 2026-01-14 20:14-0600\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -37,6 +37,10 @@ msgstr "Station"
 #: ../contents/config/config.qml
 msgid "Appearance"
 msgstr "Verschijning"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr ""
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
@@ -110,6 +114,18 @@ msgstr "Er zijn weeralarmen voor uw regio!"
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12 uur"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind Barb"
+msgstr ""
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind direction and speed indicator"
+msgstr ""
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Learn more"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
 #: ../contents/ui/main.qml
@@ -197,99 +213,19 @@ msgid "Loading..."
 msgstr "Bezig met laden…"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Compact Representation"
-msgstr "Compacte indeling gebruiken"
+msgctxt "Use default font"
+msgid "Default"
+msgstr "Standaard"
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Show temperature:"
-msgstr "Temperatuur weergeven:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Text display:"
-msgstr "Tekstweergave:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Automatic"
-msgstr "Automatisch"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid ""
-"Text will follow the system font and expand to fill the available space."
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "General"
 msgstr ""
-"De tekst volgt het systeemlettertype en wordt groter totdat de beschikbare "
-"ruimte is opgevuld."
 
 #: ../contents/ui/config/ConfigAppearance.qml
-msgid "Manual"
-msgstr "Handmatig"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Choose Style…"
-msgstr "Kies stijl…"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Choose a Font"
-msgstr "Kies een lettertype"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "System Tray Representation"
-msgstr "Systeemvakweergave"
-
-#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
 msgstr "Uitgebreide indeling gebruiken"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Property header text size"
-msgstr "Tekstgrootte van koppen"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Property text size"
-msgstr "Tekstgrootte van items"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Temperature text size"
-msgstr "Tekstgrootte van temperatuur"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "small (16x16)"
-msgstr "klein (16x16)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "smallMedium (22x22)"
-msgstr "kleinMedium (22x22)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "medium (32x32)"
-msgstr "middelgroot (32x32)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "large (48x48)"
-msgstr "groot (48x48)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "huge (64x64)"
-msgstr "enorm (64x64)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "enormous (128x128)"
-msgstr "enorm (128x128)"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Details icon size:"
-msgstr "Grootte van het detailspictogram:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Top panel icon margins:"
-msgstr "Marges van het bovenste paneelpictogram:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Use system theme icons:"
-msgstr "Gebruik systeemthema-pictogrammen:"
-
-#: ../contents/ui/config/ConfigAppearance.qml
-msgid "Apply system colors to icons:"
-msgstr "Systeemkleuren toepassen op pictogrammen:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
@@ -307,6 +243,70 @@ msgstr "Standaardpagina weergegeven:"
 msgid "Show pressure trend:"
 msgstr "Toon druktrend:"
 
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Compact Representation"
+msgstr "Compacte indeling gebruiken"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose a Font:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text size mode:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Automatic fit"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Exact size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgctxt "pixels"
+msgid "px"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text visible"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text drop shadow"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size mode:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon visible"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon drop shadow"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "System tray active timeout"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Abbreviation for seconds"
+msgid "sec"
+msgstr ""
+
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Write to console.log:"
 msgstr "Wegschrijven naar console.log:"
@@ -318,6 +318,114 @@ msgstr "Gebruik Legacy Forecast API:"
 #: ../contents/ui/config/ConfigDebug.qml
 msgid "Startup time delay (ms):"
 msgstr "Opstartvertraging (ms):"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Planar layout"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Used on the desktop or in a desktop grouper"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property header text size"
+msgstr "Tekstgrootte van koppen"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property text size"
+msgstr "Tekstgrootte van items"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Temperature text size"
+msgstr "Tekstgrootte van temperatuur"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "small (16x16)"
+msgstr "klein (16x16)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "smallMedium (22x22)"
+msgstr "kleinMedium (22x22)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "medium (32x32)"
+msgstr "middelgroot (32x32)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "large (48x48)"
+msgstr "groot (48x48)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "huge (64x64)"
+msgstr "enorm (64x64)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "enormous (128x128)"
+msgstr "enorm (128x128)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Details icon size:"
+msgstr "Grootte van het detailspictogram:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Top panel icon margins:"
+msgstr "Marges van het bovenste paneelpictogram:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Layout type"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Horizontal"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Vertical"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Compressed"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Layout type is not available in the system tray"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Widget order"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Icon first"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Text first"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Widget order is not available in the system tray"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Top Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Bottom Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Left Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Right Margin"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Inner Margin"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Saved Weather Stations"
@@ -640,6 +748,39 @@ msgstr "<font size='4'>Windsnelh.: %1</font><br />"
 msgid "Refresh weather"
 msgstr "Vernieuw het weer"
 
+#~ msgid "Show temperature:"
+#~ msgstr "Temperatuur weergeven:"
+
+#~ msgid "Text display:"
+#~ msgstr "Tekstweergave:"
+
+#~ msgid "Automatic"
+#~ msgstr "Automatisch"
+
+#~ msgid ""
+#~ "Text will follow the system font and expand to fill the available space."
+#~ msgstr ""
+#~ "De tekst volgt het systeemlettertype en wordt groter totdat de "
+#~ "beschikbare ruimte is opgevuld."
+
+#~ msgid "Manual"
+#~ msgstr "Handmatig"
+
+#~ msgid "Choose Style…"
+#~ msgstr "Kies stijl…"
+
+#~ msgid "Choose a Font"
+#~ msgstr "Kies een lettertype"
+
+#~ msgid "System Tray Representation"
+#~ msgstr "Systeemvakweergave"
+
+#~ msgid "Use system theme icons:"
+#~ msgstr "Gebruik systeemthema-pictogrammen:"
+
+#~ msgid "Apply system colors to icons:"
+#~ msgstr "Systeemkleuren toepassen op pictogrammen:"
+
 #~ msgid "Loading data..."
 #~ msgstr "Bezig met laden…"
 
@@ -690,10 +831,6 @@ msgstr "Vernieuw het weer"
 
 #~ msgid "Font styles"
 #~ msgstr "Lettertypestijlen"
-
-#~ msgctxt "Use default font"
-#~ msgid "Default"
-#~ msgstr "Standaard"
 
 #~ msgid "Get Nearest Station"
 #~ msgstr "Dichtstbijzijnde station gebruiken"
