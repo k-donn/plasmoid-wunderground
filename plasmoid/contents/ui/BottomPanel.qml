@@ -54,30 +54,31 @@ RowLayout {
 
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
-                text: Utils.getIconFontStr("pin")
+                text: Utils.getIconFontStr("pin") + " "
             }
 
             PlasmaComponents.Label {
                 id: locationLabel
 
                 text: weatherData["neighborhood"]
-            }
-
-            Kirigami.Icon {
-                id: stationToolBtn
-
-                opacity: 0.25
-
-                isMask: plasmoid.configuration.applyColorScheme ? true : false
-                color: Kirigami.Theme.textColor
-
-                height: Kirigami.Units.iconSizes.small
-                source: "draw-arrow-forward"
 
                 MouseArea {
                     anchors.fill: parent
+                    cursorShape: Qt.PointingHandCursor
 
-                    onClicked: Qt.openUrlExternally("https://www.wunderground.com/dashboard/pws/" + weatherData["stationID"])
+                    hoverEnabled: true
+
+                    onClicked: {
+                        Qt.openUrlExternally("https://www.wunderground.com/dashboard/pws/" + weatherData["stationID"]);
+                    }
+
+                    onEntered: {
+                        locationLabel.font.underline = true;
+                    }
+
+                    onExited: {
+                        locationLabel.font.underline = false;
+                    }
                 }
             }
         }
@@ -102,7 +103,7 @@ RowLayout {
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
 
-                text: Utils.getIconFontStr("weatherStation")
+                text: Utils.getIconFontStr("weatherStation") + " "
             }
 
             PlasmaComponents.Label {

@@ -41,29 +41,59 @@ GridLayout {
         // Use theme color if user doesn't want temp colored
         color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"], Kirigami.Theme.backgroundColor) : Kirigami.Theme.textColor
     }
-    Item {
-        id: windIconContainer
-        Layout.fillWidth: true
-        Layout.fillHeight: true
 
-        PlasmaComponents.Label {
-            id: topPanelIcon
+    Kirigami.Icon {
+        id: topPanelIcon
 
-            text: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
+        source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
 
-            color: Kirigami.Theme.textColor
-            font.family: "weather-icons"
-            font.pixelSize: windIconContainer.height * 0.5
+        isMask: true
+        color: Kirigami.Theme.textColor
 
-            rotation: weatherData["winddir"]
-            
-            width: windIconContainer.width
-            height: windIconContainer.height
-            minimumPixelSize: Kirigami.Units.gridUnit
-            fontSizeMode: Text.VerticalFit
-            verticalAlignment: Text.AlignVCenter
-            horizontalAlignment: Text.AlignHCenter
-            wrapMode: Text.NoWrap
+        // wind barb icons are 270 degrees deviated from 0 degrees (north)
+        rotation: weatherData["winddir"] - 270
+
+        Layout.minimumWidth: Kirigami.Units.iconSizes.large
+        Layout.minimumHeight: Kirigami.Units.iconSizes.large
+        Layout.preferredWidth: Layout.minimumWidth
+        Layout.preferredHeight: Layout.minimumHeight
+
+        PlasmaCore.ToolTipArea {
+            anchors.fill: parent
+
+            interactive: true
+            mainText: i18n("Wind Barb")
+            subText: i18n("Wind direction and speed indicator")
+
+            mainItem: PlasmaComponents.Control {
+                implicitWidth: Math.max(implicitBackgroundWidth + leftPadding + rightPadding,
+                            implicitContentWidth + leftPadding + rightPadding)
+                implicitHeight: Math.max(implicitBackgroundHeight + topPadding + bottomPadding,
+                            implicitContentHeight + topPadding + bottomPadding)
+                
+                padding: Kirigami.Units.smallSpacing
+                
+                contentItem: ColumnLayout {
+                    spacing: Kirigami.Units.smallSpacing
+                    
+                    PlasmaComponents.Label {
+                        text: i18n("Wind Barb")
+                        font.bold: true
+                    }
+                    
+                    PlasmaComponents.Label {
+                        text: i18n("Wind direction and speed indicator")
+                        wrapMode: Text.WordWrap
+                        font.pointSize: Kirigami.Theme.smallFont.pointSize
+                    }
+                    
+                    PlasmaComponents.Button {
+                        text: i18n("Learn more")
+                        onClicked: Qt.openUrlExternally("https://en.wikipedia.org/wiki/Station_model#Plotted_winds")
+                        Layout.alignment: Qt.AlignHCenter
+                    }
+                }
+            }
         }
     }
 

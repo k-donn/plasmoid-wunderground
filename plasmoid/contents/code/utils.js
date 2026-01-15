@@ -145,6 +145,7 @@ var iconMap = {
 	wind: "\uF040",
 	weatherStation: "\uF00B",
 	compass: "\uF01C",
+	pin: "\uF014",
 	"0-2": "\uF006",
 	"3-7": "\uF005",
 	"8-12": "\uF004",
@@ -633,7 +634,7 @@ function getWindBarbIcon(windSpeed) {
 		fileName = "28-32";
 	}
 
-	return iconMap[fileName];
+	return Qt.resolvedUrl("../icons/wind-barbs/" + fileName + ".svg");
 }
 
 /**

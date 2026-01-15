@@ -107,7 +107,7 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [ ] Enum-ify main.xml
   -   [ ] Let user add labels to locations and show in tooltipText
   -   [ ] Choose what to show in panel and desktop forms
-  -   [ ] Fix icon padding for station marker and wind barb render error
+  -   [x] Fix wind barb render error
   -   [x] Remove bg in system tray temp view
   -   [x] Remove empty space when downsizing font in compact rep
   -   [x] Widget size/padding/scaling
