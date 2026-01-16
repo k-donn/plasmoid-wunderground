@@ -35,16 +35,35 @@ RowLayout {
         Layout.fillWidth: true
         Layout.preferredWidth: 1
 
-        PlasmaComponents.Label {
-            id: topPanelIcon
+        Loader {
+            id: topPanelFontIconLoader
 
-            text: Utils.getIconFontStr(iconCode)
+            active: !plasmoid.configuration.useSystemThemeIcons
 
-            color: Kirigami.Theme.textColor
+            sourceComponent: PlasmaComponents.Label {
+                text: Utils.getConditionIcon(iconCode)
 
-            font.family: "weather-icons"
-            font.pixelSize: preferredIconSize
+                color: Kirigami.Theme.textColor
+
+                font.family: "weather-icons"
+                font.pixelSize: preferredIconSize
+            }
         }
+
+        Loader {
+            id: topPanelSystemIconLoader
+
+            active: plasmoid.configuration.useSystemThemeIcons
+
+            sourceComponent: Kirigami.Icon {
+                source: Utils.getConditionIcon(iconCode, true)
+
+                implicitHeight: preferredIconSize
+                implicitWidth: implicitHeight
+            }
+        }
+
+        
     }
 
     PlasmaComponents.Label {

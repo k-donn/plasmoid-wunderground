@@ -54,7 +54,7 @@ RowLayout {
 
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
-                text: Utils.getIconFontStr("pin") + " "
+                text: Utils.getConditionIcon("pin") + " "
             }
 
             PlasmaComponents.Label {
@@ -103,7 +103,7 @@ RowLayout {
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
 
-                text: Utils.getIconFontStr("weatherStation") + " "
+                text: Utils.getConditionIcon("weatherStation") + " "
             }
 
             PlasmaComponents.Label {

@@ -97,12 +97,13 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 
 ## TODO
 
+
 - i18n
   -   [ ] Translations for new text
 - Customizability
   -   [ ] Enum-ify main.xml
   -   [ ] Let user add labels to locations and show in tooltipText
-  -   [ ] Choose what to show in panel and desktop forms
+  -   [ ] Allow system theme icons for compact rep
   -   [x] Fix wind barb render error
   -   [x] Remove bg in system tray temp view
   -   [x] Remove empty space when downsizing font in compact rep

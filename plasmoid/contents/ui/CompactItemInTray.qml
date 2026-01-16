@@ -48,7 +48,7 @@ GridLayout {
     property bool textDropShadow: plasmoid.configuration.textDropShadow
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
-    property string iconNameStr: Utils.getIconFontStr(root.iconCode)
+    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemIcons)
     property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
 
     columnSpacing: iconVisible && textVisible ? (iconAndText.vertical ? innerMargin - 17 : innerMargin - 18) : innerMargin
@@ -81,7 +81,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: compactWeatherIcon
-            visible: plasmoid.configuration.iconVisible
+            visible: plasmoid.configuration.iconVisible && !plasmoid.configuration.useSystemIcons
             font {
                 weight: Font.Normal
                 family: "weather-icons"
@@ -104,6 +104,13 @@ GridLayout {
             }
         }
 
+        Kirigami.Icon {
+            id: systemIcon
+            visible: plasmoid.configuration.iconVisible && plasmoid.configuration.useSystemIcons
+            source: iconNameStr
+            anchors.fill: compactWeatherIcon
+        }
+
         DropShadow {
             anchors.fill: compactWeatherIcon
             radius: 3
@@ -111,7 +118,7 @@ GridLayout {
             spread: 0.8
             fast: true
             color: Kirigami.Theme.backgroundColor
-            source: compactWeatherIcon
+            source: plasmoid.configuration.useSystemIcons ? systemIcon : compactWeatherIcon
             visible: iconVisible ? plasmoid.configuration.iconDropShadow : false
         }
 

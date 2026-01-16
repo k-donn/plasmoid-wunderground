@@ -15,6 +15,7 @@ KCM.SimpleKCM {
     property string cfg_widgetFontSize: plasmoid.configuration.widgetFontSize
     property string cfg_widgetIconSize: plasmoid.configuration.widgetIconSize
 
+    property alias cfg_useSystemThemeIcons: useSystemThemeIcons.checked
     property alias cfg_textVisible: textVisible.checked
     property alias cfg_iconVisible: iconVisible.checked
     property alias cfg_textDropShadow: textDropShadow.checked
@@ -103,6 +104,12 @@ KCM.SimpleKCM {
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Full Representation")
             Kirigami.FormData.isSection: true
+        }
+
+        PlasmaComponents.CheckBox {
+            id: useSystemThemeIcons
+
+            Kirigami.FormData.label: i18n("Use system theme icons:")
         }
 
         PlasmaComponents.CheckBox {

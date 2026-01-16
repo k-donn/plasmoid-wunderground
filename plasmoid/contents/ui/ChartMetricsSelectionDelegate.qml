@@ -37,7 +37,7 @@ Component {
 
             font.family: "weather-icons"
             font.pixelSize: Layout.minimumHeight
-            text: Utils.getIconFontStr(availableReadings[index])
+            text: Utils.getConditionIcon(availableReadings[index])
             color: Kirigami.Theme.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter

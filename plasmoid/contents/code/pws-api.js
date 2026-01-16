@@ -645,6 +645,8 @@ function getCurrentData(options, callback) {
 			return;
 		}
 
+		console.log(prevWeather);
+
 		var details = obs[sectionName] || {};
 		var newWeather = {
 			stationID: obs["stationID"],

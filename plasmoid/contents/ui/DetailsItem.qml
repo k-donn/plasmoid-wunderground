@@ -170,14 +170,18 @@ GridLayout {
 
             height: Kirigami.Units.iconSizes.small
 
-            isMask: plasmoid.configuration.applyColorScheme ? true : false
-            color: Kirigami.Theme.textColor
-
             PlasmaCore.ToolTipArea {
                 anchors.fill: parent
 
                 mainText: weatherData["details"]["pressureTrend"]
-                subText: Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"]) ? i18n("Pressure has risen %1 in the last three hours.", Utils.currentPresUnit(Math.abs(Utils.toUserPres(weatherData["details"]["pressureDelta"])))) : i18n("Pressure has fallen %1 in the last three hours.", Utils.currentPresUnit(Math.abs(Utils.toUserPres(weatherData["details"]["pressureDelta"]))))
+                subText: {
+                    var userPres = Utils.toUserPres(weatherData["details"]["pressureDelta"])
+                    var absDelta = Math.abs(userPres)
+                    var fullStr = Utils.currentPresUnit(absDelta)
+                    var hasIncresed = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"])
+                    var templateStr = hasIncresed ? "Pressure has risen %1 in the last three hours." : "Pressure has fallen %1 in the last three hours."
+                    return i18n(templateStr, fullStr);
+                }
             }
         }
     }

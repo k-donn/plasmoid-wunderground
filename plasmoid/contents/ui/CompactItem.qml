@@ -48,7 +48,7 @@ GridLayout {
     property bool textDropShadow: plasmoid.configuration.textDropShadow
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
-    property string iconNameStr: Utils.getIconFontStr(root.iconCode)
+    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
     property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
 
     uniformCellHeights: layoutType === 1 && iconAndText.vertical
@@ -100,7 +100,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: compactWeatherIcon
-            visible: plasmoid.configuration.iconVisible
+            visible: iconVisible && !plasmoid.configuration.useSystemThemeIcons
             font {
                 weight: Font.Normal
                 family: "weather-icons"
@@ -116,15 +116,22 @@ GridLayout {
             anchors.fill: parent
         }
 
-        DropShadow {
+        Kirigami.Icon {
+            id: systemIcon
+            visible: iconVisible && plasmoid.configuration.useSystemThemeIcons
+            source: iconNameStr
             anchors.fill: compactWeatherIcon
+        }
+
+        DropShadow {
+            anchors.fill: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
             radius: 3
             samples: 16
             spread: 0.8
             fast: true
             color: Kirigami.Theme.backgroundColor
-            source: compactWeatherIcon
-            visible: iconVisible ? plasmoid.configuration.iconDropShadow : false
+            source: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
+            visible: iconVisible ? iconDropShadow : false
         }
 
     }
@@ -154,7 +161,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: temperatureText
-            visible: plasmoid.configuration.textVisible
+            visible: textVisible
             font {
                 weight: Font.Normal
                 family: widgetFontName
@@ -178,7 +185,7 @@ GridLayout {
             fast: true
             color: Kirigami.Theme.backgroundColor
             source: temperatureText
-            visible: textVisible ? plasmoid.configuration.textDropShadow : false
+            visible: textVisible ? textDropShadow : false
         }
 
     }

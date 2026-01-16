@@ -53,31 +53,55 @@ RowLayout {
 
                 text: shortDesc
             }
-            PlasmaComponents.Label {
-                id: icon
+            Loader {
+                id: iconLoader
 
                 Layout.alignment: Qt.AlignCenter
 
-                Layout.preferredHeight: preferredIconSize
-                Layout.preferredWidth: preferredIconSize
+                sourceComponent: plasmoid.configuration.useSystemThemeIcons ? systemIconComponent : fontIconComponent
+            }
+            Component {
+                id: fontIconComponent
+                PlasmaComponents.Label {
+                    Layout.preferredHeight: preferredIconSize
+                    Layout.preferredWidth: preferredIconSize
 
-                text: Utils.getIconFontStr(iconCode)
+                    text: Utils.getConditionIcon(iconCode)
 
-                color: Kirigami.Theme.textColor
-                font.family: "weather-icons"
-                font.pixelSize: preferredIconSize
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                    color: Kirigami.Theme.textColor
+                    font.family: "weather-icons"
+                    font.pixelSize: preferredIconSize
 
-                PlasmaCore.ToolTipArea {
-                    id: tooltip
+                    PlasmaCore.ToolTipArea {
+                        mainText: longDesc
+                        subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike), plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
 
-                    mainText: longDesc
-                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike), plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
+                        interactive: true
 
-                    interactive: true
+                        anchors.fill: parent
+                    }
+                }
+            }
+            Component {
+                id: systemIconComponent
+                Kirigami.Icon {
+                    id: icon
 
-                    anchors.fill: parent
+                    Layout.preferredHeight: preferredIconSize
+                    Layout.preferredWidth: preferredIconSize
+
+                    source: Utils.getConditionIcon(iconCode, true)
+
+                    PlasmaCore.ToolTipArea {
+                        id: tooltip
+
+                        mainText: longDesc
+                        subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike), plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
+
+                        interactive: true
+
+                        anchors.fill: parent
+                    }
                 }
             }
             PlasmaComponents.Label {
