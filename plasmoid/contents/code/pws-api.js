@@ -645,8 +645,6 @@ function getCurrentData(options, callback) {
 			return;
 		}
 
-		console.log(prevWeather);
-
 		var details = obs[sectionName] || {};
 		var newWeather = {
 			stationID: obs["stationID"],
@@ -669,19 +667,19 @@ function getCurrentData(options, callback) {
 				windSpeed: details["windSpeed"],
 				windGust: details["windGust"],
 				pressure: details["pressure"],
+				pressureTrend: prevWeather
+					? prevWeather["details"]["pressureTrend"]
+					: null,
+				pressureTrendCode: prevWeather
+					? prevWeather["details"]["pressureTrendCode"]
+					: null,
+				pressureDelta: prevWeather
+					? prevWeather["details"]["pressureDelta"]
+					: null,
 				precipRate: details["precipRate"],
 				precipTotal: details["precipTotal"],
 				elev: details["elev"],
 				solarRad: prevWeather ? prevWeather["solarRad"] : null,
-				pressureTrend: prevWeather
-					? prevWeather["pressureTrend"]
-					: null,
-				pressureTrendCode: prevWeather
-					? prevWeather["pressureTrendCode"]
-					: null,
-				pressureDelta: prevWeather
-					? prevWeather["pressureDelta"]
-					: null,
 			},
 			aq: prevWeather && prevWeather["aq"] ? prevWeather["aq"] : {},
 		};
@@ -712,7 +710,7 @@ function getCurrentData(options, callback) {
  *
  * Callback: cb(err, {
  *   isNight, sunriseTimeLocal, sunsetTimeLocal, pressureTendencyTrend,
- *   pressureTendencyCode, pressureChange, iconCode, conditionNarrative,
+ *   pressureTendencyCode, pressureDelta, iconCode, conditionNarrative,
  *   isRain, alerts, airQuality
  * })
  *
@@ -877,7 +875,7 @@ function getExtendedConditions(options, callback) {
 			pressureTendencyCode: condVars
 				? condVars["pressureTendencyCode"]
 				: null,
-			pressureChange: condVars ? condVars["pressureChange"] : null,
+			pressureDelta: condVars ? condVars["pressureChange"] : null,
 			iconCode: newIconCode,
 			conditionNarrative: newConditionNarrative,
 			isRain: newIsRain,

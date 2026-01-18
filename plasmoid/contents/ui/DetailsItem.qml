@@ -175,10 +175,10 @@ GridLayout {
 
                 mainText: weatherData["details"]["pressureTrend"]
                 subText: {
-                    var userPres = Utils.toUserPres(weatherData["details"]["pressureDelta"])
-                    var absDelta = Math.abs(userPres)
-                    var fullStr = Utils.currentPresUnit(absDelta)
-                    var hasIncreased = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"])
+                    var userPres = Utils.toUserPres(weatherData["details"]["pressureDelta"]);
+                    var absDelta = Math.abs(userPres);
+                    var fullStr = Utils.currentPresUnit(absDelta);
+                    var hasIncreased = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"]);
                     if (hasIncreased) {
                         return i18n("Pressure has risen %1 in the last three hours.", fullStr);
                     } else {
