@@ -243,7 +243,7 @@ PlasmoidItem {
                 if (err) {
                     errorStr = err.message || JSON.stringify(err);
                     errorType = err.type || JSON.stringify(err);
-                    printDebug("[main.qml] " + errorStr);
+                    printDebug(errorStr);
                     appState = showERROR;
                     return;
                 }
@@ -253,7 +253,7 @@ PlasmoidItem {
                 plasmoid.configuration.latitude = curRes.configUpdates.latitude;
                 plasmoid.configuration.longitude = curRes.configUpdates.longitude;
                 plasmoid.configuration.stationName = curRes.configUpdates.stationName;
-                printDebug("[main.qml] Got new current data");
+                printDebug("Got new current data");
 
                 // Fetch extended conditions for the same location
                 StationAPI.getExtendedConditions({
@@ -264,7 +264,7 @@ PlasmoidItem {
                     language: Qt.locale().name.replace("_", "-")
                 }, function (err2, extRes) {
                     if (err2) {
-                        printDebug("[main.qml] Extended conditions failed: " + (err2.message || JSON.stringify(err2)));
+                        printDebug("Extended conditions failed: " + (err2.message || JSON.stringify(err2)));
                         // Do not proceed to forecast if extended conditions fail (preserves previous behaviour)
                         return;
                     }
@@ -288,7 +288,7 @@ PlasmoidItem {
                     merged.details = merged.details || {};
                     merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
                     merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
-                    merged.details.pressureDelta = extRes.pressureChange || merged.details.pressureDelta;
+                    merged.details.pressureDelta = extRes.pressureDelta || merged.details.pressureDelta;
                     merged.aq = extRes.airQuality || merged.aq;
                     weatherData = merged;
 
@@ -303,7 +303,7 @@ PlasmoidItem {
                         if (err3) {
                             errorStr = err3.message || JSON.stringify(err3);
                             errorType = err3.type || JSON.stringify(err3);
-                            printDebug("[main.qml] " + errorStr);
+                            printDebug(errorStr);
                             appState = showERROR;
                             return;
                         }
@@ -315,7 +315,7 @@ PlasmoidItem {
                         currDayHigh = fcRes.currDayHigh;
                         currDayLow = fcRes.currDayLow;
 
-                        printDebug("[main.qml] Got new forecast data");
+                        printDebug("Got new forecast data");
                         showForecast = true;
 
                         // Fetch hourly data after forecast is populated
@@ -328,7 +328,7 @@ PlasmoidItem {
                             if (err4) {
                                 errorStr = err4.message || JSON.stringify(err4);
                                 errorType = err4.type || JSON.stringify(err4);
-                                printDebug("[main.qml] " + errorStr);
+                                printDebug(errorStr);
                                 appState = showERROR;
                                 return;
                             }
@@ -340,7 +340,7 @@ PlasmoidItem {
                             maxValDict = hrRes.maxValDict;
                             rangeValDict = hrRes.rangeValDict;
 
-                            printDebug("[main.qml] Got hourly data");
+                            printDebug("Got hourly data");
                         });
                     });
                 });
@@ -363,11 +363,11 @@ PlasmoidItem {
                 errorStr = err.message || JSON.stringify(err);
                 errorType = err.type || JSON.stringify(err);
                 appState = showERROR;
-                printDebug("[main.qml] " + errorStr);
+                printDebug(errorStr);
                 return;
             }
             weatherData = curRes.weatherData;
-            printDebug("[main.qml] Got new current data");
+            printDebug("Got new current data");
             appState = showDATA;
         });
     }
@@ -382,7 +382,7 @@ PlasmoidItem {
             language: Qt.locale().name.replace("_", "-")
         }, function (err, extRes) {
             if (err) {
-                printDebug("[main.qml] Extended conditions fetch failed: " + (err.message || JSON.stringify(err)));
+                printDebug("Extended conditions fetch failed: " + (err.message || JSON.stringify(err)));
                 return;
             }
 
@@ -402,7 +402,7 @@ PlasmoidItem {
             merged.details = merged.details || {};
             merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
             merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
-            merged.details.pressureDelta = extRes.pressureChange || merged.details.pressureDelta;
+            merged.details.pressureDelta = extRes.pressureDelta || merged.details.pressureDelta;
             merged.aq = extRes.airQuality || merged.aq;
             weatherData = merged;
 
@@ -416,7 +416,7 @@ PlasmoidItem {
                 if (err2) {
                     errorStr = err2.message || JSON.stringify(err2);
                     errorType = err2.type || JSON.stringify(err2);
-                    printDebug("[main.qml] " + errorStr);
+                    printDebug(errorStr);
                     appState = showERROR;
                     return;
                 }
@@ -426,7 +426,7 @@ PlasmoidItem {
                     forecastModel.append(fcRes.forecast[k]);
                 currDayHigh = fcRes.currDayHigh;
                 currDayLow = fcRes.currDayLow;
-                printDebug("[main.qml] Got new forecast data");
+                printDebug("Got new forecast data");
                 showForecast = true;
 
                 StationAPI.getHourlyData({
@@ -438,7 +438,7 @@ PlasmoidItem {
                     if (err3) {
                         errorStr = err3.message || JSON.stringify(err3);
                         errorType = err3.type || JSON.stringify(err3);
-                        printDebug("[main.qml] " + errorStr);
+                        printDebug(errorStr);
                         appState = showERROR;
                         return;
                     }
@@ -447,7 +447,7 @@ PlasmoidItem {
                         hourlyModel.append(hrRes.hourly[hh]);
                     maxValDict = hrRes.maxValDict;
                     rangeValDict = hrRes.rangeValDict;
-                    printDebug("[main.qml] Got hourly data");
+                    printDebug("Got hourly data");
                 });
             });
         });
