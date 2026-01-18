@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -178,9 +178,12 @@ GridLayout {
                     var userPres = Utils.toUserPres(weatherData["details"]["pressureDelta"])
                     var absDelta = Math.abs(userPres)
                     var fullStr = Utils.currentPresUnit(absDelta)
-                    var hasIncresed = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"])
-                    var templateStr = hasIncresed ? "Pressure has risen %1 in the last three hours." : "Pressure has fallen %1 in the last three hours."
-                    return i18n(templateStr, fullStr);
+                    var hasIncreased = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"])
+                    if (hasIncreased) {
+                        return i18n("Pressure has risen %1 in the last three hours.", fullStr);
+                    } else {
+                        return i18n("Pressure has fallen %1 in the last three hours.", fullStr);
+                    }
                 }
             }
         }

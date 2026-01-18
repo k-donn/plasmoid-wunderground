@@ -47,7 +47,7 @@ GridLayout {
     property bool textDropShadow: plasmoid.configuration.textDropShadow
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
-    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemIcons)
+    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
     property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
 
     uniformCellHeights: layoutType === 1 && iconAndText.vertical
@@ -69,6 +69,11 @@ GridLayout {
         compactWeatherIcon.anchors.right = [undefined, compactItem.right, compactItem.right][layoutType]
         compactWeatherIcon.anchors.top = [compactItem.top, compactItem.top, compactItem.top][layoutType]
         compactWeatherIcon.anchors.bottom = [compactItem.bottom, compactWeatherIcon.bottom, compactItem.bottom][layoutType]
+
+        systemIcon.anchors.left = [compactItem.left, compactItem.left, compactItem.left][layoutType]
+        systemIcon.anchors.right = [undefined, compactItem.right, compactItem.right][layoutType]
+        systemIcon.anchors.top = [compactItem.top, compactItem.top, compactItem.top][layoutType]
+        systemIcon.anchors.bottom = [compactItem.bottom, systemIcon.bottom, compactItem.bottom][layoutType]
     }
 
     onLayoutTypeChanged: {
@@ -98,7 +103,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: temperatureText
-            visible: plasmoid.configuration.textVisible
+            visible: textVisible
             font {
                 weight: Font.Normal
                 family: widgetFontName
@@ -151,7 +156,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: compactWeatherIcon
-            visible: plasmoid.configuration.iconVisible && !plasmoid.configuration.useSystemIcons
+            visible: plasmoid.configuration.iconVisible && !plasmoid.configuration.useSystemThemeIcons
             font {
                 weight: Font.Normal
                 family: "weather-icons"
@@ -169,7 +174,7 @@ GridLayout {
 
         Kirigami.Icon {
             id: systemIcon
-            visible: plasmoid.configuration.iconVisible && plasmoid.configuration.useSystemIcons
+            visible: plasmoid.configuration.iconVisible && plasmoid.configuration.useSystemThemeIcons
             source: iconNameStr
             anchors.fill: compactWeatherIcon
         }
@@ -181,7 +186,7 @@ GridLayout {
             spread: 0.8
             fast: true
             color: Kirigami.Theme.backgroundColor
-            source: plasmoid.configuration.useSystemIcons ? systemIcon : compactWeatherIcon
+            source: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
             visible: iconVisible ? plasmoid.configuration.iconDropShadow : false
         }
 

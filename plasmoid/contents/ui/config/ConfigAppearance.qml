@@ -101,16 +101,17 @@ KCM.SimpleKCM {
 
         Lib.BackgroundToggle {}
 
-        Kirigami.Separator {
-            Kirigami.FormData.label: i18n("Full Representation")
-            Kirigami.FormData.isSection: true
-        }
-
         PlasmaComponents.CheckBox {
             id: useSystemThemeIcons
 
             Kirigami.FormData.label: i18n("Use system theme icons:")
         }
+        
+        Kirigami.Separator {
+            Kirigami.FormData.label: i18n("Full Representation")
+            Kirigami.FormData.isSection: true
+        }
+
 
         PlasmaComponents.CheckBox {
             id: tempAutoColor

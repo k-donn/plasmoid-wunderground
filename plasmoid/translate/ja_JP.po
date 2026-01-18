@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-01-14 20:14-0600\n"
+"POT-Creation-Date: 2026-01-18 10:44-0600\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -213,6 +213,10 @@ msgstr "デフォルト"
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "General"
 msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Use system theme icons:"
+msgstr "システムテーマアイコンを使用する:"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
@@ -741,9 +745,6 @@ msgstr "天気を更新"
 
 #~ msgid "System Tray Representation"
 #~ msgstr "システムトレイの表示"
-
-#~ msgid "Use system theme icons:"
-#~ msgstr "システムテーマアイコンを使用する:"
 
 #~ msgid "Apply system colors to icons:"
 #~ msgstr "アイコンにシステムカラーを適用します。"

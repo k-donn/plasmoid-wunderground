@@ -69,6 +69,11 @@ GridLayout {
         compactWeatherIcon.anchors.right = [undefined, compactItem.right, compactItem.right][layoutType]
         compactWeatherIcon.anchors.top = [compactItem.top, compactItem.top, compactItem.top][layoutType]
         compactWeatherIcon.anchors.bottom = [compactItem.bottom, compactWeatherIcon.bottom, compactItem.bottom][layoutType]
+
+        systemIcon.anchors.left = [compactItem.left, compactItem.left, compactItem.left][layoutType]
+        systemIcon.anchors.right = [undefined, compactItem.right, compactItem.right][layoutType]
+        systemIcon.anchors.top = [compactItem.top, compactItem.top, compactItem.top][layoutType]
+        systemIcon.anchors.bottom = [compactItem.bottom, systemIcon.bottom, compactItem.bottom][layoutType]
     }
 
     onLayoutTypeChanged: {
@@ -112,7 +117,7 @@ GridLayout {
             wrapMode: Text.NoWrap
             verticalAlignment: iconAndText.vertical && layoutType === 1 ? Text.AlignTop : layoutType === 2 ? Text.AlignTop : Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            text: iconNameStr
+            text: visible ? iconNameStr : "\uF037"
             anchors.fill: parent
         }
 
@@ -120,7 +125,7 @@ GridLayout {
             id: systemIcon
             visible: iconVisible && plasmoid.configuration.useSystemThemeIcons
             source: iconNameStr
-            anchors.fill: compactWeatherIcon
+            anchors.fill: parent
         }
 
         DropShadow {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-01-14 20:14-0600\n"
+"POT-Creation-Date: 2026-01-18 10:44-0600\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,6 +213,10 @@ msgstr ""
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "General"
 msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Use system theme icons:"
+msgstr "Systemdesignsymbole verwenden"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
@@ -741,9 +745,6 @@ msgstr "Wetterdaten aktualisieren"
 
 #~ msgid "System Tray Representation"
 #~ msgstr "Kontrollleistenansicht"
-
-#~ msgid "Use system theme icons:"
-#~ msgstr "Systemdesignsymbole verwenden"
 
 #~ msgid "Apply system colors to icons:"
 #~ msgstr "Symbole in Systemfarben darstellen"

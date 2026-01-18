@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-01-14 20:14-0600\n"
+"POT-Creation-Date: 2026-01-18 10:44-0600\n"
 "PO-Revision-Date: 2024-11-11 17:12+0800\n"
 "Last-Translator: CloverGit <clovergit@hotmail.com>\n"
 "Language-Team: Simplified Chinese <>\n"
@@ -213,6 +213,10 @@ msgstr ""
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "General"
 msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Use system theme icons:"
+msgstr "使用系统主题图标:"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
@@ -738,9 +742,6 @@ msgstr "刷新天气"
 
 #~ msgid "Choose a Font"
 #~ msgstr "选择字体"
-
-#~ msgid "Use system theme icons:"
-#~ msgstr "使用系统主题图标:"
 
 #~ msgid "Apply system colors to icons:"
 #~ msgstr "将系统颜色应用于图标:"

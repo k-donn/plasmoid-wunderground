@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
