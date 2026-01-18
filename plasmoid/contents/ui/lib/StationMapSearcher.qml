@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -465,7 +465,7 @@ Window {
                 anchorPoint.y: searchIconLabel.height / 2
                 sourceItem: PlasmaComponents.Label {
                     id: searchIconLabel
-                    text: Utils.getIconFontStr("compass")
+                    text: Utils.getConditionIcon("compass")
                     color: Kirigami.Theme.textColor
                     font.family: "weather-icons"
                     font.pixelSize: 24
@@ -515,7 +515,7 @@ Window {
                     sourceItem: Column {
                         PlasmaComponents.Label {
                             id: iconImage
-                            text: Utils.getIconFontStr("weatherStation")
+                            text: Utils.getConditionIcon("weatherStation")
                             color: stationMapSearcher.selectedStation !== undefined && stationMapSearcher.selectedStation.stationID === stationMarker.stationID ? "red" : "black"
                             font.family: "weather-icons"
                             font.pixelSize: 32

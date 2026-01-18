@@ -1,5 +1,6 @@
 /*
  * Copyright 2015  Martin Kotelnik <clearmartin@seznam.cz>
+ * Copyright 2026 Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import org.kde.plasma.components as PlasmaComponents
@@ -48,7 +50,7 @@ GridLayout {
     property bool textDropShadow: plasmoid.configuration.textDropShadow
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
-    property string iconNameStr: Utils.getIconFontStr(root.iconCode)
+    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
     property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
 
     columnSpacing: iconVisible && textVisible ? (iconAndText.vertical ? innerMargin - 17 : innerMargin - 18) : innerMargin
@@ -81,7 +83,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: compactWeatherIcon
-            visible: plasmoid.configuration.iconVisible
+            visible: iconVisible && !plasmoid.configuration.useSystemThemeIcons
             font {
                 weight: Font.Normal
                 family: "weather-icons"
@@ -94,7 +96,7 @@ GridLayout {
 
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            text: iconNameStr
+            text: visible ? iconNameStr : "\uF037"
             anchors {
                 fill: parent
                 left: compactItemInTray.left
@@ -104,6 +106,13 @@ GridLayout {
             }
         }
 
+        Kirigami.Icon {
+            id: systemIcon
+            visible: iconVisible && plasmoid.configuration.useSystemThemeIcons
+            source: iconNameStr
+            anchors.fill: compactWeatherIcon
+        }
+
         DropShadow {
             anchors.fill: compactWeatherIcon
             radius: 3
@@ -111,8 +120,8 @@ GridLayout {
             spread: 0.8
             fast: true
             color: Kirigami.Theme.backgroundColor
-            source: compactWeatherIcon
-            visible: iconVisible ? plasmoid.configuration.iconDropShadow : false
+            source: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
+            visible: iconVisible ? iconDropShadow : false
         }
 
     }
@@ -139,9 +148,10 @@ GridLayout {
 
         Layout.leftMargin: iconAndText.vertical ? leftOuterMargin :  undefined
         Layout.topMargin: iconAndText.vertical ? topOuterMargin : topOuterMargin + 3
+
         PlasmaComponents.Label {
             id: temperatureText
-            visible: plasmoid.configuration.textVisible
+            visible: textVisible
             font {
                 weight: Font.Normal
                 family: widgetFontName
@@ -174,7 +184,7 @@ GridLayout {
             fast: true
             color: Kirigami.Theme.backgroundColor
             source: temperatureText
-            visible: textVisible ? plasmoid.configuration.textDropShadow : false
+            visible: textVisible ? textDropShadow : false
         }
 
     }

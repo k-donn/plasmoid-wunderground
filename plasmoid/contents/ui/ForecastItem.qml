@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -32,6 +32,7 @@ RowLayout {
         id: forecastRepeater
 
         model: forecastModel
+
         ColumnLayout {
             Layout.maximumWidth: parent.width / 7
 
@@ -40,11 +41,13 @@ RowLayout {
 
                 text: Qt.formatDateTime(date, plasmoid.configuration.weekForecastDateFormat)
             }
+
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 
                 text: dayOfWeek
             }
+
             PlasmaComponents.Label {
                 Layout.fillWidth: true
 
@@ -53,38 +56,68 @@ RowLayout {
 
                 text: shortDesc
             }
-            PlasmaComponents.Label {
-                id: icon
+
+            Loader {
+                id: iconLoader
 
                 Layout.alignment: Qt.AlignCenter
 
-                Layout.preferredHeight: preferredIconSize
-                Layout.preferredWidth: preferredIconSize
+                sourceComponent: plasmoid.configuration.useSystemThemeIcons ? systemIconComponent : fontIconComponent
+            }
 
-                text: Utils.getIconFontStr(iconCode)
+            Component {
+                id: fontIconComponent
 
-                color: Kirigami.Theme.textColor
-                font.family: "weather-icons"
-                font.pixelSize: preferredIconSize
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                PlasmaComponents.Label {
+                    Layout.preferredHeight: preferredIconSize
+                    Layout.preferredWidth: preferredIconSize
 
-                PlasmaCore.ToolTipArea {
-                    id: tooltip
+                    text: Utils.getConditionIcon(iconCode)
 
-                    mainText: longDesc
-                    subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike), plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
+                    color: Kirigami.Theme.textColor
+                    font.family: "weather-icons"
+                    font.pixelSize: preferredIconSize
 
-                    interactive: true
+                    PlasmaCore.ToolTipArea {
+                        mainText: longDesc
+                        subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike), plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
 
-                    anchors.fill: parent
+                        interactive: true
+
+                        anchors.fill: parent
+                    }
                 }
             }
+            Component {
+                id: systemIconComponent
+
+                Kirigami.Icon {
+                    id: icon
+
+                    Layout.preferredHeight: preferredIconSize
+                    Layout.preferredWidth: preferredIconSize
+
+                    source: Utils.getConditionIcon(iconCode, true)
+
+                    PlasmaCore.ToolTipArea {
+                        id: tooltip
+
+                        mainText: longDesc
+                        subText: i18nc("Do not edit HTML tags.", "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>", Utils.currentTempUnit(Utils.toUserTemp(feelsLike), plasmoid.configuration.feelsPrecision), thunderDesc, uvDesc, snowDesc, golfDesc)
+
+                        interactive: true
+
+                        anchors.fill: parent
+                    }
+                }
+            }
+
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 
                 text: Utils.currentTempUnit(Utils.toUserTemp(high), plasmoid.configuration.forecastPrecision)
             }
+            
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 

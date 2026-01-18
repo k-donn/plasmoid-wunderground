@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -17,7 +17,6 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Dialogs
 import org.kde.kcmutils as KCM
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
@@ -48,8 +47,10 @@ KCM.SimpleKCM {
     }
 
     Item {
-        anchors.fill: parent
         id: stationPickerEl
+
+        anchors.fill: parent
+
         property string selectedStation: ""
         property string stationList: ""
         property string stationName: ""
@@ -94,13 +95,16 @@ KCM.SimpleKCM {
 
                 RowLayout {
                     id: headerRow
+
                     spacing: 0
+
                     Rectangle {
                         color: Kirigami.Theme.backgroundColor
                         border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                         border.width: 1
                         height: 36
                         width: 120
+
                         PlasmaComponents.Label {
                             anchors.centerIn: parent
                             text: i18n("ID:")
@@ -112,12 +116,14 @@ KCM.SimpleKCM {
                             clip: true
                         }
                     }
+
                     Rectangle {
                         color: Kirigami.Theme.backgroundColor
                         border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                         border.width: 1
                         height: 36
                         width: 160
+
                         PlasmaComponents.Label {
                             anchors.centerIn: parent
                             text: i18n("Weatherstation Name:")
@@ -129,12 +135,14 @@ KCM.SimpleKCM {
                             clip: true
                         }
                     }
+
                     Rectangle {
                         color: Kirigami.Theme.backgroundColor
                         border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                         border.width: 1
                         height: 36
                         width: 80
+
                         PlasmaComponents.Label {
                             anchors.centerIn: parent
                             text: i18n("Lat/Lon").split("/")[0] + ":"
@@ -146,12 +154,14 @@ KCM.SimpleKCM {
                             clip: true
                         }
                     }
+
                     Rectangle {
                         color: Kirigami.Theme.backgroundColor
                         border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                         border.width: 1
                         height: 36
                         width: 80
+
                         PlasmaComponents.Label {
                             anchors.centerIn: parent
                             text: i18n("Lat/Lon").split("/")[1] + ":"
@@ -163,12 +173,14 @@ KCM.SimpleKCM {
                             clip: true
                         }
                     }
+
                     Rectangle {
                         color: Kirigami.Theme.backgroundColor
                         border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                         border.width: 1
                         height: 36
                         width: 120
+
                         PlasmaComponents.Label {
                             anchors.centerIn: parent
                             text: i18n("Action")
@@ -184,8 +196,14 @@ KCM.SimpleKCM {
 
                 ListView {
                     id: stationListView
+
+                    Layout.preferredHeight: 216
+                    Layout.fillWidth: true
+                    clip: true
+
                     model: ListModel {
                         id: stationListModel
+
                         Component.onCompleted: {
                             stationListModel.clear();
                             printDebug("Loading from savedStations: " + stationPickerEl.stationList + "");
@@ -235,18 +253,22 @@ KCM.SimpleKCM {
                             }
                         }
                     }
+
                     delegate: Item {
                         width: headerRow.width
                         height: 36
+
                         Rectangle {
                             anchors.fill: parent
                             color: selected ? Kirigami.Theme.highlightColor : (index % 2 === 0 ? Kirigami.Theme.backgroundColor : Kirigami.Theme.alternateBackgroundColor)
                             border.color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                             border.width: 1
                         }
+
                         RowLayout {
                             anchors.fill: parent
                             spacing: 0
+
                             PlasmaComponents.Label {
                                 text: stationID
                                 Layout.preferredWidth: 120
@@ -255,11 +277,13 @@ KCM.SimpleKCM {
                                 elide: Text.ElideRight
                                 clip: true
                             }
+
                             Rectangle {
                                 width: 1
                                 color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                                 height: parent.height
                             }
+
                             PlasmaComponents.Label {
                                 text: address
                                 Layout.preferredWidth: 160
@@ -268,11 +292,13 @@ KCM.SimpleKCM {
                                 elide: Text.ElideRight
                                 clip: true
                             }
+
                             Rectangle {
                                 width: 1
                                 color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                                 height: parent.height
                             }
+
                             PlasmaComponents.Label {
                                 text: latitude
                                 Layout.preferredWidth: 80
@@ -281,11 +307,13 @@ KCM.SimpleKCM {
                                 elide: Text.ElideRight
                                 clip: true
                             }
+
                             Rectangle {
                                 width: 1
                                 color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                                 height: parent.height
                             }
+
                             PlasmaComponents.Label {
                                 text: longitude
                                 Layout.preferredWidth: 80
@@ -294,14 +322,17 @@ KCM.SimpleKCM {
                                 elide: Text.ElideRight
                                 clip: true
                             }
+
                             Rectangle {
                                 width: 1
                                 color: Qt.rgba(Kirigami.Theme.textColor.r, Kirigami.Theme.textColor.g, Kirigami.Theme.textColor.b, 0.15)
                                 height: parent.height
                             }
+
                             RowLayout {
                                 Layout.preferredWidth: 120
                                 spacing: 4
+
                                 PlasmaComponents.Button {
                                     icon.name: "dialog-ok-apply"
                                     enabled: !selected
@@ -314,10 +345,12 @@ KCM.SimpleKCM {
                                         stationPickerEl.syncSavedStations();
                                     }
                                 }
+
                                 PlasmaComponents.Button {
                                     icon.name: "dialog-cancel"
                                     PlasmaComponents.ToolTip.text: i18n("Remove")
                                     PlasmaComponents.ToolTip.visible: hovered
+
                                     onClicked: {
                                         var wasSelected = selected;
                                         var oldIndex = index;
@@ -339,9 +372,6 @@ KCM.SimpleKCM {
                             }
                         }
                     }
-                    Layout.preferredHeight: 216
-                    Layout.fillWidth: true
-                    clip: true
                 }
 
                 PlasmaComponents.Button {

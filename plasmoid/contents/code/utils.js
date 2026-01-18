@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
@@ -83,6 +83,76 @@ var hourlyModelDictV3 = {
 	pressure: "pressureMeanSeaLevel",
 	uvIndex: "uvIndex",
 	iconCode: "iconCode",
+};
+
+var systemIconMap = {
+	0: "weather-storm",
+	1: "weather-storm",
+	2: "weather-storm",
+	3: "weather-storm",
+	4: "weather-storm",
+	5: "weather-snow-rain",
+	6: "weather-snow-rain",
+	7: "weather-freezing-rain",
+	8: "weather-freezing-rain",
+	9: "weather-showers-scattered",
+	10: "weather-freezing-rain",
+	11: "weather-showers",
+	12: "weather-showers",
+	13: "weather-snow-scattered",
+	14: "weather-snow",
+	15: "weather-snow",
+	16: "weather-snow",
+	17: "weather-hail",
+	18: "weather-snow-scattered",
+	19: "weather-many-clouds-wind",
+	20: "weather-fog",
+	21: "weather-fog",
+	22: "weather-fog",
+	23: "weather-clouds-wind",
+	24: "weather-clouds-wind",
+	25: "weather-snow",
+	26: "weather-many-clouds",
+	27: "weather-many-clouds",
+	28: "weather-clouds",
+	29: "weather-clouds-night",
+	30: "weather-few-clouds",
+	31: "weather-clear-night",
+	32: "weather-clear",
+	33: "weather-few-clouds-night",
+	34: "weather-few-clouds-day",
+	35: "weather-freezing-storm-day",
+	36: "weather-clear",
+	37: "weather-storm-day",
+	38: "weather-storm-day",
+	39: "weather-showers-scattered-day",
+	40: "weather-showers",
+	41: "weather-snow-scattered-day",
+	42: "weather-snow",
+	43: "weather-snow",
+	44: "weather-none-available",
+	45: "weather-showers-scattered-night",
+	46: "weather-snow-storm-night",
+	47: "weather-storm-night",
+	temperature: "\uF00C",
+	uvIndex: "\uF009",
+	pressure: "\uF00A",
+	cloudCover: "\uF03B",
+	humidity: "\uF008",
+	precipitationChance: "\uF007",
+	precipitationRate: "\uF04C",
+	snowPrecipitationRate: "\uF02D",
+	wind: "\uF040",
+	weatherStation: "\uF00B",
+	compass: "\uF01C",
+	pin: "\uF014",
+	"0-2": "\uF006",
+	"3-7": "\uF005",
+	"8-12": "\uF004",
+	"13-17": "\uF003",
+	"18-22": "\uF002",
+	"23-27": "\uF001",
+	"28-32": "\uF000",
 };
 
 var iconMap = {
@@ -641,10 +711,11 @@ function getWindBarbIcon(windSpeed) {
  * Return the icon representing a weather condition or info element.
  *
  * @param {number} codeID Identifier code for the icon
- * @returns {string} Unicode escape sequence for the icon
+ * @param {boolean} [useSystemThemeIcons=false] Whether to show system bundled icons
+ * @returns {string} opendesktop icon name or unicode escape string
  */
-function getIconFontStr(codeID) {
-	return iconMap[codeID];
+function getConditionIcon(codeID, useSystemThemeIcons = false) {
+	return useSystemThemeIcons ? systemIconMap[codeID] : iconMap[codeID];
 }
 
 /**
@@ -853,17 +924,6 @@ function currentElevUnit(value) {
 }
 
 /**
- * Get hostname
- *
- * @returns {string} hostname
- */
-function getAPIHost() {
-	var hosts = ["aaa", "a91", "0a3", "75b", "fd6"];
-	var host = hosts[Math.floor(Math.random() * hosts.length)];
-	return "https://wps.mitchell-" + host + ".workers.dev";
-}
-
-/**
  * Take in API precip and convert it to user choosen units.
  * When a user chooses custom units, the API returns metric. So,
  * convert from metric to choice.
@@ -1001,7 +1061,7 @@ function toUserPres(value) {
 }
 
 /**
- * Return the user's choice of temperature unit with no additional data.
+ * Return the user's choice of pressure unit with no additional data.
  *
  * @returns {"mb"|"inHG"|"mmHG"|"hPa"} User choosen unit
  */
@@ -1031,7 +1091,7 @@ function rawPresUnit() {
  * Take in a numeric pressure value and return a string
  * with the user specified unit attached.
  *
- * @param {number} value Precipitation
+ * @param {number} value Pressure
  *
  * @returns {string} User-shown value
  */
@@ -1064,3 +1124,16 @@ function toUserProp(value, prop) {
 		return value;
 	}
 }
+
+
+/**
+ * Get hostname
+ *
+ * @returns {string} hostname
+ */
+function getAPIHost() {
+	var hosts = ["aaa", "a91", "0a3", "75b", "fd6"];
+	var host = hosts[Math.floor(Math.random() * hosts.length)];
+	return "https://wps.mitchell-" + host + ".workers.dev";
+}
+

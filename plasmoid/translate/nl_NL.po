@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-01-14 20:14-0600\n"
+"POT-Creation-Date: 2026-01-18 10:44-0600\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -221,6 +221,10 @@ msgstr "Standaard"
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "General"
 msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Use system theme icons:"
+msgstr "Gebruik systeemthema-pictogrammen:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 #: ../contents/ui/config/ConfigLayout.qml
@@ -774,9 +778,6 @@ msgstr "Vernieuw het weer"
 
 #~ msgid "System Tray Representation"
 #~ msgstr "Systeemvakweergave"
-
-#~ msgid "Use system theme icons:"
-#~ msgstr "Gebruik systeemthema-pictogrammen:"
 
 #~ msgid "Apply system colors to icons:"
 #~ msgstr "Systeemkleuren toepassen op pictogrammen:"

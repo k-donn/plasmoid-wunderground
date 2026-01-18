@@ -1,5 +1,6 @@
 /*
  * Copyright 2015  Martin Kotelnik <clearmartin@seznam.cz>
+ * Copyright 2026 Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -48,7 +49,7 @@ GridLayout {
     property bool textDropShadow: plasmoid.configuration.textDropShadow
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
-    property string iconNameStr: Utils.getIconFontStr(root.iconCode)
+    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
     property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
 
     uniformCellHeights: layoutType === 1 && iconAndText.vertical
@@ -69,6 +70,11 @@ GridLayout {
         compactWeatherIcon.anchors.right = [undefined, compactItem.right, compactItem.right][layoutType]
         compactWeatherIcon.anchors.top = [compactItem.top, compactItem.top, compactItem.top][layoutType]
         compactWeatherIcon.anchors.bottom = [compactItem.bottom, compactWeatherIcon.bottom, compactItem.bottom][layoutType]
+
+        systemIcon.anchors.left = [compactItem.left, compactItem.left, compactItem.left][layoutType]
+        systemIcon.anchors.right = [undefined, compactItem.right, compactItem.right][layoutType]
+        systemIcon.anchors.top = [compactItem.top, compactItem.top, compactItem.top][layoutType]
+        systemIcon.anchors.bottom = [compactItem.bottom, systemIcon.bottom, compactItem.bottom][layoutType]
     }
 
     onLayoutTypeChanged: {
@@ -100,7 +106,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: compactWeatherIcon
-            visible: plasmoid.configuration.iconVisible
+            visible: iconVisible && !plasmoid.configuration.useSystemThemeIcons
             font {
                 weight: Font.Normal
                 family: "weather-icons"
@@ -112,19 +118,26 @@ GridLayout {
             wrapMode: Text.NoWrap
             verticalAlignment: iconAndText.vertical && layoutType === 1 ? Text.AlignTop : layoutType === 2 ? Text.AlignTop : Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            text: iconNameStr
+            text: visible ? iconNameStr : "\uF037"
+            anchors.fill: parent
+        }
+
+        Kirigami.Icon {
+            id: systemIcon
+            visible: iconVisible && plasmoid.configuration.useSystemThemeIcons
+            source: iconNameStr
             anchors.fill: parent
         }
 
         DropShadow {
-            anchors.fill: compactWeatherIcon
+            anchors.fill: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
             radius: 3
             samples: 16
             spread: 0.8
             fast: true
             color: Kirigami.Theme.backgroundColor
-            source: compactWeatherIcon
-            visible: iconVisible ? plasmoid.configuration.iconDropShadow : false
+            source: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
+            visible: iconVisible ? iconDropShadow : false
         }
 
     }
@@ -154,7 +167,7 @@ GridLayout {
 
         PlasmaComponents.Label {
             id: temperatureText
-            visible: plasmoid.configuration.textVisible
+            visible: textVisible
             font {
                 weight: Font.Normal
                 family: widgetFontName
@@ -178,7 +191,7 @@ GridLayout {
             fast: true
             color: Kirigami.Theme.backgroundColor
             source: temperatureText
-            visible: textVisible ? plasmoid.configuration.textDropShadow : false
+            visible: textVisible ? textDropShadow : false
         }
 
     }

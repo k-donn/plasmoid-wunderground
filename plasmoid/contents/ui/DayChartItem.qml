@@ -1,6 +1,6 @@
 /*
  * Copyright 2022  Rafal (Raf) Liwoch
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -204,19 +204,43 @@ ColumnLayout {
                     itemCount: 8
                 }
 
-                delegate: PlasmaComponents.Label {
+                delegate: Loader {
                     id: xAxisLabelWeatherDayId
 
-                    property var weatherElement: hourlyModel.get(ChartsControls.AxisLabels.label)
+                    sourceComponent: plasmoid.configuration.useSystemThemeIcons ? systemIconLabelComponent : fontIconLabelComponent
 
-                    color: Kirigami.Theme.textColor
-                    text: Utils.getIconFontStr(weatherElement.iconCode)
-                    font.family: "weather-icons"
-                    font.pixelSize: Kirigami.Units.iconSizes.smallMedium
-                    width: Kirigami.Units.iconSizes.smallMedium
-                    height: Kirigami.Units.iconSizes.smallMedium
-                    horizontalAlignment: Text.AlignHCenter
-                    verticalAlignment: Text.AlignVCenter
+                    onLoaded: {
+                        item.weatherElement = hourlyModel.get(ChartsControls.AxisLabels.label)
+                    }
+                }
+
+                Component {
+                    id: systemIconLabelComponent
+
+                    Kirigami.Icon {
+                        property var weatherElement
+
+                        source: Utils.getConditionIcon(weatherElement.iconCode, true)
+                        width: Kirigami.Units.iconSizes.smallMedium
+                        height: Kirigami.Units.iconSizes.smallMedium
+                    }
+                }
+                
+                Component {
+                    id: fontIconLabelComponent
+
+                    PlasmaComponents.Label {
+                        property var weatherElement
+
+                        color: Kirigami.Theme.textColor
+                        text: Utils.getConditionIcon(weatherElement.iconCode)
+                        font.family: "weather-icons"
+                        font.pixelSize: Kirigami.Units.iconSizes.smallMedium
+                        width: Kirigami.Units.iconSizes.smallMedium
+                        height: Kirigami.Units.iconSizes.smallMedium
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
                 }
             }
 

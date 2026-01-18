@@ -1,6 +1,23 @@
+/*
+ * Copyright 2026  Kevin Donnelly
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation; either version 2 of
+ * the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+ */
+
 import QtQuick
-import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kcmutils as KCM
@@ -15,6 +32,7 @@ KCM.SimpleKCM {
     property string cfg_widgetFontSize: plasmoid.configuration.widgetFontSize
     property string cfg_widgetIconSize: plasmoid.configuration.widgetIconSize
 
+    property alias cfg_useSystemThemeIcons: useSystemThemeIcons.checked
     property alias cfg_textVisible: textVisible.checked
     property alias cfg_iconVisible: iconVisible.checked
     property alias cfg_textDropShadow: textDropShadow.checked
@@ -66,7 +84,7 @@ KCM.SimpleKCM {
         cfg_iconSizeModeChanged()
     }
 
-    ButtonGroup {
+    QQC.ButtonGroup {
         id: iconSizeModeGroup
     }
 
@@ -82,7 +100,7 @@ KCM.SimpleKCM {
         }
     }
 
-    ButtonGroup {
+    QQC.ButtonGroup {
         id: textSizeModeGroup
 
         Component.onCompleted: {
@@ -100,10 +118,17 @@ KCM.SimpleKCM {
 
         Lib.BackgroundToggle {}
 
+        PlasmaComponents.CheckBox {
+            id: useSystemThemeIcons
+
+            Kirigami.FormData.label: i18n("Use system theme icons:")
+        }
+        
         Kirigami.Separator {
             Kirigami.FormData.label: i18n("Full Representation")
             Kirigami.FormData.isSection: true
         }
+
 
         PlasmaComponents.CheckBox {
             id: tempAutoColor
@@ -162,14 +187,14 @@ KCM.SimpleKCM {
 
             PlasmaComponents.RadioButton {
                 id: textSizeModeFit
-                ButtonGroup.group: textSizeModeGroup
+                QQC.ButtonGroup.group: textSizeModeGroup
                 text: i18n("Automatic fit")
                 onCheckedChanged: if (checked) cfg_textSizeMode = 0;
             }
 
             PlasmaComponents.RadioButton {
                 id: textSizeModeFixed
-                ButtonGroup.group: textSizeModeGroup
+                QQC.ButtonGroup.group: textSizeModeGroup
                 text: i18n("Exact size")
                 onCheckedChanged: if (checked) cfg_textSizeMode = 1;
             }
@@ -214,14 +239,14 @@ KCM.SimpleKCM {
 
             PlasmaComponents.RadioButton {
                 id: iconSizeModeFit
-                ButtonGroup.group: iconSizeModeGroup
+                QQC.ButtonGroup.group: iconSizeModeGroup
                 text: i18n("Automatic fit")
                 onCheckedChanged: if (checked) cfg_iconSizeMode = 0;
             }
 
             PlasmaComponents.RadioButton {
                 id: iconSizeModeFixed
-                ButtonGroup.group: iconSizeModeGroup
+                QQC.ButtonGroup.group: iconSizeModeGroup
                 text: i18n("Exact size")
                 onCheckedChanged: if (checked) cfg_iconSizeMode = 1;
             }

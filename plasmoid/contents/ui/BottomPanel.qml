@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -54,7 +54,7 @@ RowLayout {
 
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
-                text: Utils.getIconFontStr("pin") + " "
+                text: Utils.getConditionIcon("pin") + " "
             }
 
             PlasmaComponents.Label {
@@ -103,7 +103,7 @@ RowLayout {
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
 
-                text: Utils.getIconFontStr("weatherStation") + " "
+                text: Utils.getConditionIcon("weatherStation") + " "
             }
 
             PlasmaComponents.Label {

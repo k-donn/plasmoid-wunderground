@@ -14,9 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import org.kde.plasma.plasmoid
-import org.kde.plasma.core as PlasmaCore
 
 Loader {
     id: compactRepresentation
@@ -43,10 +43,12 @@ Loader {
         }
 
     }
+    
     Component.onCompleted: {
         if (root.inTray)
             layoutTimer1.start()
     }
+
     Timer {
         id: layoutTimer1
         interval: 100

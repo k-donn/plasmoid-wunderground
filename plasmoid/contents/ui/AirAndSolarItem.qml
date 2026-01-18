@@ -1,5 +1,5 @@
 /*
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -53,6 +53,7 @@ RowLayout {
 
             text: i18n("Air quality")
         }
+
         PlasmaComponents.Label {
             id: aqDesc
 
@@ -75,14 +76,17 @@ RowLayout {
                         text: weatherData["aq"]["messages"]["general"]["title"]
                         font.bold: true
                     }
+
                     PlasmaComponents.Label {
                         text: weatherData["aq"]["messages"]["general"]["phrase"]
                         wrapMode: Text.WordWrap
                     }
+
                     PlasmaComponents.Label {
                         text: weatherData["aq"]["messages"]["sensitive"]["title"]
                         font.bold: true
                     }
+
                     PlasmaComponents.Label {
                         text: weatherData["aq"]["messages"]["sensitive"]["phrase"]
                         wrapMode: Text.WordWrap
@@ -90,6 +94,7 @@ RowLayout {
                 }
             }
         }
+
         PlasmaComponents.Label {
             id: aqIndex
 
@@ -99,6 +104,7 @@ RowLayout {
 
             text: i18n("AQI: %1", weatherData["aq"]["aqi"])
         }
+
         PlasmaComponents.Label {
             id: aqhi
             Layout.fillWidth: true
@@ -107,6 +113,7 @@ RowLayout {
 
             text: i18n("AQHI: %1", weatherData["aq"]["aqhi"])
         }
+
         Rectangle {
             id: aqIndexColor
 
@@ -181,6 +188,7 @@ RowLayout {
 
             text: i18n("Solar info")
         }
+
         PlasmaComponents.Label {
             id: solRad
 
@@ -193,6 +201,7 @@ RowLayout {
 
             text: weatherData["solarRad"] + " W/m<sup>2</sup>"
         }
+
         PlasmaComponents.Label {
             id: sunriseLabel
 
@@ -202,6 +211,7 @@ RowLayout {
 
             text: i18n("Sunrise")
         }
+
         PlasmaComponents.Label {
             id: sunsetLabel
             Layout.fillWidth: true
@@ -210,6 +220,7 @@ RowLayout {
 
             text: i18n("Sunset")
         }
+
         PlasmaComponents.Label {
             id: sunrise
             Layout.fillWidth: true
@@ -218,6 +229,7 @@ RowLayout {
 
             text: new Date(weatherData["sunrise"]).toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
         }
+        
         PlasmaComponents.Label {
             id: sunset
             Layout.fillWidth: true

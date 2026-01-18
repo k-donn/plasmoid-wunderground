@@ -1,6 +1,6 @@
 /*
  * Copyright 2022  Rafal (Raf) Liwoch
- * Copyright 2025  Kevin Donnelly
+ * Copyright 2026  Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -37,7 +37,7 @@ Component {
 
             font.family: "weather-icons"
             font.pixelSize: Layout.minimumHeight
-            text: Utils.getIconFontStr(availableReadings[index])
+            text: Utils.getConditionIcon(availableReadings[index])
             color: Kirigami.Theme.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
