@@ -19,9 +19,6 @@ import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
-import Qt5Compat.GraphicalEffects
-import org.kde.kirigami as Kirigami
-
 
 Loader {
     id: compactRepresentation

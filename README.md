@@ -80,11 +80,13 @@ The weather icons are a mix of [Alessio Atzeni's](https://demo.alessioatzeni.com
 
 Files and portions of files are from [Zren](https://github.com/zren/), [Martin Kotelnik](https://github.com/kotelnik), @Gojir4 on the QML forum, and an upstream version of this widget [rliwoch's](https://github.com/rliwoch) [`plasmoid-wunderground-extended`](https://github.com/rliwoch/plasmoid-wunderground-extended).
 
-Language contributions are from [Clover Git](https://github.com/CloverGit), Martin Eilsøe, [Ivan Todorov](https://github.com/GlobeDotters), [foXaCe](https://github.com/foXaCe), [Pushpal Sidhu](https://github.com/psidhu), [Heimen Stoffels](https://github.com/Vistaus) and [Yuta Takahashi](https://github.com/Walkmana-25).
+Language contributions thanks to [AleksZZ](https://github.com/AleksZZ), [Clover Git](https://github.com/CloverGit), [ekkia](https://github.com/ekkia), [foXaCe](https://github.com/foXaCe), [Heimen Stoffels](https://github.com/Vistaus), [Ivan Todorov](https://github.com/GlobeDotters), [jpmadeira](https://github.com/jpmadeira), Martin Eilsøe, [Pushpal Sidhu](https://github.com/psidhu), [RygorrMortis](https://github.com/RygorrMortis), [tabascosw](https://github.com/tabascosw), undernature, [victorhck](https://github.com/victorhck), and [Yuta Takahashi](https://github.com/Walkmana-25).
+
+If you are not attributed for work in this repository, let me know!
 
 ### Known Problems
 
-Qt 6.10: Widget version 3.5.3 is required.
+Qt 6.10: Widget version 3.5.3 and above is required.
 
 Text coloring for dark/transparent themes is currently buggy in Plasma 6. The first time a widget loads the text may not be colored correctly.
 
@@ -102,8 +104,7 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [ ] Translations for new text
 - Customizability
   -   [ ] Enum-ify main.xml
-  -   [ ] Let user add labels to locations and show in tooltipText
-  -   [ ] Allow system theme icons for compact rep
+  -   [ ] Let user add labels to locations and improve adding flow
   -   [x] Fix wind barb render error
   -   [x] Remove bg in system tray temp view
   -   [x] Remove empty space when downsizing font in compact rep

@@ -1,5 +1,6 @@
 /*
  * Copyright 2015  Martin Kotelnik <clearmartin@seznam.cz>
+ * Copyright 2026 Kevin Donnelly
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -14,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+
 import QtQuick
 import QtQuick.Layouts
 import org.kde.plasma.components as PlasmaComponents
@@ -119,7 +121,7 @@ GridLayout {
             fast: true
             color: Kirigami.Theme.backgroundColor
             source: plasmoid.configuration.useSystemThemeIcons ? systemIcon : compactWeatherIcon
-            visible: iconVisible ? plasmoid.configuration.iconDropShadow : false
+            visible: iconVisible ? iconDropShadow : false
         }
 
     }
@@ -146,9 +148,10 @@ GridLayout {
 
         Layout.leftMargin: iconAndText.vertical ? leftOuterMargin :  undefined
         Layout.topMargin: iconAndText.vertical ? topOuterMargin : topOuterMargin + 3
+
         PlasmaComponents.Label {
             id: temperatureText
-            visible: plasmoid.configuration.textVisible
+            visible: textVisible
             font {
                 weight: Font.Normal
                 family: widgetFontName
@@ -181,7 +184,7 @@ GridLayout {
             fast: true
             color: Kirigami.Theme.backgroundColor
             source: temperatureText
-            visible: textVisible ? plasmoid.configuration.textDropShadow : false
+            visible: textVisible ? textDropShadow : false
         }
 
     }

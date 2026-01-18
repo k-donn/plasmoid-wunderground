@@ -32,6 +32,7 @@ RowLayout {
         id: forecastRepeater
 
         model: forecastModel
+
         ColumnLayout {
             Layout.maximumWidth: parent.width / 7
 
@@ -40,11 +41,13 @@ RowLayout {
 
                 text: Qt.formatDateTime(date, plasmoid.configuration.weekForecastDateFormat)
             }
+
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 
                 text: dayOfWeek
             }
+
             PlasmaComponents.Label {
                 Layout.fillWidth: true
 
@@ -53,6 +56,7 @@ RowLayout {
 
                 text: shortDesc
             }
+
             Loader {
                 id: iconLoader
 
@@ -60,8 +64,10 @@ RowLayout {
 
                 sourceComponent: plasmoid.configuration.useSystemThemeIcons ? systemIconComponent : fontIconComponent
             }
+
             Component {
                 id: fontIconComponent
+
                 PlasmaComponents.Label {
                     Layout.preferredHeight: preferredIconSize
                     Layout.preferredWidth: preferredIconSize
@@ -84,6 +90,7 @@ RowLayout {
             }
             Component {
                 id: systemIconComponent
+
                 Kirigami.Icon {
                     id: icon
 
@@ -104,11 +111,13 @@ RowLayout {
                     }
                 }
             }
+
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 
                 text: Utils.currentTempUnit(Utils.toUserTemp(high), plasmoid.configuration.forecastPrecision)
             }
+            
             PlasmaComponents.Label {
                 Layout.alignment: Qt.AlignCenter
 

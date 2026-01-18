@@ -18,13 +18,11 @@
 
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
-import "../code/utils.js" as Utils
-import "lib"
+import "lib" as Lib
 
 ColumnLayout {
     id: fullRoot
@@ -37,7 +35,7 @@ ColumnLayout {
         }
     }
 
-    ConfigBtn {
+    Lib.ConfigBtn {
         id: configBtn
 
         visible: appState == showCONFIG
@@ -72,7 +70,7 @@ ColumnLayout {
             }
         }
 
-        ConfigBtn {
+        Lib.ConfigBtn {
             Layout.alignment: Qt.AlignHCenter
         }
 
