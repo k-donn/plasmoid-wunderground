@@ -99,16 +99,12 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 
 ## TODO
 
-
+- Functionality
+  -   [ ] Kp-index display and more details rework
 - i18n
   -   [ ] Translations for new text
 - Customizability
-  -   [ ] Enum-ify main.xml
   -   [ ] Let user add labels to locations and improve adding flow
-  -   [x] Fix wind barb render error
-  -   [x] Remove bg in system tray temp view
-  -   [x] Remove empty space when downsizing font in compact rep
-  -   [x] Widget size/padding/scaling
 - Backend
   -   [ ] Better handle null fields
   -   [x] Improve searching and testing error messages
