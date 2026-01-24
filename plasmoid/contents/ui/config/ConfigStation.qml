@@ -466,7 +466,7 @@ KCM.SimpleKCM {
                 }
 
                 PlasmaComponents.Label {
-                    text: "Version 3.6.7"
+                    text: "Version 3.6.8"
                 }
             }
         }
