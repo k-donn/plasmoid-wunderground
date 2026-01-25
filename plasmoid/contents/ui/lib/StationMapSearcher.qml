@@ -65,6 +65,12 @@ Window {
     property ListModel searchResults: ListModel {}
     property ListModel availableCitiesModel: ListModel {}
 
+    function printDebug(msg) {
+        if (plasmoid.configuration.logConsole) {
+            console.log("[debug] [StationMapSearcher.qml] " + msg);
+        }
+    }
+
     onOpen: {
         stationMapSearcher.visible = true;
         errorMessage = "";

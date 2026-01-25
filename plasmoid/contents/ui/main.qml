@@ -252,7 +252,6 @@ PlasmoidItem {
                 weatherData = curRes.weatherData;
                 plasmoid.configuration.latitude = curRes.configUpdates.latitude;
                 plasmoid.configuration.longitude = curRes.configUpdates.longitude;
-                plasmoid.configuration.stationName = curRes.configUpdates.stationName;
                 printDebug("Got new current data");
 
                 // Fetch extended conditions for the same location
