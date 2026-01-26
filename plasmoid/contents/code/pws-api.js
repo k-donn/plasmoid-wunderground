@@ -659,6 +659,7 @@ function getCurrentData(options, callback) {
 			isNight: prevWeather ? prevWeather["isNight"] : false,
 			sunrise: prevWeather ? prevWeather["sunrise"] : "",
 			sunset: prevWeather ? prevWeather["sunset"] : "",
+			cloudCover: prevWeather ? prevWeather["cloudCover"] : null,
 			details: {
 				temp: details["temp"],
 				heatIndex: details["heatIndex"],
@@ -881,6 +882,7 @@ function getExtendedConditions(options, callback) {
 			isRain: newIsRain,
 			alerts: alertsList,
 			airQuality: aqObj,
+			cloudCover: condVars ? condVars["cloudCover"] : null,
 		};
 
 		callback(null, result);

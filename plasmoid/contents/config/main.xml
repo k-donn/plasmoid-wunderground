@@ -23,6 +23,14 @@
         </entry>
     </group>
     <group name="Appearance">
+        <entry name="shownInTooltip" type="Enum">
+            <choices>
+                <choice name="Station ID" />
+                <choice name="Station Name" />
+                <choice name="Both" />
+            </choices>
+            <default>0</default>
+        </entry>
         <entry name="tempAutoColor" type="Bool">
             <default>true</default>
         </entry>

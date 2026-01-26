@@ -284,6 +284,7 @@ PlasmoidItem {
                     merged.isNight = extRes.isNight;
                     merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
                     merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
+                    merged.cloudCover = extRes.cloudCover || merged.cloudCover;
                     merged.details = merged.details || {};
                     merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
                     merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
@@ -567,7 +568,9 @@ PlasmoidItem {
         if (appState == showCONFIG) {
             return i18n("Please Configure");
         } else if (appState == showDATA) {
-            return stationID;
+            return plasmoid.configuration.shownInTooltip == 0 ? weatherData["stationID"] :
+                   plasmoid.configuration.shownInTooltip == 1 ? plasmoid.configuration.stationName :
+                   plasmoid.configuration.stationName + " (" + weatherData["stationID"] + ")";
         } else if (appState == showLOADING) {
             return i18n("Loading...");
         } else if (appState == showERROR) {
@@ -577,10 +580,21 @@ PlasmoidItem {
     toolTipSubText: {
         var subText = "";
         if (appState == showDATA) {
-            subText += i18nc("Do not edit HTML tags. 'Temp' means temperature", "<font size='4'>Temp: %1</font><br />", Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision));
-            subText += i18nc("Do not edit HTML tags.", "<font size='4'>Feels: %1</font><br />", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]), plasmoid.configuration.feelsPrecision));
-            subText += i18nc("Do not edit HTML tags. 'Wnd Spd' means Wind Speed", "<font size='4'>Wnd spd: %1</font><br />", Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windSpeed"])));
-            subText += "<font size='4'>" + weatherData["obsTimeLocal"] + "</font>";
+            var windDir = weatherData["winddir"];
+            var windSpd = Utils.toUserSpeed(weatherData["details"]["windSpeed"]);
+            var temp = Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision);
+            var pres = Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]), 2);
+            subText += weatherData["obsTimeLocal"];
+            subText += "<br /><br />";
+            subText += "<font size=\"8\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon(iconCode) + "</font>&nbsp;&nbsp;<font size=\"8\"><b>" + temp + "</b></font>";
+            subText += "<br /><br />";
+            subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("wind@2") + "</font><font size=\"4\">" + windDir + "°&nbsp;&nbsp;@&nbsp;" + windSpd + Utils.rawSpeedUnit() + "</font>";
+            subText += "<br />";
+            subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("humidity@2") + "</font><font size=\"4\">" + weatherData["humidity"] + "%</font>";
+            subText += "&nbsp;&nbsp;";
+            subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("cloudCover@2") + "</font><font size=\"4\">" + weatherData["cloudCover"] + "%</font>";
+            subText += "<br />";
+            subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("pressure@2") + "</font>&nbsp;<font size=\"4\">" + pres + "</font>";
         } else if (appState == showERROR) {
             subText = errorStr;
         }
