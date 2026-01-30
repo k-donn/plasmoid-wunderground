@@ -79,15 +79,6 @@ ColumnLayout {
                 id: chartContainer
                 anchors.fill: parent
                 
-                // Buffer area for x-axis (below graph)
-                Rectangle {
-                    id: bufferArea
-                    anchors.top: graphArea.top
-                    anchors.left: graphArea.left
-                    height: graphArea.height + 30
-                    width: graphArea.width
-                    color: "transparent"
-                }
 
                 // Graph area boundary (defined first for reference by other elements)
                 Rectangle {
@@ -103,6 +94,15 @@ ColumnLayout {
                     border.width: 1
                 }
 
+                // Buffer area for x-axis (below graph)
+                Rectangle {
+                    id: bufferArea
+                    anchors.top: graphArea.top
+                    anchors.left: graphArea.left
+                    height: graphArea.height + 30
+                    width: graphArea.width
+                    color: "transparent"
+                }
 
                 // Grid lines (horizontal)
                 ListView {
@@ -111,7 +111,6 @@ ColumnLayout {
                     model: horizontalGridModel
                     anchors.fill: graphArea
                     interactive: false
-                    clip: true
 
                     delegate: Item {
                         required property int value
