@@ -1,312 +1,314 @@
-
 property ListModel hourlyModel: ListModel {
     dynamicRoles: true
 
     ListElement {
-        temperature:17
-        cloudCover:1
-        humidity:28
-        precipitationChance:0
+        time:"2026-01-30T01:00:00.000Z"
+        temperature:2
+        oudCover:0
+        umidity:51
+        precipitationChance:1
         precipitationRate:0
         snowPrecipitationRate:0
-        wind:14
-        pressure:1023.53
-        uvIndex:4
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:18
-        cloudCover:0
-        humidity:25
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:17
-        pressure:1023.33
-        uvIndex:6
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:19
-        cloudCover:0
-        humidity:22
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:19
-        pressure:1022.8
-        uvIndex:7
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:20
-        cloudCover:0
-        humidity:22
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:19
-        pressure:1022.39
-        uvIndex:7
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:21
-        cloudCover:0
-        humidity:21
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:22
-        pressure:1021.8
-        uvIndex:6
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:21
-        cloudCover:2
-        humidity:20
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:23
-        pressure:1021.6
-        uvIndex:5
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:21
-        cloudCover:2
-        humidity:20
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:21
-        pressure:1021.79
-        uvIndex:3
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:20
-        cloudCover:1
-        humidity:20
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:19
-        pressure:1021.9
-        uvIndex:1
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:19
-        cloudCover:5
-        humidity:21
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:14
-        pressure:1022.2
-        uvIndex:0
-        iconCode:32
-    }
-
-    ListElement {
-        temperature:17
-        cloudCover:0
-        humidity:24
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:9
-        pressure:1022.7
+        wind:4
+        pressure:1022.6
         uvIndex:0
         iconCode:31
     }
-
     ListElement {
-        temperature:16
+        time:"2026-01-30T02:00:00.000Z"
+        temperature:1
         cloudCover:0
-        humidity:28
+        umidity:55
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:4
+        pressure:1022.8
+        uvIndex:0
+        iconCode:31
+    }
+    ListElement {
+        time:"2026-01-30T03:00:00.000Z"
+        temperature:0
+        oudCover:0
+        umidity:59
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1022.9
+        uvIndex:0
+        iconCode:31
+    }
+    ListElement {
+        time:"2026-01-30T04:00:00.000Z"
+        temperature:0
+        oudCover:3
+        humidity:64
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1022.9
+        uvIndex:0
+        iconCode:29
+    }
+    ListElement {
+        time:"2026-01-30T05:00:00.000Z"
+        temperature:-1
+        cloudCover:2
+        humidity:65
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1022.7
+        uvIndex:0
+        iconCode:33
+    }
+    ListElement {
+        time:"2026-01-30T06:00:00.000Z"
+        temperature:-1
+        cloudCover:1
+        humidity:67
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:2
+        pressure:1022.2
+        uvIndex:0
+        iconCode:31
+    }
+    ListElement {
+        time:"2026-01-30T07:00:00.000Z"
+        temperature:
+        clcloudCover:9
+        umidity:70
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:2
+        pressure:1021.7
+        uvIndex:0
+        iconCode:31
+    }
+    ListElement {
+        time:"2026-01-30T08:00:00.000Z"
+        temperature:
+        clcloudCover:1
+        humidity:73
+        precipitationChance:2
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:2
+        pressure:1021.4
+        uvIndex:0
+        iconCode:31
+    }
+    ListElement {
+        time:"2026-01-30T09:00:00.000Z"
+        temperature: 1
+        clcloudCover:2
+        humidity:76
+        precipitationChance:3
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1021.1
+        uvIndex:0
+        iconCode:33
+    }
+    ListElement {
+        time:"2026-01-30T10:00:00.000Z"
+        temperature: 1
+        clcloudCover:4
+        humidity:77
+        precipitationChance:3
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1020.9
+        uvIndex:0
+        iconCode:29
+    }
+    ListElement {
+        time:"2026-01-30T11:00:00.000Z"
+        temperature: 1
+        clcloudCover:2
+        humidity:79
+        precipitationChance:3
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1021.0
+        uvIndex:0
+        iconCode:33
+    }
+    ListElement {
+        time:"2026-01-30T12:00:00.000Z"
+        temperature: 1
+        clcloudCover:4
+        humidity:78
+        precipitationChance:3
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:3
+        pressure:1021.0
+        uvIndex:0
+        iconCode:29
+    }
+    ListElement {
+        time:"2026-01-30T13:00:00.000Z"
+        temperature: 1
+        clcloudCover:6
+        humidity:77
+        precipitationChance:3
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:4
+        pressure:1021.1
+        uvIndex:0
+        iconCode:28
+    }
+    ListElement {
+        time:"2026-01-30T14:00:00.000Z"
+        temperature: 1
+        clcloudCover:7
+        humidity:69
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:7
+        pressure:1021.2
+        uvIndex:0
+        iconCode:28
+    }
+    ListElement {
+        time:"2026-01-30T15:00:00.000Z"
+        temperature:2
+        cloudCover:8
+        humidity:59
         precipitationChance:0
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:8
+        pressure:1021.1
+        uvIndex:1
+        iconCode:26
+    }
+    ListElement {
+        time:"2026-01-30T16:00:00.000Z"
+        temperature:4
+        cloudCover:7
+        humidity:51
+        precipitationChance:0
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:7
+        pressure:1020.6
+        uvIndex:2
+        iconCode:28
+    }
+    ListElement {
+        time:"2026-01-30T17:00:00.000Z"
+        temperature:6
+        oudCover:4
+        humidity:46
+        precipitationChance:0
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:7
+        pressure:1019.6
+        uvIndex:4
+        iconCode:30
+    }
+    ListElement {
+        time:"2026-01-30T18:00:00.000Z"
+        temperature:8
+        cloudCover:5
+        humidity:44
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:5
+        pressure:1018.5
+        uvIndex:4
+        iconCode:30
+    }
+    ListElement {
+        time:"2026-01-30T19:00:00.000Z"
+        temperature:9
+        oudCover:7
+        humidity:43
+        precipitationChance:1
         precipitationRate:0
         snowPrecipitationRate:0
         wind:6
-        pressure:1023.42
-        uvIndex:0
-        iconCode:31
+        pressure:1017.7
+        uvIndex:2
+        iconCode:28
     }
-
     ListElement {
-        temperature:14
-        cloudCover:0
-        humidity:31
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:5
-        pressure:1024.2
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:13
-        cloudCover:0
-        humidity:34
-        precipitationChance:0
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:4
-        pressure:1024.6
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:12
-        cloudCover:0
-        humidity:38
-        precipitationChance:1
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:4
-        pressure:1024.8
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:11
-        cloudCover:1
-        humidity:42
-        precipitationChance:1
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:5
-        pressure:1024.87
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:10
-        cloudCover:1
-        humidity:46
-        precipitationChance:2
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:4
-        pressure:1025.1
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
+        time:"2026-01-30T20:00:00.000Z"
         temperature:9
-        cloudCover:13
-        humidity:48
-        precipitationChance:2
+        oudCover:8
+        humidity:44
+        precipitationChance:1
         precipitationRate:0
         snowPrecipitationRate:0
-        wind:4
-        pressure:1025.4
-        uvIndex:0
-        iconCode:31
+        wind:6
+        pressure:1017.1
+        uvIndex:1
+        iconCode:26
     }
-
     ListElement {
+        time:"2026-01-30T21:00:00.000Z"
+        temperature:9
+        oudCover:8
+        humidity:45
+        precipitationChance:1
+        precipitationRate:0
+        snowPrecipitationRate:0
+        wind:7
+        pressure:1016.8
+        uvIndex:1
+        iconCode:26
+    }
+    ListElement {
+        time:"2026-01-30T22:00:00.000Z"
         temperature:8
-        cloudCover:5
-        humidity:53
-        precipitationChance:3
+        oudCover:8
+        humidity:46
+        precipitationChance:1
         precipitationRate:0
         snowPrecipitationRate:0
-        wind:4
-        pressure:1025.4
+        wind:7
+        pressure:1016.7
         uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:7
-        cloudCover:5
-        humidity:56
-        precipitationChance:2
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:4
-        pressure:1025.69
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:6
-        cloudCover:6
-        humidity:60
-        precipitationChance:3
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:4
-        pressure:1026.3
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:6
-        cloudCover:6
-        humidity:61
-        precipitationChance:3
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:4
-        pressure:1026.99
-        uvIndex:0
-        iconCode:31
-    }
-
-    ListElement {
-        temperature:7
-        cloudCover:7
-        humidity:59
-        precipitationChance:2
-        precipitationRate:0
-        snowPrecipitationRate:0
-        wind:5
-        pressure:1027.57
-        uvIndex:0
-        iconCode:32
+        iconCode:26
     }
 }
 property var maxValDict: ({
-    temperature:21,
-    humidity:61,
-    cloudCover:13,
-    precipitationChance:3,
-    precipitationRate:0,
-    snowPrecipitationRate:0,
-    wind:23,
-    pressure:1027.57,
-    uvIndex:7
-})
+	temperature:9
+	cloudCover:89
+	humidity:79
+	precipitationChance:15
+	precipitationRate:0
+	snowPrecipitationRate:0
+	wind:8
+	pressure:1022.9
+	uvIndex:4
+	iconCode:33
+	})
 property var rangeValDict: ({
-    temperature:21,
-    humidity:100,
-    cloudCover:100,
-    precipitationChance:100,
-    precipitationRate:0,
-    snowPrecipitationRate:0,
-    wind:23,
-    pressure:70,
-    uvIndex:7
-})
+	temperature:9
+	cloudCover:100
+	humidity:100
+	precipitationChance:100
+	precipitationRate:0
+	snowPrecipitationRate:0
+	wind:8
+	pressure:70
+	Index:4
+	iconCode:33
+	})
