@@ -21,7 +21,7 @@ import QtQuick.Controls as QQC
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import org.kde.plasma.components as PlasmaComponents
-import "../../code/pws-api.js" as StationAPI
+import "../../code/qweather-api.js" as StationAPI
 
 Window {
     id: stationSearcher
@@ -150,7 +150,8 @@ Window {
                     availableCitiesModel.clear();
                     if (stationSearcher.searchMode === "stationID") {
                         StationAPI.searchStationID(stationSearcher.searchText, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, stations) {
                             if (err) {
                                 setError(err);
@@ -159,7 +160,8 @@ Window {
                                 for (var i = 0; i < stations.length; i++) {
                                     stationSearcher.searchResults.append({
                                         "stationID": stations[i].stationID,
-                                        "placeName": stations[i].placeName,
+                                        "placeName": stations[i].address,
+                                        "address": stations[i].address,
                                         "latitude": stations[i].latitude,
                                         "longitude": stations[i].longitude,
                                         "selected": false
@@ -169,7 +171,8 @@ Window {
                         });
                     } else if (stationSearcher.searchMode === "placeName") {
                         StationAPI.getLocations(stationSearcher.searchText, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, places) {
                             if (err) {
                                 setError(err);
@@ -177,7 +180,7 @@ Window {
                                 clearError();
                                 for (var i = 0; i < places.length; i++) {
                                     availableCitiesModel.append({
-                                        "placeName": places[i].city + "," + places[i].state + " (" + places[i].country + ")",
+                                        "placeName": places[i].address,
                                         "latitude": places[i].latitude,
                                         "longitude": places[i].longitude
                                     });
@@ -189,7 +192,8 @@ Window {
                             latitude: stationSearcher.searchLat,
                             longitude: stationSearcher.searchLon
                         }, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, stations) {
                             if (err) {
                                 setError(err);
@@ -198,7 +202,8 @@ Window {
                                 for (var i = 0; i < stations.length; i++) {
                                     stationSearcher.searchResults.append({
                                         "stationID": stations[i].stationID,
-                                        "placeName": stations[i].placeName,
+                                        "placeName": stations[i].address,
+                                        "address": stations[i].address,
                                         "latitude": stations[i].latitude,
                                         "longitude": stations[i].longitude,
                                         "selected": false
@@ -251,7 +256,8 @@ Window {
                             latitude: availableCitiesModel.get(cityChoice.currentIndex).latitude,
                             longitude: availableCitiesModel.get(cityChoice.currentIndex).longitude
                         }, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, stations) {
                             if (err) {
                                 setError(err);
@@ -260,7 +266,8 @@ Window {
                             for (var i = 0; i < stations.length; i++) {
                                 stationSearcher.searchResults.append({
                                     "stationID": stations[i].stationID,
-                                    "placeName": stations[i].placeName,
+                                    "placeName": stations[i].address,
+                                    "address": stations[i].address,
                                     "latitude": stations[i].latitude,
                                     "longitude": stations[i].longitude,
                                     "selected": false

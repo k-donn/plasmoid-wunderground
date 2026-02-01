@@ -21,7 +21,7 @@ import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
-import "../code/pws-api.js" as StationAPI
+import "../code/qweather-api.js" as StationAPI
 
 PlasmoidItem {
     id: root
@@ -238,7 +238,11 @@ PlasmoidItem {
             StationAPI.getCurrentData({
                 stationID: stationID,
                 unitsChoice: unitsChoice,
-                oldWeatherData: weatherData
+                oldWeatherData: weatherData,
+                apiKey: plasmoid.configuration.qweatherApiKey,
+                stationName: plasmoid.configuration.stationName,
+                latitude: plasmoid.configuration.latitude,
+                longitude: plasmoid.configuration.longitude
             }, function (err, curRes) {
                 if (err) {
                     errorStr = err.message || JSON.stringify(err);
@@ -257,11 +261,13 @@ PlasmoidItem {
 
                 // Fetch extended conditions for the same location
                 StationAPI.getExtendedConditions({
+                    stationID: stationID,
                     latitude: plasmoid.configuration.latitude,
                     longitude: plasmoid.configuration.longitude,
                     unitsChoice: unitsChoice,
                     oldWeatherData: weatherData,
-                    language: Qt.locale().name.replace("_", "-")
+                    language: Qt.locale().name.replace("_", "-"),
+                    apiKey: plasmoid.configuration.qweatherApiKey
                 }, function (err2, extRes) {
                     if (err2) {
                         printDebug("Extended conditions failed: " + (err2.message || JSON.stringify(err2)));
@@ -294,11 +300,13 @@ PlasmoidItem {
 
                     // Fetch forecast now that extended conditions are available
                     StationAPI.getForecastData({
+                        stationID: stationID,
                         latitude: plasmoid.configuration.latitude,
                         longitude: plasmoid.configuration.longitude,
                         unitsChoice: unitsChoice,
                         useLegacyAPI: useLegacyAPI,
-                        language: Qt.locale().name.replace("_", "-")
+                        language: Qt.locale().name.replace("_", "-"),
+                        apiKey: plasmoid.configuration.qweatherApiKey
                     }, function (err3, fcRes) {
                         if (err3) {
                             errorStr = err3.message || JSON.stringify(err3);
@@ -320,10 +328,12 @@ PlasmoidItem {
 
                         // Fetch hourly data after forecast is populated
                         StationAPI.getHourlyData({
+                            stationID: stationID,
                             latitude: plasmoid.configuration.latitude,
                             longitude: plasmoid.configuration.longitude,
                             unitsChoice: unitsChoice,
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err4, hrRes) {
                             if (err4) {
                                 errorStr = err4.message || JSON.stringify(err4);

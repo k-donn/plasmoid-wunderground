@@ -24,7 +24,7 @@ import org.kde.plasma.plasmoid
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import "../../code/utils.js" as Utils
-import "../../code/pws-api.js" as StationAPI
+import "../../code/qweather-api.js" as StationAPI
 
 Window {
     id: stationMapSearcher
@@ -139,7 +139,8 @@ Window {
                 onPressed: {
                     if (stationMapSearcher.searchMode === "address") {
                         StationAPI.getLocations(stationMapSearcher.searchText, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, places) {
                             if (err) {
                                 errorType = err.type;
@@ -160,7 +161,8 @@ Window {
                         });
                     } else if (stationMapSearcher.searchMode === "stationID") {
                         StationAPI.searchStationID(stationMapSearcher.searchText, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, stations) {
                             if (err) {
                                 errorType = err.type;
@@ -211,7 +213,8 @@ Window {
                             latitude: stationMapSearcher.searchLat,
                             longitude: stationMapSearcher.searchLon
                         }, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, stations) {
                             if (err) {
                                 errorType = err.type;
@@ -308,7 +311,8 @@ Window {
                             latitude: stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude,
                             longitude: stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude
                         }, {
-                            language: Qt.locale().name.replace("_", "-")
+                            language: Qt.locale().name.replace("_", "-"),
+                            apiKey: plasmoid.configuration.qweatherApiKey
                         }, function (err, stations) {
                             if (err) {
                                 errorType = err.type;
