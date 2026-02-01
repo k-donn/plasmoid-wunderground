@@ -31,6 +31,7 @@ KCM.SimpleKCM {
     property alias cfg_latitude: stationPickerEl.latitude
     property alias cfg_longitude: stationPickerEl.longitude
     property alias cfg_refreshPeriod: refreshPeriod.value
+    property alias cfg_qweatherApiKey: qweatherApiKeyField.text
 
     function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
@@ -465,8 +466,33 @@ KCM.SimpleKCM {
                     }
                 }
 
+                Kirigami.Heading {
+                    text: i18n("QWeather API 设置")
+                    level: 3
+                    Layout.topMargin: 20
+                }
+
+                RowLayout {
+                    PlasmaComponents.Label {
+                        text: i18n("API Key:")
+                    }
+
+                    PlasmaComponents.TextField {
+                        id: qweatherApiKeyField
+                        Layout.preferredWidth: 300
+                        placeholderText: i18n("输入和风天气 API Key")
+                        echoMode: TextInput.Password
+                    }
+                }
+
                 PlasmaComponents.Label {
-                    text: "Version 3.6.8"
+                    text: i18n("获取 API Key: https://console.qweather.com/")
+                    font.pointSize: 9
+                    opacity: 0.7
+                }
+
+                PlasmaComponents.Label {
+                    text: "Version 3.6.8-QWeather"
                 }
             }
         }

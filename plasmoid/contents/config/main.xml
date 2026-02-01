@@ -21,6 +21,9 @@
         <entry name="refreshPeriod" type="Int">
             <default>600</default>
         </entry>
+        <entry name="qweatherApiKey" type="String">
+            <default/>
+        </entry>
     </group>
     <group name="Appearance">
         <entry name="tempAutoColor" type="Bool">
