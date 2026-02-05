@@ -27,6 +27,7 @@ KCM.SimpleKCM {
     property alias cfg_weekForecastDateFormat: weekForecastDateFormat.text
     property alias cfg_windPrecision: windPrecision.value
     property alias cfg_tempPrecision: tempPrecision.value
+    property alias cfg_compactTempPrecision: compactTempPrecision.value
     property alias cfg_feelsPrecision: feelsPrecision.value
     property alias cfg_dewPrecision: dewPrecision.value
     property alias cfg_forecastPrecision: forecastPrecision.value
@@ -78,6 +79,20 @@ KCM.SimpleKCM {
             validator: IntValidator {
                 bottom: tempPrecision.from
                 top: tempPrecision.to
+            }
+        }
+
+        PlasmaComponents.SpinBox {
+            id: compactTempPrecision
+
+            Kirigami.FormData.label: i18n("Compact Rep Temperature") + ":"
+
+            from: 0
+            to: 5
+
+            validator: IntValidator {
+                bottom: compactTempPrecision.from
+                top: compactTempPrecision.to
             }
         }
 
