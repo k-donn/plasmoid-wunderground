@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
+pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Controls
@@ -22,6 +23,7 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.plasmoid
+import org.kde.plasma.core as PlasmaCore
 import org.kde.quickcharts as Charts
 import org.kde.quickcharts.controls as ChartsControls
 import "../code/utils.js" as Utils
@@ -32,6 +34,104 @@ ColumnLayout {
     property string currentLegendText: "temperature"
     property var staticRange: ["cloudCover", "humidity", "precipitationChance"]
     property var availableReadings: ["temperature", "uvIndex", "pressure", "cloudCover", "humidity", "precipitationChance", "precipitationRate", "snowPrecipitationRate", "wind"]
+
+    RowLayout {
+        Item {
+            Layout.fillWidth: true
+        }
+
+        Repeater {
+            model: availableReadings
+
+            Layout.fillWidth: true
+
+            PlasmaComponents.Label {
+                required property int index
+
+                id: iconHolder
+
+                Layout.minimumWidth: Kirigami.Units.gridUnit * 1.5
+                Layout.minimumHeight: Kirigami.Units.gridUnit * 1.5
+                width: Layout.minimumWidth
+                height: Layout.minimumHeight
+
+
+                font.family: "weather-icons"
+                font.pixelSize: Layout.minimumHeight
+                text: Utils.getConditionIcon(availableReadings[index])
+                color: Kirigami.Theme.textColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+
+                    PlasmaCore.ToolTipArea {
+                        anchors.fill: parent
+                        subText: propInfoDict[availableReadings[index]].name
+                    }
+
+                    onEntered: {
+                        hoverOverlay.opacity = 0.2
+                    }
+                    onExited: {
+                        hoverOverlay.opacity = 0
+                    }
+                    onPressed: {
+                        currentLegendText = availableReadings[index];
+                        lineChart.nameSource.value = currentLegendText;
+                        if (staticRange.includes(currentLegendText)) {
+                            lineChart.yRange.automatic = false;
+                            lineChart.yRange.from = 0;
+                            lineChart.yRange.to = 100;
+                        } else if (currentLegendText == "pressure") {
+                            var pressureUnit = Utils.rawPresUnit();
+                            lineChart.yRange.automatic = false;
+                            // mmHG is the final unit
+                            lineChart.yRange.from = (pressureUnit === "hPa" || pressureUnit === "mb") ? 970 : pressureUnit === "inHG" ? 28.6 : 727;
+                            lineChart.yRange.to = (pressureUnit === "hPa" || pressureUnit === "mb") ? 1040 : pressureUnit === "inHG" ? 30.7 : 780;
+                        } else {
+                            lineChart.yRange.automatic = true;
+                        }
+                        lineChart.valueSources[0].roleName = currentLegendText;
+
+                        var majorFreq = Math.ceil(rangeValDict[currentLegendText] / 4);
+
+                        if (majorFreq < 2) {
+                            majorFreq = 2;
+                        } else if (majorFreq % 2 === 1) {
+                            majorFreq += 1;
+                        }
+
+                        horizontalLines.major.frequency = majorFreq;
+                        horizontalLines.minor.frequency = majorFreq / 2;
+                    }
+                }
+
+                Rectangle {
+                    anchors.fill: parent
+
+                    color: Kirigami.Theme.highlightColor
+                    opacity: (todayRoot.currentLegendText === availableReadings[index]) ? 0.3 : 0
+                    radius: 4
+                }
+
+                Rectangle {
+                    id: hoverOverlay
+                    anchors.fill: parent
+
+                    color: "white"
+                    radius: 4
+                    opacity: 0
+                }
+            }
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+    }
 
     ColumnLayout {
         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
@@ -262,27 +362,6 @@ ColumnLayout {
                     weight: Font.Bold
                     pointSize: textSize.small
                 }
-            }
-
-            ListView {
-                id: iconsListView
-
-                anchors.left: parent.right
-                anchors.top: lineChart.top
-                anchors.bottom: lineChart.bottom
-                width: Kirigami.Units.gridUnit * 2
-                height: lineChart.height
-                model: availableReadings
-                focus: true
-                clip: true
-
-                highlight: Rectangle {
-                    color: Kirigami.Theme.disabledTextColor
-                    Layout.fillWidth: true
-                    radius: 2
-                }
-
-                delegate: ChartMetricsSelectionDelegate {}
             }
         }
     }
