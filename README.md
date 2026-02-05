@@ -102,13 +102,13 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 - Improvements
   -   [x] Compactify tooltip and add more properties
   -   [ ] Add traveling mode to get nearest station
-  -   [ ] Make DayChart a more sleek line graph with better time display
 - Functionality
   -   [ ] Kp-index display and more details rework
 - i18n
   -   [ ] Translations for new text
 - Customizability
   -   [x] Let user add labels to locations and improve adding flow
+  -   [ ] Spacing in-between compact rep icon and text
 - Backend
   -   [ ] Better handle null fields
   -   [x] Improve searching and testing error messages
