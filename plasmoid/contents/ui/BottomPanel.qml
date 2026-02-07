@@ -60,26 +60,7 @@ RowLayout {
             PlasmaComponents.Label {
                 id: locationLabel
 
-                text: weatherData["neighborhood"]
-
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-
-                    hoverEnabled: true
-
-                    onClicked: {
-                        Qt.openUrlExternally("https://www.wunderground.com/dashboard/pws/" + weatherData["stationID"]);
-                    }
-
-                    onEntered: {
-                        locationLabel.font.underline = true;
-                    }
-
-                    onExited: {
-                        locationLabel.font.underline = false;
-                    }
-                }
+                text: plasmoid.configuration.stationName
             }
         }
     }
@@ -109,7 +90,31 @@ RowLayout {
             PlasmaComponents.Label {
                 id: bottomPanelStation
 
-                text: weatherData["stationID"] + "   " + Utils.currentElevUnit(Utils.toUserElev(weatherData["details"]["elev"]))
+                text: plasmoid.configuration.stationID
+
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+
+                    onClicked: {
+                        Qt.openUrlExternally("https://www.wunderground.com/dashboard/pws/" + plasmoid.configuration.stationID);
+                    }
+
+                    onEntered: {
+                        bottomPanelStation.font.underline = true;
+                    }
+
+                    onExited: {
+                        bottomPanelStation.font.underline = false;
+                    }
+                }
+            }
+
+            PlasmaComponents.Label {
+                id: elevationLabel
+
+                text: "   " + Utils.currentElevUnit(Utils.toUserElev(weatherData["details"]["elev"]))
             }
 
             Kirigami.Icon {

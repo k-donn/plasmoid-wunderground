@@ -50,7 +50,7 @@ GridLayout {
     property bool iconDropShadow: plasmoid.configuration.iconDropShadow
 
     property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
-    property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(0) + "°" : "--"
+    property string temperatureStr: root.appState == showDATA ? Utils.toUserTemp(weatherData["details"]["temp"]).toFixed(plasmoid.configuration.compactTempPrecision) + "°" : "--"
 
     uniformCellHeights: layoutType === 1 && iconAndText.vertical
 

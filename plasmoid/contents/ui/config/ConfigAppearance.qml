@@ -40,6 +40,7 @@ KCM.SimpleKCM {
 
     property int cfg_iconSizeMode
     property int cfg_textSizeMode
+    property int cfg_shownInTooltip
 
     property alias cfg_tempAutoColor: tempAutoColor.checked
     property alias cfg_useDefaultPage: useDefaultPage.checked
@@ -68,6 +69,14 @@ KCM.SimpleKCM {
         }
     }
 
+    QQC.ButtonGroup {
+        id: iconSizeModeGroup
+
+        Component.onCompleted: {
+            cfg_iconSizeModeChanged()
+        }
+    }
+
     onCfg_iconSizeModeChanged: {
         switch (cfg_iconSizeMode) {
             case 0:
@@ -80,12 +89,12 @@ KCM.SimpleKCM {
         }
     }
 
-    Component.onCompleted: {
-        cfg_iconSizeModeChanged()
-    }
-
     QQC.ButtonGroup {
-        id: iconSizeModeGroup
+        id: textSizeModeGroup
+
+        Component.onCompleted: {
+            cfg_textSizeModeChanged()
+        }
     }
 
     onCfg_textSizeModeChanged: {
@@ -101,10 +110,25 @@ KCM.SimpleKCM {
     }
 
     QQC.ButtonGroup {
-        id: textSizeModeGroup
+        id: shownInTooltipGroup
 
         Component.onCompleted: {
-            cfg_textSizeModeChanged()
+            cfg_shownInTooltipChanged()
+        }
+    }
+
+    onCfg_shownInTooltipChanged: {
+        switch (cfg_shownInTooltip) {
+            case 0:
+                shownInTooltipGroup.checkedButton = showIDInTooltip;
+                break;
+            case 1:
+                shownInTooltipGroup.checkedButton = showNameInTooltip;
+                break;
+            case 2:
+                shownInTooltipGroup.checkedButton = showBothInTooltip;
+                break;
+            default:
         }
     }
 
@@ -122,6 +146,34 @@ KCM.SimpleKCM {
             id: useSystemThemeIcons
 
             Kirigami.FormData.label: i18n("Use system theme icons:")
+        }
+
+        ColumnLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            Kirigami.FormData.label: i18n("Shown in tooltip:")
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+            PlasmaComponents.RadioButton {
+                id: showIDInTooltip
+                QQC.ButtonGroup.group: shownInTooltipGroup
+                text: i18n("Station ID")
+                onCheckedChanged: if (checked) cfg_shownInTooltip = 0;
+            }
+
+            PlasmaComponents.RadioButton {
+                id: showNameInTooltip
+                QQC.ButtonGroup.group: shownInTooltipGroup
+                text: i18n("Station Name")
+                onCheckedChanged: if (checked) cfg_shownInTooltip = 1;
+            }
+
+            PlasmaComponents.RadioButton {
+                id: showBothInTooltip
+                QQC.ButtonGroup.group: shownInTooltipGroup
+                text: i18n("Both")
+                onCheckedChanged: if (checked) cfg_shownInTooltip = 2;
+            }
         }
         
         Kirigami.Separator {

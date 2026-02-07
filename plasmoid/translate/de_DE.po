@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-01-18 10:44-0600\n"
+"POT-Creation-Date: 2026-02-07 17:01-0600\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -218,6 +218,22 @@ msgstr "Allgemein"
 msgid "Use system theme icons:"
 msgstr "Systemdesignsymbole verwenden"
 
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Shown in tooltip:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Station ID"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigStation.qml
+msgid "Station Name"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Both"
+msgstr ""
+
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
 msgstr "Desktopansicht"
@@ -425,40 +441,32 @@ msgid "Saved Weather Stations"
 msgstr "Gespeicherte Wetterstationen"
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "ID:"
-msgstr "ID:"
-
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
-msgid "Weatherstation Name:"
-msgstr "Wetterstation Name:"
-
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
-msgid "Lat/Lon"
-msgstr "Breiten-/Längengrad"
+msgid "ID"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Action"
-msgstr "Aktion"
-
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
-msgid "Select"
-msgstr "Auswählen"
+msgid "Latitude"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Remove"
-msgstr "Entfernen"
+msgid "Longitude"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Actions"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Select from Map"
 msgstr "Aus Karte auswählen"
 
-#: ../contents/ui/config/ConfigStation.qml
-msgid "Manual Add"
-msgstr "Manuelles Hinzufügen"
-
 #: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Find Station"
 msgstr "Station suchen"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Manual Add"
+msgstr "Manuelles Hinzufügen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -483,6 +491,10 @@ msgstr "Genauigkeit/Nachkommastellen"
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
 msgid "Temperature"
 msgstr "Temperatur"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Compact Rep Temperature"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
@@ -547,6 +559,10 @@ msgstr "Station hinzufügen..."
 msgid "Enter station ID"
 msgstr "Stations-ID eingeben"
 
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station name (optional)"
+msgstr ""
+
 #: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Confirm"
 msgstr "Bestätige"
@@ -554,6 +570,18 @@ msgstr "Bestätige"
 #: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Abbrechen"
+
+#: ../contents/ui/lib/StationListDelegate.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Select"
+msgstr "Auswählen"
+
+#: ../contents/ui/lib/StationListDelegate.qml
+msgid "Edit Name"
+msgstr ""
+
+#: ../contents/ui/lib/StationListDelegate.qml
+msgid "Remove"
+msgstr "Entfernen"
 
 #: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -566,6 +594,10 @@ msgstr "Gebietsname"
 #: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation ID:"
 msgstr "Wetterstation ID"
+
+#: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Lat/Lon"
+msgstr "Breiten-/Längengrad"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Search"
@@ -676,6 +708,10 @@ msgid "Longitude:"
 msgstr "Längengrad"
 
 #: ../contents/ui/lib/StationSearcher.qml
+msgid "Weatherstation Name:"
+msgstr "Wetterstation Name:"
+
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Test"
 msgstr "Test"
 
@@ -704,20 +740,23 @@ msgid "Error..."
 msgstr "Fehler..."
 
 #: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags. 'Temp' means temperature"
-msgid "<font size='4'>Temp: %1</font><br />"
-msgstr "<font size='4'>Temp: %1</font><br />"
-
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags."
-msgid "<font size='4'>Feels: %1</font><br />"
-msgstr "<font size='4'>Gefühlt: %1</font><br />"
-
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
-msgid "<font size='4'>Wnd spd: %1</font><br />"
-msgstr "<font size='4'>Wind: %1</font><br />"
-
-#: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Wetterdaten aktualisieren"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Action"
+#~ msgstr "Aktion"
+
+#~ msgctxt "Do not edit HTML tags. 'Temp' means temperature"
+#~ msgid "<font size='4'>Temp: %1</font><br />"
+#~ msgstr "<font size='4'>Temp: %1</font><br />"
+
+#~ msgctxt "Do not edit HTML tags."
+#~ msgid "<font size='4'>Feels: %1</font><br />"
+#~ msgstr "<font size='4'>Gefühlt: %1</font><br />"
+
+#~ msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
+#~ msgid "<font size='4'>Wnd spd: %1</font><br />"
+#~ msgstr "<font size='4'>Wind: %1</font><br />"

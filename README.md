@@ -100,13 +100,15 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 ## TODO
 
 - Improvements
-  -   [ ] Compactify tooltip and add more properties
+  -   [x] Compactify tooltip and add more properties
+  -   [ ] Add traveling mode to get nearest station
 - Functionality
   -   [ ] Kp-index display and more details rework
 - i18n
   -   [ ] Translations for new text
 - Customizability
-  -   [ ] Let user add labels to locations and improve adding flow
+  -   [x] Let user add labels to locations and improve adding flow
+  -   [ ] Spacing in-between compact rep icon and text
 - Backend
   -   [ ] Better handle null fields
   -   [x] Improve searching and testing error messages

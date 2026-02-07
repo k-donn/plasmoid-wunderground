@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-01-18 10:44-0600\n"
+"POT-Creation-Date: 2026-02-07 17:01-0600\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -218,6 +218,22 @@ msgstr ""
 msgid "Use system theme icons:"
 msgstr "システムテーマアイコンを使用する:"
 
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Shown in tooltip:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Station ID"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigStation.qml
+msgid "Station Name"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Both"
+msgstr ""
+
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
 msgstr "完全な表現"
@@ -425,40 +441,32 @@ msgid "Saved Weather Stations"
 msgstr "保存された気象ステーション"
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "ID:"
-msgstr "ID:"
-
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
-msgid "Weatherstation Name:"
-msgstr "気象観測所名:"
-
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
-msgid "Lat/Lon"
-msgstr "緯度/経度"
+msgid "ID"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Action"
-msgstr "アクション"
-
-#: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationSearcher.qml
-msgid "Select"
-msgstr "選択"
+msgid "Latitude"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
-msgid "Remove"
-msgstr "取り除く"
+msgid "Longitude"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Actions"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Select from Map"
 msgstr ""
 
-#: ../contents/ui/config/ConfigStation.qml
-msgid "Manual Add"
-msgstr ""
-
 #: ../contents/ui/config/ConfigStation.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Find Station"
 msgstr "駅を探す"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Manual Add"
+msgstr ""
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -483,6 +491,10 @@ msgstr "精度"
 #: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
 msgid "Temperature"
 msgstr "温度"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Compact Rep Temperature"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
@@ -547,6 +559,10 @@ msgstr ""
 msgid "Enter station ID"
 msgstr ""
 
+#: ../contents/ui/lib/ManualStationAdd.qml
+msgid "Enter station name (optional)"
+msgstr ""
+
 #: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Confirm"
 msgstr "確認する"
@@ -554,6 +570,18 @@ msgstr "確認する"
 #: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "キャンセル"
+
+#: ../contents/ui/lib/StationListDelegate.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Select"
+msgstr "選択"
+
+#: ../contents/ui/lib/StationListDelegate.qml
+msgid "Edit Name"
+msgstr ""
+
+#: ../contents/ui/lib/StationListDelegate.qml
+msgid "Remove"
+msgstr "取り除く"
 
 #: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
@@ -566,6 +594,10 @@ msgstr ""
 #: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation ID:"
 msgstr "気象観測所ID:"
+
+#: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
+msgid "Lat/Lon"
+msgstr "緯度/経度"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Search"
@@ -676,6 +708,10 @@ msgid "Longitude:"
 msgstr "経度："
 
 #: ../contents/ui/lib/StationSearcher.qml
+msgid "Weatherstation Name:"
+msgstr "気象観測所名:"
+
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Test"
 msgstr ""
 
@@ -704,23 +740,26 @@ msgid "Error..."
 msgstr "エラー..."
 
 #: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags. 'Temp' means temperature"
-msgid "<font size='4'>Temp: %1</font><br />"
-msgstr "<font size='4'>温度: %1</font><br />"
-
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags."
-msgid "<font size='4'>Feels: %1</font><br />"
-msgstr "<font size='4'>感情: %1</font><br />"
-
-#: ../contents/ui/main.qml
-msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
-msgid "<font size='4'>Wnd spd: %1</font><br />"
-msgstr "<font size='4'>ウィンド速度: %1</font><br />"
-
-#: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "天気を更新"
+
+#~ msgid "ID:"
+#~ msgstr "ID:"
+
+#~ msgid "Action"
+#~ msgstr "アクション"
+
+#~ msgctxt "Do not edit HTML tags. 'Temp' means temperature"
+#~ msgid "<font size='4'>Temp: %1</font><br />"
+#~ msgstr "<font size='4'>温度: %1</font><br />"
+
+#~ msgctxt "Do not edit HTML tags."
+#~ msgid "<font size='4'>Feels: %1</font><br />"
+#~ msgstr "<font size='4'>感情: %1</font><br />"
+
+#~ msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
+#~ msgid "<font size='4'>Wnd spd: %1</font><br />"
+#~ msgstr "<font size='4'>ウィンド速度: %1</font><br />"
 
 #~ msgid "Show temperature:"
 #~ msgstr "温度を表示:"
