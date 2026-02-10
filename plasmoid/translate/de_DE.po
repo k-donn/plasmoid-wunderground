@@ -220,19 +220,19 @@ msgstr "Systemdesignsymbole verwenden"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Shown in tooltip:"
-msgstr ""
+msgstr "Angezeigt im Tooltip"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Station ID"
-msgstr ""
+msgstr "Stations-ID"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigStation.qml
 msgid "Station Name"
-msgstr ""
+msgstr "Stationsname"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Both"
-msgstr ""
+msgstr "Beide"
 
 #: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigLayout.qml
 msgid "Full Representation"
@@ -442,19 +442,19 @@ msgstr "Gespeicherte Wetterstationen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Latitude"
-msgstr ""
+msgstr "Breitengrad"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude"
-msgstr ""
+msgstr "Längengrad"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Actions"
-msgstr ""
+msgstr "Aktionen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Select from Map"
@@ -494,7 +494,7 @@ msgstr "Temperatur"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Compact Rep Temperature"
-msgstr ""
+msgstr "Kompakte Temperaturdarstellung"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
@@ -561,7 +561,7 @@ msgstr "Stations-ID eingeben"
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Enter station name (optional)"
-msgstr ""
+msgstr "Stationsname eingeben (optional)"
 
 #: ../contents/ui/lib/ManualStationAdd.qml ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Confirm"
@@ -577,7 +577,7 @@ msgstr "Auswählen"
 
 #: ../contents/ui/lib/StationListDelegate.qml
 msgid "Edit Name"
-msgstr ""
+msgstr "Name bearbeiten"
 
 #: ../contents/ui/lib/StationListDelegate.qml
 msgid "Remove"
@@ -742,21 +742,3 @@ msgstr "Fehler..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Wetterdaten aktualisieren"
-
-#~ msgid "ID:"
-#~ msgstr "ID:"
-
-#~ msgid "Action"
-#~ msgstr "Aktion"
-
-#~ msgctxt "Do not edit HTML tags. 'Temp' means temperature"
-#~ msgid "<font size='4'>Temp: %1</font><br />"
-#~ msgstr "<font size='4'>Temp: %1</font><br />"
-
-#~ msgctxt "Do not edit HTML tags."
-#~ msgid "<font size='4'>Feels: %1</font><br />"
-#~ msgstr "<font size='4'>Gefühlt: %1</font><br />"
-
-#~ msgctxt "Do not edit HTML tags. 'Wnd Spd' means Wind Speed"
-#~ msgid "<font size='4'>Wnd spd: %1</font><br />"
-#~ msgstr "<font size='4'>Wind: %1</font><br />"
