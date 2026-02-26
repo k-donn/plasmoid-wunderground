@@ -581,14 +581,14 @@ PlasmoidItem {
         var subText = "";
         if (appState == showDATA) {
             var windDir = weatherData["winddir"];
-            var windSpd = Utils.toUserSpeed(weatherData["details"]["windSpeed"]);
+            var windSpd = Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windSpeed"]), plasmoid.configuration.windPrecision);
             var temp = Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision);
             var pres = Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]), 2);
             subText += weatherData["obsTimeLocal"];
             subText += "<br /><br />";
             subText += "<font size=\"8\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon(iconCode) + "</font>&nbsp;&nbsp;<font size=\"8\"><b>" + temp + "</b></font>";
             subText += "<br /><br />";
-            subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("wind@2") + "</font><font size=\"4\">" + windDir + "°&nbsp;&nbsp;@&nbsp;" + windSpd + Utils.rawSpeedUnit() + "</font>";
+            subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("wind@2") + "</font><font size=\"4\">" + windDir + "°&nbsp;&nbsp;@&nbsp;" + windSpd + "</font>";
             subText += "<br />";
             subText += "<font size=\"4\" style=\"font-family: weather-icons;\">" + Utils.getConditionIcon("humidity@2") + "</font><font size=\"4\">" + weatherData["humidity"] + "%</font>";
             subText += "&nbsp;&nbsp;";
