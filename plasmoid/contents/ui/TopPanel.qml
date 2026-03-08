@@ -63,7 +63,6 @@ RowLayout {
             }
         }
 
-        
     }
 
     PlasmaComponents.Label {

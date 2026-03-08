@@ -87,9 +87,9 @@ PlasmoidItem {
     property ListModel alertsModel: ListModel {}
     property int currDayHigh: 0
     property int currDayLow: 0
-    property string moonrise: ""
-    property string moonset: ""
-    property string moonPhase: ""
+    property string moonrise: "20:00"
+    property string moonset: "4:00"
+    property string moonPhase: "Full Moon"
     property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 

@@ -1169,29 +1169,72 @@ function calculateTotalLightTime(sunrise, sunset) {
 	}
 }
 
-/**
- * Calculate time remaining until sunset
- *
- * @param {string} sunset Time in HH:MM format
- * @returns {string} Time remaining or "Night time"
- */
-function calculateTimeRemaining(sunset) {
-	if (!sunset) return "N/A";
-	try {
-		var setParts = sunset.split(":");
-		var now = new Date();
-		var sunsetDate = new Date();
-		sunsetDate.setHours(parseInt(setParts[0]), parseInt(setParts[1]), 0, 0);
-		if (sunsetDate < now) {
-			sunsetDate.setDate(sunsetDate.getDate() + 1); // Next day
-		}
-		var diffMs = sunsetDate - now;
-		if (diffMs <= 0) return "Night time";
-		var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-		var diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-		return diffHours + "h " + diffMins + "m";
-	} catch (e) {
-		return "N/A";
+function calculateTimeDifference(startDate, endDate, isShowSeconds) {
+	printDebug(`Calculating time difference between ${startDate} and ${endDate}`)
+	var diff = new Date(endDate).getTime() - new Date(startDate).getTime(); 
+	var diff_as_date = new Date(diff);
+	
+	
+	printDebug(`Time difference reported as: ${diff_as_date}`)
+	if(isShowSeconds) {
+		return `${diff_as_date.getUTCHours()}h ${diff_as_date.getUTCMinutes()}m ${diff_as_date.getUTCSeconds()}s`;
+	} else {
+		return `${diff_as_date.getUTCHours()}h ${diff_as_date.getUTCMinutes()}m`;
 	}
+	
+}
+
+function calculateNeedlePosition(startDate, endDate) {
+	printDebug("Calculating needle position")
+	var startTs = new Date(startDate).getTime();
+	var endTs = new Date(endDate).getTime();
+	var nowTs = (new Date()).getTime();
+
+	if(nowTs < startDate || nowTs > endDate) {
+		return 0;
+	}
+
+	var diff = endTs - startTs;
+
+	var nowDiff = endTs - nowTs;
+
+	var result = Math.round((nowDiff * 100)/diff);
+
+	printDebug(`Start ${startTs}, End: ${endTs}, diff: ${diff}, nowDiff: ${nowDiff}, effective needle: ${100 - result}`)
+
+	return 100 - result;
+}
+
+function getDayLength(startDate, endDate) {
+	var dayLength = Utils.calculateTimeDifference(startDate,endDate,true);
+
+	return dayLength;
+}
+
+function remainingUntilSinceDaylight(startDate, endDate) {
+	var rise = new Date(startDate);
+	var set = new Date(endDate);
+	var now = new Date();
+	var dayLength = Utils.calculateTimeDifference(rise,set,true);
+	var timeSunlight = "";
+
+	printDebug(`Rise ${rise}, Set: ${set}, Now: ${now}`)
+
+	if(now.getTime() < rise.getTime()) {
+		timeSunlight = i18n("To sunrise") + ": " 
+				+ Utils.calculateTimeDifference(now,rise,false);
+
+		printDebug(` ${timeSunlight}`)
+	} else if (now.getTime() >= rise.getTime() && now.getTime() <+ set.getTime()) {
+		timeSunlight = i18nc("Daylight remaining time, keep short","Remaining") + ": " 
+				+ Utils.calculateTimeDifference(now,set,false);
+		printDebug(` ${timeSunlight}`)
+	} else if (now.getTime() > set.getTime()) {
+		timeSunlight = i18n("Since sunset") + ": " 
+		+ Utils.calculateTimeDifference(set,now,false);
+		printDebug(`${timeSunlight}`)
+	}
+	
+	return timeSunlight;
 }
 

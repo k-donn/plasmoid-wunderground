@@ -1,5 +1,6 @@
 /*
  * Copyright 2026  Kevin Donnelly
+ * Copyright 2022  Rafal (Raf) Liwoch
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -22,11 +23,35 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
+import "lib" as Lib
 
 ColumnLayout {
     id: detailsRoot
 
     property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
+    property string sunrise: weatherData["sunrise"]
+    property string sunset: weatherData["sunset"]
+
+    Timer {
+        id: sunTimer
+        running: appState === showDATA
+        repeat: true
+        interval: 60 * 1000
+        
+        onTriggered: {
+            dayLength.text = Utils.getDayLength(weatherData["sunrise"],weatherData["sunset"])
+            dayLightCaption.text = Utils.remainingUntilSinceDaylight(weatherData["sunrise"],weatherData["sunset"])
+            circularSlider.value = Utils.calculateNeedlePosition(weatherData["sunrise"],weatherData["sunset"])
+        }
+    }
+
+    onSunriseChanged: {
+        sunTimer.triggered()
+    }
+
+    onSunsetChanged: {
+        sunTimer.triggered()
+    }
 
     // Top row: three columns
     RowLayout {
@@ -39,20 +64,86 @@ ColumnLayout {
             Layout.alignment: Qt.AlignCenter
 
             PlasmaComponents.Label {
-                text: i18n("Sunrise: %1", weatherData["sunrise"])
-                font.pointSize: plasmoid.configuration.propPointSize
+                id: dayLength
+                text: "day length"
+                font.bold: true
+                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
             }
-            PlasmaComponents.Label {
-                text: i18n("Sunset: %1",weatherData["sunset"])
-                font.pointSize: plasmoid.configuration.propPointSize
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignCenter
+
+                ColumnLayout {
+                    PlasmaComponents.Label {
+                        text: "\uF05E"
+                        font.family: "weather-icons"
+                        font.pixelSize: Kirigami.Units.iconSizes.medium
+                    }
+
+                    PlasmaComponents.Label {
+                        text: Qt.formatDateTime(weatherData["sunrise"], "hh:mm")
+                        font.pointSize: plasmoid.configuration.propPointSize
+                        font.bold: true
+                    }
+                }
+
+                Lib.CircularSlider {
+                    id: circularSlider
+
+                    Layout.alignment: Qt.AlignCenter
+
+                    rotation: 270
+
+                    Layout.preferredHeight: Kirigami.Units.iconSizes.large
+                    Layout.preferredWidth: Kirigami.Units.iconSizes.large
+
+                    trackWidth: Kirigami.Units.iconSizes.small/8
+                    progressWidth: 2
+                    handleWidth: Kirigami.Units.iconSizes.small/1.5
+                    handleHeight: handleWidth
+                    handleRadius: 10
+                    handleVerticalOffset: 0
+
+                    startAngle: 0
+                    endAngle: 180
+                    minValue: 0
+                    maxValue: 100
+                    snap: false
+                    stepSize: 1
+                    value: Utils.calculateNeedlePosition(weatherData["sunrise"],weatherData["sunset"]) 
+
+                    handleColor: "#FDBE3B"
+                    trackColor: "grey"
+                    progressColor: "#FDBE3B"
+
+                    hideTrack: false
+                    hideProgress: false
+
+                    interactive: true
+                }
+
+                ColumnLayout {
+                    PlasmaComponents.Label {
+                        text: "\uF05D"
+                        font.family: "weather-icons"
+                        font.pixelSize: Kirigami.Units.iconSizes.medium
+                    }
+
+                    PlasmaComponents.Label {
+                        text: Qt.formatDateTime(weatherData["sunset"], "hh:mm")
+                        font.pointSize: plasmoid.configuration.propPointSize
+                        font.bold: true
+                    }
+                }
             }
+
             PlasmaComponents.Label {
-                text: i18n("Total light: %1", Utils.calculateTotalLightTime(weatherData["sunrise"], weatherData["sunset"]))
-                font.pointSize: plasmoid.configuration.propPointSize
-            }
-            PlasmaComponents.Label {
-                text: i18n("Time remaining: %1", Utils.calculateTimeRemaining(weatherData["sunset"]))
-                font.pointSize: plasmoid.configuration.propPointSize
+                id: dayLightCaption
+                text: "day remaining"
+                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
             }
         }
 
@@ -106,17 +197,52 @@ ColumnLayout {
         ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
-            PlasmaComponents.Label {
-                text: i18n("Moonrise: %1", moonrise)
-                font.pointSize: plasmoid.configuration.propPointSize
+
+            RowLayout {
+                Layout.fillWidth: true
+                Layout.alignment: Qt.AlignCenter
+
+                ColumnLayout {
+                    PlasmaComponents.Label {
+                        text: "\uF060"
+                        font.family: "weather-icons"
+                        font.pixelSize: Kirigami.Units.iconSizes.medium
+                    }
+
+                    PlasmaComponents.Label {
+                        text: Qt.formatDateTime(moonrise, "hh:mm")
+                        font.pointSize: plasmoid.configuration.propPointSize
+                        font.bold: true
+                    }
+                }
+
+                PlasmaComponents.Label {
+                    text: "\uF006"
+                    font.family: "weather-icons"
+                    font.pixelSize: Kirigami.Units.iconSizes.medium
+                    horizontalAlignment: Text.AlignHCenter
+                    Layout.alignment: Qt.AlignCenter
+                }
+
+                ColumnLayout {
+                    PlasmaComponents.Label {
+                        text: "\uF05F"
+                        font.family: "weather-icons"
+                        font.pixelSize: Kirigami.Units.iconSizes.medium
+                    }
+
+                    PlasmaComponents.Label {
+                        text: Qt.formatDateTime(moonset, "hh:mm")
+                        font.pointSize: plasmoid.configuration.propPointSize
+                        font.bold: true
+                    }
+                }
             }
+
             PlasmaComponents.Label {
-                text: i18n("Moonset: %1", moonset)
-                font.pointSize: plasmoid.configuration.propPointSize
-            }
-            PlasmaComponents.Label {
-                text: i18n("Phase: %1", moonPhase)
-                font.pointSize: plasmoid.configuration.propPointSize
+                text: moonPhase
+                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
             }
         }
     }
