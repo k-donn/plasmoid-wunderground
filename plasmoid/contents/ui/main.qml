@@ -596,7 +596,7 @@ PlasmoidItem {
         } else if (appState == showDATA) {
             return plasmoid.configuration.shownInTooltip == 0 ? weatherData["stationID"] :
                    plasmoid.configuration.shownInTooltip == 1 ? plasmoid.configuration.stationName :
-                   plasmoid.configuration.stationName + " (" + weatherData["stationID"] + ")";
+                   plasmoid.configuration.stationName + "\n" + weatherData["stationID"];
         } else if (appState == showLOADING) {
             return i18n("Loading...");
         } else if (appState == showERROR) {
