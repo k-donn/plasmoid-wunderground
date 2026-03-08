@@ -103,7 +103,7 @@ PlasmoidItem {
     property int showERROR: 4
     property int showDATA: 8
 
-    property int appState: showDATA
+    property int appState: showCONFIG
 
     property bool showForecast: false
 
