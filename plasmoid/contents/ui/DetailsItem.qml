@@ -39,19 +39,19 @@ ColumnLayout {
             Layout.alignment: Qt.AlignCenter
 
             PlasmaComponents.Label {
-                text: i18n("Sunrise: %1", "10:10")
+                text: i18n("Sunrise: %1", weatherData["sunrise"])
                 font.pointSize: plasmoid.configuration.propPointSize
             }
             PlasmaComponents.Label {
-                text: i18n("Sunset: %1","10:10")
+                text: i18n("Sunset: %1",weatherData["sunset"])
                 font.pointSize: plasmoid.configuration.propPointSize
             }
             PlasmaComponents.Label {
-                text: i18n("Total light: %1", Utils.calculateTotalLightTime(weatherData["sunrise"], weatherData["sunset"]) || "N/A")
+                text: i18n("Total light: %1", Utils.calculateTotalLightTime(weatherData["sunrise"], weatherData["sunset"]))
                 font.pointSize: plasmoid.configuration.propPointSize
             }
             PlasmaComponents.Label {
-                text: i18n("Time remaining: %1", Utils.calculateTimeRemaining(weatherData["sunset"]) || "N/A")
+                text: i18n("Time remaining: %1", Utils.calculateTimeRemaining(weatherData["sunset"]))
                 font.pointSize: plasmoid.configuration.propPointSize
             }
         }
@@ -107,15 +107,15 @@ ColumnLayout {
             Layout.fillWidth: true
             Layout.alignment: Qt.AlignCenter
             PlasmaComponents.Label {
-                text: i18n("Moonrise: %1", weatherData["moonrise"] || "N/A")
+                text: i18n("Moonrise: %1", moonrise)
                 font.pointSize: plasmoid.configuration.propPointSize
             }
             PlasmaComponents.Label {
-                text: i18n("Moonset: %1", weatherData["moonset"] || "N/A")
+                text: i18n("Moonset: %1", moonset)
                 font.pointSize: plasmoid.configuration.propPointSize
             }
             PlasmaComponents.Label {
-                text: i18n("Phase: %1", weatherData["moonPhase"] || "N/A")
+                text: i18n("Phase: %1", moonPhase)
                 font.pointSize: plasmoid.configuration.propPointSize
             }
         }

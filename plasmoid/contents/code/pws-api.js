@@ -1058,17 +1058,26 @@ function getForecastDataV3(options, callback) {
 				golfDesc: !isFirstNight
 					? "Good day for golf."
 					: "Don't play golf at night.",
+				moonrise: dailyForecastVars && dailyForecastVars["moonriseTimeLocal"] ? dailyForecastVars["moonriseTimeLocal"][daypartPeriod] : "",
+				moonset: dailyForecastVars && dailyForecastVars["moonsetTimeLocal"] ? dailyForecastVars["moonsetTimeLocal"][daypartPeriod] : "",
+				moonPhase: dailyForecastVars && dailyForecastVars["moonPhase"] ? dailyForecastVars["moonPhase"][daypartPeriod] : "",
 			});
 		}
 
 		var currDayHigh = forecastArr.length ? forecastArr[0].high : null;
 		var currDayLow = forecastArr.length ? forecastArr[0].low : null;
+		var moonrise = forecastArr.length ? forecastArr[0].moonrise : null;
+		var moonset = forecastArr.length ? forecastArr[0].moonset : null;
+		var moonPhase = forecastArr.length ? forecastArr[0].moonPhase : null;
 
 		printDebug("[pws-api.js] Got new forecast data");
 		callback(null, {
 			forecast: forecastArr,
 			currDayHigh: currDayHigh,
 			currDayLow: currDayLow,
+			moonrise: moonrise,
+			moonset: moonset,
+			moonPhase: moonPhase
 		});
 	});
 }

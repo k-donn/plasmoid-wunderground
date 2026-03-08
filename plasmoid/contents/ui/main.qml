@@ -87,6 +87,9 @@ PlasmoidItem {
     property ListModel alertsModel: ListModel {}
     property int currDayHigh: 0
     property int currDayLow: 0
+    property string moonrise: ""
+    property string moonset: ""
+    property string moonPhase: ""
     property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 
@@ -314,6 +317,9 @@ PlasmoidItem {
                         }
                         currDayHigh = fcRes.currDayHigh;
                         currDayLow = fcRes.currDayLow;
+                        moonrise = fcRes.moonrise;
+                        moonset = fcRes.moonset;
+                        moonPhase = fcRes.moonPhase;
 
                         printDebug("Got new forecast data");
                         showForecast = true;
@@ -426,6 +432,9 @@ PlasmoidItem {
                     forecastModel.append(fcRes.forecast[k]);
                 currDayHigh = fcRes.currDayHigh;
                 currDayLow = fcRes.currDayLow;
+                moonrise = fcRes.moonrise;
+                moonset = fcRes.moonset;
+                moonPhase = fcRes.moonPhase;
                 printDebug("Got new forecast data");
                 showForecast = true;
 
