@@ -247,6 +247,14 @@ ColumnLayout {
         }
     }
 
+    PlasmaComponents.Label {
+        text: blurb
+        visible: plasmoid.configuration.showBlurb
+        font.pointSize: plasmoid.configuration.propPointSize
+        horizontalAlignment: Text.AlignHCenter
+        Layout.fillWidth: true
+    }
+
     // Below: 2 row by 4 column grid of current conditions
     GridLayout {
         columns: 4

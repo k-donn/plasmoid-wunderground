@@ -91,6 +91,7 @@ PlasmoidItem {
     property string moonset: "4:00"
     property string moonPhase: "Full Moon"
     property string moonPhaseCode: "F"
+    property string blurb: "AAAAAAAAAAAAAAAAAAAAAA"
     property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 
@@ -289,6 +290,11 @@ PlasmoidItem {
                     merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
                     merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
                     merged.cloudCover = extRes.cloudCover || merged.cloudCover;
+                    merged.moonrise = extRes.moonrise || merged.moonrise;
+                    merged.moonset = extRes.moonset || merged.moonset;
+                    merged.moonPhase = extRes.moonPhase || merged.moonPhase;
+                    merged.moonPhaseCode = extRes.moonPhaseCode || merged.moonPhaseCode
+                    merged.blurb = extRes.blurb || merged.blurb;
                     merged.details = merged.details || {};
                     merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
                     merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
@@ -322,6 +328,7 @@ PlasmoidItem {
                         moonset = fcRes.moonset;
                         moonPhase = fcRes.moonPhase;
                         moonPhaseCode = fcRes.moonPhaseCode;
+                        blurb = fcRes.blurb;
 
                         printDebug("Got new forecast data");
                         showForecast = true;
@@ -407,6 +414,12 @@ PlasmoidItem {
             merged.isNight = extRes.isNight;
             merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
             merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
+            merged.moonrise = extRes.moonrise || merged.moonrise;
+            merged.moonset = extRes.moonset || merged.moonset;
+            merged.moonPhase = extRes.moonPhase || merged.moonPhase;
+            merged.moonPhaseCode = extRes.moonPhaseCode || merged.moonPhaseCode
+            merged.blurb = extRes.blurb || merged.blurb;
+            merged.cloudCover = extRes.cloudCover || merged.cloudCover;
             merged.details = merged.details || {};
             merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
             merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
@@ -438,6 +451,7 @@ PlasmoidItem {
                 moonset = fcRes.moonset;
                 moonPhase = fcRes.moonPhase;
                 moonPhaseCode = fcRes.moonPhaseCode;
+                blurb = fcRes.blurb;
                 printDebug("Got new forecast data");
                 showForecast = true;
 

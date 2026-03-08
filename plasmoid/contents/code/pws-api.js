@@ -1062,6 +1062,7 @@ function getForecastDataV3(options, callback) {
 				moonset: dailyForecastVars && dailyForecastVars["moonsetTimeLocal"] ? dailyForecastVars["moonsetTimeLocal"][daypartPeriod] : "",
 				moonPhase: dailyForecastVars && dailyForecastVars["moonPhase"] ? dailyForecastVars["moonPhase"][daypartPeriod] : "",
 				moonPhaseCode: dailyForecastVars && dailyForecastVars["moonPhaseCode"] ? dailyForecastVars["moonPhaseCode"][daypartPeriod] : "",
+				blurb: dailyForecastVars && dailyForecastVars["narrative"] ? dailyForecastVars["narrative"][daypartPeriod] : "",
 			});
 		}
 
@@ -1071,6 +1072,7 @@ function getForecastDataV3(options, callback) {
 		var moonset = forecastArr.length ? forecastArr[0].moonset : null;
 		var moonPhase = forecastArr.length ? forecastArr[0].moonPhase : null;
 		var moonPhaseCode = forecastArr.length ? forecastArr[0].moonPhaseCode : null;
+		var blurb = forecastArr.length ? forecastArr[0].blurb : null;
 
 		printDebug("[pws-api.js] Got new forecast data");
 		callback(null, {
@@ -1080,7 +1082,8 @@ function getForecastDataV3(options, callback) {
 			moonrise: moonrise,
 			moonset: moonset,
 			moonPhase: moonPhase,
-			moonPhaseCode: moonPhaseCode
+			moonPhaseCode: moonPhaseCode,
+			blurb: blurb
 		});
 	});
 }
