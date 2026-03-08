@@ -19,214 +19,287 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components as PlasmaComponents
 import "../code/utils.js" as Utils
 
-GridLayout {
+ColumnLayout {
     id: detailsRoot
 
-    uniformCellWidths: true
+    // Top row: three columns
+    RowLayout {
+        Layout.preferredWidth: parent.width
 
-    columns: 3
-    rows: 4
-
-    PlasmaComponents.Label {
-        id: temp
-        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision)
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.tempPointSize
+        // Left: Sunrise and set times with total light time and time remaining
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.preferredWidth: 1
+            PlasmaComponents.Label {
+                text: i18n("Sunrise: %1", "10:10")
+                font.pointSize: plasmoid.configuration.propPointSize
+            }
+            PlasmaComponents.Label {
+                text: i18n("Sunset: %1","10:10")
+                font.pointSize: plasmoid.configuration.propPointSize
+            }
+            PlasmaComponents.Label {
+                text: i18n("Total light: %1", Utils.calculateTotalLightTime(weatherData["sunrise"], weatherData["sunset"]) || "N/A")
+                font.pointSize: plasmoid.configuration.propPointSize
+            }
+            PlasmaComponents.Label {
+                text: i18n("Time remaining: %1", Utils.calculateTimeRemaining(weatherData["sunset"]) || "N/A")
+                font.pointSize: plasmoid.configuration.propPointSize
+            }
         }
-        // Use theme color if user doesn't want temp colored
-        color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"], Kirigami.Theme.backgroundColor) : Kirigami.Theme.textColor
-    }
 
-    Kirigami.Icon {
-        id: topPanelIcon
-
-        source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
-
-        isMask: true
-        color: Kirigami.Theme.textColor
-
-        // wind barb icons are 270 degrees deviated from 0 degrees (north)
-        rotation: weatherData["winddir"] - 270
-
-        Layout.minimumWidth: Kirigami.Units.iconSizes.large
-        Layout.minimumHeight: Kirigami.Units.iconSizes.large
-        Layout.preferredWidth: Layout.minimumWidth
-        Layout.preferredHeight: Layout.minimumHeight
-
-        PlasmaCore.ToolTipArea {
-            anchors.fill: parent
-
-            interactive: true
-            mainText: i18n("Wind Barb")
-            subText: i18n("Wind direction and speed indicator")
-
-            mainItem: PlasmaComponents.Control {
-                implicitWidth: Math.max(implicitBackgroundWidth + leftPadding + rightPadding,
-                            implicitContentWidth + leftPadding + rightPadding)
-                implicitHeight: Math.max(implicitBackgroundHeight + topPadding + bottomPadding,
-                            implicitContentHeight + topPadding + bottomPadding)
-                
-                padding: Kirigami.Units.smallSpacing
-                
-                contentItem: ColumnLayout {
-                    spacing: Kirigami.Units.smallSpacing
-                    
-                    PlasmaComponents.Label {
-                        text: i18n("Wind Barb")
-                        font.bold: true
+        // Center: Condition icon left of current temp, feels like, condition blurb
+        RowLayout {
+            Layout.fillWidth: true
+            Layout.preferredWidth: 1
+            Kirigami.Icon {
+                source: weatherData["conditionIcon"] || "weather-clear"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.large
+                Layout.preferredHeight: Kirigami.Units.iconSizes.large
+            }
+            ColumnLayout {
+                PlasmaComponents.Label {
+                    text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision)
+                    font {
+                        bold: true
+                        pointSize: plasmoid.configuration.tempPointSize
                     }
-                    
-                    PlasmaComponents.Label {
-                        text: i18n("Wind direction and speed indicator")
-                        wrapMode: Text.WordWrap
-                        font.pointSize: Kirigami.Theme.smallFont.pointSize
-                    }
-                    
-                    PlasmaComponents.Button {
-                        text: i18n("Learn more")
-                        onClicked: Qt.openUrlExternally("https://en.wikipedia.org/wiki/Station_model#Plotted_winds")
-                        Layout.alignment: Qt.AlignHCenter
+                    color: plasmoid.configuration.tempAutoColor ? Utils.heatColor(weatherData["details"]["temp"], Kirigami.Theme.backgroundColor) : Kirigami.Theme.textColor
+                }
+                PlasmaComponents.Label {
+                    text: i18n("Feels like %1", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]), plasmoid.configuration.feelsPrecision))
+                    font {
+                        bold: true
+                        pointSize: plasmoid.configuration.propPointSize
                     }
                 }
+                PlasmaComponents.Label {
+                    text: weatherData["condition"] || "Clear"
+                    font.pointSize: plasmoid.configuration.propPointSize - 1
+                }
+            }
+        }
+
+        // Right: Moon rise and set times and phase
+        ColumnLayout {
+            Layout.fillWidth: true
+            Layout.preferredWidth: 1
+            PlasmaComponents.Label {
+                text: i18n("Moonrise: %1", weatherData["moonrise"] || "N/A")
+                font.pointSize: plasmoid.configuration.propPointSize
+            }
+            PlasmaComponents.Label {
+                text: i18n("Moonset: %1", weatherData["moonset"] || "N/A")
+                font.pointSize: plasmoid.configuration.propPointSize
+            }
+            PlasmaComponents.Label {
+                text: i18n("Phase: %1", weatherData["moonPhase"] || "N/A")
+                font.pointSize: plasmoid.configuration.propPointSize
             }
         }
     }
 
-    PlasmaComponents.Label {
-        id: windLabel
-        text: i18n("Wind & Gust")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
-        }
-    }
+    // Below: 2 row by 4 column grid of current conditions
+    GridLayout {
+        columns: 4
+        rows: 2
+        Layout.preferredWidth: parent.width
+        uniformCellWidths: true
+        uniformCellHeights: true
 
-    PlasmaComponents.Label {
-        id: feelsLike
-        text: i18n("Feels like %1", Utils.currentTempUnit(Utils.feelsLike(weatherData["details"]["temp"], weatherData["humidity"], weatherData["details"]["windSpeed"]), plasmoid.configuration.feelsPrecision))
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-    PlasmaComponents.Label {
-        id: windDirCard
-        text: i18n("Wind from: %1 (%2°)", Utils.windDirToCard(weatherData["winddir"]), weatherData["winddir"])
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-    PlasmaComponents.Label {
-        id: wind
-        text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(plasmoid.configuration.windPrecision) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]), plasmoid.configuration.windPrecision)
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-
-    PlasmaComponents.Label {
-        id: dewLabel
-        text: i18n("Dew Point")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
-        }
-    }
-    PlasmaComponents.Label {
-        id: precipRateLabel
-        text: i18n("Precipitation Rate")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
-        }
-    }
-    PlasmaComponents.Label {
-        id: pressureLabel
-        text: i18n("Pressure")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
-        }
-    }
-
-    PlasmaComponents.Label {
-        id: dew
-        text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]), plasmoid.configuration.dewPrecision)
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-    PlasmaComponents.Label {
-        id: precipRate
-        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain), isRain) + "/hr"
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-    Row {
-        PlasmaComponents.Label {
-            id: pressure
-            text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
-            font.pointSize: plasmoid.configuration.propPointSize
-        }
-        Kirigami.Icon {
-            source: Utils.getPressureTrendIcon(weatherData["details"]["pressureTrendCode"])
-
-            visible: plasmoid.configuration.showPresTrend
-
-            height: Kirigami.Units.iconSizes.small
-
-            PlasmaCore.ToolTipArea {
-                anchors.fill: parent
-
-                mainText: weatherData["details"]["pressureTrend"]
-                subText: {
-                    var userPres = Utils.toUserPres(weatherData["details"]["pressureDelta"]);
-                    var absDelta = Math.abs(userPres);
-                    var fullStr = Utils.currentPresUnit(absDelta);
-                    var hasIncreased = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"]);
-                    if (hasIncreased) {
-                        return i18n("Pressure has risen %1 in the last three hours.", fullStr);
-                    } else {
-                        return i18n("Pressure has fallen %1 in the last three hours.", fullStr);
-                    }
+        // Wind
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "wind"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Wind")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(plasmoid.configuration.windPrecision) + " " + Utils.rawSpeedUnit()
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
                 }
+                Layout.alignment: Qt.AlignCenter
             }
         }
-    }
 
-    PlasmaComponents.Label {
-        id: humidityLabel
-        text: i18n("Humidity")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
+        // Dew Point
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "temperature-below-zero"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Dew Point")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]), plasmoid.configuration.dewPrecision)
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
         }
-    }
-    PlasmaComponents.Label {
-        id: precipAccLabel
-        text: i18nc("Short for: 'Precipitation Accumulation'", "Precipitation Accum.")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
-        }
-    }
-    PlasmaComponents.Label {
-        id: uvLabel
-        text: i18n("UV")
-        font {
-            bold: true
-            pointSize: plasmoid.configuration.propHeadPointSize
-        }
-    }
 
-    PlasmaComponents.Label {
-        id: humidity
-        text: weatherData["humidity"] + "%"
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-    PlasmaComponents.Label {
-        id: precipAcc
-        text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain), isRain)
-        font.pointSize: plasmoid.configuration.propPointSize
-    }
-    PlasmaComponents.Label {
-        id: uv
-        text: weatherData["uv"]
-        font.pointSize: plasmoid.configuration.propPointSize
+        // Precipitation Rate
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "rain"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Precip Rate")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain), isRain) + "/hr"
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
+        // Pressure
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "barometer"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Pressure")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
+        // Humidity
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "humidity"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Humidity")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: weatherData["humidity"] + "%"
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
+        // Precipitation Accumulation
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "weather-showers"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Precip Accum")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain), isRain)
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
+        // UV
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "sun"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("UV")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: weatherData["uv"]
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
+        // Gust (to fill the 8th spot, since original had wind & gust)
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            Kirigami.Icon {
+                source: "wind"
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Gust")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.toUserSpeed(weatherData["details"]["windGust"]).toFixed(plasmoid.configuration.windPrecision) + " " + Utils.rawSpeedUnit()
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
     }
 }

@@ -1141,3 +1141,57 @@ function getAPIHost() {
 	return "https://wps.mitchell-" + host + ".workers.dev";
 }
 
+/**
+ * Calculate total light time between sunrise and sunset
+ *
+ * @param {string} sunrise Time in HH:MM format
+ * @param {string} sunset Time in HH:MM format
+ * @returns {string} Total light time in HH:MM format or "N/A"
+ */
+function calculateTotalLightTime(sunrise, sunset) {
+	if (!sunrise || !sunset) return "N/A";
+	try {
+		var riseParts = sunrise.split(":");
+		var setParts = sunset.split(":");
+		var riseDate = new Date();
+		riseDate.setHours(parseInt(riseParts[0]), parseInt(riseParts[1]), 0, 0);
+		var setDate = new Date();
+		setDate.setHours(parseInt(setParts[0]), parseInt(setParts[1]), 0, 0);
+		if (setDate < riseDate) {
+			setDate.setDate(setDate.getDate() + 1); // Next day
+		}
+		var diffMs = setDate - riseDate;
+		var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+		var diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+		return diffHours + ":" + (diffMins < 10 ? "0" : "") + diffMins;
+	} catch (e) {
+		return "N/A";
+	}
+}
+
+/**
+ * Calculate time remaining until sunset
+ *
+ * @param {string} sunset Time in HH:MM format
+ * @returns {string} Time remaining or "Night time"
+ */
+function calculateTimeRemaining(sunset) {
+	if (!sunset) return "N/A";
+	try {
+		var setParts = sunset.split(":");
+		var now = new Date();
+		var sunsetDate = new Date();
+		sunsetDate.setHours(parseInt(setParts[0]), parseInt(setParts[1]), 0, 0);
+		if (sunsetDate < now) {
+			sunsetDate.setDate(sunsetDate.getDate() + 1); // Next day
+		}
+		var diffMs = sunsetDate - now;
+		if (diffMs <= 0) return "Night time";
+		var diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+		var diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+		return diffHours + "h " + diffMins + "m";
+	} catch (e) {
+		return "N/A";
+	}
+}
+
