@@ -99,12 +99,6 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
 
 ## TODO
 
-icons to get:
-accumulation
-sun(rise|set)
-raindrop
-
-
 - Improvements
   -   [x] Compactify tooltip and add more properties
   -   [ ] Add traveling mode to get nearest station

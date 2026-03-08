@@ -58,8 +58,8 @@ ColumnLayout {
             Layout.preferredWidth: 1
             Kirigami.Icon {
                 source: weatherData["conditionIcon"] || "weather-clear"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.large
-                Layout.preferredHeight: Kirigami.Units.iconSizes.large
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
             }
             ColumnLayout {
                 PlasmaComponents.Label {
@@ -189,7 +189,7 @@ ColumnLayout {
             PlasmaComponents.Label {
                 text: "\uF03F"
                 font.family: "weather-icons"
-                font.pixelSize: Kirigami.Units.iconSizes.medium
+                font.pixelSize: Kirigami.Units.iconSizes.medium * 1.1
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
@@ -212,9 +212,9 @@ ColumnLayout {
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
             PlasmaComponents.Label {
-                text: "\uF04C"
+                text: "\uF05C"
                 font.family: "weather-icons"
-                font.pixelSize: Kirigami.Units.iconSizes.medium
+                font.pixelSize: Kirigami.Units.iconSizes.medium * 1.1
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
@@ -312,9 +312,9 @@ ColumnLayout {
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
             PlasmaComponents.Label {
-                text: "\uF04C"
+                text: "\uF062"
                 font.family: "weather-icons"
-                font.pixelSize: Kirigami.Units.iconSizes.medium
+                font.pixelSize: Kirigami.Units.iconSizes.medium * 1.1
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
@@ -337,9 +337,9 @@ ColumnLayout {
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
             PlasmaComponents.Label {
-                text: "\uF010"
+                text: "\uF061"
                 font.family: "weather-icons"
-                font.pixelSize: Kirigami.Units.iconSizes.medium
+                font.pixelSize: Kirigami.Units.iconSizes.medium * 1.1
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
