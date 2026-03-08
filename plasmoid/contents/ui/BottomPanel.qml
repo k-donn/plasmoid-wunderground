@@ -37,6 +37,8 @@ RowLayout {
 
         Layout.fillWidth: true
         Layout.preferredWidth: 1
+
+        color: Kirigami.Theme.disabledTextColor
     }
 
     Item {
@@ -50,7 +52,7 @@ RowLayout {
             PlasmaComponents.Label {
                 id: locationIcon
 
-                color: Kirigami.Theme.textColor
+                color: Kirigami.Theme.disabledTextColor
 
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
@@ -61,6 +63,8 @@ RowLayout {
                 id: locationLabel
 
                 text: plasmoid.configuration.stationName
+
+                color: Kirigami.Theme.disabledTextColor
             }
         }
     }
@@ -79,7 +83,7 @@ RowLayout {
             PlasmaComponents.Label {
                 id: stationIcon
 
-                color: Kirigami.Theme.textColor
+                color: Kirigami.Theme.disabledTextColor
 
                 font.family: "weather-icons"
                 font.pixelSize: Kirigami.Units.iconSizes.small
@@ -91,6 +95,8 @@ RowLayout {
                 id: bottomPanelStation
 
                 text: plasmoid.configuration.stationID
+
+                color: Kirigami.Theme.disabledTextColor
 
                 MouseArea {
                     anchors.fill: parent
@@ -113,6 +119,8 @@ RowLayout {
 
             PlasmaComponents.Label {
                 id: elevationLabel
+
+                color: Kirigami.Theme.disabledTextColor
 
                 text: "   " + Utils.currentElevUnit(Utils.toUserElev(weatherData["details"]["elev"]))
             }

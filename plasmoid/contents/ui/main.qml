@@ -90,6 +90,7 @@ PlasmoidItem {
     property string moonrise: "20:00"
     property string moonset: "4:00"
     property string moonPhase: "Full Moon"
+    property string moonPhaseCode: "F"
     property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 
@@ -320,6 +321,7 @@ PlasmoidItem {
                         moonrise = fcRes.moonrise;
                         moonset = fcRes.moonset;
                         moonPhase = fcRes.moonPhase;
+                        moonPhaseCode = fcRes.moonPhaseCode;
 
                         printDebug("Got new forecast data");
                         showForecast = true;
@@ -435,6 +437,7 @@ PlasmoidItem {
                 moonrise = fcRes.moonrise;
                 moonset = fcRes.moonset;
                 moonPhase = fcRes.moonPhase;
+                moonPhaseCode = fcRes.moonPhaseCode;
                 printDebug("Got new forecast data");
                 showForecast = true;
 

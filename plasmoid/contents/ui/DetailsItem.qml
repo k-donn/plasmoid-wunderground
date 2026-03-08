@@ -217,7 +217,7 @@ ColumnLayout {
                 }
 
                 PlasmaComponents.Label {
-                    text: "\uF006"
+                    text: Utils.getMoonPhaseIcon(moonPhaseCode)
                     font.family: "weather-icons"
                     font.pixelSize: Kirigami.Units.iconSizes.medium
                     horizontalAlignment: Text.AlignHCenter

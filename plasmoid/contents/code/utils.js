@@ -296,7 +296,7 @@ function zoomForBoundingBox(bbox, map, padding) {
 
 	var metersPerPixelNeeded = Math.max(
 		widthMeters / availW,
-		heightMeters / availH
+		heightMeters / availH,
 	);
 
 	var initialResolution = 156543.03392804097; // 2πR / 256
@@ -315,11 +315,11 @@ function zoomForCircle(centerCoord, radiusMeters, map, padding) {
 
 	const latMax = Math.asin(
 		Math.sin(lat) * Math.cos(angularRadius) +
-			Math.cos(lat) * Math.sin(angularRadius)
+			Math.cos(lat) * Math.sin(angularRadius),
 	);
 	const latMin = Math.asin(
 		Math.sin(lat) * Math.cos(angularRadius) -
-			Math.cos(lat) * Math.sin(angularRadius)
+			Math.cos(lat) * Math.sin(angularRadius),
 	);
 
 	const latCos = Math.cos(lat);
@@ -329,8 +329,8 @@ function zoomForCircle(centerCoord, radiusMeters, map, padding) {
 			? Math.PI // At poles, span all longitudes
 			: Math.acos(
 					(angularRadiusCos - Math.sin(lat) * Math.sin(latMax)) /
-						(Math.cos(lat) * Math.cos(latMax))
-			  );
+						(Math.cos(lat) * Math.cos(latMax)),
+				);
 
 	const lonMin = lon - lonDelta;
 	const lonMax = lon + lonDelta;
@@ -571,22 +571,22 @@ function heatColorC(degC, bgColor) {
 	return degC > 37.78
 		? "#9E1642"
 		: degC > 32.2
-		? "#D53E4F"
-		: degC > 26.6
-		? "#F46D43"
-		: degC > 23.9
-		? "#FDAE61"
-		: degC > 21.1
-		? lightDark(bgColor, "#E2B434", "#FEE08B")
-		: degC > 15.5
-		? lightDark(bgColor, "#B1CC2E", "#E6F598")
-		: degC > 10
-		? lightDark(bgColor, "#6EBA50", "#ABDDA4")
-		: degC > 4.4
-		? lightDark(bgColor, "#66C2A5", "#2F9374")
-		: degC > 0
-		? "#3288BD"
-		: "#5E4FA2";
+			? "#D53E4F"
+			: degC > 26.6
+				? "#F46D43"
+				: degC > 23.9
+					? "#FDAE61"
+					: degC > 21.1
+						? lightDark(bgColor, "#E2B434", "#FEE08B")
+						: degC > 15.5
+							? lightDark(bgColor, "#B1CC2E", "#E6F598")
+							: degC > 10
+								? lightDark(bgColor, "#6EBA50", "#ABDDA4")
+								: degC > 4.4
+									? lightDark(bgColor, "#66C2A5", "#2F9374")
+									: degC > 0
+										? "#3288BD"
+										: "#5E4FA2";
 }
 
 /**
@@ -602,22 +602,22 @@ function heatColorF(degF, bgColor) {
 	return degF > 100
 		? "#9E1642"
 		: degF > 90
-		? "#D53E4F"
-		: degF > 80
-		? "#F46D43"
-		: degF > 75
-		? "#FDAE61"
-		: degF > 70
-		? lightDark(bgColor, "#E2B434", "#FEE08B")
-		: degF > 60
-		? lightDark(bgColor, "#B1CC2E", "#E6F598")
-		: degF > 50
-		? lightDark(bgColor, "#6EBA50", "#ABDDA4")
-		: degF > 40
-		? lightDark(bgColor, "#66C2A5", "#2F9374")
-		: degF > 32
-		? "#3288BD"
-		: "#5E4FA2";
+			? "#D53E4F"
+			: degF > 80
+				? "#F46D43"
+				: degF > 75
+					? "#FDAE61"
+					: degF > 70
+						? lightDark(bgColor, "#E2B434", "#FEE08B")
+						: degF > 60
+							? lightDark(bgColor, "#B1CC2E", "#E6F598")
+							: degF > 50
+								? lightDark(bgColor, "#6EBA50", "#ABDDA4")
+								: degF > 40
+									? lightDark(bgColor, "#66C2A5", "#2F9374")
+									: degF > 32
+										? "#3288BD"
+										: "#5E4FA2";
 }
 
 /**
@@ -689,6 +689,8 @@ function getWindBarbIcon(windSpeed) {
 	} else {
 		speedKts = kmhToKts(windSpeed);
 	}
+
+	printDebug(speedKts)
 
 	if (within(speedKts, 0, 2.9999)) {
 		fileName = "0-2";
@@ -1129,7 +1131,6 @@ function toUserProp(value, prop) {
 	}
 }
 
-
 /**
  * Get hostname
  *
@@ -1170,27 +1171,27 @@ function calculateTotalLightTime(sunrise, sunset) {
 }
 
 function calculateTimeDifference(startDate, endDate, isShowSeconds) {
-	printDebug(`Calculating time difference between ${startDate} and ${endDate}`)
-	var diff = new Date(endDate).getTime() - new Date(startDate).getTime(); 
+	printDebug(
+		`Calculating time difference between ${startDate} and ${endDate}`,
+	);
+	var diff = new Date(endDate).getTime() - new Date(startDate).getTime();
 	var diff_as_date = new Date(diff);
-	
-	
-	printDebug(`Time difference reported as: ${diff_as_date}`)
-	if(isShowSeconds) {
+
+	printDebug(`Time difference reported as: ${diff_as_date}`);
+	if (isShowSeconds) {
 		return `${diff_as_date.getUTCHours()}h ${diff_as_date.getUTCMinutes()}m ${diff_as_date.getUTCSeconds()}s`;
 	} else {
 		return `${diff_as_date.getUTCHours()}h ${diff_as_date.getUTCMinutes()}m`;
 	}
-	
 }
 
 function calculateNeedlePosition(startDate, endDate) {
-	printDebug("Calculating needle position")
+	printDebug("Calculating needle position");
 	var startTs = new Date(startDate).getTime();
 	var endTs = new Date(endDate).getTime();
-	var nowTs = (new Date()).getTime();
+	var nowTs = new Date().getTime();
 
-	if(nowTs < startDate || nowTs > endDate) {
+	if (nowTs < startDate || nowTs > endDate) {
 		return 0;
 	}
 
@@ -1198,15 +1199,23 @@ function calculateNeedlePosition(startDate, endDate) {
 
 	var nowDiff = endTs - nowTs;
 
-	var result = Math.round((nowDiff * 100)/diff);
+	var result = Math.round((nowDiff * 100) / diff);
 
-	printDebug(`Start ${startTs}, End: ${endTs}, diff: ${diff}, nowDiff: ${nowDiff}, effective needle: ${100 - result}`)
+	if (result < 0) {
+		result = 0;
+	} else if (result > 100) {
+		result = 100;
+	}
+
+	printDebug(
+		`Start ${startTs}, End: ${endTs}, diff: ${diff}, nowDiff: ${nowDiff}, effective needle: ${100 - result}`,
+	);
 
 	return 100 - result;
 }
 
 function getDayLength(startDate, endDate) {
-	var dayLength = Utils.calculateTimeDifference(startDate,endDate,true);
+	var dayLength = Utils.calculateTimeDifference(startDate, endDate, true);
 
 	return dayLength;
 }
@@ -1215,26 +1224,49 @@ function remainingUntilSinceDaylight(startDate, endDate) {
 	var rise = new Date(startDate);
 	var set = new Date(endDate);
 	var now = new Date();
-	var dayLength = Utils.calculateTimeDifference(rise,set,true);
+	var dayLength = Utils.calculateTimeDifference(rise, set, true);
 	var timeSunlight = "";
 
-	printDebug(`Rise ${rise}, Set: ${set}, Now: ${now}`)
+	printDebug(`Rise ${rise}, Set: ${set}, Now: ${now}`);
 
-	if(now.getTime() < rise.getTime()) {
-		timeSunlight = i18n("To sunrise") + ": " 
-				+ Utils.calculateTimeDifference(now,rise,false);
+	if (now.getTime() < rise.getTime()) {
+		timeSunlight =
+			i18n("To sunrise") +
+			": " +
+			Utils.calculateTimeDifference(now, rise, false);
 
-		printDebug(` ${timeSunlight}`)
-	} else if (now.getTime() >= rise.getTime() && now.getTime() <+ set.getTime()) {
-		timeSunlight = i18nc("Daylight remaining time, keep short","Remaining") + ": " 
-				+ Utils.calculateTimeDifference(now,set,false);
-		printDebug(` ${timeSunlight}`)
+		printDebug(` ${timeSunlight}`);
+	} else if (
+		now.getTime() >= rise.getTime() &&
+		now.getTime() < +set.getTime()
+	) {
+		timeSunlight =
+			i18nc("Daylight remaining time, keep short", "Remaining") +
+			": " +
+			Utils.calculateTimeDifference(now, set, false);
+		printDebug(` ${timeSunlight}`);
 	} else if (now.getTime() > set.getTime()) {
-		timeSunlight = i18n("Since sunset") + ": " 
-		+ Utils.calculateTimeDifference(set,now,false);
-		printDebug(`${timeSunlight}`)
+		timeSunlight =
+			i18n("Since sunset") +
+			": " +
+			Utils.calculateTimeDifference(set, now, false);
+		printDebug(`${timeSunlight}`);
 	}
-	
+
 	return timeSunlight;
 }
 
+function getMoonPhaseIcon(phaseCode) {
+	var moonPhasesDict = {
+		N: "\uF068",
+		WXC: "\uF066",
+		FQ: "\uF06A",
+		WXG: "\uF067",
+		F: "\uF069",
+		WNG: "\uF065",
+		LQ: "\uF063",
+		WNC: "\uF064",
+	};
+
+	return moonPhasesDict[phaseCode];
+}
