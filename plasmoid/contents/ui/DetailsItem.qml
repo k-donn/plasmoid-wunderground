@@ -26,14 +26,18 @@ import "../code/utils.js" as Utils
 ColumnLayout {
     id: detailsRoot
 
+    property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
+
     // Top row: three columns
     RowLayout {
         Layout.preferredWidth: parent.width
+        uniformCellSizes: true
 
         // Left: Sunrise and set times with total light time and time remaining
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.preferredWidth: 1
+            Layout.alignment: Qt.AlignCenter
+
             PlasmaComponents.Label {
                 text: i18n("Sunrise: %1", "10:10")
                 font.pointSize: plasmoid.configuration.propPointSize
@@ -55,12 +59,26 @@ ColumnLayout {
         // Center: Condition icon left of current temp, feels like, condition blurb
         RowLayout {
             Layout.fillWidth: true
-            Layout.preferredWidth: 1
-            Kirigami.Icon {
-                source: weatherData["conditionIcon"] || "weather-clear"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            Layout.alignment: Qt.AlignCenter
+
+            PlasmaComponents.Label {
+                visible: !plasmoid.configuration.useSystemThemeIcons
+                text: iconNameStr
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.huge
+                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
             }
+
+
+            Kirigami.Icon {
+                source: detailsRoot.iconNameStr
+                visible: plasmoid.configuration.useSystemThemeIcons
+                Layout.preferredWidth: Kirigami.Units.iconSizes.large
+                Layout.preferredHeight: Kirigami.Units.iconSizes.large
+            }
+
+
             ColumnLayout {
                 PlasmaComponents.Label {
                     text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["temp"]), plasmoid.configuration.tempPrecision)
@@ -87,7 +105,7 @@ ColumnLayout {
         // Right: Moon rise and set times and phase
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.preferredWidth: 1
+            Layout.alignment: Qt.AlignCenter
             PlasmaComponents.Label {
                 text: i18n("Moonrise: %1", weatherData["moonrise"] || "N/A")
                 font.pointSize: plasmoid.configuration.propPointSize
@@ -125,8 +143,8 @@ ColumnLayout {
                 // wind barb icons are 270 degrees deviated from 0 degrees (north)
                 rotation: weatherData["winddir"] - 270
 
-                Layout.minimumWidth: Kirigami.Units.iconSizes.large
-                Layout.minimumHeight: Kirigami.Units.iconSizes.large
+                Layout.minimumWidth: Kirigami.Units.iconSizes.medium
+                Layout.minimumHeight: Kirigami.Units.iconSizes.medium
                 Layout.preferredWidth: Layout.minimumWidth
                 Layout.preferredHeight: Layout.minimumHeight
                 Layout.alignment: Qt.AlignCenter
