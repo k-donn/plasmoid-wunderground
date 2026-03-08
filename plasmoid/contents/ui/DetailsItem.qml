@@ -425,13 +425,39 @@ ColumnLayout {
                 font.pointSize: plasmoid.configuration.propPointSize
                 Layout.alignment: Qt.AlignCenter
             }
-            PlasmaComponents.Label {
-                text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
-                font {
-                    bold: true
-                    pointSize: plasmoid.configuration.propPointSize
+            Row {
+                PlasmaComponents.Label {
+                    id: pressure
+                    text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
+                    font {
+                        pointSize: plasmoid.configuration.propPointSize
+                        bold: true
+                    }
                 }
-                Layout.alignment: Qt.AlignCenter
+                Kirigami.Icon {
+                    source: Utils.getPressureTrendIcon(weatherData["details"]["pressureTrendCode"])
+
+                    visible: plasmoid.configuration.showPresTrend
+
+                    height: Kirigami.Units.iconSizes.small
+
+                    PlasmaCore.ToolTipArea {
+                        anchors.fill: parent
+
+                        mainText: weatherData["details"]["pressureTrend"]
+                        subText: {
+                            var userPres = Utils.toUserPres(weatherData["details"]["pressureDelta"]);
+                            var absDelta = Math.abs(userPres);
+                            var fullStr = Utils.currentPresUnit(absDelta);
+                            var hasIncreased = Utils.hasPresIncreased(weatherData["details"]["pressureTrendCode"]);
+                            if (hasIncreased) {
+                                return i18n("Pressure has risen %1 in the last three hours.", fullStr);
+                            } else {
+                                return i18n("Pressure has fallen %1 in the last three hours.", fullStr);
+                            }
+                        }
+                    }
+                }
             }
         }
 

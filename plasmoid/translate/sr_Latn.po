@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-02-07 17:01-0600\n"
+"POT-Creation-Date: 2026-03-08 17:58-0500\n"
 "PO-Revision-Date: 2025-02-08 14:02+0100\n"
 "Last-Translator: Ivan Todorov <ivan@globedotters.com>\n"
 "Language-Team: Serbian (Latin) <YOUR_EMAIL>\n"
@@ -27,6 +27,19 @@ msgstr "Wunderground Prikazivač Personalnih Meteoroloških Stanica"
 
 #: ../contents/code/pws-api.js
 msgid "Location not found"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "To sunrise"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgctxt "Daylight remaining time, keep short"
+msgid "Remaining"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "Since sunset"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -114,6 +127,11 @@ msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12h"
 
+#. i18n strings
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Feels like %1"
+msgstr "Osećaj kao %1"
+
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind Barb"
 msgstr ""
@@ -126,26 +144,21 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
-msgid "Wind & Gust"
-msgstr "Vetar i Udari Vetra"
-
-#. i18n strings
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
-msgid "Feels like %1"
-msgstr "Osećaj kao %1"
-
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Vetar sa: %1 (%2°)"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "Vetar i Udari Vetra"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Dew Point"
 msgstr "Tačka Rosišta"
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Precipitation Rate"
-msgstr "Stopa padavina"
+#: ../contents/ui/DetailsItem.qml
+msgid "Precip Rate"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -164,9 +177,8 @@ msgid "Humidity"
 msgstr "Vlažnost"
 
 #: ../contents/ui/DetailsItem.qml
-msgctxt "Short for: 'Precipitation Accumulation'"
-msgid "Precipitation Accum."
-msgstr "Akumul. Padavina"
+msgid "Precip Accum"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -241,6 +253,10 @@ msgstr "Puna Reprezentacija"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
 msgstr "Automatska boja temperature:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show blurb:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
@@ -485,6 +501,10 @@ msgid "Week forecast date format:"
 msgstr "Format datuma za nedeljnu prognozu:"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
 msgstr "Tačnost"
 
@@ -724,6 +744,10 @@ msgid "Precipitation Chance"
 msgstr "Šansa za Padavine"
 
 #: ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr "Stopa padavina"
+
+#: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
 msgstr "Stopa Padavina Snega"
 
@@ -742,6 +766,10 @@ msgstr "Greška..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Osveži vremenske podatke"
+
+#~ msgctxt "Short for: 'Precipitation Accumulation'"
+#~ msgid "Precipitation Accum."
+#~ msgstr "Akumul. Padavina"
 
 #~ msgctxt "Do not edit HTML tags. 'Temp' means temperature"
 #~ msgid "<font size='4'>Temp: %1</font><br />"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-02-07 17:01-0600\n"
+"POT-Creation-Date: 2026-03-08 17:58-0500\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -27,6 +27,19 @@ msgstr "Wunderground 個人用気象ステーション ビューアー"
 
 #: ../contents/code/pws-api.js
 msgid "Location not found"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "To sunrise"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgctxt "Daylight remaining time, keep short"
+msgid "Remaining"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "Since sunset"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -114,6 +127,11 @@ msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12時間"
 
+#. i18n strings
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Feels like %1"
+msgstr "%1のような気分"
+
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind Barb"
 msgstr ""
@@ -126,26 +144,21 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
-msgid "Wind & Gust"
-msgstr "風と突風"
-
-#. i18n strings
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
-msgid "Feels like %1"
-msgstr "%1のような気分"
-
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "風向: %1 (%2°)"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "風と突風"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Dew Point"
 msgstr "露点"
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Precipitation Rate"
-msgstr "降水量"
+#: ../contents/ui/DetailsItem.qml
+msgid "Precip Rate"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -164,9 +177,8 @@ msgid "Humidity"
 msgstr "湿度"
 
 #: ../contents/ui/DetailsItem.qml
-msgctxt "Short for: 'Precipitation Accumulation'"
-msgid "Precipitation Accum."
-msgstr "降水量累計"
+msgid "Precip Accum"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -241,6 +253,10 @@ msgstr "完全な表現"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
 msgstr "自動色温度:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show blurb:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
@@ -485,6 +501,10 @@ msgid "Week forecast date format:"
 msgstr "週間予報の日付形式:"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
 msgstr "精度"
 
@@ -724,6 +744,10 @@ msgid "Precipitation Chance"
 msgstr "降水確率"
 
 #: ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr "降水量"
+
+#: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
 msgstr "降雪量"
 
@@ -742,6 +766,10 @@ msgstr "エラー..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "天気を更新"
+
+#~ msgctxt "Short for: 'Precipitation Accumulation'"
+#~ msgid "Precipitation Accum."
+#~ msgstr "降水量累計"
 
 #~ msgid "ID:"
 #~ msgstr "ID:"
