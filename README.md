@@ -103,7 +103,7 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [x] Compactify tooltip and add more properties
   -   [ ] Add traveling mode to get nearest station
 - Functionality
-  -   [ ] Customization of am/pm to 24hr for sun/moon times
+  -   [x] Customization of am/pm to 24hr for sun/moon times
   -   [ ] Add condition blurb on main screen
   -   [ ] Kp-index display and more details rework
 - i18n

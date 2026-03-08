@@ -83,7 +83,7 @@ ColumnLayout {
                     }
 
                     PlasmaComponents.Label {
-                        text: Qt.formatDateTime(weatherData["sunrise"], "hh:mm")
+                        text: Qt.formatDateTime(weatherData["sunrise"], plasmoid.configuration.sunMoonTimeFormat)
                         font.pointSize: plasmoid.configuration.propPointSize
                         font.bold: true
                     }
@@ -132,7 +132,7 @@ ColumnLayout {
                     }
 
                     PlasmaComponents.Label {
-                        text: Qt.formatDateTime(weatherData["sunset"], "hh:mm")
+                        text: Qt.formatDateTime(weatherData["sunset"], plasmoid.configuration.sunMoonTimeFormat)
                         font.pointSize: plasmoid.configuration.propPointSize
                         font.bold: true
                     }
@@ -210,7 +210,7 @@ ColumnLayout {
                     }
 
                     PlasmaComponents.Label {
-                        text: Qt.formatDateTime(moonrise, "hh:mm")
+                        text: Qt.formatDateTime(moonrise, plasmoid.configuration.sunMoonTimeFormat)
                         font.pointSize: plasmoid.configuration.propPointSize
                         font.bold: true
                     }
@@ -232,7 +232,7 @@ ColumnLayout {
                     }
 
                     PlasmaComponents.Label {
-                        text: Qt.formatDateTime(moonset, "hh:mm")
+                        text: Qt.formatDateTime(moonset, plasmoid.configuration.sunMoonTimeFormat)
                         font.pointSize: plasmoid.configuration.propPointSize
                         font.bold: true
                     }
