@@ -25,6 +25,7 @@ KCM.SimpleKCM {
 
     property alias cfg_dayChartTimeFormat: dayChartTimeFormat.text
     property alias cfg_weekForecastDateFormat: weekForecastDateFormat.text
+    property alias cfg_sunMoonTimeFormat: sunMoonTimeFormat.text
     property alias cfg_windPrecision: windPrecision.value
     property alias cfg_tempPrecision: tempPrecision.value
     property alias cfg_compactTempPrecision: compactTempPrecision.value
@@ -61,6 +62,12 @@ KCM.SimpleKCM {
             id: weekForecastDateFormat
 
             Kirigami.FormData.label: i18n("Week forecast date format:")
+        }
+
+        PlasmaComponents.TextField {
+            id: sunMoonTimeFormat
+
+            Kirigami.FormData.label: i18n("Sun/Moon time format:")
         }
 
         Kirigami.Separator {

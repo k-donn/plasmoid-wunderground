@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-02-07 17:01-0600\n"
+"POT-Creation-Date: 2026-03-08 17:58-0500\n"
 "PO-Revision-Date: 2026-02-08 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -27,6 +27,19 @@ msgstr "Przeglądarka osobistej stacji pogodowej Wunderground"
 #: ../contents/code/pws-api.js
 msgid "Location not found"
 msgstr "Nie znaleziono lokalizacji"
+
+#: ../contents/code/utils.js
+msgid "To sunrise"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgctxt "Daylight remaining time, keep short"
+msgid "Remaining"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "Since sunset"
+msgstr ""
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -113,6 +126,11 @@ msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12g"
 
+#. i18n strings
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Feels like %1"
+msgstr "Odczuwalna %1"
+
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind Barb"
 msgstr "Wskaźnik wiatru"
@@ -125,26 +143,21 @@ msgstr "Wskaźnik kierunku i prędkości wiatru"
 msgid "Learn more"
 msgstr "Dowiedz się więcej"
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
-msgid "Wind & Gust"
-msgstr "Wiatr i porywy"
-
-#. i18n strings
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
-msgid "Feels like %1"
-msgstr "Odczuwalna %1"
-
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Wiatr z: %1 (%2°)"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "Wiatr i porywy"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Dew Point"
 msgstr "Punkt rosy"
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Precipitation Rate"
-msgstr "Intensywność opadów"
+#: ../contents/ui/DetailsItem.qml
+msgid "Precip Rate"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -163,9 +176,8 @@ msgid "Humidity"
 msgstr "Wilgotność"
 
 #: ../contents/ui/DetailsItem.qml
-msgctxt "Short for: 'Precipitation Accumulation'"
-msgid "Precipitation Accum."
-msgstr "Akumul. opadów"
+msgid "Precip Accum"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -240,6 +252,10 @@ msgstr "Pełny widok"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
 msgstr "Automatyczne kolorowanie temperatury:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show blurb:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
@@ -484,6 +500,10 @@ msgid "Week forecast date format:"
 msgstr "Format daty prognozy tygodniowej:"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
 msgstr "Precyzja"
 
@@ -723,6 +743,10 @@ msgid "Precipitation Chance"
 msgstr "Szansa na opady"
 
 #: ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr "Intensywność opadów"
+
+#: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
 msgstr "Intensywność opadów śniegu"
 
@@ -741,3 +765,7 @@ msgstr "Błąd..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Odśwież pogodę"
+
+#~ msgctxt "Short for: 'Precipitation Accumulation'"
+#~ msgid "Precipitation Accum."
+#~ msgstr "Akumul. opadów"

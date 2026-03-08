@@ -87,6 +87,11 @@ PlasmoidItem {
     property ListModel alertsModel: ListModel {}
     property int currDayHigh: 0
     property int currDayLow: 0
+    property string moonrise: "20:00"
+    property string moonset: "4:00"
+    property string moonPhase: "Full Moon"
+    property string moonPhaseCode: "F"
+    property string blurb: "AAAAAAAAAAAAAAAAAAAAAA"
     property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 
@@ -193,8 +198,8 @@ PlasmoidItem {
         })
 
     property Component fr: FullRepresentation {
-        Layout.preferredWidth: 600
-        Layout.preferredHeight: 380
+        Layout.preferredWidth: 650
+        Layout.preferredHeight: 480
     }
     property Component cr: CompactRepresentation {}
     property Component crInTray: CompactRepresentationInTray {}
@@ -285,6 +290,11 @@ PlasmoidItem {
                     merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
                     merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
                     merged.cloudCover = extRes.cloudCover || merged.cloudCover;
+                    merged.moonrise = extRes.moonrise || merged.moonrise;
+                    merged.moonset = extRes.moonset || merged.moonset;
+                    merged.moonPhase = extRes.moonPhase || merged.moonPhase;
+                    merged.moonPhaseCode = extRes.moonPhaseCode || merged.moonPhaseCode
+                    merged.blurb = extRes.blurb || merged.blurb;
                     merged.details = merged.details || {};
                     merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
                     merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
@@ -314,6 +324,11 @@ PlasmoidItem {
                         }
                         currDayHigh = fcRes.currDayHigh;
                         currDayLow = fcRes.currDayLow;
+                        moonrise = fcRes.moonrise;
+                        moonset = fcRes.moonset;
+                        moonPhase = fcRes.moonPhase;
+                        moonPhaseCode = fcRes.moonPhaseCode;
+                        blurb = fcRes.blurb;
 
                         printDebug("Got new forecast data");
                         showForecast = true;
@@ -399,6 +414,12 @@ PlasmoidItem {
             merged.isNight = extRes.isNight;
             merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
             merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
+            merged.moonrise = extRes.moonrise || merged.moonrise;
+            merged.moonset = extRes.moonset || merged.moonset;
+            merged.moonPhase = extRes.moonPhase || merged.moonPhase;
+            merged.moonPhaseCode = extRes.moonPhaseCode || merged.moonPhaseCode
+            merged.blurb = extRes.blurb || merged.blurb;
+            merged.cloudCover = extRes.cloudCover || merged.cloudCover;
             merged.details = merged.details || {};
             merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
             merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
@@ -426,6 +447,11 @@ PlasmoidItem {
                     forecastModel.append(fcRes.forecast[k]);
                 currDayHigh = fcRes.currDayHigh;
                 currDayLow = fcRes.currDayLow;
+                moonrise = fcRes.moonrise;
+                moonset = fcRes.moonset;
+                moonPhase = fcRes.moonPhase;
+                moonPhaseCode = fcRes.moonPhaseCode;
+                blurb = fcRes.blurb;
                 printDebug("Got new forecast data");
                 showForecast = true;
 
@@ -570,7 +596,7 @@ PlasmoidItem {
         } else if (appState == showDATA) {
             return plasmoid.configuration.shownInTooltip == 0 ? weatherData["stationID"] :
                    plasmoid.configuration.shownInTooltip == 1 ? plasmoid.configuration.stationName :
-                   plasmoid.configuration.stationName + " (" + weatherData["stationID"] + ")";
+                   plasmoid.configuration.stationName + "\n" + weatherData["stationID"];
         } else if (appState == showLOADING) {
             return i18n("Loading...");
         } else if (appState == showERROR) {

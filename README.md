@@ -103,14 +103,17 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [x] Compactify tooltip and add more properties
   -   [ ] Add traveling mode to get nearest station
 - Functionality
+  -   [x] Add condition blurb on main screen
   -   [ ] Kp-index display and more details rework
 - i18n
   -   [ ] Translations for new text
 - Customizability
+  -   [x] Customization of am/pm to 24hr for sun/moon times
   -   [x] Let user add labels to locations and improve adding flow
   -   [ ] Spacing in-between compact rep icon and text
 - Backend
   -   [ ] Better handle null fields
+  -   [ ] Refactor state handling
   -   [x] Improve searching and testing error messages
 - Parking lot
   -   [ ] Use Wunderground Plasma Ion.

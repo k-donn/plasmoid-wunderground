@@ -44,6 +44,7 @@ KCM.SimpleKCM {
 
     property alias cfg_tempAutoColor: tempAutoColor.checked
     property alias cfg_useDefaultPage: useDefaultPage.checked
+    property alias cfg_showBlurb: showBlurb.checked
     property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
     property alias cfg_showPresTrend: showPresTrend.checked
 
@@ -186,6 +187,12 @@ KCM.SimpleKCM {
             id: tempAutoColor
 
             Kirigami.FormData.label: i18n("Auto-color temperature:")
+        }
+
+        PlasmaComponents.CheckBox {
+            id: showBlurb
+
+            Kirigami.FormData.label: i18n("Show blurb:")
         }
 
         PlasmaComponents.CheckBox {

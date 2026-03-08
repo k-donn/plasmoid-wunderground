@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-02-07 17:01-0600\n"
+"POT-Creation-Date: 2026-03-08 17:58-0500\n"
 "PO-Revision-Date: 2022-04-17 14:14+0200\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: Dutch <>\n"
@@ -28,6 +28,19 @@ msgstr "Wunderground - Bekijk je eigen weerstation"
 
 #: ../contents/code/pws-api.js
 msgid "Location not found"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "To sunrise"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgctxt "Daylight remaining time, keep short"
+msgid "Remaining"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "Since sunset"
 msgstr ""
 
 #: ../contents/config/config.qml
@@ -115,6 +128,11 @@ msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12 uur"
 
+#. i18n strings
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Feels like %1"
+msgstr "Gevoelstemperatuur: %1"
+
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind Barb"
 msgstr ""
@@ -127,27 +145,22 @@ msgstr ""
 msgid "Learn more"
 msgstr ""
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
-#: ../contents/ui/main.qml
-msgid "Wind & Gust"
-msgstr "Windsnelheid"
-
-#. i18n strings
-#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
-msgid "Feels like %1"
-msgstr "Gevoelstemperatuur: %1"
-
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Windrichting: %1 (%2°)"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+#: ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "Windsnelheid"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Dew Point"
 msgstr "Dauwpunt"
 
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Precipitation Rate"
-msgstr "Neerslagsnelheid"
+#: ../contents/ui/DetailsItem.qml
+msgid "Precip Rate"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -166,9 +179,8 @@ msgid "Humidity"
 msgstr "Luchtvochtigheid"
 
 #: ../contents/ui/DetailsItem.qml
-msgctxt "Short for: 'Precipitation Accumulation'"
-msgid "Precipitation Accum."
-msgstr "Neerslagaccumulatie"
+msgid "Precip Accum"
+msgstr ""
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -251,6 +263,10 @@ msgstr "Uitgebreide indeling gebruiken"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Auto-color temperature:"
 msgstr "Automatische kleurtemperatuur:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show blurb:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
@@ -497,6 +513,10 @@ msgstr "Tijdformaat daggrafiek:"
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
 msgstr "Weekvoorspelling datumformaat:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
@@ -753,6 +773,10 @@ msgid "Precipitation Chance"
 msgstr "Kans op neerslag"
 
 #: ../contents/ui/main.qml
+msgid "Precipitation Rate"
+msgstr "Neerslagsnelheid"
+
+#: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
 msgstr "Sneeuwneerslagsnelheid"
 
@@ -771,6 +795,10 @@ msgstr "Foutmelding"
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Vernieuw het weer"
+
+#~ msgctxt "Short for: 'Precipitation Accumulation'"
+#~ msgid "Precipitation Accum."
+#~ msgstr "Neerslagaccumulatie"
 
 #~ msgid "ID:"
 #~ msgstr "ID:"
