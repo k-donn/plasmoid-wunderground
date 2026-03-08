@@ -20,6 +20,7 @@ import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
+import org.kde.plasma.core as PlasmaCore
 import "../code/utils.js" as Utils
 
 ColumnLayout {
@@ -114,13 +115,62 @@ ColumnLayout {
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
             Kirigami.Icon {
-                source: "wind"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+                id: topPanelIcon
+
+                source: Utils.getWindBarbIcon(weatherData["details"]["windSpeed"])
+
+                isMask: true
+                color: Kirigami.Theme.textColor
+
+                // wind barb icons are 270 degrees deviated from 0 degrees (north)
+                rotation: weatherData["winddir"] - 270
+
+                Layout.minimumWidth: Kirigami.Units.iconSizes.large
+                Layout.minimumHeight: Kirigami.Units.iconSizes.large
+                Layout.preferredWidth: Layout.minimumWidth
+                Layout.preferredHeight: Layout.minimumHeight
                 Layout.alignment: Qt.AlignCenter
+
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+
+                    interactive: true
+                    mainText: i18n("Wind Barb")
+                    subText: i18n("Wind direction and speed indicator")
+
+                    mainItem: PlasmaComponents.Control {
+                        implicitWidth: Math.max(implicitBackgroundWidth + leftPadding + rightPadding,
+                                    implicitContentWidth + leftPadding + rightPadding)
+                        implicitHeight: Math.max(implicitBackgroundHeight + topPadding + bottomPadding,
+                                    implicitContentHeight + topPadding + bottomPadding)
+                        
+                        padding: Kirigami.Units.smallSpacing
+                        
+                        contentItem: ColumnLayout {
+                            spacing: Kirigami.Units.smallSpacing
+                            
+                            PlasmaComponents.Label {
+                                text: i18n("Wind Barb")
+                                font.bold: true
+                            }
+                            
+                            PlasmaComponents.Label {
+                                text: i18n("Wind direction and speed indicator")
+                                wrapMode: Text.WordWrap
+                                font.pointSize: Kirigami.Theme.smallFont.pointSize
+                            }
+                            
+                            PlasmaComponents.Button {
+                                text: i18n("Learn more")
+                                onClicked: Qt.openUrlExternally("https://en.wikipedia.org/wiki/Station_model#Plotted_winds")
+                                Layout.alignment: Qt.AlignHCenter
+                            }
+                        }
+                    }
+                }
             }
             PlasmaComponents.Label {
-                text: i18n("Wind")
+                text: i18n("Wind from: %1 (%2°)", Utils.windDirToCard(weatherData["winddir"]), weatherData["winddir"])
                 font.pointSize: plasmoid.configuration.propPointSize
                 Layout.alignment: Qt.AlignCenter
             }
@@ -134,13 +184,38 @@ ColumnLayout {
             }
         }
 
+        ColumnLayout {
+            Layout.alignment: Qt.AlignCenter
+            PlasmaComponents.Label {
+                text: "\uF03F"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: i18n("Wind & Gust")
+                font.pointSize: plasmoid.configuration.propPointSize
+                Layout.alignment: Qt.AlignCenter
+            }
+            PlasmaComponents.Label {
+                text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(plasmoid.configuration.windPrecision) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]), plasmoid.configuration.windPrecision)
+                font {
+                    bold: true
+                    pointSize: plasmoid.configuration.propPointSize
+                }
+                Layout.alignment: Qt.AlignCenter
+            }
+        }
+
         // Dew Point
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "temperature-below-zero"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            PlasmaComponents.Label {
+                text: "\uF04C"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
             PlasmaComponents.Label {
@@ -161,10 +236,11 @@ ColumnLayout {
         // Precipitation Rate
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "rain"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            PlasmaComponents.Label {
+                text: "\uF04C"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
             PlasmaComponents.Label {
@@ -185,10 +261,11 @@ ColumnLayout {
         // Pressure
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "barometer"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            PlasmaComponents.Label {
+                text: "\uF00A"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium * 1.1
+                horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
             PlasmaComponents.Label {
@@ -209,10 +286,11 @@ ColumnLayout {
         // Humidity
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "humidity"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            PlasmaComponents.Label {
+                text: "\uF008"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium * 1.1
+                horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
             PlasmaComponents.Label {
@@ -233,10 +311,11 @@ ColumnLayout {
         // Precipitation Accumulation
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "weather-showers"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            PlasmaComponents.Label {
+                text: "\uF04C"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
             PlasmaComponents.Label {
@@ -257,10 +336,11 @@ ColumnLayout {
         // UV
         ColumnLayout {
             Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "sun"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
+            PlasmaComponents.Label {
+                text: "\uF010"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
             PlasmaComponents.Label {
@@ -270,30 +350,6 @@ ColumnLayout {
             }
             PlasmaComponents.Label {
                 text: weatherData["uv"]
-                font {
-                    bold: true
-                    pointSize: plasmoid.configuration.propPointSize
-                }
-                Layout.alignment: Qt.AlignCenter
-            }
-        }
-
-        // Gust (to fill the 8th spot, since original had wind & gust)
-        ColumnLayout {
-            Layout.alignment: Qt.AlignCenter
-            Kirigami.Icon {
-                source: "wind"
-                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                Layout.preferredHeight: Kirigami.Units.iconSizes.medium
-                Layout.alignment: Qt.AlignCenter
-            }
-            PlasmaComponents.Label {
-                text: i18n("Gust")
-                font.pointSize: plasmoid.configuration.propPointSize
-                Layout.alignment: Qt.AlignCenter
-            }
-            PlasmaComponents.Label {
-                text: Utils.toUserSpeed(weatherData["details"]["windGust"]).toFixed(plasmoid.configuration.windPrecision) + " " + Utils.rawSpeedUnit()
                 font {
                     bold: true
                     pointSize: plasmoid.configuration.propPointSize

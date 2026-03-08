@@ -193,8 +193,8 @@ PlasmoidItem {
         })
 
     property Component fr: FullRepresentation {
-        Layout.preferredWidth: 600
-        Layout.preferredHeight: 380
+        Layout.preferredWidth: 650
+        Layout.preferredHeight: 480
     }
     property Component cr: CompactRepresentation {}
     property Component crInTray: CompactRepresentationInTray {}
