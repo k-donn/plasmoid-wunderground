@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
 "POT-Creation-Date: 2026-03-08 17:58-0500\n"
-"PO-Revision-Date: 2026-02-12 12:04+0100\n"
+"PO-Revision-Date: 2026-03-10 18:34+0100\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
 "Language: da_DK\n"
@@ -32,16 +32,16 @@ msgstr "Lokation ikke fundet"
 
 #: ../contents/code/utils.js
 msgid "To sunrise"
-msgstr ""
+msgstr "Til solopgang"
 
 #: ../contents/code/utils.js
 msgctxt "Daylight remaining time, keep short"
 msgid "Remaining"
-msgstr ""
+msgstr "Resterer"
 
 #: ../contents/code/utils.js
 msgid "Since sunset"
-msgstr ""
+msgstr "Siden solnedgang"
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -160,7 +160,7 @@ msgstr "Dugpunkt"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Precip Rate"
-msgstr ""
+msgstr "Nedbørsmængde"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -180,7 +180,7 @@ msgstr "Fugtighed"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Precip Accum"
-msgstr ""
+msgstr "Nedbør akkum."
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -266,7 +266,7 @@ msgstr "Aut. farve temp:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show blurb:"
-msgstr ""
+msgstr "Vis blurb:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
@@ -516,7 +516,7 @@ msgstr "Uge vejrudsigt dato format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Sun/Moon time format:"
-msgstr ""
+msgstr "Sol/Måne tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
