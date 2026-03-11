@@ -173,7 +173,7 @@ KCM.SimpleKCM {
     Lib.StationSearcher {
         id: stationSearcher
         onStationSelected: function (station) {
-            stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude)
+            stationManager.addStation(station.stationID, station.placeName, station.latitude, station.longitude)
             stationSearcher.close()
         }
     }

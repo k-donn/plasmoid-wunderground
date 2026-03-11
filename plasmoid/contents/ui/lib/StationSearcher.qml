@@ -159,7 +159,7 @@ Window {
                                 for (var i = 0; i < stations.length; i++) {
                                     stationSearcher.searchResults.append({
                                         "stationID": stations[i].stationID,
-                                        "placeName": stations[i].placeName,
+                                        "placeName": stations[i].address,
                                         "latitude": stations[i].latitude,
                                         "longitude": stations[i].longitude,
                                         "selected": false
@@ -177,7 +177,7 @@ Window {
                                 clearError();
                                 for (var i = 0; i < places.length; i++) {
                                     availableCitiesModel.append({
-                                        "placeName": places[i].city + "," + places[i].state + " (" + places[i].country + ")",
+                                        "placeName": places[i].address,
                                         "latitude": places[i].latitude,
                                         "longitude": places[i].longitude
                                     });
@@ -198,7 +198,7 @@ Window {
                                 for (var i = 0; i < stations.length; i++) {
                                     stationSearcher.searchResults.append({
                                         "stationID": stations[i].stationID,
-                                        "placeName": stations[i].placeName,
+                                        "placeName": stations[i].address,
                                         "latitude": stations[i].latitude,
                                         "longitude": stations[i].longitude,
                                         "selected": false
@@ -260,7 +260,7 @@ Window {
                             for (var i = 0; i < stations.length; i++) {
                                 stationSearcher.searchResults.append({
                                     "stationID": stations[i].stationID,
-                                    "placeName": stations[i].placeName,
+                                    "placeName": stations[i].address,
                                     "latitude": stations[i].latitude,
                                     "longitude": stations[i].longitude,
                                     "selected": false

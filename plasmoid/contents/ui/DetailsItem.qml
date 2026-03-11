@@ -187,7 +187,7 @@ ColumnLayout {
                     }
                 }
                 PlasmaComponents.Label {
-                    text: weatherData["condition"] || "Clear"
+                    text: conditionNarrative
                     font.pointSize: plasmoid.configuration.propPointSize - 1
                 }
             }
