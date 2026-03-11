@@ -1344,6 +1344,7 @@ function getHourlyDataV1(options, callback) {
  * @param {number} options.longitude
  * @param {number} [options.unitsChoice]
  * @param {string} [options.language]
+ * @param {number} [options.presUnit]
  * @param {function(Object|null, Object|null)} callback
  */
 function getHourlyDataV3(options, callback) {

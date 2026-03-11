@@ -160,7 +160,7 @@ KCM.SimpleKCM {
 
             // Version
             PlasmaComponents.Label {
-                text: "Version 3.7.0"
+                text: "Version 3.7.1"
                 font.pointSize: 9
                 opacity: 0.7
             }
@@ -173,7 +173,7 @@ KCM.SimpleKCM {
     Lib.StationSearcher {
         id: stationSearcher
         onStationSelected: function (station) {
-            stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude)
+            stationManager.addStation(station.stationID, station.placeName, station.latitude, station.longitude)
             stationSearcher.close()
         }
     }
