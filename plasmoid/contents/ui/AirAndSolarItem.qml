@@ -19,6 +19,7 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.plasma.core as PlasmaCore
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.components as PlasmaComponents
 
 RowLayout {
@@ -26,14 +27,14 @@ RowLayout {
     TextMetrics {
         id: aqIndexTxt
 
-        text: i18n("Status Color")
+        text: weatherData["aq"]["aqDesc"]
     }
 
     GridLayout {
         id: aqGrid
 
-        columns: 2
-        rows: 4
+        columns: 4
+        rows: 2
 
         Layout.preferredWidth: 1
         Layout.fillWidth: true
@@ -41,7 +42,7 @@ RowLayout {
         PlasmaComponents.Label {
             id: aqLabel
 
-            Layout.columnSpan: 2
+            Layout.columnSpan: 4
             Layout.fillWidth: true
 
             horizontalAlignment: Text.AlignHCenter
@@ -54,111 +55,124 @@ RowLayout {
             text: i18n("Air quality")
         }
 
-        PlasmaComponents.Label {
-            id: aqDesc
 
-            Layout.columnSpan: 2
+        ColumnLayout {
             Layout.fillWidth: true
-
-            horizontalAlignment: Text.AlignHCenter
-
-            font.underline: true
-
-            text: i18n("Messages")
-
-            PlasmaCore.ToolTipArea {
-                anchors.fill: parent
-
-                interactive: true
-
-                mainItem: ColumnLayout {
-                    PlasmaComponents.Label {
-                        text: weatherData["aq"]["messages"]["general"]["title"]
-                        font.bold: true
-                    }
-
-                    PlasmaComponents.Label {
-                        text: weatherData["aq"]["messages"]["general"]["phrase"]
-                        wrapMode: Text.WordWrap
-                    }
-
-                    PlasmaComponents.Label {
-                        text: weatherData["aq"]["messages"]["sensitive"]["title"]
-                        font.bold: true
-                    }
-
-                    PlasmaComponents.Label {
-                        text: weatherData["aq"]["messages"]["sensitive"]["phrase"]
-                        wrapMode: Text.WordWrap
-                    }
-                }
-            }
-        }
-
-        PlasmaComponents.Label {
-            id: aqIndex
-
-            Layout.fillWidth: true
-
-            horizontalAlignment: Text.AlignHCenter
-
-            text: i18n("AQI: %1", weatherData["aq"]["aqi"])
-        }
-
-        PlasmaComponents.Label {
-            id: aqhi
-            Layout.fillWidth: true
-
-            horizontalAlignment: Text.AlignHCenter
-
-            text: i18n("AQHI: %1", weatherData["aq"]["aqhi"])
-        }
-
-        Rectangle {
-            id: aqIndexColor
-
-            Layout.preferredWidth: aqIndexTxt.width + 5
-            Layout.preferredHeight: aqIndexTxt.height + 5
-            Layout.alignment: Qt.AlignCenter
-
-            color: "#" + weatherData["aq"]["aqColor"]
-
-            radius: 5
+            spacing: 0
 
             PlasmaComponents.Label {
-                id: aqIndexLabel
-
-                anchors.centerIn: parent
-
-                color: "#000000"
-
-                text: weatherData["aq"]["aqDesc"]
-            }
-        }
-
-        Row {
-            Layout.alignment: Qt.AlignCenter
-
-            PlasmaComponents.Label {
-                horizontalAlignment: Text.AlignCenter
-                text: i18n("Primary pollutant: ")
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
             }
 
             PlasmaComponents.Label {
-                horizontalAlignment: Text.AlignCenter
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
 
-                font.underline: true
+                text: i18n("AQI")
+            }
 
-                text: weatherData["aq"]["aqPrimary"]
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
 
-                PlasmaCore.ToolTipArea {
-                    anchors.fill: parent
+                text: weatherData["aq"]["aqi"]
+            }
+        }
 
-                    interactive: true
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 0
 
-                    mainText: weatherData["aq"]["primaryDetails"]["phrase"]
-                    subText: i18n("Amount: %1 %2<br/>Description: %3<br/>Index: %4", weatherData["aq"]["primaryDetails"]["amount"], weatherData["aq"]["primaryDetails"]["unit"], weatherData["aq"]["primaryDetails"]["desc"], weatherData["aq"]["primaryDetails"]["index"])
-                }
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+
+                text: i18n("AQI")
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
+            }
+        }
+
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 0
+
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+
+                text: i18n("AQI")
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
+            }
+        }
+
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 0
+
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+
+                text: i18n("AQI")
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
             }
         }
     }
@@ -166,8 +180,8 @@ RowLayout {
     GridLayout {
         id: solGrid
 
-        columns: 2
-        rows: 4
+        columns: 4
+        rows: 2
 
         Layout.preferredWidth: 1
         Layout.fillWidth: true
@@ -175,7 +189,7 @@ RowLayout {
         PlasmaComponents.Label {
             id: solLabel
 
-            Layout.columnSpan: 2
+            Layout.columnSpan: 4
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
 
@@ -189,54 +203,124 @@ RowLayout {
             text: i18n("Solar info")
         }
 
-        PlasmaComponents.Label {
-            id: solRad
-
-            Layout.columnSpan: 2
+        ColumnLayout {
             Layout.fillWidth: true
+            spacing: 0
 
-            horizontalAlignment: Text.AlignHCenter
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
 
-            textFormat: Text.RichText
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
 
-            text: weatherData["solarRad"] + " W/m<sup>2</sup>"
+                text: i18n("AQI")
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
+            }
         }
 
-        PlasmaComponents.Label {
-            id: sunriseLabel
-
+        ColumnLayout {
             Layout.fillWidth: true
+            spacing: 0
 
-            horizontalAlignment: Text.AlignHCenter
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
 
-            text: i18n("Sunrise")
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+
+                text: i18n("AQI")
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
+            }
         }
 
-        PlasmaComponents.Label {
-            id: sunsetLabel
+        ColumnLayout {
             Layout.fillWidth: true
+            spacing: 0
 
-            horizontalAlignment: Text.AlignHCenter
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
 
-            text: i18n("Sunset")
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+
+                text: i18n("AQI")
+            }
+
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
+            }
         }
 
-        PlasmaComponents.Label {
-            id: sunrise
+        ColumnLayout {
             Layout.fillWidth: true
+            spacing: 0
 
-            horizontalAlignment: Text.AlignHCenter
+            PlasmaComponents.Label {
+                text: "\uF00E"
+                font.family: "weather-icons"
+                font.pixelSize: Kirigami.Units.iconSizes.medium
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+            }
 
-            text: new Date(weatherData["sunrise"]).toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
-        }
-        
-        PlasmaComponents.Label {
-            id: sunset
-            Layout.fillWidth: true
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
 
-            horizontalAlignment: Text.AlignHCenter
+                text: i18n("AQI")
+            }
 
-            text: new Date(weatherData["sunset"]).toLocaleTimeString(Qt.locale(), Locale.ShortFormat)
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+
+                text: weatherData["aq"]["aqi"]
+            }
         }
     }
 }
