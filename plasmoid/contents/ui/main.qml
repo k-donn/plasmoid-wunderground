@@ -31,10 +31,10 @@ PlasmoidItem {
     }
 
     property var weatherData: ({
-            "stationID": "",
-            "neighborhood": "",
+            "stationID": "KSTAT100",
+            "neighborhood": "Place name",
             "uv": 0,
-            "obsTimeLocal": "",
+            "obsTimeLocal": "2020-08-09T10:11:10-0500",
             "isNight": false,
             "winddir": 0,
             "latitude": 0,
@@ -43,6 +43,13 @@ PlasmoidItem {
             "sunset": "2020-08-09T20:00:10-0500",
             "solarRad": 0,
             "humidity": 0,
+            "moonrise": "2020-08-09T20:00:10-0500",
+            "moonset": "2020-08-10T04:00:10-0500",
+            "moonPhase": "Full Moon",
+            "moonPhaseCode": "F",
+            "blurb": "AAAAAAAAAAAAAAAAAAAAAA",
+            "kp-index": 0,
+            "cloudCover": 0,
             "details": {
                 "temp": 0,
                 "windSpeed": 0,
@@ -72,12 +79,12 @@ PlasmoidItem {
                 },
                 "messages": {
                     "general": {
-                        "title": "",
-                        "phrase": ""
+                        "title": "major",
+                        "phrase": "major details"
                     },
                     "sensitive": {
-                        "title": "",
-                        "phrase": ""
+                        "title": "minor",
+                        "phrase": "minor details"
                     }
                 }
             }
@@ -87,11 +94,6 @@ PlasmoidItem {
     property ListModel alertsModel: ListModel {}
     property int currDayHigh: 0
     property int currDayLow: 0
-    property string moonrise: "20:00"
-    property string moonset: "4:00"
-    property string moonPhase: "Full Moon"
-    property string moonPhaseCode: "F"
-    property string blurb: "AAAAAAAAAAAAAAAAAAAAAA"
     property int iconCode: 32 // 32 = sunny
     property string conditionNarrative: ""
 
@@ -287,18 +289,13 @@ PlasmoidItem {
                     // Merge extended info into weatherData
                     var merged = JSON.parse(JSON.stringify(weatherData));
                     merged.isNight = extRes.isNight;
-                    merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
-                    merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
-                    merged.cloudCover = extRes.cloudCover || merged.cloudCover;
-                    merged.moonrise = extRes.moonrise || merged.moonrise;
-                    merged.moonset = extRes.moonset || merged.moonset;
-                    merged.moonPhase = extRes.moonPhase || merged.moonPhase;
-                    merged.moonPhaseCode = extRes.moonPhaseCode || merged.moonPhaseCode
-                    merged.blurb = extRes.blurb || merged.blurb;
+                    merged.sunrise = extRes.sunriseTimeLocal;
+                    merged.sunset = extRes.sunsetTimeLocal;
+                    merged.cloudCover = extRes.cloudCover;
                     merged.details = merged.details || {};
-                    merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
-                    merged.details.pressureTrendCode = extRes.pressureTendencyCode || merged.details.pressureTrendCode;
-                    merged.details.pressureDelta = extRes.pressureDelta || merged.details.pressureDelta;
+                    merged.details.pressureTrend = extRes.pressureTendencyTrend;
+                    merged.details.pressureTrendCode = extRes.pressureTendencyCode;
+                    merged.details.pressureDelta = extRes.pressureDelta;
                     merged.aq = extRes.airQuality || merged.aq;
                     weatherData = merged;
 
@@ -324,11 +321,13 @@ PlasmoidItem {
                         }
                         currDayHigh = fcRes.currDayHigh;
                         currDayLow = fcRes.currDayLow;
-                        moonrise = fcRes.moonrise;
-                        moonset = fcRes.moonset;
-                        moonPhase = fcRes.moonPhase;
-                        moonPhaseCode = fcRes.moonPhaseCode;
-                        blurb = fcRes.blurb;
+                        var updated = JSON.parse(JSON.stringify(weatherData));
+                        updated.moonrise = fcRes.moonrise || updated.moonrise;
+                        updated.moonset = fcRes.moonset || updated.moonset;
+                        updated.moonPhase = fcRes.moonPhase || updated.moonPhase;
+                        updated.moonPhaseCode = fcRes.moonPhaseCode || updated.moonPhaseCode;
+                        updated.blurb = fcRes.blurb || updated.blurb;
+                        weatherData = updated;
 
                         printDebug("Got new forecast data");
                         showForecast = true;
@@ -414,11 +413,6 @@ PlasmoidItem {
             merged.isNight = extRes.isNight;
             merged.sunrise = extRes.sunriseTimeLocal || merged.sunrise;
             merged.sunset = extRes.sunsetTimeLocal || merged.sunset;
-            merged.moonrise = extRes.moonrise || merged.moonrise;
-            merged.moonset = extRes.moonset || merged.moonset;
-            merged.moonPhase = extRes.moonPhase || merged.moonPhase;
-            merged.moonPhaseCode = extRes.moonPhaseCode || merged.moonPhaseCode
-            merged.blurb = extRes.blurb || merged.blurb;
             merged.cloudCover = extRes.cloudCover || merged.cloudCover;
             merged.details = merged.details || {};
             merged.details.pressureTrend = extRes.pressureTendencyTrend || merged.details.pressureTrend;
@@ -447,11 +441,13 @@ PlasmoidItem {
                     forecastModel.append(fcRes.forecast[k]);
                 currDayHigh = fcRes.currDayHigh;
                 currDayLow = fcRes.currDayLow;
-                moonrise = fcRes.moonrise;
-                moonset = fcRes.moonset;
-                moonPhase = fcRes.moonPhase;
-                moonPhaseCode = fcRes.moonPhaseCode;
-                blurb = fcRes.blurb;
+                var updated = JSON.parse(JSON.stringify(weatherData));
+                updated.moonrise = fcRes.moonrise || updated.moonrise;
+                updated.moonset = fcRes.moonset || updated.moonset;
+                updated.moonPhase = fcRes.moonPhase || updated.moonPhase;
+                updated.moonPhaseCode = fcRes.moonPhaseCode || updated.moonPhaseCode;
+                updated.blurb = fcRes.blurb || updated.blurb;
+                weatherData = updated;
                 printDebug("Got new forecast data");
                 showForecast = true;
 

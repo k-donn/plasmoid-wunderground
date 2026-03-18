@@ -660,6 +660,11 @@ function getCurrentData(options, callback) {
 			sunrise: prevWeather ? prevWeather["sunrise"] : "",
 			sunset: prevWeather ? prevWeather["sunset"] : "",
 			cloudCover: prevWeather ? prevWeather["cloudCover"] : null,
+			moonrise: prevWeather ? prevWeather["moonrise"] : null,
+			moonset: prevWeather ? prevWeather["moonset"] : null,
+			moonPhase: prevWeather ? prevWeather["moonPhase"] : null,
+			moonPhaseCode: prevWeather ? prevWeather["moonPhaseCode"] : null,
+			blurb: prevWeather ? prevWeather["blurb"] : null,
 			details: {
 				temp: details["temp"],
 				heatIndex: details["heatIndex"],
@@ -1058,11 +1063,11 @@ function getForecastDataV3(options, callback) {
 				golfDesc: !isFirstNight
 					? "Good day for golf."
 					: "Don't play golf at night.",
-				moonrise: dailyForecastVars && dailyForecastVars["moonriseTimeLocal"] ? dailyForecastVars["moonriseTimeLocal"][daypartPeriod] : "",
-				moonset: dailyForecastVars && dailyForecastVars["moonsetTimeLocal"] ? dailyForecastVars["moonsetTimeLocal"][daypartPeriod] : "",
-				moonPhase: dailyForecastVars && dailyForecastVars["moonPhase"] ? dailyForecastVars["moonPhase"][daypartPeriod] : "",
-				moonPhaseCode: dailyForecastVars && dailyForecastVars["moonPhaseCode"] ? dailyForecastVars["moonPhaseCode"][daypartPeriod] : "",
-				blurb: dailyForecastVars && dailyForecastVars["narrative"] ? dailyForecastVars["narrative"][daypartPeriod] : "",
+				moonrise: dailyForecastVars && dailyForecastVars["moonriseTimeLocal"] ? dailyForecastVars["moonriseTimeLocal"][period] : "",
+				moonset: dailyForecastVars && dailyForecastVars["moonsetTimeLocal"] ? dailyForecastVars["moonsetTimeLocal"][period] : "",
+				moonPhase: dailyForecastVars && dailyForecastVars["moonPhase"] ? dailyForecastVars["moonPhase"][period] : "",
+				moonPhaseCode: dailyForecastVars && dailyForecastVars["moonPhaseCode"] ? dailyForecastVars["moonPhaseCode"][period] : "",
+				blurb: dailyForecastVars && dailyForecastVars["narrative"] ? dailyForecastVars["narrative"][period] : "",
 			});
 		}
 

@@ -114,7 +114,7 @@ RowLayout {
                 font.pointSize: plasmoid.configuration.propPointSize
                 font.bold: true
 
-                text: weatherData["aq"]["aqi"]
+                text: weatherData["aq"]["aqhi"]
             }
         }
 

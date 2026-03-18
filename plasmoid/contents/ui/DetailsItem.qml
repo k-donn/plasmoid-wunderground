@@ -210,14 +210,14 @@ ColumnLayout {
                     }
 
                     PlasmaComponents.Label {
-                        text: Qt.formatDateTime(moonrise, plasmoid.configuration.sunMoonTimeFormat)
+                        text: Qt.formatDateTime(weatherData["moonrise"], plasmoid.configuration.sunMoonTimeFormat)
                         font.pointSize: plasmoid.configuration.propPointSize
                         font.bold: true
                     }
                 }
 
                 PlasmaComponents.Label {
-                    text: Utils.getMoonPhaseIcon(moonPhaseCode)
+                    text: Utils.getMoonPhaseIcon(weatherData["moonPhaseCode"])
                     font.family: "weather-icons"
                     font.pixelSize: Kirigami.Units.iconSizes.medium
                     horizontalAlignment: Text.AlignHCenter
@@ -232,7 +232,7 @@ ColumnLayout {
                     }
 
                     PlasmaComponents.Label {
-                        text: Qt.formatDateTime(moonset, plasmoid.configuration.sunMoonTimeFormat)
+                        text: Qt.formatDateTime(weatherData["moonset"], plasmoid.configuration.sunMoonTimeFormat)
                         font.pointSize: plasmoid.configuration.propPointSize
                         font.bold: true
                     }
@@ -240,7 +240,7 @@ ColumnLayout {
             }
 
             PlasmaComponents.Label {
-                text: moonPhase
+                text: weatherData["moonPhase"]
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
@@ -248,7 +248,7 @@ ColumnLayout {
     }
 
     PlasmaComponents.Label {
-        text: blurb
+        text: weatherData["blurb"]
         visible: plasmoid.configuration.showBlurb
         font.pointSize: plasmoid.configuration.propPointSize
         horizontalAlignment: Text.AlignHCenter
