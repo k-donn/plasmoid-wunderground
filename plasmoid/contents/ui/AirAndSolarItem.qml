@@ -30,11 +30,26 @@ RowLayout {
         text: weatherData["aq"]["aqDesc"]
     }
 
+    TextMetrics {
+        id: solStatusTxt
+
+        text: {
+            var val = Math.round(weatherData["kp-health"]);
+            if (val < 4) {
+                return i18n("Comfortable");
+            } else if (val < 7) {
+                return i18n("Moderate");
+            } else {
+                return i18n("Unfavorable");
+            }
+        }
+    }
+
     GridLayout {
         id: aqGrid
 
         columns: 4
-        rows: 2
+        rows: 3
 
         Layout.preferredWidth: 1
         Layout.fillWidth: true
@@ -55,6 +70,29 @@ RowLayout {
             }
 
             text: i18n("Air quality")
+        }
+
+        Rectangle {
+            id: aqIndexColor
+
+            Layout.preferredWidth: aqIndexTxt.width + 5
+            Layout.preferredHeight: aqIndexTxt.height + 5
+            Layout.alignment: Qt.AlignCenter
+            Layout.columnSpan: 4
+
+            color: "#" + weatherData["aq"]["aqColor"]
+
+            radius: 5
+
+            PlasmaComponents.Label {
+                id: aqIndexLabel
+
+                anchors.centerIn: parent
+
+                color: "#000000"
+
+                text: weatherData["aq"]["aqDesc"]
+            }
         }
 
 
@@ -182,8 +220,8 @@ RowLayout {
     GridLayout {
         id: solGrid
 
-        columns: 4
-        rows: 2
+        columns: 3
+        rows: 3
 
         uniformCellWidths: true
 
@@ -193,7 +231,7 @@ RowLayout {
         PlasmaComponents.Label {
             id: solLabel
 
-            Layout.columnSpan: 4
+            Layout.columnSpan: 3
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
 
@@ -205,6 +243,34 @@ RowLayout {
             }
 
             text: i18n("Solar info")
+        }
+
+        Rectangle {
+            Layout.preferredWidth: solStatusTxt.width + 5
+            Layout.preferredHeight: solStatusTxt.height + 5
+            Layout.alignment: Qt.AlignCenter
+            Layout.columnSpan: 3
+
+            color: weatherData["kp-color"]
+
+            radius: 5
+
+            PlasmaComponents.Label {
+                anchors.centerIn: parent
+
+                color: "#000000"
+
+                text: {
+                    var val = Math.round(weatherData["kp-health"]);
+                    if (val < 4) {
+                        return i18n("Comfortable");
+                    } else if (val < 7) {
+                        return i18n("Moderate");
+                    } else {
+                        return i18n("Unfavorable");
+                    }
+                }
+            }
         }
 
         ColumnLayout {
@@ -233,7 +299,7 @@ RowLayout {
                 font.pointSize: plasmoid.configuration.propPointSize
                 font.bold: true
 
-                text: weatherData["aq"]["aqi"]
+                text: weatherData["kp-index"]
             }
         }
 
@@ -293,37 +359,48 @@ RowLayout {
                 font.pointSize: plasmoid.configuration.propPointSize
                 font.bold: true
 
-                text: weatherData["aq"]["aqi"]
+                text: {
+                    return Math.round(weatherData["kp-health"])
+                }
             }
         }
 
-        ColumnLayout {
-            Layout.fillWidth: true
-            spacing: 0
+        // ColumnLayout {
+        //     Layout.fillWidth: true
+        //     spacing: 0
 
-            Kirigami.Icon {
-                source: "documentinfo-symbolic"
-                width: Kirigami.Units.iconSizes.medium
-                height: Kirigami.Units.iconSizes.medium
-                Layout.alignment: Qt.AlignHCenter
-            }
+        //     Kirigami.Icon {
+        //         source: "documentinfo-symbolic"
+        //         width: Kirigami.Units.iconSizes.medium
+        //         height: Kirigami.Units.iconSizes.medium
+        //         Layout.alignment: Qt.AlignHCenter
+        //     }
 
-            PlasmaComponents.Label {
-                Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pointSize: plasmoid.configuration.propPointSize
+        //     PlasmaComponents.Label {
+        //         Layout.fillWidth: true
+        //         horizontalAlignment: Text.AlignHCenter
+        //         font.pointSize: plasmoid.configuration.propPointSize
 
-                text: i18n("Status")
-            }
+        //         text: i18n("Status")
+        //     }
 
-            PlasmaComponents.Label {
-                Layout.fillWidth: true
-                horizontalAlignment: Text.AlignHCenter
-                font.pointSize: plasmoid.configuration.propPointSize
-                font.bold: true
+        //     PlasmaComponents.Label {
+        //         Layout.fillWidth: true
+        //         horizontalAlignment: Text.AlignHCenter
+        //         font.pointSize: plasmoid.configuration.propPointSize
+        //         font.bold: true
 
-                text: weatherData["aq"]["aqi"]
-            }
-        }
+                // text: {
+                //     var val = Math.round(weatherData["kp-health"]);
+                //     if (val < 4) {
+                //         return i18n("Comfortable");
+                //     } else if (val < 7) {
+                //         return i18n("Moderate");
+                //     } else {
+                //         return i18n("Unfavorable");
+                //     }
+                // }
+        //     }
+        // }
     }
 }

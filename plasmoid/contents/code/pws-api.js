@@ -1441,3 +1441,61 @@ function getHourlyDataV3(options, callback) {
 		});
 	});
 }
+
+/**
+ * Fetch planetary K-index data from NOAA SWPC.
+ * Returns the most recent kp_index and the next three predictions.
+ *
+ * @param {function(Object|null, Object|null)} callback - Error-first callback with {current: number, predictions: number[]}
+ */
+function getKpIndexData(callback) {
+	callback = callback || function () {};
+
+	var url = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json";
+
+	printDebug("[pws-api.js] Fetching KP index");
+
+	_httpGet(url, function (err, res, status, raw) {
+		if (err || status !== 200) {
+			callback(
+				err || {
+					type: "network",
+					message: "Failed to fetch KP index data",
+				},
+				null
+			);
+			return;
+		}
+
+		if (!Array.isArray(res) || res.length === 0) {
+			callback(
+				{
+					type: "data",
+					message: "Invalid or empty KP index data",
+				},
+				null
+			);
+			return;
+		}
+
+		// Sort by time_tag descending (most recent first)
+		res.sort(function (a, b) {
+			return new Date(b.time_tag) - new Date(a.time_tag);
+		});
+
+		var current = res[0].kp_index;
+		var predictions = [];
+		for (var i = 1; i <= 3 && i < res.length; i++) {
+			predictions.push(
+				res[i].estimated_kp !== undefined
+					? res[i].estimated_kp
+					: res[i].kp_index
+			);
+		}
+
+		callback(null, {
+			current: current,
+			predictions: predictions,
+		});
+	});
+}

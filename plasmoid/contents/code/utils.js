@@ -416,6 +416,18 @@ function mbToMmhg(mb) {
 	return mb * 0.750062;
 }
 
+function kToC(degK) {
+	return degK - 273.15;
+}
+
+function inhgToMb(inhg) {
+	return inhg / 0.02953;
+}
+
+function mmhgToMb(mmhg) {
+	return mmhg / 0.750062;
+}
+
 /**
  * Returns whether value is within the range of [low, high).
  * Inclusive lower; exclusive upper
@@ -1269,4 +1281,82 @@ function getMoonPhaseIcon(phaseCode) {
 	};
 
 	return moonPhasesDict[phaseCode];
+}
+
+/**
+ * Convert temperature from user units to degrees Celsius.
+ *
+ * @param {number} value Temperature in user units
+ * @returns {number} Temperature in degrees Celsius
+ */
+function userTempToC(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
+			return value;
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
+			return fToC(value);
+		} else {
+			return kToC(value);
+		}
+	} else {
+		if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+			return fToC(value);
+		} else {
+			return value;
+		}
+	}
+}
+
+/**
+ * Convert pressure from user units to hPa (hectopascals).
+ *
+ * @param {number} value Pressure in user units
+ * @returns {number} Pressure in hPa
+ */
+function userPresToHpa(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB || plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
+			return value;
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
+			return inhgToMb(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
+			return mmhgToMb(value);
+		}
+	} else {
+		if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+			return inhgToMb(value);
+		} else {
+			return value;
+		}
+	}
+}
+
+/**
+ * Convert API temperature value to degrees Celsius.
+ * API units depend on unitsChoice: CUSTOM=C, IMPERIAL=F, METRIC/HYBRID=C
+ *
+ * @param {number} value Temperature from API
+ * @returns {number} Temperature in degrees Celsius
+ */
+function apiTempToC(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM || unitsChoice === UNITS_SYSTEM.METRIC || unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value; // Already in C
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return fToC(value); // Convert F to C
+	}
+}
+
+/**
+ * Convert API pressure value to hPa (hectopascals).
+ * API units depend on unitsChoice: CUSTOM=mb, IMPERIAL=inHG, METRIC/HYBRID=mb
+ *
+ * @param {number} value Pressure from API
+ * @returns {number} Pressure in hPa
+ */
+function apiPresToHpa(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM || unitsChoice === UNITS_SYSTEM.METRIC || unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value; // Already in mb/hPa
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return inhgToMb(value); // Convert inHG to mb
+	}
 }
