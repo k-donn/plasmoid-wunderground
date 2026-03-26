@@ -27,10 +27,12 @@ KCM.SimpleKCM {
     property alias sunMoonFormatIndex: sunMoonFormatChoice.currentIndex
     property alias dayChartFormatIndex: dayChartFormatChoice.currentIndex
     property alias weekForecastFormatIndex: weekForecastFormatChoice.currentIndex
+    property alias kpPredictionFormatIndex: kpPredictionFormatChoice.currentIndex
 
     property alias cfg_dayChartTimeFormat: dayChartTimeFormat.text
     property alias cfg_weekForecastDateFormat: weekForecastDateFormat.text
     property alias cfg_sunMoonTimeFormat: sunMoonTimeFormat.text
+    property alias cfg_kpPredictionTimeFormat: kpPredictionTimeFormat.text
     property alias cfg_windPrecision: windPrecision.value
     property alias cfg_tempPrecision: tempPrecision.value
     property alias cfg_compactTempPrecision: compactTempPrecision.value
@@ -69,6 +71,14 @@ KCM.SimpleKCM {
         }
     }
 
+    onKpPredictionFormatIndexChanged: {
+        if (kpPredictionFormatIndex === 0) {
+            cfg_kpPredictionTimeFormat = "h:mm AP";
+        } else if (kpPredictionFormatIndex === 1) {
+            cfg_kpPredictionTimeFormat = "HH:mm";
+        }
+    }
+
     function displayTxt(i18nStr) {
         return i18nStr.charAt(0).toUpperCase() + i18nStr.toLowerCase().slice(1);
     }
@@ -95,6 +105,23 @@ KCM.SimpleKCM {
                 id: sunMoonTimeFormat
 
                 enabled: sunMoonFormatChoice.currentIndex == 2
+            }
+        }
+
+        ColumnLayout {
+            Kirigami.FormData.label: i18n("Kp-prediction time format:")
+            Kirigami.FormData.labelAlignment: Qt.AlignTop
+
+            PlasmaComponents.ComboBox {
+                id: kpPredictionFormatChoice
+
+                model: [i18n("12hr time"),i18n("24hr time"),i18n("Custom")]
+            }
+
+            PlasmaComponents.TextField {
+                id: kpPredictionTimeFormat
+
+                enabled: kpPredictionFormatChoice.currentIndex == 2
             }
         }
 

@@ -49,7 +49,6 @@ PlasmoidItem {
             "moonPhaseCode": "F",
             "blurb": "AAAAAAAAAAAAAAAAAAAAAA",
             "kp-index": 0,
-            "kp-predictions": [0,0,0],
             "kp-health": 0,
             "kp-color": "#00FF00",
             "cloudCover": 0,
@@ -95,6 +94,7 @@ PlasmoidItem {
     property ListModel forecastModel: ListModel {}
     property ListModel hourlyModel: ListModel {}
     property ListModel alertsModel: ListModel {}
+    property ListModel kpPredictionsModel: ListModel {}
     property int currDayHigh: 0
     property int currDayLow: 0
     property int iconCode: 32 // 32 = sunny
@@ -108,7 +108,7 @@ PlasmoidItem {
     property int showERROR: 4
     property int showDATA: 8
 
-    property int appState: showDATA
+    property int appState: showCONFIG
 
     property bool showForecast: false
 
@@ -366,7 +366,6 @@ PlasmoidItem {
                                 } else {
                                     var updated = JSON.parse(JSON.stringify(weatherData));
                                     updated["kp-index"] = kpRes.current;
-                                    updated["kp-predictions"] = kpRes.predictions;
                                     var tempC = Math.abs(Utils.apiTempToC(weatherData["details"]["temp"] - 20));
                                     var deltaPHpa = Utils.apiPresToHpa(weatherData["details"]["pressureDelta"]);
                                     var kpComp = Math.min(1, Math.max(0, (updated["kp-index"] - 2) / 6));
@@ -374,6 +373,12 @@ PlasmoidItem {
                                     var tempComp = Math.min(1, Math.abs(tempC - 20) / 20);
                                     updated["kp-health"] = 10 * (0.35 * updated["kp-index"] + 0.4 * presComp + 0.25 * tempComp);
                                     updated["kp-color"] = updated["kp-health"] <= 4 ? "#00FF00" : updated["kp-health"] <= 7 ? "#FFFF00" : "#FF0000";
+
+                                    kpPredictionsModel.clear();
+                                    for (var p = 0; p < kpRes.predictions.length; p++) {
+                                        kpPredictionsModel.append(kpRes.predictions[p]);
+                                    }
+
                                     weatherData = updated;
                                     printDebug("Got KP index data");
                                 }
@@ -502,18 +507,18 @@ PlasmoidItem {
                         } else {
                             var updated = JSON.parse(JSON.stringify(weatherData));
                             updated["kp-index"] = kpRes.current;
-                            updated["kp-predictions"] = kpRes.predictions;
                             var calcTemp = Utils.apiTempToC(weatherData["details"]["temp"]);
                             var calcDeltaP = Utils.apiPresToHpa(weatherData["details"]["pressureDelta"]);
-                            printDebug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-                            printDebug(calcTemp);
-                            printDebug(calcDeltaP);
-                            printDebug(updated["kp-index"]);
                             updated["kp-health"] = 10 - (0.35 * updated["kp-index"] + 0.4 * calcDeltaP + 0.25 * calcTemp);
-                            printDebug(updated["kp-health"]);
                             updated["kp-color"] = updated["kp-health"] >= 7 ? "#00FF00" : updated["kp-health"] >= 4 ? "#FFFF00" : "#FF0000";
+
+                            kpPredictionsModel.clear();
+                            for (var p = 0; p < kpRes.predictions.length; p++) {
+                                kpPredictionsModel.append(kpRes.predictions[p]);
+                            }
+                            
                             weatherData = updated;
-                            printDebug("Got KP index dataAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+                            printDebug("Got KP index data");
                         }
                     });
                 });

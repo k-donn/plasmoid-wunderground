@@ -1486,11 +1486,12 @@ function getKpIndexData(callback) {
 		var current = res[0].kp_index;
 		var predictions = [];
 		for (var i = 1; i <= 3 && i < res.length; i++) {
-			predictions.push(
-				res[i].estimated_kp !== undefined
+			predictions.push({
+				"kp-index": res[i].estimated_kp !== undefined
 					? res[i].estimated_kp
-					: res[i].kp_index
-			);
+					: res[i].kp_index,
+				"time": res[i].time_tag
+			});
 		}
 
 		callback(null, {

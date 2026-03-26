@@ -158,6 +158,9 @@
         <entry name="sunMoonTimeFormat" type="String">
             <default>hh:mm</default>
         </entry>
+        <entry name="kpPredictionTimeFormat" type="String">
+            <default>h:mm AP</default>
+        </entry>
         <entry name="windPrecision" type="Int">
             <default>1</default>
         </entry>
