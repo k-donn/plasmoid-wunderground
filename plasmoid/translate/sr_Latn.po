@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-08 17:58-0500\n"
+"POT-Creation-Date: 2026-03-26 19:04-0500\n"
 "PO-Revision-Date: 2025-02-08 14:02+0100\n"
 "Last-Translator: Ivan Todorov <ivan@globedotters.com>\n"
 "Language-Team: Serbian (Latin) <YOUR_EMAIL>\n"
@@ -63,48 +63,56 @@ msgid "Debug"
 msgstr "Debag"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Status Color"
-msgstr "Boja Statusa"
+msgid "Comfortable"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Moderate"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Unfavorable"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
 msgstr "Kvalitet vazduha"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Messages"
+msgid "AQI"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQI: %1"
-msgstr "AQI: %1"
+msgid "AQHI"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
+msgid "Alerts"
+msgstr "Upozorenja"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQHI: %1"
-msgstr "AQHI: %1"
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Primary pollutant: "
-msgstr "Primarni zagađivač: "
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
-msgstr "Količina: %1 %2<br/>Opis: %3<br/>Indeks: %4"
+msgid "Info"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
 msgstr "Solarne informacije"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunrise"
-msgstr "Izlazak Sunca"
+msgid "Kp-index"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunset"
-msgstr "Zalazak Sunca"
+msgid "Kp predictions"
+msgstr ""
 
-#: ../contents/ui/AlertsItem.qml
-msgid "Alerts"
-msgstr "Upozorenja"
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Power"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Health index"
+msgstr ""
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
@@ -493,15 +501,47 @@ msgid "Time/Date Format"
 msgstr "Vreme/Datum Format"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "12hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "24hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr "Prilagođeno"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Kp-prediction time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
 msgstr "Format Vremena za Dnevni Prikaz:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
 msgstr "Format datuma za nedeljnu prognozu:"
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Sun/Moon time format:"
+msgid "Day"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day/Month"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
@@ -530,10 +570,6 @@ msgstr "Imperijalni"
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
 msgstr "Hibridni (UK)"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Custom"
-msgstr "Prilagođeno"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
@@ -766,6 +802,27 @@ msgstr "Greška..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Osveži vremenske podatke"
+
+#~ msgid "Status Color"
+#~ msgstr "Boja Statusa"
+
+#~ msgid "AQI: %1"
+#~ msgstr "AQI: %1"
+
+#~ msgid "AQHI: %1"
+#~ msgstr "AQHI: %1"
+
+#~ msgid "Primary pollutant: "
+#~ msgstr "Primarni zagađivač: "
+
+#~ msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
+#~ msgstr "Količina: %1 %2<br/>Opis: %3<br/>Indeks: %4"
+
+#~ msgid "Sunrise"
+#~ msgstr "Izlazak Sunca"
+
+#~ msgid "Sunset"
+#~ msgstr "Zalazak Sunca"
 
 #~ msgctxt "Short for: 'Precipitation Accumulation'"
 #~ msgid "Precipitation Accum."

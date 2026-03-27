@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-08 17:58-0500\n"
+"POT-Creation-Date: 2026-03-26 19:04-0500\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,16 +31,16 @@ msgstr "Standort nicht gefunden"
 
 #: ../contents/code/utils.js
 msgid "To sunrise"
-msgstr ""
+msgstr "Zum Sonnenaufgang"
 
 #: ../contents/code/utils.js
 msgctxt "Daylight remaining time, keep short"
 msgid "Remaining"
-msgstr ""
+msgstr "Verbleibend"
 
 #: ../contents/code/utils.js
 msgid "Since sunset"
-msgstr ""
+msgstr "Seit Sonnenuntergang"
 
 #: ../contents/config/config.qml
 msgid "Station"
@@ -63,48 +63,56 @@ msgid "Debug"
 msgstr "Debuggen"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Status Color"
-msgstr "Status"
+msgid "Comfortable"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Moderate"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Unfavorable"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
 msgstr "Luftqualität"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Messages"
-msgstr "Nachrichten"
+msgid "AQI"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQI: %1"
-msgstr "AQI: %1"
+msgid "AQHI"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
+msgid "Alerts"
+msgstr "Warnungen:"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQHI: %1"
-msgstr "AQHI: %1"
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Primary pollutant: "
-msgstr "Primärschadstoff:  "
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
-msgstr "Menge: %1 %2<br/>Beschreibung: %3<br/>Index: %4"
+msgid "Info"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
 msgstr "Solar Info"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunrise"
-msgstr "Sonnenaufgang"
+msgid "Kp-index"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunset"
-msgstr "Sonnenuntergang"
+msgid "Kp predictions"
+msgstr ""
 
-#: ../contents/ui/AlertsItem.qml
-msgid "Alerts"
-msgstr "Warnungen:"
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Power"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Health index"
+msgstr ""
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
@@ -158,7 +166,7 @@ msgstr "Taupunkt"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Precip Rate"
-msgstr ""
+msgstr "Niederschlagsrate"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -178,7 +186,7 @@ msgstr "Luftfeuchtigkeit"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Precip Accum"
-msgstr ""
+msgstr "Niederschlagsmenge"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -256,7 +264,7 @@ msgstr "Auto-Farbe der Temperatur"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show blurb:"
-msgstr ""
+msgstr "Klappentext anzeigen:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
@@ -493,15 +501,47 @@ msgid "Time/Date Format"
 msgstr "Zeit- und Datumsformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr "Sonnen-/Mondzeitformat:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "12hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "24hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr "Individuell"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Kp-prediction time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
 msgstr "Tagesdiagramme- Zeitformat"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
 msgstr "Wettervorhersage- Datumsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Sun/Moon time format:"
+msgid "Day"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day/Month"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
@@ -530,10 +570,6 @@ msgstr "Imperial"
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
 msgstr "Hybrid (UK)"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Custom"
-msgstr "Individuell"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
@@ -767,6 +803,26 @@ msgstr "Fehler..."
 msgid "Refresh weather"
 msgstr "Wetterdaten aktualisieren"
 
-#~ msgctxt "Short for: 'Precipitation Accumulation'"
-#~ msgid "Precipitation Accum."
-#~ msgstr "Niederschlagsmenge"
+#~ msgid "Status Color"
+#~ msgstr "Status"
+
+#~ msgid "Messages"
+#~ msgstr "Nachrichten"
+
+#~ msgid "AQI: %1"
+#~ msgstr "AQI: %1"
+
+#~ msgid "AQHI: %1"
+#~ msgstr "AQHI: %1"
+
+#~ msgid "Primary pollutant: "
+#~ msgstr "Primärschadstoff:  "
+
+#~ msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
+#~ msgstr "Menge: %1 %2<br/>Beschreibung: %3<br/>Index: %4"
+
+#~ msgid "Sunrise"
+#~ msgstr "Sonnenaufgang"
+
+#~ msgid "Sunset"
+#~ msgstr "Sonnenuntergang"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-08 17:58-0500\n"
+"POT-Creation-Date: 2026-03-26 19:04-0500\n"
 "PO-Revision-Date: 2025-09-24 14:11-0400\n"
 "Last-Translator: AleksZZ <alexyvp@mail.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -63,48 +63,56 @@ msgid "Debug"
 msgstr "Отлаживать"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Status Color"
-msgstr "Цвет статуса"
+msgid "Comfortable"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Moderate"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Unfavorable"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
 msgstr "Качество воздуха"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Messages"
+msgid "AQI"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQI: %1"
-msgstr "АКИ: %1"
+msgid "AQHI"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
+msgid "Alerts"
+msgstr "Оповещения"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQHI: %1"
-msgstr "AQHI: %1"
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Primary pollutant: "
-msgstr "Основной загрязнитель: "
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
-msgstr "Сумма: %1 %2<br/> Описание: %3<br/> Индекс: %4"
+msgid "Info"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
 msgstr "Информация о солнечной энергии"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunrise"
-msgstr "Восход"
+msgid "Kp-index"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunset"
-msgstr "Закат"
+msgid "Kp predictions"
+msgstr ""
 
-#: ../contents/ui/AlertsItem.qml
-msgid "Alerts"
-msgstr "Оповещения"
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Power"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Health index"
+msgstr ""
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
@@ -493,15 +501,47 @@ msgid "Time/Date Format"
 msgstr "Формат времени/даты"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "12hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "24hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr "Обычай"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Kp-prediction time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
 msgstr "Формат времени дневного графика:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
 msgstr "Формат даты прогноза на неделю:"
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Sun/Moon time format:"
+msgid "Day"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day/Month"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
@@ -530,10 +570,6 @@ msgstr "Американская"
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
 msgstr "Британская"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Custom"
-msgstr "Обычай"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
@@ -766,6 +802,27 @@ msgstr "Ошибка..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Обновить погоду"
+
+#~ msgid "Status Color"
+#~ msgstr "Цвет статуса"
+
+#~ msgid "AQI: %1"
+#~ msgstr "АКИ: %1"
+
+#~ msgid "AQHI: %1"
+#~ msgstr "AQHI: %1"
+
+#~ msgid "Primary pollutant: "
+#~ msgstr "Основной загрязнитель: "
+
+#~ msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
+#~ msgstr "Сумма: %1 %2<br/> Описание: %3<br/> Индекс: %4"
+
+#~ msgid "Sunrise"
+#~ msgstr "Восход"
+
+#~ msgid "Sunset"
+#~ msgstr "Закат"
 
 #~ msgctxt "Short for: 'Precipitation Accumulation'"
 #~ msgid "Precipitation Accum."

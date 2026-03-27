@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-08 17:58-0500\n"
+"POT-Creation-Date: 2026-03-26 19:04-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,7 +63,15 @@ msgid "Debug"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Status Color"
+msgid "Comfortable"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Moderate"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Unfavorable"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
@@ -71,23 +79,19 @@ msgid "Air quality"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Messages"
+msgid "AQI"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQI: %1"
+msgid "AQHI"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
+msgid "Alerts"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQHI: %1"
-msgstr ""
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Primary pollutant: "
-msgstr ""
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
+msgid "Info"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
@@ -95,15 +99,19 @@ msgid "Solar info"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunrise"
+msgid "Kp-index"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunset"
+msgid "Kp predictions"
 msgstr ""
 
-#: ../contents/ui/AlertsItem.qml
-msgid "Alerts"
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Power"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Health index"
 msgstr ""
 
 #: ../contents/ui/AlertsItem.qml
@@ -493,7 +501,31 @@ msgid "Time/Date Format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "12hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "24hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Kp-prediction time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
@@ -501,7 +533,15 @@ msgid "Week forecast date format:"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Sun/Moon time format:"
+msgid "Day"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day/Month"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
@@ -529,10 +569,6 @@ msgstr ""
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
-msgstr ""
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Custom"
 msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
