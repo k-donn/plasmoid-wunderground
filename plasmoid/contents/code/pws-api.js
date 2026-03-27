@@ -222,6 +222,7 @@ function _pressureRangeForUnits(unitsChoice, presUnitsChoice) {
 	// custom - fall back to provided presUnitsChoice when available
 	if (presUnitsChoice === Utils.PRES_UNITS.INHG) return 2.1;
 	if (presUnitsChoice === Utils.PRES_UNITS.MMHG) return 53;
+	if (presUnitsChoice === Utils.PRES_UNITS.PSI) return 1.5;
 	return 70;
 }
 

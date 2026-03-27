@@ -52,7 +52,16 @@ var PRES_UNITS = {
 	INHG: 1,
 	MMHG: 2,
 	HPA: 3,
+	PSI: 4,
 };
+
+function mbToPsi(mb) {
+	return mb * 0.0145037738;
+}
+
+function psiToMb(psi) {
+	return psi / 0.0145037738;
+}
 
 var ELEV_UNITS = {
 	M: 0,
@@ -1069,6 +1078,10 @@ function toUserPres(value) {
 			return mbToInhg(value);
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			return mbToMmhg(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
+			return value; // hPa and mb are equivalent
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
+			return mbToPsi(value);
 		} else {
 			return value;
 		}
@@ -1081,7 +1094,7 @@ function toUserPres(value) {
 /**
  * Return the user's choice of pressure unit with no additional data.
  *
- * @returns {"mb"|"inHG"|"mmHG"|"hPa"} User choosen unit
+ * @returns {"mb"|"inHG"|"mmHG"|"hPa"|"psi"} User choosen unit
  */
 function rawPresUnit() {
 	var res = "";
@@ -1098,6 +1111,10 @@ function rawPresUnit() {
 			res = "inHG";
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			res = "mmHG";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
+			res = "hPa";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
+			res = "psi";
 		} else {
 			res = "hPa";
 		}
@@ -1321,6 +1338,8 @@ function userPresToHpa(value) {
 			return inhgToMb(value);
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			return mmhgToMb(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
+			return psiToMb(value);
 		}
 	} else {
 		if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {

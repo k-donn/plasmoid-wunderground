@@ -352,7 +352,7 @@ KCM.SimpleKCM {
 
             visible: unitsChoice.currentIndex == 3
 
-            model: ["mb", "inHG", "mmHG", "hPa"]
+            model: ["mb", "inHG", "mmHG", "hPa", "psi"]
 
             Kirigami.FormData.label: i18n("Pressure unit:")
         }
