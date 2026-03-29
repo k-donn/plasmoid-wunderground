@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-26 19:04-0500\n"
+"POT-Creation-Date: 2026-03-29 13:59-0500\n"
 "PO-Revision-Date: 2026-03-10 18:34+0100\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
@@ -101,10 +101,6 @@ msgstr "Sol info"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Kp-index"
-msgstr ""
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Kp predictions"
 msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
