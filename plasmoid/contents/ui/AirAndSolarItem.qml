@@ -326,36 +326,8 @@ RowLayout {
                 horizontalAlignment: Text.AlignHCenter
                 font.pointSize: plasmoid.configuration.propPointSize
                 font.bold: true
-                font.underline: true
 
                 text: weatherData["kp-index"]
-
-                PlasmaCore.ToolTipArea {
-                    anchors.fill: parent
-                    interactive: true
-
-                    mainItem: ColumnLayout {
-                        spacing: 4
-
-                        PlasmaComponents.Label {
-                            text: i18n("Kp predictions")
-                            font.bold: true
-                        }
-
-                        Repeater {
-                            model: kpPredictionsModel
-
-                            delegate: PlasmaComponents.Label {
-                                text: {
-                                    var t = model.time
-                                    var timeString = Qt.formatDateTime(t, plasmoid.configuration.kpPredictionTimeFormat)
-                                    timeString + " → " + model["kp-index"]
-                                }
-                                wrapMode: Text.WordWrap
-                            }
-                        }
-                    }
-                }
             }
         }
 

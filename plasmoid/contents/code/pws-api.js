@@ -1454,7 +1454,7 @@ function getKpIndexData(callback) {
 
 	var url = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json";
 
-	printDebug("[pws-api.js] Fetching KP index");
+	printDebug("[pws-api.js] Fetching KP index " + url);
 
 	_httpGet(url, function (err, res, status, raw) {
 		if (err || status !== 200) {

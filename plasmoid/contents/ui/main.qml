@@ -410,6 +410,31 @@ PlasmoidItem {
             }
             weatherData = curRes.weatherData;
             printDebug("Got new current data");
+
+            // Fetch KP index data
+            StationAPI.getKpIndexData(function (err, kpRes) {
+                if (err) {
+                    printDebug("KP index fetch failed: " + err.message);
+                } else {
+                    var updated = JSON.parse(JSON.stringify(weatherData));
+                    updated["kp-index"] = kpRes.current;
+                    var tempC = Math.abs(Utils.apiTempToC(weatherData["details"]["temp"] - 20));
+                    var deltaPHpa = Utils.apiPresToHpa(weatherData["details"]["pressureDelta"]);
+                    var kpComp = Math.min(1, Math.max(0, (updated["kp-index"] - 2) / 6));
+                    var presComp = Math.min(1, Math.abs(deltaPHpa) / 10);
+                    var tempComp = Math.min(1, Math.abs(tempC - 20) / 20);
+                    updated["kp-health"] = 10 * (0.35 * updated["kp-index"] + 0.4 * presComp + 0.25 * tempComp);
+                    updated["kp-color"] = updated["kp-health"] <= 4 ? "#00FF00" : updated["kp-health"] <= 7 ? "#FFFF00" : "#FF0000";
+
+                    kpPredictionsModel.clear();
+                    for (var p = 0; p < kpRes.predictions.length; p++) {
+                        kpPredictionsModel.append(kpRes.predictions[p]);
+                    }
+
+                    weatherData = updated;
+                    printDebug("Got KP index data");
+                }
+            });
             appState = showDATA;
         });
     }
