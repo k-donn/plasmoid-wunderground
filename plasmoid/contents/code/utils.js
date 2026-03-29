@@ -52,7 +52,16 @@ var PRES_UNITS = {
 	INHG: 1,
 	MMHG: 2,
 	HPA: 3,
+	PSI: 4,
 };
+
+function mbToPsi(mb) {
+	return mb * 0.0145037738;
+}
+
+function psiToMb(psi) {
+	return psi / 0.0145037738;
+}
 
 var ELEV_UNITS = {
 	M: 0,
@@ -414,6 +423,18 @@ function mbToInhg(mb) {
 
 function mbToMmhg(mb) {
 	return mb * 0.750062;
+}
+
+function kToC(degK) {
+	return degK - 273.15;
+}
+
+function inhgToMb(inhg) {
+	return inhg / 0.02953;
+}
+
+function mmhgToMb(mmhg) {
+	return mmhg / 0.750062;
 }
 
 /**
@@ -1057,6 +1078,10 @@ function toUserPres(value) {
 			return mbToInhg(value);
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			return mbToMmhg(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
+			return value; // hPa and mb are equivalent
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
+			return mbToPsi(value);
 		} else {
 			return value;
 		}
@@ -1069,7 +1094,7 @@ function toUserPres(value) {
 /**
  * Return the user's choice of pressure unit with no additional data.
  *
- * @returns {"mb"|"inHG"|"mmHG"|"hPa"} User choosen unit
+ * @returns {"mb"|"inHG"|"mmHG"|"hPa"|"psi"} User choosen unit
  */
 function rawPresUnit() {
 	var res = "";
@@ -1086,6 +1111,10 @@ function rawPresUnit() {
 			res = "inHG";
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
 			res = "mmHG";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
+			res = "hPa";
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
+			res = "psi";
 		} else {
 			res = "hPa";
 		}
@@ -1269,4 +1298,84 @@ function getMoonPhaseIcon(phaseCode) {
 	};
 
 	return moonPhasesDict[phaseCode];
+}
+
+/**
+ * Convert temperature from user units to degrees Celsius.
+ *
+ * @param {number} value Temperature in user units
+ * @returns {number} Temperature in degrees Celsius
+ */
+function userTempToC(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
+		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
+			return value;
+		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
+			return fToC(value);
+		} else {
+			return kToC(value);
+		}
+	} else {
+		if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+			return fToC(value);
+		} else {
+			return value;
+		}
+	}
+}
+
+/**
+ * Convert pressure from user units to hPa (hectopascals).
+ *
+ * @param {number} value Pressure in user units
+ * @returns {number} Pressure in hPa
+ */
+function userPresToHpa(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM) {
+		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB || plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
+			return value;
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
+			return inhgToMb(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
+			return mmhgToMb(value);
+		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
+			return psiToMb(value);
+		}
+	} else {
+		if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+			return inhgToMb(value);
+		} else {
+			return value;
+		}
+	}
+}
+
+/**
+ * Convert API temperature value to degrees Celsius.
+ * API units depend on unitsChoice: CUSTOM=C, IMPERIAL=F, METRIC/HYBRID=C
+ *
+ * @param {number} value Temperature from API
+ * @returns {number} Temperature in degrees Celsius
+ */
+function apiTempToC(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM || unitsChoice === UNITS_SYSTEM.METRIC || unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value; // Already in C
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return fToC(value); // Convert F to C
+	}
+}
+
+/**
+ * Convert API pressure value to hPa (hectopascals).
+ * API units depend on unitsChoice: CUSTOM=mb, IMPERIAL=inHG, METRIC/HYBRID=mb
+ *
+ * @param {number} value Pressure from API
+ * @returns {number} Pressure in hPa
+ */
+function apiPresToHpa(value) {
+	if (unitsChoice === UNITS_SYSTEM.CUSTOM || unitsChoice === UNITS_SYSTEM.METRIC || unitsChoice === UNITS_SYSTEM.HYBRID) {
+		return value; // Already in mb/hPa
+	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
+		return inhgToMb(value); // Convert inHG to mb
+	}
 }

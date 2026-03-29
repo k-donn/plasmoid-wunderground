@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-08 17:58-0500\n"
+"POT-Creation-Date: 2026-03-29 13:59-0500\n"
 "PO-Revision-Date: 2026-03-10 18:34+0100\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
@@ -64,48 +64,52 @@ msgid "Debug"
 msgstr "Fejlret"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Status Color"
-msgstr "Status farve"
+msgid "Comfortable"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Moderate"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Unfavorable"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
 msgstr "Luft kvalitet"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Messages"
-msgstr "Meddelelser"
+msgid "AQI"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQI: %1"
-msgstr "AQI: %1"
+msgid "AQHI"
+msgstr ""
+
+#: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
+msgid "Alerts"
+msgstr "Varsler"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "AQHI: %1"
-msgstr "AQHI: %1"
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Primary pollutant: "
-msgstr "Primær forurening: "
-
-#: ../contents/ui/AirAndSolarItem.qml
-msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
-msgstr "Antal: %1 %2<br/>Beskrivelse: %3<br/>Indeks: %4"
+msgid "Info"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
 msgstr "Sol info"
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunrise"
-msgstr "Solopgang"
+msgid "Kp-index"
+msgstr ""
 
 #: ../contents/ui/AirAndSolarItem.qml
-msgid "Sunset"
-msgstr "Solnedgang"
+msgid "Power"
+msgstr ""
 
-#: ../contents/ui/AlertsItem.qml
-msgid "Alerts"
-msgstr "Varsler"
+#: ../contents/ui/AirAndSolarItem.qml
+msgid "Health index"
+msgstr ""
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
@@ -507,16 +511,48 @@ msgid "Time/Date Format"
 msgstr "Tid/dato format"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr "Sol/Måne tidsformat:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "12hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "24hr time"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr "Tilpasset"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Kp-prediction time format:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
 msgstr "Dag diagram tidsformat:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
 msgstr "Uge vejrudsigt dato format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
-msgid "Sun/Moon time format:"
-msgstr "Sol/Måne tidsformat:"
+msgid "Day"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day/Month"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format"
+msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
@@ -544,10 +580,6 @@ msgstr "Imperial"
 msgctxt "The unit system"
 msgid "Hybrid (UK)"
 msgstr "Hybrid (UK)"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Custom"
-msgstr "Tilpasset"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Choose:"
@@ -795,6 +827,30 @@ msgstr "Fejl..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Opdater vejr"
+
+#~ msgid "Status Color"
+#~ msgstr "Status farve"
+
+#~ msgid "Messages"
+#~ msgstr "Meddelelser"
+
+#~ msgid "AQI: %1"
+#~ msgstr "AQI: %1"
+
+#~ msgid "AQHI: %1"
+#~ msgstr "AQHI: %1"
+
+#~ msgid "Primary pollutant: "
+#~ msgstr "Primær forurening: "
+
+#~ msgid "Amount: %1 %2<br/>Description: %3<br/>Index: %4"
+#~ msgstr "Antal: %1 %2<br/>Beskrivelse: %3<br/>Indeks: %4"
+
+#~ msgid "Sunrise"
+#~ msgstr "Solopgang"
+
+#~ msgid "Sunset"
+#~ msgstr "Solnedgang"
 
 #~ msgctxt "Short for: 'Precipitation Accumulation'"
 #~ msgid "Precipitation Accum."

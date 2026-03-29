@@ -222,6 +222,7 @@ function _pressureRangeForUnits(unitsChoice, presUnitsChoice) {
 	// custom - fall back to provided presUnitsChoice when available
 	if (presUnitsChoice === Utils.PRES_UNITS.INHG) return 2.1;
 	if (presUnitsChoice === Utils.PRES_UNITS.MMHG) return 53;
+	if (presUnitsChoice === Utils.PRES_UNITS.PSI) return 1.5;
 	return 70;
 }
 
@@ -660,6 +661,11 @@ function getCurrentData(options, callback) {
 			sunrise: prevWeather ? prevWeather["sunrise"] : "",
 			sunset: prevWeather ? prevWeather["sunset"] : "",
 			cloudCover: prevWeather ? prevWeather["cloudCover"] : null,
+			moonrise: prevWeather ? prevWeather["moonrise"] : null,
+			moonset: prevWeather ? prevWeather["moonset"] : null,
+			moonPhase: prevWeather ? prevWeather["moonPhase"] : null,
+			moonPhaseCode: prevWeather ? prevWeather["moonPhaseCode"] : null,
+			blurb: prevWeather ? prevWeather["blurb"] : null,
 			details: {
 				temp: details["temp"],
 				heatIndex: details["heatIndex"],
@@ -1058,11 +1064,11 @@ function getForecastDataV3(options, callback) {
 				golfDesc: !isFirstNight
 					? "Good day for golf."
 					: "Don't play golf at night.",
-				moonrise: dailyForecastVars && dailyForecastVars["moonriseTimeLocal"] ? dailyForecastVars["moonriseTimeLocal"][daypartPeriod] : "",
-				moonset: dailyForecastVars && dailyForecastVars["moonsetTimeLocal"] ? dailyForecastVars["moonsetTimeLocal"][daypartPeriod] : "",
-				moonPhase: dailyForecastVars && dailyForecastVars["moonPhase"] ? dailyForecastVars["moonPhase"][daypartPeriod] : "",
-				moonPhaseCode: dailyForecastVars && dailyForecastVars["moonPhaseCode"] ? dailyForecastVars["moonPhaseCode"][daypartPeriod] : "",
-				blurb: dailyForecastVars && dailyForecastVars["narrative"] ? dailyForecastVars["narrative"][daypartPeriod] : "",
+				moonrise: dailyForecastVars && dailyForecastVars["moonriseTimeLocal"] ? dailyForecastVars["moonriseTimeLocal"][period] : "",
+				moonset: dailyForecastVars && dailyForecastVars["moonsetTimeLocal"] ? dailyForecastVars["moonsetTimeLocal"][period] : "",
+				moonPhase: dailyForecastVars && dailyForecastVars["moonPhase"] ? dailyForecastVars["moonPhase"][period] : "",
+				moonPhaseCode: dailyForecastVars && dailyForecastVars["moonPhaseCode"] ? dailyForecastVars["moonPhaseCode"][period] : "",
+				blurb: dailyForecastVars && dailyForecastVars["narrative"] ? dailyForecastVars["narrative"][period] : "",
 			});
 		}
 
@@ -1433,6 +1439,65 @@ function getHourlyDataV3(options, callback) {
 			hourly: hourlyArr,
 			maxValDict: sanitizedMax2,
 			rangeValDict: rangeDict,
+		});
+	});
+}
+
+/**
+ * Fetch planetary K-index data from NOAA SWPC.
+ * Returns the most recent kp_index and the next three predictions.
+ *
+ * @param {function(Object|null, Object|null)} callback - Error-first callback with {current: number, predictions: number[]}
+ */
+function getKpIndexData(callback) {
+	callback = callback || function () {};
+
+	var url = "https://services.swpc.noaa.gov/json/planetary_k_index_1m.json";
+
+	printDebug("[pws-api.js] Fetching KP index " + url);
+
+	_httpGet(url, function (err, res, status, raw) {
+		if (err || status !== 200) {
+			callback(
+				err || {
+					type: "network",
+					message: "Failed to fetch KP index data",
+				},
+				null
+			);
+			return;
+		}
+
+		if (!Array.isArray(res) || res.length === 0) {
+			callback(
+				{
+					type: "data",
+					message: "Invalid or empty KP index data",
+				},
+				null
+			);
+			return;
+		}
+
+		// Sort by time_tag descending (most recent first)
+		res.sort(function (a, b) {
+			return new Date(b.time_tag) - new Date(a.time_tag);
+		});
+
+		var current = res[0].kp_index;
+		var predictions = [];
+		for (var i = 1; i <= 3 && i < res.length; i++) {
+			predictions.push({
+				"kp-index": res[i].estimated_kp !== undefined
+					? res[i].estimated_kp
+					: res[i].kp_index,
+				"time": res[i].time_tag
+			});
+		}
+
+		callback(null, {
+			current: current,
+			predictions: predictions,
 		});
 	});
 }
