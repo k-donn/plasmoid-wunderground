@@ -279,7 +279,7 @@ RowLayout {
             Layout.alignment: Qt.AlignCenter
             Layout.columnSpan: 3
 
-            color: weatherData["kp-color"]
+            color: weatherData["kp-color"] || "#FFFFFF"
 
             radius: 5
 
@@ -327,7 +327,7 @@ RowLayout {
                 font.pointSize: plasmoid.configuration.propPointSize
                 font.bold: true
 
-                text: weatherData["kp-index"]
+                text: weatherData["kp-index"] || "N/A"
             }
         }
 
