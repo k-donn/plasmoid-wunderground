@@ -800,7 +800,7 @@ class KPackage:
 
 		#--- Merge
 		echoGray("[kpac-i18n] " + TC.Bold + "[Merging messages]")
-		for catFilepath in glob.glob(os.path.join(self.translateDir, '*.po')):
+		for catFilepath in sorted(glob.glob(os.path.join(self.translateDir, '*.po'))):
 			catLocale = os.path.splitext(os.path.basename(catFilepath))[0]
 			echoGray("[kpac-i18n] Updating {} ({})".format(catFilepath, catLocale))
 
@@ -888,7 +888,7 @@ class KPackage:
 			for keyword in trKeywordsMap.keys():
 				trKeywordsMap[keyword] = kp.get(keyword, '')
 			metadataChanged = False
-			for catFilepath in glob.glob(os.path.join(self.translateDir, '*.po')):
+			for catFilepath in sorted(glob.glob(os.path.join(self.translateDir, '*.po'))):
 				catFilename = os.path.basename(catFilepath)
 				catLocale = os.path.splitext(catFilename)[0]
 				catFile = PoFile(catFilepath)
@@ -1027,7 +1027,7 @@ package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
 
 		echoGray("[kpac-i18n] " + TC.Bold + "[Compiling messages]")
 
-		for catFilepath in glob.glob(os.path.join(self.translateDir, '*.po')):
+		for catFilepath in sorted(glob.glob(os.path.join(self.translateDir, '*.po'))):
 			catFilename = os.path.basename(catFilepath)
 			catLocale = os.path.splitext(catFilename)[0]
 			moFilename = f"{catLocale}.mo"
