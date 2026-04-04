@@ -142,6 +142,7 @@ ColumnLayout {
             PlasmaComponents.Label {
                 id: dayLightCaption
                 text: "day remaining"
+                font.pointSize: plasmoid.configuration.propPointSize
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
@@ -188,7 +189,7 @@ ColumnLayout {
                 }
                 PlasmaComponents.Label {
                     text: conditionNarrative
-                    font.pointSize: plasmoid.configuration.propPointSize - 1
+                    font.pointSize: plasmoid.configuration.propPointSize
                 }
             }
         }
@@ -241,6 +242,7 @@ ColumnLayout {
 
             PlasmaComponents.Label {
                 text: weatherData["moonPhase"]
+                font.pointSize: plasmoid.configuration.propPointSize
                 horizontalAlignment: Text.AlignHCenter
                 Layout.alignment: Qt.AlignCenter
             }
