@@ -12,6 +12,15 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Check if tag is on main branch
+      run: |
+        if [[ "$(git branch -r --contains $GITHUB_SHA | grep origin/main)" == "" ]]; then
+          echo "Tag not on main branch, skipping release"
+          exit 1
+        fi
 
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y gettext
