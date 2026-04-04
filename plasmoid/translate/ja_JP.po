@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-29 13:59-0500\n"
+"POT-Creation-Date: 2026-04-04 16:54-0500\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -395,6 +395,10 @@ msgstr "巨大（128x128）"
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Details icon size:"
 msgstr "詳細アイコンのサイズ:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property icon size:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Top panel icon margins:"

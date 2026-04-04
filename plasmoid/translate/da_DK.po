@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-03-29 13:59-0500\n"
-"PO-Revision-Date: 2026-03-10 18:34+0100\n"
+"POT-Creation-Date: 2026-04-04 16:54-0500\n"
+"PO-Revision-Date: 2026-03-30 18:08+0200\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
 "Language: da_DK\n"
@@ -17,6 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
 
 #: ../metadata.json
 msgid "Wunderground"
@@ -65,15 +67,15 @@ msgstr "Fejlret"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Comfortable"
-msgstr ""
+msgstr "Behageligt"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Moderate"
-msgstr ""
+msgstr "Moderat"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Unfavorable"
-msgstr ""
+msgstr "Ugunstigt"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
@@ -81,11 +83,11 @@ msgstr "Luft kvalitet"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQI"
-msgstr ""
+msgstr "AQI"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQHI"
-msgstr ""
+msgstr "AQHI"
 
 #: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
 msgid "Alerts"
@@ -93,7 +95,7 @@ msgstr "Varsler"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Info"
-msgstr ""
+msgstr "Info"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
@@ -101,15 +103,15 @@ msgstr "Sol info"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Kp-index"
-msgstr ""
+msgstr "Kp-indeks"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Power"
-msgstr ""
+msgstr "Styrke"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Health index"
-msgstr ""
+msgstr "Sundhedsindeks"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
@@ -409,6 +411,10 @@ msgid "Details icon size:"
 msgstr "Detaljer ikon str.:"
 
 #: ../contents/ui/config/ConfigLayout.qml
+msgid "Property icon size:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigLayout.qml
 msgid "Top panel icon margins:"
 msgstr "Top panel ikon margin:"
 
@@ -516,11 +522,11 @@ msgstr "Sol/Måne tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "12hr time"
-msgstr ""
+msgstr "12 timers ur"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "24hr time"
-msgstr ""
+msgstr "24 timers ur"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Custom"
@@ -528,7 +534,7 @@ msgstr "Tilpasset"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Kp-prediction time format:"
-msgstr ""
+msgstr "Kp-forudsigelse tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
@@ -536,7 +542,7 @@ msgstr "Dag diagram tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time format"
-msgstr ""
+msgstr "Tidsformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
@@ -544,15 +550,15 @@ msgstr "Uge vejrudsigt dato format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day/Month"
-msgstr ""
+msgstr "Dag/Måned"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Date format"
-msgstr ""
+msgstr "Datoformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"

@@ -275,7 +275,7 @@ ColumnLayout {
 
                     rotation: 0
                     font.pointSize: textSize.tiny
-                    text: "<b>" + Qt.formatDateTime(hourlyModel.get(ChartsControls.AxisLabels.label).time, plasmoid.configuration.dayChartTimeFormat) + "</b>"
+                    text: "<b>" + Qt.formatDateTime(hourlyModel.count > 0 ? hourlyModel.get(ChartsControls.AxisLabels.label).time : new Date(), plasmoid.configuration.dayChartTimeFormat) + "</b>"
                 }
 
                 source: Charts.ChartAxisSource {
@@ -320,7 +320,7 @@ ColumnLayout {
                     Kirigami.Icon {
                         property var weatherElement
 
-                        source: Utils.getConditionIcon(weatherElement.iconCode, true)
+                        source: Utils.getConditionIcon(weatherElement !== undefined ? weatherElement.iconCode : 32, true)
                         width: Kirigami.Units.iconSizes.smallMedium
                         height: Kirigami.Units.iconSizes.smallMedium
                     }
@@ -333,7 +333,7 @@ ColumnLayout {
                         property var weatherElement
 
                         color: Kirigami.Theme.textColor
-                        text: Utils.getConditionIcon(weatherElement.iconCode)
+                        text: Utils.getConditionIcon(weatherElement !== undefined ? weatherElement.iconCode : 32)
                         font.family: "weather-icons"
                         font.pixelSize: Kirigami.Units.iconSizes.smallMedium
                         width: Kirigami.Units.iconSizes.smallMedium
