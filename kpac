@@ -1387,7 +1387,6 @@ package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
 		proc = subprocess.run([
 			'git',
 			'diff',
-			'--stat',
 			path,
 		], capture_output=True)
 		diffStr = proc.stdout.decode('utf-8')
