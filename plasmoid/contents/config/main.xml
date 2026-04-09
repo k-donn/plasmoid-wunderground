@@ -55,6 +55,9 @@
         <entry name="showBlurb" type="Bool">
             <default>true</default>
         </entry>
+        <entry name="showTimeSeconds" type="Bool">
+            <default>true</default>
+        </entry>
         <entry name="iconSizeMode" type="Enum">
             <choices>
                 <choice name="Fit"/>

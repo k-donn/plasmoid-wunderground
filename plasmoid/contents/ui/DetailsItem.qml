@@ -31,6 +31,7 @@ ColumnLayout {
     property string iconNameStr: Utils.getConditionIcon(root.iconCode, plasmoid.configuration.useSystemThemeIcons)
     property string sunrise: weatherData["sunrise"]
     property string sunset: weatherData["sunset"]
+    property bool showTimeSeconds: plasmoid.configuration.showTimeSeconds
 
     Timer {
         id: sunTimer
@@ -39,8 +40,8 @@ ColumnLayout {
         interval: 60 * 1000
         
         onTriggered: {
-            dayLength.text = Utils.getDayLength(weatherData["sunrise"],weatherData["sunset"])
-            dayLightCaption.text = Utils.remainingUntilSinceDaylight(weatherData["sunrise"],weatherData["sunset"])
+            dayLength.text = Utils.getDayLength(weatherData["sunrise"],weatherData["sunset"], showTimeSeconds)
+            dayLightCaption.text = Utils.remainingUntilSinceDaylight(weatherData["sunrise"],weatherData["sunset"], showTimeSeconds)
             circularSlider.value = Utils.calculateNeedlePosition(weatherData["sunrise"],weatherData["sunset"])
         }
     }
@@ -50,6 +51,10 @@ ColumnLayout {
     }
 
     onSunsetChanged: {
+        sunTimer.triggered()
+    }
+
+    onShowTimeSecondsChanged: {
         sunTimer.triggered()
     }
 
