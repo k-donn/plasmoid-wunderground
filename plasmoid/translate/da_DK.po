@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-04-04 16:54-0500\n"
+"POT-Creation-Date: 2026-04-12 17:12-0500\n"
 "PO-Revision-Date: 2026-03-30 18:08+0200\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
@@ -271,6 +271,10 @@ msgid "Auto-color temperature:"
 msgstr "Aut. farve temp:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show time seconds:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show blurb:"
 msgstr "Vis blurb:"
 
@@ -407,8 +411,8 @@ msgid "enormous (128x128)"
 msgstr "enorm (128x128)"
 
 #: ../contents/ui/config/ConfigLayout.qml
-msgid "Details icon size:"
-msgstr "Detaljer ikon str.:"
+msgid "Forecast icon size:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Property icon size:"
@@ -531,10 +535,6 @@ msgstr "24 timers ur"
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Custom"
 msgstr "Tilpasset"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Kp-prediction time format:"
-msgstr "Kp-forudsigelse tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
@@ -833,6 +833,12 @@ msgstr "Fejl..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Opdater vejr"
+
+#~ msgid "Details icon size:"
+#~ msgstr "Detaljer ikon str.:"
+
+#~ msgid "Kp-prediction time format:"
+#~ msgstr "Kp-forudsigelse tidsformat:"
 
 #~ msgid "Status Color"
 #~ msgstr "Status farve"
