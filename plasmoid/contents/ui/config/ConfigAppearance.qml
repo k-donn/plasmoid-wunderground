@@ -43,6 +43,7 @@ KCM.SimpleKCM {
     property int cfg_shownInTooltip
 
     property alias cfg_tempAutoColor: tempAutoColor.checked
+    property alias cfg_showTimeSeconds: showTimeSeconds.checked
     property alias cfg_useDefaultPage: useDefaultPage.checked
     property alias cfg_showBlurb: showBlurb.checked
     property alias cfg_defaultLoadPage: defaultLoadPage.currentIndex
@@ -187,6 +188,12 @@ KCM.SimpleKCM {
             id: tempAutoColor
 
             Kirigami.FormData.label: i18n("Auto-color temperature:")
+        }
+
+        PlasmaComponents.CheckBox {
+            id: showTimeSeconds
+
+            Kirigami.FormData.label: i18n("Show time seconds:")
         }
 
         PlasmaComponents.CheckBox {

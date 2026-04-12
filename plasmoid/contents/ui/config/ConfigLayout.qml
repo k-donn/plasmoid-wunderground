@@ -21,7 +21,6 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.kcmutils as KCM
 import org.kde.plasma.components as PlasmaComponents
-import "../lib" as Lib
 
 KCM.SimpleKCM {
 
@@ -29,11 +28,14 @@ KCM.SimpleKCM {
     property int cfg_layoutType
     property int cfg_widgetOrder
     property int cfg_planarLayoutType
+    property int cfg_propIconSize
+    property int cfg_forecastIconSize
 
     property alias cfg_propHeadPointSize: propHeadPointSize.value
     property alias cfg_propPointSize: propPointSize.value
     property alias cfg_tempPointSize: tempPointSize.value
-    property alias cfg_propIconSize: propIconSize.value
+    property alias cfg_propIconSizeIndex: propIconSize.currentIndex
+    property alias cfg_forecastIconSizeIndex: forecastIconSize.currentIndex
     property alias cfg_topIconMargins: topIconMargins.value
 
     property string cfg_leftOuterMargin: plasmoid.configuration.leftOuterMargin
@@ -41,7 +43,6 @@ KCM.SimpleKCM {
     property string cfg_rightOuterMargin: plasmoid.configuration.rightOuterMargin
     property string cfg_topOuterMargin: plasmoid.configuration.topOuterMargin
     property string cfg_bottomOuterMargin: plasmoid.configuration.bottomOuterMargin
-
 
     onCfg_layoutTypeChanged: {
         switch (cfg_layoutType) {
@@ -106,7 +107,53 @@ KCM.SimpleKCM {
         }
     }
 
+    onCfg_propIconSizeIndexChanged: {
+        switch (cfg_propIconSizeIndex) {
+            case 0:
+                cfg_propIconSize = 16;
+                break;
+            case 1:
+                cfg_propIconSize = 22;
+                break;
+            case 2:
+                cfg_propIconSize = 32;
+                break;
+            case 3:
+                cfg_propIconSize = 48;
+                break;
+            case 4:
+                cfg_propIconSize = 64;
+                break;
+            case 5:
+                cfg_propIconSize = 128;
+                break;
+            default:
+        }
+    }
 
+    onCfg_forecastIconSizeIndexChanged: {
+        switch (cfg_forecastIconSizeIndex) {
+            case 0:
+                cfg_forecastIconSize = 16;
+                break;
+            case 1:
+                cfg_forecastIconSize = 22;
+                break;
+            case 2:
+                cfg_forecastIconSize = 32;
+                break;
+            case 3:
+                cfg_forecastIconSize = 48;
+                break;
+            case 4:
+                cfg_forecastIconSize = 64;
+                break;
+            case 5:
+                cfg_forecastIconSize = 128;
+                break;
+            default:
+        }
+    }
 
     Kirigami.FormLayout {
         anchors.fill: parent
@@ -168,69 +215,18 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Temperature text size")
         }
 
-        Lib.ConfigComboBox {
-            configKey: "detailsIconSize"
+        PlasmaComponents.ComboBox {
+            id: forecastIconSize
 
-            model: [
-                {
-                    value: 16,
-                    text: i18n("small (16x16)")
-                },
-                {
-                    value: 22,
-                    text: i18n("smallMedium (22x22)")
-                },
-                {
-                    value: 32,
-                    text: i18n("medium (32x32)")
-                },
-                {
-                    value: 48,
-                    text: i18n("large (48x48)")
-                },
-                {
-                    value: 64,
-                    text: i18n("huge (64x64)")
-                },
-                {
-                    value: 128,
-                    text: i18n("enormous (128x128)")
-                }
-            ]
+            model: [i18n("small (16x16)"),i18n("smallMedium (22x22)"),i18n("medium (32x32)"),i18n("large (48x48)"),i18n("huge (64x64)"),i18n("enormous (128x128)")]
 
-            Kirigami.FormData.label: i18n("Details icon size:")
+            Kirigami.FormData.label: i18n("Forecast icon size:")
         }
 
-        Lib.ConfigComboBox {
+        PlasmaComponents.ComboBox {
             id: propIconSize
-            configKey: "propIconSize"
 
-            model: [
-                {
-                    value: 16,
-                    text: i18n("small (16x16)")
-                },
-                {
-                    value: 22,
-                    text: i18n("smallMedium (22x22)")
-                },
-                {
-                    value: 32,
-                    text: i18n("medium (32x32)")
-                },
-                {
-                    value: 48,
-                    text: i18n("large (48x48)")
-                },
-                {
-                    value: 64,
-                    text: i18n("huge (64x64)")
-                },
-                {
-                    value: 128,
-                    text: i18n("enormous (128x128)")
-                }
-            ]
+            model: [i18n("small (16x16)"),i18n("smallMedium (22x22)"),i18n("medium (32x32)"),i18n("large (48x48)"),i18n("huge (64x64)"),i18n("enormous (128x128)")]
 
             Kirigami.FormData.label: i18n("Property icon size:")
         }

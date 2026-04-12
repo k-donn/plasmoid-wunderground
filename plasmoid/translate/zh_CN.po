@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-04-04 16:54-0500\n"
+"POT-Creation-Date: 2026-04-12 17:12-0500\n"
 "PO-Revision-Date: 2024-11-11 17:12+0800\n"
 "Last-Translator: CloverGit <clovergit@hotmail.com>\n"
 "Language-Team: Simplified Chinese <>\n"
@@ -259,6 +259,10 @@ msgid "Auto-color temperature:"
 msgstr "自动颜色温度:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show time seconds:"
+msgstr ""
+
+#: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show blurb:"
 msgstr ""
 
@@ -393,8 +397,8 @@ msgid "enormous (128x128)"
 msgstr "特大 (128x128)"
 
 #: ../contents/ui/config/ConfigLayout.qml
-msgid "Details icon size:"
-msgstr "详情图标大小:"
+msgid "Forecast icon size:"
+msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Property icon size:"
@@ -515,10 +519,6 @@ msgstr ""
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Custom"
 msgstr "自定义"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "Kp-prediction time format:"
-msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
@@ -802,6 +802,9 @@ msgstr "错误..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "刷新天气"
+
+#~ msgid "Details icon size:"
+#~ msgstr "详情图标大小:"
 
 #~ msgid "Status Color"
 #~ msgstr "状态颜色"

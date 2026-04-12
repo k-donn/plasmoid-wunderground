@@ -26,7 +26,7 @@ import "../code/utils.js" as Utils
 RowLayout {
     id: forecastItemRoot
 
-    readonly property int preferredIconSize: plasmoid.configuration.detailsIconSize
+    readonly property int preferredIconSize: plasmoid.configuration.forecastIconSize
 
     Repeater {
         id: forecastRepeater

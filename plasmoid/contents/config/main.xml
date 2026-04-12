@@ -55,6 +55,9 @@
         <entry name="showBlurb" type="Bool">
             <default>true</default>
         </entry>
+        <entry name="showTimeSeconds" type="Bool">
+            <default>true</default>
+        </entry>
         <entry name="iconSizeMode" type="Enum">
             <choices>
                 <choice name="Fit"/>
@@ -104,7 +107,13 @@
         <entry name="tempPointSize" type="Int">
             <default>30</default>
         </entry>
-        <entry name="detailsIconSize" type="Int">
+        <entry name="forecastIconSizeIndex" type="Int">
+            <default>3</default>
+        </entry>
+        <entry name="propIconSizeIndex" type="Int">
+            <default>2</default>
+        </entry>
+        <entry name="forecastIconSize" type="Int">
             <default>48</default>
         </entry>
         <entry name="propIconSize" type="Int">
@@ -155,14 +164,35 @@
         <entry name="dayChartTimeFormat" type="String">
             <default>h ap</default>
         </entry>
+        <entry name="dayChartFormatIndex" type="Enum">
+            <choices>
+                <choice name="12hr time"/>
+                <choice name="24hr time"/>
+                <choice name="Custom"/>
+            </choices>
+            <default>0</default>
+        </entry>
         <entry name="weekForecastDateFormat" type="String">
             <default>d</default>
+        </entry>
+        <entry name="weekForecastFormatIndex" type="Enum">
+            <choices>
+                <choice name="Day"/>
+                <choice name="Day/Month"/>
+                <choice name="Custom"/>
+            </choices>
+            <default>0</default>
         </entry>
         <entry name="sunMoonTimeFormat" type="String">
             <default>hh:mm</default>
         </entry>
-        <entry name="kpPredictionTimeFormat" type="String">
-            <default>h:mm AP</default>
+        <entry name="sunMoonFormatIndex" type="Enum">
+            <choices>
+                <choice name="12hr time"/>
+                <choice name="24hr time"/>
+                <choice name="Custom"/>
+            </choices>
+            <default>0</default>
         </entry>
         <entry name="windPrecision" type="Int">
             <default>1</default>
