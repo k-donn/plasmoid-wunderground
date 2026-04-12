@@ -158,14 +158,35 @@
         <entry name="dayChartTimeFormat" type="String">
             <default>h ap</default>
         </entry>
+        <entry name="dayChartFormatIndex" type="Enum">
+            <choices>
+                <choice name="12hr time"/>
+                <choice name="24hr time"/>
+                <choice name="Custom"/>
+            </choices>
+            <default>0</default>
+        </entry>
         <entry name="weekForecastDateFormat" type="String">
             <default>d</default>
+        </entry>
+        <entry name="weekForecastFormatIndex" type="Enum">
+            <choices>
+                <choice name="Day"/>
+                <choice name="Day/Month"/>
+                <choice name="Custom"/>
+            </choices>
+            <default>0</default>
         </entry>
         <entry name="sunMoonTimeFormat" type="String">
             <default>hh:mm</default>
         </entry>
-        <entry name="kpPredictionTimeFormat" type="String">
-            <default>h:mm AP</default>
+        <entry name="sunMoonFormatIndex" type="Enum">
+            <choices>
+                <choice name="12hr time"/>
+                <choice name="24hr time"/>
+                <choice name="Custom"/>
+            </choices>
+            <default>0</default>
         </entry>
         <entry name="windPrecision" type="Int">
             <default>1</default>

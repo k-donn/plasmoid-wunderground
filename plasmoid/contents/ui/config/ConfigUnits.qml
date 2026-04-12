@@ -24,15 +24,13 @@ import org.kde.plasma.components as PlasmaComponents
 KCM.SimpleKCM {
     id: unitsConfig
 
-    property alias sunMoonFormatIndex: sunMoonFormatChoice.currentIndex
-    property alias dayChartFormatIndex: dayChartFormatChoice.currentIndex
-    property alias weekForecastFormatIndex: weekForecastFormatChoice.currentIndex
-    property alias kpPredictionFormatIndex: kpPredictionFormatChoice.currentIndex
+    property alias cfg_sunMoonFormatIndex: sunMoonFormatChoice.currentIndex
+    property alias cfg_dayChartFormatIndex: dayChartFormatChoice.currentIndex
+    property alias cfg_weekForecastFormatIndex: weekForecastFormatChoice.currentIndex
 
     property alias cfg_dayChartTimeFormat: dayChartTimeFormat.text
     property alias cfg_weekForecastDateFormat: weekForecastDateFormat.text
     property alias cfg_sunMoonTimeFormat: sunMoonTimeFormat.text
-    property alias cfg_kpPredictionTimeFormat: kpPredictionTimeFormat.text
     property alias cfg_windPrecision: windPrecision.value
     property alias cfg_tempPrecision: tempPrecision.value
     property alias cfg_compactTempPrecision: compactTempPrecision.value
@@ -47,35 +45,45 @@ KCM.SimpleKCM {
     property alias cfg_presUnitsChoice: presUnitsChoice.currentIndex
     property alias cfg_elevUnitsChoice: elevUnitsChoice.currentIndex
 
-    onSunMoonFormatIndexChanged: {
-        if (sunMoonFormatIndex === 0) {
+    onCfg_sunMoonFormatIndexChanged: {
+        if (cfg_sunMoonFormatIndex === 0) {
             cfg_sunMoonTimeFormat = "h:mm AP";
-        } else if (sunMoonFormatIndex === 1) {
+        } else if (cfg_sunMoonFormatIndex === 1) {
             cfg_sunMoonTimeFormat = "HH:mm";
         }
     }
 
-    onDayChartFormatIndexChanged: {
-        if (dayChartFormatIndex === 0) {
+    onCfg_dayChartFormatIndexChanged: {
+        if (cfg_dayChartFormatIndex === 0) {
             cfg_dayChartTimeFormat = "h AP";
-        } else if (dayChartFormatIndex === 1) {
+        } else if (cfg_dayChartFormatIndex === 1) {
             cfg_dayChartTimeFormat = "HH:mm";
         }
     }
 
-    onWeekForecastFormatIndexChanged: {
-        if (weekForecastFormatIndex === 0) {
+    onCfg_weekForecastFormatIndexChanged: {
+        if (cfg_weekForecastFormatIndex === 0) {
             cfg_weekForecastDateFormat = "d";
-        } else if (weekForecastFormatIndex === 1) {
+        } else if (cfg_weekForecastFormatIndex === 1) {
             cfg_weekForecastDateFormat = "dd/MM";
         }
     }
 
-    onKpPredictionFormatIndexChanged: {
-        if (kpPredictionFormatIndex === 0) {
-            cfg_kpPredictionTimeFormat = "h:mm AP";
-        } else if (kpPredictionFormatIndex === 1) {
-            cfg_kpPredictionTimeFormat = "HH:mm";
+    onCfg_sunMoonTimeFormatChanged: {
+        if (cfg_sunMoonTimeFormat !== "h:mm AP" && cfg_sunMoonTimeFormat !== "HH:mm" && cfg_sunMoonFormatIndex !== 2) {
+            cfg_sunMoonFormatIndex = 2;
+        }
+    }
+
+    onCfg_dayChartTimeFormatChanged: {
+        if (cfg_dayChartTimeFormat !== "h AP" && cfg_dayChartTimeFormat !== "HH:mm" && cfg_dayChartFormatIndex !== 2) {
+            cfg_dayChartFormatIndex = 2;
+        }
+    }
+
+    onCfg_weekForecastDateFormatChanged: {
+        if (cfg_weekForecastDateFormat !== "d" && cfg_weekForecastDateFormat !== "dd/MM" && cfg_weekForecastFormatIndex !== 2) {
+            cfg_weekForecastFormatIndex = 2;
         }
     }
 
@@ -105,23 +113,6 @@ KCM.SimpleKCM {
                 id: sunMoonTimeFormat
 
                 enabled: sunMoonFormatChoice.currentIndex == 2
-            }
-        }
-
-        ColumnLayout {
-            Kirigami.FormData.label: i18n("Kp-prediction time format:")
-            Kirigami.FormData.labelAlignment: Qt.AlignTop
-
-            PlasmaComponents.ComboBox {
-                id: kpPredictionFormatChoice
-
-                model: [i18n("12hr time"),i18n("24hr time"),i18n("Custom")]
-            }
-
-            PlasmaComponents.TextField {
-                id: kpPredictionTimeFormat
-
-                enabled: kpPredictionFormatChoice.currentIndex == 2
             }
         }
 
