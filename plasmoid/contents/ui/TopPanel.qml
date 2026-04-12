@@ -27,7 +27,7 @@ RowLayout {
 
     Layout.preferredHeight: preferredIconSize
 
-    readonly property int preferredIconSize: plasmoid.configuration.detailsIconSize
+    readonly property int preferredIconSize: plasmoid.configuration.propIconSize
 
     Item {
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop

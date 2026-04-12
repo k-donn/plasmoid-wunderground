@@ -107,7 +107,13 @@
         <entry name="tempPointSize" type="Int">
             <default>30</default>
         </entry>
-        <entry name="detailsIconSize" type="Int">
+        <entry name="forecastIconSizeIndex" type="Int">
+            <default>3</default>
+        </entry>
+        <entry name="propIconSizeIndex" type="Int">
+            <default>2</default>
+        </entry>
+        <entry name="forecastIconSize" type="Int">
             <default>48</default>
         </entry>
         <entry name="propIconSize" type="Int">
