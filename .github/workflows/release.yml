@@ -1,9 +1,6 @@
 name: Release
 
-on:
-  push:
-    branches:
-      - main
+on: workflow_dispatch
 
 jobs:
   build-and-release:
@@ -21,6 +18,13 @@ jobs:
     - name: Build plasmoid package
       run: python3 ./kpac build
 
+    - name: Get latest tag
+      id: tag
+      run: |
+        git fetch --tags
+        LATEST_TAG=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags | head -n 1)
+        echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+
     - name: Get package name
       id: package
       run: |
@@ -31,6 +35,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: ${{ steps.package.outputs.name }}
+        tag_name: ${{ steps.tag.outputs.latest_tag }}
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
