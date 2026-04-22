@@ -182,6 +182,10 @@ Window {
                                         "longitude": places[i].longitude
                                     });
                                 }
+
+                                if (places.length > 0) {
+                                    searchHelpLoader.children[0].children[1].currentIndex = 0;
+                                }
                             }
                         });
                     } else {
