@@ -59,7 +59,7 @@ KCM.SimpleKCM {
         }
     }
 
-    ButtonGroup {
+    QQC.ButtonGroup {
         id: layoutTypeGroup
 
         Component.onCompleted: {
@@ -79,7 +79,7 @@ KCM.SimpleKCM {
         }
     }
 
-    ButtonGroup {
+    QQC.ButtonGroup {
         id: widgetOrderGroup
 
         Component.onCompleted: {
@@ -99,7 +99,7 @@ KCM.SimpleKCM {
         }
     }
 
-    ButtonGroup {
+    QQC.ButtonGroup {
         id: planarLayoutTypeGroup
 
         Component.onCompleted: {
@@ -167,16 +167,16 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Planar layout") + ":"
             Kirigami.FormData.labelAlignment: Qt.AlignTop
 
-            RadioButton {
+            QQC.RadioButton {
                 id: planarLayoutTypeRadioFull
-                ButtonGroup.group: planarLayoutTypeGroup
+                QQC.ButtonGroup.group: planarLayoutTypeGroup
                 text: i18n("Full Representation")
                 onCheckedChanged: if (checked) cfg_planarLayoutType = 0;
             }
 
-            RadioButton {
+            QQC.RadioButton {
                 id: planarLayoutTypeRadioCompact
-                ButtonGroup.group: planarLayoutTypeGroup
+                QQC.ButtonGroup.group: planarLayoutTypeGroup
                 text: i18n("Compact Representation")
                 onCheckedChanged: if (checked) cfg_planarLayoutType = 1;
             }
@@ -251,21 +251,21 @@ KCM.SimpleKCM {
 
             QQC.RadioButton {
                 id: layoutTypeRadioHorizontal
-                ButtonGroup.group: layoutTypeGroup
+                QQC.ButtonGroup.group: layoutTypeGroup
                 text: i18n("Horizontal")
                 onCheckedChanged: if (checked) cfg_layoutType = 0;
             }
 
             QQC.RadioButton {
                 id: layoutTypeRadioVertical
-                ButtonGroup.group: layoutTypeGroup
+                QQC.ButtonGroup.group: layoutTypeGroup
                 text: i18n("Vertical")
                 onCheckedChanged: if (checked) cfg_layoutType = 1;
             }
 
             QQC.RadioButton {
                 id: layoutTypeRadioCompact
-                ButtonGroup.group: layoutTypeGroup
+                QQC.ButtonGroup.group: layoutTypeGroup
                 text: i18n("Compressed")
                 onCheckedChanged: if (checked) cfg_layoutType = 2;
             }
@@ -282,13 +282,13 @@ KCM.SimpleKCM {
 
             QQC.RadioButton {
                 id: widgetOrderIconFirst
-                ButtonGroup.group: widgetOrderGroup
+                QQC.ButtonGroup.group: widgetOrderGroup
                 text: i18n("Icon first")
                 onCheckedChanged: if (checked) cfg_widgetOrder = 0;
             }
             QQC.RadioButton {
                 id: widgetOrderTextFirst
-                ButtonGroup.group: widgetOrderGroup
+                QQC.ButtonGroup.group: widgetOrderGroup
                 text: i18n("Text first")
                 onCheckedChanged: if (checked) cfg_widgetOrder = 1;
             }
