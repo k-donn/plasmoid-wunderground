@@ -19,6 +19,7 @@ pragma ComponentBehavior: Bound
 
 import QtQuick
 import QtQuick.Layouts
+import QtQuick.Controls as QQC
 import org.kde.kcmutils as KCM
 import org.kde.plasma.components as PlasmaComponents
 import org.kde.kirigami as Kirigami
@@ -115,19 +116,19 @@ KCM.SimpleKCM {
                 Layout.fillWidth: true
                 spacing: Kirigami.Units.smallSpacing
 
-                PlasmaComponents.Button {
+                QQC.Button {
                     text: i18n("Select from Map")
                     icon.name: "earth"
                     onClicked: stationMapSearcher.open()
                 }
 
-                PlasmaComponents.Button {
+                QQC.Button {
                     text: i18n("Find Station")
                     icon.name: "find-location"
                     onClicked: stationSearcher.open()
                 }
 
-                PlasmaComponents.Button {
+                QQC.Button {
                     text: i18n("Manual Add")
                     icon.name: "list-add"
                     onClicked: manualAdd.open()
@@ -144,7 +145,7 @@ KCM.SimpleKCM {
                     text: i18n("Refresh period (s):")
                 }
 
-                PlasmaComponents.SpinBox {
+                QQC.SpinBox {
                     id: refreshPeriod
                     from: 300
                     to: 86400

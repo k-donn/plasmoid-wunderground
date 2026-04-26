@@ -19,10 +19,11 @@ import QtQuick
 import QtQuick.Layouts
 import QtLocation
 import QtPositioning
-import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import org.kde.plasma.components as PlasmaComponents
+import QtQuick.Controls as QQC
+import org.kde.kirigami as Kirigami
 import org.kde.plasma.core as PlasmaCore
+import org.kde.plasma.components as PlasmaComponents
 import "../../code/utils.js" as Utils
 import "../../code/pws-api.js" as StationAPI
 
@@ -113,7 +114,7 @@ Window {
                 text: i18n("Search by:")
             }
 
-            PlasmaComponents.ComboBox {
+            QQC.ComboBox {
                 id: modeCombo
                 model: [i18n("Area Name"), i18n("Weatherstation ID:"), i18n("Lat/Lon")]
                 onCurrentIndexChanged: {
@@ -138,7 +139,7 @@ Window {
                 sourceComponent: stationMapSearcher.searchMode === "latlon" ? latLonSearchComponent : textSearchComponent
             }
 
-            PlasmaComponents.Button {
+            QQC.Button {
                 id: searchBtn
                 text: i18n("Search")
                 enabled: stationMapSearcher.searchText.length > 0 || stationMapSearcher.searchMode === "latlon"
@@ -262,10 +263,9 @@ Window {
 
         Component {
             id: textSearchComponent
-            PlasmaComponents.TextField {
+            QQC.TextField {
                 id: searchField
                 Layout.fillWidth: true
-                clearButtonShown: true
                 placeholderText: stationMapSearcher.searchMode === "stationID" ? i18n("Enter Station") : i18n("Enter city, state, locality, or address")
                 onTextChanged: {
                     stationMapSearcher.searchText = text.trim();
@@ -294,7 +294,7 @@ Window {
                     text: i18n("Searching place:")
                 }
 
-                PlasmaComponents.ComboBox {
+                QQC.ComboBox {
                     id: cityChoice
                     Layout.fillWidth: true
                     textRole: "address"
@@ -302,7 +302,7 @@ Window {
                     enabled: stationMapSearcher.availableCitiesModel.count > 0
                 }
 
-                PlasmaComponents.Button {
+                QQC.Button {
                     text: i18n("Choose")
                     enabled: cityChoice.currentIndex !== -1
                     onClicked: {
@@ -367,7 +367,7 @@ Window {
             }
         }
 
-        PlasmaComponents.TextField {
+        QQC.TextField {
             enabled: false
             Layout.fillWidth: true
             visible: stationMapSearcher.errorMessage.length > 0
@@ -575,14 +575,14 @@ Window {
                 }
             }
 
-            PlasmaComponents.TextField {
+            QQC.TextField {
                 visible: stationMapSearcher.stationHealth >= 0
                 text: stationMapSearcher.stationHealth >= 0 ? i18n("Station Health: %1%", stationMapSearcher.stationHealth) : ""
                 enabled: false
                 color: stationMapSearcher.stationHealth >= 75 ? "green" : stationMapSearcher.stationHealth >= 40 ? "orange" : "red"
             }
 
-            PlasmaComponents.Button {
+            QQC.Button {
                 text: i18n("Test Station")
                 enabled: stationMapSearcher.selectedStation !== undefined
                 onClicked: {
@@ -630,7 +630,7 @@ Window {
 
             Layout.alignment: Qt.AlignRight
 
-            PlasmaComponents.Button {
+            QQC.Button {
                 icon.name: "dialog-ok"
                 text: i18n("Confirm")
                 enabled: stationMapSearcher.selectedStation !== undefined
@@ -640,7 +640,7 @@ Window {
                 }
             }
 
-            PlasmaComponents.Button {
+            QQC.Button {
                 icon.name: "dialog-cancel"
                 text: i18n("Cancel")
                 onClicked: {
