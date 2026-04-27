@@ -17,9 +17,10 @@
 
 import QtQuick
 import QtQuick.Layouts
-import org.kde.plasma.components as PlasmaComponents
-import org.kde.kirigami as Kirigami
+import QtQuick.Controls as QQC
 import org.kde.plasma.plasmoid
+import org.kde.kirigami as Kirigami
+import org.kde.plasma.components as PlasmaComponents
 
 Window {
     id: manualAdd
@@ -59,13 +60,13 @@ Window {
         anchors.margins: Kirigami.Units.largeSpacing
         spacing: Kirigami.Units.largeSpacing
 
-        PlasmaComponents.TextField {
+        QQC.TextField {
             id: stationIDInput
             Layout.fillWidth: true
             placeholderText: i18n("Enter station ID")
         }
 
-        PlasmaComponents.TextField {
+        QQC.TextField {
             id: stationNameInput
             Layout.fillWidth: true
             placeholderText: i18n("Enter station name (optional)")
@@ -75,7 +76,7 @@ Window {
             Layout.alignment: Qt.AlignRight
             spacing: Kirigami.Units.smallSpacing
 
-            PlasmaComponents.Button {
+            QQC.Button {
                 text: i18n("Confirm")
                 enabled: stationIDInput.text.trim().length > 0
                 onClicked: {
@@ -86,7 +87,7 @@ Window {
                 }
             }
 
-            PlasmaComponents.Button {
+            QQC.Button {
                 text: i18n("Cancel")
                 onClicked: {
                     manualAdd.visible = false;

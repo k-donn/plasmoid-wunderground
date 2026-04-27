@@ -75,6 +75,13 @@ ColumnLayout {
         }
 
         PlasmaComponents.Button {
+            text: i18n("Refresh Weather")
+            icon.name: "view-refresh"
+            onClicked: root.updateWeatherData()
+            Layout.alignment: Qt.AlignHCenter
+        }
+
+        PlasmaComponents.Button {
             id: copyButton
 
             text: i18nd("plasma_shell_org.kde.plasma.desktop", "Copy to Clipboard")

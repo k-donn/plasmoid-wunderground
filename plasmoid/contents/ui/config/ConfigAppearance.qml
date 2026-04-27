@@ -144,7 +144,7 @@ KCM.SimpleKCM {
 
         Lib.BackgroundToggle {}
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: useSystemThemeIcons
 
             Kirigami.FormData.label: i18n("Use system theme icons:")
@@ -156,21 +156,21 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Shown in tooltip:")
             Kirigami.FormData.labelAlignment: Qt.AlignTop
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: showIDInTooltip
                 QQC.ButtonGroup.group: shownInTooltipGroup
                 text: i18n("Station ID")
                 onCheckedChanged: if (checked) cfg_shownInTooltip = 0;
             }
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: showNameInTooltip
                 QQC.ButtonGroup.group: shownInTooltipGroup
                 text: i18n("Station Name")
                 onCheckedChanged: if (checked) cfg_shownInTooltip = 1;
             }
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: showBothInTooltip
                 QQC.ButtonGroup.group: shownInTooltipGroup
                 text: i18n("Both")
@@ -184,31 +184,31 @@ KCM.SimpleKCM {
         }
 
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: tempAutoColor
 
             Kirigami.FormData.label: i18n("Auto-color temperature:")
         }
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: showTimeSeconds
 
             Kirigami.FormData.label: i18n("Show time seconds:")
         }
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: showBlurb
 
             Kirigami.FormData.label: i18n("Show blurb:")
         }
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: useDefaultPage
 
             Kirigami.FormData.label: i18n("Use default page:")
         }
 
-        PlasmaComponents.ComboBox {
+        QQC.ComboBox {
             id: defaultLoadPage
 
             enabled: useDefaultPage.checked
@@ -217,7 +217,7 @@ KCM.SimpleKCM {
 
             Kirigami.FormData.label: i18n("Default page shown:")
         }
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: showPresTrend
 
             Kirigami.FormData.label: i18n("Show pressure trend:")
@@ -228,7 +228,7 @@ KCM.SimpleKCM {
             Kirigami.FormData.isSection: true
         }
 
-        PlasmaComponents.ComboBox {
+        QQC.ComboBox {
             id: fontFamilyComboBox
             currentIndex: 0
 
@@ -251,14 +251,14 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Text size mode:")
             Kirigami.FormData.labelAlignment: Qt.AlignTop
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: textSizeModeFit
                 QQC.ButtonGroup.group: textSizeModeGroup
                 text: i18n("Automatic fit")
                 onCheckedChanged: if (checked) cfg_textSizeMode = 0;
             }
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: textSizeModeFixed
                 QQC.ButtonGroup.group: textSizeModeGroup
                 text: i18n("Exact size")
@@ -269,7 +269,7 @@ KCM.SimpleKCM {
         Row {
             Kirigami.FormData.label: i18n("Text size") + ":"
 
-            PlasmaComponents.SpinBox {
+            QQC.SpinBox {
                 id: widgetFontSize
                 stepSize: 1
                 from: 4
@@ -285,13 +285,13 @@ KCM.SimpleKCM {
             }
         }
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: textVisible
             
             Kirigami.FormData.label: i18n("Text visible") + ":"
         }
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: textDropShadow
 
             Kirigami.FormData.label: i18n("Text drop shadow") + ":"
@@ -303,14 +303,14 @@ KCM.SimpleKCM {
             Kirigami.FormData.label: i18n("Icon size mode:")
             Kirigami.FormData.labelAlignment: Qt.AlignTop
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: iconSizeModeFit
                 QQC.ButtonGroup.group: iconSizeModeGroup
                 text: i18n("Automatic fit")
                 onCheckedChanged: if (checked) cfg_iconSizeMode = 0;
             }
 
-            PlasmaComponents.RadioButton {
+            QQC.RadioButton {
                 id: iconSizeModeFixed
                 QQC.ButtonGroup.group: iconSizeModeGroup
                 text: i18n("Exact size")
@@ -321,7 +321,7 @@ KCM.SimpleKCM {
         Row {
             Kirigami.FormData.label: i18n("Icon size") + ":"
 
-            PlasmaComponents.SpinBox {
+            QQC.SpinBox {
                 id: widgetIconSize
                 stepSize: 1
                 from: 4
@@ -337,12 +337,12 @@ KCM.SimpleKCM {
             }
         }
 
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: iconVisible
 
             Kirigami.FormData.label: i18n("Icon visible") + ":"
         }
-        PlasmaComponents.CheckBox {
+        QQC.CheckBox {
             id: iconDropShadow
 
             Kirigami.FormData.label: i18n("Icon drop shadow") + ":"
@@ -351,7 +351,7 @@ KCM.SimpleKCM {
         Row {
             Kirigami.FormData.label: i18n("System tray active timeout") + ":"
 
-            PlasmaComponents.SpinBox {
+            QQC.SpinBox {
                 id: inTrayActiveTimeoutSec
                 stepSize: 10
                 from: 10

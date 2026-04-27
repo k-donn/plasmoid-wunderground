@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-04-12 17:12-0500\n"
+"POT-Creation-Date: 2026-04-26 18:46-0500\n"
 "PO-Revision-Date: 2024-01-14 22:54+0900\n"
 "Last-Translator: Yuta Takahashi <y.highbridge04@gmail.com>\n"
 "Language-Team: Japanese-Team <LL@li.org>\n"
@@ -195,6 +195,10 @@ msgstr "<font size='4'>体感：%1<br/>雷: %2<br/>紫外線: %3<br/>雪: %4<br/
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Sorry! The widget ran into a network error: "
+msgstr ""
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Refresh Weather"
 msgstr ""
 
 #: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
@@ -548,13 +552,13 @@ msgstr ""
 msgid "Precision"
 msgstr "精度"
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
-msgid "Temperature"
-msgstr "温度"
-
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Compact Rep Temperature"
 msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Temperature"
+msgstr "温度"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"

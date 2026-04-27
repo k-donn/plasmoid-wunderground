@@ -165,18 +165,17 @@ Item {
             Layout.preferredWidth: 140
             spacing: 2
 
-            // Select Button
-            PlasmaComponents.Button {
+            QQC.Button {
                 icon.name: "dialog-ok-apply"
                 enabled: !delegateRoot.selected
                 implicitWidth: 32
                 PlasmaComponents.ToolTip.text: i18n("Select")
                 PlasmaComponents.ToolTip.visible: hovered
                 onClicked: delegateRoot.selectStation()
+                Layout.leftMargin: 8
             }
 
-            // Edit Button
-            PlasmaComponents.Button {
+            QQC.Button {
                 icon.name: "document-edit"
                 implicitWidth: 32
                 PlasmaComponents.ToolTip.text: i18n("Edit Name")
@@ -188,8 +187,7 @@ Item {
                 }
             }
 
-            // Delete Button
-            PlasmaComponents.Button {
+            QQC.Button {
                 icon.name: "dialog-cancel"
                 implicitWidth: 32
                 PlasmaComponents.ToolTip.text: i18n("Remove")

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-04-12 17:12-0500\n"
+"POT-Creation-Date: 2026-04-26 18:46-0500\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -196,6 +196,10 @@ msgstr "<font size='4'>Gefühlt wie: %1<br/>Gewitter: %2<br/>UV: %3<br/>Schnee: 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Sorry! The widget ran into a network error: "
 msgstr "Entschuldigung! Das Widget hat einen Netzwerkfehler festgestellt: "
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Refresh Weather"
+msgstr ""
 
 #: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
 msgid "Weather Details"
@@ -548,13 +552,13 @@ msgstr ""
 msgid "Precision"
 msgstr "Genauigkeit/Nachkommastellen"
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
-msgid "Temperature"
-msgstr "Temperatur"
-
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Compact Rep Temperature"
 msgstr "Kompakte Temperaturdarstellung"
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Temperature"
+msgstr "Temperatur"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"

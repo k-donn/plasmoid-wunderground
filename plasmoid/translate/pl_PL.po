@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-04-12 17:12-0500\n"
+"POT-Creation-Date: 2026-04-26 18:46-0500\n"
 "PO-Revision-Date: 2026-02-08 12:00+0100\n"
 "Last-Translator: RygorrMortis <rygorrmortis@github.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -195,6 +195,10 @@ msgstr "<font size='4'>Odczuwalna: %1<br/>Burza: %2<br/>UV: %3<br/>Śnieg: %4<br
 #: ../contents/ui/FullRepresentation.qml
 msgid "Sorry! The widget ran into a network error: "
 msgstr "Przepraszamy! Widżet napotkał błąd sieci: "
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Refresh Weather"
+msgstr ""
 
 #: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
 msgid "Weather Details"
@@ -547,13 +551,13 @@ msgstr ""
 msgid "Precision"
 msgstr "Precyzja"
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
-msgid "Temperature"
-msgstr "Temperatura"
-
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Compact Rep Temperature"
 msgstr "Temperatura w widoku kompaktowym"
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Temperature"
+msgstr "Temperatura"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
