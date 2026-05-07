@@ -24,36 +24,36 @@ msgstr "Wunderground"
 
 #: ../metadata.json
 msgid "Wunderground Personal Weather Station viewer"
-msgstr "Wunderground - Bekijk je eigen weerstation"
+msgstr "Weergave van persoonlijke weerstations"
 
 #: ../contents/code/pws-api.js
 msgid "Location not found"
-msgstr ""
+msgstr "Locatie niet gevonden"
 
 #: ../contents/code/utils.js
 msgid "To sunrise"
-msgstr ""
+msgstr "Tot zonsopgang"
 
 #: ../contents/code/utils.js
 msgctxt "Daylight remaining time, keep short"
 msgid "Remaining"
-msgstr ""
+msgstr "Nog te gaan"
 
 #: ../contents/code/utils.js
 msgid "Since sunset"
-msgstr ""
+msgstr "Sinds zonsondergang"
 
 #: ../contents/config/config.qml
 msgid "Station"
-msgstr "Station"
+msgstr "Weerstation"
 
 #: ../contents/config/config.qml
 msgid "Appearance"
-msgstr "Verschijning"
+msgstr "Uiterlijk"
 
 #: ../contents/config/config.qml
 msgid "Layout"
-msgstr ""
+msgstr "Indeling"
 
 #: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
@@ -65,15 +65,15 @@ msgstr "Foutopsporing"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Comfortable"
-msgstr ""
+msgstr "Aangenaam"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Moderate"
-msgstr ""
+msgstr "Gematigd"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Unfavorable"
-msgstr ""
+msgstr "Ongunstig"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
@@ -81,11 +81,11 @@ msgstr "Luchtkwaliteit"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQI"
-msgstr ""
+msgstr "AQI"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "AQHI"
-msgstr ""
+msgstr "AQHI"
 
 #: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
 msgid "Alerts"
@@ -93,23 +93,23 @@ msgstr "Waarschuwingen"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Info"
-msgstr ""
+msgstr "Informatie"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
-msgstr "Zonne-informatie"
+msgstr "Zonnekracht-informatie"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Kp-index"
-msgstr ""
+msgstr "Kp-index"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Power"
-msgstr ""
+msgstr "Energie"
 
 #: ../contents/ui/AirAndSolarItem.qml
 msgid "Health index"
-msgstr ""
+msgstr "Gezondheidsindex"
 
 #: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
@@ -139,15 +139,15 @@ msgstr "Gevoelstemperatuur: %1"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind Barb"
-msgstr ""
+msgstr "Windrichting"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind direction and speed indicator"
-msgstr ""
+msgstr "Windriching en snelheid"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Learn more"
-msgstr ""
+msgstr "Leer meer"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
@@ -164,7 +164,7 @@ msgstr "Dauwpunt"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Precip Rate"
-msgstr ""
+msgstr "Neerslagsnelheid"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
@@ -184,7 +184,7 @@ msgstr "Luchtvochtigheid"
 
 #: ../contents/ui/DetailsItem.qml
 msgid "Precip Accum"
-msgstr ""
+msgstr "Neerslaghoeveelheid"
 
 #: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
@@ -196,16 +196,16 @@ msgid ""
 "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/"
 ">Golf: %5</font>"
 msgstr ""
-"<font size='4'>Voelt als: %1<br/> Donder: %2<br/> UV: %3<br/> Sneeuw: %4<br/"
+"<font size='4'>Voelt als: %1<br/> onweer: %2<br/> UV: %3<br/> sneeuw: %4<br/"
 "> Golf: %5</font>"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Sorry! The widget ran into a network error: "
-msgstr ""
+msgstr "Sorry!  Widget heeft een netwerk fout:"
 
 #: ../contents/ui/FullRepresentation.qml
 msgid "Refresh Weather"
-msgstr ""
+msgstr "Vernieuw het weer"
 
 #: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
 msgid "Weather Details"
@@ -240,7 +240,7 @@ msgstr "Standaard"
 #: ../contents/ui/config/ConfigAppearance.qml
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "General"
-msgstr ""
+msgstr "Algemeen"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use system theme icons:"
@@ -248,20 +248,20 @@ msgstr "Gebruik systeemthema-pictogrammen:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Shown in tooltip:"
-msgstr ""
+msgstr "Toon in tekstballon"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Station ID"
-msgstr ""
+msgstr "Weerstation-ID"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Station Name"
-msgstr ""
+msgstr "Weerstationnaam"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Both"
-msgstr ""
+msgstr "Beiden"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 #: ../contents/ui/config/ConfigLayout.qml
@@ -274,15 +274,15 @@ msgstr "Automatische kleurtemperatuur:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show time seconds:"
-msgstr ""
+msgstr "Toon tijd in seconden:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show blurb:"
-msgstr ""
+msgstr "Toon korte tekst:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
-msgstr ""
+msgstr "Gebruikt de standaard pagina:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Default page shown:"
@@ -299,37 +299,37 @@ msgstr "Compacte indeling gebruiken"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Choose a Font:"
-msgstr ""
+msgstr "Kies een lettertype"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text size mode:"
-msgstr ""
+msgstr "Modus tekstgrootte"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Automatic fit"
-msgstr ""
+msgstr "Automatisch passend"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Exact size"
-msgstr ""
+msgstr "Precies passend"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text size"
-msgstr ""
+msgstr "Tekst grootte"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 #: ../contents/ui/config/ConfigLayout.qml
 msgctxt "pixels"
 msgid "px"
-msgstr ""
+msgstr "px"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text visible"
-msgstr ""
+msgstr "Zichtbare tekst"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Text drop shadow"
-msgstr ""
+msgstr "Schaduwrand"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon size mode:"
@@ -374,7 +374,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Used on the desktop or in a desktop grouper"
-msgstr ""
+msgstr "Gebruikt op het bureablad of in een bureaubladgroep"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Property header text size"
@@ -414,7 +414,7 @@ msgstr "enorm (128x128)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Forecast icon size:"
-msgstr ""
+msgstr "Pictogramgrootte weersverwachting:"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Property icon size:"
@@ -426,15 +426,15 @@ msgstr "Marges van het bovenste paneelpictogram:"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Layout type"
-msgstr ""
+msgstr "Type indeling"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Horizontal"
-msgstr ""
+msgstr "Horizontaal"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Vertical"
-msgstr ""
+msgstr "Verticaal"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Compressed"
@@ -442,7 +442,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Layout type is not available in the system tray"
-msgstr ""
+msgstr "Type indeling is niet beschkbaar in het systeemvak"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Widget order"
@@ -450,11 +450,11 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Icon first"
-msgstr ""
+msgstr "Pictogram eerst"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Text first"
-msgstr ""
+msgstr "Tekst eerst"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Widget order is not available in the system tray"
@@ -462,23 +462,23 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Top Margin"
-msgstr ""
+msgstr "Marge bovenkant"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Bottom Margin"
-msgstr ""
+msgstr "Marge onderkant"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Left Margin"
-msgstr ""
+msgstr "Marge Links"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Right Margin"
-msgstr ""
+msgstr "Marge rechts"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Inner Margin"
-msgstr ""
+msgstr "Marge binnenkant"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Saved Weather Stations"
@@ -486,23 +486,23 @@ msgstr "Opgeslagen weerstations"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Latitude"
-msgstr ""
+msgstr "Breedtegraad"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Longitude"
-msgstr ""
+msgstr "Lengtegraad"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Actions"
-msgstr ""
+msgstr "Acties"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Select from Map"
-msgstr ""
+msgstr "Kies op kaart"
 
 #: ../contents/ui/config/ConfigStation.qml
 #: ../contents/ui/lib/StationMapSearcher.qml
@@ -512,7 +512,7 @@ msgstr "Weerstation zoeken"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Manual Add"
-msgstr ""
+msgstr "Handmatig toevoegen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -520,19 +520,19 @@ msgstr "Periodiek bijwerken (in sec.):"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time/Date Format"
-msgstr "Tijd/datumformaat"
+msgstr "Tijd-/datumweergave"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Sun/Moon time format:"
-msgstr ""
+msgstr "Zon-/Maantijdweergave:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "12hr time"
-msgstr ""
+msgstr "12-uurstijd"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "24hr time"
-msgstr ""
+msgstr "24-uurstijd"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Custom"
@@ -540,11 +540,11 @@ msgstr "Aangepast"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
-msgstr "Tijdformaat daggrafiek:"
+msgstr "Tijdweergave daggrafiek:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time format"
-msgstr ""
+msgstr "Tijdweergave"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
@@ -552,15 +552,15 @@ msgstr "Weekvoorspelling datumformaat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day"
-msgstr ""
+msgstr "Dag"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day/Month"
-msgstr ""
+msgstr "Dag/Maand"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Date format"
-msgstr ""
+msgstr "Datumweergave"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Precision"
@@ -627,15 +627,15 @@ msgstr "Wunderground configureren"
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Add Station..."
-msgstr ""
+msgstr "Voeg weerstation toe..."
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Enter station ID"
-msgstr ""
+msgstr "Voer het weerstation ID in"
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Enter station name (optional)"
-msgstr ""
+msgstr "Weerstationnaam invoeren (optioneel)"
 
 #: ../contents/ui/lib/ManualStationAdd.qml
 #: ../contents/ui/lib/StationMapSearcher.qml
@@ -652,11 +652,11 @@ msgstr "Annuleren"
 #: ../contents/ui/lib/StationListDelegate.qml
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
-msgstr "Selecteer"
+msgstr "Selecteren"
 
 #: ../contents/ui/lib/StationListDelegate.qml
 msgid "Edit Name"
-msgstr ""
+msgstr "Naam bewerken"
 
 #: ../contents/ui/lib/StationListDelegate.qml
 msgid "Remove"
@@ -669,7 +669,7 @@ msgstr "Zoeken op:"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Area Name"
-msgstr ""
+msgstr "Gebied"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
@@ -683,20 +683,20 @@ msgstr "Breedtegraad/Lengtegraad"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Search"
-msgstr ""
+msgstr "Zoeken"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter Station"
-msgstr "Voer de naam in van een weerstation"
+msgstr "Weerstationnaam invoeren"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Enter city, state, locality, or address"
-msgstr ""
+msgstr "Plaats, staat/provincie of adres invoeren"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Click or drag the marker on the map below."
-msgstr ""
+msgstr "Klik of sleep de markering op de kaart hieronder"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
@@ -710,67 +710,69 @@ msgstr "Kiezen"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Searching by Weatherstation ID. Example: KGADACUL1"
-msgstr ""
+msgstr "Zoek op weerstation-ID. Bijvoorbeeld: IHILVE48"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Selected latitude: %1, longitude: %2"
-msgstr ""
+msgstr "Gekozen breedtegraad: %1, lengtegraad: %2"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Error (%1): %2"
-msgstr ""
+msgstr "Fout (%1): %2"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Warning"
-msgstr ""
+msgstr "Waarschuwing"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Station has failed quality checks and may provide unreliable data."
 msgstr ""
+"De kwaliteitcontroles van het weerstation zijn mislukt en het station levert "
+"mogelijk onbetrouwbare gegevens"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Station Health: %1%"
-msgstr ""
+msgstr "Conditie van het weerstation: %1%"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Test Station"
-msgstr ""
+msgstr "Weerstation testen"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Selected Station: %1 (%2)"
-msgstr ""
+msgstr "Gekozen weerstation: %1 (%2)"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: %1 message: %2"
-msgstr ""
+msgstr "Fout: %1 bericht: %2"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Station active!"
-msgstr ""
+msgstr "Het weerstation is actief!"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Reporting %1% of properties."
-msgstr ""
+msgstr "%1% van de gegevens worden geleverd."
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Station active."
-msgstr ""
+msgstr "Het weerstation is actief."
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Station unhealthy."
-msgstr ""
+msgstr "Het weerstation is niet goed."
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: Bad station."
-msgstr ""
+msgstr "Fout: slecht weerstation"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: Station not active!"
-msgstr ""
+msgstr "Fout: het weerstation is niet actief!"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "City Name"
-msgstr "Stadsnaam"
+msgstr "Plaats"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Uses WGS84 geocode coordinates"
@@ -781,12 +783,12 @@ msgid ""
 "Use Station ID, not city name. Select 'Search by: City Name' to search by "
 "city."
 msgstr ""
-"Gebruik de stations-ID, niet de stadsnaam. Selecteer &#39;Zoeken op: "
-"Stadsnaam&#39; om op stad te zoeken."
+"Gebruik het weerstation-ID, niet de plaatsnaam. Selecteer 'Zoeken op: "
+"Plaatsnaam'; om op plaats te zoeken."
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter City Name"
-msgstr "Voer de stadsnaam in"
+msgstr "Voer de plaatsnaam in"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Latitude:"
@@ -802,7 +804,7 @@ msgstr "Naam weerstation:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Test"
-msgstr ""
+msgstr "Testen"
 
 #: ../contents/ui/main.qml
 msgid "Cloud Cover"

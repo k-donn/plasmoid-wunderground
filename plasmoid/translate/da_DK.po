@@ -9,14 +9,14 @@ msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
 "POT-Creation-Date: 2026-04-26 18:46-0500\n"
-"PO-Revision-Date: 2026-03-30 18:08+0200\n"
+"PO-Revision-Date: 2026-04-14 00:03+0200\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
 "Language: da_DK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.8\n"
+"X-Generator: Poedit 3.9\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: .\n"
 
@@ -220,7 +220,7 @@ msgstr "Vejrudsigt"
 
 #: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
 msgid "Day Chart"
-msgstr "Dag diagram"
+msgstr "Dagsudsigt"
 
 #: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
 msgid "More Info"
@@ -276,7 +276,7 @@ msgstr "Aut. farve temp:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show time seconds:"
-msgstr ""
+msgstr "Vis sekunder i tid:"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Show blurb:"
@@ -416,11 +416,11 @@ msgstr "enorm (128x128)"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Forecast icon size:"
-msgstr ""
+msgstr "Vejrudsigt ikon str.:"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Property icon size:"
-msgstr ""
+msgstr "Egenskab ikon str.:"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Top panel icon margins:"
@@ -542,7 +542,7 @@ msgstr "Tilpasset"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day Chart time format:"
-msgstr "Dag diagram tidsformat:"
+msgstr "Dagsudsigt tidsformat:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time format"
@@ -550,7 +550,7 @@ msgstr "Tidsformat"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Week forecast date format:"
-msgstr "Uge vejrudsigt dato format:"
+msgstr "Vejrudsigt dato format:"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Day"
@@ -792,11 +792,11 @@ msgstr "Angiv bynavn"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Latitude:"
-msgstr "Breddegrad:"
+msgstr "Bredde:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Longitude:"
-msgstr "Længdegrad:"
+msgstr "Længde:"
 
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation Name:"
