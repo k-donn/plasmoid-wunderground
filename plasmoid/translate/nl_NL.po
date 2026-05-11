@@ -333,19 +333,19 @@ msgstr "Schaduwrand"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon size mode:"
-msgstr ""
+msgstr "Pictogram grootte modus"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon size"
-msgstr ""
+msgstr "Pictogram grootte"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon visible"
-msgstr ""
+msgstr "Pictogram zichtbaar"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Icon drop shadow"
-msgstr ""
+msgstr "Schaduwrand"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "System tray active timeout"
@@ -422,7 +422,7 @@ msgstr ""
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Top panel icon margins:"
-msgstr "Marges van het bovenste paneelpictogram:"
+msgstr "Marges van het bovenste pictogrampaneel:"
 
 #: ../contents/ui/config/ConfigLayout.qml
 msgid "Layout type"
@@ -516,7 +516,7 @@ msgstr "Handmatig toevoegen"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
-msgstr "Periodiek bijwerken (in sec.):"
+msgstr "Periodiek bijwerken (seconden):"
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Time/Date Format"
@@ -732,7 +732,7 @@ msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Station Health: %1%"
-msgstr "Conditie van het weerstation: %1%"
+msgstr "Weerstationstatus: %1%"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Test Station"
