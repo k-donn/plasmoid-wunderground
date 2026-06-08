@@ -113,7 +113,7 @@ RowLayout {
                 horizontalAlignment: Text.AlignHCenter
                 font.pointSize: plasmoid.configuration.propPointSize
 
-                text: i18n("AQI")
+                text: i18nc("Air Quality Index","AQI")
             }
 
             PlasmaComponents.Label {
@@ -143,7 +143,7 @@ RowLayout {
                 horizontalAlignment: Text.AlignHCenter
                 font.pointSize: plasmoid.configuration.propPointSize
 
-                text: i18n("AQHI")
+                text: i18nc("Air Quality Health Index", "AQHI")
             }
 
             PlasmaComponents.Label {
@@ -237,6 +237,26 @@ RowLayout {
 
                         PlasmaComponents.Label {
                             text: weatherData["aq"]["messages"]["sensitive"]["phrase"]
+                            wrapMode: Text.WordWrap
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18nc("Air Quality Index","AQI")
+                            font.bold: true
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18n("The AQI is a measure of air quality that takes into account the levels of various pollutants in the air. It ranges from 0 to 500, with higher values indicating worse air quality. An AQI of 0-50 is considered good, 51-100 is moderate, 101-150 is unhealthy for sensitive groups, 151-200 is unhealthy, 201-300 is very unhealthy, and 301-500 is hazardous.")
+                            wrapMode: Text.WordWrap
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18nc("Air Quality Health Index", "AQHI")
+                            font.bold: true
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18n("The AQHI is a measure of how the air quality may affect human health. It ranges from 1 to 10+, with higher values indicating more unfavorable conditions for health. An AQHI of 1-3 is considered low risk, 4-6 is moderate risk, 7-10 is high risk, and 10+ is very high risk.")
                             wrapMode: Text.WordWrap
                         }
                     }
