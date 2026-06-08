@@ -259,6 +259,16 @@ RowLayout {
                             text: i18n("The AQHI is a measure of how the air quality may affect human health. It ranges from 1 to 10+, with higher values indicating more unfavorable conditions for health. An AQHI of 1-3 is considered low risk, 4-6 is moderate risk, 7-10 is high risk, and 10+ is very high risk.")
                             wrapMode: Text.WordWrap
                         }
+
+                        PlasmaComponents.Label {
+                            text: i18nc("Particulate Matter", "PM2.5")
+                            font.bold: true
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18n("Particulate matter (PM2.5) is a measure of the amount of solid particles and liquid droplets suspended in the air. It can have serious health effects, especially on the respiratory and cardiovascular systems.")
+                            wrapMode: Text.WordWrap
+                        }
                     }
                 }
             }
