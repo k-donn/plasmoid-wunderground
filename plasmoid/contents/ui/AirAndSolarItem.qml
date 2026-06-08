@@ -248,7 +248,7 @@ RowLayout {
     GridLayout {
         id: solGrid
 
-        columns: 3
+        columns: 4
         rows: 3
 
         uniformCellWidths: true
@@ -259,7 +259,7 @@ RowLayout {
         PlasmaComponents.Label {
             id: solLabel
 
-            Layout.columnSpan: 3
+            Layout.columnSpan: 4
             Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
 
@@ -277,7 +277,7 @@ RowLayout {
             Layout.preferredWidth: solStatusTxt.width + 5
             Layout.preferredHeight: solStatusTxt.height + 5
             Layout.alignment: Qt.AlignCenter
-            Layout.columnSpan: 3
+            Layout.columnSpan: 4
 
             color: weatherData["kp-color"] || "#FFFFFF"
 
@@ -318,7 +318,7 @@ RowLayout {
                 horizontalAlignment: Text.AlignHCenter
                 font.pointSize: plasmoid.configuration.propPointSize
 
-                text: i18n("Kp-index")
+                text: i18nc("See: https://www.swpc.noaa.gov/products/planetary-k-index","Kp-index")
             }
 
             PlasmaComponents.Label {
@@ -393,42 +393,62 @@ RowLayout {
             }
         }
 
-        // ColumnLayout {
-        //     Layout.fillWidth: true
-        //     spacing: 0
+        ColumnLayout {
+            Layout.fillWidth: true
+            spacing: 0
 
-        //     Kirigami.Icon {
-        //         source: "documentinfo-symbolic"
-        //         width: Kirigami.Units.iconSizes.medium
-        //         height: Kirigami.Units.iconSizes.medium
-        //         Layout.alignment: Qt.AlignHCenter
-        //     }
+            Kirigami.Icon {
+                source: "documentinfo-symbolic"
+                width: Kirigami.Units.iconSizes.medium
+                height: Kirigami.Units.iconSizes.medium
+                Layout.alignment: Qt.AlignHCenter
+            }
 
-        //     PlasmaComponents.Label {
-        //         Layout.fillWidth: true
-        //         horizontalAlignment: Text.AlignHCenter
-        //         font.pointSize: plasmoid.configuration.propPointSize
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
 
-        //         text: i18n("Status")
-        //     }
+                text: i18n("Info")
+            }
 
-        //     PlasmaComponents.Label {
-        //         Layout.fillWidth: true
-        //         horizontalAlignment: Text.AlignHCenter
-        //         font.pointSize: plasmoid.configuration.propPointSize
-        //         font.bold: true
+            PlasmaComponents.Label {
+                Layout.fillWidth: true
+                horizontalAlignment: Text.AlignHCenter
+                font.pointSize: plasmoid.configuration.propPointSize
+                font.bold: true
+                font.underline: true
 
-                // text: {
-                //     var val = Math.round(weatherData["kp-health"]);
-                //     if (val < 4) {
-                //         return i18n("Comfortable");
-                //     } else if (val < 7) {
-                //         return i18n("Moderate");
-                //     } else {
-                //         return i18n("Unfavorable");
-                //     }
-                // }
-        //     }
-        // }
+                text: i18n("Details")
+
+                PlasmaCore.ToolTipArea {
+                    anchors.fill: parent
+
+                    interactive: true
+
+                    mainItem: ColumnLayout {
+                        PlasmaComponents.Label {
+                            text: i18nc("See: https://www.swpc.noaa.gov/products/planetary-k-index","Kp-index")
+                            font.bold: true
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18n("The Kp-index is a measure of geomagnetic activity. It ranges from 0 to 9, with higher values indicating more intense geomagnetic storms. A Kp-index of 0-3 is considered quiet, 4-5 is unsettled, 6-7 is active, and 8-9 is storm-level activity.")
+                            wrapMode: Text.WordWrap
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18n("Health index")
+                            font.bold: true
+                        }
+
+                        PlasmaComponents.Label {
+                            text: i18n("The health index is a measure of how the solar conditions may affect human health. It ranges from 0 to 10+, with higher values indicating more unfavorable conditions for health. A health index of 0-2 is considered comfortable, 3-5 is moderate, and 6+ is unfavorable.")
+                            wrapMode: Text.WordWrap
+                        }
+                    }
+                }
+            }
+        }
     }
 }
