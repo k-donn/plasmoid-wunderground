@@ -59,7 +59,7 @@ class TC:
 
 	@staticmethod
 	def stripColors(str):
-		return re.sub('\033' + '\[((\d{1,2});)?(\d{1,2})m', '', str)
+		return re.sub('\033' + '\\[((\\d{1,2});)?(\\d{1,2})m', '', str)
 
 def echoTC(terminalColor, *args):
 	line = terminalColor + ' '.join(args) + TC.Reset
@@ -813,6 +813,9 @@ class KPackage:
 				'sort'
 			], stdin=findProc.stdout, stdout=fout)
 			findProc.wait()
+
+		with open(infilesPath, 'r') as fin:
+			print(fin.read())
 
 		potArgs += [
 			# '--files-from', infilesPath,
