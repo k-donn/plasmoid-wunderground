@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-06-07 19:46-0500\n"
+"POT-Creation-Date: 2026-06-08 21:41-0500\n"
 "PO-Revision-Date: DA-Mo-YEAR HO:MI+ZONE\n"
 "Last-Translator: Stefan Wannemacher <swannema@t-online.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -158,6 +158,105 @@ msgstr "Region: %1<br/>Aktion: %2<br/>Haftungsausschluss: %3<br/>Ausgestellt von
 msgid "There are weather alerts for your area!"
 msgstr "Es gibt Wetterwarnungen für ihre Region"
 
+#: ../contents/ui/DayChartItem.qml
+msgctxt "per 12 hours, please keep it short"
+msgid "/12h"
+msgstr "/12h"
+
+#. i18n strings
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Feels like %1"
+msgstr "Gefühlt wie %1"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind Barb"
+msgstr "Windpfeil"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind direction and speed indicator"
+msgstr "Windrichtungs- und Geschwindigkeits-Indikator"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Learn more"
+msgstr "Mehr erfahren"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Wind from: %1 (%2°)"
+msgstr "Wind von: %1 (%2°)"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "Wind & Böen"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Dew Point"
+msgstr "Taupunkt"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Precip Rate"
+msgstr "Niederschlagsrate"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Pressure"
+msgstr "Luftdruck"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Pressure has risen %1 in the last three hours."
+msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gestiegen"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Pressure has fallen %1 in the last three hours."
+msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gefallen"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "Humidity"
+msgstr "Luftfeuchtigkeit"
+
+#: ../contents/ui/DetailsItem.qml
+msgid "Precip Accum"
+msgstr "Niederschlagsmenge"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
+msgid "UV"
+msgstr "UV Index"
+
+#: ../contents/ui/ForecastItem.qml
+msgctxt "Do not edit HTML tags."
+msgid "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>"
+msgstr "<font size='4'>Gefühlt wie: %1<br/>Gewitter: %2<br/>UV: %3<br/>Schnee: %4<br/>Golf: %5</font>"
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Sorry! The widget ran into a network error: "
+msgstr "Entschuldigung! Das Widget hat einen Netzwerkfehler festgestellt: "
+
+#: ../contents/ui/FullRepresentation.qml
+msgid "Refresh Weather"
+msgstr ""
+
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+msgid "Weather Details"
+msgstr "Aktuelles Wetter"
+
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Forecast"
+msgstr "Wettervorhersage"
+
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+msgid "Day Chart"
+msgstr "Tagesdiagramme"
+
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+msgid "More Info"
+msgstr "Weitere Informationen"
+
+#: ../contents/ui/TopPanel.qml
+msgid "High: %1 Low: %2"
+msgstr "Temp max.: %1               Temp min.: %2"
+
+#: ../contents/ui/TopPanel.qml ../contents/ui/main.qml
+msgid "Loading..."
+msgstr "Laden..."
+
 #: ../contents/ui/config/ConfigAppearance.qml
 msgctxt "Use default font"
 msgid "Default"
@@ -206,22 +305,6 @@ msgstr "Klappentext anzeigen:"
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Use default page:"
 msgstr "Standardseite verwenden"
-
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
-msgid "Weather Details"
-msgstr "Aktuelles Wetter"
-
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/config/ConfigUnits.qml ../contents/ui/SwitchPanel.qml
-msgid "Forecast"
-msgstr "Wettervorhersage"
-
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
-msgid "Day Chart"
-msgstr "Tagesdiagramme"
-
-#: ../contents/ui/config/ConfigAppearance.qml ../contents/ui/SwitchPanel.qml
-msgid "More Info"
-msgstr "Weitere Informationen"
 
 #: ../contents/ui/config/ConfigAppearance.qml
 msgid "Default page shown:"
@@ -509,19 +592,6 @@ msgstr "Kompakte Temperaturdarstellung"
 msgid "Temperature"
 msgstr "Temperatur"
 
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Wind & Gust"
-msgstr "Wind & Böen"
-
-#. i18n strings
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
-msgid "Feels like %1"
-msgstr "Gefühlt wie %1"
-
-#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/DetailsItem.qml
-msgid "Dew Point"
-msgstr "Taupunkt"
-
 #: ../contents/ui/config/ConfigUnits.qml
 msgctxt "The unit system"
 msgid "Metric"
@@ -564,68 +634,6 @@ msgstr "Luftdruck:"
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Elevation unit:"
 msgstr "Höhe:"
-
-#: ../contents/ui/DayChartItem.qml
-msgctxt "per 12 hours, please keep it short"
-msgid "/12h"
-msgstr "/12h"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Wind Barb"
-msgstr "Windpfeil"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Wind direction and speed indicator"
-msgstr "Windrichtungs- und Geschwindigkeits-Indikator"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Learn more"
-msgstr "Mehr erfahren"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Wind from: %1 (%2°)"
-msgstr "Wind von: %1 (%2°)"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Precip Rate"
-msgstr "Niederschlagsrate"
-
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Pressure"
-msgstr "Luftdruck"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Pressure has risen %1 in the last three hours."
-msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gestiegen"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Pressure has fallen %1 in the last three hours."
-msgstr "In den letzten 3 Stunden ist der Luftdruck um %1 gefallen"
-
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "Humidity"
-msgstr "Luftfeuchtigkeit"
-
-#: ../contents/ui/DetailsItem.qml
-msgid "Precip Accum"
-msgstr "Niederschlagsmenge"
-
-#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
-msgid "UV"
-msgstr "UV Index"
-
-#: ../contents/ui/ForecastItem.qml
-msgctxt "Do not edit HTML tags."
-msgid "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/>Golf: %5</font>"
-msgstr "<font size='4'>Gefühlt wie: %1<br/>Gewitter: %2<br/>UV: %3<br/>Schnee: %4<br/>Golf: %5</font>"
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "Sorry! The widget ran into a network error: "
-msgstr "Entschuldigung! Das Widget hat einen Netzwerkfehler festgestellt: "
-
-#: ../contents/ui/FullRepresentation.qml
-msgid "Refresh Weather"
-msgstr ""
 
 #: ../contents/ui/lib/BackgroundToggle.qml
 msgid "Desktop Widget:"
@@ -823,10 +831,6 @@ msgstr "Einstellen der Wetterstation von der die Daten erhoben werden"
 msgid "Please Configure"
 msgstr "Bitte Konfigurieren"
 
-#: ../contents/ui/main.qml ../contents/ui/TopPanel.qml
-msgid "Loading..."
-msgstr "Laden..."
-
 #: ../contents/ui/main.qml
 msgid "Error..."
 msgstr "Fehler..."
@@ -834,10 +838,6 @@ msgstr "Fehler..."
 #: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Wetterdaten aktualisieren"
-
-#: ../contents/ui/TopPanel.qml
-msgid "High: %1 Low: %2"
-msgstr "Temp max.: %1               Temp min.: %2"
 
 #~ msgid "Details icon size:"
 #~ msgstr "Größe der Symbole in der Wettervorhersage"
