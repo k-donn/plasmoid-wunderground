@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-__version__ = '24'
+__version__ = '31'
 
 #--- User Configurable Defaults
 # You can use `kpac --dir=package --i18ndir=package/translate`
 # or edit the variables below to always run `kpac` with defaults.
 sourceDirDefault = 'plasmoid'
 translateDirDefault = 'plasmoid/translate'
+compendiumDirDefault = '.compendium'
 qtMinVer="6.0"
 kfMinVer="6.0" # KDE Frameworks
 plasmaMinVer="6.0"
@@ -47,7 +48,7 @@ class TC:
 	FG_Purple='\033[35m'
 	FG_Cyan='\033[36m'
 	FG_LightGray='\033[37m'
-	FG_DarkGray='\033[1m'
+	FG_DarkGray='\033[90m'
 	FG_LightRed='\033[91m'
 	FG_LightGreen='\033[92m'
 	FG_Yellow='\033[93m'
@@ -56,8 +57,15 @@ class TC:
 	FG_LightCyan='\033[96m'
 	FG_White='\033[97m'
 
+	@staticmethod
+	def stripColors(str):
+		return re.sub('\033' + '\[((\d{1,2});)?(\d{1,2})m', '', str)
+
 def echoTC(terminalColor, *args):
-	print(terminalColor + ' '.join(args) + TC.Reset)
+	line = terminalColor + ' '.join(args) + TC.Reset
+	if not sys.stdout.isatty():
+		line = TC.stripColors(line)
+	print(line)
 def echoGray(*args):
 	echoTC(TC.FG_DarkGray, *args)
 def echoRed(*args):
@@ -384,9 +392,15 @@ def applyLocaleToEnv(env, langCode):
 
 
 class KPackage:
-	def __init__(self, sourceDir="package", translateDir="package/translate", buildTag=""):
+	def __init__(self, 
+		sourceDir="package",
+		translateDir="package/translate",
+		compendiumDir=".compendium",
+		buildTag=""
+	):
 		self.sourceDir = sourceDir
 		self.translateDir = translateDir
+		self.compendiumDir = compendiumDir
 		if len(buildTag) >= 1:
 			self.buildTag = '-' + buildTag
 		else:
@@ -462,10 +476,47 @@ class KPackage:
 
 		if isAlreadyInstalled:
 			# kpackagetool5 -t Plasma/Applet -u package
-			subprocess.call([kpackagetool(),
+			proc = subprocess.run([kpackagetool(),
 				'--type', self.packageServiceType,
 				'--upgrade', self.sourceDir,
-			])
+			], capture_output=True)
+			outText = proc.stdout.decode('utf-8').strip()
+			errText = proc.stderr.decode('utf-8').strip()
+			if proc.returncode == 0:
+				if outText:
+					print(outText)
+			else:
+				failOutText = 'Error: Plugin {} is not installed.'.format(self.packageNamespace)
+				failErrPattern = r'KPackageStructure of KPluginMetaData\(pluginId:"{}", fileName: "(.+){}"\) does not match requested format "{}"'.format(
+					re.escape(self.packageNamespace),
+					re.escape(os.path.join(self.packageNamespace, 'metadata.json')),
+					re.escape(self.packageServiceType)
+				)
+				m = re.search(failErrPattern, errText)
+				if outText == failOutText and m:
+					print(m.group(0))
+					echoWarning("[Note] When trying to upgrade a Plasma 5 package with metadata.desktop in Plasma 6, we need to remove the old install first.")
+					# Note: kpackagetool6 --remove will also fail.
+					if isCommandInstalled('kpackagetool5'):
+						echoWarning("[Note] Detected kpackagetool5, running: kpackagetool5 --type {} --remove {}".format(self.packageServiceType, self.sourceDir))
+						proc = subprocess.call(['kpackagetool5',
+							'--type', self.packageServiceType,
+							'--remove', self.sourceDir,
+						])
+					else:
+						echoError("[error] kpackagetool5 not found.")
+						installedPath = os.path.join(m.group(1), self.packageNamespace)
+						echoError("[error] Please manually delete the '{}' folder.".format(installedPath))
+						sys.exit(1)
+
+					exitCode = subprocess.call([kpackagetool(),
+						'--type', self.packageServiceType,
+						'--install', self.sourceDir,
+					])
+					if exitCode != 0:
+						echoError("[error] Error when calling: {} --type {} --install {}".format(kpackagetool(), self.packageServiceType, self.sourceDir))
+						sys.exit(1)
+
 			if restart:
 				subprocess.call([kstart(),
 					'--',
@@ -581,8 +632,98 @@ class KPackage:
 			echoError("[kpac-i18n] Run 'sudo zypper install gettext-tools' (openSUSE)")
 			sys.exit(1)
 
+	def getLangCompendiumPath(self, langCode):
+		return os.path.join(self.compendiumDir, 'compendium-{}.po'.format(langCode))
 
-	def i18nMerge(self):
+	def i18nCompendium(self):
+		byDomainsDir = os.path.join(self.compendiumDir, 'bydomains')
+		localeDir='/usr/share/locale/kf5'
+		autoDeleteByDomainsDir = True
+		updateCompendium = False
+		for dirPath in sorted(glob.glob(os.path.join(localeDir, '*'))):
+			if not os.path.isdir(dirPath):
+				continue
+			langCode = os.path.basename(dirPath)
+			if '@' in langCode: # Eg: 'be@latin'
+				continue
+			moLangDir = os.path.join(localeDir, langCode, 'LC_MESSAGES')
+			poLangDir = os.path.join(byDomainsDir, langCode)
+			os.makedirs(poLangDir, exist_ok=True)
+
+			langCompendiumPath = self.getLangCompendiumPath(langCode)
+			if os.path.exists(langCompendiumPath) and not updateCompendium:
+				continue
+
+			echoGray("[kpac-i18n] " + TC.Bold + "[Extracting Messages]" + TC.Reset + TC.FG_DarkGray + ' ' + moLangDir)
+			for moFilepath in sorted(glob.glob(os.path.join(moLangDir, '*.mo'))):
+				domain, ext = os.path.splitext(os.path.basename(moFilepath))
+				poFilepath = os.path.join(poLangDir, domain+'.po')
+				print("'{}' => '{}'".format(moFilepath, os.path.abspath(poFilepath)))
+				returncode = subprocess.call([
+					'msgunfmt',
+					'-i', moFilepath,
+					'-o', poFilepath,
+				])
+				if returncode != 0:
+					echoError("[kpac-i18n] error while calling msgunfmt. aborting.")
+					sys.exit(1)
+
+			echoGray("[kpac-i18n] " + TC.Bold + "[Generating Compendium]" + TC.Reset + TC.FG_DarkGray + ' ' + os.path.basename(langCompendiumPath))
+			poLangFileList = list(sorted(glob.glob(os.path.join(poLangDir, '*.po'))))
+			if langCode == 'el':
+				# msgcat: Input po files have different Plural-Forms. Invalid output file was created.
+				# Please, fix the plurals.
+				for poLangFile in poLangFileList:
+					sed_str(
+						"Plural-Forms: nplurals=2; plural=(n != 1);",
+						"Plural-Forms: nplurals=2; plural=n != 1;",
+						poLangFile
+					)
+			elif langCode == 'fa':
+				# msgcat: Input po files have different Plural-Forms. Invalid output file was created.
+				# Please, fix the plurals.
+				for poLangFile in poLangFileList:
+					sed_str(
+						"Plural-Forms: nplurals=2; plural=(n > 1);",
+						"Plural-Forms: nplurals=1; plural=0;",
+						poLangFile
+					)
+			elif langCode == 'is':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'kk':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'km':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'mai':
+				# msgcat: memory exhausted
+				continue
+			elif langCode == 'pa':
+				# msgcat: memory exhausted
+				continue
+
+
+			returncode = subprocess.call([
+				'msgcat',
+				'--use-first',
+				'--sort-output',
+				'-o', langCompendiumPath,
+			] + poLangFileList)
+			if returncode != 0:
+				echoError("[kpac-i18n] error while calling msgcat. aborting.")
+				sys.exit(1)
+			if autoDeleteByDomainsDir and poLangDir:
+				echoWarning('Deleting', os.path.abspath(poLangDir))
+				shutil.rmtree(os.path.abspath(poLangDir))
+
+
+		echoGreen("[kpac-i18n] Done compiling messages")
+
+
+
+	def i18nMerge(self, useCompendium=False):
 		# https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems
 		# https://techbase.kde.org/Development/Tutorials/Localization/i18n_Build_Systems/Outside_KDE_repositories
 		# https://invent.kde.org/sysadmin/l10n-scripty/-/blob/master/extract-messages.sh
@@ -820,15 +961,12 @@ class KPackage:
 			if catUsesGenerator is None:
 				mergeCmd += ["--width=400"]
 
-			# 	compendiumArg=""
-			# 	if [ ! -z "$COMPENDIUM_DIR" ]; then
-			# 		langCode=`basename "${cat%.*}"`
-			# 		compendiumPath=`realpath "$COMPENDIUM_DIR/compendium-${langCode}.po"`
-			# 		if [ -f "$compendiumPath" ]; then
-			# 			echo "compendiumPath=$compendiumPath"
-			# 			compendiumArg="--compendium=$compendiumPath"
-			# 		fi
-			# 	fi
+			langCompendiumPath = self.getLangCompendiumPath(catLocale)
+			if useCompendium and os.path.exists(langCompendiumPath):
+				echoGray("[kpac-i18n] Using compendium at '{}'".format(langCompendiumPath))
+				mergeCmd += [
+					"--compendium=" + langCompendiumPath,
+				]
 
 			mergeCmd += [
 				'--add-location=file',
@@ -1072,7 +1210,7 @@ package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
 
 		#--- Replace keywords in QML files
 		echoGray('[kpac-plasma6] ' + TC.Bold + 'Replacing keywords in .qml files')
-		for qmlFilepath in glob.glob(os.path.join(self.sourceDir, '**/*.qml'), recursive=True):
+		for qmlFilepath in sorted(glob.glob(os.path.join(self.sourceDir, '**/*.qml'), recursive=True)):
 			self.portQmlFileToPlasma6(qmlFilepath)
 
 	def portFileToPlasma6(self, filepath):
@@ -1339,6 +1477,8 @@ package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
 
 				line = line.replace('KQuickAddons.IconDialog', 'KIconThemes.IconDialog')
 
+				line = line.replace('import org.kde.plasma.calendar', 'import org.kde.plasma.workspace.calendar')
+
 				#--- Qt
 				line = replaceNotComment(line, 'RegExpValidator', 'RegularExpressionValidator') # Also { regExp: // } => { regularExpression: // }
 
@@ -1369,6 +1509,7 @@ package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
 		checkImport('KItemModels', 'org.kde.kitemmodels')
 		checkImport('Kirigami', 'org.kde.kirigami')
 		checkImport('KConfig', 'org.kde.config')
+		# checkImport('Calendar', 'org.kde.plasma.workspace.calendar')
 
 		#--- Remove Unused Imports TODO
 		# import org.kde.kquickcontrolsaddons 2.0 // KCMShell
@@ -1387,6 +1528,7 @@ package/contents/locale/fr/LC_MESSAGES/plasma_applet_{self.packageNamespace}.mo
 		proc = subprocess.run([
 			'git',
 			'diff',
+			'--stat',
 			path,
 		], capture_output=True)
 		diffStr = proc.stdout.decode('utf-8')
@@ -1446,7 +1588,10 @@ def kpac_uninstall(kpackage, args):
 	kpackage.uninstall()
 
 def kpac_i18n(kpackage, args):
-	kpackage.i18nMerge()
+	if args.compendium:
+		kpackage.i18nCompendium()
+	if args.merge:
+		kpackage.i18nMerge(useCompendium=args.compendium)
 	kpackage.i18nBuild()
 
 def kpac_test(kpackage, args):
@@ -1468,7 +1613,7 @@ def kpac_build(kpackage, args):
 	kpackage.i18nBuild()
 	if kpackage.containsGitChanges(path=kpackage.translateDir):
 		echoError("[kpac-build] Changes detected. Cancelling build.")
-		proc = subprocess.run(['git', 'diff', '.'])
+		proc = subprocess.run(['git', 'diff', '--stat', '.'])
 		sys.exit(1)
 	kpackage.buildZip(
 		dryrun=args.dryrun
@@ -1493,7 +1638,7 @@ def updateFile(kpackage, libPath, fileRelativePath):
 
 	diffStr = git_diff_color_noindex(fileProjectPath, fileLibPath)
 	if diffStr.strip() != "":
-		echoWarning(f"[kpac-plasma6] Update '{fileRelativePath}'?")
+		echoWarning(f"[kpac-updatelib] Update '{fileRelativePath}'?")
 		print(diffStr)
 		print('')
 		if input('Copy? [y]/n > ') != 'n':
@@ -1549,10 +1694,12 @@ def main():
 		prog='kpac',
 		description='v{} - Misc tools for a plasma widget like kpackages.'.format(__version__),
 	)
-	parser.add_argument('--dir', default=sourceDirDefault, metavar=sourceDirDefault,
+	parser.add_argument('--dir', dest='sourceDir', default=sourceDirDefault, metavar=sourceDirDefault,
 		help=f'Path to the folder containing metadata.json')
-	parser.add_argument('--i18ndir', default=translateDirDefault, metavar=translateDirDefault,
+	parser.add_argument('--i18ndir', dest='translateDir', default=translateDirDefault, metavar=translateDirDefault,
 		help=f'Path to the folder containing template.pot')
+	parser.add_argument('--compendiumdir', dest='compendiumDir', default=compendiumDirDefault, metavar=compendiumDirDefault,
+		help=f'Path to the folder containing i18n compendiums.')
 
 	subparsers = parser.add_subparsers()
 
@@ -1563,8 +1710,10 @@ def main():
 	parser_uninstall = subparsers.add_parser('uninstall', help='kpac uninstall')
 	parser_uninstall.set_defaults(func=kpac_uninstall)
 
-	parser_mergei18n = subparsers.add_parser('i18n', help='kpac i18n (Run xgettext translation tools)')
+	parser_mergei18n = subparsers.add_parser('i18n', aliases=['tr', 'translate'], help='kpac i18n (Run xgettext translation tools)')
 	parser_mergei18n.set_defaults(func=kpac_i18n)
+	parser_mergei18n.add_argument('--no-merge', dest='merge', action='store_false', default=True, help='Do not merge messages before generating .mo files')
+	parser_mergei18n.add_argument('--compendium', action='store_true', default=False, help='Generate a compendium of KDE Frameworks translations currently installed.')
 
 	parser_test = subparsers.add_parser('test', help='kpac test')
 	parser_test.set_defaults(func=kpac_test)
@@ -1593,8 +1742,9 @@ def main():
 	args = parser.parse_args()
 
 	kpackage = KPackage(
-		sourceDir=args.dir,
-		translateDir=args.i18ndir,
+		sourceDir=args.sourceDir,
+		translateDir=args.translateDir,
+		compendiumDir=args.compendiumDir,
 		buildTag=args.buildTag if hasattr(args, 'buildTag') else filenameTag,
 	)
 
@@ -1609,5 +1759,4 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
 
