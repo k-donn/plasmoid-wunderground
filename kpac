@@ -810,8 +810,8 @@ class KPackage:
 			for filePath in filePaths:
 				fout.write(filePath + '\n')
 
-		with open(infilesPath, 'r') as fin:
-			print(fin.read())
+		# with open(infilesPath, 'r') as fin:
+		# 	print(fin.read())
 
 		potArgs += [
 			# '--files-from', infilesPath,
