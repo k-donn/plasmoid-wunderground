@@ -799,20 +799,16 @@ class KPackage:
 		# I have no idea what -kaliasLocale is used for. Googling aliasLocale found only listed kde1 code.
 		# We don't need to parse -ki18nd since that'll extract messages from other domains.
 		infilesPath = os.path.join(self.translateDir, 'infiles.list')
+		rootPath = os.path.normpath(os.path.join(self.translateDir, self.translateRoot))
+		filePaths = []
+		for dirpath, dirnames, filenames in os.walk(rootPath):
+			for filename in filenames:
+				if filename.endswith(('.cpp', '.h', '.c', '.qml', '.js')):
+					filePaths.append(os.path.relpath(os.path.join(dirpath, filename), self.translateDir))
+		filePaths.sort()
 		with open(infilesPath, 'w') as fout:
-			findProc = subprocess.Popen([
-				'find',
-				self.translateRoot,
-				'-name', '*.cpp',
-				'-o', '-name', '*.h',
-				'-o', '-name', '*.c',
-				'-o', '-name', '*.qml',
-				'-o', '-name', '*.js',
-			], stdout=subprocess.PIPE, cwd=self.translateDir)
-			sortProc = subprocess.call([
-				'sort'
-			], stdin=findProc.stdout, stdout=fout)
-			findProc.wait()
+			for filePath in filePaths:
+				fout.write(filePath + '\n')
 
 		with open(infilesPath, 'r') as fin:
 			print(fin.read())
