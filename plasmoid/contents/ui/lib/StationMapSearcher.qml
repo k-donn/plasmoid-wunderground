@@ -164,6 +164,10 @@ Window {
                                     "longitude": places[i].longitude
                                 });
                             }
+
+                            if (places.length > 0) {
+                                helperLoader.children[0].children[1].currentIndex = 0;
+                            }
                         });
                     } else if (stationMapSearcher.searchMode === "stationID") {
                         StationAPI.searchStationID(stationMapSearcher.searchText, {

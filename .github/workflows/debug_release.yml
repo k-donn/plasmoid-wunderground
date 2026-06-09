@@ -11,9 +11,6 @@ on:
         description: 'Append the commit hash to the built package filename'
         required: true
         default: 'true'
-      release_tag:
-        description: 'Tag to use for the release (leave empty to use the latest tag)'
-        required: false
 
 jobs:
   build-and-release:
@@ -54,14 +51,10 @@ jobs:
       id: tag
       run: |
         git fetch --tags
-        if [ -n "${{ github.event.inputs.release_tag }}" ]; then
-          BASE_TAG="${{ github.event.inputs.release_tag }}"
-        else
-          BASE_TAG=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags | head -n 1)
-          if [ -z "$BASE_TAG" ]; then
-            echo 'No git tags found. Release creation requires at least one tag.'
-            exit 1
-          fi
+        BASE_TAG=$(git for-each-ref --sort=-creatordate --format '%(refname:short)' refs/tags | head -n 1)
+        if [ -z "$BASE_TAG" ]; then
+          echo 'No git tags found. Release creation requires at least one tag.'
+          exit 1
         fi
         COMMIT_HASH=$(git rev-parse --short HEAD)
         PRERELEASE_TAG="${BASE_TAG}-${COMMIT_HASH}"
