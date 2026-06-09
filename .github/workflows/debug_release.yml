@@ -57,7 +57,7 @@ jobs:
           exit 1
         fi
         COMMIT_HASH=$(git rev-parse --short HEAD)
-        PRERELEASE_TAG="${BASE_TAG}-${COMMIT_HASH}"
+        PRERELEASE_TAG="${BASE_TAG}-dev-${COMMIT_HASH}"
         echo "latest_tag=$PRERELEASE_TAG" >> $GITHUB_OUTPUT
 
     - name: Create Release
