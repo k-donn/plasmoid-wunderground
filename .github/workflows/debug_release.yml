@@ -1,16 +1,7 @@
 name: Debug Release
 
 on:
-  workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to build from'
-        required: true
-        default: main
-      include_hash_in_filename:
-        description: 'Append the commit hash to the built package filename'
-        required: true
-        default: 'true'
+  workflow_dispatch
 
 jobs:
   build-and-release:
@@ -20,7 +11,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.branch }}
+        ref: ${{ github.ref_name }}
         fetch-depth: 0
 
     - name: Install dependencies
@@ -38,13 +29,10 @@ jobs:
     - name: Rename package with hash info
       id: package
       run: |
-        PACKAGE_NAME=$(ls *.plasmoid | head -1)
-        if [ "${{ github.event.inputs.include_hash_in_filename }}" = 'true' ]; then
-          BASE_NAME=$(basename "$PACKAGE_NAME" .plasmoid)
-          NEW_NAME="${BASE_NAME}-${{ steps.hash.outputs.commit_hash }}.plasmoid"
-          mv "$PACKAGE_NAME" "$NEW_NAME"
-          PACKAGE_NAME="$NEW_NAME"
-        fi
+        BASE_NAME=$(basename "$PACKAGE_NAME" .plasmoid)
+        NEW_NAME="${BASE_NAME}-${{ steps.hash.outputs.commit_hash }}.plasmoid"
+        mv "$PACKAGE_NAME" "$NEW_NAME"
+        PACKAGE_NAME="$NEW_NAME"
         echo "name=$PACKAGE_NAME" >> $GITHUB_OUTPUT
 
     - name: Determine release tag
