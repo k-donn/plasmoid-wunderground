@@ -29,6 +29,7 @@ jobs:
     - name: Rename package with hash info
       id: package
       run: |
+        PACKAGE_NAME=$(ls *.plasmoid | head -1)
         BASE_NAME=$(basename "$PACKAGE_NAME" .plasmoid)
         NEW_NAME="${BASE_NAME}-${{ steps.hash.outputs.commit_hash }}.plasmoid"
         mv "$PACKAGE_NAME" "$NEW_NAME"
