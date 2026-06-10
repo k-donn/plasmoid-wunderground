@@ -219,55 +219,74 @@ RowLayout {
 
                     interactive: true
 
-                    mainItem: ColumnLayout {
-                        PlasmaComponents.Label {
-                            text: weatherData["aq"]["messages"]["general"]["title"]
-                            font.bold: true
-                        }
+                    mainItem: Item {
+                        implicitWidth: Kirigami.Units.gridUnit * 15
+                        implicitHeight: aqInfoLayout.implicitHeight + Kirigami.Units.gridUnit * 2
+                        
+                        ColumnLayout {
+                            id: aqInfoLayout
 
-                        PlasmaComponents.Label {
-                            text: weatherData["aq"]["messages"]["general"]["phrase"]
-                            wrapMode: Text.WordWrap
-                        }
+                            anchors.fill: parent
 
-                        PlasmaComponents.Label {
-                            text: weatherData["aq"]["messages"]["sensitive"]["title"]
-                            font.bold: true
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: weatherData["aq"]["messages"]["general"]["title"]
+                                font.bold: true
+                            }
 
-                        PlasmaComponents.Label {
-                            text: weatherData["aq"]["messages"]["sensitive"]["phrase"]
-                            wrapMode: Text.WordWrap
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: weatherData["aq"]["messages"]["general"]["phrase"]
+                                wrapMode: Text.WordWrap
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18nc("Air Quality Index","AQI")
-                            font.bold: true
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: weatherData["aq"]["messages"]["sensitive"]["title"]
+                                font.bold: true
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18n("The AQI is a measure of air quality that takes into account the levels of various pollutants in the air. It ranges from 0 to 500, with higher values indicating worse air quality. An AQI of 0-50 is considered good, 51-100 is moderate, 101-150 is unhealthy for sensitive groups, 151-200 is unhealthy, 201-300 is very unhealthy, and 301-500 is hazardous.")
-                            wrapMode: Text.WordWrap
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: weatherData["aq"]["messages"]["sensitive"]["phrase"]
+                                wrapMode: Text.WordWrap
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18nc("Air Quality Health Index", "AQHI")
-                            font.bold: true
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18nc("Air Quality Index","AQI")
+                                font.bold: true
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18n("The AQHI is a measure of how the air quality may affect human health. It ranges from 1 to 10+, with higher values indicating more unfavorable conditions for health. An AQHI of 1-3 is considered low risk, 4-6 is moderate risk, 7-10 is high risk, and 10+ is very high risk.")
-                            wrapMode: Text.WordWrap
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18n("The AQI is a measure of air quality that takes into account the levels of various pollutants in the air. It ranges from 0 to 500, with higher values indicating worse air quality. An AQI of 0-50 is considered good, 51-100 is moderate, 101-150 is unhealthy for sensitive groups, 151-200 is unhealthy, 201-300 is very unhealthy, and 301-500 is hazardous.")
+                                wrapMode: Text.WordWrap
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18nc("Particulate Matter", "PM2.5")
-                            font.bold: true
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18nc("Air Quality Health Index", "AQHI")
+                                font.bold: true
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18n("Particulate matter (PM2.5) is a measure of the amount of solid particles and liquid droplets suspended in the air. It can have serious health effects, especially on the respiratory and cardiovascular systems.")
-                            wrapMode: Text.WordWrap
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18n("The AQHI is a measure of how the air quality may affect human health. It ranges from 1 to 10+, with higher values indicating more unfavorable conditions for health. An AQHI of 1-3 is considered low risk, 4-6 is moderate risk, 7-10 is high risk, and 10+ is very high risk.")
+                                wrapMode: Text.WordWrap
+                            }
+
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18nc("Particulate Matter", "PM2.5")
+                                font.bold: true
+                            }
+
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18n("Particulate matter (PM2.5) is a measure of the amount of solid particles and liquid droplets suspended in the air. It can have serious health effects, especially on the respiratory and cardiovascular systems.")
+                                wrapMode: Text.WordWrap
+                            }
                         }
                     }
                 }
@@ -456,25 +475,38 @@ RowLayout {
 
                     interactive: true
 
-                    mainItem: ColumnLayout {
-                        PlasmaComponents.Label {
-                            text: i18nc("See: https://www.swpc.noaa.gov/products/planetary-k-index","Kp-index")
-                            font.bold: true
-                        }
+                    mainItem: Item {
+                        implicitWidth: Kirigami.Units.gridUnit * 15
+                        implicitHeight: solInfoLayout.implicitHeight + Kirigami.Units.gridUnit * 2
+                        
+                        ColumnLayout {
+                            id: solInfoLayout
 
-                        PlasmaComponents.Label {
-                            text: i18n("The Kp-index is a measure of geomagnetic activity. It ranges from 0 to 9, with higher values indicating more intense geomagnetic storms. A Kp-index of 0-3 is considered quiet, 4-5 is unsettled, 6-7 is active, and 8-9 is storm-level activity.")
-                            wrapMode: Text.WordWrap
-                        }
+                            anchors.fill: parent
 
-                        PlasmaComponents.Label {
-                            text: i18n("Health index")
-                            font.bold: true
-                        }
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18nc("See: https://www.swpc.noaa.gov/products/planetary-k-index","Kp-index")
+                                font.bold: true
+                            }
 
-                        PlasmaComponents.Label {
-                            text: i18n("The health index is a measure of how the solar conditions may affect human health. It ranges from 0 to 10+, with higher values indicating more unfavorable conditions for health. A health index of 0-2 is considered comfortable, 3-5 is moderate, and 6+ is unfavorable.")
-                            wrapMode: Text.WordWrap
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18n("The Kp-index is a measure of geomagnetic activity. It ranges from 0 to 9, with higher values indicating more intense geomagnetic storms. A Kp-index of 0-3 is considered quiet, 4-5 is unsettled, 6-7 is active, and 8-9 is storm-level activity.")
+                                wrapMode: Text.WordWrap
+                            }
+
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18n("Health index")
+                                font.bold: true
+                            }
+
+                            PlasmaComponents.Label {
+                                Layout.fillWidth: true
+                                text: i18n("The health index is a measure of how the solar conditions combined with pressure changes may affect human health. It ranges from 0 to 10+, with higher values indicating more unfavorable conditions for health. A health index of 0-2 is considered comfortable, 3-5 is moderate, and 6+ is unfavorable.")
+                                wrapMode: Text.WordWrap
+                            }
                         }
                     }
                 }
