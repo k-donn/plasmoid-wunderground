@@ -316,6 +316,7 @@ ColumnLayout {
                             PlasmaComponents.Label {
                                 text: i18n("Wind direction and speed indicator")
                                 wrapMode: Text.WordWrap
+                                horizontalAlignment: Text.AlignHCenter
                                 font.pointSize: Kirigami.Theme.smallFont.pointSize
                             }
                             
@@ -332,6 +333,9 @@ ColumnLayout {
                 text: i18n("Wind from: %1 (%2°)", Utils.windDirToCard(weatherData["winddir"]), weatherData["winddir"])
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(plasmoid.configuration.windPrecision) + " " + Utils.rawSpeedUnit()
@@ -356,6 +360,9 @@ ColumnLayout {
                 text: i18n("Wind & Gust")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: Utils.toUserSpeed(weatherData["details"]["windSpeed"]).toFixed(plasmoid.configuration.windPrecision) + " / " + Utils.currentSpeedUnit(Utils.toUserSpeed(weatherData["details"]["windGust"]), plasmoid.configuration.windPrecision)
@@ -381,6 +388,9 @@ ColumnLayout {
                 text: i18n("Dew Point")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: Utils.currentTempUnit(Utils.toUserTemp(weatherData["details"]["dewpt"]), plasmoid.configuration.dewPrecision)
@@ -406,6 +416,9 @@ ColumnLayout {
                 text: i18n("Precip Rate")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipRate"], isRain), isRain) + "/hr"
@@ -431,6 +444,9 @@ ColumnLayout {
                 text: i18n("Pressure")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             Row {
                 PlasmaComponents.Label {
@@ -482,6 +498,9 @@ ColumnLayout {
                 text: i18n("Humidity")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: weatherData["humidity"] + "%"
@@ -507,6 +526,9 @@ ColumnLayout {
                 text: i18n("Precip Accum")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: Utils.currentPrecipUnit(Utils.toUserPrecip(weatherData["details"]["precipTotal"], isRain), isRain)
@@ -532,6 +554,9 @@ ColumnLayout {
                 text: i18n("UV")
                 font.pointSize: plasmoid.configuration.propHeadPointSize
                 Layout.alignment: Qt.AlignCenter
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Text.AlignHCenter
+                Layout.fillWidth: true
             }
             PlasmaComponents.Label {
                 text: weatherData["uv"]
