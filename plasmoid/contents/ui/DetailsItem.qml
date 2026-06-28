@@ -455,6 +455,7 @@ ColumnLayout {
                 Layout.fillWidth: true
             }
             Row {
+                Layout.alignment: Qt.AlignCenter
                 PlasmaComponents.Label {
                     id: pressure
                     text: Utils.currentPresUnit(Utils.toUserPres(weatherData["details"]["pressure"]))
