@@ -121,8 +121,8 @@ function _httpGet(url, cb) {
 	req.onerror = function () {
 		cb(
 			{
-				type: "Could not send request",
-				message: req.statusText || "Network error",
+				type: i18n("Could not send request"),
+				message: req.statusText || i18n("Network error"),
 			},
 			null,
 			req.status,
@@ -339,8 +339,8 @@ function isStationActive(givenID, options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -416,12 +416,12 @@ function searchStationID(query, options, callback) {
 	_httpGet(url, function (err, res, status, raw) {
 		if (err || status !== 200) {
 			if (status === 404)
-				callback({ type: "404", message: "No stations found" }, null);
+				callback({ type: "404", message: i18n("No stations found") }, null);
 			else
 				callback(
 					err || {
-						type: status || "network",
-						message: raw || "Request failed",
+						type: status || i18n("network"),
+						message: raw || i18n("Request failed"),
 					},
 					null
 				);
@@ -482,12 +482,12 @@ function searchGeocode(latLongObj, options, callback) {
 	_httpGet(url, function (err, res, status, raw) {
 		if (err || status !== 200) {
 			if (status === 404)
-				callback({ type: "404", message: "No stations found" }, null);
+				callback({ type: "404", message: i18n("No stations found") }, null);
 			else
 				callback(
 					err || {
-						type: status || "network",
-						message: raw || "Request failed",
+						type: status || i18n("network"),
+						message: raw || i18n("Request failed"),
 					},
 					null
 				);
@@ -556,8 +556,8 @@ function getLocations(city, options, callback) {
 			else
 				callback(
 					err || {
-						type: status || "network",
-						message: raw || "Request failed",
+						type: status || i18n("network"),
+						message: raw || i18n("Request failed"),
 					},
 					null
 				);
@@ -628,8 +628,8 @@ function getCurrentData(options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -640,7 +640,7 @@ function getCurrentData(options, callback) {
 		var obs = res && res.observations ? res.observations[0] : null;
 		if (!obs) {
 			callback(
-				{ type: "no_data", message: "No observation returned" },
+				{ type: "no_data", message: i18n("No observation returned") },
 				null
 			);
 			return;
@@ -759,8 +759,8 @@ function getExtendedConditions(options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -770,7 +770,7 @@ function getExtendedConditions(options, callback) {
 		var combinedVars = res && res[0] ? res[0] : null;
 		if (!combinedVars) {
 			callback(
-				{ type: "no_data", message: "No extended conditions returned" },
+				{ type: "no_data", message: i18n("No extended conditions returned") },
 				null
 			);
 			return;
@@ -955,8 +955,8 @@ function getForecastDataV3(options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -1134,8 +1134,8 @@ function getForecastDataV1(options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -1270,8 +1270,8 @@ function getHourlyDataV1(options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -1378,8 +1378,8 @@ function getHourlyDataV3(options, callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: status || "network",
-					message: raw || "Request failed",
+					type: status || i18n("network"),
+					message: raw || i18n("Request failed"),
 				},
 				null
 			);
@@ -1460,8 +1460,8 @@ function getKpIndexData(callback) {
 		if (err || status !== 200) {
 			callback(
 				err || {
-					type: "network",
-					message: "Failed to fetch KP index data",
+					type: i18n("network"),
+					message: i18n("Failed to fetch KP index data"),
 				},
 				null
 			);

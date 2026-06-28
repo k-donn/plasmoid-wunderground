@@ -255,22 +255,22 @@ var severityColorMap = {
  */
 function windDirToCard(deg) {
 	var directions = [
-		"N",
-		"NNE",
-		"NE",
-		"ENE",
-		"E",
-		"ESE",
-		"SE",
-		"SSE",
-		"S",
-		"SSW",
-		"SW",
-		"WSW",
-		"W",
-		"WNW",
-		"NW",
-		"NNW",
+		i18n("N"),
+		i18n("NNE"),
+		i18n("NE"),
+		i18n("ENE"),
+		i18n("E"),
+		i18n("ESE"),
+		i18n("SE"),
+		i18n("SSE"),
+		i18n("S"),
+		i18n("SSW"),
+		i18n("SW"),
+		i18n("WSW"),
+		i18n("W"),
+		i18n("WNW"),
+		i18n("NW"),
+		i18n("NNW"),
 	];
 	deg *= 10;
 	return directions[Math.round((deg % 3600) / 255)];
@@ -859,18 +859,18 @@ function toUserSpeed(value) {
 function rawSpeedUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res = "kmh";
+		res = i18n("kmh");
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res = "mph";
+		res = i18n("mph");
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res = "mph";
+		res = i18n("mph");
 	} else {
 		if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.KMH) {
-			res = "kmh";
+			res = i18n("kmh");
 		} else if (plasmoid.configuration.windUnitsChoice === WIND_UNITS.MPH) {
-			res = "mph";
+			res = i18n("mph");
 		} else {
-			res = "m/s";
+			res = i18n("m/s");
 		}
 	}
 	return res;
@@ -921,16 +921,16 @@ function toUserElev(value) {
 function rawElevUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res = "m";
+		res = i18n("m");
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res = "ft";
+		res = i18n("ft");
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res = "ft";
+		res = i18n("ft");
 	} else {
 		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
-			res = "m";
+			res = i18n("m");
 		} else {
-			res = "ft";
+			res = i18n("ft");
 		}
 	}
 	return res;
@@ -1006,40 +1006,40 @@ function rawPrecipUnit(isRain) {
 	}
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
 		if (isRain) {
-			res = "mm";
+			res = i18n("mm");
 		} else {
-			res = "cm";
+			res = i18n("cm");
 		}
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return (res = "in");
+		return (res = i18n("in"));
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		if (isRain) {
-			res = "mm";
+			res = i18n("mm");
 		} else {
-			res = "cm";
+			res = i18n("cm");
 		}
 	} else {
 		// This is not redundant because the user can choose different rain/snow
 		// units and the result of this function must reflect that.
 		if (isRain) {
 			if (plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.MM) {
-				res = "mm";
+				res = i18n("mm");
 			} else if (
 				plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN
 			) {
-				res = "in";
+				res = i18n("in");
 			} else {
-				res = "cm";
+				res = i18n("cm");
 			}
 		} else {
 			if (plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.MM) {
-				res = "mm";
+				res = i18n("mm");
 			} else if (
 				plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN
 			) {
-				res = "in";
+				res = i18n("in");
 			} else {
-				res = "cm";
+				res = i18n("cm");
 			}
 		}
 	}
@@ -1099,24 +1099,24 @@ function toUserPres(value) {
 function rawPresUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res = "mb";
+		res = i18n("mb");
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res = "inHG";
+		res = i18n("inHG");
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res = "mb";
+		res = i18n("mb");
 	} else {
 		if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MB) {
-			res = "mb";
+			res = i18n("mb");
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.INHG) {
-			res = "inHG";
+			res = i18n("inHG");
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.MMHG) {
-			res = "mmHG";
+			res = i18n("mmHG");
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.HPA) {
-			res = "hPa";
+			res = i18n("hPa");
 		} else if (plasmoid.configuration.presUnitsChoice === PRES_UNITS.PSI) {
-			res = "psi";
+			res = i18n("psi");
 		} else {
-			res = "hPa";
+			res = i18n("hPa");
 		}
 	}
 	return res;
