@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-06-09 20:53-0500\n"
+"POT-Creation-Date: 2026-06-28 13:20-0500\n"
 "PO-Revision-Date: 2024-10-01 00:00+0000\n"
 "Last-Translator: JULIANO MADEIRA <julianomadeira@yahoo.com>\n"
 "Language-Team: Portuguese (Brazil) <LL@li.org>\n"
@@ -25,8 +25,156 @@ msgid "Wunderground Personal Weather Station viewer"
 msgstr "Visualizador de Estação Meteorológica Pessoal Wunderground"
 
 #: ../contents/code/pws-api.js
+msgid "Could not send request"
+msgstr ""
+
+#: ../contents/code/pws-api.js
+msgid "Network error"
+msgstr ""
+
+#: ../contents/code/pws-api.js
+msgid "network"
+msgstr ""
+
+#: ../contents/code/pws-api.js
+msgid "Request failed"
+msgstr ""
+
+#: ../contents/code/pws-api.js
+msgid "No stations found"
+msgstr ""
+
+#: ../contents/code/pws-api.js
 msgid "Location not found"
 msgstr "Local não encontrado"
+
+#: ../contents/code/pws-api.js
+msgid "No observation returned"
+msgstr ""
+
+#: ../contents/code/pws-api.js
+msgid "No extended conditions returned"
+msgstr ""
+
+#: ../contents/code/pws-api.js
+msgid "Failed to fetch KP index data"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "N"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "NNE"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "NE"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "ENE"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "E"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "ESE"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "SE"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "SSE"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "S"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "SSW"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "SW"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "WSW"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "W"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "WNW"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "NW"
+msgstr ""
+
+#: ../contents/code/utils.js
+msgid "NNW"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "kmh"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "mph"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "m/s"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "m"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "ft"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "mm"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "cm"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "in"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "mb"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "inHG"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "mmHG"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "hPa"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgid "psi"
+msgstr ""
 
 #: ../contents/code/utils.js
 msgid "To sunrise"
@@ -623,6 +771,18 @@ msgid "Snow unit:"
 msgstr "Unidade de neve:"
 
 #: ../contents/ui/config/ConfigUnits.qml
+msgid "C"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "F"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "K"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
 msgid "Temperature unit:"
 msgstr "Unidade de temperatura:"
 
@@ -690,7 +850,7 @@ msgstr "ID da Estação Meteorológica:"
 msgid "Lat/Lon"
 msgstr "Lat/Lon"
 
-#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Search"
 msgstr "Pesquisar"
 

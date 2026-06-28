@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
-"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-24 19:34+0300\n"
+"Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
+"POT-Creation-Date: 2026-06-28 13:20-0500\n"
 "PO-Revision-Date: 2026-06-24 20:46+0300\n"
 "Last-Translator: кен\n"
 "Language-Team: ru\n"
@@ -25,293 +25,234 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: code/pws-api.js:124
-#, kde-format
+#: ../metadata.json
+msgid "Wunderground"
+msgstr ""
+
+#: ../metadata.json
+msgid "Wunderground Personal Weather Station viewer"
+msgstr ""
+
+#: ../contents/code/pws-api.js
 msgid "Could not send request"
 msgstr "Не удалось отправить запрос"
 
-#: code/pws-api.js:125
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "Network error"
 msgstr "Ошибка сети"
 
-#: code/pws-api.js:342 code/pws-api.js:423 code/pws-api.js:489
-#: code/pws-api.js:559 code/pws-api.js:631 code/pws-api.js:762
-#: code/pws-api.js:958 code/pws-api.js:1137 code/pws-api.js:1273
-#: code/pws-api.js:1381 code/pws-api.js:1463
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "network"
 msgstr "Сеть"
 
-#: code/pws-api.js:343 code/pws-api.js:424 code/pws-api.js:490
-#: code/pws-api.js:560 code/pws-api.js:632 code/pws-api.js:763
-#: code/pws-api.js:959 code/pws-api.js:1138 code/pws-api.js:1274
-#: code/pws-api.js:1382
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "Request failed"
 msgstr "Запрос не выполнен"
 
-#: code/pws-api.js:419 code/pws-api.js:485
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "No stations found"
 msgstr "Станции не найдены"
 
-#: code/pws-api.js:553
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "Location not found"
 msgstr "Местоположение не найдено"
 
-#: code/pws-api.js:643
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "No observation returned"
 msgstr "Результаты наблюдений отсутствуют"
 
-#: code/pws-api.js:773
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "No extended conditions returned"
 msgstr "Дополнительные условия не были возвращены"
 
-#: code/pws-api.js:1464
-#, kde-format
+#: ../contents/code/pws-api.js
 msgid "Failed to fetch KP index data"
 msgstr "Не удалось получить данные индекса КП"
 
-#: code/utils.js:258
-#, kde-format
+#: ../contents/code/utils.js
 msgid "N"
 msgstr "С"
 
-#: code/utils.js:259
-#, kde-format
+#: ../contents/code/utils.js
 msgid "NNE"
 msgstr "ССВ"
 
-#: code/utils.js:260
-#, kde-format
+#: ../contents/code/utils.js
 msgid "NE"
 msgstr "СВ"
 
-#: code/utils.js:261
-#, kde-format
+#: ../contents/code/utils.js
 msgid "ENE"
 msgstr "ВСВ"
 
-#: code/utils.js:262
-#, kde-format
+#: ../contents/code/utils.js
 msgid "E"
 msgstr "В"
 
-#: code/utils.js:263
-#, kde-format
+#: ../contents/code/utils.js
 msgid "ESE"
 msgstr "ВЮВ"
 
-#: code/utils.js:264
-#, kde-format
+#: ../contents/code/utils.js
 msgid "SE"
 msgstr "ЮВ"
 
-#: code/utils.js:265
-#, kde-format
+#: ../contents/code/utils.js
 msgid "SSE"
 msgstr "ЮЮВ"
 
-#: code/utils.js:266
-#, kde-format
+#: ../contents/code/utils.js
 msgid "S"
 msgstr "Ю"
 
-#: code/utils.js:267
-#, kde-format
+#: ../contents/code/utils.js
 msgid "SSW"
 msgstr "ЮЮЗ"
 
-#: code/utils.js:268
-#, kde-format
+#: ../contents/code/utils.js
 msgid "SW"
 msgstr "ЮЗ"
 
-#: code/utils.js:269
-#, kde-format
+#: ../contents/code/utils.js
 msgid "WSW"
 msgstr "ЗЮЗ"
 
-#: code/utils.js:270
-#, kde-format
+#: ../contents/code/utils.js
 msgid "W"
 msgstr "З"
 
-#: code/utils.js:271
-#, kde-format
+#: ../contents/code/utils.js
 msgid "WNW"
 msgstr "ЗСЗ"
 
-#: code/utils.js:272
-#, kde-format
+#: ../contents/code/utils.js
 msgid "NW"
 msgstr "СЗ"
 
-#: code/utils.js:273
-#, kde-format
+#: ../contents/code/utils.js
 msgid "NNW"
 msgstr "ССЗ"
 
-#: code/utils.js:862 code/utils.js:869 ui/config/ConfigUnits.qml:308
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "kmh"
 msgstr "км/ч"
 
-#: code/utils.js:864 code/utils.js:866 code/utils.js:871
-#: ui/config/ConfigUnits.qml:308
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mph"
 msgstr "миль/ч"
 
-#: code/utils.js:873 ui/config/ConfigUnits.qml:308
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "m/s"
 msgstr "м/с"
 
-#: code/utils.js:924 code/utils.js:931 ui/config/ConfigUnits.qml:358
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "m"
 msgstr "м"
 
-#: code/utils.js:926 code/utils.js:928 code/utils.js:933
-#: ui/config/ConfigUnits.qml:358
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "ft"
 msgstr "фут"
 
-#: code/utils.js:1009 code/utils.js:1017 code/utils.js:1026 code/utils.js:1036
-#: ui/config/ConfigUnits.qml:318 ui/config/ConfigUnits.qml:328
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mm"
 msgstr "мм"
 
-#: code/utils.js:1011 code/utils.js:1019 code/utils.js:1032 code/utils.js:1042
-#: ui/config/ConfigUnits.qml:318 ui/config/ConfigUnits.qml:328
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "cm"
 msgstr "см"
 
-#: code/utils.js:1014 code/utils.js:1030 code/utils.js:1040
-#: ui/config/ConfigUnits.qml:318 ui/config/ConfigUnits.qml:328
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "in"
 msgstr "дюйм"
 
-#: code/utils.js:1102 code/utils.js:1106 code/utils.js:1109
-#: ui/config/ConfigUnits.qml:348
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mb"
 msgstr "мб"
 
-#: code/utils.js:1104 code/utils.js:1111 ui/config/ConfigUnits.qml:348
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "inHG"
 msgstr "дюйм рт.ст."
 
-#: code/utils.js:1113 ui/config/ConfigUnits.qml:348
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mmHG"
 msgstr "мм рт. ст."
 
-#: code/utils.js:1115 code/utils.js:1119 ui/config/ConfigUnits.qml:348
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "hPa"
 msgstr "гПа"
 
-#: code/utils.js:1117 ui/config/ConfigUnits.qml:348
-#, kde-format
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "psi"
 msgstr "фут-сила"
 
-#: code/utils.js:1274
-#, kde-format
+#: ../contents/code/utils.js
 msgid "To sunrise"
 msgstr "До восхода солнца"
 
-#: code/utils.js:1284
-#, kde-format
+#: ../contents/code/utils.js
 msgctxt "Daylight remaining time, keep short"
 msgid "Remaining"
 msgstr "Осталось"
 
-#: code/utils.js:1290
-#, kde-format
+#: ../contents/code/utils.js
 msgid "Since sunset"
 msgstr "С захода солнца"
 
-#: config/config.qml:21
-#, kde-format
+#: ../contents/config/config.qml
 msgid "Station"
 msgstr "Станция"
 
-#: config/config.qml:27
-#, kde-format
+#: ../contents/config/config.qml
 msgid "Appearance"
 msgstr "Внешний вид"
 
-#: config/config.qml:33
-#, kde-format
+#: ../contents/config/config.qml
 msgid "Layout"
 msgstr "Дизайн"
 
-#: config/config.qml:39 ui/config/ConfigUnits.qml:290
-#, kde-format
+#: ../contents/config/config.qml ../contents/ui/config/ConfigUnits.qml
 msgid "Units"
 msgstr "Единицы"
 
-#: config/config.qml:45
-#, kde-format
+#: ../contents/config/config.qml
 msgid "Debug"
 msgstr "Отладка"
 
-#: ui/AirAndSolarItem.qml:39 ui/AirAndSolarItem.qml:343
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Comfortable"
 msgstr "Комфортная"
 
-#: ui/AirAndSolarItem.qml:41 ui/AirAndSolarItem.qml:345
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Moderate"
 msgstr "Умеренная"
 
-#: ui/AirAndSolarItem.qml:43 ui/AirAndSolarItem.qml:347
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Unfavorable"
 msgstr "Неблагоприятная"
 
-#: ui/AirAndSolarItem.qml:72
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Air quality"
 msgstr "Качество воздуха"
 
-#: ui/AirAndSolarItem.qml:116 ui/AirAndSolarItem.qml:257
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgctxt "Air Quality Index"
 msgid "AQI"
 msgstr ""
 
-#: ui/AirAndSolarItem.qml:146 ui/AirAndSolarItem.qml:269
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgctxt "Air Quality Health Index"
 msgid "AQHI"
 msgstr ""
 
-#: ui/AirAndSolarItem.qml:205 ui/AlertsItem.qml:35
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml ../contents/ui/AlertsItem.qml
 msgid "Alerts"
 msgstr "Оповещения"
 
-#: ui/AirAndSolarItem.qml:215 ui/AirAndSolarItem.qml:461
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Info"
 msgstr "Сведения"
 
-#: ui/AirAndSolarItem.qml:263
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid ""
 "The AQI is a measure of air quality that takes into account the levels of "
 "various pollutants in the air. It ranges from 0 to 500, with higher values "
@@ -323,31 +264,28 @@ msgstr ""
 "уровни различных загрязняющих веществ в воздухе. Он варьируется от 0 до 500, "
 "при этом более высокие значения указывают на худшее качество воздуха. AQI от "
 "0 до 50 считается хорошим, от 51 до 100 — умеренным, от 101 до 150 — "
-"нездоровым для чувствительных групп населения, от 151 до 200 — нездоровым, от "
-"201 до 300 — очень нездоровым, а от 301 до 500 — опасным."
+"нездоровым для чувствительных групп населения, от 151 до 200 — нездоровым, "
+"от 201 до 300 — очень нездоровым, а от 301 до 500 — опасным."
 
-#: ui/AirAndSolarItem.qml:275
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid ""
 "The AQHI is a measure of how the air quality may affect human health. It "
 "ranges from 1 to 10+, with higher values indicating more unfavorable "
-"conditions for health. An AQHI of 1-3 is considered low risk, 4-6 is moderate "
-"risk, 7-10 is high risk, and 10+ is very high risk."
+"conditions for health. An AQHI of 1-3 is considered low risk, 4-6 is "
+"moderate risk, 7-10 is high risk, and 10+ is very high risk."
 msgstr ""
 "Индекс качества воздуха (AQHI) — это показатель того, как качество воздуха "
-"может влиять на здоровье человека. Он варьируется от 1 до 10+, при этом более "
-"высокие значения указывают на более неблагоприятные условия для здоровья. "
-"Значение AQHI от 1 до 3 считается низким риском, от 4 до 6 — умеренным "
-"риском, от 7 до 10 — высоким риском, а 10+ — очень высоким риском."
+"может влиять на здоровье человека. Он варьируется от 1 до 10+, при этом "
+"более высокие значения указывают на более неблагоприятные условия для "
+"здоровья. Значение AQHI от 1 до 3 считается низким риском, от 4 до 6 — "
+"умеренным риском, от 7 до 10 — высоким риском, а 10+ — очень высоким риском."
 
-#: ui/AirAndSolarItem.qml:281
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgctxt "Particulate Matter"
 msgid "PM2.5"
 msgstr ""
 
-#: ui/AirAndSolarItem.qml:287
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid ""
 "Particulate matter (PM2.5) is a measure of the amount of solid particles and "
 "liquid droplets suspended in the air. It can have serious health effects, "
@@ -357,47 +295,40 @@ msgstr ""
 "капель, взвешенных в воздухе. Они могут оказывать серьезное воздействие на "
 "здоровье, особенно на дыхательную и сердечно-сосудистую системы."
 
-#: ui/AirAndSolarItem.qml:322
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Solar info"
 msgstr "Информация о солнечной энергии"
 
-#: ui/AirAndSolarItem.qml:370 ui/AirAndSolarItem.qml:489
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgctxt "See: https://www.swpc.noaa.gov/products/planetary-k-index"
 msgid "Kp-index"
 msgstr "Kp‑индекс"
 
-#: ui/AirAndSolarItem.qml:400
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Power"
 msgstr "Мощность"
 
-#: ui/AirAndSolarItem.qml:430 ui/AirAndSolarItem.qml:501
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Health index"
 msgstr "Индекс здоровья"
 
-#: ui/AirAndSolarItem.qml:471
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid "Details"
 msgstr "Сведения"
 
-#: ui/AirAndSolarItem.qml:495
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid ""
 "The Kp-index is a measure of geomagnetic activity. It ranges from 0 to 9, "
 "with higher values indicating more intense geomagnetic storms. A Kp-index of "
 "0-3 is considered quiet, 4-5 is unsettled, 6-7 is active, and 8-9 is storm-"
 "level activity."
 msgstr ""
-"Индекс Kp — это показатель геомагнитной активности. Он варьируется от 0 до 9, "
-"причем более высокие значения указывают на более интенсивные геомагнитные "
-"бури. Индекс Kp от 0 до 3 считается спокойным, от 4 до 5 — неустойчивым, от 6 "
-"до 7 — активным, а от 8 до 9 — бурным."
+"Индекс Kp — это показатель геомагнитной активности. Он варьируется от 0 до "
+"9, причем более высокие значения указывают на более интенсивные геомагнитные "
+"бури. Индекс Kp от 0 до 3 считается спокойным, от 4 до 5 — неустойчивым, от "
+"6 до 7 — активным, а от 8 до 9 — бурным."
 
-#: ui/AirAndSolarItem.qml:507
-#, kde-format
+#: ../contents/ui/AirAndSolarItem.qml
 msgid ""
 "The health index is a measure of how the solar conditions combined with "
 "pressure changes may affect human health. It ranges from 0 to 10+, with "
@@ -408,855 +339,692 @@ msgstr ""
 "Индекс здоровья — это показатель того, как солнечные условия в сочетании с "
 "изменениями давления могут влиять на здоровье человека. Он варьируется от 0 "
 "до 10+, при этом более высокие значения указывают на более неблагоприятные "
-"условия для здоровья. Индекс здоровья от 0 до 2 считается комфортным, от 3 до "
-"5 — умеренным, а 6+ — неблагоприятным."
+"условия для здоровья. Индекс здоровья от 0 до 2 считается комфортным, от 3 "
+"до 5 — умеренным, а 6+ — неблагоприятным."
 
-#: ui/AlertsItem.qml:45
-#, kde-format
+#: ../contents/ui/AlertsItem.qml
 msgid "There are no alerts for your area."
 msgstr "Для вашего региона оповещений нет."
 
-#: ui/AlertsItem.qml:85
-#, kde-format
+#: ../contents/ui/AlertsItem.qml
 msgid "Severity: %1"
 msgstr "Серьезность: %1"
 
-#: ui/AlertsItem.qml:86
-#, kde-format
+#: ../contents/ui/AlertsItem.qml
 msgid "Region: %1<br/>Action: %2<br/>Disclaimer: %3<br/>Issued by: %4"
 msgstr ""
-"Регион: %1<br/> Действие: %2<br/> Отказ от ответственности: %3<br/> Выдано: %4"
+"Регион: %1<br/> Действие: %2<br/> Отказ от ответственности: %3<br/> Выдано: "
+"%4"
 
-#: ui/BottomPanel.qml:136
-#, kde-format
+#: ../contents/ui/BottomPanel.qml
 msgid "There are weather alerts for your area!"
 msgstr "Для вашего региона доступны оповещения о погоде!"
 
-#: ui/config/ConfigAppearance.qml:57
-#, kde-format
-msgctxt "Use default font"
-msgid "Default"
-msgstr "По умолчанию"
-
-#: ui/config/ConfigAppearance.qml:141 ui/config/ConfigLayout.qml:162
-#, kde-format
-msgid "General"
-msgstr "Общие"
-
-#: ui/config/ConfigAppearance.qml:150
-#, kde-format
-msgid "Use system theme icons:"
-msgstr "Использовать значки системной темы:"
-
-#: ui/config/ConfigAppearance.qml:156
-#, kde-format
-msgid "Shown in tooltip:"
-msgstr "Показывать во всплывающей подсказке:"
-
-#: ui/config/ConfigAppearance.qml:162
-#, kde-format
-msgid "Station ID"
-msgstr "ID станции"
-
-#: ui/config/ConfigAppearance.qml:169 ui/config/ConfigStation.qml:68
-#, kde-format
-msgid "Station Name"
-msgstr "Название станции"
-
-#: ui/config/ConfigAppearance.qml:176
-#, kde-format
-msgid "Both"
-msgstr "Оба"
-
-#: ui/config/ConfigAppearance.qml:182 ui/config/ConfigLayout.qml:173
-#: ui/config/ConfigLayout.qml:190
-#, kde-format
-msgid "Full Representation"
-msgstr "Полное представление"
-
-#: ui/config/ConfigAppearance.qml:190
-#, kde-format
-msgid "Auto-color temperature:"
-msgstr "Автоматическая цветовая температура:"
-
-#: ui/config/ConfigAppearance.qml:196
-#, kde-format
-msgid "Show time seconds:"
-msgstr "Показывать время в секундах:"
-
-#: ui/config/ConfigAppearance.qml:202
-#, kde-format
-msgid "Show blurb:"
-msgstr "Показывать краткое содержание:"
-
-#: ui/config/ConfigAppearance.qml:208
-#, kde-format
-msgid "Use default page:"
-msgstr "Использовать страницу по умолчанию:"
-
-#: ui/config/ConfigAppearance.qml:216 ui/SwitchPanel.qml:47
-#, kde-format
-msgid "Weather Details"
-msgstr "Информация о погоде"
-
-#: ui/config/ConfigAppearance.qml:216 ui/config/ConfigUnits.qml:264
-#: ui/SwitchPanel.qml:53
-#, kde-format
-msgid "Forecast"
-msgstr "Прогноз"
-
-#: ui/config/ConfigAppearance.qml:216 ui/SwitchPanel.qml:59
-#, kde-format
-msgid "Day Chart"
-msgstr "Дневной график"
-
-#: ui/config/ConfigAppearance.qml:216 ui/SwitchPanel.qml:65
-#, kde-format
-msgid "More Info"
-msgstr "Дополнительная информация"
-
-#: ui/config/ConfigAppearance.qml:218
-#, kde-format
-msgid "Default page shown:"
-msgstr "Страница по умолчанию:"
-
-#: ui/config/ConfigAppearance.qml:223
-#, kde-format
-msgid "Show pressure trend:"
-msgstr "Показывать тенденцию давления:"
-
-#: ui/config/ConfigAppearance.qml:227 ui/config/ConfigLayout.qml:180
-#: ui/config/ConfigLayout.qml:243
-#, kde-format
-msgid "Compact Representation"
-msgstr "Компактное представление"
-
-#: ui/config/ConfigAppearance.qml:238
-#, kde-format
-msgid "Choose a Font:"
-msgstr "Выбор шрифта:"
-
-#: ui/config/ConfigAppearance.qml:251
-#, kde-format
-msgid "Text size mode:"
-msgstr "Режим изменения размера текста:"
-
-#: ui/config/ConfigAppearance.qml:257 ui/config/ConfigAppearance.qml:309
-#, kde-format
-msgid "Automatic fit"
-msgstr "Автоматическая подгонка"
-
-#: ui/config/ConfigAppearance.qml:264 ui/config/ConfigAppearance.qml:316
-#, kde-format
-msgid "Exact size"
-msgstr "Точный размер"
-
-#: ui/config/ConfigAppearance.qml:270
-#, kde-format
-msgid "Text size"
-msgstr "Размер шрифта"
-
-#: ui/config/ConfigAppearance.qml:283 ui/config/ConfigAppearance.qml:335
-#: ui/config/ConfigLayout.qml:317 ui/config/ConfigLayout.qml:336
-#: ui/config/ConfigLayout.qml:355 ui/config/ConfigLayout.qml:374
-#: ui/config/ConfigLayout.qml:393
-#, kde-format
-msgctxt "pixels"
-msgid "px"
-msgstr "пикс."
-
-#: ui/config/ConfigAppearance.qml:291
-#, kde-format
-msgid "Text visible"
-msgstr "Видимость текста"
-
-#: ui/config/ConfigAppearance.qml:297
-#, kde-format
-msgid "Text drop shadow"
-msgstr "Тень от текста"
-
-#: ui/config/ConfigAppearance.qml:303
-#, kde-format
-msgid "Icon size mode:"
-msgstr "Режим изменения размера значка:"
-
-#: ui/config/ConfigAppearance.qml:322
-#, kde-format
-msgid "Icon size"
-msgstr "Размер значка"
-
-#: ui/config/ConfigAppearance.qml:343
-#, kde-format
-msgid "Icon visible"
-msgstr "Видимость значка"
-
-#: ui/config/ConfigAppearance.qml:348
-#, kde-format
-msgid "Icon drop shadow"
-msgstr "Тень от значка"
-
-#: ui/config/ConfigAppearance.qml:352
-#, kde-format
-msgid "System tray active timeout"
-msgstr "Таймаут активности в системном лотке"
-
-#: ui/config/ConfigAppearance.qml:362
-#, kde-format
-msgctxt "Abbreviation for seconds"
-msgid "sec"
-msgstr "сек"
-
-#: ui/config/ConfigDebug.qml:37
-#, kde-format
-msgid "Write to console.log:"
-msgstr "Записывать в console.log:"
-
-#: ui/config/ConfigDebug.qml:43
-#, kde-format
-msgid "Use Legacy Forecast API:"
-msgstr "Использовать устаревший API прогнозов:"
-
-#: ui/config/ConfigDebug.qml:49
-#, kde-format
-msgid "Startup time delay (ms):"
-msgstr "Задержка времени запуска (мс):"
-
-#: ui/config/ConfigLayout.qml:167
-#, kde-format
-msgid "Planar layout"
-msgstr "Плоская компоновка"
-
-#: ui/config/ConfigLayout.qml:185
-#, kde-format
-msgid "Used on the desktop or in a desktop grouper"
-msgstr "Используется на рабочем столе"
-
-#: ui/config/ConfigLayout.qml:199
-#, kde-format
-msgid "Property header text size"
-msgstr "Размер текста заголовка свойства"
-
-#: ui/config/ConfigLayout.qml:207
-#, kde-format
-msgid "Property text size"
-msgstr "Размер текста свойства"
-
-#: ui/config/ConfigLayout.qml:215
-#, kde-format
-msgid "Temperature text size"
-msgstr "Размер текста температуры"
-
-#: ui/config/ConfigLayout.qml:221 ui/config/ConfigLayout.qml:229
-#, kde-format
-msgid "small (16x16)"
-msgstr "Маленький (16x16)"
-
-#: ui/config/ConfigLayout.qml:221 ui/config/ConfigLayout.qml:229
-#, kde-format
-msgid "smallMedium (22x22)"
-msgstr "Малый средний (22x22)"
-
-#: ui/config/ConfigLayout.qml:221 ui/config/ConfigLayout.qml:229
-#, kde-format
-msgid "medium (32x32)"
-msgstr "Средний (32x32)"
-
-#: ui/config/ConfigLayout.qml:221 ui/config/ConfigLayout.qml:229
-#, kde-format
-msgid "large (48x48)"
-msgstr "Большой (48x48)"
-
-#: ui/config/ConfigLayout.qml:221 ui/config/ConfigLayout.qml:229
-#, kde-format
-msgid "huge (64x64)"
-msgstr "Очень большой (64x64)"
-
-#: ui/config/ConfigLayout.qml:221 ui/config/ConfigLayout.qml:229
-#, kde-format
-msgid "enormous (128x128)"
-msgstr "Огромный (128x128)"
-
-#: ui/config/ConfigLayout.qml:223
-#, kde-format
-msgid "Forecast icon size:"
-msgstr "Размер значка прогноза:"
-
-#: ui/config/ConfigLayout.qml:231
-#, kde-format
-msgid "Property icon size:"
-msgstr "Размер значка свойства:"
-
-#: ui/config/ConfigLayout.qml:239
-#, kde-format
-msgid "Top panel icon margins:"
-msgstr "Поля значка верхней панели:"
-
-#: ui/config/ConfigLayout.qml:248
-#, kde-format
-msgid "Layout type"
-msgstr "Тип шаблона"
-
-#: ui/config/ConfigLayout.qml:255
-#, kde-format
-msgid "Horizontal"
-msgstr "Горизонтальный"
-
-#: ui/config/ConfigLayout.qml:262
-#, kde-format
-msgid "Vertical"
-msgstr "Вертикальный"
-
-#: ui/config/ConfigLayout.qml:269
-#, kde-format
-msgid "Compressed"
-msgstr "Сжатый"
-
-#: ui/config/ConfigLayout.qml:274
-#, kde-format
-msgid "Layout type is not available in the system tray"
-msgstr "Тип компоновки недоступен в системном лотке"
-
-#: ui/config/ConfigLayout.qml:279
-#, kde-format
-msgid "Widget order"
-msgstr "Порядок виджетов"
-
-#: ui/config/ConfigLayout.qml:286
-#, kde-format
-msgid "Icon first"
-msgstr "Сначала значок"
-
-#: ui/config/ConfigLayout.qml:292
-#, kde-format
-msgid "Text first"
-msgstr "Сначала текст"
-
-#: ui/config/ConfigLayout.qml:297
-#, kde-format
-msgid "Widget order is not available in the system tray"
-msgstr "Порядок расположения виджетов недоступен в системном лотке"
-
-#: ui/config/ConfigLayout.qml:303
-#, kde-format
-msgid "Top Margin"
-msgstr "Верхнее поле"
-
-#: ui/config/ConfigLayout.qml:322
-#, kde-format
-msgid "Bottom Margin"
-msgstr "Нижнее поле"
-
-#: ui/config/ConfigLayout.qml:341
-#, kde-format
-msgid "Left Margin"
-msgstr "Левое поле"
-
-#: ui/config/ConfigLayout.qml:360
-#, kde-format
-msgid "Right Margin"
-msgstr "Правое поле"
-
-#: ui/config/ConfigLayout.qml:379
-#, kde-format
-msgid "Inner Margin"
-msgstr "На внутреннем поле"
-
-#: ui/config/ConfigStation.qml:52
-#, kde-format
-msgid "Saved Weather Stations"
-msgstr "Сохраненные метеостанции"
-
-#: ui/config/ConfigStation.qml:63
-#, kde-format
-msgid "ID"
-msgstr ""
-
-#: ui/config/ConfigStation.qml:73
-#, kde-format
-msgid "Latitude"
-msgstr "Широта"
-
-#: ui/config/ConfigStation.qml:78
-#, kde-format
-msgid "Longitude"
-msgstr "Долгота"
-
-#: ui/config/ConfigStation.qml:83
-#, kde-format
-msgid "Actions"
-msgstr "Действия"
-
-#: ui/config/ConfigStation.qml:120
-#, kde-format
-msgid "Select from Map"
-msgstr "Выбрать на карте"
-
-#: ui/config/ConfigStation.qml:126 ui/lib/StationMapSearcher.qml:46
-#: ui/lib/StationSearcher.qml:44
-#, kde-format
-msgid "Find Station"
-msgstr "Найти станцию"
-
-#: ui/config/ConfigStation.qml:132
-#, kde-format
-msgid "Manual Add"
-msgstr "Добавить вручную"
-
-#: ui/config/ConfigStation.qml:145
-#, kde-format
-msgid "Refresh period (s):"
-msgstr "Интервал обновления (сек):"
-
-#: ui/config/ConfigUnits.qml:99
-#, kde-format
-msgid "Time/Date Format"
-msgstr "Формат времени/даты"
-
-#: ui/config/ConfigUnits.qml:104
-#, kde-format
-msgid "Sun/Moon time format:"
-msgstr "Формат солнечного/лунного времени:"
-
-#: ui/config/ConfigUnits.qml:110 ui/config/ConfigUnits.qml:127
-#, kde-format
-msgid "12hr time"
-msgstr "12-часовой"
-
-#: ui/config/ConfigUnits.qml:110 ui/config/ConfigUnits.qml:127
-#, kde-format
-msgid "24hr time"
-msgstr "24-часовой"
-
-#: ui/config/ConfigUnits.qml:110 ui/config/ConfigUnits.qml:127
-#: ui/config/ConfigUnits.qml:166 ui/config/ConfigUnits.qml:298
-#, kde-format
-msgid "Custom"
-msgstr "Другое"
-
-#: ui/config/ConfigUnits.qml:121
-#, kde-format
-msgid "Day Chart time format:"
-msgstr "Формат времени дневного графика:"
-
-#: ui/config/ConfigUnits.qml:137
-#, kde-format
-msgid "Time format"
-msgstr "Формат времени"
-
-#: ui/config/ConfigUnits.qml:160
-#, kde-format
-msgid "Week forecast date format:"
-msgstr "Формат даты прогноза на неделю:"
-
-#: ui/config/ConfigUnits.qml:166
-#, kde-format
-msgid "Day"
-msgstr "День"
-
-#: ui/config/ConfigUnits.qml:166
-#, kde-format
-msgid "Day/Month"
-msgstr "День/Месяц"
-
-#: ui/config/ConfigUnits.qml:176
-#, kde-format
-msgid "Date format"
-msgstr "Формат даты"
-
-#: ui/config/ConfigUnits.qml:199
-#, kde-format
-msgid "Precision"
-msgstr "Точность"
-
-#: ui/config/ConfigUnits.qml:206
-#, kde-format
-msgid "Compact Rep Temperature"
-msgstr "Компактное представление температуры"
-
-#: ui/config/ConfigUnits.qml:220 ui/main.qml:169
-#, kde-format
-msgid "Temperature"
-msgstr "Температура"
-
-#: ui/config/ConfigUnits.qml:235 ui/DetailsItem.qml:356 ui/main.qml:193
-#, kde-format
-msgid "Wind & Gust"
-msgstr "Порывы ветра"
-
-#. i18n strings
-#: ui/config/ConfigUnits.qml:250 ui/DetailsItem.qml:189
-#, kde-format
-msgid "Feels like %1"
-msgstr "Ощущается как %1"
-
-#: ui/config/ConfigUnits.qml:278 ui/DetailsItem.qml:381
-#, kde-format
-msgid "Dew Point"
-msgstr "Точка росы"
-
-#: ui/config/ConfigUnits.qml:298
-#, kde-format
-msgctxt "The unit system"
-msgid "Metric"
-msgstr "Метрическая"
-
-#: ui/config/ConfigUnits.qml:298
-#, kde-format
-msgctxt "The unit system"
-msgid "Imperial"
-msgstr "Американская"
-
-#: ui/config/ConfigUnits.qml:298
-#, kde-format
-msgctxt "The unit system"
-msgid "Hybrid (UK)"
-msgstr "Британская"
-
-#: ui/config/ConfigUnits.qml:300
-#, kde-format
-msgid "Choose:"
-msgstr "Еденицы измерения:"
-
-#: ui/config/ConfigUnits.qml:310
-#, kde-format
-msgid "Wind unit:"
-msgstr "Ветровой блок:"
-
-#: ui/config/ConfigUnits.qml:320
-#, kde-format
-msgid "Rain unit:"
-msgstr "Дождевой блок:"
-
-#: ui/config/ConfigUnits.qml:330
-#, kde-format
-msgid "Snow unit:"
-msgstr "Снежный блок:"
-
-#: ui/config/ConfigUnits.qml:338
-#, kde-format
-msgid "C"
-msgstr ""
-
-#: ui/config/ConfigUnits.qml:338
-#, kde-format
-msgid "F"
-msgstr "Ф"
-
-#: ui/config/ConfigUnits.qml:338
-#, kde-format
-msgid "K"
-msgstr ""
-
-#: ui/config/ConfigUnits.qml:340
-#, kde-format
-msgid "Temperature unit:"
-msgstr "Единица измерения температуры:"
-
-#: ui/config/ConfigUnits.qml:350
-#, kde-format
-msgid "Pressure unit:"
-msgstr "Единица измерения давления:"
-
-#: ui/config/ConfigUnits.qml:360
-#, kde-format
-msgid "Elevation unit:"
-msgstr "Единица измерения высоты:"
-
-#: ui/DayChartItem.qml:350
-#, kde-format
+#: ../contents/ui/DayChartItem.qml
 msgctxt "per 12 hours, please keep it short"
 msgid "/12h"
 msgstr "/12ч"
 
-#: ui/DetailsItem.qml:73
-#, kde-format
-msgid "day length"
-msgstr "Продолжительность дня"
+#. i18n strings
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Feels like %1"
+msgstr "Ощущается как %1"
 
-#: ui/DetailsItem.qml:149
-#, kde-format
-msgid "day remaining"
-msgstr "Оставшийся день"
-
-#: ui/DetailsItem.qml:297 ui/DetailsItem.qml:312
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Wind Barb"
 msgstr "Ветровая метка"
 
-#: ui/DetailsItem.qml:298 ui/DetailsItem.qml:317
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Wind direction and speed indicator"
 msgstr "Индикатор направления и скорости ветра"
 
-#: ui/DetailsItem.qml:323
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Learn more"
 msgstr "Узнать больше"
 
-#: ui/DetailsItem.qml:332
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Wind from: %1 (%2°)"
 msgstr "Направление ветра: %1 (%2°)"
 
-#: ui/DetailsItem.qml:406
-#, kde-format
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+#: ../contents/ui/main.qml
+msgid "Wind & Gust"
+msgstr "Порывы ветра"
+
+#: ../contents/ui/DetailsItem.qml ../contents/ui/config/ConfigUnits.qml
+msgid "Dew Point"
+msgstr "Точка росы"
+
+#: ../contents/ui/DetailsItem.qml
 msgid "Precip Rate"
 msgstr "Скорость выпадения осадков"
 
-#: ui/DetailsItem.qml:431 ui/main.qml:197
-#, kde-format
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Pressure"
 msgstr "Давление"
 
-#: ui/DetailsItem.qml:461
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Pressure has risen %1 in the last three hours."
 msgstr "Давление выросло на %1 за последние три часа."
 
-#: ui/DetailsItem.qml:463
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Pressure has fallen %1 in the last three hours."
 msgstr "Давление упало на %1 за последние три часа."
 
-#: ui/DetailsItem.qml:482 ui/main.qml:173
-#, kde-format
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "Humidity"
 msgstr "Влажность"
 
-#: ui/DetailsItem.qml:507
-#, kde-format
+#: ../contents/ui/DetailsItem.qml
 msgid "Precip Accum"
 msgstr "Накопленные осадки"
 
-#: ui/DetailsItem.qml:532 ui/main.qml:201
-#, kde-format
+#: ../contents/ui/DetailsItem.qml ../contents/ui/main.qml
 msgid "UV"
 msgstr "Ультрафиолет"
 
-#: ui/ForecastItem.qml:83 ui/ForecastItem.qml:106
-#, kde-format
+#: ../contents/ui/ForecastItem.qml
 msgctxt "Do not edit HTML tags."
 msgid ""
 "<font size='4'>Feels like: %1<br/>Thunder: %2<br/>UV: %3<br/>Snow: %4<br/"
 ">Golf: %5</font>"
 msgstr ""
-"<font size='4'>Ощущается как: %1<br/> Гром: %2<br/> УФ: %3<br/> Снег: %4<br/> "
-"Гольф: %5</font>"
+"<font size='4'>Ощущается как: %1<br/> Гром: %2<br/> УФ: %3<br/> Снег: %4<br/"
+"> Гольф: %5</font>"
 
-#: ui/FullRepresentation.qml:66
-#, kde-format
+#: ../contents/ui/FullRepresentation.qml
 msgid "Sorry! The widget ran into a network error: "
 msgstr "Извините! Виджет столкнулся с сетевой ошибкой:"
 
-#: ui/FullRepresentation.qml:78
-#, kde-format
+#: ../contents/ui/FullRepresentation.qml
 msgid "Refresh Weather"
 msgstr "Обновить погоду"
 
-#: ui/FullRepresentation.qml:87
-#, kde-format
-msgid "Copy to Clipboard"
-msgstr "Копировать в буфер обмена"
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+msgid "Weather Details"
+msgstr "Информация о погоде"
 
-#: ui/lib/BackgroundToggle.qml:11
-#, kde-format
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Forecast"
+msgstr "Прогноз"
+
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+msgid "Day Chart"
+msgstr "Дневной график"
+
+#: ../contents/ui/SwitchPanel.qml ../contents/ui/config/ConfigAppearance.qml
+msgid "More Info"
+msgstr "Дополнительная информация"
+
+#: ../contents/ui/TopPanel.qml
+msgid "High: %1 Low: %2"
+msgstr "Высшая: %1 Низшая: %2"
+
+#: ../contents/ui/TopPanel.qml ../contents/ui/main.qml
+msgid "Loading..."
+msgstr "Загрузка..."
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Use default font"
+msgid "Default"
+msgstr "По умолчанию"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "General"
+msgstr "Общие"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Use system theme icons:"
+msgstr "Использовать значки системной темы:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Shown in tooltip:"
+msgstr "Показывать во всплывающей подсказке:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Station ID"
+msgstr "ID станции"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Station Name"
+msgstr "Название станции"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Both"
+msgstr "Оба"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Full Representation"
+msgstr "Полное представление"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Auto-color temperature:"
+msgstr "Автоматическая цветовая температура:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show time seconds:"
+msgstr "Показывать время в секундах:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show blurb:"
+msgstr "Показывать краткое содержание:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Use default page:"
+msgstr "Использовать страницу по умолчанию:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Default page shown:"
+msgstr "Страница по умолчанию:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Show pressure trend:"
+msgstr "Показывать тенденцию давления:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Compact Representation"
+msgstr "Компактное представление"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Choose a Font:"
+msgstr "Выбор шрифта:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text size mode:"
+msgstr "Режим изменения размера текста:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Automatic fit"
+msgstr "Автоматическая подгонка"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Exact size"
+msgstr "Точный размер"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text size"
+msgstr "Размер шрифта"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+#: ../contents/ui/config/ConfigLayout.qml
+msgctxt "pixels"
+msgid "px"
+msgstr "пикс."
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text visible"
+msgstr "Видимость текста"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Text drop shadow"
+msgstr "Тень от текста"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size mode:"
+msgstr "Режим изменения размера значка:"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon size"
+msgstr "Размер значка"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon visible"
+msgstr "Видимость значка"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "Icon drop shadow"
+msgstr "Тень от значка"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgid "System tray active timeout"
+msgstr "Таймаут активности в системном лотке"
+
+#: ../contents/ui/config/ConfigAppearance.qml
+msgctxt "Abbreviation for seconds"
+msgid "sec"
+msgstr "сек"
+
+#: ../contents/ui/config/ConfigDebug.qml
+msgid "Write to console.log:"
+msgstr "Записывать в console.log:"
+
+#: ../contents/ui/config/ConfigDebug.qml
+msgid "Use Legacy Forecast API:"
+msgstr "Использовать устаревший API прогнозов:"
+
+#: ../contents/ui/config/ConfigDebug.qml
+msgid "Startup time delay (ms):"
+msgstr "Задержка времени запуска (мс):"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Planar layout"
+msgstr "Плоская компоновка"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Used on the desktop or in a desktop grouper"
+msgstr "Используется на рабочем столе"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property header text size"
+msgstr "Размер текста заголовка свойства"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property text size"
+msgstr "Размер текста свойства"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Temperature text size"
+msgstr "Размер текста температуры"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "small (16x16)"
+msgstr "Маленький (16x16)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "smallMedium (22x22)"
+msgstr "Малый средний (22x22)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "medium (32x32)"
+msgstr "Средний (32x32)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "large (48x48)"
+msgstr "Большой (48x48)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "huge (64x64)"
+msgstr "Очень большой (64x64)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "enormous (128x128)"
+msgstr "Огромный (128x128)"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Forecast icon size:"
+msgstr "Размер значка прогноза:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Property icon size:"
+msgstr "Размер значка свойства:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Top panel icon margins:"
+msgstr "Поля значка верхней панели:"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Layout type"
+msgstr "Тип шаблона"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Horizontal"
+msgstr "Горизонтальный"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Vertical"
+msgstr "Вертикальный"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Compressed"
+msgstr "Сжатый"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Layout type is not available in the system tray"
+msgstr "Тип компоновки недоступен в системном лотке"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Widget order"
+msgstr "Порядок виджетов"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Icon first"
+msgstr "Сначала значок"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Text first"
+msgstr "Сначала текст"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Widget order is not available in the system tray"
+msgstr "Порядок расположения виджетов недоступен в системном лотке"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Top Margin"
+msgstr "Верхнее поле"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Bottom Margin"
+msgstr "Нижнее поле"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Left Margin"
+msgstr "Левое поле"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Right Margin"
+msgstr "Правое поле"
+
+#: ../contents/ui/config/ConfigLayout.qml
+msgid "Inner Margin"
+msgstr "На внутреннем поле"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Saved Weather Stations"
+msgstr "Сохраненные метеостанции"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "ID"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Latitude"
+msgstr "Широта"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Longitude"
+msgstr "Долгота"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Actions"
+msgstr "Действия"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Select from Map"
+msgstr "Выбрать на карте"
+
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
+msgid "Find Station"
+msgstr "Найти станцию"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Manual Add"
+msgstr "Добавить вручную"
+
+#: ../contents/ui/config/ConfigStation.qml
+msgid "Refresh period (s):"
+msgstr "Интервал обновления (сек):"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time/Date Format"
+msgstr "Формат времени/даты"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Sun/Moon time format:"
+msgstr "Формат солнечного/лунного времени:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "12hr time"
+msgstr "12-часовой"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "24hr time"
+msgstr "24-часовой"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Custom"
+msgstr "Другое"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day Chart time format:"
+msgstr "Формат времени дневного графика:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Time format"
+msgstr "Формат времени"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Week forecast date format:"
+msgstr "Формат даты прогноза на неделю:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day"
+msgstr "День"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Day/Month"
+msgstr "День/Месяц"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Date format"
+msgstr "Формат даты"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Precision"
+msgstr "Точность"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Compact Rep Temperature"
+msgstr "Компактное представление температуры"
+
+#: ../contents/ui/config/ConfigUnits.qml ../contents/ui/main.qml
+msgid "Temperature"
+msgstr "Температура"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgctxt "The unit system"
+msgid "Metric"
+msgstr "Метрическая"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgctxt "The unit system"
+msgid "Imperial"
+msgstr "Американская"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgctxt "The unit system"
+msgid "Hybrid (UK)"
+msgstr "Британская"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Choose:"
+msgstr "Еденицы измерения:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Wind unit:"
+msgstr "Ветровой блок:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Rain unit:"
+msgstr "Дождевой блок:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Snow unit:"
+msgstr "Снежный блок:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "C"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "F"
+msgstr "Ф"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "K"
+msgstr ""
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Temperature unit:"
+msgstr "Единица измерения температуры:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Pressure unit:"
+msgstr "Единица измерения давления:"
+
+#: ../contents/ui/config/ConfigUnits.qml
+msgid "Elevation unit:"
+msgstr "Единица измерения высоты:"
+
+#: ../contents/ui/lib/BackgroundToggle.qml
 msgid "Desktop Widget:"
 msgstr "Виджет рабочего стола:"
 
-#: ui/lib/BackgroundToggle.qml:12
-#, kde-format
-msgid "Show Background"
-msgstr "Показывать фон"
-
-#: ui/lib/ConfigBtn.qml:23
-#, kde-format
+#: ../contents/ui/lib/ConfigBtn.qml
 msgid "Configure Wunderground"
 msgstr "Настроить Wunderground"
 
-#: ui/lib/ManualStationAdd.qml:55
-#, kde-format
+#: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Add Station..."
 msgstr "Добавить станцию..."
 
-#: ui/lib/ManualStationAdd.qml:66
-#, kde-format
+#: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Enter station ID"
 msgstr "Введите идентификатор станции"
 
-#: ui/lib/ManualStationAdd.qml:72
-#, kde-format
+#: ../contents/ui/lib/ManualStationAdd.qml
 msgid "Enter station name (optional)"
 msgstr "Введите название станции (необязательно)"
 
-#: ui/lib/ManualStationAdd.qml:80 ui/lib/StationMapSearcher.qml:639
-#: ui/lib/StationSearcher.qml:415
-#, kde-format
+#: ../contents/ui/lib/ManualStationAdd.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Confirm"
 msgstr "Подтвердить"
 
-#: ui/lib/ManualStationAdd.qml:91 ui/lib/StationMapSearcher.qml:649
-#: ui/lib/StationSearcher.qml:425
-#, kde-format
+#: ../contents/ui/lib/ManualStationAdd.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Cancel"
 msgstr "Отмена"
 
-#: ui/lib/StationListDelegate.qml:172 ui/lib/StationSearcher.qml:390
-#, kde-format
+#: ../contents/ui/lib/StationListDelegate.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Select"
 msgstr "Выбрать"
 
-#: ui/lib/StationListDelegate.qml:181
-#, kde-format
+#: ../contents/ui/lib/StationListDelegate.qml
 msgid "Edit Name"
 msgstr "Изменить название"
 
-#: ui/lib/StationListDelegate.qml:193
-#, kde-format
+#: ../contents/ui/lib/StationListDelegate.qml
 msgid "Remove"
 msgstr "Удалять"
 
-#: ui/lib/StationMapSearcher.qml:114 ui/lib/StationSearcher.qml:122
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
 msgstr "Поиск по:"
 
-#: ui/lib/StationMapSearcher.qml:119
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Area Name"
 msgstr "Название района"
 
-#: ui/lib/StationMapSearcher.qml:119 ui/lib/StationSearcher.qml:126
-#: ui/lib/StationSearcher.qml:326
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation ID:"
 msgstr "ID метеостанции:"
 
-#: ui/lib/StationMapSearcher.qml:119 ui/lib/StationSearcher.qml:126
-#: ui/lib/StationSearcher.qml:336
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Lat/Lon"
 msgstr "Широта/Долгота"
 
-#: ui/lib/StationMapSearcher.qml:144 ui/lib/StationSearcher.qml:145
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Search"
 msgstr "Поиск"
 
-#: ui/lib/StationMapSearcher.qml:273 ui/lib/StationSearcher.qml:299
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter Station"
 msgstr "Ввести станцию"
 
-#: ui/lib/StationMapSearcher.qml:273
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Enter city, state, locality, or address"
 msgstr "Введите город, район, населенный пункт или адрес."
 
-#: ui/lib/StationMapSearcher.qml:287
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Click or drag the marker on the map below."
 msgstr "Щелкните или перетащите маркер на карте ниже."
 
-#: ui/lib/StationMapSearcher.qml:298 ui/lib/StationSearcher.qml:238
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Searching place:"
 msgstr "Место поиска:"
 
-#: ui/lib/StationMapSearcher.qml:310 ui/lib/StationSearcher.qml:250
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Choose"
 msgstr "Выбрать"
 
-#: ui/lib/StationMapSearcher.qml:363
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Searching by Weatherstation ID. Example: KGADACUL1"
 msgstr "Поиск по идентификатору метеостанции. Пример: KGADACUL1"
 
-#: ui/lib/StationMapSearcher.qml:370
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Selected latitude: %1, longitude: %2"
 msgstr "Выбранная широта: %1, долгота: %2"
 
-#: ui/lib/StationMapSearcher.qml:378
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Error (%1): %2"
 msgstr "Ошибка (%1): %2"
 
-#: ui/lib/StationMapSearcher.qml:577
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: ui/lib/StationMapSearcher.qml:578
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Station has failed quality checks and may provide unreliable data."
 msgstr ""
 "Станция не прошла проверку качества и может предоставлять недостоверные "
 "данные."
 
-#: ui/lib/StationMapSearcher.qml:584
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Station Health: %1%"
 msgstr "Состояние станции: %1%"
 
-#: ui/lib/StationMapSearcher.qml:590
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Test Station"
 msgstr "Тестовая станция"
 
-#: ui/lib/StationMapSearcher.qml:628
-#, kde-format
+#: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Selected Station: %1 (%2)"
 msgstr "Выбранная станция: %1 (%2)"
 
-#: ui/lib/StationSearcher.qml:69
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: %1 message: %2"
 msgstr "Ошибка: %1 сообщение: %2"
 
-#: ui/lib/StationSearcher.qml:86
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Station active!"
 msgstr "Станция активна!"
 
-#: ui/lib/StationSearcher.qml:86 ui/lib/StationSearcher.qml:88
-#: ui/lib/StationSearcher.qml:90 ui/lib/StationSearcher.qml:92
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Reporting %1% of properties."
 msgstr "Сообщается о %1% свойствах."
 
-#: ui/lib/StationSearcher.qml:88
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Station active."
 msgstr "Станция активна."
 
-#: ui/lib/StationSearcher.qml:90
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Station unhealthy."
 msgstr "Станция неисправна."
 
-#: ui/lib/StationSearcher.qml:92
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: Bad station."
 msgstr "Ошибка: Неисправная станция."
 
-#: ui/lib/StationSearcher.qml:95
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Error: Station not active!"
 msgstr "Ошибка: Станция неактивна!"
 
-#: ui/lib/StationSearcher.qml:126
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "City Name"
 msgstr "Название города"
 
-#: ui/lib/StationSearcher.qml:283
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Uses WGS84 geocode coordinates"
 msgstr "Геокод в формате WGS84"
 
-#: ui/lib/StationSearcher.qml:291
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid ""
 "Use Station ID, not city name. Select 'Search by: City Name' to search by "
 "city."
@@ -1264,77 +1032,70 @@ msgstr ""
 "Использовать идентификатор станции, а не название города. Выбрать «Поиск по "
 "названию города», чтобы искать по городу."
 
-#: ui/lib/StationSearcher.qml:299
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Enter City Name"
 msgstr "Введите название города"
 
-#: ui/lib/StationSearcher.qml:309
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Latitude:"
 msgstr "Широта:"
 
-#: ui/lib/StationSearcher.qml:315
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Longitude:"
 msgstr "Долгота:"
 
-#: ui/lib/StationSearcher.qml:331
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Weatherstation Name:"
 msgstr "Название метеостанции:"
 
-#: ui/lib/StationSearcher.qml:381
-#, kde-format
+#: ../contents/ui/lib/StationSearcher.qml
 msgid "Test"
 msgstr "Проверить"
 
-#: ui/main.qml:177
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Cloud Cover"
 msgstr "Облачный покров"
 
-#: ui/main.qml:181
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Precipitation Chance"
 msgstr "Вероятность осадков"
 
-#: ui/main.qml:185
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Precipitation Rate"
 msgstr "Количество Осадков"
 
-#: ui/main.qml:189
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Snow Precipitation Rate"
 msgstr "Норма выпадения снега"
 
-#: ui/main.qml:642
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Set the weather station to pull data from."
 msgstr "Конфигурация метеостанции, с которой будут извлекаться данные."
 
-#: ui/main.qml:667
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Please Configure"
 msgstr "Настроить"
 
-#: ui/main.qml:673 ui/TopPanel.qml:71 ui/TopPanel.qml:83
-#, kde-format
-msgid "Loading..."
-msgstr "Загрузка..."
-
-#: ui/main.qml:675
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Error..."
 msgstr "Ошибка..."
 
-#: ui/main.qml:704
-#, kde-format
+#: ../contents/ui/main.qml
 msgid "Refresh weather"
 msgstr "Обновить погоду"
 
-#: ui/TopPanel.qml:71
 #, kde-format
-msgid "High: %1 Low: %2"
-msgstr "Высшая: %1 Низшая: %2"
+#~ msgid "day length"
+#~ msgstr "Продолжительность дня"
+
+#, kde-format
+#~ msgid "day remaining"
+#~ msgstr "Оставшийся день"
+
+#, kde-format
+#~ msgid "Copy to Clipboard"
+#~ msgstr "Копировать в буфер обмена"
+
+#, kde-format
+#~ msgid "Show Background"
+#~ msgstr "Показывать фон"
