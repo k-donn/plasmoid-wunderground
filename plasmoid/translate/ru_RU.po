@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-06-28 13:20-0500\n"
+"POT-Creation-Date: 2026-06-28 16:21-0500\n"
 "PO-Revision-Date: 2026-06-24 20:46+0300\n"
 "Last-Translator: кен\n"
 "Language-Team: ru\n"
@@ -70,68 +70,99 @@ msgid "Failed to fetch KP index data"
 msgstr "Не удалось получить данные индекса КП"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for North"
 msgid "N"
 msgstr "С"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for North Northeast"
 msgid "NNE"
 msgstr "ССВ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for Northeast"
 msgid "NE"
 msgstr "СВ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for East Northeast"
 msgid "ENE"
 msgstr "ВСВ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for East"
 msgid "E"
 msgstr "В"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for East Southeast"
 msgid "ESE"
 msgstr "ВЮВ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for Southeast"
 msgid "SE"
 msgstr "ЮВ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for South Southeast"
 msgid "SSE"
 msgstr "ЮЮВ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for South"
 msgid "S"
 msgstr "Ю"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for South Southwest"
 msgid "SSW"
 msgstr "ЮЮЗ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for Southwest"
 msgid "SW"
 msgstr "ЮЗ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for West Southwest"
 msgid "WSW"
 msgstr "ЗЮЗ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for West"
 msgid "W"
 msgstr "З"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for West Northwest"
 msgid "WNW"
 msgstr "ЗСЗ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for Northwest"
 msgid "NW"
 msgstr "СЗ"
 
 #: ../contents/code/utils.js
+msgctxt "Abbreviation for North Northwest"
 msgid "NNW"
 msgstr "ССЗ"
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgctxt "Abbreviation for Celsius"
+msgid "C"
+msgstr ""
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgctxt "Abbreviation for Fahrenheit"
+msgid "F"
+msgstr "Ф"
+
+#: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgctxt "Abbreviation for Kelvin"
+msgid "K"
+msgstr ""
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "kmh"
@@ -146,6 +177,7 @@ msgid "m/s"
 msgstr "м/с"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgctxt "Abbreviation for Meters"
 msgid "m"
 msgstr "м"
 
@@ -162,6 +194,7 @@ msgid "cm"
 msgstr "см"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
+msgctxt "Abbreviation for Inches"
 msgid "in"
 msgstr "дюйм"
 
@@ -837,18 +870,6 @@ msgstr "Дождевой блок:"
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Snow unit:"
 msgstr "Снежный блок:"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "C"
-msgstr ""
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "F"
-msgstr "Ф"
-
-#: ../contents/ui/config/ConfigUnits.qml
-msgid "K"
-msgstr ""
 
 #: ../contents/ui/config/ConfigUnits.qml
 msgid "Temperature unit:"

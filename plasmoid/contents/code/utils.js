@@ -255,22 +255,22 @@ var severityColorMap = {
  */
 function windDirToCard(deg) {
 	var directions = [
-		i18n("N"),
-		i18n("NNE"),
-		i18n("NE"),
-		i18n("ENE"),
-		i18n("E"),
-		i18n("ESE"),
-		i18n("SE"),
-		i18n("SSE"),
-		i18n("S"),
-		i18n("SSW"),
-		i18n("SW"),
-		i18n("WSW"),
-		i18n("W"),
-		i18n("WNW"),
-		i18n("NW"),
-		i18n("NNW"),
+		i18nc("Abbreviation for North", "N"),
+		i18nc("Abbreviation for North Northeast", "NNE"),
+		i18nc("Abbreviation for Northeast", "NE"),
+		i18nc("Abbreviation for East Northeast", "ENE"),
+		i18nc("Abbreviation for East", "E"),
+		i18nc("Abbreviation for East Southeast", "ESE"),
+		i18nc("Abbreviation for Southeast", "SE"),
+		i18nc("Abbreviation for South Southeast", "SSE"),
+		i18nc("Abbreviation for South", "S"),
+		i18nc("Abbreviation for South Southwest", "SSW"),
+		i18nc("Abbreviation for Southwest", "SW"),
+		i18nc("Abbreviation for West Southwest", "WSW"),
+		i18nc("Abbreviation for West", "W"),
+		i18nc("Abbreviation for West Northwest", "WNW"),
+		i18nc("Abbreviation for Northwest", "NW"),
+		i18nc("Abbreviation for North Northwest", "NNW"),
 	];
 	deg *= 10;
 	return directions[Math.round((deg % 3600) / 255)];
@@ -794,18 +794,18 @@ function toUserTemp(value) {
 function rawTempUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res = "°C";
+		res = "°" + i18nc("Abbreviation for Celsius","C");
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		res = "°F";
+		res = "°" + i18nc("Abbreviation for Fahrenheit","F");
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
-		res = "°C";
+		res = "°" + i18nc("Abbreviation for Celsius","C");
 	} else {
 		if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.C) {
-			res = "°C";
+			res = "°" + i18nc("Abbreviation for Celsius","C");
 		} else if (plasmoid.configuration.tempUnitsChoice === TEMP_UNITS.F) {
-			res = "°F";
+			res = "°" + i18nc("Abbreviation for Fahrenheit","F");
 		} else {
-			res = "°K";
+			res = "°" + i18nc("Abbreviation for Kelvin","K");
 		}
 	}
 	return res;
@@ -921,14 +921,14 @@ function toUserElev(value) {
 function rawElevUnit() {
 	var res = "";
 	if (unitsChoice === UNITS_SYSTEM.METRIC) {
-		res = i18n("m");
+		res = i18nc("Abbreviation for Meters","m");
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
 		res = i18n("ft");
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		res = i18n("ft");
 	} else {
 		if (plasmoid.configuration.elevUnitsChoice === ELEV_UNITS.M) {
-			res = i18n("m");
+			res = i18nc("Abbreviation for Meters","m");
 		} else {
 			res = i18n("ft");
 		}
@@ -1011,7 +1011,7 @@ function rawPrecipUnit(isRain) {
 			res = i18n("cm");
 		}
 	} else if (unitsChoice === UNITS_SYSTEM.IMPERIAL) {
-		return (res = i18n("in"));
+		return (res = i18nc("Abbreviation for Inches","in"));
 	} else if (unitsChoice === UNITS_SYSTEM.HYBRID) {
 		if (isRain) {
 			res = i18n("mm");
@@ -1027,7 +1027,7 @@ function rawPrecipUnit(isRain) {
 			} else if (
 				plasmoid.configuration.rainUnitsChoice === RAIN_UNITS.IN
 			) {
-				res = i18n("in");
+				res = i18nc("Abbreviation for Inches","in");
 			} else {
 				res = i18n("cm");
 			}
@@ -1037,7 +1037,7 @@ function rawPrecipUnit(isRain) {
 			} else if (
 				plasmoid.configuration.snowUnitsChoice === SNOW_UNITS.IN
 			) {
-				res = i18n("in");
+				res = i18nc("Abbreviation for Inches","in");
 			} else {
 				res = i18n("cm");
 			}
