@@ -191,10 +191,16 @@ ColumnLayout {
                         bold: true
                         pointSize: plasmoid.configuration.propPointSize
                     }
+                    Layout.fillWidth: true
+                    horizontalAlignment: Text.AlignLeft
+                    wrapMode: Text.WordWrap
                 }
                 PlasmaComponents.Label {
                     text: conditionNarrative
                     font.pointSize: plasmoid.configuration.propPointSize
+                    Layout.fillWidth: true
+                    horizontalAlignment: Text.AlignLeft
+                    wrapMode: Text.WordWrap
                 }
             }
         }
