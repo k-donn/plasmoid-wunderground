@@ -711,8 +711,6 @@ function getWindBarbIcon(windSpeed) {
 		speedKts = kmhToKts(windSpeed);
 	}
 
-	printDebug(speedKts)
-
 	if (within(speedKts, 0, 2.9999)) {
 		fileName = "0-2";
 	} else if (within(speedKts, 3, 7.9999)) {
