@@ -27,23 +27,23 @@ msgstr "Meine Wetterstation"
 
 #: ../contents/code/pws-api.js
 msgid "Could not send request"
-msgstr ""
+msgstr "Anfrage konnte nicht gesendet werden"
 
 #: ../contents/code/pws-api.js
 msgid "Network error"
-msgstr ""
+msgstr "Netzwerkfehler"
 
 #: ../contents/code/pws-api.js
 msgid "network"
-msgstr ""
+msgstr "Netzwerk"
 
 #: ../contents/code/pws-api.js
 msgid "Request failed"
-msgstr ""
+msgstr "Die Anfrage ist fehlgeschlagen"
 
 #: ../contents/code/pws-api.js
 msgid "No stations found"
-msgstr ""
+msgstr "Keine Station gefunden"
 
 #: ../contents/code/pws-api.js
 msgid "Location not found"
@@ -51,30 +51,30 @@ msgstr "Standort nicht gefunden"
 
 #: ../contents/code/pws-api.js
 msgid "No observation returned"
-msgstr ""
+msgstr "Keine Beobachtungen zurückgegeben"
 
 #: ../contents/code/pws-api.js
 msgid "No extended conditions returned"
-msgstr ""
+msgstr "Es wurden keine erweiterten Bedingungen zurückgegeben"
 
 #: ../contents/code/pws-api.js
 msgid "Failed to fetch KP index data"
-msgstr ""
+msgstr "Das Abrufen der KP-Indexdaten ist fehlgeschlagen"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for North"
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for North Northeast"
 msgid "NNE"
-msgstr ""
+msgstr "NNO"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for Northeast"
 msgid "NE"
-msgstr ""
+msgstr "NO"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for East Northeast"
@@ -84,131 +84,131 @@ msgstr ""
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for East"
 msgid "E"
-msgstr ""
+msgstr "O"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for East Southeast"
 msgid "ESE"
-msgstr ""
+msgstr "OSO"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for Southeast"
 msgid "SE"
-msgstr ""
+msgstr "SO"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for South Southeast"
 msgid "SSE"
-msgstr ""
+msgstr "SSO"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for South"
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for South Southwest"
 msgid "SSW"
-msgstr ""
+msgstr "SSW"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for Southwest"
 msgid "SW"
-msgstr ""
+msgstr "SW"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for West Southwest"
 msgid "WSW"
-msgstr ""
+msgstr "WSW"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for West"
 msgid "W"
-msgstr ""
+msgstr "W"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for West Northwest"
 msgid "WNW"
-msgstr ""
+msgstr "WNW"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for Northwest"
 msgid "NW"
-msgstr ""
+msgstr "NW"
 
 #: ../contents/code/utils.js
 msgctxt "Abbreviation for North Northwest"
 msgid "NNW"
-msgstr ""
+msgstr "NNW"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgctxt "Abbreviation for Celsius"
 msgid "C"
-msgstr ""
+msgstr "C"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgctxt "Abbreviation for Fahrenheit"
 msgid "F"
-msgstr ""
+msgstr "F"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgctxt "Abbreviation for Kelvin"
 msgid "K"
-msgstr ""
+msgstr "K"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "kmh"
-msgstr ""
+msgstr "kmh"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mph"
-msgstr ""
+msgstr "mph"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "m/s"
-msgstr ""
+msgstr "m/s"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgctxt "Abbreviation for Meters"
 msgid "m"
-msgstr ""
+msgstr "m"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "ft"
-msgstr ""
+msgstr "ft"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mm"
-msgstr ""
+msgstr "mm"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "cm"
-msgstr ""
+msgstr "cm"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgctxt "Abbreviation for Inches"
 msgid "in"
-msgstr ""
+msgstr "in"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mb"
-msgstr ""
+msgstr "mb"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "inHG"
-msgstr ""
+msgstr "inHG"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "mmHG"
-msgstr ""
+msgstr "mmHG"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "hPa"
-msgstr ""
+msgstr "hPa"
 
 #: ../contents/code/utils.js ../contents/ui/config/ConfigUnits.qml
 msgid "psi"
-msgstr ""
+msgstr "psi"
 
 #: ../contents/code/utils.js
 msgid "To sunrise"
