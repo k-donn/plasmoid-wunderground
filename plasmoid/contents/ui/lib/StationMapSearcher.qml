@@ -212,10 +212,13 @@ Window {
                             var maxCoord = QtPositioning.coordinate(latMax, lonMax);
                             var avgCoord = QtPositioning.coordinate(latAvg, lonAvg);
                             stationMapSearcher.searchRadius = stations.length > 1 ? Math.max(avgCoord.distanceTo(minCoord), avgCoord.distanceTo(maxCoord)) : 5000;
+                            printDebug("searchRadius: " + stationMapSearcher.searchRadius);
                             stationMapSearcher.areaLat = latAvg;
                             stationMapSearcher.areaLon = lonAvg;
                             stationMap.center = avgCoord;
+                            printDebug("center: " + stationMap.center.latitude + ", " + stationMap.center.longitude);
                             stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
+                            printDebug("zoomLevel: " + stationMap.zoomLevel);
                         });
                     } else if (stationMapSearcher.searchMode === "latlon") {
                         StationAPI.searchGeocode({
@@ -313,10 +316,9 @@ Window {
                         stationMapSearcher.searchResults.clear();
                         stationMapSearcher.areaLat = stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude;
                         stationMapSearcher.areaLon = stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude;
-                        stationMap.center = QtPositioning.coordinate(stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude, stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude);
                         StationAPI.searchGeocode({
-                            latitude: stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).latitude,
-                            longitude: stationMapSearcher.availableCitiesModel.get(cityChoice.currentIndex).longitude
+                            latitude: stationMapSearcher.areaLat,
+                            longitude: stationMapSearcher.areaLon
                         }, {
                             language: Qt.locale().name.replace("_", "-")
                         }, function (err, stations) {
@@ -325,9 +327,13 @@ Window {
                                 errorMessage = err.message;
                                 return;
                             }
-                            var latMin, latMax, lonMin, lonMax;
+                            errorType = "";
+                            errorMessage = "";
+                            var latMin, latMax, latSum, latCount, lonMin, lonMax, lonSum, lonCount;
+                            latSum = latCount = lonSum = lonCount = 0;
                             latMin = lonMin = Infinity;
                             latMax = lonMax = -Infinity;
+                            searchResults.clear();
                             for (var i = 0; i < stations.length; i++) {
                                 if (stations[i].latitude < latMin)
                                     latMin = stations[i].latitude;
@@ -337,7 +343,11 @@ Window {
                                     lonMin = stations[i].longitude;
                                 if (stations[i].longitude > lonMax)
                                     lonMax = stations[i].longitude;
-                                stationMapSearcher.searchResults.append({
+                                latSum += stations[i].latitude;
+                                lonSum += stations[i].longitude;
+                                latCount += 1;
+                                lonCount += 1;
+                                searchResults.append({
                                     "stationID": stations[i].stationID,
                                     "address": stations[i].address,
                                     "latitude": stations[i].latitude,
@@ -345,12 +355,17 @@ Window {
                                     "qcStatus": stations[i].qcStatus
                                 });
                             }
+                            var latAvg = latSum / latCount;
+                            var lonAvg = lonSum / lonCount;
                             var minCoord = QtPositioning.coordinate(latMin, lonMin);
                             var maxCoord = QtPositioning.coordinate(latMax, lonMax);
-                            var avgCoord = stationMap.center;
-
-                            stationMapSearcher.searchRadius = Math.max(avgCoord.distanceTo(minCoord), avgCoord.distanceTo(maxCoord));
+                            var avgCoord = QtPositioning.coordinate(latAvg, lonAvg);
+                            stationMapSearcher.searchRadius = stations.length > 1 ? Math.max(avgCoord.distanceTo(minCoord), avgCoord.distanceTo(maxCoord)) : 5000;
+                            printDebug("searchRadius: " + stationMapSearcher.searchRadius);
+                            stationMap.center = avgCoord;
+                            printDebug("center: " + stationMap.center.latitude + ", " + stationMap.center.longitude);
                             stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
+                            printDebug("zoomLevel: " + stationMap.zoomLevel);
                         });
                     }
                 }

@@ -438,10 +438,10 @@ function searchStationID(query, options, callback) {
 				: 0;
 			for (var i = 0; i < count; i++) {
 				stationsArr.push({
-					stationID: loc.pwsId ? loc.pwsId[i] : "",
-					address: loc.neighborhood ? loc.neighborhood[i] : "",
-					latitude: loc.latitude ? loc.latitude[i] : 0,
-					longitude: loc.longitude ? loc.longitude[i] : 0,
+					stationID: loc.pwsId[i] ? loc.pwsId[i] : "",
+					address: loc.neighborhood[i] ? loc.neighborhood[i] : "",
+					latitude: loc.latitude[i] ? loc.latitude[i] : 0,
+					longitude: loc.longitude[i] ? loc.longitude[i] : 0,
 					qcStatus: 0,
 				});
 			}
@@ -500,10 +500,54 @@ function searchGeocode(latLongObj, options, callback) {
 			for (var i = 0; i < loc.stationId.length; i++) {
 				stationsArr.push({
 					stationID: loc.stationId[i],
-					address: loc.stationName ? loc.stationName[i] : "",
-					latitude: loc.latitude ? loc.latitude[i] : 0,
-					longitude: loc.longitude ? loc.longitude[i] : 0,
-					qcStatus: loc.qcStatus ? loc.qcStatus[i] : 0,
+					address: loc.stationName[i] ? loc.stationName[i] : "",
+					latitude: loc.latitude[i] ? loc.latitude[i] : 0,
+					longitude: loc.longitude[i] ? loc.longitude[i] : 0,
+					qcStatus: loc.qcStatus[i] ? loc.qcStatus[i] : 0,
+				});
+			}
+		}
+
+		callback(null, stationsArr);
+	});
+}
+
+function getNearest(options, callback) {
+	options = options || {};
+	callback = callback || function () {};
+
+	var url = _buildUrl("/v3/location/here", {
+		product: "pws",
+		format: "json",
+	});
+
+		printDebug("[pws-api.js] " + url);
+
+	_httpGet(url, function (err, res, status, raw) {
+		if (err || status !== 200) {
+			if (status === 404)
+				callback({ type: "404", message: i18n("No stations found") }, null);
+			else
+				callback(
+					err || {
+						type: status || i18n("network"),
+						message: raw || i18n("Request failed"),
+					},
+					null
+				);
+			return;
+		}
+
+		var stationsArr = [];
+		var loc = res && res.location;
+		if (loc && Array.isArray(loc.stationId)) {
+			for (var i = 0; i < loc.stationId.length; i++) {
+				stationsArr.push({
+					stationID: loc.stationId[i],
+					address: loc.stationName[i] ? loc.stationName[i] : "",
+					latitude: loc.latitude[i] ? loc.latitude[i] : 0,
+					longitude: loc.longitude[i] ? loc.longitude[i] : 0,
+					qcStatus: loc.qcStatus[i] ? loc.qcStatus[i] : 0,
 				});
 			}
 		}
@@ -570,9 +614,9 @@ function getLocations(city, options, callback) {
 			var count = Array.isArray(loc.address) ? loc.address.length : 0;
 			for (var i = 0; i < count; i++) {
 				locationsArr.push({
-					address: loc.address ? loc.address[i] : "",
-					latitude: loc.latitude ? loc.latitude[i] : 0,
-					longitude: loc.longitude ? loc.longitude[i] : 0,
+					address: loc.address[i] ? loc.address[i] : "",
+					latitude: loc.latitude[i] ? loc.latitude[i] : 0,
+					longitude: loc.longitude[i] ? loc.longitude[i] : 0,
 				});
 			}
 		}
