@@ -316,49 +316,55 @@ function zoomForBoundingBox(bbox, map, padding) {
 }
 
 function zoomForCircle(centerCoord, radiusMeters, map, padding) {
-	const EARTH_RADIUS = 6378137;
-	const lat = degToRad(centerCoord.latitude);
-	const lon = degToRad(centerCoord.longitude);
+    const EARTH_RADIUS = 6378137;
 
-	const angularRadius = radiusMeters / EARTH_RADIUS;
+    if (padding === undefined) {
+        padding = 20;
+    }
 
-	const latMax = Math.asin(
-		Math.sin(lat) * Math.cos(angularRadius) +
-			Math.cos(lat) * Math.sin(angularRadius),
-	);
-	const latMin = Math.asin(
-		Math.sin(lat) * Math.cos(angularRadius) -
-			Math.cos(lat) * Math.sin(angularRadius),
-	);
+    const lat = degToRad(centerCoord.latitude);
+    const lon = degToRad(centerCoord.longitude);
 
-	const latCos = Math.cos(lat);
-	const angularRadiusCos = Math.cos(angularRadius);
-	const lonDelta =
-		latCos === 0
-			? Math.PI // At poles, span all longitudes
-			: Math.acos(
-					(angularRadiusCos - Math.sin(lat) * Math.sin(latMax)) /
-						(Math.cos(lat) * Math.cos(latMax)),
-				);
+    const angularRadius = radiusMeters / EARTH_RADIUS;
 
-	const lonMin = lon - lonDelta;
-	const lonMax = lon + lonDelta;
+    // Latitude bounds of the great-circle circle.
+    const latMax = Math.asin(
+        Math.sin(lat) * Math.cos(angularRadius) +
+        Math.cos(lat) * Math.sin(angularRadius)
+    );
 
-	var bbox = {
-		minLat: (latMin * 180) / Math.PI,
-		maxLat: (latMax * 180) / Math.PI,
-		minLon: (lonMin * 180) / Math.PI,
-		maxLon: (lonMax * 180) / Math.PI,
-	};
+    const latMin = Math.asin(
+        Math.sin(lat) * Math.cos(angularRadius) -
+        Math.cos(lat) * Math.sin(angularRadius)
+    );
 
-	if (bbox.minLon < -180) {
-		bbox.minLon = bbox.minLon + 360;
-	}
-	if (bbox.maxLon > 180) {
-		bbox.maxLon = bbox.maxLon - 360;
-	}
+    // Longitude extent.
+    const latCos = Math.cos(lat);
 
-	return zoomForBoundingBox(bbox, map, padding);
+    let lonDelta;
+
+    if (Math.abs(latCos) < 1e-12) {
+        // At the poles, the circle spans every longitude.
+        lonDelta = Math.PI;
+    } else {
+        const value =
+            Math.sin(angularRadius) / Math.abs(latCos);
+
+        // Clamp against floating-point error.
+        lonDelta = Math.asin(Math.min(1, value));
+    }
+
+    const lonMin = lon - lonDelta;
+    const lonMax = lon + lonDelta;
+
+    const bbox = {
+        minLat: latMin * 180 / Math.PI,
+        maxLat: latMax * 180 / Math.PI,
+        minLon: lonMin * 180 / Math.PI,
+        maxLon: lonMax * 180 / Math.PI,
+    };
+
+    return zoomForBoundingBox(bbox, map, padding);
 }
 
 function cToF(degC) {
