@@ -471,10 +471,12 @@ function searchGeocode(latLongObj, options, callback) {
 	var latitude = latLongObj.latitude;
 	var longitude = latLongObj.longitude;
 
+	var language = options.language || _formatLanguage();
 	var url = _buildUrl("/v3/location/near", {
 		geocode: latitude + "," + longitude,
 		product: "pws",
 		format: "json",
+		language: language,
 	});
 
 	printDebug("[pws-api.js] " + url);
@@ -516,9 +518,11 @@ function getNearest(options, callback) {
 	options = options || {};
 	callback = callback || function () {};
 
+	var language = options.language || _formatLanguage();
 	var url = _buildUrl("/v3/location/here", {
 		product: "pws",
 		format: "json",
+		language: language,
 	});
 
 		printDebug("[pws-api.js] " + url);
@@ -643,7 +647,7 @@ function getLocations(city, options, callback) {
  *  - configUpdates: latitude/longitude/stationName values discovered
  *
  * @param {Object} options
- * @param {string} options.stationID
+ * @param {string} [options.stationID]
  * @param {number} [options.unitsChoice]
  * @param {Object} [options.oldWeatherData]
  * @param {function(Object|null, Object|null)} callback
@@ -948,8 +952,8 @@ function getExtendedConditions(options, callback) {
  * Callback: cb(err, { forecast: Array<day>, currDayHigh, currDayLow })
  *
  * @param {Object} options
- * @param {number} options.latitude
- * @param {number} options.longitude
+ * @param {number} [options.latitude]
+ * @param {number} [options.longitude]
  * @param {number} [options.unitsChoice]
  * @param {boolean} [options.useLegacyAPI]
  * @param {string} [options.language]
@@ -968,8 +972,8 @@ function getForecastData(options, callback) {
  * V3 forecast implementation.
  *
  * @param {Object} options
- * @param {number} options.latitude
- * @param {number} options.longitude
+ * @param {number} [options.latitude]
+ * @param {number} [options.longitude]
  * @param {number} [options.unitsChoice]
  * @param {string} [options.language]
  * @param {function(Object|null, Object|null)} callback
@@ -1142,8 +1146,8 @@ function getForecastDataV3(options, callback) {
  * V1 forecast implementation.
  *
  * @param {Object} options
- * @param {number} options.latitude
- * @param {number} options.longitude
+ * @param {number} [options.latitude]
+ * @param {number} [options.longitude]
  * @param {number} [options.unitsChoice]
  * @param {string} [options.language]
  * @param {function(Object|null, Object|null)} callback
@@ -1278,8 +1282,8 @@ function getHourlyData(optionsOrCallback, callback) {
  * V1 hourly forecast implementation.
  *
  * @param {Object} options
- * @param {number} options.latitude
- * @param {number} options.longitude
+ * @param {number} [options.latitude]
+ * @param {number} [options.longitude]
  * @param {number} [options.unitsChoice]
  * @param {string} [options.language]
  * @param {function(Object|null, Object|null)} callback
@@ -1390,8 +1394,8 @@ function getHourlyDataV1(options, callback) {
  * V3 hourly forecast implementation.
  *
  * @param {Object} options
- * @param {number} options.latitude
- * @param {number} options.longitude
+ * @param {number} [options.latitude]
+ * @param {number} [options.longitude]
  * @param {number} [options.unitsChoice]
  * @param {string} [options.language]
  * @param {number} [options.presUnit]
