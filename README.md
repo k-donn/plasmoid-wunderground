@@ -82,6 +82,8 @@ Files and portions of files are from [Zren](https://github.com/zren/), [Martin K
 
 Language contributions thanks to [AleksZZ](https://github.com/AleksZZ), [Clover Git](https://github.com/CloverGit), [ekkia](https://github.com/ekkia), [foXaCe](https://github.com/foXaCe), [Heimen Stoffels](https://github.com/Vistaus), [Ivan Todorov](https://github.com/GlobeDotters), [jpmadeira](https://github.com/jpmadeira), Martin Eilsøe, [Pushpal Sidhu](https://github.com/psidhu), [radoeka](https://github.com/radoeka), [RygorrMortis](https://github.com/RygorrMortis), [tabascosw](https://github.com/tabascosw), undernature, [victorhck](https://github.com/victorhck), and [Yuta Takahashi](https://github.com/Walkmana-25).
 
+This widget uses IP2Location.io [IP geolocation](https://www.ip2location.io) web service.
+
 If you are not attributed for work in this repository, let me know!
 
 ### Known Problems

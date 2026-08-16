@@ -212,13 +212,10 @@ Window {
                             var maxCoord = QtPositioning.coordinate(latMax, lonMax);
                             var avgCoord = QtPositioning.coordinate(latAvg, lonAvg);
                             stationMapSearcher.searchRadius = stations.length > 1 ? Math.max(avgCoord.distanceTo(minCoord), avgCoord.distanceTo(maxCoord)) : 5000;
-                            printDebug("searchRadius: " + stationMapSearcher.searchRadius);
                             stationMapSearcher.areaLat = latAvg;
                             stationMapSearcher.areaLon = lonAvg;
                             stationMap.center = avgCoord;
-                            printDebug("center: " + stationMap.center.latitude + ", " + stationMap.center.longitude);
                             stationMap.zoomLevel = Utils.zoomForCircle(stationMap.center, stationMapSearcher.searchRadius, stationMap, 5);
-                            printDebug("zoomLevel: " + stationMap.zoomLevel);
                         });
                     } else if (stationMapSearcher.searchMode === "latlon") {
                         StationAPI.searchGeocode({
