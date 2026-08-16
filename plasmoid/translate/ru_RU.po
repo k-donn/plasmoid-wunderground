@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-06-28 16:21-0500\n"
+"POT-Creation-Date: 2026-08-16 16:19-0500\n"
 "PO-Revision-Date: 2026-06-24 20:46+0300\n"
 "Last-Translator: кен\n"
 "Language-Team: ru\n"
@@ -767,6 +767,15 @@ msgid "Actions"
 msgstr "Действия"
 
 #: ../contents/ui/config/ConfigStation.qml
+msgid "Add Current Location"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+msgid "No nearby stations found."
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Select from Map"
 msgstr "Выбрать на карте"
 
@@ -779,6 +788,11 @@ msgstr "Найти станцию"
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Manual Add"
 msgstr "Добавить вручную"
+
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+msgid "Error (%1): %2"
+msgstr "Ошибка (%1): %2"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -948,6 +962,10 @@ msgid "Lat/Lon"
 msgstr "Широта/Долгота"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
+msgid "Current Location"
+msgstr ""
+
+#: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search"
 msgstr "Поиск"
@@ -964,6 +982,10 @@ msgstr "Введите город, район, населенный пункт �
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Click or drag the marker on the map below."
 msgstr "Щелкните или перетащите маркер на карте ниже."
+
+#: ../contents/ui/lib/StationMapSearcher.qml
+msgid "Searching for nearby stations using IP2Location.io"
+msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
@@ -984,8 +1006,11 @@ msgid "Selected latitude: %1, longitude: %2"
 msgstr "Выбранная широта: %1, долгота: %2"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
-msgid "Error (%1): %2"
-msgstr "Ошибка (%1): %2"
+msgid ""
+"Privacy Policy: IP2Location.io is used to determine your approximate "
+"location based on your IP address. No personally identifiable information is "
+"collected or stored."
+msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Warning"

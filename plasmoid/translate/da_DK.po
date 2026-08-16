@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-06-28 16:21-0500\n"
+"POT-Creation-Date: 2026-08-16 16:19-0500\n"
 "PO-Revision-Date: 2026-07-14 23:26+0200\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: <ll@li.org>\n"
@@ -758,6 +758,15 @@ msgid "Actions"
 msgstr "Handling"
 
 #: ../contents/ui/config/ConfigStation.qml
+msgid "Add Current Location"
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+msgid "No nearby stations found."
+msgstr ""
+
+#: ../contents/ui/config/ConfigStation.qml
 msgid "Select from Map"
 msgstr "Vælg fra kort"
 
@@ -770,6 +779,11 @@ msgstr "Find station"
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Manual Add"
 msgstr "Manuel tilføjelse"
+
+#: ../contents/ui/config/ConfigStation.qml
+#: ../contents/ui/lib/StationMapSearcher.qml
+msgid "Error (%1): %2"
+msgstr "Fejl: (%1): %2"
 
 #: ../contents/ui/config/ConfigStation.qml
 msgid "Refresh period (s):"
@@ -939,6 +953,10 @@ msgid "Lat/Lon"
 msgstr "Bred/Læng"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
+msgid "Current Location"
+msgstr ""
+
+#: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
 msgid "Search"
 msgstr "Søg"
@@ -955,6 +973,10 @@ msgstr "Angiv by, stat, lokalitet eller adresse"
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Click or drag the marker on the map below."
 msgstr "Klik eller træk markør på kortet nedenfor."
+
+#: ../contents/ui/lib/StationMapSearcher.qml
+msgid "Searching for nearby stations using IP2Location.io"
+msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 #: ../contents/ui/lib/StationSearcher.qml
@@ -975,8 +997,11 @@ msgid "Selected latitude: %1, longitude: %2"
 msgstr "Valgte længdegrad: %1, breddegrad: %2"
 
 #: ../contents/ui/lib/StationMapSearcher.qml
-msgid "Error (%1): %2"
-msgstr "Fejl: (%1): %2"
+msgid ""
+"Privacy Policy: IP2Location.io is used to determine your approximate "
+"location based on your IP address. No personally identifiable information is "
+"collected or stored."
+msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml
 msgid "Warning"
