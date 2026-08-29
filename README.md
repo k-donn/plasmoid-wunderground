@@ -80,7 +80,7 @@ The weather icons are a mix of [Alessio Atzeni's](https://demo.alessioatzeni.com
 
 Files and portions of files are from [Zren](https://github.com/zren/), [Martin Kotelnik](https://github.com/kotelnik), @Gojir4 on the QML forum, and an upstream version of this widget [rliwoch's](https://github.com/rliwoch) [`plasmoid-wunderground-extended`](https://github.com/rliwoch/plasmoid-wunderground-extended).
 
-Language contributions thanks to [AleksZZ](https://github.com/AleksZZ), [Clover Git](https://github.com/CloverGit), [ekkia](https://github.com/ekkia), [foXaCe](https://github.com/foXaCe), [Heimen Stoffels](https://github.com/Vistaus), [Ivan Todorov](https://github.com/GlobeDotters), [jpmadeira](https://github.com/jpmadeira), Martin Eilsøe, [Pushpal Sidhu](https://github.com/psidhu), [radoeka](https://github.com/radoeka), [RygorrMortis](https://github.com/RygorrMortis), [tabascosw](https://github.com/tabascosw), undernature, [victorhck](https://github.com/victorhck), and [Yuta Takahashi](https://github.com/Walkmana-25).
+Language contributions thanks to [AleksZZ](https://github.com/AleksZZ), [Clover Git](https://github.com/CloverGit), [ekkia](https://github.com/ekkia), [foXaCe](https://github.com/foXaCe), [Heimen Stoffels](https://github.com/Vistaus), [Ivan Todorov](https://github.com/GlobeDotters), [jpmadeira](https://github.com/jpmadeira), Martin Eilsøe, [Pushpal Sidhu](https://github.com/psidhu), [radoeka](https://github.com/radoeka), [RygorrMortis](https://github.com/RygorrMortis), [tabascosw](https://github.com/tabascosw), [tarbaniker](https://github.com/tarbaniker), undernature, [victorhck](https://github.com/victorhck), and [Yuta Takahashi](https://github.com/Walkmana-25).
 
 This widget uses IP2Location.io [IP geolocation](https://www.ip2location.io) web service.
 
@@ -106,7 +106,7 @@ If you are getting lots of `Setting initial properties failed: <COMPONENT> does 
   -   [ ] Add traveling mode to get nearest station
 - Functionality
   -   [x] Add condition blurb on main screen
-  -   [ ] Kp-index display and more details rework
+  -   [x] Kp-index display and more details rework
 - i18n
   -   [ ] Translations for new text
 - Customizability
