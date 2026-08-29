@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-08-16 16:19-0500\n"
+"POT-Creation-Date: 2026-08-29 14:25-0500\n"
 "PO-Revision-Date: 2025-02-08 14:02+0100\n"
 "Last-Translator: Ivan Todorov <ivan@globedotters.com>\n"
 "Language-Team: Serbian (Latin) <YOUR_EMAIL>\n"
@@ -867,6 +867,10 @@ msgstr ""
 #: ../contents/ui/lib/StationListDelegate.qml
 msgid "Remove"
 msgstr "Ukloni"
+
+#: ../contents/ui/lib/StationManager.qml
+msgid "Duplicate station entered"
+msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"

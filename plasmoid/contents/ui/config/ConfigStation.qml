@@ -140,7 +140,10 @@ KCM.SimpleKCM {
                             stationConfig.errorMessage = "";
                             if (stations.length > 0) {
                                 var station = stations[0];
-                                stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude);
+                                stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude, function(err) {
+                                    stationConfig.errorType = err.type;
+                                    stationConfig.errorMessage = err.message;
+                                });
                             } else {
                                 stationConfig.errorMessage = i18n("No nearby stations found.");
                                 stationConfig.errorType = "NoStations";
@@ -216,7 +219,10 @@ KCM.SimpleKCM {
     Lib.StationSearcher {
         id: stationSearcher
         onStationSelected: function (station) {
-            stationManager.addStation(station.stationID, station.placeName, station.latitude, station.longitude)
+            stationManager.addStation(station.stationID, station.placeName, station.latitude, station.longitude, function(err) {
+                stationConfig.errorType = err.type;
+                stationConfig.errorMessage = err.message;
+            });
             stationSearcher.close()
         }
     }
@@ -225,7 +231,10 @@ KCM.SimpleKCM {
     Lib.StationMapSearcher {
         id: stationMapSearcher
         onStationSelected: function (station) {
-            stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude)
+            stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude, function(err) {
+                stationConfig.errorType = err.type;
+                stationConfig.errorMessage = err.message;
+            });
         }
     }
 
@@ -233,7 +242,10 @@ KCM.SimpleKCM {
     Lib.ManualStationAdd {
         id: manualAdd
         onStationSelected: function (station) {
-            stationManager.addStation(station.stationID, station.address, 0, 0)
+            stationManager.addStation(station.stationID, station.address, 0, 0, function(err) {
+                stationConfig.errorType = err.type;
+                stationConfig.errorMessage = err.message;
+            });
         }
     }
 }

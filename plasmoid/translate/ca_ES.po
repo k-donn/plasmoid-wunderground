@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: plasmoid-wunderground\n"
 "Report-Msgid-Bugs-To: https://github.com/k-donn/plasmoid-wunderground\n"
-"POT-Creation-Date: 2026-08-16 16:19-0500\n"
+"POT-Creation-Date: 2026-08-29 14:25-0500\n"
 "PO-Revision-Date: 2026-08-25 12:37+0100\n"
 "Last-Translator: Enric Duxans <enric.sanchez.duxans@gmail.com>\n"
 "Language-Team: Català <>\n"
@@ -867,6 +867,10 @@ msgstr "Editar nom"
 #: ../contents/ui/lib/StationListDelegate.qml
 msgid "Remove"
 msgstr "Suprimir"
+
+#: ../contents/ui/lib/StationManager.qml
+msgid "Duplicate station entered"
+msgstr ""
 
 #: ../contents/ui/lib/StationMapSearcher.qml ../contents/ui/lib/StationSearcher.qml
 msgid "Search by:"
