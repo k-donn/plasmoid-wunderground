@@ -16,6 +16,12 @@ This widget relies on local stations (ie. [KGADACUL1](https://www.wunderground.c
 
 Once installed, click `Configure Wunderground` or right-click and hit the slider icon. Then, under `Station`, click `Select from Map`.
 
+#### QtLocation
+
+Not all distros package QtLocation in with Qt so the extra module will need to be installed manually.
+
+Your package manager should have an extra package. Examples for [Arch](https://archlinux.org/packages/extra/x86_64/qt6-location/),[Debian](https://packages.debian.org/sid/qt6-location-dev), and [RedHat](https://rhel.pkgs.org/9/epel-x86_64/qt6-qtlocation-devel-6.6.2-1.el9.x86_64.rpm.html).
+
 ### Search by city/area
 
 To search by your address, city, locality, or neighborhood, enter that name into the first search box next to the `Search` button. Then, click `Search`. Next, choose the full name of your area with the dropdown box next to the `Choose` button. Click `Choose`. Select a station from the map and hit `✓Confirm`. Due to API restrictions, this must be split into two parts.
