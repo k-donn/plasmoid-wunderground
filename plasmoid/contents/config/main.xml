@@ -12,10 +12,10 @@
         <entry name="savedStations" type="String">
             <default>[]</default>
         </entry>
-        <entry name="longitude" type="String">
+        <entry name="longitude" type="Double">
             <default/>
         </entry>
-        <entry name="latitude" type="String">
+        <entry name="latitude" type="Double">
             <default/>
         </entry>
         <entry name="refreshPeriod" type="Int">
