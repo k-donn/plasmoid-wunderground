@@ -40,179 +40,190 @@ KCM.SimpleKCM {
     property string errorType: ""
     property string errorMessage: ""
 
-        function printDebug(msg) {
+    function printDebug(msg) {
         if (plasmoid.configuration.logConsole) {
             console.log("[debug] [ConfigStation.qml] " + msg);
         }
+    }
+
+    function clearError() {
+        errorType = "";
+        errorMessage = "";
     }
 
     Lib.StationManager {
         id: stationManager
     }
 
-    PlasmaComponents.ScrollView {
-        anchors.fill: stationConfig
+    ColumnLayout {
+        width: parent.width
+        spacing: Kirigami.Units.largeSpacing
 
-        ColumnLayout {
-            width: parent.width
-            spacing: Kirigami.Units.largeSpacing
-
-            // Header
-            Kirigami.Heading {
-                text: i18n("Saved Weather Stations")
-                level: 3
-            }
-
-            // Table Header
-            RowLayout {
-                id: headerRow
-                spacing: 0
-                Layout.fillWidth: true
-
-                Lib.TableHeaderCell {
-                    text: i18n("ID")
-                    width: 120
-                }
-
-                Lib.TableHeaderCell {
-                    text: i18n("Station Name")
-                    width: 160
-                }
-
-                Lib.TableHeaderCell {
-                    text: i18n("Latitude")
-                    width: 80
-                }
-
-                Lib.TableHeaderCell {
-                    text: i18n("Longitude")
-                    width: 80
-                }
-
-                Lib.TableHeaderCell {
-                    text: i18n("Actions")
-                    width: 140
-                }
-            }
-
-            // Station List
-            ListView {
-                id: stationListView
-                Layout.preferredHeight: 216
-                Layout.fillWidth: true
-                clip: true
-                model: stationManager.stationListModel
-
-                delegate: Lib.StationListDelegate {
-                    required property var model
-
-                    width: headerRow.width
-                    stationID: model.stationID
-                    address: model.address
-                    latitude: model.latitude
-                    longitude: model.longitude
-                    selected: model.selected
-
-                    onSelectStation: stationManager.selectStation(index)
-                    onDeleteStation: stationManager.deleteStation(index)
-                    onEditStation: function(newName) {
-                        stationManager.editStationName(index, newName)
-                    }
-                }
-            }
-
-            // Action Buttons
-            RowLayout {
-                Layout.fillWidth: true
-                spacing: Kirigami.Units.smallSpacing
-
-                QQC.Button {
-                    text: i18n("Add Current Location")
-                    icon.name: "mark-location"
-                    onClicked: function() {
-                        StationAPI.getNearest({ language: Qt.locale().name.replace("_", "-")}, function(err, stations) {
-                            if (err) {
-                                stationConfig.errorMessage = err.message;
-                                stationConfig.errorType = err.type;
-                                return;
-                            }
-                            stationConfig.errorType = "";
-                            stationConfig.errorMessage = "";
-                            if (stations.length > 0) {
-                                var station = stations[0];
-                                stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude, function(err) {
-                                    stationConfig.errorType = err.type;
-                                    stationConfig.errorMessage = err.message;
-                                });
-                            } else {
-                                stationConfig.errorMessage = i18n("No nearby stations found.");
-                                stationConfig.errorType = "NoStations";
-                            }
-                        })
-                    }
-                }
-
-                QQC.Button {
-                    text: i18n("Select from Map")
-                    icon.name: "earth"
-                    onClicked: stationMapSearcher.open()
-                }
-
-                QQC.Button {
-                    text: i18n("Find Station")
-                    icon.name: "find-location"
-                    onClicked: stationSearcher.open()
-                }
-
-                QQC.Button {
-                    text: i18n("Manual Add")
-                    icon.name: "list-add"
-                    onClicked: manualAdd.open()
-                }
-
-                Item { Layout.fillWidth: true }
-            }
-
-            // Error Text
-            QQC.TextField {
-                enabled: false
-                Layout.fillWidth: true
-                visible: stationConfig.errorMessage.length > 0
-                text: i18n("Error (%1): %2", stationConfig.errorType, stationConfig.errorMessage)
-                color: "red"
-            }
-
-            // Refresh Period Setting
-            RowLayout {
-                spacing: Kirigami.Units.smallSpacing
-
-                PlasmaComponents.Label {
-                    text: i18n("Refresh period (s):")
-                }
-
-                QQC.SpinBox {
-                    id: refreshPeriod
-                    from: 300
-                    to: 86400
-                    editable: true
-                    validator: IntValidator {
-                        bottom: refreshPeriod.from
-                        top: refreshPeriod.to
-                    }
-                }
-
-                Item { Layout.fillWidth: true }
-            }
-
-            // Version
-            PlasmaComponents.Label {
-                text: "Version 3.8.5"
-                font.pointSize: 9
-                opacity: 0.7
-            }
-
-            Item { Layout.fillHeight: true }
+        // Header
+        Kirigami.Heading {
+            text: i18n("Saved Weather Stations")
+            level: 3
         }
+
+        // Table Header
+        RowLayout {
+            id: headerRow
+            spacing: 0
+            Layout.fillWidth: true
+
+            Lib.TableHeaderCell {
+                text: i18n("ID")
+                width: 120
+            }
+
+            Lib.TableHeaderCell {
+                text: i18n("Station Name")
+                width: 160
+            }
+
+            Lib.TableHeaderCell {
+                text: i18n("Latitude")
+                width: 80
+            }
+
+            Lib.TableHeaderCell {
+                text: i18n("Longitude")
+                width: 80
+            }
+
+            Lib.TableHeaderCell {
+                text: i18n("Actions")
+                width: 140
+            }
+        }
+
+        // Station List
+        ListView {
+            id: stationListView
+            Layout.preferredHeight: 216
+            Layout.fillWidth: true
+            clip: true
+            model: stationManager.stationListModel
+
+            delegate: Lib.StationListDelegate {
+                required property var model
+
+                width: headerRow.width
+                stationID: model.stationID
+                address: model.address
+                latitude: model.latitude
+                longitude: model.longitude
+                selected: model.selected
+
+                onSelectStation: stationManager.selectStation(index)
+                onDeleteStation: stationManager.deleteStation(index)
+                onEditStation: function(newName) {
+                    stationManager.editStationName(index, newName)
+                }
+            }
+        }
+
+        // Action Buttons
+        RowLayout {
+            Layout.fillWidth: true
+            spacing: Kirigami.Units.smallSpacing
+
+            QQC.Button {
+                text: i18n("Add Current Location")
+                icon.name: "mark-location"
+                onClicked: function() {
+                    clearError();
+                    StationAPI.getNearest({ language: Qt.locale().name.replace("_", "-")}, function(err, stations) {
+                        if (err) {
+                            stationConfig.errorMessage = err.message;
+                            stationConfig.errorType = err.type;
+                            return;
+                        }
+                        stationConfig.errorType = "";
+                        stationConfig.errorMessage = "";
+                        if (stations.length > 0) {
+                            var station = stations[0];
+                            stationManager.addStation(station.stationID, station.address, station.latitude, station.longitude, function(err) {
+                                stationConfig.errorType = err.type;
+                                stationConfig.errorMessage = err.message;
+                            });
+                        } else {
+                            stationConfig.errorMessage = i18n("No nearby stations found.");
+                            stationConfig.errorType = "NoStations";
+                        }
+                    })
+                }
+            }
+
+            QQC.Button {
+                text: i18n("Select from Map")
+                icon.name: "earth"
+                onClicked: function() {
+                    clearError();
+                    stationMapSearcher.open();
+                }
+            }
+
+            QQC.Button {
+                text: i18n("Find Station")
+                icon.name: "find-location"
+                onClicked: function() {
+                    clearError();
+                    stationSearcher.open();
+                }
+            }
+
+            QQC.Button {
+                text: i18n("Manual Add")
+                icon.name: "list-add"
+                onClicked: function() {
+                    clearError();
+                    manualAdd.open();
+                }
+            }
+
+            Item { Layout.fillWidth: true }
+        }
+
+        // Error Text
+        QQC.TextField {
+            enabled: false
+            Layout.fillWidth: true
+            visible: stationConfig.errorMessage.length > 0
+            text: i18n("Error (%1): %2", stationConfig.errorType, stationConfig.errorMessage)
+            color: "red"
+        }
+
+        // Refresh Period Setting
+        RowLayout {
+            spacing: Kirigami.Units.smallSpacing
+
+            PlasmaComponents.Label {
+                text: i18n("Refresh period (s):")
+            }
+
+            QQC.SpinBox {
+                id: refreshPeriod
+                from: 300
+                to: 86400
+                editable: true
+                validator: IntValidator {
+                    bottom: refreshPeriod.from
+                    top: refreshPeriod.to
+                }
+            }
+
+            Item { Layout.fillWidth: true }
+        }
+
+        // Version
+        PlasmaComponents.Label {
+            text: "Version 3.8.5"
+            font.pointSize: 9
+            opacity: 0.7
+        }
+
+        Item { Layout.fillHeight: true }
     }
 
     // Station Search Dialog
